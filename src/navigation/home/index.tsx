@@ -18,6 +18,9 @@ export default function HomeScreen() {
             <Stack.Screen
                 name="feed"
                 component={FeedScreen}
+                options={{
+                    headerShown: false,
+                }}
             />
             {/* <Stack.Screen
                 name="Discover"

@@ -1,12 +1,15 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-
+import { View, Text, Image, ScrollView } from "react-native";
+import styles from "./styles";
 const FeedScreen = () => {
   return (
-    <View>
-      <Text>FeedScreen</Text>
-    </View>
-  )
-}
+    // scroll view
+    <ScrollView style={styles.container}>
+      <View style={styles.container}>
+        <Image style={{ width: 390, height: 300}} resizeMode="contain" source={require("../../../assets/images/uni.jpg")} />
+        <Text>FeedScreen</Text>
+      </View>
+    </ScrollView>
+  );
+};
 
-export default FeedScreen
+export default FeedScreen;

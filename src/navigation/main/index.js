@@ -1,5 +1,6 @@
 import { NavigationContainer, NavigatorScreenParams } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Feather } from '@expo/vector-icons';
 // import AuthScreen from '../../screens/auth'
 import HomeScreen from '../home';
 // import SavePostScreen from '../../screens/savePost';
@@ -39,7 +40,12 @@ export default function Route() {
           <BottomTabs.Screen
             name="home"
             component={HomeScreen}
-            options={{ headerShown: false }}
+            options={{
+              tabBarIcon: ({ color }) => (
+                  <Feather name="home" size={24} color={color} />
+              ),
+              headerShown: false
+          }}
           />
           {/* <BottomTabs.Screen
             name="savePost"

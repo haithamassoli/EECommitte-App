@@ -1,5 +1,4 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { Feather } from '@expo/vector-icons';
 // import CameraScreen from '../../screens/camera';
 // import ProfileScreen from '../../screens/profile';
 // import SearchScreen from '../../screens/search';
@@ -19,11 +18,6 @@ export default function HomeScreen() {
             <Stack.Screen
                 name="feed"
                 component={FeedScreen}
-                options={{
-                    tabBarIcon: ({ color }) => (
-                        <Feather name="home" size={24} color={color} />
-                    )
-                }}
             />
             {/* <Stack.Screen
                 name="Discover"

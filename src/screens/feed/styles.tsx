@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
-
+import { screenWidth, screenHeight } from "../../utils/Helper";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  containerInput: {
-    padding: 10,
-    flexDirection: "row",
+  image: {
+    width: screenWidth,
+    height: screenHeight * 0.4,
   },
   input: {
     backgroundColor: "lightgrey",

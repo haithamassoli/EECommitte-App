@@ -14,7 +14,7 @@ export default function App() {
   useEffect(() => {
     // I18nManager.isRTL = true;
     // I18nManager.allowRTL(true);
-    // I18nManager.forceRTL(true);
+    I18nManager.forceRTL(true);
   }, []);
   
   console.log(I18nManager.isRTL);

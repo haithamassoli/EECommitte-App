@@ -7,6 +7,7 @@ import { Feather } from "@expo/vector-icons";
 // import AuthScreen from '../../screens/auth'
 import HomeScreen from "../home";
 import SearchScreen from "../../screens/search";
+import PlanScreen from "../../screens/plan";
 // import SavePostScreen from '../../screens/savePost';
 // import EditProfileScreen from '../../screens/profile/edit';
 // import EditProfileFieldScreen from '../../screens/profile/edit/field';
@@ -49,6 +50,7 @@ export default function Route() {
                 <Feather name="home" size={24} color={color} />
               ),
               headerShown: false,
+              headerTitle: "الصفحة الرئيسية",
             }}
           />
           <BottomTabs.Screen
@@ -58,14 +60,20 @@ export default function Route() {
               tabBarIcon: ({ color }) => (
                 <Feather name="search" size={24} color={color} />
               ),
+              headerTitle: "البحث",
             }}
           />
-          {/*  <BottomTabs.Screen
-            name="userPosts"
-            component={FeedScreen}
-            options={{ headerShown: false }}
-          />
           <BottomTabs.Screen
+            name="plan"
+            component={PlanScreen}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Feather name="map" size={24} color={color} />
+              ),
+              headerTitle: "الخطة الدراسية",
+            }}
+          />
+          {/* <BottomTabs.Screen
             name="profileOther"
             component={ProfileScreen}
             options={{ headerShown: false }}

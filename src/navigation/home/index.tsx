@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 export default function HomeScreen() {
     return (
         <Stack.Navigator
-            barStyle={{ backgroundColor: 'black' }}
+            // barStyle={{ backgroundColor: 'black' }}
             initialRouteName="feed">
             <Stack.Screen
                 name="feed"

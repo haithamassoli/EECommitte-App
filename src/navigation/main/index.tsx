@@ -73,17 +73,27 @@ export default function Route() {
               headerTitle: "الخطة الدراسية",
             }}
           />
+          <BottomTabs.Screen
+            name="bars"
+            component={PlanScreen}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Feather name="menu" size={24} color={color} />
+              ),
+              headerTitle: "",
+            }}
+          />
+          <BottomTabs.Screen
+            name="info"
+            component={PlanScreen}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Feather name="info" size={24} color={color} />
+              ),
+              headerTitle: "المعلومات",
+            }}
+          />
           {/* <BottomTabs.Screen
-            name="profileOther"
-            component={ProfileScreen}
-            options={{ headerShown: false }}
-          />
-          <BottomTabs.Screen
-            name="editProfile"
-            component={EditProfileScreen}
-            options={{ headerShown: false }}
-          />
-          <BottomTabs.Screen
             name="editProfileField"
             component={EditProfileFieldScreen}
             options={{ headerShown: false }}

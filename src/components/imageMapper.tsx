@@ -60,7 +60,7 @@ class ImageMapper extends Component {
               key={item.id}
               // @ts-ignore
               onPress={(event) => this.props.onPress(item, index, event)}
-              // style={[{ position: "absolute" }, this.buildStyle(item, index)]}
+              style={[{ position: "absolute" }, this.buildStyle(item, index)]}
             />
           ))}
         </ImageBackground>

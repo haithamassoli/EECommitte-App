@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Route from "./src/navigation/main";
@@ -11,12 +11,12 @@ import {
 } from "react-native";
 
 export default function App() {
-  useEffect(() => {
+  useLayoutEffect(() => {
     // I18nManager.isRTL = true;
     // I18nManager.allowRTL(true);
     I18nManager.forceRTL(true);
   }, []);
-  
+
   console.log(I18nManager.isRTL);
   return (
     <>

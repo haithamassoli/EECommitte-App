@@ -4,9 +4,10 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import Fuse from "fuse.js";
-import { Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import subjects from "../../data/Subjects";
 import { Colors } from "../../styles/Colors";
 import SearchInput from "../../components/ui/SearchInput";
@@ -99,7 +100,7 @@ const SearchScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.searchContainer}>
         <SearchInput
           searchInput={searchInput}
@@ -139,16 +140,16 @@ const SearchScreen = () => {
                 alignItems: "center",
               }}
             >
-              <Ionicons name="search" size={20} color="black" />
+              <Feather name="clock" size={20} color="black" />
               <Text style={{ fontSize: 16, marginLeft: 5 }}>
                 {/* @ts-ignore */}
-                {item.name}
+                {item.name2}
               </Text>
             </View>
-            <Ionicons
+            <Feather
               // @ts-ignore
               onPress={() => handleDelete(item.id)}
-              name="close"
+              name="x"
               size={20}
               color="black"
             />
@@ -197,7 +198,7 @@ const SearchScreen = () => {
           </View>
         ))}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

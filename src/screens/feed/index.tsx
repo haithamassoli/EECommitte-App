@@ -1,5 +1,6 @@
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Image, ScrollView } from "react-native";
 import styles from "./styles";
+
 const FeedScreen = () => {
   return (
     <ScrollView style={styles.container}>

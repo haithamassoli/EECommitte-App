@@ -5,56 +5,10 @@ import ReactNativeZoomableView from "@openspacelabs/react-native-zoomable-view/s
 import { screenWidth } from "../../utils/Helper";
 
 import styles from "./styles";
-
-const MAPPING = [
-  {
-    id: "1",
-    shape: "circle",
-    x1: (screenWidth / 100) * 17,
-    y1: (screenWidth * 1.074 / 100 ) * 63,
-    width: 50,
-    height: 50,
-    radius: 25,
-    fill: "black",
-    prefill: "black",
-  },
-  {
-    id: "2",
-    shape: "circle",
-    x1: (screenWidth / 100) * 68,
-    y1: (screenWidth * 1.074 / 100 ) * 27,
-    width: 50,
-    height: 50,
-    radius: 25,
-    fill: "red",
-    prefill: "red",
-  },
-  {
-    id: "3",
-    shape: "circle",
-    x1: 100,
-    y1: 100,
-    width: 50,
-    height: 50,
-    radius: 25,
-    prefill: "red",
-    fill: "red",
-  },
-  {
-    id: "4",
-    shape: "circle",
-    x1: 90,
-    y1: 30,
-    width: 50,
-    height: 50,
-    radius: 25,
-    prefill: "red",
-    fill: "red",
-  },
-];
+import MAPPING from "./Mapping";
 
 const PlanScreen = () => {
-  const [selectedAreaId, setSelectedAreaId] = useState<null | string>(null);
+  const [selectedAreaId, setSelectedAreaId] = useState<string[]>([]);
 
   return (
     <ScrollView style={styles.container}>
@@ -76,7 +30,7 @@ const PlanScreen = () => {
             multiselect
             containerStyle={{ top: 0 }}
             onPress={(item: any) => {
-              setSelectedAreaId(item.id);
+              setSelectedAreaId([item.id]);
             }}
           />
         </ReactNativeZoomableView>

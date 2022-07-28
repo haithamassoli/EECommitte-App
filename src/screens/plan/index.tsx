@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 import ImageMapper from "../../components/imageMapper";
 import ReactNativeZoomableView from "@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView";
 import { screenWidth } from "../../utils/Helper";
@@ -10,19 +10,19 @@ const MAPPING = [
   {
     id: "1",
     shape: "circle",
-    x1: 100,
-    y1: 200,
+    x1: (screenWidth / 100) * 17,
+    y1: (screenWidth * 1.074 / 100 ) * 63,
     width: 50,
     height: 50,
     radius: 25,
-    fill: "red",
-    prefill: "red",
+    fill: "black",
+    prefill: "black",
   },
   {
     id: "2",
     shape: "circle",
-    x1: 0,
-    y1: 0,
+    x1: (screenWidth / 100) * 68,
+    y1: (screenWidth * 1.074 / 100 ) * 27,
     width: 50,
     height: 50,
     radius: 25,
@@ -54,35 +54,8 @@ const MAPPING = [
 ];
 
 const PlanScreen = () => {
-  const [selectedAreaId, setSelectedAreaId] = useState([]);
+  const [selectedAreaId, setSelectedAreaId] = useState<null | string>(null);
 
-  console.log(selectedAreaId);
-  const mapperAreaClickHandler = async (item: any, idx: any, event: any) => {
-    const currentSelectedAreaId = selectedAreaId;
-    if (Array.isArray(currentSelectedAreaId)) {
-      // @ts-ignore
-      const indexInState = currentSelectedAreaId.indexOf(item.id);
-      if (indexInState !== -1) {
-        console.log("Removing id", item.id);
-        setSelectedAreaId([
-          ...currentSelectedAreaId.slice(0, indexInState),
-          ...currentSelectedAreaId.slice(indexInState + 1),
-        ]);
-      } else {
-        alert(`Clicked Item Id: ${item.id}`);
-        console.log("Setting Id", item.id);
-        // @ts-ignore
-        setSelectedAreaId([...currentSelectedAreaId, item.id]);
-      }
-    } else {
-      if (item.id === currentSelectedAreaId) {
-        // @ts-ignore
-        setSelectedAreaId(null);
-      } else {
-        setSelectedAreaId(item.id);
-      }
-    }
-  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.container}>
@@ -102,9 +75,8 @@ const PlanScreen = () => {
             selectedAreaId={selectedAreaId}
             multiselect
             containerStyle={{ top: 0 }}
-            onPress={(item: any, idx: any, event: any) => {
-              console.log(item, idx, event);
-              mapperAreaClickHandler(item, idx, event);
+            onPress={(item: any) => {
+              setSelectedAreaId(item.id);
             }}
           />
         </ReactNativeZoomableView>

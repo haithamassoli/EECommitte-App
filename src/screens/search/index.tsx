@@ -6,6 +6,7 @@ import subjects from "../../data/Subjects";
 import { Colors } from "../../styles/Colors";
 import SearchInput from "../../components/ui/SearchInput";
 import { useEffect, useState } from "react";
+import { deleteStorage, getDataFromStorage, storeDataToStorage } from "../../utils/Helper";
 
 const { height } = Dimensions.get("window");
 
@@ -33,7 +34,7 @@ const SearchScreen = () => {
 
   useEffect(() => {
     async function getHistory() {
-      const historySearchResults = await getData();
+      const historySearchResults = await getDataFromStorage("searchHistory");
       if (Array.isArray(historySearchResults)) {
         historySearchResults.map((ids) => {
           const result = subjects.find((subject) => subject.id === ids);
@@ -49,56 +50,44 @@ const SearchScreen = () => {
     const fuse = new Fuse(subjects, options);
     const searchResults = fuse.search(searchInput);
     // @ts-ignore
-    setResults(searchResults.slice(0, 6));
+    setResults(searchResults.slice(0, 5));
   }, [searchInput]);
 
   const handlePress = async (id: string) => {
-    const prevData = await getData();
-    if (Array.isArray(prevData)) {
-      if (prevData.length > 6) {
+    const prevData = await getDataFromStorage("searchHistory");
+    console.log(prevData);
+    if (Array.isArray(prevData) && !prevData.includes(id)) {
+      if (prevData.length >= 5) {
         prevData.pop();
-        //  pop state
       }
-      await storeData([id, ...prevData]);
-    } else {
-      await storeData([id]);
-    }
-    // @ts-ignore
-    setHistoryResults((prev) => [
+      await storeDataToStorage("searchHistory", [id, ...prevData]);
       // @ts-ignore
-      subjects.find((subject) => subject.id === id),
-      ...prev.slice(0, 5)
-    ]);
+      setHistoryResults((prev) => [
+        // @ts-ignore
+        subjects.find((subject) => subject.id === id),
+        ...prev.slice(0, 5),
+      ]);
+    } else if(!prevData.includes(id)) {
+      await storeDataToStorage("searchHistory", [id]);
+      // @ts-ignore
+      setHistoryResults([subjects.find((subject) => subject.id === id)]);
+    }
+
     // navigation.navigate("Subject");
   };
 
-  const storeData = async (value: string[]) => {
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("searchHistory", jsonValue);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const getData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("searchHistory");
-      return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   const handleDelete = async (id: string) => {
-    const prevData = await getData();
+    const prevData = await getDataFromStorage("searchHistory");
     const newData = historyResults.filter((item: any) => item.id !== id);
-    await storeData(prevData.filter((item: any) => item !== id));
+    await storeDataToStorage(
+      "searchHistory",
+      prevData.filter((item: any) => item !== id)
+    );
     setHistoryResults(newData);
   };
 
   const deleteAll = async () => {
-    await AsyncStorage.removeItem("searchHistory");
+    deleteStorage("searchHistory");
     setHistoryResults([]);
   };
 

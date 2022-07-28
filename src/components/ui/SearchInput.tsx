@@ -1,12 +1,15 @@
-import { useState } from "react";
 import { View, TextInput, StyleSheet, Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../../styles/Colors";
 
 const { height } = Dimensions.get("window");
 
-const SearchInput = () => {
-  const [searchInput, setSearchInput] = useState("");
+interface SearchInputProps {
+  searchInput: string;
+  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SearchInput = ({searchInput, setSearchInput}: SearchInputProps) => {
 
   return (
     <View style={styles.searchContainer}>
@@ -19,7 +22,7 @@ const SearchInput = () => {
       <TextInput
         value={searchInput}
         onChangeText={(searchString) => setSearchInput(searchString)}
-        placeholder="Search..."
+        placeholder="ابحث..."
         placeholderTextColor={Colors.secondary}
         style={styles.searchInput}
       />
@@ -47,17 +50,18 @@ const styles = StyleSheet.create({
     height: height / 8,
   },
   searchInput: {
-    paddingLeft: 45,
-    paddingRight: 20,
+    paddingRight: 45,
+    paddingLeft: 20,
     paddingVertical: 10,
     borderRadius: 5,
     backgroundColor: Colors.secondaryLight,
+    color: "#000",
     opacity: 0.3,
     width: "100%",
   },
   searchIcon: {
     position: "absolute",
-    left: 10,
+    right: 10,
     zIndex: 10,
   },
 });

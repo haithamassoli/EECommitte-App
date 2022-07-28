@@ -17,7 +17,6 @@ export default function App() {
     I18nManager.forceRTL(true);
   }, []);
 
-  console.log(I18nManager.isRTL);
   return (
     <>
       <StatusBar style="auto" />

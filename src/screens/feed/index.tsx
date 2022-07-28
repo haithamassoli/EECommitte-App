@@ -5,7 +5,6 @@ const FeedScreen = () => {
     <ScrollView style={styles.container}>
       <View style={styles.container}>
         <Image style={styles.image} resizeMode="contain" source={require("../../../assets/images/uni.jpg")} />
-        <Text>FeedScreen</Text>
       </View>
     </ScrollView>
   );

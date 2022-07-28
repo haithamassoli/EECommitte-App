@@ -1,11 +1,21 @@
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import Fuse from "fuse.js";
 import { Ionicons } from "@expo/vector-icons";
 import subjects from "../../data/Subjects";
 import { Colors } from "../../styles/Colors";
 import SearchInput from "../../components/ui/SearchInput";
 import { useEffect, useState } from "react";
-import { deleteStorage, getDataFromStorage, storeDataToStorage } from "../../utils/Helper";
+import {
+  deleteStorage,
+  getDataFromStorage,
+  storeDataToStorage,
+} from "../../utils/Helper";
 
 const { height } = Dimensions.get("window");
 
@@ -54,7 +64,7 @@ const SearchScreen = () => {
 
   const handlePress = async (id: string) => {
     const prevData = await getDataFromStorage("searchHistory");
-    if (!prevData.includes(id)) {
+    if (Array.isArray(prevData) &&!prevData.includes(id)) {
       if (prevData.length >= 5) {
         prevData.pop();
       }
@@ -65,7 +75,7 @@ const SearchScreen = () => {
         subjects.find((subject) => subject.id === id),
         ...prev.slice(0, 4),
       ]);
-    } else if(!prevData) {
+    } else if (!prevData) {
       await storeDataToStorage("searchHistory", [id]);
       // @ts-ignore
       setHistoryResults([subjects.find((subject) => subject.id === id)]);
@@ -160,12 +170,30 @@ const SearchScreen = () => {
       <View style={{ marginTop: 15 }}>
         {results.map((item: any, index: number) => (
           <View key={index}>
-            <Text
-              onPress={() => handlePress(item.item.id)}
-              style={{ fontSize: 16, fontWeight: "bold" }}
-            >
-              {item.item.name}
-            </Text>
+            <TouchableOpacity style={{flexDirection:'row-reverse'}} onPress={() => handlePress(item.item.id)}>
+              {item.item.name2
+                .split("")
+                .map((letter: string, index: number) => {
+                  if (
+                    searchInput.toLowerCase().includes(letter.toLowerCase())
+                  ) {
+                    return (
+                      <Text
+                        key={index}
+                        style={{ fontSize: 16, fontWeight: "bold" }}
+                      >
+                        {letter}
+                      </Text>
+                    );
+                  } else {
+                    return (
+                      <Text key={index} style={{ fontSize: 16 }}>
+                        {letter}
+                      </Text>
+                    );
+                  }
+                })}
+            </TouchableOpacity>
           </View>
         ))}
       </View>

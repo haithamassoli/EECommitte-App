@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet, Dimensions } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Fuse from "fuse.js";
 import { Ionicons } from "@expo/vector-icons";
 import subjects from "../../data/Subjects";
@@ -55,8 +54,7 @@ const SearchScreen = () => {
 
   const handlePress = async (id: string) => {
     const prevData = await getDataFromStorage("searchHistory");
-    console.log(prevData);
-    if (Array.isArray(prevData) && !prevData.includes(id)) {
+    if (!prevData.includes(id)) {
       if (prevData.length >= 5) {
         prevData.pop();
       }
@@ -65,14 +63,13 @@ const SearchScreen = () => {
       setHistoryResults((prev) => [
         // @ts-ignore
         subjects.find((subject) => subject.id === id),
-        ...prev.slice(0, 5),
+        ...prev.slice(0, 4),
       ]);
-    } else if(!prevData.includes(id)) {
+    } else if(!prevData) {
       await storeDataToStorage("searchHistory", [id]);
       // @ts-ignore
       setHistoryResults([subjects.find((subject) => subject.id === id)]);
     }
-
     // navigation.navigate("Subject");
   };
 

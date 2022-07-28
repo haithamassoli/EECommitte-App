@@ -65,7 +65,7 @@ const SearchScreen = () => {
 
   const handlePress = async (id: string) => {
     const prevData = await getDataFromStorage("searchHistory");
-    if (Array.isArray(prevData) &&!prevData.includes(id)) {
+    if (Array.isArray(prevData) && !prevData.includes(id)) {
       if (prevData.length >= 5) {
         prevData.pop();
       }
@@ -164,39 +164,55 @@ const SearchScreen = () => {
             marginTop: 40,
           }}
         >
-          لا توجد بيانات
+          لا يوجد بحث سابق
         </Text>
       )}
 
       <View style={{ marginTop: 15 }}>
-        {results.map((item: any, index: number) => (
-          <View key={index}>
-            <TouchableOpacity style={{flexDirection:'row-reverse'}} onPress={() => handlePress(item.item.id)}>
-              {item.item.name2
-                .split("")
-                .map((letter: string, index: number) => {
-                  if (
-                    searchInput.toLowerCase().includes(letter.toLowerCase())
-                  ) {
-                    return (
-                      <Text
-                        key={index}
-                        style={{ fontSize: 16, fontWeight: "bold" }}
-                      >
-                        {letter}
-                      </Text>
-                    );
-                  } else {
-                    return (
-                      <Text key={index} style={{ fontSize: 16 }}>
-                        {letter}
-                      </Text>
-                    );
-                  }
-                })}
-            </TouchableOpacity>
-          </View>
-        ))}
+        {results.length > 0 ? (
+          results.map((item: any, index: number) => (
+            <View key={index}>
+              <TouchableOpacity
+                style={{ flexDirection: "row-reverse" }}
+                onPress={() => handlePress(item.item.id)}
+              >
+                {item.item.name2
+                  .split("")
+                  .map((letter: string, index: number) => {
+                    if (
+                      searchInput.toLowerCase().includes(letter.toLowerCase())
+                    ) {
+                      return (
+                        <Text
+                          key={index}
+                          style={{ fontSize: 16, fontWeight: "bold" }}
+                        >
+                          {letter}
+                        </Text>
+                      );
+                    } else {
+                      return (
+                        <Text key={index} style={{ fontSize: 16 }}>
+                          {letter}
+                        </Text>
+                      );
+                    }
+                  })}
+              </TouchableOpacity>
+            </View>
+          ))
+        ) : (
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: 24,
+              marginTop: 40,
+            }}
+          >
+            لا توجد بيانات
+          </Text>
+        )}
       </View>
     </ScrollView>
   );

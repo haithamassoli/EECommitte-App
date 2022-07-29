@@ -3,6 +3,7 @@ export interface Subject {
   name: string;
   name2: string;
   subjectLink: string;
+  fullContent?: string;
 }
 
 type ItemType = {

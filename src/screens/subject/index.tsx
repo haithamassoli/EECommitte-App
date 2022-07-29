@@ -5,6 +5,7 @@ import subjects from "../../data/Subjects.json";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { Subject } from "../../types";
 import type { SubjectsStackParamList } from "../../types/navigation";
+import { rtlWebview } from "../../utils/Helper";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 
@@ -18,22 +19,23 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     if (currentSubject) {
       setSubject(currentSubject);
     }
-  }, [navigation]);
+  }, [route?.params?.areaId]);
 
   useLayoutEffect(() => {
     navigation.setOptions({});
-  }, [navigation]);
+  }, []);
 
   return (
     <View style={{ flex: 1 }}>
       <Text>{subject?.name}</Text>
       <Text>{subject?.name2}</Text>
-      <WebView
-        source={{
-          html: '<h1 style="color:red"><center>Hello world</center></h1><h1>Haitham</h1><p>Haitham</p>',
-        }}
-      />
-
+      {subject?.fullContent && (
+        <WebView
+          source={{
+            html: rtlWebview(subject.fullContent),
+          }}
+        />
+      )}
       <Text>{subject?.subjectLink}</Text>
     </View>
   );

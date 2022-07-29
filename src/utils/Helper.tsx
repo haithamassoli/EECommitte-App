@@ -26,3 +26,6 @@ export const deleteStorage = async (key: string) => {
   await AsyncStorage.removeItem(key);
 };
 
+export const rtlWebview = (html: string) => {
+  return `<html dir="rtl" lang="ar"><body>${html}</body></html> text/html; charset=utf-8 UTF-8);`;
+}

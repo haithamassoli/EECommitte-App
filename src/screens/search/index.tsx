@@ -52,12 +52,14 @@ const SearchScreen = ({ navigation }: Props) => {
   useEffect(() => {
     async function getHistory() {
       const historySearchResults = await getDataFromStorage("searchHistory");
-      historySearchResults.map((ids: number) => {
-        const result = subjects.find((subject) => subject.id === ids);
-        if (result) {
-          setHistoryResults([result]);
-        }
-      });
+      if (Array.isArray(historySearchResults)) {
+        historySearchResults.map((ids: number) => {
+          const result = subjects.find((subject) => subject.id === ids);
+          if (result) {
+            setHistoryResults((prev) => [...prev, result]);
+          }
+        });
+      }
     }
     getHistory();
   }, []);
@@ -65,9 +67,10 @@ const SearchScreen = ({ navigation }: Props) => {
   useEffect(() => {
     const fuse = new Fuse(subjects, options);
     const searchResults = fuse.search(searchInput);
-    searchResults.slice(0, 5).map((result) => {
-      setResults((prev) => [...prev, result.item]);
+    const newArr = searchResults.slice(0, 5).map((result) => {
+      return result.item;
     });
+    setResults(newArr.slice(0, 5));
   }, [searchInput]);
 
   const handlePress = async (id: number) => {
@@ -88,7 +91,6 @@ const SearchScreen = ({ navigation }: Props) => {
         setHistoryResults([result]);
       }
     }
-    // @ts-ignore
     navigation.navigate("Subjects", {
       screen: "Subject",
       params: { areaId: id },

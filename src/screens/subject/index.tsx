@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { View, Text } from "react-native";
 import { WebView } from "react-native-webview";
-import subjects from "../../data/Subjects.json";
+import subjects from "../../data/Subjects";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { Subject } from "../../types";
 import type { SubjectsStackParamList } from "../../types/navigation";

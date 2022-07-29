@@ -11,7 +11,7 @@ import {
 import Fuse from "fuse.js";
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
-import subjects from "../../data/Subjects.json";
+import subjects from "../../data/Subjects";
 import { Colors } from "../../styles/Colors";
 import SearchInput from "../../components/ui/SearchInput";
 import { useEffect, useState } from "react";

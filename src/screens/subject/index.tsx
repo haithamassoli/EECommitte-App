@@ -1,11 +1,11 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { View, Text } from "react-native";
-import type { StackScreenProps } from "@react-navigation/stack";
 import subjects from "../../data/Subjects.json";
-import { Subject } from "../../types";
-import { SubjectsStackParamList } from "../../types/navigation";
+import type { StackScreenProps } from "@react-navigation/stack";
+import type { Subject } from "../../types";
+import type { SubjectsStackParamList } from "../../types/navigation";
 
-type Props = StackScreenProps<SubjectsStackParamList, "subject">;
+type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 
 const SubjectScreen = ({ navigation, route }: Props) => {
   const [subject, setSubject] = useState<Subject | undefined>({} as Subject);

@@ -9,10 +9,10 @@ export type BottomTabParamList = {
 };
 
 export type HomeStackParamList = {
-  feed: undefined;
+  Feed: undefined;
 };
 
 export type SubjectsStackParamList = {
-  plan: undefined;
-  subject: { areaId: number };
+  Plan: undefined;
+  Subject: { areaId: number };
 };

@@ -13,10 +13,10 @@ export default function SubjectsScreen() {
   return (
     <Stack.Navigator
       // barStyle={{ backgroundColor: 'black' }}
-      initialRouteName="plan"
+      initialRouteName="Plan"
     >
       <Stack.Screen
-        name="plan"
+        name="Plan"
         component={PlanScreen}
         options={{
           headerShown: false,

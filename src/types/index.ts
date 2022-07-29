@@ -1,8 +1,8 @@
 export interface Subject {
-  id: number,
-  name: string,
-  name2: string,
-  subjectLink: string
+  id: number;
+  name: string;
+  name2: string;
+  subjectLink: string;
 }
 
 type ItemType = {
@@ -41,6 +41,7 @@ type RectangleType = ItemType & {
   radius?: never;
 };
 
-type RectangleTypeDimensions = RectangleType & (DimnesionWH | DimnesionPosition); 
+type RectangleTypeDimensions = RectangleType &
+  (DimnesionWH | DimnesionPosition);
 
 export type MapperItem = CircleType | RectangleTypeDimensions;

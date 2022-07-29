@@ -8,7 +8,7 @@ import HomeScreen from "../home";
 import SearchScreen from "../../screens/search";
 import PlanScreen from "../../screens/plan";
 import SubjectsScreen from "../subjects";
-import { BottomTabParamList } from "../../types/navigation";
+import type { BottomTabParamList } from "../../types/navigation";
 // import SavePostScreen from '../../screens/savePost';
 // import EditProfileScreen from '../../screens/profile/edit';
 // import EditProfileFieldScreen from '../../screens/profile/edit/field';

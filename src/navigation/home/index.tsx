@@ -14,9 +14,9 @@ export default function HomeScreen() {
     return (
         <Stack.Navigator
             // barStyle={{ backgroundColor: 'black' }}
-            initialRouteName="feed">
+            initialRouteName="Feed">
             <Stack.Screen
-                name="feed"
+                name="Feed"
                 component={FeedScreen}
                 options={{
                     headerShown: false,

@@ -19,6 +19,7 @@ import {
   getDataFromStorage,
   storeDataToStorage,
 } from "../../utils/Helper";
+import type { Subject } from "../../types";
 
 const { height } = Dimensions.get("window");
 
@@ -41,19 +42,18 @@ const options = {
 
 const SearchScreen = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [results, setResults] = useState([]);
-  const [historyResults, setHistoryResults] = useState([]);
+  const [results, setResults] = useState<Subject[] | []>([]);
+  const [historyResults, setHistoryResults] = useState([] as Subject[]);
 
   useEffect(() => {
     async function getHistory() {
       const historySearchResults = await getDataFromStorage("searchHistory");
-      if (Array.isArray(historySearchResults)) {
-        historySearchResults.map((ids) => {
-          const result = subjects.find((subject) => subject.id === ids);
-          // @ts-ignore
-          setHistoryResults((prev) => [...prev, result]);
-        });
-      }
+      historySearchResults.map((ids: number) => {
+        const result = subjects.find((subject) => subject.id === ids);
+        if (result) {
+          setHistoryResults([result]);
+        }
+      });
     }
     getHistory();
   }, []);
@@ -61,37 +61,38 @@ const SearchScreen = () => {
   useEffect(() => {
     const fuse = new Fuse(subjects, options);
     const searchResults = fuse.search(searchInput);
-    // @ts-ignore
-    setResults(searchResults.slice(0, 5));
+    searchResults.slice(0, 5).map((result) => {
+      setResults((prev) => [...prev, result.item]);
+    });
   }, [searchInput]);
 
-  const handlePress = async (id: string) => {
+  const handlePress = async (id: number) => {
     const prevData = await getDataFromStorage("searchHistory");
     if (Array.isArray(prevData) && !prevData.includes(id)) {
       if (prevData.length >= 5) {
         prevData.pop();
       }
       await storeDataToStorage("searchHistory", [id, ...prevData]);
-      // @ts-ignore
-      setHistoryResults((prev) => [
-        // @ts-ignore
-        subjects.find((subject) => subject.id === id),
-        ...prev.slice(0, 4),
-      ]);
+      const result = subjects.find((subject) => subject.id === id);
+      if (result) {
+        setHistoryResults((prev) => [result, ...prev.slice(0, 4)]);
+      }
     } else if (!prevData) {
       await storeDataToStorage("searchHistory", [id]);
-      // @ts-ignore
-      setHistoryResults([subjects.find((subject) => subject.id === id)]);
+      const result = subjects.find((subject) => subject.id === id);
+      if (result) {
+        setHistoryResults([result]);
+      }
     }
     // navigation.navigate("Subject");
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: number) => {
     const prevData = await getDataFromStorage("searchHistory");
-    const newData = historyResults.filter((item: any) => item.id !== id);
+    const newData = historyResults.filter((item: Subject) => item.id !== id);
     await storeDataToStorage(
       "searchHistory",
-      prevData.filter((item: any) => item !== id)
+      prevData.filter((item: number) => item !== id)
     );
     setHistoryResults(newData);
   };
@@ -148,12 +149,10 @@ const SearchScreen = () => {
               >
                 <Feather name="clock" size={20} color="black" />
                 <Text style={{ fontSize: 16, marginLeft: 5 }}>
-                  {/* @ts-ignore */}
                   {item.name2}
                 </Text>
               </View>
               <Feather
-                // @ts-ignore
                 onPress={() => handleDelete(item.id)}
                 name="x"
                 size={20}
@@ -176,13 +175,13 @@ const SearchScreen = () => {
 
         <View style={{ marginTop: 15 }}>
           {results.length > 0 ? (
-            results.map((item: any, index: number) => (
+            results.map((result: Subject, index: number) => (
               <View key={index}>
                 <TouchableOpacity
                   style={{ flexDirection: "row-reverse" }}
-                  onPress={() => handlePress(item.item.id)}
+                  onPress={() => handlePress(result.id)}
                 >
-                  {item.item.name2
+                  {result.name2
                     .split("")
                     .map((letter: string, index: number) => {
                       if (

@@ -13,7 +13,7 @@ export const getDataFromStorage = async (key: string) => {
   }
 };
 
-export const storeDataToStorage = async (key: string, value: string[]) => {
+export const storeDataToStorage = async (key: string, value: any) => {
   try {
     const jsonValue = JSON.stringify(value);
     await AsyncStorage.setItem(key, jsonValue);

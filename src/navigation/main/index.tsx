@@ -1,6 +1,5 @@
 import {
   NavigationContainer,
-  NavigatorScreenParams,
 } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
@@ -9,6 +8,7 @@ import HomeScreen from "../home";
 import SearchScreen from "../../screens/search";
 import PlanScreen from "../../screens/plan";
 import SubjectsScreen from "../subjects";
+import { BottomTabParamList } from "../../types/navigation";
 // import SavePostScreen from '../../screens/savePost';
 // import EditProfileScreen from '../../screens/profile/edit';
 // import EditProfileFieldScreen from '../../screens/profile/edit/field';
@@ -35,7 +35,7 @@ import SubjectsScreen from "../subjects";
 // };
 // };
 
-const BottomTabs = createBottomTabNavigator();
+const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 // const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
 export default function Route() {
@@ -44,7 +44,7 @@ export default function Route() {
       <BottomTabs.Navigator>
         <>
           <BottomTabs.Screen
-            name="home"
+            name="Home"
             component={HomeScreen}
             options={{
               tabBarIcon: ({ color }) => (
@@ -55,7 +55,7 @@ export default function Route() {
             }}
           />
           <BottomTabs.Screen
-            name="search"
+            name="Search"
             component={SearchScreen}
             options={{
               tabBarIcon: ({ color }) => (
@@ -65,7 +65,7 @@ export default function Route() {
             }}
           />
           <BottomTabs.Screen
-            name="subjects"
+            name="Subjects"
             component={SubjectsScreen}
             options={{
               tabBarIcon: ({ color }) => (
@@ -75,7 +75,7 @@ export default function Route() {
             }}
           />
           <BottomTabs.Screen
-            name="bars"
+            name="Bars"
             component={PlanScreen}
             options={{
               tabBarIcon: ({ color }) => (
@@ -85,7 +85,7 @@ export default function Route() {
             }}
           />
           <BottomTabs.Screen
-            name="info"
+            name="Info"
             component={PlanScreen}
             options={{
               tabBarIcon: ({ color }) => (

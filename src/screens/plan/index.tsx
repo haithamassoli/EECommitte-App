@@ -11,7 +11,7 @@ import { MapperItem } from "../../types";
 
 const PlanScreen = ({ navigation }: any) => {
   const handleSelectArea = (areaId: number) => {
-    navigation.navigate("subject", { areaId });
+    navigation.navigate("Subject", { areaId });
   };
   return (
     <ScrollView style={styles.container}>

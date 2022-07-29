@@ -15,7 +15,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       (subject) => subject.id === route.params.areaId
     );
     setSubject(currentSubject);
-  }, []);
+  }, [navigation]);
 
   useLayoutEffect(() => {
     navigation.setOptions({});

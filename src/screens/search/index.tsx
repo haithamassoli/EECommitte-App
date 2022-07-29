@@ -9,6 +9,7 @@ import {
   Platform,
 } from "react-native";
 import Fuse from "fuse.js";
+import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import subjects from "../../data/Subjects.json";
 import { Colors } from "../../styles/Colors";
@@ -20,6 +21,7 @@ import {
   storeDataToStorage,
 } from "../../utils/Helper";
 import type { Subject } from "../../types";
+import { BottomTabParamList } from "../../types/navigation";
 
 const { height } = Dimensions.get("window");
 
@@ -40,7 +42,9 @@ const options = {
   keys: ["name", "name2"],
 };
 
-const SearchScreen = () => {
+type Props = BottomTabScreenProps<BottomTabParamList, "Search">;
+
+const SearchScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Subject[] | []>([]);
   const [historyResults, setHistoryResults] = useState([] as Subject[]);
@@ -84,7 +88,11 @@ const SearchScreen = () => {
         setHistoryResults([result]);
       }
     }
-    // navigation.navigate("Subject");
+    // @ts-ignore
+    navigation.navigate("Subjects", {
+      screen: "Subject",
+      params: { areaId: id },
+    });
   };
 
   const handleDelete = async (id: number) => {

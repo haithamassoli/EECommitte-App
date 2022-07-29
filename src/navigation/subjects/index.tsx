@@ -22,7 +22,7 @@ export default function SubjectsScreen() {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="subject" component={SubjectScreen} />
+      <Stack.Screen name="Subject" component={SubjectScreen} />
       {/*<Stack.Screen
                 name="Add"
                 component={CameraScreen}

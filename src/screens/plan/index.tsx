@@ -5,9 +5,7 @@ import { screenWidth } from "../../utils/Helper";
 
 import styles from "./styles";
 import MAPPING from "./Mapping";
-import { MapperItem } from "../../types";
-
-
+import type { MapperItem } from "../../types";
 
 const PlanScreen = ({ navigation }: any) => {
   const handleSelectArea = (areaId: number) => {
@@ -28,6 +26,7 @@ const PlanScreen = ({ navigation }: any) => {
             imgSource={require("../../../assets/images/plan.jpg")}
             imgWidth={screenWidth}
             imgHeight={screenWidth * 1.074}
+            // @ts-ignore
             imgMap={MAPPING}
             multiselect
             containerStyle={{ top: 0 }}

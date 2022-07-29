@@ -5,10 +5,12 @@ import {
   Dimensions,
   TouchableOpacity,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import Fuse from "fuse.js";
 import { Feather } from "@expo/vector-icons";
-import subjects from "../../data/Subjects";
+import subjects from "../../data/Subjects.json";
 import { Colors } from "../../styles/Colors";
 import SearchInput from "../../components/ui/SearchInput";
 import { useEffect, useState } from "react";
@@ -101,104 +103,62 @@ const SearchScreen = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.searchContainer}>
-        <SearchInput
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-        />
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginTop: 15,
-        }}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
       >
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>البحث السابق</Text>
-        <Text
-          onPress={deleteAll}
-          style={{ fontSize: 16, fontWeight: "bold", color: Colors.primary }}
+        <View style={styles.searchContainer}>
+          <SearchInput
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: 15,
+          }}
         >
-          حذف الكل
-        </Text>
-      </View>
-      {historyResults.length > 0 ? (
-        historyResults.map((item, index) => (
-          <View
-            key={index}
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              marginTop: 25,
-              justifyContent: "space-between",
-            }}
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>البحث السابق</Text>
+          <Text
+            onPress={deleteAll}
+            style={{ fontSize: 16, fontWeight: "bold", color: Colors.primary }}
           >
+            حذف الكل
+          </Text>
+        </View>
+        {historyResults.length > 0 ? (
+          historyResults.map((item, index) => (
             <View
+              key={index}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
+                marginTop: 25,
+                justifyContent: "space-between",
               }}
             >
-              <Feather name="clock" size={20} color="black" />
-              <Text style={{ fontSize: 16, marginLeft: 5 }}>
-                {/* @ts-ignore */}
-                {item.name2}
-              </Text>
-            </View>
-            <Feather
-              // @ts-ignore
-              onPress={() => handleDelete(item.id)}
-              name="x"
-              size={20}
-              color="black"
-            />
-          </View>
-        ))
-      ) : (
-        <Text
-          style={{
-            textAlign: "center",
-            fontWeight: "bold",
-            fontSize: 24,
-            marginTop: 40,
-          }}
-        >
-          لا يوجد بحث سابق
-        </Text>
-      )}
-
-      <View style={{ marginTop: 15 }}>
-        {results.length > 0 ? (
-          results.map((item: any, index: number) => (
-            <View key={index}>
-              <TouchableOpacity
-                style={{ flexDirection: "row-reverse" }}
-                onPress={() => handlePress(item.item.id)}
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
               >
-                {item.item.name2
-                  .split("")
-                  .map((letter: string, index: number) => {
-                    if (
-                      searchInput.toLowerCase().includes(letter.toLowerCase())
-                    ) {
-                      return (
-                        <Text
-                          key={index}
-                          style={{ fontSize: 16, fontWeight: "bold" }}
-                        >
-                          {letter}
-                        </Text>
-                      );
-                    } else {
-                      return (
-                        <Text key={index} style={{ fontSize: 16 }}>
-                          {letter}
-                        </Text>
-                      );
-                    }
-                  })}
-              </TouchableOpacity>
+                <Feather name="clock" size={20} color="black" />
+                <Text style={{ fontSize: 16, marginLeft: 5 }}>
+                  {/* @ts-ignore */}
+                  {item.name2}
+                </Text>
+              </View>
+              <Feather
+                // @ts-ignore
+                onPress={() => handleDelete(item.id)}
+                name="x"
+                size={20}
+                color="black"
+              />
             </View>
           ))
         ) : (
@@ -210,10 +170,57 @@ const SearchScreen = () => {
               marginTop: 40,
             }}
           >
-            لا توجد بيانات
+            لا يوجد بحث سابق
           </Text>
         )}
-      </View>
+
+        <View style={{ marginTop: 15 }}>
+          {results.length > 0 ? (
+            results.map((item: any, index: number) => (
+              <View key={index}>
+                <TouchableOpacity
+                  style={{ flexDirection: "row-reverse" }}
+                  onPress={() => handlePress(item.item.id)}
+                >
+                  {item.item.name2
+                    .split("")
+                    .map((letter: string, index: number) => {
+                      if (
+                        searchInput.toLowerCase().includes(letter.toLowerCase())
+                      ) {
+                        return (
+                          <Text
+                            key={index}
+                            style={{ fontSize: 16, fontWeight: "bold" }}
+                          >
+                            {letter}
+                          </Text>
+                        );
+                      } else {
+                        return (
+                          <Text key={index} style={{ fontSize: 16 }}>
+                            {letter}
+                          </Text>
+                        );
+                      }
+                    })}
+                </TouchableOpacity>
+              </View>
+            ))
+          ) : (
+            <Text
+              style={{
+                textAlign: "center",
+                fontWeight: "bold",
+                fontSize: 24,
+                marginTop: 40,
+              }}
+            >
+              لا توجد بيانات
+            </Text>
+          )}
+        </View>
+      </KeyboardAvoidingView>
     </ScrollView>
   );
 };
@@ -225,6 +232,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 10,
     paddingHorizontal: 20,
+    paddingBottom: 10,
     backgroundColor: "white",
   },
   header: {

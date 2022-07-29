@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { View, ScrollView } from "react-native";
 import ImageMapper from "../../components/imageMapper";
 import ReactNativeZoomableView from "@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView";
@@ -6,10 +5,14 @@ import { screenWidth } from "../../utils/Helper";
 
 import styles from "./styles";
 import MAPPING from "./Mapping";
+import { MapperItem } from "../../types";
 
-const PlanScreen = () => {
-  const [selectedAreaId, setSelectedAreaId] = useState<string[]>([]);
 
+
+const PlanScreen = ({ navigation }: any) => {
+  const handleSelectArea = (areaId: number) => {
+    navigation.navigate("subject", { areaId });
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.container}>
@@ -26,11 +29,10 @@ const PlanScreen = () => {
             imgWidth={screenWidth}
             imgHeight={screenWidth * 1.074}
             imgMap={MAPPING}
-            selectedAreaId={selectedAreaId}
             multiselect
             containerStyle={{ top: 0 }}
-            onPress={(item: any) => {
-              setSelectedAreaId([item.id]);
+            onPress={(item: MapperItem) => {
+              handleSelectArea(item.id);
             }}
           />
         </ReactNativeZoomableView>

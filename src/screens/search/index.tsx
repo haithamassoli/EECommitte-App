@@ -112,6 +112,13 @@ const SearchScreen = ({ navigation }: Props) => {
     setHistoryResults([]);
   };
 
+  const handlePressHistory = (id: number) => {
+    navigation.navigate("Subjects", {
+      screen: "Subject",
+      params: { areaId: id },
+    });
+  };
+
   return (
     <ScrollView style={styles.container}>
       <KeyboardAvoidingView
@@ -158,7 +165,10 @@ const SearchScreen = ({ navigation }: Props) => {
                 }}
               >
                 <Feather name="clock" size={20} color="black" />
-                <Text style={{ fontSize: 16, marginLeft: 5 }}>
+                <Text
+                  onPress={() => handlePressHistory(item.id)}
+                  style={{ fontSize: 16, marginLeft: 5 }}
+                >
                   {item.name2}
                 </Text>
               </View>

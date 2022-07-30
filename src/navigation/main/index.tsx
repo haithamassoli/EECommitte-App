@@ -71,7 +71,7 @@ export default function Route() {
               tabBarIcon: ({ color }) => (
                 <Feather name="map" size={24} color={color} />
               ),
-              headerTitle: "الخطة الدراسية",
+              headerShown: false,
             }}
           />
           <BottomTabs.Screen

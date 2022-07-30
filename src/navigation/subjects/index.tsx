@@ -19,7 +19,7 @@ export default function SubjectsScreen() {
         name="Plan"
         component={PlanScreen}
         options={{
-          headerShown: false,
+          headerTitle: "الخطة الشجرية",
         }}
       />
       <Stack.Screen name="Subject" component={SubjectScreen} />

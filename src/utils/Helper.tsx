@@ -27,5 +27,5 @@ export const deleteStorage = async (key: string) => {
 };
 
 export const rtlWebview = (html: string) => {
-  return `<html dir="rtl" lang="ar"><body>${html}</body></html> text/html; charset=utf-8 UTF-8);`;
+  return `<html dir="rtl" lang="ar"><body>${html}</body></html>`;
 }

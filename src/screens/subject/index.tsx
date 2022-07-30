@@ -21,22 +21,28 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     }
   }, [route?.params?.areaId]);
 
-  useLayoutEffect(() => {
-    navigation.setOptions({});
-  }, []);
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: subject?.name,
+    });
+  }, [subject?.name]);
 
   return (
-    <View style={{ flex: 1 }}>
-      <Text>{subject?.name}</Text>
-      <Text>{subject?.name2}</Text>
+    <View style={{ flex: 1, paddingStart: 12, paddingVertical: 4, backgroundColor: 'white' }}>
+      {/* <Text>{subject?.name}</Text>
+      <Text>{subject?.name2}</Text> */}
       {subject?.fullContent && (
         <WebView
+          minimumFontSize={72}
+          showsVerticalScrollIndicator={false}
+          overScrollMode="never"
+          originWhitelist={["*"]}
           source={{
             html: rtlWebview(subject.fullContent),
           }}
         />
       )}
-      <Text>{subject?.subjectLink}</Text>
+      {/* <Text>{subject?.subjectLink}</Text> */}
     </View>
   );
 };

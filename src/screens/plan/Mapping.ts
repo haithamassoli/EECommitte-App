@@ -8,8 +8,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 62,
     y1: ((screenWidth * 1.074) / 100) * 13,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 2,
@@ -17,8 +15,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 62,
     y1: ((screenWidth * 1.074) / 100) * 20,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 3,
@@ -26,8 +22,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 58,
     y1: ((screenWidth * 1.074) / 100) * 27,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 4,
@@ -35,8 +29,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 67,
     y1: ((screenWidth * 1.074) / 100) * 26,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 5,
@@ -44,8 +36,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 72,
     y1: ((screenWidth * 1.074) / 100) * 33,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 6,
@@ -53,8 +43,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 45,
     y1: ((screenWidth * 1.074) / 100) * 13,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 7,
@@ -62,8 +50,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 45,
     y1: ((screenWidth * 1.074) / 100) * 20,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 8,
@@ -71,8 +57,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 46,
     y1: ((screenWidth * 1.074) / 100) * 27,
     radius: 20,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 9,
@@ -80,8 +64,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 36,
     y1: ((screenWidth * 1.074) / 100) * 20,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 10,
@@ -89,8 +71,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 36,
     y1: ((screenWidth * 1.074) / 100) * 13,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 11,
@@ -98,8 +78,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 35,
     y1: ((screenWidth * 1.074) / 100) * 29,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 12,
@@ -107,8 +85,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 27,
     y1: ((screenWidth * 1.074) / 100) * 15,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 13,
@@ -116,8 +92,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 15,
     y1: ((screenWidth * 1.074) / 100) * 23,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 14,
@@ -125,8 +99,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 16,
     y1: ((screenWidth * 1.074) / 100) * 33,
     radius: 30,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 15,
@@ -134,8 +106,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 6,
     y1: ((screenWidth * 1.074) / 100) * 33,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 16,
@@ -143,8 +113,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 53,
     y1: ((screenWidth * 1.074) / 100) * 21,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 17,
@@ -152,8 +120,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 71,
     y1: ((screenWidth * 1.074) / 100) * 16,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 18,
@@ -161,8 +127,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 88,
     y1: ((screenWidth * 1.074) / 100) * 24,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 19,
@@ -170,8 +134,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 88,
     y1: ((screenWidth * 1.074) / 100) * 31,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 20,
@@ -179,8 +141,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 40,
     y1: ((screenWidth * 1.074) / 100) * 34,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 21,
@@ -188,8 +148,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 58,
     y1: ((screenWidth * 1.074) / 100) * 50,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 22,
@@ -197,8 +155,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 41,
     y1: ((screenWidth * 1.074) / 100) * 42,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 23,
@@ -206,8 +162,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 52,
     y1: ((screenWidth * 1.074) / 100) * 34,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 24,
@@ -215,8 +169,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 52,
     y1: ((screenWidth * 1.074) / 100) * 42,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 25,
@@ -224,8 +176,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 28,
     y1: ((screenWidth * 1.074) / 100) * 34,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 26,
@@ -233,8 +183,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 28,
     y1: ((screenWidth * 1.074) / 100) * 42,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 27,
@@ -242,8 +190,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 67,
     y1: ((screenWidth * 1.074) / 100) * 42,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 28,
@@ -251,8 +197,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 68,
     y1: ((screenWidth * 1.074) / 100) * 50,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 29,
@@ -260,8 +204,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 88,
     y1: ((screenWidth * 1.074) / 100) * 38,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 30,
@@ -269,8 +211,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 88,
     y1: ((screenWidth * 1.074) / 100) * 46,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 31,
@@ -278,35 +218,27 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 80,
     y1: ((screenWidth * 1.074) / 100) * 46,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 32,
     shape: "circle",
-    x1: (screenWidth / 100) * 11,
-    y1: ((screenWidth * 1.074) / 100) * 49,
+    x1: (screenWidth / 100) * 15,
+    y1: ((screenWidth * 1.074) / 100) * 50,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 33,
     shape: "circle",
-    x1: (screenWidth / 100) * 1,
+    x1: (screenWidth / 100) * 5,
     y1: ((screenWidth * 1.074) / 100) * 50,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 34,
     shape: "circle",
-    x1: (screenWidth / 100) * 1,
+    x1: (screenWidth / 100) * 5,
     y1: ((screenWidth * 1.074) / 100) * 58,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 35,
@@ -314,8 +246,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 28,
     y1: ((screenWidth * 1.074) / 100) * 50,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 36,
@@ -323,8 +253,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 39,
     y1: ((screenWidth * 1.074) / 100) * 50,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 37,
@@ -332,8 +260,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 49,
     y1: ((screenWidth * 1.074) / 100) * 50,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 38,
@@ -341,8 +267,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 45,
     y1: ((screenWidth * 1.074) / 100) * 56,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 39,
@@ -350,8 +274,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 80,
     y1: ((screenWidth * 1.074) / 100) * 24,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 40,
@@ -359,8 +281,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 19,
     y1: ((screenWidth * 1.074) / 100) * 74,
     radius: 30,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 41,
@@ -368,8 +288,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 49,
     y1: ((screenWidth * 1.074) / 100) * 50,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 42,
@@ -377,8 +295,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 32,
     y1: ((screenWidth * 1.074) / 100) * 67,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 43,
@@ -386,8 +302,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 40,
     y1: ((screenWidth * 1.074) / 100) * 64,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 44,
@@ -395,8 +309,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 49,
     y1: ((screenWidth * 1.074) / 100) * 63,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 45,
@@ -404,8 +316,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 32,
     y1: ((screenWidth * 1.074) / 100) * 75,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 46,
@@ -413,8 +323,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 32,
     y1: ((screenWidth * 1.074) / 100) * 82,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 47,
@@ -422,8 +330,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 42,
     y1: ((screenWidth * 1.074) / 100) * 74,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 48,
@@ -431,8 +337,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 42,
     y1: ((screenWidth * 1.074) / 100) * 81,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 49,
@@ -440,8 +344,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 53,
     y1: ((screenWidth * 1.074) / 100) * 73,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 50,
@@ -449,8 +351,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 17,
     y1: ((screenWidth * 1.074) / 100) * 63,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 51,
@@ -458,8 +358,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 58,
     y1: ((screenWidth * 1.074) / 100) * 67,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 52,
@@ -467,8 +365,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 57,
     y1: ((screenWidth * 1.074) / 100) * 58,
     radius: 30,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 53,
@@ -476,8 +372,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 76,
     y1: ((screenWidth * 1.074) / 100) * 65,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 54,
@@ -485,17 +379,13 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 75,
     y1: ((screenWidth * 1.074) / 100) * 74,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 55,
     shape: "circle",
-    x1: (screenWidth / 100) * 68,
+    x1: (screenWidth / 100) * 66,
     y1: ((screenWidth * 1.074) / 100) * 67,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 56,
@@ -503,8 +393,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 85,
     y1: ((screenWidth * 1.074) / 100) * 70,
     radius: 30,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 57,
@@ -512,8 +400,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 88,
     y1: ((screenWidth * 1.074) / 100) * 82,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 58,
@@ -521,8 +407,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 58,
     y1: ((screenWidth * 1.074) / 100) * 82,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 59,
@@ -530,8 +414,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 71,
     y1: ((screenWidth * 1.074) / 100) * 82,
     radius: 25,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 60,
@@ -539,8 +421,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 27,
     y1: ((screenWidth * 1.074) / 100) * 59,
     radius: 30,
-    fill: "black",
-    prefill: "black",
   },
   {
     id: 61,
@@ -548,8 +428,6 @@ const MAPPING: MapperItem[] = [
     x1: (screenWidth / 100) * 78,
     y1: ((screenWidth * 1.074) / 100) * 82,
     radius: 30,
-    fill: "black",
-    prefill: "black",
   },
 ];
 export default MAPPING;

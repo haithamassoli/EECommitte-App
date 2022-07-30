@@ -542,5 +542,14 @@ const MAPPING: MapperItem[] = [
     fill: "black",
     prefill: "black",
   },
+  {
+    id: 61,
+    shape: "circle",
+    x1: (screenWidth / 100) * 78,
+    y1: ((screenWidth * 1.074) / 100) * 82,
+    radius: 30,
+    fill: "black",
+    prefill: "black",
+  },
 ];
 export default MAPPING;

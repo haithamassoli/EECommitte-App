@@ -31,16 +31,18 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     <View style={{ flex: 1, paddingStart: 12, paddingVertical: 4, backgroundColor: 'white' }}>
       {/* <Text>{subject?.name}</Text>
       <Text>{subject?.name2}</Text> */}
-      {subject?.fullContent && (
+      {subject?.fullPost ? (
         <WebView
           minimumFontSize={72}
           showsVerticalScrollIndicator={false}
           overScrollMode="never"
           originWhitelist={["*"]}
           source={{
-            html: rtlWebview(subject.fullContent),
+            html: rtlWebview(subject.fullPost),
           }}
         />
+      ): (
+        <Text>لا يوجد يوست شامل حاليًا</Text>
       )}
       {/* <Text>{subject?.subjectLink}</Text> */}
     </View>

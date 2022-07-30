@@ -1,6 +1,7 @@
+import { MapperItem } from "../../types";
 import { screenWidth } from "../../utils/Helper";
 
-const MAPPING = [
+const MAPPING: MapperItem[] = [
   {
     id: 1,
     shape: "circle",

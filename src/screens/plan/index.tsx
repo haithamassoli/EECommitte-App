@@ -26,11 +26,9 @@ const PlanScreen = ({ navigation }: Props) => {
           bindToBorders={true}
         >
           <ImageMapper
-            // @ts-ignore
             imgSource={require("../../../assets/images/plan.jpg")}
             imgWidth={screenWidth}
             imgHeight={screenWidth * 1.074}
-            // @ts-ignore
             imgMap={MAPPING}
             multiselect
             containerStyle={{ top: 0 }}

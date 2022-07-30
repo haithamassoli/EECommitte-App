@@ -9,6 +9,7 @@ import {
   I18nManager,
   StatusBar as reactNativeStatusBar,
 } from "react-native";
+// import { useFonts } from "expo-font";
 
 export default function App() {
   useLayoutEffect(() => {
@@ -16,6 +17,14 @@ export default function App() {
     // I18nManager.allowRTL(true);
     I18nManager.forceRTL(true);
   }, []);
+
+  // const [loaded] = useFonts({
+  //   Montserrat: require('./assets/fonts/Montserrat.ttf'),
+  // });
+  
+  // if (!loaded) {
+  //   return null;
+  // }
 
   return (
     <>

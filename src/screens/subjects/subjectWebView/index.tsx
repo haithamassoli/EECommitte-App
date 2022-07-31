@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { WebView } from "react-native-webview";
 import type { StackScreenProps } from "@react-navigation/stack";
-import type { SubjectsStackParamList } from "../../types/navigation";
+import type { SubjectsStackParamList } from "../../../types/navigation";
 import { useLayoutEffect } from "react";
 
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectWebView">;

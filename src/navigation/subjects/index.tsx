@@ -1,8 +1,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import PlanScreen from "../../screens/plan";
-import SubjectScreen from "../../screens/subject";
-import SubjectFullPostScreen from "../../screens/subjectFullPost";
-import SubjectWebViewScreen from "../../screens/subjectWebView";
+import PlanScreen from "../../screens/subjects/plan";
+import SubjectScreen from "../../screens/subjects/subject";
+import SubjectFullPostScreen from "../../screens/subjects/subjectFullPost";
+import SubjectWebViewScreen from "../../screens/subjects/subjectWebView";
 
 const Stack = createStackNavigator();
 

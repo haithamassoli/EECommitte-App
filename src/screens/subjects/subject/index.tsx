@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { View, Text, Pressable } from "react-native";
-import subjects from "../../data/Subjects";
+import subjects from "../../../data/Subjects";
 import type { StackScreenProps } from "@react-navigation/stack";
-import type { Subject } from "../../types";
-import type { SubjectsStackParamList } from "../../types/navigation";
+import type { Subject } from "../../../types";
+import type { SubjectsStackParamList } from "../../../types/navigation";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 

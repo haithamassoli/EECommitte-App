@@ -1,11 +1,10 @@
-import { View, ScrollView } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import ReactNativeZoomableView from "@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView";
-import ImageMapper from "../../components/imageMapper";
-import { screenWidth } from "../../utils/Helper";
+import ImageMapper from "../../../components/imageMapper";
+import { screenWidth } from "../../../utils/Helper";
 
-import type { MapperItem } from "../../types";
-import type { SubjectsStackParamList } from "../../types/navigation";
+import type { MapperItem } from "../../../types";
+import type { SubjectsStackParamList } from "../../../types/navigation";
 import styles from "./styles";
 import MAPPING from "./Mapping";
 
@@ -24,7 +23,7 @@ const PlanScreen = ({ navigation }: Props) => {
         bindToBorders={true}
       >
         <ImageMapper
-          imgSource={require("../../../assets/images/plan.jpg")}
+          imgSource={require("../../../../assets/images/plan.jpg")}
           imgWidth={screenWidth}
           imgHeight={screenWidth * 1.074}
           imgMap={MAPPING}

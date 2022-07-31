@@ -1,5 +1,5 @@
-import { MapperItem } from "../../types";
-import { screenWidth } from "../../utils/Helper";
+import { MapperItem } from "../../../types";
+import { screenWidth } from "../../../utils/Helper";
 
 const MAPPING: MapperItem[] = [
   {

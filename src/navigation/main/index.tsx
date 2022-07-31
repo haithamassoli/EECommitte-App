@@ -12,7 +12,7 @@ const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 export default function Route() {
   return (
     <NavigationContainer>
-      <BottomTabs.Navigator>
+      <BottomTabs.Navigator screenOptions={{tabBarShowLabel:false}}>
         <>
           <BottomTabs.Screen
             name="Home"
@@ -21,7 +21,6 @@ export default function Route() {
               tabBarIcon: ({ color }) => (
                 <Feather name="home" size={24} color={color} />
               ),
-              headerShown: false,
               headerTitle: "الصفحة الرئيسية",
             }}
           />
@@ -52,7 +51,7 @@ export default function Route() {
               tabBarIcon: ({ color }) => (
                 <Feather name="menu" size={24} color={color} />
               ),
-              headerTitle: "Info",
+              headerTitle: "القائمة",
             }}
           />
         </>

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { screenWidth, screenHeight } from "../../utils/Helper";
+import { screenWidth, screenHeight } from "../../../utils/Helper";
 const styles = StyleSheet.create({
   container: {
     flex: 1,

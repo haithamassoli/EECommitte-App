@@ -46,3 +46,8 @@ type RectangleTypeDimensions = RectangleType &
   (DimnesionWH | DimnesionPosition);
 
 export type MapperItem = CircleType | RectangleTypeDimensions;
+
+export type Post = {
+  id: number;
+  body: string;
+};

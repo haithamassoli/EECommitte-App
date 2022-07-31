@@ -1,29 +1,38 @@
-import { createStackNavigator } from "@react-navigation/stack";
-import PlanScreen from "../../screens/plan";
+import { createStackNavigator } from '@react-navigation/stack';
 // import CameraScreen from '../../screens/camera';
 // import ProfileScreen from '../../screens/profile';
 // import SearchScreen from '../../screens/search';
-import SubjectScreen from "../../screens/subject";
+import FeedScreen from '../../screens/feed';
+import InfoScreen from '../../screens/info';
 // import FeedNavigation from '../feed';
 // import ChatScreen from '../../screens/chat/list';
 
 const Stack = createStackNavigator();
 
-export default function SubjectsNavigation() {
-  return (
-    <Stack.Navigator
-      // barStyle={{ backgroundColor: 'black' }}
-      initialRouteName="Plan"
-    >
-      <Stack.Screen
-        name="Plan"
-        component={PlanScreen}
-        options={{
-          headerTitle: "الخطة الشجرية",
-        }}
-      />
-      <Stack.Screen name="Subject" component={SubjectScreen} />
-      {/*<Stack.Screen
+
+
+export default function InfoNavigation() {
+    return (
+        <Stack.Navigator
+            // barStyle={{ backgroundColor: 'black' }}
+            initialRouteName="Info">
+            <Stack.Screen
+                name="Info"
+                component={InfoScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            {/* <Stack.Screen
+                name="Discover"
+                component={SearchScreen}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <Feather name="search" size={24} color={color} />
+                    )
+                }}
+            />
+            <Stack.Screen
                 name="Add"
                 component={CameraScreen}
                 options={{
@@ -51,6 +60,7 @@ export default function SubjectsNavigation() {
                 }}
                 initialParams={{ initialUserId: firebase.auth().currentUser.uid }}
             /> */}
-    </Stack.Navigator>
-  );
+        </Stack.Navigator>
+
+    )
 }

@@ -7,9 +7,9 @@ import { Feather } from "@expo/vector-icons";
 import HomeScreen from "../home";
 import SearchScreen from "../../screens/search";
 import PlanScreen from "../../screens/plan";
-import SubjectsScreen from "../subjects";
+import SubjectsNavigation from "../subjects";
 import type { BottomTabParamList } from "../../types/navigation";
-import InfoScreen from "../../screens/info";
+import InfoNavigation from "../../screens/info";
 // import SavePostScreen from '../../screens/savePost';
 // import EditProfileScreen from '../../screens/profile/edit';
 // import EditProfileFieldScreen from '../../screens/profile/edit/field';
@@ -66,8 +66,8 @@ export default function Route() {
             }}
           />
           <BottomTabs.Screen
-            name="Subjects"
-            component={SubjectsScreen}
+            name="SubjectsNavigation"
+            component={SubjectsNavigation}
             options={{
               tabBarIcon: ({ color }) => (
                 <Feather name="map" size={24} color={color} />
@@ -76,8 +76,8 @@ export default function Route() {
             }}
           />
           <BottomTabs.Screen
-            name="Bars"
-            component={InfoScreen}
+            name="InfoNavigation"
+            component={InfoNavigation}
             options={{
               tabBarIcon: ({ color }) => (
                 <Feather name="menu" size={24} color={color} />

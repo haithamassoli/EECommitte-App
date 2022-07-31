@@ -23,7 +23,7 @@ const PlanScreen = ({ navigation }: Props) => {
         bindToBorders={true}
       >
         <ImageMapper
-          imgSource={require("../../../../assets/images/plan.jpg")}
+          imgSource={require("@Assets/images/plan.jpg")}
           imgWidth={screenWidth}
           imgHeight={screenWidth * 1.074}
           imgMap={MAPPING}

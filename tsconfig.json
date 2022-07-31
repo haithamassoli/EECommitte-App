@@ -5,11 +5,12 @@
     // Path alias config
     "baseUrl": ".",
     "paths": {
-      // This needs to be mirrored in babel.config.js
-      "@Navigation": ["./src/navigation"],
-      "@Components": ["./src/components"],
-      "@Screens": ["./src/screens"],
-      "@Assets": ["./assets"]
+      "@Navigation": ["./src/navigation/*"],
+      "@Components": ["./src/components/*"],
+      "@Screens": ["./src/screens/*"],
+      "@Types": ["./src/types/*"],
+      "@GlobalStyle": ["./src/styles/*"],
+      "@Assets": ["./assets/*"]
     }
   }
 }

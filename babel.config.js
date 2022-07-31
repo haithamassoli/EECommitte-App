@@ -7,10 +7,13 @@ module.exports = function (api) {
         "module-resolver",
         {
           alias: {
-            "@Navigation": "./src/navigation",
             "@Components": "./src/components",
+            "@Navigation": "./src/navigation",
             "@Screens": "./src/screens",
-            "@Assets": "./assets",
+            "@Navigation": ["./src/navigation/*"],
+            "@Types": ["./src/types/*"],
+            "@GlobalStyle": ["./src/styles/*"],
+            "@Assets": ["./assets/*"],
           },
         },
       ],

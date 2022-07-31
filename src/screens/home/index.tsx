@@ -1,8 +1,13 @@
 import { useEffect, useState, useRef } from "react";
-import { View, Image, ScrollView } from "react-native";
+import { View, Image, ScrollView, Text, Alert } from "react-native";
 import { WebView } from "react-native-webview";
 import RenderHtml from "react-native-render-html";
-import { rtlWebview, screenHeight, screenWidth } from "../../utils/Helper";
+import {
+  isConnected,
+  rtlWebview,
+  screenHeight,
+  screenWidth,
+} from "../../utils/Helper";
 import { db } from "../../firebase-config";
 import {
   collection,
@@ -16,10 +21,15 @@ import { Post } from "../../types";
 
 const HomeScreen = () => {
   const [posts, setPosts] = useState<Post[] | []>([]);
+  const [isConnecte, setIsConnecte] = useState<boolean | null>(false);
+
   const postsCollectionRef = collection(db, "posts");
 
   useEffect(() => {
     getPosts();
+    isConnected().then((isConnected) => {
+      setIsConnecte(isConnected);
+    });
   }, []);
 
   const [page, setPage] = useState(1);
@@ -90,24 +100,45 @@ const HomeScreen = () => {
                 },
               }}
             /> */}
-            <WebView
-              style={{
-                flex: 1,
-                width: screenWidth,
-                minHeight: screenHeight,
-                paddingVertical: 4,
-              }}
-              minimumFontSize={72}
-              showsVerticalScrollIndicator={false}
-              overScrollMode="never"
-              originWhitelist={["*"]}
-              javaScriptEnabled={true}
-              domStorageEnabled={true}
-              startInLoadingState={true}
-              source={{
-                html: rtlWebview(post.body),
-              }}
-            />
+            {isConnecte ? (
+              <WebView
+                style={{
+                  flex: 1,
+                  width: screenWidth,
+                  minHeight: screenHeight,
+                  paddingVertical: 4,
+                }}
+                minimumFontSize={72}
+                showsVerticalScrollIndicator={false}
+                overScrollMode="never"
+                originWhitelist={["*"]}
+                javaScriptEnabled={true}
+                domStorageEnabled={true}
+                startInLoadingState={true}
+                onError={(error) => {
+                  Alert.alert(
+                    "خطأ",
+                    "حدث خطأ أثناء تحميل الموقع",
+                    [{ text: "حسنا" }],
+                    { cancelable: false }
+                  );
+                }}
+                source={{
+                  html: rtlWebview(post.body),
+                }}
+              />
+            ) : (
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "white",
+                }}
+              >
+                <Text>لا يوجد اتصال بالانترنت</Text>
+              </View>
+            )}
           </View>
         ))}
       </View>

@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import NetInfo from '@react-native-community/netinfo';
 import { Dimensions } from "react-native";
 
 export const screenWidth = Dimensions.get("window").width;
@@ -28,4 +29,9 @@ export const deleteStorage = async (key: string) => {
 
 export const rtlWebview = (html: string) => {
   return `<html dir="rtl" lang="ar"><body>${html}</body></html>`;
+}
+
+export const isConnected = async () => {
+  const connectionStatus = await NetInfo.fetch();
+  return connectionStatus.isConnected;
 }

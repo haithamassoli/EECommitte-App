@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { View, Text, Pressable } from "react-native";
-import { WebView } from "react-native-webview";
 import subjects from "../../data/Subjects";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { Subject } from "../../types";
 import type { SubjectsStackParamList } from "../../types/navigation";
-import { rtlWebview } from "../../utils/Helper";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 

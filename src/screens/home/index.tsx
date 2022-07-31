@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { View, Image, ScrollView, Text } from "react-native";
+import { useEffect, useState, useRef } from "react";
+import { View, Image, ScrollView } from "react-native";
 import { WebView } from "react-native-webview";
 import RenderHtml from "react-native-render-html";
 import { rtlWebview, screenHeight, screenWidth } from "../../utils/Helper";
@@ -19,36 +19,51 @@ const HomeScreen = () => {
   const postsCollectionRef = collection(db, "posts");
 
   useEffect(() => {
-    const getPosts = async () => {
-      // infinite scroll
-      // const posts = await getDocs(postsCollectionRef, {
-      //   orderBy: orderBy("createdAt", "desc"),
-      //   startAt: startAt(new Date()),
-      //   limit: 10,
-      // });
-      // setPosts(posts);
-
-      const data = await getDocs(postsCollectionRef);
-      setPosts(data.docs.map((doc: any) => ({ ...doc.data(), id: doc.id })));
-    };
-
     getPosts();
   }, []);
 
-  // infinite scroll then load more
-  // const loadMore = async () => {
-  //   const infinitePosts = await getDocs(postsCollectionRef, {
-  //     orderBy: orderBy("createdAt", "desc"),
-  //     startAt: startAt(new Date()),
-  //     limit: 10,
-  //     startAfter: posts[posts.length - 1].createdAt,
-  //   });
-  //   setPosts([...posts, ...infinitePosts]);
-  // };
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEnd, setIsEnd] = useState(false);
+
+  const getPosts = async () => {
+    if (isLoading || isEnd) return;
+    setIsLoading(true);
+    // @ts-ignore
+    const paginatedPosts = await getDocs(postsCollectionRef, {
+      orderBy: orderBy("createdAt", "desc"),
+      startAt: startAt(new Date()),
+      limit: 10,
+      page: page,
+    });
+    const paginatedPostsData = paginatedPosts.docs.map((doc: any) => ({
+      ...doc.data(),
+    }));
+    setPosts([...paginatedPostsData, ...posts]);
+    setPage(page + 1);
+    setIsLoading(false);
+    if (posts.length < 10) {
+      setIsEnd(true);
+    }
+  };
+  // ref to scrollview
+  // const scrollViewRef = useRef<ScrollView>(null);
 
   // useEffect(() => {
-  //   // loadMore();
-  // }, []);
+  //   // change pagination when user scroll to the bottom
+  //   const onScroll = (event: any) => {
+  //     if (
+  //       event.nativeEvent.contentOffset.y >=
+  //       event.nativeEvent.contentSize.height - screenHeight
+  //     ) {
+  //       getPosts();
+  //     }
+  //   };
+  //   return () => {
+  //     // @ts-ignore
+  //     postsCollectionRef.off("value", onScroll);
+  //   };
+  // }, [posts]);
 
   return (
     <ScrollView style={styles.container}>
@@ -58,8 +73,8 @@ const HomeScreen = () => {
           resizeMode="contain"
           source={require("../../../assets/images/uni.jpg")}
         />
-        {posts.map((post) => (
-          <View key={post.id} style={{ flex: 1 }}>
+        {posts.map((post, index) => (
+          <View key={index} style={{ flex: 1 }}>
             {/* <RenderHtml
               contentWidth={100}
               source={{
@@ -75,7 +90,7 @@ const HomeScreen = () => {
                 },
               }}
             /> */}
-            {/* <WebView
+            <WebView
               style={{
                 flex: 1,
                 width: screenWidth,
@@ -92,7 +107,7 @@ const HomeScreen = () => {
               source={{
                 html: rtlWebview(post.body),
               }}
-            /> */}
+            />
           </View>
         ))}
       </View>

@@ -9,6 +9,7 @@ import SearchScreen from "../../screens/search";
 import PlanScreen from "../../screens/plan";
 import SubjectsScreen from "../subjects";
 import type { BottomTabParamList } from "../../types/navigation";
+import InfoScreen from "../../screens/info";
 // import SavePostScreen from '../../screens/savePost';
 // import EditProfileScreen from '../../screens/profile/edit';
 // import EditProfileFieldScreen from '../../screens/profile/edit/field';
@@ -76,7 +77,7 @@ export default function Route() {
           />
           <BottomTabs.Screen
             name="Bars"
-            component={PlanScreen}
+            component={InfoScreen}
             options={{
               tabBarIcon: ({ color }) => (
                 <Feather name="menu" size={24} color={color} />
@@ -84,7 +85,7 @@ export default function Route() {
               headerTitle: "",
             }}
           />
-          <BottomTabs.Screen
+          {/* <BottomTabs.Screen
             name="Info"
             component={PlanScreen}
             options={{
@@ -93,7 +94,7 @@ export default function Route() {
               ),
               headerTitle: "المعلومات",
             }}
-          />
+          /> */}
           {/* <BottomTabs.Screen
             name="editProfileField"
             component={EditProfileFieldScreen}

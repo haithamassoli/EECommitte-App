@@ -9,19 +9,23 @@ import {
   I18nManager,
   StatusBar as reactNativeStatusBar,
 } from "react-native";
+import * as Updates from "expo-updates";
+
 // import { useFonts } from "expo-font";
 
 export default function App() {
   useLayoutEffect(() => {
-    // I18nManager.isRTL = true;
-    // I18nManager.allowRTL(true);
-    I18nManager.forceRTL(true);
+    if (!I18nManager.isRTL) {
+      I18nManager.allowRTL(true);
+      I18nManager.forceRTL(true);
+      Updates.reloadAsync();
+    }
   }, []);
 
   // const [loaded] = useFonts({
   //   Montserrat: require('./assets/fonts/Montserrat.ttf'),
   // });
-  
+
   // if (!loaded) {
   //   return null;
   // }

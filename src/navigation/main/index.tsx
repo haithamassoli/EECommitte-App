@@ -3,41 +3,13 @@ import {
 } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
-// import AuthScreen from '../../screens/auth'
 import HomeScreen from "../home";
 import SearchScreen from "../../screens/search";
-import PlanScreen from "../../screens/plan";
 import SubjectsNavigation from "../subjects";
 import type { BottomTabParamList } from "../../types/navigation";
 import InfoNavigation from "../../screens/info";
-// import SavePostScreen from '../../screens/savePost';
-// import EditProfileScreen from '../../screens/profile/edit';
-// import EditProfileFieldScreen from '../../screens/profile/edit/field';
-// import Modal from '../../components/modal';
-// import ProfileScreen from '../../screens/profile';
-// import FeedScreen from '../../screens/feed';
-// import ChatSingleScreen from '../../screens/chat/single';
-// export type BottomTabParamList = {
-// Home: NavigatorScreenParams<RootStackParamList> | undefined;
-// AllCities: undefined;
-// Search: undefined;
-// Favorite: undefined;
-// Register: undefined;
-// Login: { register: string };
-// };
-
-// export type RootStackParamList = {
-// ResturantsCity: { id: number; city: string };
-// ResturantMeals: { resturantId: number; cityId: number };
-// Meal: {
-//   mealId: number;
-//   cityId: number;
-//   resturantId: number;
-// };
-// };
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
-// const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
 export default function Route() {
   return (
@@ -85,26 +57,6 @@ export default function Route() {
               headerTitle: "Info",
             }}
           />
-          {/* <BottomTabs.Screen
-            name="Info"
-            component={PlanScreen}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Feather name="info" size={24} color={color} />
-              ),
-              headerTitle: "المعلومات",
-            }}
-          /> */}
-          {/* <BottomTabs.Screen
-            name="editProfileField"
-            component={EditProfileFieldScreen}
-            options={{ headerShown: false }}
-          />
-          <BottomTabs.Screen
-            name="chatSingle"
-            component={ChatSingleScreen}
-            options={{ headerShown: false }}
-          /> */}
         </>
       </BottomTabs.Navigator>
     </NavigationContainer>

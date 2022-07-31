@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import { WebView } from "react-native-webview";
 import subjects from "../../data/Subjects";

@@ -91,7 +91,7 @@ const SearchScreen = ({ navigation }: Props) => {
         setHistoryResults([result]);
       }
     }
-    navigation.navigate("Subjects", {
+    navigation.navigate("SubjectsNavigation", {
       screen: "Subject",
       params: { areaId: id },
     });
@@ -113,7 +113,7 @@ const SearchScreen = ({ navigation }: Props) => {
   };
 
   const handlePressHistory = (id: number) => {
-    navigation.navigate("Subjects", {
+    navigation.navigate("SubjectsNavigation", {
       screen: "Subject",
       params: { areaId: id },
     });

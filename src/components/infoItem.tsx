@@ -43,9 +43,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: "bold",
+    textAlign: "left",
   },
   subTitle: {
     fontSize: 14,
     color: Colors.gray,
+    textAlign: "left",
   },
 });

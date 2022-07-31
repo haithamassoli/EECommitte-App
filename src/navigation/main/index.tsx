@@ -82,7 +82,7 @@ export default function Route() {
               tabBarIcon: ({ color }) => (
                 <Feather name="menu" size={24} color={color} />
               ),
-              headerTitle: "",
+              headerTitle: "Info",
             }}
           />
           {/* <BottomTabs.Screen

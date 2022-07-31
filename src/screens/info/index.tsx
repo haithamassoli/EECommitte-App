@@ -7,7 +7,7 @@ const InfoScreen = () => {
   }
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.headerTitle}>Account Setting</Text>
         <InfoItem
           icon="person-outline"
@@ -82,5 +82,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginTop: 20,
+    textAlign: "left",
   },
 });

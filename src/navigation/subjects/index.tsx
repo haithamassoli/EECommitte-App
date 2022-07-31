@@ -1,6 +1,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import PlanScreen from "../../screens/plan";
 import SubjectScreen from "../../screens/subject";
+import SubjectFullPostScreen from "../../screens/subjectFullPost";
+import SubjectWebViewScreen from "../../screens/subjectWebView";
 
 const Stack = createStackNavigator();
 
@@ -18,8 +20,8 @@ export default function SubjectsNavigation() {
         }}
       />
       <Stack.Screen name="Subject" component={SubjectScreen} />
-      <Stack.Screen name="SubjectWebView" component={PlanScreen} />
-      <Stack.Screen name="SubjectFullPost" component={PlanScreen} />
+      <Stack.Screen name="SubjectWebView" component={SubjectWebViewScreen} />
+      <Stack.Screen name="SubjectFullPost" component={SubjectFullPostScreen} />
     </Stack.Navigator>
   );
 }

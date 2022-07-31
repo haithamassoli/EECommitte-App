@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { WebView } from "react-native-webview";
 import subjects from "../../data/Subjects";
 import type { StackScreenProps } from "@react-navigation/stack";
@@ -28,23 +28,30 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   }, [subject?.name]);
 
   return (
-    <View style={{ flex: 1, paddingStart: 12, paddingVertical: 4, backgroundColor: 'white' }}>
-      {/* <Text>{subject?.name}</Text>
-      <Text>{subject?.name2}</Text> */}
-      {subject?.fullPost ? (
-        <WebView
-          minimumFontSize={72}
-          showsVerticalScrollIndicator={false}
-          overScrollMode="never"
-          originWhitelist={["*"]}
-          source={{
-            html: rtlWebview(subject.fullPost),
-          }}
-        />
-      ): (
-        <Text>لا يوجد يوست شامل حاليًا</Text>
-      )}
-      {/* <Text>{subject?.subjectLink}</Text> */}
+    <View
+      style={{
+        flex: 1,
+        paddingStart: 12,
+        paddingVertical: 4,
+        backgroundColor: "white",
+      }}
+    >
+      <Text>{subject?.name}</Text>
+      <Text>{subject?.name2}</Text>
+      <Pressable
+        onPress={() =>
+          navigation.navigate("SubjectWebView", { url: subject?.subjectLink })
+        }
+      >
+        <Text>Drive Link</Text>
+      </Pressable>
+      <Pressable
+        onPress={() =>
+          navigation.navigate("SubjectFullPost", { post: subject?.fullPost })
+        }
+      >
+        <Text>Show Full Post</Text>
+      </Pressable>
     </View>
   );
 };

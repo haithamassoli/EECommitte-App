@@ -11,5 +11,5 @@ export type SubjectsStackParamList = {
   Plan: undefined;
   Subject: { areaId: number };
   SubjectWebView: { url: string };
-  SubjectFullPost: { postId: number };
+  SubjectFullPost: { post?: string };
 };

@@ -3,17 +3,12 @@ import { screenWidth, screenHeight } from "../../utils/Helper";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   image: {
     width: screenWidth,
     height: screenHeight * 0.4,
-  },
-  input: {
-    backgroundColor: "lightgrey",
-    borderRadius: 4,
-    flex: 1,
-    marginHorizontal: 10,
-    paddingHorizontal: 10,
   },
 });
 

@@ -16,29 +16,24 @@ const PlanScreen = ({ navigation }: Props) => {
     navigation.navigate("Subject", { areaId });
   };
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.container}>
-        <ReactNativeZoomableView
-          maxZoom={1.5}
-          minZoom={0.5}
-          zoomStep={0.5}
-          initialZoom={1}
-          bindToBorders={true}
-        >
-          <ImageMapper
-            imgSource={require("../../../assets/images/plan.jpg")}
-            imgWidth={screenWidth}
-            imgHeight={screenWidth * 1.074}
-            imgMap={MAPPING}
-            multiselect
-            containerStyle={{ top: 0 }}
-            onPress={(item: MapperItem) => {
-              handleSelectArea(item.id);
-            }}
-          />
-        </ReactNativeZoomableView>
-      </View>
-    </ScrollView>
+      <ReactNativeZoomableView
+        maxZoom={1.5}
+        minZoom={0.5}
+        zoomStep={0.5}
+        initialZoom={1}
+        bindToBorders={true}
+      >
+        <ImageMapper
+          imgSource={require("../../../assets/images/plan.jpg")}
+          imgWidth={screenWidth}
+          imgHeight={screenWidth * 1.074}
+          imgMap={MAPPING}
+          containerStyle={styles.container}
+          onPress={(item: MapperItem) => {
+            handleSelectArea(item.id);
+          }}
+        />
+      </ReactNativeZoomableView>
   );
 };
 

@@ -18,6 +18,8 @@ export default function SubjectsNavigation() {
         }}
       />
       <Stack.Screen name="Subject" component={SubjectScreen} />
+      <Stack.Screen name="SubjectWebView" component={PlanScreen} />
+      <Stack.Screen name="SubjectFullPost" component={PlanScreen} />
     </Stack.Navigator>
   );
 }

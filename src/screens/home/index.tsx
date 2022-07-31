@@ -1,7 +1,7 @@
 import { View, Image, ScrollView } from "react-native";
 import styles from "./styles";
 
-const FeedScreen = () => {
+const HomeScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.container}>
@@ -11,4 +11,4 @@ const FeedScreen = () => {
   );
 };
 
-export default FeedScreen;
+export default HomeScreen;

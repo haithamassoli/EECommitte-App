@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import {
   ImageBackground,
   View,
-  TouchableOpacity,
   StyleProp,
   ViewStyle,
   ImageSourcePropType,
   GestureResponderEvent,
+  Pressable,
 } from "react-native";
 import type { MapperItem } from "../types";
 import { screenHeight, screenWidth } from "../utils/Helper";
@@ -94,7 +94,7 @@ class ImageMapper extends Component<Props> {
           resizeMode="contain"
         >
           {imgMap.map((item: MapperItem, index: number) => (
-            <TouchableOpacity
+            <Pressable
               key={item.id}
               onPress={(event) => this.props.onPress(item, index, event)}
               style={[{ position: "absolute" }, this.buildStyle(item, index)]}

@@ -1,5 +1,5 @@
 import { View, TextInput, StyleSheet, Dimensions } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { Colors } from "../../styles/Colors";
 
 const { height } = Dimensions.get("window");
@@ -9,16 +9,25 @@ interface SearchInputProps {
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchInput = ({searchInput, setSearchInput}: SearchInputProps) => {
-
+const SearchInput = ({ searchInput, setSearchInput }: SearchInputProps) => {
   return (
     <View style={styles.searchContainer}>
-      <Ionicons
-        name="ios-search"
-        size={24}
-        color={Colors.secondary}
-        style={styles.searchIcon}
-      />
+      {searchInput.length > 0 ? (
+        <Feather
+          name="x"
+          size={24}
+          color={Colors.secondary}
+          style={styles.searchIcon}
+          onPress={() => setSearchInput("")}
+        />
+      ) : (
+        <Feather
+          name="search"
+          size={24}
+          color={Colors.secondary}
+          style={styles.searchIcon}
+        />
+      )}
       <TextInput
         value={searchInput}
         onChangeText={(searchString) => setSearchInput(searchString)}
@@ -50,8 +59,7 @@ const styles = StyleSheet.create({
     height: height / 8,
   },
   searchInput: {
-    paddingRight: 45,
-    paddingLeft: 20,
+    paddingHorizontal: 45,
     paddingVertical: 10,
     borderRadius: 5,
     backgroundColor: Colors.secondaryLight,
@@ -62,6 +70,11 @@ const styles = StyleSheet.create({
   searchIcon: {
     position: "absolute",
     right: 10,
+    zIndex: 10,
+  },
+  xIcon: {
+    position: "absolute",
+    left: 10,
     zIndex: 10,
   },
 });

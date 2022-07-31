@@ -131,114 +131,126 @@ const SearchScreen = ({ navigation }: Props) => {
             setSearchInput={setSearchInput}
           />
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginTop: 15,
-          }}
-        >
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>البحث السابق</Text>
-          <Text
-            onPress={deleteAll}
-            style={{ fontSize: 16, fontWeight: "bold", color: Colors.primary }}
-          >
-            حذف الكل
-          </Text>
-        </View>
-        {historyResults.length > 0 ? (
-          historyResults.map((item, index) => (
+        {!searchInput ? (
+          <>
             <View
-              key={index}
               style={{
                 flexDirection: "row",
-                alignItems: "center",
-                marginTop: 25,
                 justifyContent: "space-between",
+                alignItems: "center",
+                marginTop: 15,
               }}
             >
-              <View
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                البحث السابق
+              </Text>
+              <Text
+                onPress={deleteAll}
                 style={{
-                  flexDirection: "row",
-                  alignItems: "center",
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  color: Colors.primary,
                 }}
               >
-                <Feather name="clock" size={20} color="black" />
-                <Text
-                  onPress={() => handlePressHistory(item.id)}
-                  style={{ fontSize: 16, marginLeft: 5 }}
-                >
-                  {item.name2}
-                </Text>
-              </View>
-              <Feather
-                onPress={() => handleDelete(item.id)}
-                name="x"
-                size={20}
-                color="black"
-              />
+                حذف الكل
+              </Text>
             </View>
-          ))
-        ) : (
-          <Text
-            style={{
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: 24,
-              marginTop: 40,
-            }}
-          >
-            لا يوجد بحث سابق
-          </Text>
-        )}
-
-        <View style={{ marginTop: 15 }}>
-          {results.length > 0 ? (
-            results.map((result: Subject, index: number) => (
-              <View key={index}>
-                <TouchableOpacity
-                  style={{ flexDirection: "row-reverse" }}
-                  onPress={() => handlePress(result.id)}
+            {historyResults.length > 0 ? (
+              historyResults.map((item, index) => (
+                <View
+                  key={index}
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginTop: 25,
+                    justifyContent: "space-between",
+                  }}
                 >
-                  {result.name2
-                    .split("")
-                    .map((letter: string, index: number) => {
-                      if (
-                        searchInput.toLowerCase().includes(letter.toLowerCase())
-                      ) {
-                        return (
-                          <Text
-                            key={index}
-                            style={{ fontSize: 16, fontWeight: "bold" }}
-                          >
-                            {letter}
-                          </Text>
-                        );
-                      } else {
-                        return (
-                          <Text key={index} style={{ fontSize: 16 }}>
-                            {letter}
-                          </Text>
-                        );
-                      }
-                    })}
-                </TouchableOpacity>
-              </View>
-            ))
-          ) : (
-            <Text
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                fontSize: 24,
-                marginTop: 40,
-              }}
-            >
-              لا توجد بيانات
-            </Text>
-          )}
-        </View>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Feather name="clock" size={20} color="black" />
+                    <Text
+                      onPress={() => handlePressHistory(item.id)}
+                      style={{ fontSize: 16, marginLeft: 5 }}
+                    >
+                      {item.name2}
+                    </Text>
+                  </View>
+                  <Feather
+                    onPress={() => handleDelete(item.id)}
+                    name="x"
+                    size={20}
+                    color="black"
+                  />
+                </View>
+              ))
+            ) : (
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  fontSize: 24,
+                  marginTop: 40,
+                }}
+              >
+                لا يوجد بحث سابق
+              </Text>
+            )}
+          </>
+        ) : (
+          <View style={{ marginTop: 15 }}>
+            {results.length > 0 ? (
+              results.map((result: Subject, index: number) => (
+                <View key={index}>
+                  <TouchableOpacity
+                    style={{ flexDirection: "row-reverse" }}
+                    onPress={() => handlePress(result.id)}
+                  >
+                    {result.name2
+                      .split("")
+                      .map((letter: string, index: number) => {
+                        if (
+                          searchInput
+                            .toLowerCase()
+                            .includes(letter.toLowerCase())
+                        ) {
+                          return (
+                            <Text
+                              key={index}
+                              style={{ fontSize: 16, fontWeight: "bold" }}
+                            >
+                              {letter}
+                            </Text>
+                          );
+                        } else {
+                          return (
+                            <Text key={index} style={{ fontSize: 16 }}>
+                              {letter}
+                            </Text>
+                          );
+                        }
+                      })}
+                  </TouchableOpacity>
+                </View>
+              ))
+            ) : (
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  fontSize: 24,
+                  marginTop: 40,
+                }}
+              >
+                لا توجد بيانات
+              </Text>
+            )}
+          </View>
+        )}
       </KeyboardAvoidingView>
     </ScrollView>
   );

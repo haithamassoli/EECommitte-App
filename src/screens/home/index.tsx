@@ -80,7 +80,7 @@ const HomeScreen = () => {
       <View style={styles.container}>
         <Image
           style={styles.image}
-          resizeMode="contain"
+          resizeMode="cover"
           source={require("@Assets/images/uni.jpg")}
         />
         {posts.map((post, index) => (

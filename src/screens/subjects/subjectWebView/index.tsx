@@ -26,7 +26,6 @@ const SubjectWebViewScreen = ({ navigation, route }: Props) => {
       style={{
         flex: 1,
         paddingVertical: 4,
-        backgroundColor: "white",
       }}
     >
       {isConnecte ? (
@@ -52,7 +51,6 @@ const SubjectWebViewScreen = ({ navigation, route }: Props) => {
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "white",
           }}
         >
           <Text>لا يوجد اتصال بالانترنت</Text>

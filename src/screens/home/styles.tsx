@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: screenWidth,
-    height: screenHeight * 0.4,
+    height: screenHeight,
   },
   input: {
     backgroundColor: "lightgrey",

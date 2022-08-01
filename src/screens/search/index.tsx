@@ -1,8 +1,6 @@
 import {
   View,
   Text,
-  StyleSheet,
-  Dimensions,
   TouchableOpacity,
   ScrollView,
   KeyboardAvoidingView,
@@ -14,7 +12,7 @@ import { Feather } from "@expo/vector-icons";
 import subjects from "@Src/data/Subjects";
 import Colors from "@GlobalStyle/Colors";
 import SearchInput from "@Components/ui/SearchInput";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   deleteStorage,
   getDataFromStorage,
@@ -22,22 +20,10 @@ import {
 } from "@Utils/Helper";
 import type { Subject } from "@Types/index";
 import { BottomTabParamList } from "@Types/navigation";
+import styles from "./styles";
+import { ThemeContext } from "@Src/store/themeContext";
 
-const { height } = Dimensions.get("window");
 const options = {
-  // isCaseSensitive: false,
-  // includeScore: false,
-  // shouldSort: true,
-  // includeMatches: false,
-  // findAllMatches: false,
-  // minMatchCharLength: 1,
-  // location: 0,
-  // threshold: 0.6,
-  // distance: 100,
-  // useExtendedSearch: false,
-  // ignoreLocation: false,
-  // ignoreFieldNorm: false,
-  // fieldNormWeight: 1,
   keys: ["name", "name2"],
 };
 
@@ -47,7 +33,7 @@ const SearchScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Subject[] | []>([]);
   const [historyResults, setHistoryResults] = useState([] as Subject[]);
-
+  const { theme } = useContext(ThemeContext);
   useEffect(() => {
     async function getHistory() {
       const historySearchResults = await getDataFromStorage("searchHistory");
@@ -140,7 +126,16 @@ const SearchScreen = ({ navigation }: Props) => {
                 marginTop: 15,
               }}
             >
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  color:
+                    theme === "light"
+                      ? Colors.lightTextColor
+                      : Colors.darkTextColor,
+                }}
+              >
                 البحث السابق
               </Text>
               <Text
@@ -148,7 +143,7 @@ const SearchScreen = ({ navigation }: Props) => {
                 style={{
                   fontSize: 16,
                   fontWeight: "bold",
-                  color: Colors.primary,
+                  color: Colors.primary400,
                 }}
               >
                 حذف الكل
@@ -174,7 +169,14 @@ const SearchScreen = ({ navigation }: Props) => {
                     <Feather name="clock" size={20} color="black" />
                     <Text
                       onPress={() => handlePressHistory(item.id)}
-                      style={{ fontSize: 16, marginLeft: 5 }}
+                      style={{
+                        fontSize: 16,
+                        marginLeft: 5,
+                        color:
+                          theme === "light"
+                            ? Colors.lightTextColor
+                            : Colors.darkTextColor,
+                      }}
                     >
                       {item.name2}
                     </Text>
@@ -194,6 +196,10 @@ const SearchScreen = ({ navigation }: Props) => {
                   fontWeight: "bold",
                   fontSize: 24,
                   marginTop: 40,
+                  color:
+                    theme === "light"
+                      ? Colors.lightTextColor
+                      : Colors.darkTextColor,
                 }}
               >
                 لا يوجد بحث سابق
@@ -220,14 +226,30 @@ const SearchScreen = ({ navigation }: Props) => {
                           return (
                             <Text
                               key={index}
-                              style={{ fontSize: 16, fontWeight: "bold" }}
+                              style={{
+                                fontSize: 16,
+                                fontWeight: "bold",
+                                color:
+                                  theme === "light"
+                                    ? Colors.lightTextColor
+                                    : Colors.darkTextColor,
+                              }}
                             >
                               {letter}
                             </Text>
                           );
                         } else {
                           return (
-                            <Text key={index} style={{ fontSize: 16 }}>
+                            <Text
+                              key={index}
+                              style={{
+                                fontSize: 16,
+                                color:
+                                  theme === "light"
+                                    ? Colors.lightTextColor
+                                    : Colors.darkTextColor,
+                              }}
+                            >
                               {letter}
                             </Text>
                           );
@@ -243,6 +265,10 @@ const SearchScreen = ({ navigation }: Props) => {
                   fontWeight: "bold",
                   fontSize: 24,
                   marginTop: 40,
+                  color:
+                    theme === "light"
+                      ? Colors.lightTextColor
+                      : Colors.darkTextColor,
                 }}
               >
                 لا توجد بيانات
@@ -256,24 +282,3 @@ const SearchScreen = ({ navigation }: Props) => {
 };
 
 export default SearchScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 10,
-    paddingHorizontal: 20,
-    paddingBottom: 10,
-    backgroundColor: "white",
-  },
-  header: {
-    fontSize: 20,
-    color: Colors.primary,
-    fontWeight: "bold",
-  },
-  searchContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    height: height / 8,
-  },
-});

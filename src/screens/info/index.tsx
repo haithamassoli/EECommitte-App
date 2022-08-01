@@ -1,14 +1,34 @@
-import { ScrollView, Text, StyleSheet, View } from "react-native";
+import { ScrollView, Text, StyleSheet, View, Pressable } from "react-native";
 import InfoItem from "@Components/infoItem";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
+import Colors from "@GlobalStyle/Colors";
 
 const InfoScreen = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   function onPress() {
     console.log("onPress");
   }
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.headerTitle}>Account Setting</Text>
+        <Pressable onPress={() => toggleTheme()}>
+          <Text style={{ color:
+            theme === "light" ? Colors.lightTextColor : Colors.darkTextColor,}}>Change Theme</Text>
+        </Pressable>
+        <Text
+          style={[
+            styles.headerTitle,
+            {
+              color:
+                theme === "light"
+                  ? Colors.lightTextColor
+                  : Colors.darkTextColor,
+            },
+          ]}
+        >
+          Account Setting
+        </Text>
         <InfoItem
           icon="person-outline"
           title="Profile Information"
@@ -39,7 +59,8 @@ const InfoScreen = () => {
           subTitle="Change your account information"
           onPress={onPress}
         />
-        <Text style={styles.headerTitle}>More</Text>
+        <Text style={[styles.headerTitle, { color:
+            theme === "light" ? Colors.lightTextColor : Colors.darkTextColor,}]}>More</Text>
         <InfoItem
           icon="information-circle-outline"
           title="FAQ"
@@ -74,7 +95,6 @@ export default InfoScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
     paddingHorizontal: 20,
     paddingTop: 20,
   },

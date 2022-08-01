@@ -1,6 +1,8 @@
 import { View, TextInput, StyleSheet, Dimensions } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 
 const { height } = Dimensions.get("window");
 interface SearchInputProps {
@@ -9,13 +11,16 @@ interface SearchInputProps {
 }
 
 const SearchInput = ({ searchInput, setSearchInput }: SearchInputProps) => {
+  const { theme } = useContext(ThemeContext);
   return (
     <View style={styles.searchContainer}>
       {searchInput.length > 0 ? (
         <Feather
           name="x"
           size={24}
-          color={Colors.secondary}
+          color={
+            theme === "light" ? Colors.lightTextColor : Colors.darkTextColor
+          }
           style={styles.searchIcon}
           onPress={() => setSearchInput("")}
         />
@@ -23,7 +28,9 @@ const SearchInput = ({ searchInput, setSearchInput }: SearchInputProps) => {
         <Feather
           name="search"
           size={24}
-          color={Colors.secondary}
+          color={
+            theme === "light" ? Colors.lightTextColor : Colors.darkTextColor
+          }
           style={styles.searchIcon}
         />
       )}
@@ -31,8 +38,16 @@ const SearchInput = ({ searchInput, setSearchInput }: SearchInputProps) => {
         value={searchInput}
         onChangeText={(searchString) => setSearchInput(searchString)}
         placeholder="ابحث..."
-        placeholderTextColor={Colors.secondary}
-        style={styles.searchInput}
+        placeholderTextColor={
+          theme === "light" ? Colors.lightTextColor : Colors.darkTextColor
+        }
+        style={[
+          styles.searchInput,
+          {
+            color:
+              theme === "light" ? Colors.lightTextColor : Colors.darkTextColor,
+          },
+        ]}
       />
     </View>
   );
@@ -48,7 +63,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 20,
-    color: Colors.primary,
+    color: Colors.primary400,
     fontWeight: "bold",
   },
   searchContainer: {
@@ -61,8 +76,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 45,
     paddingVertical: 10,
     borderRadius: 5,
-    backgroundColor: Colors.secondaryLight,
-    color: "#000",
+    backgroundColor: Colors.gray,
     opacity: 0.3,
     width: "100%",
   },

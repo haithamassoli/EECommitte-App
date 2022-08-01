@@ -6,13 +6,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Colors.lightBackground
+    // backgroundColor: Colors.lightBackground
   },
   darkContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Colors.darkBackground
+    // backgroundColor: Colors.darkBackground
   },
   image: {
     width: screenWidth,

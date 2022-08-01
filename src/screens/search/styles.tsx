@@ -1,23 +1,25 @@
-import { StyleSheet } from 'react-native'
+import Colors from "@GlobalStyle/Colors";
+import { Dimensions, StyleSheet } from "react-native";
+const { height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
-    container: {
-        justifyContent: 'flex-end',
-        flex: 1
+  container: {
+    flex: 1,
+    paddingTop: 10,
+    paddingHorizontal: 20,
+    paddingBottom: 10,
+  },
+  header: {
+    fontSize: 20,
+    color: Colors.primary400,
+    fontWeight: "bold",
+  },
+  searchContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    height: height / 8,
+  },
+});
 
-    },
-    containerInput: {
-        padding: 10,
-        flexDirection: 'row'
-
-    },
-    input: {
-        backgroundColor: 'lightgrey',
-        borderRadius: 4,
-        flex: 1,
-        marginHorizontal: 10,
-        paddingHorizontal: 10
-    },
-})
-
-export default styles
+export default styles;

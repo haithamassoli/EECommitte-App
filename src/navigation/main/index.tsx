@@ -27,29 +27,27 @@ export default function Route() {
       theme={theme === "light" ? LightNavigationColors : DarkNavigationColors}
     >
       <BottomTabs.Navigator
-        tabBar={(props) => <MyTabBar {...props} />}
-        // screenOptions={{
-        //   tabBarShowLabel: false,
-        //   tabBarIconStyle: {
-        //     // color: Colors.primary,
-        //   },
-        //   tabBarActiveTintColor: "#e7a300",
-        //   tabBarInactiveTintColor: "#000",
-        //   tabBarItemStyle: {
-        //     // backgroundColor: Colors.primaryLight,
-        //   },
-        //   tabBarStyle: {
-        //     height: 65,
-        //     shadowColor: "transparent",
-        //     borderTopLeftRadius: 20,
-        //     borderTopRightRadius: 20,
-        //     // backgroundColor: "#f9ffa1",
-        //     // marginBottom: 20,
-        //     // width: "90%",
-        //     // paddingVertical: 10,
-        //     // alignSelf: "center",
-        //   },
-        // }}
+        // tabBar={(props) => <MyTabBar {...props} />}
+        screenOptions={{
+          tabBarShowLabel: false,
+          tabBarIconStyle: {
+            // color: Colors.primary400,
+          },
+          tabBarActiveTintColor: "#e7a300",
+          tabBarInactiveTintColor: "#9b9b9b",
+          // tabBarItemStyle: {
+          //   backgroundColor: "#eee",
+          // },
+          tabBarStyle: {
+            height: 65,
+            shadowColor: "transparent",
+            // backgroundColor: "#f9ffa1",
+            // marginBottom: 20,
+            // width: "90%",
+            // paddingVertical: 10,
+            // alignSelf: "center",
+          },
+        }}
       >
         <>
           <BottomTabs.Screen
@@ -156,7 +154,7 @@ function MyTabBar({ state, descriptors, navigation }: MyTabBarProps) {
                 // width: 50,
                 // height: 50,
                 // borderRadius: 25,
-                backgroundColor: isFocused ? Colors.primary : "#fff",
+                backgroundColor: isFocused ? Colors.primary400 : "#fff",
                 padding: 10,
               }}
             >

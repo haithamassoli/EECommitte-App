@@ -9,14 +9,23 @@ import SearchScreen from "@Screens/search";
 import HomeScreen from "@Screens/home";
 import { Feather } from "@expo/vector-icons";
 import type { BottomTabParamList } from "@Types/navigation";
-import  Colors  from "@GlobalStyle/Colors";
+import Colors from "@GlobalStyle/Colors";
 import { Text, TouchableOpacity, View } from "react-native";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
+import {
+  DarkNavigationColors,
+  LightNavigationColors,
+} from "@GlobalStyle/Navigation";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
 export default function Route() {
+  const { theme } = useContext(ThemeContext);
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      theme={theme === "light" ? LightNavigationColors : DarkNavigationColors}
+    >
       <BottomTabs.Navigator
         tabBar={(props) => <MyTabBar {...props} />}
         // screenOptions={{
@@ -92,7 +101,6 @@ export default function Route() {
 type MyTabBarProps = BottomTabBarProps;
 
 function MyTabBar({ state, descriptors, navigation }: MyTabBarProps) {
-
   return (
     <View style={{ flexDirection: "row" }}>
       {state.routes.map((route, index) => {
@@ -100,15 +108,14 @@ function MyTabBar({ state, descriptors, navigation }: MyTabBarProps) {
         const { options } = descriptors[route.key];
         // @ts-ignore
         const tabBarIcon = options.tabBarIcon((props) => {
-          console.log("first")
-        })
+          console.log("first");
+        });
         const label =
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
             : options.title !== undefined
             ? options.title
             : route.name;
-
 
         const onPress = () => {
           const event = navigation.emit({

@@ -7,6 +7,9 @@ import type { MapperItem } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import styles from "./styles";
 import MAPPING from "./Mapping";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
+import { View } from "react-native";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
@@ -14,25 +17,33 @@ const PlanScreen = ({ navigation }: Props) => {
   const handleSelectArea = (areaId: number) => {
     navigation.navigate("Subject", { areaId });
   };
+  const { theme } = useContext(ThemeContext);
   return (
+    <View
+      style={theme === "light" ? styles.lightContainer : styles.darkContainer}
+    >
       <ReactNativeZoomableView
         maxZoom={1.5}
         minZoom={0.5}
         zoomStep={0.5}
         initialZoom={1}
         bindToBorders={true}
+        style
       >
         <ImageMapper
           imgSource={require("@Assets/images/plan.jpg")}
           imgWidth={screenWidth}
           imgHeight={screenWidth * 1.074}
           imgMap={MAPPING}
-          containerStyle={styles.container}
+          containerStyle={
+            theme === "light" ? styles.lightContainer : styles.darkContainer
+          }
           onPress={(item: MapperItem) => {
             handleSelectArea(item.id);
           }}
         />
       </ReactNativeZoomableView>
+    </View>
   );
 };
 

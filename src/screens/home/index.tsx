@@ -9,13 +9,13 @@ import {
   screenWidth,
 } from "@Utils/Helper";
 import { db } from "@Src/firebase-config";
-import {
-  collection,
-  getDocs,
-  query,
-  orderBy,
-  startAt,
-} from "firebase/firestore";
+// import {
+//   collection,
+//   getDocs,
+//   query,
+//   orderBy,
+//   startAt,
+// } from "firebase/firestore";
 import styles from "./styles";
 import { Post } from "@Types/index";
 
@@ -23,39 +23,39 @@ const HomeScreen = () => {
   const [posts, setPosts] = useState<Post[] | []>([]);
   const [isConnecte, setIsConnecte] = useState<boolean | null>(false);
 
-  const postsCollectionRef = collection(db, "posts");
+  // const postsCollectionRef = collection(db, "posts");
 
-  useEffect(() => {
-    getPosts();
-    isConnected().then((isConnected) => {
-      setIsConnecte(isConnected);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getPosts();
+  //   isConnected().then((isConnected) => {
+  //     setIsConnecte(isConnected);
+  //   });
+  // }, []);
 
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
 
-  const getPosts = async () => {
-    if (isLoading || isEnd) return;
-    setIsLoading(true);
-    // @ts-ignore
-    const paginatedPosts = await getDocs(postsCollectionRef, {
-      orderBy: orderBy("createdAt", "desc"),
-      startAt: startAt(new Date()),
-      limit: 10,
-      page: page,
-    });
-    const paginatedPostsData = paginatedPosts.docs.map((doc: any) => ({
-      ...doc.data(),
-    }));
-    setPosts([...paginatedPostsData, ...posts]);
-    setPage(page + 1);
-    setIsLoading(false);
-    if (posts.length < 10) {
-      setIsEnd(true);
-    }
-  };
+  // const getPosts = async () => {
+  //   if (isLoading || isEnd) return;
+  //   setIsLoading(true);
+  //   // @ts-ignore
+  //   const paginatedPosts = await getDocs(postsCollectionRef, {
+  //     orderBy: orderBy("createdAt", "desc"),
+  //     startAt: startAt(new Date()),
+  //     limit: 10,
+  //     page: page,
+  //   });
+  //   const paginatedPostsData = paginatedPosts.docs.map((doc: any) => ({
+  //     ...doc.data(),
+  //   }));
+  //   setPosts([...paginatedPostsData, ...posts]);
+  //   setPage(page + 1);
+  //   setIsLoading(false);
+  //   if (posts.length < 10) {
+  //     setIsEnd(true);
+  //   }
+  // };
   // ref to scrollview
   // const scrollViewRef = useRef<ScrollView>(null);
 
@@ -100,7 +100,7 @@ const HomeScreen = () => {
                 },
               }}
             /> */}
-            {isConnecte ? (
+            {/* {isConnecte ? (
               <WebView
                 style={{
                   flex: 1,
@@ -138,7 +138,7 @@ const HomeScreen = () => {
               >
                 <Text>لا يوجد اتصال بالانترنت</Text>
               </View>
-            )}
+            )} */}
           </View>
         ))}
       </View>

@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 
 export const ThemeContext = createContext({
   theme: "dark",
@@ -7,7 +8,18 @@ export const ThemeContext = createContext({
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState("dark");
-  const toggleTheme = () => {
+
+  useEffect(() => {
+    const getTheme = async () => {
+      const theme = await getDataFromStorage("theme");
+      if (theme) {
+        setTheme(theme);
+      }
+    };
+    getTheme();
+  }, []);
+  const toggleTheme = async () => {
+    await storeDataToStorage("theme", theme === "dark" ? "light" : "dark");
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
   return (

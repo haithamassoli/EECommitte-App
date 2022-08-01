@@ -1,20 +1,17 @@
 import "react-native-gesture-handler";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Route from "./src/navigation/main";
-import {
-  Platform,
-  StyleSheet,
-  I18nManager,
-  StatusBar as reactNativeStatusBar,
-} from "react-native";
+import { I18nManager } from "react-native";
 import * as Updates from "expo-updates";
-import { ThemeProvider } from "@Src/store/themeContext";
+import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
+import Colors from "@GlobalStyle/Colors";
 
 // import { useFonts } from "expo-font";
 
 export default function App() {
+  const { theme } = useContext(ThemeContext);
   useEffect(() => {
     const forceRTL = async () => {
       if (!I18nManager.isRTL) {
@@ -40,20 +37,15 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <StatusBar style="auto" />
-      <SafeAreaView style={styles.safeAreaView}>
+      <StatusBar
+        style={theme === "light" ? "dark" : "light"}
+        backgroundColor={
+          theme === "light" ? Colors.lightBackground : Colors.darkBackground
+        }
+      />
+      <SafeAreaView style={{ flex: 1 }}>
         <Route />
       </SafeAreaView>
     </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  safeAreaView: {
-    flex: 1,
-    backgroundColor: "white",
-    paddingTop: Platform.OS === "android" ? -20 : 0,
-    // paddingTop:
-    //   Platform.OS === "android" ? 0 : 0,
-  },
-});

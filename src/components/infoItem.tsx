@@ -3,7 +3,7 @@ import { Ionicons, Feather } from "@expo/vector-icons";
 import { Colors } from "@GlobalStyle/Colors";
 
 interface InfoItemProps {
-  icon: typeof Ionicons.glyphMap;
+  icon: keyof typeof Ionicons.glyphMap;
   title: string;
   subTitle: string;
   onPress: () => void;

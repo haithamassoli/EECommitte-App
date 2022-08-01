@@ -10,6 +10,7 @@ import {
   StatusBar as reactNativeStatusBar,
 } from "react-native";
 import * as Updates from "expo-updates";
+import { ThemeProvider } from "@Src/store/themeContext";
 
 // import { useFonts } from "expo-font";
 
@@ -38,12 +39,12 @@ export default function App() {
   // }
 
   return (
-    <>
+    <ThemeProvider>
       <StatusBar style="auto" />
       <SafeAreaView style={styles.safeAreaView}>
         <Route />
       </SafeAreaView>
-    </>
+    </ThemeProvider>
   );
 }
 

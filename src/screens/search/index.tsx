@@ -12,7 +12,7 @@ import Fuse from "fuse.js";
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import subjects from "@Src/data/Subjects";
-import { Colors } from "@GlobalStyle/Colors";
+import GlobalColors from "@GlobalStyle/Colors";
 import SearchInput from "@Components/ui/SearchInput";
 import { useEffect, useState } from "react";
 import {
@@ -24,7 +24,7 @@ import type { Subject } from "@Types/index";
 import { BottomTabParamList } from "@Types/navigation";
 
 const { height } = Dimensions.get("window");
-
+const Colors = GlobalColors();
 const options = {
   // isCaseSensitive: false,
   // includeScore: false,

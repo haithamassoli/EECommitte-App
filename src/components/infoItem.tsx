@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
-import { Colors } from "@GlobalStyle/Colors";
+import  GlobalColors  from "@GlobalStyle/Colors";
 
 interface InfoItemProps {
   icon: keyof typeof Ionicons.glyphMap;
@@ -9,6 +9,7 @@ interface InfoItemProps {
   onPress: () => void;
 }
 
+const Colors = GlobalColors();
 const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
   return (
     <View style={styles.outerContainer}>

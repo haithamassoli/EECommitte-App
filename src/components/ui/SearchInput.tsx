@@ -1,9 +1,8 @@
 import { View, TextInput, StyleSheet, Dimensions } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import GlobalColors from "@GlobalStyle/Colors";
+import Colors from "@GlobalStyle/Colors";
 
 const { height } = Dimensions.get("window");
-const Colors = GlobalColors();
 interface SearchInputProps {
   searchInput: string;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;

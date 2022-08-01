@@ -9,12 +9,10 @@ import SearchScreen from "@Screens/search";
 import HomeScreen from "@Screens/home";
 import { Feather } from "@expo/vector-icons";
 import type { BottomTabParamList } from "@Types/navigation";
-import  GlobalColors  from "@GlobalStyle/Colors";
+import  Colors  from "@GlobalStyle/Colors";
 import { Text, TouchableOpacity, View } from "react-native";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
-
-const Colors = GlobalColors();
 
 export default function Route() {
   return (

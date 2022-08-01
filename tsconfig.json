@@ -2,15 +2,16 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    // Path alias config
     "baseUrl": ".",
     "paths": {
-      "@Navigation": ["./src/navigation/*"],
-      "@Components": ["./src/components/*"],
-      "@Screens": ["./src/screens/*"],
-      "@Types": ["./src/types/*"],
-      "@GlobalStyle": ["./src/styles/*"],
-      "@Assets": ["./assets/*"]
+      "@Navigation/*": ["src/navigation/*"],
+      "@Components/*": ["src/components/*"],
+      "@Screens/*": ["src/screens/*"],
+      "@Types/*": ["src/types/*"],
+      "@GlobalStyle/*": ["src/styles/*"],
+      "@Assets/*": ["assets/*"],
+      "@Utils/*": ["src/utils/*"],
+      "@Src/*": ["src/*"]
     }
   }
 }

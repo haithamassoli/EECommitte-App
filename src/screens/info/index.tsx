@@ -1,5 +1,5 @@
 import { ScrollView, Text, StyleSheet, View } from "react-native";
-import InfoItem from "../../components/infoItem";
+import InfoItem from "@Components/infoItem";
 
 const InfoScreen = () => {
   function onPress() {

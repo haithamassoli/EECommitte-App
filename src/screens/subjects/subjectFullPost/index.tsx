@@ -3,8 +3,8 @@ import { Text, ScrollView } from "react-native";
 import { WebView } from "react-native-webview";
 import RenderHtml from "react-native-render-html";
 import type { StackScreenProps } from "@react-navigation/stack";
-import type { SubjectsStackParamList } from "../../../types/navigation";
-import { rtlWebview, screenWidth } from "../../../utils/Helper";
+import type { SubjectsStackParamList } from "@Types/navigation";
+import { rtlWebview, screenWidth } from "@Utils/Helper";
 
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 

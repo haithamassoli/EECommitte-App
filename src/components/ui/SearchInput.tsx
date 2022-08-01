@@ -1,6 +1,6 @@
 import { View, TextInput, StyleSheet, Dimensions } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { Colors } from "../../styles/Colors";
+import { Colors } from "@GlobalStyle/Colors";
 
 const { height } = Dimensions.get("window");
 

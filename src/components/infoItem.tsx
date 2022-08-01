@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
-import { Colors } from "../styles/Colors";
+import { Colors } from "@GlobalStyle/Colors";
 
 interface InfoItemProps {
   icon: string;

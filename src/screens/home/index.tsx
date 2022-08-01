@@ -7,8 +7,8 @@ import {
   rtlWebview,
   screenHeight,
   screenWidth,
-} from "../../utils/Helper";
-import { db } from "../../firebase-config";
+} from "@Utils/Helper";
+import { db } from "@Src/firebase-config";
 import {
   collection,
   getDocs,
@@ -17,7 +17,7 @@ import {
   startAt,
 } from "firebase/firestore";
 import styles from "./styles";
-import { Post } from "../../types";
+import { Post } from "@Types/index";
 
 const HomeScreen = () => {
   const [posts, setPosts] = useState<Post[] | []>([]);
@@ -81,7 +81,7 @@ const HomeScreen = () => {
         <Image
           style={styles.image}
           resizeMode="contain"
-          source={require("../../../assets/images/uni.jpg")}
+          source={require("@Assets/images/uni.jpg")}
         />
         {posts.map((post, index) => (
           <View key={index} style={{ flex: 1 }}>

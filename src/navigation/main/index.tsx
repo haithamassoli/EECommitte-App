@@ -1,11 +1,11 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SubjectsNavigation from "../subjects";
-import InfoNavigation from "../../screens/info";
-import SearchScreen from "../../screens/search";
-import HomeScreen from "../../screens/home";
+import InfoNavigation from "@Screens/info";
+import SearchScreen from "@Screens/search";
+import HomeScreen from "@Screens/home";
 import { Feather } from "@expo/vector-icons";
-import type { BottomTabParamList } from "../../types/navigation";
+import type { BottomTabParamList } from "@Types/navigation";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 

@@ -1,10 +1,10 @@
 import { StackScreenProps } from "@react-navigation/stack";
 import ReactNativeZoomableView from "@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView";
 import ImageMapper from "@Components/imageMapper";
-import { screenWidth } from "../../../utils/Helper";
+import { screenWidth } from "@Utils/Helper";
 
-import type { MapperItem } from "../../../types";
-import type { SubjectsStackParamList } from "../../../types/navigation";
+import type { MapperItem } from "@Types/index";
+import type { SubjectsStackParamList } from "@Types/navigation";
 import styles from "./styles";
 import MAPPING from "./Mapping";
 

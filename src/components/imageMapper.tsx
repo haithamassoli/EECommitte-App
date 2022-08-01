@@ -8,8 +8,8 @@ import {
   GestureResponderEvent,
   Pressable,
 } from "react-native";
-import type { MapperItem } from "../types";
-import { screenHeight, screenWidth } from "../utils/Helper";
+import type { MapperItem } from "@Types/index";
+import { screenHeight, screenWidth } from "@Utils/Helper";
 
 type Props = {
   selectedAreaId?: number[] | number;

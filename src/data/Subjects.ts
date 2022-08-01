@@ -1,4 +1,4 @@
-import { Subject } from "../types";
+import { Subject } from "@Types/index";
 
 const Subjects: Subject[] = [
   {

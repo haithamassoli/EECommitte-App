@@ -1,5 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import InfoScreen from '../../screens/info';
+import InfoScreen from '@Screens/info';
 
 const Stack = createStackNavigator();
 

@@ -11,17 +11,17 @@ import {
 import Fuse from "fuse.js";
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
-import subjects from "../../data/Subjects";
-import { Colors } from "../../styles/Colors";
-import SearchInput from "../../components/ui/SearchInput";
+import subjects from "@Src/data/Subjects";
+import { Colors } from "@GlobalStyle/Colors";
+import SearchInput from "@Components/ui/SearchInput";
 import { useEffect, useState } from "react";
 import {
   deleteStorage,
   getDataFromStorage,
   storeDataToStorage,
-} from "../../utils/Helper";
-import type { Subject } from "../../types";
-import { BottomTabParamList } from "../../types/navigation";
+} from "@Utils/Helper";
+import type { Subject } from "@Types/index";
+import { BottomTabParamList } from "@Types/navigation";
 
 const { height } = Dimensions.get("window");
 

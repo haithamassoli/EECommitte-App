@@ -3,7 +3,7 @@ import { Ionicons, Feather } from "@expo/vector-icons";
 import { Colors } from "@GlobalStyle/Colors";
 
 interface InfoItemProps {
-  icon: string;
+  icon: typeof Ionicons.glyphMap;
   title: string;
   subTitle: string;
   onPress: () => void;
@@ -13,7 +13,6 @@ const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
   return (
     <View style={styles.outerContainer}>
       <View style={styles.innerContainer}>
-        {/* @ts-ignore */}
         <Ionicons name={icon} color={Colors.gray} size={26} />
         <View style={{ marginStart: 12 }}>
           <Text style={styles.title}>{title}</Text>

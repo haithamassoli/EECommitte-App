@@ -28,7 +28,7 @@ export default function Route() {
     >
       <BottomTabs.Navigator
         // tabBar={(props) => <MyTabBar {...props} />}
-        screenOptions={{
+        screenOptions={({ navigation }) => ({
           tabBarShowLabel: false,
           tabBarIconStyle: {
             // color: Colors.primary400,
@@ -47,7 +47,17 @@ export default function Route() {
             // paddingVertical: 10,
             // alignSelf: "center",
           },
-        }}
+          headerRight: () => {
+            return (
+              <Feather
+                onPress={() => navigation.navigate("Search")}
+                name="search"
+                size={24}
+                color={Colors.primary400}
+              />
+            );
+          },
+        })}
       >
         <>
           <BottomTabs.Screen

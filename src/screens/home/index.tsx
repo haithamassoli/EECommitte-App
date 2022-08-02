@@ -18,7 +18,7 @@ import { db } from "@Src/firebase-config";
 // } from "firebase/firestore";
 import styles from "./styles";
 import { Post } from "@Types/index";
-
+import { AdMobBanner } from "expo-ads-admob";
 const HomeScreen = () => {
   const [posts, setPosts] = useState<Post[] | []>([]);
   const [isConnecte, setIsConnecte] = useState<boolean | null>(false);
@@ -82,6 +82,12 @@ const HomeScreen = () => {
           style={styles.image}
           resizeMode="cover"
           source={require("@Assets/images/uni.jpg")}
+        />
+        <AdMobBanner
+          bannerSize="smartBannerLandscape"
+          adUnitID="ca-app-pub-6462207765068097/3044148231" // Test ID, Replace with your-admob-unit-id
+          servePersonalizedAds // true or false
+          onDidFailToReceiveAdWithError={(err) => console.log(err)}
         />
         {posts.map((post, index) => (
           <View key={index} style={{ flex: 1 }}>

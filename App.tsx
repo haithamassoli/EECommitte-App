@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Route from "./src/navigation/main";
-import { I18nManager } from "react-native";
+import { I18nManager, Platform } from "react-native";
 import * as Updates from "expo-updates";
 import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
@@ -12,6 +12,7 @@ import Colors from "@GlobalStyle/Colors";
 
 export default function App() {
   const { theme } = useContext(ThemeContext);
+
   useEffect(() => {
     const forceRTL = async () => {
       if (!I18nManager.isRTL) {

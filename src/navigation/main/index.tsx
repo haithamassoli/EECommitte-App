@@ -4,7 +4,6 @@ import {
   BottomTabBarProps,
 } from "@react-navigation/bottom-tabs";
 import SubjectsNavigation from "../subjects";
-import InfoNavigation from "@Screens/info";
 import SearchScreen from "@Screens/search";
 import HomeScreen from "@Screens/home";
 import { Feather } from "@expo/vector-icons";
@@ -17,6 +16,7 @@ import {
   DarkNavigationColors,
   LightNavigationColors,
 } from "@GlobalStyle/Navigation";
+import InfoNavigation from "@Navigation/info";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
@@ -125,7 +125,7 @@ export default function Route() {
               tabBarIcon: ({ color }) => (
                 <Feather name="menu" size={24} color={color} />
               ),
-              headerTitle: "القائمة",
+              headerShown: false,
             }}
           />
         </>

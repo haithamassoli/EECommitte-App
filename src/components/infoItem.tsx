@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -16,7 +16,7 @@ const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
   const textColor =
     theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
   return (
-    <View style={styles.outerContainer}>
+    <Pressable onPress={onPress} style={styles.outerContainer}>
       <View style={styles.innerContainer}>
         <Feather name={icon} color={textColor} size={26} />
         <View style={{ marginStart: 12 }}>
@@ -43,7 +43,7 @@ const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
         </View>
       </View>
       <Feather name="arrow-left" color={textColor} size={20} />
-    </View>
+    </Pressable>
   );
 };
 

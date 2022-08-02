@@ -14,10 +14,7 @@ export default function SubjectsNavigation() {
         headerShown: false,
       }}
     >
-      <Stack.Screen
-        name="Plan"
-        component={PlanScreen}
-      />
+      <Stack.Screen name="Plan" component={PlanScreen} />
       <Stack.Screen name="Subject" component={SubjectScreen} />
       <Stack.Screen name="SubjectWebView" component={SubjectWebViewScreen} />
       <Stack.Screen name="SubjectFullPost" component={SubjectFullPostScreen} />

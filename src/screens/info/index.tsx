@@ -12,47 +12,41 @@ const InfoScreen = ({ navigation }: Props) => {
   const { theme } = useContext(ThemeContext);
   const textColor =
     theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
-  function onPress(page: keyof InfoStackParamList) {
-    navigation.navigate(page)
-  }
+  const onPress = (page: keyof InfoStackParamList) => {
+    navigation.push(page);
+  };
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <InfoItem
-          icon="user"
-          title="Profile Information"
-          subTitle="Change your account information"
-          onPress={() => onPress("AboutUni")}
-        />
-        <InfoItem
-          icon="star"
-          title="Adress"
-          subTitle="Add your delivery location"
-          onPress={() => onPress("Doctors")}
-        />
-        <InfoItem
-          icon="share"
-          title="Refer and Share App"
-          subTitle="Change your account information"
-          onPress={() => onPress("Doctors")}
-        />
-        <InfoItem
           icon="info"
-          title="FAQ"
-          subTitle="Frequently asked questions"
+          title="عن اللجنة"
+          subTitle="لجنة الهندسة الكهربائية"
+          onPress={() => onPress("AboutEECommitte")}
+        />
+        <InfoItem
+          icon="mail"
+          title="تواصل معنا"
+          subTitle=""
+          onPress={() => onPress("ContactUs")}
+        />
+        <InfoItem
+          icon="user"
+          title="المعلمين"
+          subTitle="معلومات عن المعلمين"
           onPress={() => onPress("Doctors")}
+        />
+        <InfoItem
+          icon="share-2"
+          title="روابط مهمة"
+          subTitle=""
+          onPress={() => onPress("QuickLinkes")}
         />
         <InfoItem
           icon="heart"
-          title="Support US"
-          subTitle="Help us to improve our app"
+          title="ادعمنا"
+          subTitle="ساعدنا على تطوير التطبيق"
           onPress={() => onPress("SupportUs")}
-        />
-        <InfoItem
-          icon="star"
-          title="Rate Us"
-          subTitle="Rate us on the app store"
-          onPress={() => onPress("Info")}
         />
       </ScrollView>
     </View>

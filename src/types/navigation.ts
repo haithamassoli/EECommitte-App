@@ -16,7 +16,7 @@ export type SubjectsStackParamList = {
 
 export type InfoStackParamList = {
   Info: undefined;
-  AboutUni: undefined;
+  AboutEECommitte: undefined;
   SupportUs: undefined;
   ContactUs: undefined;
   Doctors: undefined;

@@ -4,7 +4,7 @@ export type BottomTabParamList = {
   Home: undefined;
   Search: undefined;
   SubjectsNavigation: NavigatorScreenParams<SubjectsStackParamList>;
-  InfoNavigation: undefined;
+  InfoNavigation: NavigatorScreenParams<InfoStackParamList>;
 };
 
 export type SubjectsStackParamList = {
@@ -12,4 +12,13 @@ export type SubjectsStackParamList = {
   Subject: { areaId: number };
   SubjectWebView: { url: string };
   SubjectFullPost: { post?: string };
+};
+
+export type InfoStackParamList = {
+  Info: undefined;
+  AboutUni: undefined;
+  SupportUs: undefined;
+  ContactUs: undefined;
+  Doctors: undefined;
+  QuickLinkes: undefined;
 };

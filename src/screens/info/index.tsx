@@ -3,75 +3,56 @@ import InfoItem from "@Components/infoItem";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
 import Colors from "@GlobalStyle/Colors";
+import { StackScreenProps } from "@react-navigation/stack";
+import { InfoStackParamList } from "@Types/navigation";
 
-const InfoScreen = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+type Props = StackScreenProps<InfoStackParamList>;
+
+const InfoScreen = ({ navigation }: Props) => {
+  const { theme } = useContext(ThemeContext);
   const textColor =
     theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
-  function onPress() {
-    console.log("onPress");
+  function onPress(page: keyof InfoStackParamList) {
+    navigation.navigate(page)
   }
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Pressable onPress={() => toggleTheme()}>
-          <Text style={{ color: textColor }}>Change Theme</Text>
-        </Pressable>
-        <Text
-          style={[
-            styles.headerTitle,
-            {
-              color: textColor,
-            },
-          ]}
-        >
-          Account Setting
-        </Text>
         <InfoItem
           icon="user"
           title="Profile Information"
           subTitle="Change your account information"
-          onPress={onPress}
+          onPress={() => onPress("AboutUni")}
         />
         <InfoItem
           icon="star"
           title="Adress"
           subTitle="Add your delivery location"
-          onPress={onPress}
+          onPress={() => onPress("Doctors")}
         />
         <InfoItem
           icon="share"
           title="Refer and Share App"
           subTitle="Change your account information"
-          onPress={onPress}
+          onPress={() => onPress("Doctors")}
         />
-        <Text
-          style={[
-            styles.headerTitle,
-            {
-              color: textColor,
-            },
-          ]}
-        >
-          More
-        </Text>
         <InfoItem
           icon="info"
           title="FAQ"
           subTitle="Frequently asked questions"
-          onPress={onPress}
+          onPress={() => onPress("Doctors")}
         />
         <InfoItem
           icon="heart"
           title="Support US"
           subTitle="Help us to improve our app"
-          onPress={onPress}
+          onPress={() => onPress("SupportUs")}
         />
         <InfoItem
           icon="star"
           title="Rate Us"
           subTitle="Rate us on the app store"
-          onPress={onPress}
+          onPress={() => onPress("Info")}
         />
       </ScrollView>
     </View>

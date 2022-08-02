@@ -21,7 +21,7 @@ import {
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
 export default function Route() {
-  const { theme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <NavigationContainer
       theme={theme === "light" ? LightNavigationColors : DarkNavigationColors}
@@ -49,12 +49,37 @@ export default function Route() {
           },
           headerRight: () => {
             return (
-              <Feather
-                onPress={() => navigation.navigate("Search")}
-                name="search"
-                size={24}
-                color={Colors.primary400}
-              />
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingEnd: 10,
+                }}
+              >
+                <Feather
+                  onPress={() => navigation.navigate("Search")}
+                  name="search"
+                  size={24}
+                  color={Colors.primary400}
+                  style={{ paddingStart: 10 }}
+                />
+                {theme === "light" ? (
+                  <Feather
+                    onPress={() => toggleTheme()}
+                    name="moon"
+                    size={24}
+                    color={Colors.primary400}
+                  />
+                ) : (
+                  <Feather
+                    onPress={() => toggleTheme()}
+                    name="sun"
+                    size={24}
+                    color={Colors.primary400}
+                  />
+                )}
+              </View>
             );
           },
         })}
@@ -78,6 +103,9 @@ export default function Route() {
                 <Feather name="search" size={24} color={color} />
               ),
               headerTitle: "البحث",
+              tabBarButton: () => {
+                return null;
+              },
             }}
           />
           <BottomTabs.Screen
@@ -87,7 +115,7 @@ export default function Route() {
               tabBarIcon: ({ color }) => (
                 <Feather name="map" size={24} color={color} />
               ),
-              headerShown: false,
+              headerTitle: "الخطة الدراسية",
             }}
           />
           <BottomTabs.Screen

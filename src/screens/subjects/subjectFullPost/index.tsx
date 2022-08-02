@@ -11,7 +11,9 @@ import Colors from "@GlobalStyle/Colors";
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 
 const SubjectFullPostScreen = ({ navigation, route }: Props) => {
-const {theme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
+  const textColor =
+    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "البوست الشامل",
@@ -39,7 +41,7 @@ const {theme} = useContext(ThemeContext);
                 fontFamily: "Roboto",
                 fontWeight: "normal",
                 fontStyle: "normal",
-                color: theme === "light" ? Colors.lightTextColor : Colors.darkTextColor,
+                color: textColor,
               },
             }}
           />

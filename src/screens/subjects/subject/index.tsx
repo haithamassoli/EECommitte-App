@@ -12,6 +12,8 @@ type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 const SubjectScreen = ({ navigation, route }: Props) => {
   const [subject, setSubject] = useState({} as Subject);
   const { theme } = useContext(ThemeContext);
+  const textColor =
+    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
   useEffect(() => {
     const currentSubject = subjects.find(
       (subject) => subject.id === route.params.areaId
@@ -37,16 +39,14 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     >
       <Text
         style={{
-          color:
-            theme === "light" ? Colors.lightTextColor : Colors.darkTextColor,
+          color: textColor,
         }}
       >
         {subject?.name}
       </Text>
       <Text
         style={{
-          color:
-            theme === "light" ? Colors.lightTextColor : Colors.darkTextColor,
+          color: textColor,
         }}
       >
         {subject?.name2}
@@ -58,8 +58,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       >
         <Text
           style={{
-            color:
-              theme === "light" ? Colors.lightTextColor : Colors.darkTextColor,
+            color: textColor,
           }}
         >
           Drive Link
@@ -72,8 +71,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       >
         <Text
           style={{
-            color:
-              theme === "light" ? Colors.lightTextColor : Colors.darkTextColor,
+            color: textColor,
           }}
         >
           Show Full Post

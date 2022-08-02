@@ -6,6 +6,8 @@ import Colors from "@GlobalStyle/Colors";
 
 const InfoScreen = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const textColor =
+    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
   function onPress() {
     console.log("onPress");
   }
@@ -13,76 +15,62 @@ const InfoScreen = () => {
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Pressable onPress={() => toggleTheme()}>
-          <Text style={{ color:
-            theme === "light" ? Colors.lightTextColor : Colors.darkTextColor,}}>Change Theme</Text>
+          <Text style={{ color: textColor }}>Change Theme</Text>
         </Pressable>
         <Text
           style={[
             styles.headerTitle,
             {
-              color:
-                theme === "light"
-                  ? Colors.lightTextColor
-                  : Colors.darkTextColor,
+              color: textColor,
             },
           ]}
         >
           Account Setting
         </Text>
         <InfoItem
-          icon="person-outline"
+          icon="user"
           title="Profile Information"
           subTitle="Change your account information"
           onPress={onPress}
         />
         <InfoItem
-          icon="card-outline"
-          title="Payment Information"
-          subTitle="Payment Information"
-          onPress={onPress}
-        />
-        <InfoItem
-          icon="star-outline"
+          icon="star"
           title="Adress"
           subTitle="Add your delivery location"
           onPress={onPress}
         />
         <InfoItem
-          icon="notifications-outline"
-          title="Notifications"
-          subTitle="Set notification you want to receive"
-          onPress={onPress}
-        />
-        <InfoItem
-          icon="share-social-outline"
+          icon="share"
           title="Refer and Share App"
           subTitle="Change your account information"
           onPress={onPress}
         />
-        <Text style={[styles.headerTitle, { color:
-            theme === "light" ? Colors.lightTextColor : Colors.darkTextColor,}]}>More</Text>
+        <Text
+          style={[
+            styles.headerTitle,
+            {
+              color: textColor,
+            },
+          ]}
+        >
+          More
+        </Text>
         <InfoItem
-          icon="information-circle-outline"
+          icon="info"
           title="FAQ"
           subTitle="Frequently asked questions"
           onPress={onPress}
         />
         <InfoItem
-          icon="help-buoy-outline"
-          title="Support"
-          subTitle="24/7 support"
+          icon="heart"
+          title="Support US"
+          subTitle="Help us to improve our app"
           onPress={onPress}
         />
         <InfoItem
-          icon="star-outline"
+          icon="star"
           title="Rate Us"
           subTitle="Rate us on the app store"
-          onPress={onPress}
-        />
-        <InfoItem
-          icon="log-out-outline"
-          title="Logout"
-          subTitle="Logout from your account"
           onPress={onPress}
         />
       </ScrollView>

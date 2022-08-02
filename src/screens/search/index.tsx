@@ -34,6 +34,8 @@ const SearchScreen = ({ navigation }: Props) => {
   const [results, setResults] = useState<Subject[] | []>([]);
   const [historyResults, setHistoryResults] = useState([] as Subject[]);
   const { theme } = useContext(ThemeContext);
+  const textColor =
+    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
   useEffect(() => {
     async function getHistory() {
       const historySearchResults = await getDataFromStorage("searchHistory");
@@ -130,10 +132,7 @@ const SearchScreen = ({ navigation }: Props) => {
                 style={{
                   fontSize: 20,
                   fontWeight: "bold",
-                  color:
-                    theme === "light"
-                      ? Colors.lightTextColor
-                      : Colors.darkTextColor,
+                  color: textColor,
                 }}
               >
                 البحث السابق
@@ -172,10 +171,7 @@ const SearchScreen = ({ navigation }: Props) => {
                       style={{
                         fontSize: 16,
                         marginLeft: 5,
-                        color:
-                          theme === "light"
-                            ? Colors.lightTextColor
-                            : Colors.darkTextColor,
+                        color: textColor,
                       }}
                     >
                       {item.name2}
@@ -196,10 +192,7 @@ const SearchScreen = ({ navigation }: Props) => {
                   fontWeight: "bold",
                   fontSize: 24,
                   marginTop: 40,
-                  color:
-                    theme === "light"
-                      ? Colors.lightTextColor
-                      : Colors.darkTextColor,
+                  color: textColor,
                 }}
               >
                 لا يوجد بحث سابق
@@ -229,10 +222,7 @@ const SearchScreen = ({ navigation }: Props) => {
                               style={{
                                 fontSize: 16,
                                 fontWeight: "bold",
-                                color:
-                                  theme === "light"
-                                    ? Colors.lightTextColor
-                                    : Colors.darkTextColor,
+                                color: textColor,
                               }}
                             >
                               {letter}
@@ -244,10 +234,7 @@ const SearchScreen = ({ navigation }: Props) => {
                               key={index}
                               style={{
                                 fontSize: 16,
-                                color:
-                                  theme === "light"
-                                    ? Colors.lightTextColor
-                                    : Colors.darkTextColor,
+                                color: textColor,
                               }}
                             >
                               {letter}
@@ -265,10 +252,7 @@ const SearchScreen = ({ navigation }: Props) => {
                   fontWeight: "bold",
                   fontSize: 24,
                   marginTop: 40,
-                  color:
-                    theme === "light"
-                      ? Colors.lightTextColor
-                      : Colors.darkTextColor,
+                  color: textColor,
                 }}
               >
                 لا توجد بيانات

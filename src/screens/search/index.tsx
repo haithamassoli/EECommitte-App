@@ -12,7 +12,7 @@ import { Feather } from "@expo/vector-icons";
 import subjects from "@Src/data/Subjects";
 import Colors from "@GlobalStyle/Colors";
 import SearchInput from "@Components/ui/SearchInput";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import {
   deleteStorage,
   getDataFromStorage,
@@ -33,9 +33,15 @@ const SearchScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Subject[] | []>([]);
   const [historyResults, setHistoryResults] = useState([] as Subject[]);
-  const { theme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor =
     theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      
+    });
+  }, []);
   useEffect(() => {
     async function getHistory() {
       const historySearchResults = await getDataFromStorage("searchHistory");

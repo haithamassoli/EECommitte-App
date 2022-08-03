@@ -99,11 +99,11 @@ export default function Route() {
             name="Search"
             component={SearchScreen}
             options={{
-              tabBarIcon: ({ color }) => (
-                <Feather name="search" size={24} color={color} />
-              ),
               headerTitle: "البحث",
               tabBarButton: () => {
+                return null;
+              },
+              headerRight: () => {
                 return null;
               },
             }}

@@ -1,3 +1,5 @@
+import { Feather } from "@expo/vector-icons";
+import Colors from "@GlobalStyle/Colors";
 import { createStackNavigator } from "@react-navigation/stack";
 import InfoScreen from "@Screens/info";
 import AboutUniScreen from "@Screens/info/aboutUni";
@@ -5,12 +7,55 @@ import ContactUsScreen from "@Screens/info/contactUs";
 import DoctorsScreen from "@Screens/info/doctors";
 import QuickLinkesScreen from "@Screens/info/quickLinkes";
 import SupportUsScreen from "@Screens/info/supportUs";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
+import { View } from "react-native";
 
 const Stack = createStackNavigator();
 
 export default function InfoNavigation() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
-    <Stack.Navigator initialRouteName="Info">
+    <Stack.Navigator
+      screenOptions={({ navigation }) => ({
+        headerRight: () => {
+          return (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                alignItems: "center",
+                paddingEnd: 10,
+              }}
+            >
+              <Feather
+                onPress={() => navigation.navigate("Search")}
+                name="search"
+                size={24}
+                color={Colors.primary400}
+                style={{ paddingStart: 10 }}
+              />
+              {theme === "light" ? (
+                <Feather
+                  onPress={() => toggleTheme()}
+                  name="moon"
+                  size={24}
+                  color={Colors.primary400}
+                />
+              ) : (
+                <Feather
+                  onPress={() => toggleTheme()}
+                  name="sun"
+                  size={24}
+                  color={Colors.primary400}
+                />
+              )}
+            </View>
+          );
+        },
+      })}
+      initialRouteName="Info"
+    >
       <Stack.Screen
         options={{ headerTitle: "القائمة" }}
         name="Info"

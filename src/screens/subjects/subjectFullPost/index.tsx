@@ -22,7 +22,7 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
     <ScrollView
       style={{
         flex: 1,
-        paddingStart: 12,
+        paddingHorizontal: 12,
         paddingVertical: 4,
       }}
     >

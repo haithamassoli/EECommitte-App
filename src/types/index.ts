@@ -2,6 +2,7 @@ export interface Subject {
   id: number;
   name: string;
   name2: string;
+  aboutSubject?: string;
   subjectLink: string;
   fullPost?: string;
 }

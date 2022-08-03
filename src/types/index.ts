@@ -51,4 +51,5 @@ export type MapperItem = CircleType | RectangleTypeDimensions;
 export type Post = {
   id: number;
   body: string;
+  post_id: number;
 };

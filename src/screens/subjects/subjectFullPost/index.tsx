@@ -1,11 +1,11 @@
 import { useContext, useLayoutEffect } from "react";
 import { Text, ScrollView } from "react-native";
-import RenderHtml from "react-native-render-html";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import { rtlWebview, screenWidth } from "@Utils/Helper";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
+import { WebDisplay } from "@Components/webDisplay";
 
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 
@@ -20,39 +20,11 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
   }, []);
   return (
     <ScrollView
-      style={{
-        flex: 1,
-        paddingHorizontal: 12,
-        paddingVertical: 4,
-      }}
     >
       {route?.params?.post ? (
-        <>
-          <RenderHtml
-            contentWidth={screenWidth}
-            source={{
-              html: rtlWebview(route.params.post),
-            }}
-            tagsStyles={{
-              p: {
-                fontSize: 18,
-                lineHeight: 24,
-                fontFamily: "Roboto",
-                fontWeight: "normal",
-                fontStyle: "normal",
-                color: textColor,
-              },
-              img:{
-                display: "none",
-              },
-              a:{
-                color: theme === "light" ? Colors.primary700 : Colors.primary400,
-              }
-            }}
-          />
-        </>
+        <WebDisplay html={route?.params?.post} />
       ) : (
-        <Text style={{color: textColor}}>لا يوجد يوست شامل حاليًا</Text>
+        <Text style={{ color: textColor }}>لا يوجد يوست شامل حاليًا</Text>
       )}
     </ScrollView>
   );

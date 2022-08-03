@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
-import RenderHtml from "react-native-render-html";
 import subjects from "@Src/data/Subjects";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { Subject } from "@Types/index";
@@ -8,6 +7,7 @@ import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { rtlWebview, screenWidth } from "@Utils/Helper";
+import { WebDisplay } from "@Components/webDisplay";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 
@@ -53,28 +53,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           marginTop: 16,
         }}
       >
-        {subject?.aboutSubject && (
-          <RenderHtml
-            contentWidth={screenWidth}
-            source={{
-              html: rtlWebview(subject?.aboutSubject),
-            }}
-            tagsStyles={{
-              p: {
-                fontSize: 18,
-                lineHeight: 24,
-                fontFamily: "Roboto",
-                fontWeight: "normal",
-                fontStyle: "normal",
-                color: textColor,
-              },
-              a: {
-                color:
-                  theme === "light" ? Colors.primary700 : Colors.primary400,
-              },
-            }}
-          />
-        )}
+        {subject?.aboutSubject && <WebDisplay html={subject?.aboutSubject} />}
       </View>
       <Pressable
         onPress={() =>

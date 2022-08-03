@@ -40,13 +40,8 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       <Text
         style={{
           color: textColor,
-        }}
-      >
-        {subject?.name}
-      </Text>
-      <Text
-        style={{
-          color: textColor,
+          fontSize: 24,
+          fontWeight: "bold",
         }}
       >
         {subject?.name2}
@@ -55,10 +50,16 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         onPress={() =>
           navigation.navigate("SubjectWebView", { url: subject?.subjectLink })
         }
+        style={{
+          backgroundColor: theme === "light" ? Colors.primary700 : Colors.primary400,
+          padding: 8,
+          borderRadius: 8,
+          marginVertical: 8,
+        }}
       >
         <Text
           style={{
-            color: textColor,
+            color: Colors.dark,
           }}
         >
           Drive Link
@@ -68,10 +69,16 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         onPress={() =>
           navigation.navigate("SubjectFullPost", { post: subject?.fullPost })
         }
+        style={{
+          backgroundColor: theme === "light" ? Colors.primary400 : Colors.primary700,
+          padding: 8,
+          borderRadius: 8,
+          marginVertical: 8,
+        }}
       >
         <Text
           style={{
-            color: textColor,
+            color: Colors.dark,
           }}
         >
           Show Full Post

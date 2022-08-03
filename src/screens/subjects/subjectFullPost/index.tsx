@@ -1,6 +1,5 @@
 import { useContext, useLayoutEffect } from "react";
 import { Text, ScrollView } from "react-native";
-import { WebView } from "react-native-webview";
 import RenderHtml from "react-native-render-html";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { SubjectsStackParamList } from "@Types/navigation";
@@ -43,20 +42,17 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
                 fontStyle: "normal",
                 color: textColor,
               },
+              img:{
+                display: "none",
+              },
+              a:{
+                color: theme === "light" ? Colors.primary700 : Colors.primary400,
+              }
             }}
           />
-          {/* <WebView
-            minimumFontSize={72}
-            showsVerticalScrollIndicator={false}
-            overScrollMode="never"
-            originWhitelist={["*"]}
-            source={{
-              html: rtlWebview(route?.params?.post),
-            }}
-          /> */}
         </>
       ) : (
-        <Text>لا يوجد يوست شامل حاليًا</Text>
+        <Text style={{color: textColor}}>لا يوجد يوست شامل حاليًا</Text>
       )}
     </ScrollView>
   );

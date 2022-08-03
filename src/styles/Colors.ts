@@ -9,7 +9,7 @@ const Colors = {
   primary400: "#ffd369",
   primary500: "#ffc769",
   primary600: "#ffba69",
-  primary700: "#ffae69",
+  primary700: "#ff7500",
   primaryLight: "#FFF192",
   primaryLightest: "#FFFFB7",
   primaryDark: "#FFDD3C",

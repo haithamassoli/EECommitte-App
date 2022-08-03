@@ -15,6 +15,7 @@ const Stack = createStackNavigator();
 
 export default function InfoNavigation() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
   return (
     <Stack.Navigator
       screenOptions={({ navigation }) => ({
@@ -32,7 +33,7 @@ export default function InfoNavigation() {
                 onPress={() => navigation.navigate("Search")}
                 name="search"
                 size={24}
-                color={Colors.primary400}
+                color={iconColor}
                 style={{ paddingStart: 10 }}
               />
               {theme === "light" ? (
@@ -40,14 +41,14 @@ export default function InfoNavigation() {
                   onPress={() => toggleTheme()}
                   name="moon"
                   size={24}
-                  color={Colors.primary400}
+                  color={iconColor}
                 />
               ) : (
                 <Feather
                   onPress={() => toggleTheme()}
                   name="sun"
                   size={24}
-                  color={Colors.primary400}
+                  color={iconColor}
                 />
               )}
             </View>

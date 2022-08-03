@@ -20,7 +20,7 @@ const SearchInput = ({ searchInput, setSearchInput }: SearchInputProps) => {
         <Feather
           name="x"
           size={24}
-          color={textColor}
+          color={theme === "light" ? Colors.primary700 : Colors.primary400}
           style={styles.searchIcon}
           onPress={() => setSearchInput("")}
         />
@@ -28,7 +28,7 @@ const SearchInput = ({ searchInput, setSearchInput }: SearchInputProps) => {
         <Feather
           name="search"
           size={24}
-          color={textColor}
+          color={theme === "light" ? Colors.primary700 : Colors.primary400}
           style={styles.searchIcon}
         />
       )}
@@ -40,7 +40,7 @@ const SearchInput = ({ searchInput, setSearchInput }: SearchInputProps) => {
         style={[
           styles.searchInput,
           {
-            color: textColor,
+            color: theme === "light" ? Colors.primary700 : Colors.primary400,
           },
         ]}
       />

@@ -8,7 +8,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginHorizontal: 20,
   },
-  header: {
+  lightHeader: {
+    fontSize: 20,
+    color: Colors.primary700,
+    fontWeight: "bold",
+  },
+  DarkHeader: {
     fontSize: 20,
     color: Colors.primary400,
     fontWeight: "bold",

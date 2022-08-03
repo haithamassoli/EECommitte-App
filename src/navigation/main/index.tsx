@@ -22,6 +22,7 @@ const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
 export default function Route() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
   return (
     <NavigationContainer
       theme={theme === "light" ? LightNavigationColors : DarkNavigationColors}
@@ -33,7 +34,7 @@ export default function Route() {
           tabBarIconStyle: {
             // color: Colors.primary400,
           },
-          tabBarActiveTintColor: "#e7a300",
+          tabBarActiveTintColor: iconColor,
           tabBarInactiveTintColor: "#9b9b9b",
           // tabBarItemStyle: {
           //   backgroundColor: "#eee",
@@ -61,7 +62,7 @@ export default function Route() {
                   onPress={() => navigation.navigate("Search")}
                   name="search"
                   size={24}
-                  color={Colors.primary400}
+                  color={iconColor}
                   style={{ paddingStart: 10 }}
                 />
                 {theme === "light" ? (
@@ -69,14 +70,14 @@ export default function Route() {
                     onPress={() => toggleTheme()}
                     name="moon"
                     size={24}
-                    color={Colors.primary400}
+                    color={iconColor}
                   />
                 ) : (
                   <Feather
                     onPress={() => toggleTheme()}
                     name="sun"
                     size={24}
-                    color={Colors.primary400}
+                    color={iconColor}
                   />
                 )}
               </View>

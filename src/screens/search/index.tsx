@@ -37,6 +37,7 @@ const SearchScreen = ({ navigation }: Props) => {
   const textColor =
     theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
 
+    const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400
   useLayoutEffect(() => {
     navigation.setOptions({
       
@@ -148,7 +149,7 @@ const SearchScreen = ({ navigation }: Props) => {
                 style={{
                   fontSize: 16,
                   fontWeight: "bold",
-                  color: Colors.primary400,
+                  color: theme === "light" ? Colors.primary700 : Colors.primary400,
                 }}
               >
                 حذف الكل
@@ -171,7 +172,7 @@ const SearchScreen = ({ navigation }: Props) => {
                       alignItems: "center",
                     }}
                   >
-                    <Feather name="clock" size={20} color="black" />
+                    <Feather name="clock" size={20} color={iconColor} />
                     <Text
                       onPress={() => handlePressHistory(item.id)}
                       style={{
@@ -187,7 +188,7 @@ const SearchScreen = ({ navigation }: Props) => {
                     onPress={() => handleDelete(item.id)}
                     name="x"
                     size={20}
-                    color="black"
+                    color={iconColor}
                   />
                 </View>
               ))

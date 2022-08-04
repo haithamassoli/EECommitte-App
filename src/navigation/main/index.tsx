@@ -40,8 +40,8 @@ export default function Route() {
           //   backgroundColor: "#eee",
           // },
           tabBarStyle: {
-            paddingBottom: 8,
-            // height: 65,
+            paddingBottom: 12,
+            height: 56,
             // shadowColor: "transparent",
             // backgroundColor: "#f9ffa1",
             // marginBottom: 20,
@@ -96,6 +96,16 @@ export default function Route() {
               ),
               headerShown: false,
               tabBarLabel: "الرئيسية",
+            }}
+          />
+          <BottomTabs.Screen
+            name="News"
+            component={HomeScreen}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Feather name="globe" size={24} color={color} />
+              ),
+              tabBarLabel: "أخر الأخبار",
             }}
           />
           <BottomTabs.Screen

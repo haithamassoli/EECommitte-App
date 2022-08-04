@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
   sliderImage: {
     width: screenWidth,
     height: "100%",
-    borderRadius: 30,
     resizeMode: "cover",
     marginHorizontal: 8,
+    borderRadius: 30,
   },
   sliderDotsContainer: {
     position: "absolute",
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     transform: [{ translateX: -screenWidth / 2 + 40 }],
     flexDirection: "row",
     justifyContent: "center",
+    marginHorizontal: 12,
   },
   sliderDot: {
     width: 10,

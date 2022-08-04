@@ -2,6 +2,7 @@ import { NavigatorScreenParams } from "@react-navigation/native";
 
 export type BottomTabParamList = {
   Home: undefined;
+  News: undefined;
   Search: undefined;
   SubjectsNavigation: NavigatorScreenParams<SubjectsStackParamList>;
   InfoNavigation: NavigatorScreenParams<InfoStackParamList>;

@@ -77,7 +77,11 @@ const HomeScreen = () => {
       </View>
       <SearchInput searchInput={search} setSearchInput={setSearch} />
       <Text style={styles.headerText}>جديد لجنتكم</Text>
-      <View style={{ height: screenHeight * 0.28, marginHorizontal: 12 }}>
+      <View
+        style={{
+          height: screenHeight * 0.28,
+        }}
+      >
         <ScrollView
           horizontal
           pagingEnabled
@@ -189,7 +193,7 @@ const HomeScreen = () => {
           </Pressable>
           <Pressable
             onPress={() => {
-              console.log("pressed");
+              Linking.openURL("https://www.facebook.com/groups/eelajna.just");
             }}
             style={styles.iconContainer}
           >

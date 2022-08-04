@@ -25,6 +25,9 @@ export const WebDisplay = memo(function WebDisplay({ html }: { html: string }) {
     a: {
       color: theme === "light" ? Colors.primary700 : Colors.primary400,
     },
+    img: {
+      display: "none",
+    },
   };
   return (
     <View style={{ flex: 1, paddingHorizontal: 12, paddingVertical: 4 }}>

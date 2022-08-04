@@ -1,5 +1,12 @@
 import { useEffect, useState, useContext } from "react";
-import { View, Image, ScrollView, Text, Pressable } from "react-native";
+import {
+  View,
+  Image,
+  ScrollView,
+  Text,
+  Pressable,
+  Linking,
+} from "react-native";
 import { isConnected, screenHeight, screenWidth } from "@Utils/Helper";
 import { db } from "@Src/firebase-config";
 import {
@@ -57,7 +64,7 @@ const HomeScreen = () => {
     });
   };
   return (
-    <View style={styles.outerContainer}>
+    <>
       <View style={styles.logosContainer}>
         <Image
           source={require("@Assets/images/icons/lagna-logo.png")}
@@ -70,7 +77,7 @@ const HomeScreen = () => {
       </View>
       <SearchInput searchInput={search} setSearchInput={setSearch} />
       <Text style={styles.headerText}>جديد لجنتكم</Text>
-      <View style={{ height: screenHeight * 0.28 }}>
+      <View style={{ height: screenHeight * 0.28, marginHorizontal: 12 }}>
         <ScrollView
           horizontal
           pagingEnabled
@@ -120,6 +127,7 @@ const HomeScreen = () => {
           paddingHorizontal: 16,
           paddingBottom: 16,
           marginTop: 40,
+          marginHorizontal: 12,
         }}
       >
         <View style={styles.iconsContainer}>
@@ -138,7 +146,7 @@ const HomeScreen = () => {
           </Pressable>
           <Pressable
             onPress={() => {
-              console.log("pressed");
+              Linking.openURL("https://www.youtube.com/user/EECommittee");
             }}
             style={styles.iconContainer}
           >
@@ -209,7 +217,7 @@ const HomeScreen = () => {
           </Pressable>
         </View>
       </View>
-    </View>
+    </>
   );
 };
 

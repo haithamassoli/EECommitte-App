@@ -2,15 +2,12 @@ import { StyleSheet } from "react-native";
 import { screenWidth, screenHeight } from "@Utils/Helper";
 import Colors from "@GlobalStyle/Colors";
 const styles = StyleSheet.create({
-  outerContainer: {
-    flex: 1,
-    paddingHorizontal: 12,
-  },
   logosContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 20,
+    marginHorizontal: 12,
   },
   lagnaLogo: {
     width: 230,
@@ -27,6 +24,7 @@ const styles = StyleSheet.create({
     fontWeight: "normal",
     fontFamily: "TajawalMedium",
     marginTop: 16,
+    marginHorizontal: 12,
   },
   sliderContainer: {
     flex: 1,
@@ -34,7 +32,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   sliderImage: {
-    width: screenWidth - 40,
+    width: screenWidth,
     height: "100%",
     borderRadius: 30,
     resizeMode: "cover",

@@ -3,41 +3,23 @@ import { Dimensions, StyleSheet } from "react-native";
 const { height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 10,
-    marginHorizontal: 20,
-  },
-  lightHeader: {
-    fontSize: 20,
-    color: Colors.primary700,
-    fontWeight: "bold",
-  },
-  DarkHeader: {
-    fontSize: 20,
-    color: Colors.primary400,
-    fontWeight: "bold",
-  },
   searchContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    height: height / 8,
   },
   searchInput: {
-    paddingHorizontal: 45,
+    paddingHorizontal: 40,
     paddingVertical: 10,
-    borderRadius: 5,
-    backgroundColor: Colors.gray,
+    borderRadius: 30,
+    backgroundColor: Colors.lightGray,
+    fontFamily: "TajawalMedium",
+    fontSize: 14,
     width: "100%",
   },
   searchIcon: {
     position: "absolute",
-    right: 10,
-    zIndex: 10,
-  },
-  xIcon: {
-    position: "absolute",
+    transform: [{ rotate: "90deg" }],
     left: 10,
     zIndex: 10,
   },

@@ -8,7 +8,7 @@ import * as Updates from "expo-updates";
 import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 
-// import { useFonts } from "expo-font";
+import { useFonts } from "expo-font";
 
 export default function App() {
   const { theme } = useContext(ThemeContext);
@@ -28,13 +28,15 @@ export default function App() {
     forceRTL();
   }, []);
 
-  // const [loaded] = useFonts({
-  //   Montserrat: require('./assets/fonts/Montserrat.ttf'),
-  // });
+  const [loaded] = useFonts({
+    TajawalLight: require("./assets/fonts/Tajawal-Light.ttf"),
+    TajawalMedium: require("./assets/fonts/Tajawal-Medium.ttf"),
+    TajawalRegular: require("./assets/fonts/Tajawal-Regular.ttf"),
+  });
 
-  // if (!loaded) {
-  //   return null;
-  // }
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <ThemeProvider>

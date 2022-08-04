@@ -30,7 +30,7 @@ export default function Route() {
       <BottomTabs.Navigator
         // tabBar={(props) => <MyTabBar {...props} />}
         screenOptions={({ navigation }) => ({
-          tabBarShowLabel: false,
+          // tabBarShowLabel: false,
           tabBarIconStyle: {
             // color: Colors.primary400,
           },
@@ -40,8 +40,9 @@ export default function Route() {
           //   backgroundColor: "#eee",
           // },
           tabBarStyle: {
-            height: 65,
-            shadowColor: "transparent",
+            paddingBottom: 8,
+            // height: 65,
+            // shadowColor: "transparent",
             // backgroundColor: "#f9ffa1",
             // marginBottom: 20,
             // width: "90%",
@@ -93,7 +94,8 @@ export default function Route() {
               tabBarIcon: ({ color }) => (
                 <Feather name="home" size={24} color={color} />
               ),
-              headerTitle: "الصفحة الرئيسية",
+              headerShown: false,
+              tabBarLabel: "الرئيسية",
             }}
           />
           <BottomTabs.Screen
@@ -117,6 +119,7 @@ export default function Route() {
                 <Feather name="map" size={24} color={color} />
               ),
               headerShown: false,
+              tabBarLabel: "الخطة الشجرية",
             }}
           />
           <BottomTabs.Screen
@@ -127,6 +130,7 @@ export default function Route() {
                 <Feather name="menu" size={24} color={color} />
               ),
               headerShown: false,
+              tabBarLabel: "المزيد",
             }}
           />
         </>

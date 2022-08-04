@@ -1,6 +1,6 @@
 const Colors = {
   lightTextColor: "#121212",
-  lightBackground: "#eee",
+  lightBackground: "#fff",
   darkTextColor: "#eee",
   darkBackground: "#121212",
   primary100: "#fff969",
@@ -14,7 +14,8 @@ const Colors = {
   primaryLightest: "#FFFFB7",
   primaryDark: "#FFDD3C",
   primaryDarkest: "#FFD400",
-  gray: "#393E46",
+  gray: "#8597a1",
+  lightGray: "#f1f5f7",
   dark: "#222831",
 };
 

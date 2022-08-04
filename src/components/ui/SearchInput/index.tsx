@@ -16,11 +16,24 @@ const SearchInput = ({ searchInput, setSearchInput }: SearchInputProps) => {
     theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
   return (
     <View style={styles.searchContainer}>
+      <TextInput
+        value={searchInput}
+        onChangeText={(searchString) => setSearchInput(searchString)}
+        placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
+        placeholderTextColor={Colors.gray}
+        selectionColor={Colors.primary700}
+        style={[
+          styles.searchInput,
+          {
+            color: theme === "light" ? Colors.gray : Colors.primary400,
+          },
+        ]}
+      />
       {searchInput.length > 0 ? (
         <Feather
           name="x"
           size={24}
-          color={theme === "light" ? Colors.primary700 : Colors.primary400}
+          color={theme === "light" ? Colors.gray : Colors.primary400}
           style={styles.searchIcon}
           onPress={() => setSearchInput("")}
         />
@@ -28,22 +41,10 @@ const SearchInput = ({ searchInput, setSearchInput }: SearchInputProps) => {
         <Feather
           name="search"
           size={24}
-          color={theme === "light" ? Colors.primary700 : Colors.primary400}
+          color={theme === "light" ? Colors.gray : Colors.primary400}
           style={styles.searchIcon}
         />
       )}
-      <TextInput
-        value={searchInput}
-        onChangeText={(searchString) => setSearchInput(searchString)}
-        placeholder="ابحث..."
-        placeholderTextColor={"#fff"}
-        style={[
-          styles.searchInput,
-          {
-            color: theme === "light" ? Colors.primary700 : Colors.primary400,
-          },
-        ]}
-      />
     </View>
   );
 };

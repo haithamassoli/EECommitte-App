@@ -23,6 +23,18 @@ const PlanScreen = ({ navigation }: Props) => {
     <View
       style={theme === "light" ? styles.lightContainer : styles.darkContainer}
     >
+      <Text
+        style={{
+          fontFamily: "Bukra",
+          fontSize: 24,
+          color: theme === "light" ? Colors.gray : Colors.darkTextColor,
+          alignSelf: "flex-start",
+          marginLeft: 20,
+          marginTop: 20,
+        }}
+      >
+        اختر مادة:
+      </Text>
       <ReactNativeZoomableView
         maxZoom={1.5}
         minZoom={0.5}
@@ -31,32 +43,18 @@ const PlanScreen = ({ navigation }: Props) => {
         bindToBorders={true}
         style
       >
-        <>
-          <Text
-            style={{
-              fontFamily: "Bukra",
-              fontSize: 32,
-              color: theme === "light" ? Colors.gray : Colors.darkTextColor,
-              alignSelf: "flex-start",
-              marginLeft: 20,
-              marginTop: 20,
-            }}
-          >
-            اختر مادة:
-          </Text>
-          <ImageMapper
-            imgSource={require("@Assets/images/plan.jpg")}
-            imgWidth={screenWidth}
-            imgHeight={screenWidth * 1.074}
-            imgMap={MAPPING}
-            containerStyle={
-              theme === "light" ? styles.lightContainer : styles.darkContainer
-            }
-            onPress={(item: MapperItem) => {
-              handleSelectArea(item.id);
-            }}
-          />
-        </>
+        <ImageMapper
+          imgSource={require("@Assets/images/plan.jpg")}
+          imgWidth={screenWidth}
+          imgHeight={screenWidth * 1.074}
+          imgMap={MAPPING}
+          containerStyle={
+            theme === "light" ? styles.lightContainer : styles.darkContainer
+          }
+          onPress={(item: MapperItem) => {
+            handleSelectArea(item.id);
+          }}
+        />
       </ReactNativeZoomableView>
     </View>
   );

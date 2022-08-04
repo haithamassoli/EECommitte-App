@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import {
   View,
   Image,
@@ -7,67 +7,35 @@ import {
   Pressable,
   Linking,
 } from "react-native";
-import { isConnected, screenHeight, screenWidth } from "@Utils/Helper";
-import { db } from "@Src/firebase-config";
-import {
-  collection,
-  getDocs,
-  query,
-  orderBy,
-  startAt,
-  limit,
-} from "firebase/firestore";
+import { screenHeight, screenWidth } from "@Utils/Helper";
 import styles from "./styles";
-import { Post } from "@Types/index";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import SearchInput from "@Components/ui/SearchInput";
 
 const HomeScreen = () => {
-  const [posts, setPosts] = useState<Post[] | []>([]);
-  const [isConnecte, setIsConnecte] = useState<boolean | null>(false);
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isEnd, setIsEnd] = useState(false);
   const [search, setSearch] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const postsCollectionRef = collection(db, "posts");
-
   const { theme } = useContext(ThemeContext);
   const textColor =
     theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
-
-  useEffect(() => {
-    // getPosts();
-    isConnected().then((isConnected) => {
-      setIsConnecte(isConnected);
-    });
-  }, [page]);
-
-  const getPosts = async () => {
-    // if (isLoading || isEnd) return;
-    // setIsLoading(true);
-    const paginatedPosts = query(
-      postsCollectionRef,
-      orderBy("post_id", "desc"),
-      limit(10),
-      startAt(page * 10 - 9)
-    );
-    const postss = await getDocs(paginatedPosts);
-    postss.forEach((post) => {
-      console.log(post.data());
-      // @ts-ignore
-      setPosts((prevPosts) => [...prevPosts, post.data()]);
-    });
-  };
   return (
     <>
       <View style={styles.logosContainer}>
-        <Image
-          source={require("@Assets/images/icons/lagna-logo.png")}
-          style={styles.lagnaLogo}
-        />
+        <View style={styles.logoAndTextContainer}>
+          <Image
+            source={require("@Assets/images/icons/lagna-logo.png")}
+            style={styles.lagnaLogo}
+          />
+          <View style={styles.logoTextContainter}>
+            <Text style={[styles.logoTitleAr, { color: textColor }]}>
+              لجنة الهندسة الكهربائية
+            </Text>
+            <Text style={[styles.logoTitleEn, { color: textColor }]}>
+              Electrical Engineering EECommitte
+            </Text>
+          </View>
+        </View>
         <Image
           source={require("@Assets/images/icons/tasharck.png")}
           style={styles.tasharckLogo}

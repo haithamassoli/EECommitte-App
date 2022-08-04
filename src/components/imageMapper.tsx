@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import type { MapperItem } from "@Types/index";
 import { screenHeight, screenWidth } from "@Utils/Helper";
-
+const thumbnail = require("@Assets/images/thumbnailPlan.gif");
 type Props = {
   selectedAreaId?: number[] | number;
   multiselect?: boolean;
@@ -27,6 +27,9 @@ type Props = {
 };
 
 class ImageMapper extends Component<Props> {
+  state = {
+    loading: true,
+  };
   buildStyle(item: MapperItem, index: number) {
     const { x1, y1, x2, y2, width, height, shape, fill, prefill, id, radius } =
       item;
@@ -90,7 +93,8 @@ class ImageMapper extends Component<Props> {
             height: imgHeight || screenHeight,
             width: imgWidth || screenWidth,
           }}
-          source={imgSource}
+          onLoadEnd={() => this.setState({ loading: false })}
+          source={this.state.loading === true ? thumbnail : imgSource}
           resizeMode="contain"
         >
           {imgMap.map((item: MapperItem, index: number) => (

@@ -32,6 +32,7 @@ export default function App() {
     TajawalLight: require("./assets/fonts/Tajawal-Light.ttf"),
     TajawalMedium: require("./assets/fonts/Tajawal-Medium.ttf"),
     TajawalRegular: require("./assets/fonts/Tajawal-Regular.ttf"),
+    Bukra: require("./assets/fonts/29ltbukra.ttf"),
   });
 
   if (!loaded) {

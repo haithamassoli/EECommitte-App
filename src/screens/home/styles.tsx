@@ -9,10 +9,27 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginHorizontal: 12,
   },
+  logoAndTextContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   lagnaLogo: {
-    width: 230,
-    height: 80,
+    width: 50,
+    height: 50,
     resizeMode: "contain",
+  },
+  logoTextContainter: {
+    marginStart: 8,
+  },
+  logoTitleAr: {
+    fontSize: 16,
+    fontFamily: "Bukra",
+  },
+  logoTitleEn: {
+    fontSize: 10,
+    fontFamily: "Bukra",
+    textAlign: "left",
   },
   tasharckLogo: {
     width: 50,

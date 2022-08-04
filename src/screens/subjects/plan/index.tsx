@@ -9,7 +9,8 @@ import styles from "./styles";
 import MAPPING from "./Mapping";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
+import Colors from "@GlobalStyle/Colors";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
@@ -30,18 +31,32 @@ const PlanScreen = ({ navigation }: Props) => {
         bindToBorders={true}
         style
       >
-        <ImageMapper
-          imgSource={require("@Assets/images/plan.jpg")}
-          imgWidth={screenWidth}
-          imgHeight={screenWidth * 1.074}
-          imgMap={MAPPING}
-          containerStyle={
-            theme === "light" ? styles.lightContainer : styles.darkContainer
-          }
-          onPress={(item: MapperItem) => {
-            handleSelectArea(item.id);
-          }}
-        />
+        <>
+          <Text
+            style={{
+              fontFamily: "Bukra",
+              fontSize: 32,
+              color: theme === "light" ? Colors.gray : Colors.darkTextColor,
+              alignSelf: "flex-start",
+              marginLeft: 20,
+              marginTop: 20,
+            }}
+          >
+            اختر مادة:
+          </Text>
+          <ImageMapper
+            imgSource={require("@Assets/images/plan.jpg")}
+            imgWidth={screenWidth}
+            imgHeight={screenWidth * 1.074}
+            imgMap={MAPPING}
+            containerStyle={
+              theme === "light" ? styles.lightContainer : styles.darkContainer
+            }
+            onPress={(item: MapperItem) => {
+              handleSelectArea(item.id);
+            }}
+          />
+        </>
       </ReactNativeZoomableView>
     </View>
   );

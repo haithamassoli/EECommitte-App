@@ -2,7 +2,7 @@ const Colors = {
   lightTextColor: "#121212",
   lightBackground: "#fff",
   darkTextColor: "#eee",
-  darkBackground: "#121212",
+  darkBackground: "#243447",
   primary100: "#fff969",
   primary200: "#ffec69",
   primary300: "#ffe069",

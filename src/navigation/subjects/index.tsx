@@ -19,7 +19,7 @@ export default function SubjectsNavigation() {
     <Stack.Navigator
       initialRouteName="Plan"
       screenOptions={({ navigation }) => ({
-        headerTitle: "الخطة الدراسية",
+        headerTitle: "الخطة الشجرية",
         headerRight: () => {
           return (
             <View

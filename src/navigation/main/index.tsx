@@ -107,6 +107,7 @@ export default function Route() {
                 <Feather name="globe" size={24} color={color} />
               ),
               tabBarLabel: "أخر الأخبار",
+              title: "أخر الأخبار",
             }}
           />
           <BottomTabs.Screen

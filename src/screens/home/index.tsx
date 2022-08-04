@@ -17,8 +17,7 @@ const HomeScreen = () => {
   const [search, setSearch] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const { theme } = useContext(ThemeContext);
-  const textColor =
-    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
+  const textColor = theme === "light" ? Colors.gray : Colors.darkTextColor;
   return (
     <>
       <View style={styles.logosContainer}>
@@ -42,7 +41,7 @@ const HomeScreen = () => {
         />
       </View>
       <SearchInput searchInput={search} setSearchInput={setSearch} />
-      <Text style={styles.headerText}>جديد لجنتكم</Text>
+      <Text style={[styles.headerText, { color: textColor }]}>جديد لجنتكم</Text>
       <View
         style={{
           height: screenHeight * 0.28,
@@ -111,8 +110,10 @@ const HomeScreen = () => {
               source={require("@Assets/images/icons/full-post.png")}
               style={styles.icon}
             />
-            <Text style={styles.iconText}>البوستات</Text>
-            <Text style={styles.iconText}>الشاملة</Text>
+            <Text style={[styles.iconText, { color: textColor }]}>
+              البوستات
+            </Text>
+            <Text style={[styles.iconText, { color: textColor }]}>الشاملة</Text>
           </Pressable>
           <Pressable
             onPress={() => {
@@ -125,8 +126,8 @@ const HomeScreen = () => {
               style={styles.icon}
             />
 
-            <Text style={styles.iconText}>قناة</Text>
-            <Text style={styles.iconText}>اللجنة</Text>
+            <Text style={[styles.iconText, { color: textColor }]}>قناة</Text>
+            <Text style={[styles.iconText, { color: textColor }]}>اللجنة</Text>
           </Pressable>
           <Pressable
             onPress={() => {
@@ -139,8 +140,10 @@ const HomeScreen = () => {
               style={styles.icon}
             />
 
-            <Text style={styles.iconText}>الدفاتر</Text>
-            <Text style={styles.iconText}>الأسبوعية</Text>
+            <Text style={[styles.iconText, { color: textColor }]}>الدفاتر</Text>
+            <Text style={[styles.iconText, { color: textColor }]}>
+              الأسبوعية
+            </Text>
           </Pressable>
         </View>
         <View style={styles.iconsContainer}>
@@ -154,8 +157,10 @@ const HomeScreen = () => {
               source={require("@Assets/images/icons/teachers.png")}
               style={styles.icon}
             />
-            <Text style={styles.iconText}>الهيئة</Text>
-            <Text style={styles.iconText}>التدريسية</Text>
+            <Text style={[styles.iconText, { color: textColor }]}>الهيئة</Text>
+            <Text style={[styles.iconText, { color: textColor }]}>
+              التدريسية
+            </Text>
           </Pressable>
           <Pressable
             onPress={() => {
@@ -168,8 +173,10 @@ const HomeScreen = () => {
               style={styles.icon}
             />
 
-            <Text style={styles.iconText}>مجموعة</Text>
-            <Text style={styles.iconText}>الفيسبوك</Text>
+            <Text style={[styles.iconText, { color: textColor }]}>مجموعة</Text>
+            <Text style={[styles.iconText, { color: textColor }]}>
+              الفيسبوك
+            </Text>
           </Pressable>
           <Pressable
             onPress={() => {
@@ -182,8 +189,8 @@ const HomeScreen = () => {
               style={styles.icon}
             />
 
-            <Text style={styles.iconText}>موقع</Text>
-            <Text style={styles.iconText}>الجامعة</Text>
+            <Text style={[styles.iconText, { color: textColor }]}>موقع</Text>
+            <Text style={[styles.iconText, { color: textColor }]}>الجامعة</Text>
           </Pressable>
         </View>
       </View>

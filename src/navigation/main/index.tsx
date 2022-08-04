@@ -17,6 +17,7 @@ import {
   LightNavigationColors,
 } from "@GlobalStyle/Navigation";
 import InfoNavigation from "@Navigation/info";
+import NewsScreen from "@Screens/news";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
@@ -100,7 +101,7 @@ export default function Route() {
           />
           <BottomTabs.Screen
             name="News"
-            component={HomeScreen}
+            component={NewsScreen}
             options={{
               tabBarIcon: ({ color }) => (
                 <Feather name="globe" size={24} color={color} />

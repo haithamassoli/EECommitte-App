@@ -1,4 +1,4 @@
-import { View, TextInput } from "react-native";
+import { View, TextInput, ViewStyle, StyleProp } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -8,14 +8,19 @@ import styles from "./styles";
 interface SearchInputProps {
   searchInput: string;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
+  style?: StyleProp<ViewStyle>;
 }
 
-const SearchInput = ({ searchInput, setSearchInput }: SearchInputProps) => {
+const SearchInput = ({
+  searchInput,
+  setSearchInput,
+  style,
+}: SearchInputProps) => {
   const { theme } = useContext(ThemeContext);
   const textColor =
     theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
   return (
-    <View style={styles.searchContainer}>
+    <View style={[styles.searchContainer, style]}>
       <TextInput
         value={searchInput}
         onChangeText={(searchString) => setSearchInput(searchString)}

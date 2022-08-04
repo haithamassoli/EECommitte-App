@@ -42,7 +42,8 @@ export default function Route() {
           // },
           tabBarStyle: {
             paddingBottom: 12,
-            height: 56,
+            paddingTop: 12,
+            height: 64,
             // shadowColor: "transparent",
             // backgroundColor: "#f9ffa1",
             // marginBottom: 20,

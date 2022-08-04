@@ -40,7 +40,11 @@ const HomeScreen = () => {
           style={styles.tasharckLogo}
         />
       </View>
-      <SearchInput searchInput={search} setSearchInput={setSearch} />
+      <SearchInput
+        style={{ marginHorizontal: 12 }}
+        searchInput={search}
+        setSearchInput={setSearch}
+      />
       <Text style={[styles.headerText, { color: textColor }]}>جديد لجنتكم</Text>
       <View
         style={{

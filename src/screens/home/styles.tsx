@@ -90,6 +90,13 @@ const styles = StyleSheet.create({
     height: 55,
     resizeMode: "contain",
   },
+  iconBackground: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+  },
   iconText: {
     fontSize: 14,
     textAlign: "center",

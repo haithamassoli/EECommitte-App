@@ -16,10 +16,27 @@ import SearchInput from "@Components/ui/SearchInput";
 const HomeScreen = () => {
   const [search, setSearch] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [searchBarFocused, setSearchBarFocused] = useState(false);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.gray : Colors.darkTextColor;
   return (
     <>
+      {searchBarFocused && (
+        <Pressable
+          onPress={() => {
+            setSearchBarFocused(false);
+          }}
+          style={{
+            backgroundColor: Colors.overlay,
+            zIndex: 10,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+        ></Pressable>
+      )}
       <View style={styles.logosContainer}>
         <View style={styles.logoAndTextContainer}>
           <Image
@@ -44,6 +61,8 @@ const HomeScreen = () => {
         style={{ marginHorizontal: 12 }}
         searchInput={search}
         setSearchInput={setSearch}
+        searchBarFocused={searchBarFocused}
+        setSearchBarFocused={setSearchBarFocused}
       />
       <Text style={[styles.headerText, { color: textColor }]}>جديد لجنتكم</Text>
       <View
@@ -110,10 +129,20 @@ const HomeScreen = () => {
             }}
             style={styles.iconContainer}
           >
-            <Image
-              source={require("@Assets/images/icons/full-post.png")}
-              style={styles.icon}
-            />
+            <View
+              style={[
+                styles.iconBackground,
+                {
+                  backgroundColor:
+                    theme === "light" ? Colors.lightGray : "#1b2836",
+                },
+              ]}
+            >
+              <Image
+                source={require("@Assets/images/icons/full-post.png")}
+                style={styles.icon}
+              />
+            </View>
             <Text style={[styles.iconText, { color: textColor }]}>
               البوستات
             </Text>
@@ -125,11 +154,20 @@ const HomeScreen = () => {
             }}
             style={styles.iconContainer}
           >
-            <Image
-              source={require("@Assets/images/icons/youtube.png")}
-              style={styles.icon}
-            />
-
+            <View
+              style={[
+                styles.iconBackground,
+                {
+                  backgroundColor:
+                    theme === "light" ? Colors.lightGray : "#1b2836",
+                },
+              ]}
+            >
+              <Image
+                source={require("@Assets/images/icons/youtube.png")}
+                style={styles.icon}
+              />
+            </View>
             <Text style={[styles.iconText, { color: textColor }]}>قناة</Text>
             <Text style={[styles.iconText, { color: textColor }]}>اللجنة</Text>
           </Pressable>
@@ -139,10 +177,20 @@ const HomeScreen = () => {
             }}
             style={styles.iconContainer}
           >
-            <Image
-              source={require("@Assets/images/icons/weekly-notebooks.png")}
-              style={styles.icon}
-            />
+            <View
+              style={[
+                styles.iconBackground,
+                {
+                  backgroundColor:
+                    theme === "light" ? Colors.lightGray : "#1b2836",
+                },
+              ]}
+            >
+              <Image
+                source={require("@Assets/images/icons/weekly-notebooks.png")}
+                style={styles.icon}
+              />
+            </View>
 
             <Text style={[styles.iconText, { color: textColor }]}>الدفاتر</Text>
             <Text style={[styles.iconText, { color: textColor }]}>
@@ -157,10 +205,20 @@ const HomeScreen = () => {
             }}
             style={styles.iconContainer}
           >
-            <Image
-              source={require("@Assets/images/icons/teachers.png")}
-              style={styles.icon}
-            />
+            <View
+              style={[
+                styles.iconBackground,
+                {
+                  backgroundColor:
+                    theme === "light" ? Colors.lightGray : "#1b2836",
+                },
+              ]}
+            >
+              <Image
+                source={require("@Assets/images/icons/teachers.png")}
+                style={styles.icon}
+              />
+            </View>
             <Text style={[styles.iconText, { color: textColor }]}>الهيئة</Text>
             <Text style={[styles.iconText, { color: textColor }]}>
               التدريسية
@@ -172,11 +230,20 @@ const HomeScreen = () => {
             }}
             style={styles.iconContainer}
           >
-            <Image
-              source={require("@Assets/images/icons/facebook.png")}
-              style={styles.icon}
-            />
-
+            <View
+              style={[
+                styles.iconBackground,
+                {
+                  backgroundColor:
+                    theme === "light" ? Colors.lightGray : "#1b2836",
+                },
+              ]}
+            >
+              <Image
+                source={require("@Assets/images/icons/facebook.png")}
+                style={styles.icon}
+              />
+            </View>
             <Text style={[styles.iconText, { color: textColor }]}>مجموعة</Text>
             <Text style={[styles.iconText, { color: textColor }]}>
               الفيسبوك
@@ -188,10 +255,20 @@ const HomeScreen = () => {
             }}
             style={styles.iconContainer}
           >
-            <Image
-              source={require("@Assets/images/icons/education-institution.png")}
-              style={styles.icon}
-            />
+            <View
+              style={[
+                styles.iconBackground,
+                {
+                  backgroundColor:
+                    theme === "light" ? Colors.lightGray : "#1b2836",
+                },
+              ]}
+            >
+              <Image
+                source={require("@Assets/images/icons/education-institution.png")}
+                style={styles.icon}
+              />
+            </View>
 
             <Text style={[styles.iconText, { color: textColor }]}>موقع</Text>
             <Text style={[styles.iconText, { color: textColor }]}>الجامعة</Text>

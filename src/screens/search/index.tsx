@@ -31,17 +31,16 @@ type Props = BottomTabScreenProps<BottomTabParamList, "Search">;
 
 const SearchScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
+  const [searchBarFocused, setSearchBarFocused] = useState(false);
   const [results, setResults] = useState<Subject[] | []>([]);
   const [historyResults, setHistoryResults] = useState([] as Subject[]);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor =
     theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
 
-    const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400
+  const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
   useLayoutEffect(() => {
-    navigation.setOptions({
-      
-    });
+    navigation.setOptions({});
   }, []);
   useEffect(() => {
     async function getHistory() {
@@ -121,6 +120,8 @@ const SearchScreen = ({ navigation }: Props) => {
       >
         <View style={styles.searchContainer}>
           <SearchInput
+            searchBarFocused={searchBarFocused}
+            setSearchBarFocused={setSearchBarFocused}
             searchInput={searchInput}
             setSearchInput={setSearchInput}
           />
@@ -149,7 +150,8 @@ const SearchScreen = ({ navigation }: Props) => {
                 style={{
                   fontSize: 16,
                   fontWeight: "bold",
-                  color: theme === "light" ? Colors.primary700 : Colors.primary400,
+                  color:
+                    theme === "light" ? Colors.primary700 : Colors.primary400,
                 }}
               >
                 حذف الكل

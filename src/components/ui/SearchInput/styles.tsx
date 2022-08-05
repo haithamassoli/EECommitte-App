@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     fontFamily: "TajawalMedium",
     fontSize: 14,
     width: "100%",
+    zIndex: 1000,
   },
   searchIcon: {
     position: "absolute",

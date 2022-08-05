@@ -17,6 +17,7 @@ const Colors = {
   gray: "#8597a1",
   lightGray: "#f1f5f7",
   dark: "#222831",
+  overlay: "rgba(28,29,28,0.5)",
 };
 
 export default Colors;

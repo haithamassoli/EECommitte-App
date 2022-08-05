@@ -1,6 +1,5 @@
 import Colors from "@GlobalStyle/Colors";
 import { Dimensions, StyleSheet } from "react-native";
-const { height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   searchContainer: {
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     transform: [{ rotate: "90deg" }],
     left: 10,
-    zIndex: 10,
+    zIndex: 100,
   },
 });
 

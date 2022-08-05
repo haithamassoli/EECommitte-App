@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
   View,
   Image,
@@ -12,13 +12,25 @@ import styles from "./styles";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import SearchInput from "@Components/ui/SearchInput";
+import { BottomTabParamList } from "@Types/navigation";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { Subject } from "@Types/index";
+import Fuse from "fuse.js";
+import Subjects from "@Src/data/Subjects";
 
-const HomeScreen = () => {
-  const [search, setSearch] = useState("");
+const options = {
+  keys: ["name", "name2"],
+};
+
+type Props = BottomTabScreenProps<BottomTabParamList, "Home">;
+
+const HomeScreen = ({ navigation }: Props) => {
+  const [searchInput, setSearchInput] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.gray : Colors.darkTextColor;
+
   return (
     <>
       {searchBarFocused && (
@@ -59,8 +71,8 @@ const HomeScreen = () => {
       </View>
       <SearchInput
         style={{ marginHorizontal: 12 }}
-        searchInput={search}
-        setSearchInput={setSearch}
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
         searchBarFocused={searchBarFocused}
         setSearchBarFocused={setSearchBarFocused}
       />

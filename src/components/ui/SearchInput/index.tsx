@@ -122,7 +122,7 @@ const SearchInput = ({
         <Feather
           name="x"
           size={24}
-          color={theme === "light" ? Colors.gray : Colors.primary400}
+          color={Colors.primary700}
           style={styles.searchIcon}
           onPress={() => setSearchInput("")}
         />
@@ -130,7 +130,7 @@ const SearchInput = ({
         <Feather
           name="search"
           size={24}
-          color={theme === "light" ? Colors.primary700 : Colors.primary400}
+          color={Colors.primary700}
           style={styles.searchIcon}
         />
       )}

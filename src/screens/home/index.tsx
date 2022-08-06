@@ -6,6 +6,7 @@ import {
   Text,
   Pressable,
   Linking,
+  Keyboard,
 } from "react-native";
 import { screenHeight, screenWidth } from "@Utils/Helper";
 import styles from "./styles";
@@ -14,9 +15,9 @@ import { ThemeContext } from "@Src/store/themeContext";
 import SearchInput from "@Components/ui/SearchInput";
 import { BottomTabParamList } from "@Types/navigation";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { Subject } from "@Types/index";
 import Fuse from "fuse.js";
 import Subjects from "@Src/data/Subjects";
+import { Subject } from "@Types/index";
 
 const options = {
   keys: ["name", "name2"],
@@ -27,9 +28,19 @@ type Props = BottomTabScreenProps<BottomTabParamList, "Home">;
 const HomeScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [results, setResults] = useState<Subject[] | []>([]);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.gray : Colors.darkTextColor;
+
+  useEffect(() => {
+    const fuse = new Fuse(Subjects, options);
+    const searchResults = fuse.search(searchInput);
+    const newArr = searchResults.slice(0, 5).map((result) => {
+      return result.item;
+    });
+    setResults(newArr.slice(0, 5));
+  }, [searchInput]);
 
   return (
     <>
@@ -37,6 +48,7 @@ const HomeScreen = ({ navigation }: Props) => {
         <Pressable
           onPress={() => {
             setSearchBarFocused(false);
+            Keyboard.dismiss();
           }}
           style={{
             backgroundColor: Colors.overlay,
@@ -75,6 +87,7 @@ const HomeScreen = ({ navigation }: Props) => {
         setSearchInput={setSearchInput}
         searchBarFocused={searchBarFocused}
         setSearchBarFocused={setSearchBarFocused}
+        results={results}
       />
       <Text style={[styles.headerText, { color: textColor }]}>جديد لجنتكم</Text>
       <View

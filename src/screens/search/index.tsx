@@ -1,10 +1,10 @@
 import {
   View,
   Text,
-  TouchableOpacity,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Keyboard,
 } from "react-native";
 import Fuse from "fuse.js";
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
@@ -22,6 +22,7 @@ import type { Subject } from "@Types/index";
 import { BottomTabParamList } from "@Types/navigation";
 import styles from "./styles";
 import { ThemeContext } from "@Src/store/themeContext";
+import SearchResults from "@Components/ui/SearchInput/SearchResults";
 
 const options = {
   keys: ["name", "name2"],
@@ -31,7 +32,6 @@ type Props = BottomTabScreenProps<BottomTabParamList, "Search">;
 
 const SearchScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
-  const [searchBarFocused, setSearchBarFocused] = useState(false);
   const [results, setResults] = useState<Subject[] | []>([]);
   const [historyResults, setHistoryResults] = useState([] as Subject[]);
   const { theme } = useContext(ThemeContext);
@@ -118,8 +118,6 @@ const SearchScreen = ({ navigation }: Props) => {
       >
         <View style={styles.searchContainer}>
           <SearchInput
-            searchBarFocused={searchBarFocused}
-            setSearchBarFocused={setSearchBarFocused}
             searchInput={searchInput}
             setSearchInput={setSearchInput}
           />
@@ -207,64 +205,22 @@ const SearchScreen = ({ navigation }: Props) => {
             )}
           </>
         ) : (
-          <View style={{ marginTop: 15 }}>
-            {results.length > 0 ? (
-              results.map((result: Subject, index: number) => (
-                <View key={index}>
-                  <TouchableOpacity
-                    style={{ flexDirection: "row-reverse" }}
-                    onPress={() => handlePress(result.id)}
-                  >
-                    {result.name2
-                      .split("")
-                      .map((letter: string, index: number) => {
-                        if (
-                          searchInput
-                            .toLowerCase()
-                            .includes(letter.toLowerCase())
-                        ) {
-                          return (
-                            <Text
-                              key={index}
-                              style={{
-                                fontSize: 16,
-                                fontWeight: "bold",
-                                color: textColor,
-                              }}
-                            >
-                              {letter}
-                            </Text>
-                          );
-                        } else {
-                          return (
-                            <Text
-                              key={index}
-                              style={{
-                                fontSize: 16,
-                                color: textColor,
-                              }}
-                            >
-                              {letter}
-                            </Text>
-                          );
-                        }
-                      })}
-                  </TouchableOpacity>
-                </View>
-              ))
-            ) : (
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  fontSize: 24,
-                  marginTop: 40,
-                  color: textColor,
-                }}
-              >
-                لا توجد نتائج
-              </Text>
-            )}
+          <View
+            style={{
+              flex: 1,
+              width: "100%",
+              height: 203,
+              zIndex: 10,
+              backgroundColor:
+                theme === "light" ? Colors.dark : Colors.lightBackground,
+              borderRadius: 10,
+            }}
+          >
+            <SearchResults
+              results={results}
+              handlePress={handlePress}
+              searchInput={searchInput}
+            />
           </View>
         )}
       </KeyboardAvoidingView>

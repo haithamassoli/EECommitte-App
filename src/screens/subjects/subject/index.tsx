@@ -7,7 +7,10 @@ import {
   ActivityIndicator,
 } from "react-native";
 import subjects from "@Src/data/Subjects";
-import type { StackScreenProps } from "@react-navigation/stack";
+import type {
+  StackScreenProps,
+  StackNavigationProp,
+} from "@react-navigation/stack";
 import type { Subject } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
@@ -15,6 +18,10 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { WebDisplay } from "@Components/webDisplay";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
+export type SubjectNavigationProp = StackNavigationProp<
+  SubjectsStackParamList,
+  "Subject"
+>;
 const SubjectScreen = ({ navigation, route }: Props) => {
   const [subject, setSubject] = useState({} as Subject);
   const [loading, setLoading] = useState(true);
@@ -24,13 +31,13 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   useEffect(() => {
     setLoading(true);
     const currentSubject = subjects.find(
-      (subject) => subject.id === route.params.areaId
+      (subject) => subject.id === route.params.subjectId
     );
     if (currentSubject) {
       setSubject(currentSubject);
     }
     setLoading(false);
-  }, [route?.params?.areaId]);
+  }, [route?.params?.subjectId]);
 
   useEffect(() => {
     navigation.setOptions({

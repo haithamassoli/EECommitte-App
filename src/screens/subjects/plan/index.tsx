@@ -15,8 +15,8 @@ import Colors from "@GlobalStyle/Colors";
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
 const PlanScreen = ({ navigation }: Props) => {
-  const handleSelectArea = (areaId: number) => {
-    navigation.navigate("Subject", { areaId });
+  const handleSelectArea = (subjectId: number) => {
+    navigation.navigate("Subject", { subjectId });
   };
   const { theme } = useContext(ThemeContext);
   return (

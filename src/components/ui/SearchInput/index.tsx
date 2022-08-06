@@ -15,6 +15,7 @@ import { Subject } from "@Types/index";
 import { useNavigation } from "@react-navigation/native";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import SearchResults from "./SearchResults";
+import { SubjectNavigationProp } from "@Screens/subjects/subject";
 
 type Focused = Props & {
   searchBarFocused: boolean;
@@ -42,7 +43,7 @@ const SearchInput = ({
   results,
 }: Focused | NotFocused) => {
   const { theme } = useContext(ThemeContext);
-  const navigation = useNavigation();
+  const navigation = useNavigation<SubjectNavigationProp>();
   const textColor =
     theme === "light" ? Colors.darkTextColor : Colors.lightTextColor;
 
@@ -69,11 +70,7 @@ const SearchInput = ({
     }
     Keyboard.dismiss();
     setSearchInput("");
-    // @ts-ignore
-    navigation.navigate("SubjectsNavigation", {
-      screen: "Subject",
-      params: { areaId: id },
-    });
+    navigation.navigate("Subject", { subjectId: id });
   };
 
   return (

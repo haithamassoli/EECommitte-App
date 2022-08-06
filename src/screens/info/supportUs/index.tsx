@@ -1,9 +1,12 @@
 import { View, Button, Text } from "react-native";
 import { AdMobRewarded } from "expo-ads-admob";
-import { useEffect } from "react";
-import { Feather } from "@expo/vector-icons";
+import { useContext, useEffect } from "react";
+import { Feather, Ionicons } from "@expo/vector-icons";
+import { ThemeContext } from "@Src/store/themeContext";
 
 const SupportUsScreen = () => {
+  const { theme } = useContext(ThemeContext);
+  const textColor = theme === "light" ? "#000" : "#fff";
   useEffect(() => {
     return function cleanup() {
       AdMobRewarded.removeAllListeners();
@@ -43,6 +46,7 @@ const SupportUsScreen = () => {
           fontSize: 20,
           textAlign: "center",
           marginTop: 20,
+          color: textColor,
         }}
       >
         شكراً لوصولك هنا
@@ -53,11 +57,12 @@ const SupportUsScreen = () => {
           fontSize: 18,
           textAlign: "center",
           marginTop: 8,
+          color: textColor,
         }}
       >
         أشكرك لمجرد وصولك إلى هنا لدعمي أحتاج دعوتك الجميلة فقط :)
       </Text>
-      <Feather
+      <Ionicons
         name="heart"
         size={270}
         color="#e74c3c"

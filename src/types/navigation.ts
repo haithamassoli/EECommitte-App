@@ -10,7 +10,7 @@ export type BottomTabParamList = {
 
 export type SubjectsStackParamList = {
   Plan: undefined;
-  Subject: { areaId: number };
+  Subject: { subjectId: number };
   SubjectWebView: { url: string };
   SubjectFullPost: { post?: string };
 };

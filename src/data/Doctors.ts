@@ -7,7 +7,7 @@ const DoctorsData: Doctors[] = [
     name2: "Abdel-Rahman Jaradat",
     email: "amjaradat@just.edu.jo",
     office: "E1L2",
-    phone: "(+962)2-7201000 Ext: 22553",
+    phone: "Ext: 22553",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=amjaradat",
     image:
@@ -19,7 +19,7 @@ const DoctorsData: Doctors[] = [
     name2: "Ahmad Abu-El-Haija",
     email: "haija@just.edu.jo",
     office: "E1 L-2",
-    phone: "(+962)2-7201000 Ext: 22554",
+    phone: "Ext: 22554",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=haija",
     image:
@@ -31,7 +31,7 @@ const DoctorsData: Doctors[] = [
     name2: "SARI KHATALIN",
     email: "smkhatalin@just.edu.jo",
     office: "E1L3",
-    phone: "(+962)2-7201000 Ext: 22513",
+    phone: "Ext: 22513",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=smkhatalin",
     image:
@@ -43,7 +43,7 @@ const DoctorsData: Doctors[] = [
     name2: "AHMAD ABU ELRUB",
     email: "amabuelrub@just.edu.jo",
     office: "E1L2",
-    phone: "(+962)2-7201000 Ext: 22390",
+    phone: "Ext: 22390",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=amabuelrub",
     image:
@@ -55,7 +55,7 @@ const DoctorsData: Doctors[] = [
     name2: "Ahmad Ababnah",
     email: "aaababnah@just.edu.jo",
     office: "",
-    phone: "(+962)2-7201000 Ext: 23055",
+    phone: "Ext: 23055",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=aaababnah",
     image:
@@ -67,7 +67,7 @@ const DoctorsData: Doctors[] = [
     name2: "Adel Shawagfeh",
     email: "adelsh@just.edu.jo",
     office: "E1 L-1",
-    phone: "(+962)2-7201000 Ext: 22653",
+    phone: "Ext: 22653",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=adelsh",
     image:
@@ -79,7 +79,7 @@ const DoctorsData: Doctors[] = [
     name2: "TAIMOUR ALDALGAMOUNI",
     email: "tfaldalgamouni@just.edu.jo",
     office: "E2L3",
-    phone: "(+962)2-7201000 Ext: 22650",
+    phone: "Ext: 22650",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=tfaldalgamouni",
     image:
@@ -91,7 +91,7 @@ const DoctorsData: Doctors[] = [
     name2: "YAZAN ALSMADI",
     email: "ymalsmadi@just.edu.jo",
     office: "",
-    phone: "(+962)2-7201000",
+    phone: "",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=ymalsmadi",
     image:
@@ -103,7 +103,7 @@ const DoctorsData: Doctors[] = [
     name2: "Nihad Dib",
     email: "nihad@just.edu.jo",
     office: "E2L3",
-    phone: "(+962)2-7201000 Ext: 22505",
+    phone: "Ext: 22505",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=nihad",
     image:
@@ -115,7 +115,7 @@ const DoctorsData: Doctors[] = [
     name2: "Nedal Al-Ababneh",
     email: "nedalk@just.edu.jo",
     office: "E1L2",
-    phone: "(+962)2-7201000 Ext: 22552",
+    phone: "Ext: 22552",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=nedalk",
     image:
@@ -127,7 +127,7 @@ const DoctorsData: Doctors[] = [
     name2: "Fadi Zghoul",
     email: "frnessirzghoul@just.edu.jo",
     office: "E2-L3",
-    phone: "(+962)2-7201000 Ext: 23132",
+    phone: "Ext: 23132",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=frnessirzghoul",
     image:
@@ -139,7 +139,7 @@ const DoctorsData: Doctors[] = [
     name2: "Issam Smadi",
     email: "iasmadi@just.edu.jo",
     office: "E2-L3",
-    phone: "(+962)2-7201000 Ext: 22586",
+    phone: "Ext: 22586",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=iasmadi",
     image:
@@ -151,7 +151,7 @@ const DoctorsData: Doctors[] = [
     name2: "Ibrahim Ghareeb",
     email: "ghareeb@just.edu.jo",
     office: "E1L3",
-    phone: "(+962)2-7201000 Ext: 22506",
+    phone: "Ext: 22506",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=ghareeb",
     image:
@@ -163,7 +163,7 @@ const DoctorsData: Doctors[] = [
     name2: "Walid Shahab",
     email: "shahab@just.edu.jo",
     office: "E1L2",
-    phone: "(+962)2-7201000 Ext: 22555",
+    phone: "Ext: 22555",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=shahab",
     image:
@@ -175,7 +175,7 @@ const DoctorsData: Doctors[] = [
     name2: "Jehad Ababneh",
     email: "ababnehj@just.edu.jo",
     office: "E2L3",
-    phone: "(+962)2-7201000",
+    phone: "",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=ababnehj",
     image:
@@ -187,7 +187,7 @@ const DoctorsData: Doctors[] = [
     name2: "Hazem Al-Otum",
     email: "hazem-ot@just.edu.jo",
     office: "E1 L-2",
-    phone: "(+962)2-7201000 Ext: 22559",
+    phone: "Ext: 22559",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=hazem-ot",
     image:
@@ -199,7 +199,7 @@ const DoctorsData: Doctors[] = [
     name2: "HEBA AL-JAMAL",
     email: "hmjamal@just.edu.jo",
     office: "",
-    phone: "(+962)2-7201000 Ext: 22551",
+    phone: "Ext: 22551",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=hmjamal",
     image:
@@ -211,7 +211,7 @@ const DoctorsData: Doctors[] = [
     name2: "Omar Asfar",
     email: "asfar@just.edu.jo",
     office: "E1L2",
-    phone: "(+962)2-7201000 Ext: 22558",
+    phone: "Ext: 22558",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=asfar",
     image:
@@ -223,7 +223,7 @@ const DoctorsData: Doctors[] = [
     name2: "Omar Qasaimeh",
     email: "qasaimeh@just.edu.jo",
     office: "E2L3",
-    phone: "(+962)2-7201000 Ext: 22643",
+    phone: "Ext: 22643",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=qasaimeh",
     image:
@@ -235,7 +235,7 @@ const DoctorsData: Doctors[] = [
     name2: "Saleh Radaideh",
     email: "srad@just.edu.jo",
     office: "E1L3",
-    phone: "(+962)2-7201000 Ext: 22501",
+    phone: "Ext: 22501",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=srad",
     image:
@@ -247,7 +247,7 @@ const DoctorsData: Doctors[] = [
     name2: "Saher Albatran",
     email: "saalbatran@just.edu.jo",
     office: "",
-    phone: "(+962)2-7201000",
+    phone: "",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=saalbatran",
     image:
@@ -259,7 +259,7 @@ const DoctorsData: Doctors[] = [
     name2: "Khaled Mayyas",
     email: "mayyas@just.edu.jo",
     office: "E1L3",
-    phone: "(+962)2-7201000 Ext: 22502",
+    phone: "Ext: 22502",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=mayyas",
     image:
@@ -271,7 +271,7 @@ const DoctorsData: Doctors[] = [
     name2: "Rabi Rabady",
     email: "rrabady@just.edu.jo",
     office: "CH3-L2",
-    phone: "(+962)2-7201000 Ext: 22340",
+    phone: "Ext: 22340",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=rrabady",
     image:
@@ -283,7 +283,7 @@ const DoctorsData: Doctors[] = [
     name2: "Majid Khodier ",
     email: "majidkh@just.edu.jo",
     office: "E2L3",
-    phone: "(+962)2-7201000 Ext: 22651",
+    phone: "Ext: 22651",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=majidkh",
     image:
@@ -295,7 +295,7 @@ const DoctorsData: Doctors[] = [
     name2: "Mansour Abbadi",
     email: "mabbadi@just.edu.jo",
     office: "E1L2 ",
-    phone: "(+962)2-7201000 Ext: 22550",
+    phone: "Ext: 22550",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=mabbadi",
     image:
@@ -307,7 +307,7 @@ const DoctorsData: Doctors[] = [
     name2: "Mohammad Rashad Al-Mothafar",
     email: "mothafar@just.edu.jo",
     office: "E2L3",
-    phone: "(+962)2-7201000 Ext: 22645",
+    phone: "Ext: 22645",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=mothafar",
     image:
@@ -319,7 +319,7 @@ const DoctorsData: Doctors[] = [
     name2: "Mohammed Al Salameh",
     email: "salameh@just.edu.jo",
     office: "E2L3",
-    phone: "(+962)2-7201000 Ext: 22655",
+    phone: "Ext: 22655",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=salameh",
     image:
@@ -331,7 +331,7 @@ const DoctorsData: Doctors[] = [
     name2: "Mohammed Ibbini",
     email: "mohib@just.edu.jo",
     office: "C5 L-1",
-    phone: "(+962)2-7201000 Ext: 22281",
+    phone: "Ext: 22281",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=mohib",
     image:
@@ -343,7 +343,7 @@ const DoctorsData: Doctors[] = [
     name2: "Mahmoud Khodeir",
     email: "makhodeir@just.edu.jo",
     office: "",
-    phone: "(+962)2-7201000 Ext: 22654",
+    phone: "Ext: 22654",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=makhodeir",
     image:
@@ -355,7 +355,7 @@ const DoctorsData: Doctors[] = [
     name2: "Mamoun Al-Mistarihi",
     email: "mistarihi@just.edu.jo",
     office: "E2L3",
-    phone: "(+962)2-7201000 Ext: 22477",
+    phone: "Ext: 22477",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=mistarihi",
     image:
@@ -367,7 +367,7 @@ const DoctorsData: Doctors[] = [
     name2: "Mohammad Banat",
     email: "banat@just.edu.jo",
     office: "E1L3",
-    phone: "(+962)2-7201000 Ext: 22508",
+    phone: "Ext: 22508",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=banat",
     image:
@@ -379,7 +379,7 @@ const DoctorsData: Doctors[] = [
     name2: "MOHAMMAD AL-SHRIDA",
     email: "mzshrida@just.edu.jo",
     office: "E2 L-3",
-    phone: "(+962)2-7201000 Ext: 24040",
+    phone: "Ext: 24040",
     website:
       "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=mzshrida",
     image:

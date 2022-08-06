@@ -5,7 +5,7 @@ const DoctorsScreen = () => {
   return (
     <>
       {DoctorsData.map((doctor: Doctors) => (
-        <View>
+        <View key={doctor.id}>
           <Text>{doctor?.name}</Text>
           <Text>{doctor?.name2}</Text>
           <Text>{doctor?.office}</Text>

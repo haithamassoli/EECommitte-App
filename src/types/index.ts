@@ -53,3 +53,14 @@ export type Post = {
   body: string;
   post_id: number;
 };
+
+export type Doctors = {
+  id: number;
+  name: string;
+  name2: string;
+  email: string;
+  office?: string;
+  phone?: string;
+  website: string;
+  image: string;
+};

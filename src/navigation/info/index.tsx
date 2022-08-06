@@ -78,7 +78,7 @@ export default function InfoNavigation() {
         component={ContactUsScreen}
       />
       <Stack.Screen
-        options={{ headerTitle: "قائمة المعلمين" }}
+        options={{ headerTitle: "الكادر التدريسي" }}
         name="Doctors"
         component={DoctorsScreen}
       />

@@ -1,11 +1,21 @@
-import { View, Text } from 'react-native'
-
+import { View, Text, Image } from "react-native";
+import DoctorsData from "@Src/data/Doctors";
+import { Doctors } from "@Types/index";
 const DoctorsScreen = () => {
   return (
-    <View>
-      <Text>AboutUni</Text>
-    </View>
-  )
-}
+    <>
+      {DoctorsData.map((doctor: Doctors) => (
+        <View>
+          <Text>{doctor?.name}</Text>
+          <Text>{doctor?.name2}</Text>
+          <Text>{doctor?.office}</Text>
+          <Text>{doctor?.phone}</Text>
+          <Text>{doctor?.email}</Text>
+          <Image source={{ uri: doctor?.image }} />
+        </View>
+      ))}
+    </>
+  );
+};
 
-export default DoctorsScreen
+export default DoctorsScreen;

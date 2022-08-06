@@ -31,6 +31,7 @@ export default function Route() {
       <BottomTabs.Navigator
         // tabBar={(props) => <MyTabBar {...props} />}
         screenOptions={({ navigation }) => ({
+          tabBarHideOnKeyboard: true,
           // tabBarShowLabel: false,
           tabBarIconStyle: {
             // color: Colors.primary400,

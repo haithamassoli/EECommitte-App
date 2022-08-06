@@ -82,6 +82,8 @@ const SearchScreen = ({ navigation }: Props) => {
         setHistoryResults([result]);
       }
     }
+    Keyboard.dismiss();
+    setSearchInput("");
     navigation.navigate("SubjectsNavigation", {
       screen: "Subject",
       params: { areaId: id },
@@ -111,7 +113,7 @@ const SearchScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <ScrollView keyboardShouldPersistTaps="always" style={styles.container}>
+    <ScrollView keyboardShouldPersistTaps="handled" style={styles.container}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.container}

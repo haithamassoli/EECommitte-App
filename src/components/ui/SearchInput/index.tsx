@@ -1,4 +1,11 @@
-import { View, TextInput, Animated, ViewStyle, StyleProp } from "react-native";
+import {
+  View,
+  TextInput,
+  Animated,
+  ViewStyle,
+  StyleProp,
+  Keyboard,
+} from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -60,6 +67,8 @@ const SearchInput = ({
     } else if (!prevData) {
       await storeDataToStorage("searchHistory", [id]);
     }
+    Keyboard.dismiss();
+    setSearchInput("");
     // @ts-ignore
     navigation.navigate("SubjectsNavigation", {
       screen: "Subject",

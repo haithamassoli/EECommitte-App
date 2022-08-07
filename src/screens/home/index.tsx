@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import {
   View,
   Image,
@@ -17,6 +17,7 @@ import { BottomTabParamList } from "@Types/navigation";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import Subjects from "@Src/data/Subjects";
 import { Subject } from "@Types/index";
+import Overlay from "@Components/Overlay";
 
 const options = {
   keys: ["name", "name2"],
@@ -35,21 +36,12 @@ const HomeScreen = ({ navigation }: Props) => {
   return (
     <>
       {searchBarFocused && (
-        <Pressable
+        <Overlay
           onPress={() => {
             setSearchBarFocused(false);
             Keyboard.dismiss();
           }}
-          style={{
-            backgroundColor: Colors.overlay,
-            zIndex: 10,
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-          }}
-        ></Pressable>
+        />
       )}
       <View style={styles.logosContainer}>
         <View style={styles.logoAndTextContainer}>

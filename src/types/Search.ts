@@ -6,22 +6,22 @@ type Focused = StaticProps &
   (SubjectSearchInputProps | DoctorSearchInputProps) & {
     searchBarFocused: boolean;
     setSearchBarFocused: React.Dispatch<React.SetStateAction<boolean>>;
+    results: Doctor[] | Subject[];
   };
 type NotFocused = StaticProps &
   (SubjectSearchInputProps | DoctorSearchInputProps) & {
     searchBarFocused?: never;
     setSearchBarFocused?: never;
+    results?: never;
   };
 
 type SubjectSearchInputProps = {
   list: readonly Subject[];
-  results: Subject[];
   setResults: React.Dispatch<React.SetStateAction<Subject[] | []>>;
   options: Fuse.IFuseOptions<Subject>;
 };
 type DoctorSearchInputProps = {
   list: readonly Doctor[];
-  results: Doctor[];
   setResults: React.Dispatch<React.SetStateAction<Doctor[] | []>>;
   options: Fuse.IFuseOptions<Doctor>;
 };

@@ -115,7 +115,6 @@ const SearchScreen = ({ navigation }: Props) => {
             setResults={setResults}
             options={options}
             list={subjects}
-            results={results}
           />
         </View>
         {!searchInput ? (

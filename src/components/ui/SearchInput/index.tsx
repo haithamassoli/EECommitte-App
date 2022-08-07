@@ -1,11 +1,4 @@
-import {
-  View,
-  TextInput,
-  Animated,
-  ViewStyle,
-  StyleProp,
-  Keyboard,
-} from "react-native";
+import { View, TextInput, Animated, Keyboard } from "react-native";
 import Fuse from "fuse.js";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
@@ -17,36 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import SearchResults from "./SearchResults";
 import { SubjectNavigationProp } from "@Screens/subjects/subject";
-
-type Focused = StaticProps &
-  (SubjectSearchInputProps | DoctorSearchInputProps) & {
-    searchBarFocused: boolean;
-    setSearchBarFocused: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-type NotFocused = StaticProps &
-  (SubjectSearchInputProps | DoctorSearchInputProps) & {
-    searchBarFocused?: never;
-    setSearchBarFocused?: never;
-  };
-
-type SubjectSearchInputProps = {
-  list: readonly Subject[];
-  results: Subject[];
-  setResults: React.Dispatch<React.SetStateAction<Subject[] | []>>;
-  options: Fuse.IFuseOptions<Subject>;
-};
-type DoctorSearchInputProps = {
-  list: readonly Doctor[];
-  results: Doctor[];
-  setResults: React.Dispatch<React.SetStateAction<Doctor[] | []>>;
-  options: Fuse.IFuseOptions<Doctor>;
-};
-
-type StaticProps = {
-  searchInput: string;
-  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
-  style?: StyleProp<ViewStyle>;
-};
+import { SearchInputProps } from "@Types/Search";
 
 const SearchInput = ({
   searchInput,
@@ -58,7 +22,7 @@ const SearchInput = ({
   options,
   list,
   setResults,
-}: Focused | NotFocused) => {
+}: SearchInputProps) => {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<SubjectNavigationProp>();
   const textColor =

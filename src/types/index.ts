@@ -54,7 +54,7 @@ export type Post = {
   post_id: number;
 };
 
-export type Doctors = {
+export type Doctor = {
   id: number;
   name: string;
   name2: string;

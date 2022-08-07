@@ -6,7 +6,6 @@ import {
   Platform,
   Keyboard,
 } from "react-native";
-import Fuse from "fuse.js";
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import subjects from "@Src/data/Subjects";
@@ -54,15 +53,6 @@ const SearchScreen = ({ navigation }: Props) => {
     }
     getHistory();
   }, []);
-
-  useEffect(() => {
-    const fuse = new Fuse(subjects, options);
-    const searchResults = fuse.search(searchInput);
-    const newArr = searchResults.slice(0, 5).map((result) => {
-      return result.item;
-    });
-    setResults(newArr.slice(0, 5));
-  }, [searchInput]);
 
   const handlePress = async (id: number) => {
     const prevData = await getDataFromStorage("searchHistory");
@@ -122,6 +112,10 @@ const SearchScreen = ({ navigation }: Props) => {
           <SearchInput
             searchInput={searchInput}
             setSearchInput={setSearchInput}
+            setResults={setResults}
+            options={options}
+            list={subjects}
+            results={results}
           />
         </View>
         {!searchInput ? (

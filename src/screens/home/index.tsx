@@ -15,7 +15,6 @@ import { ThemeContext } from "@Src/store/themeContext";
 import SearchInput from "@Components/ui/SearchInput";
 import { BottomTabParamList } from "@Types/navigation";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import Fuse from "fuse.js";
 import Subjects from "@Src/data/Subjects";
 import { Subject } from "@Types/index";
 
@@ -32,15 +31,6 @@ const HomeScreen = ({ navigation }: Props) => {
   const [searchBarFocused, setSearchBarFocused] = useState(false);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.gray : Colors.darkTextColor;
-
-  useEffect(() => {
-    const fuse = new Fuse(Subjects, options);
-    const searchResults = fuse.search(searchInput);
-    const newArr = searchResults.slice(0, 5).map((result) => {
-      return result.item;
-    });
-    setResults(newArr.slice(0, 5));
-  }, [searchInput]);
 
   return (
     <>
@@ -88,6 +78,9 @@ const HomeScreen = ({ navigation }: Props) => {
         searchBarFocused={searchBarFocused}
         setSearchBarFocused={setSearchBarFocused}
         results={results}
+        list={Subjects}
+        setResults={setResults}
+        options={options}
       />
       <Text style={[styles.headerText, { color: textColor }]}>جديد لجنتكم</Text>
       <View

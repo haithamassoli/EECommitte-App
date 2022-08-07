@@ -7,12 +7,31 @@ import {
   Linking,
 } from "react-native";
 import DoctorsData from "@Src/data/Doctors";
-import { Doctors } from "@Types/index";
+import { Doctor } from "@Types/index";
+import SearchInput from "@Components/ui/SearchInput";
+import { useState } from "react";
+
+const options = {
+  keys: ["name", "name2"],
+};
 const DoctorsScreen = () => {
+  const [searchInput, setSearchInput] = useState("");
+  const [searchBarFocused, setSearchBarFocused] = useState(false);
+  const [results, setResults] = useState<Doctor[] | []>([]);
   return (
     <>
       <ScrollView>
-        {DoctorsData.map((doctor: Doctors) => (
+        <SearchInput
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+          searchBarFocused={searchBarFocused}
+          setSearchBarFocused={setSearchBarFocused}
+          results={results}
+          setResults={setResults}
+          options={options}
+          list={DoctorsData}
+        />
+        {DoctorsData.map((doctor: Doctor) => (
           <View key={doctor.id}>
             <Text>{doctor?.name}</Text>
             <Text>{doctor?.name2}</Text>

@@ -6,29 +6,43 @@ import {
   StyleProp,
   Keyboard,
 } from "react-native";
+import Fuse from "fuse.js";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styles from "./styles";
-import { Subject } from "@Types/index";
+import { Doctor, Subject } from "@Types/index";
 import { useNavigation } from "@react-navigation/native";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import SearchResults from "./SearchResults";
 import { SubjectNavigationProp } from "@Screens/subjects/subject";
 
-type Focused = Props & {
-  searchBarFocused: boolean;
-  setSearchBarFocused: React.Dispatch<React.SetStateAction<boolean>>;
+type Focused = StaticProps &
+  (SubjectSearchInputProps | DoctorSearchInputProps) & {
+    searchBarFocused: boolean;
+    setSearchBarFocused: React.Dispatch<React.SetStateAction<boolean>>;
+  };
+type NotFocused = StaticProps &
+  (SubjectSearchInputProps | DoctorSearchInputProps) & {
+    searchBarFocused?: never;
+    setSearchBarFocused?: never;
+  };
+
+type SubjectSearchInputProps = {
+  list: readonly Subject[];
   results: Subject[];
+  setResults: React.Dispatch<React.SetStateAction<Subject[] | []>>;
+  options: Fuse.IFuseOptions<Subject>;
 };
-type NotFocused = Props & {
-  searchBarFocused?: never;
-  setSearchBarFocused?: never;
-  results?: never;
+type DoctorSearchInputProps = {
+  list: readonly Doctor[];
+  results: Doctor[];
+  setResults: React.Dispatch<React.SetStateAction<Doctor[] | []>>;
+  options: Fuse.IFuseOptions<Doctor>;
 };
 
-type Props = {
+type StaticProps = {
   searchInput: string;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
   style?: StyleProp<ViewStyle>;
@@ -41,6 +55,9 @@ const SearchInput = ({
   searchBarFocused,
   setSearchBarFocused,
   results,
+  options,
+  list,
+  setResults,
 }: Focused | NotFocused) => {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<SubjectNavigationProp>();
@@ -48,6 +65,15 @@ const SearchInput = ({
     theme === "light" ? Colors.darkTextColor : Colors.lightTextColor;
 
   const searchAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const fuse = new Fuse<Subject | Doctor | any>(list, options);
+    const searchResults = fuse.search(searchInput);
+    const newArr = searchResults.slice(0, 5).map((result) => {
+      return result.item;
+    });
+    setResults(newArr.slice(0, 5));
+  }, [searchInput]);
 
   const handleFocus = () => {
     Animated.timing(searchAnim, {

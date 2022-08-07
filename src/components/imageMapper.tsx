@@ -95,6 +95,7 @@ class ImageMapper extends Component<Props> {
           }}
           onLoadEnd={() => this.setState({ loading: false })}
           source={this.state.loading === true ? thumbnail : imgSource}
+          fadeDuration={1000}
           resizeMode="contain"
         >
           {imgMap.map((item: MapperItem, index: number) => (

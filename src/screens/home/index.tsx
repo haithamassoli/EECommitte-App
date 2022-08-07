@@ -113,29 +113,24 @@ const HomeScreen = ({ navigation }: Props) => {
           }}
           style={styles.sliderContainer}
         >
-          <Image
-            source={require("@Assets/images/slider1.png")}
-            style={styles.sliderImage}
-          />
-          <Image
-            source={require("@Assets/images/slider1.png")}
-            style={styles.sliderImage}
-          />
-          <Image
-            source={require("@Assets/images/slider1.png")}
-            style={styles.sliderImage}
-          />
+          {[1, 2, 3].map((image, index) => (
+            <Image
+              key={index}
+              source={require("@Assets/images/slider1.png")}
+              style={styles.sliderImage}
+            />
+          ))}
         </ScrollView>
         <View style={styles.sliderDotsContainer}>
-          <View
-            style={[styles.sliderDot, currentIndex === 2 && styles.activeDot]}
-          />
-          <View
-            style={[styles.sliderDot, currentIndex === 1 && styles.activeDot]}
-          />
-          <View
-            style={[styles.sliderDot, currentIndex === 0 && styles.activeDot]}
-          />
+          {[1, 2, 3].map((image, index, array) => (
+            <View
+              key={index}
+              style={[
+                styles.sliderDot,
+                currentIndex === array.length - 1 - index && styles.activeDot,
+              ]}
+            />
+          ))}
         </View>
       </View>
       <View
@@ -148,156 +143,98 @@ const HomeScreen = ({ navigation }: Props) => {
         }}
       >
         <View style={styles.iconsContainer}>
-          <Pressable
-            onPress={() => {
-              console.log("pressed");
-            }}
-            style={styles.iconContainer}
-          >
-            <View
-              style={[
-                styles.iconBackground,
-                {
-                  backgroundColor:
-                    theme === "light" ? Colors.lightGray : "#1b2836",
-                },
-              ]}
+          {[
+            {
+              title: "البوستات",
+              title2: "الشاملة",
+              icon: require("@Assets/images/icons/full-post.png"),
+              onPress: () => console.log("pressed"),
+            },
+            {
+              title: "قناة",
+              title2: "اللجنة",
+              icon: require("@Assets/images/icons/youtube.png"),
+              onPress: () =>
+                Linking.openURL("https://www.youtube.com/user/EECommittee"),
+            },
+            {
+              title: "الدفاتر",
+              title2: "الأسبوعية",
+              icon: require("@Assets/images/icons/weekly-notebooks.png"),
+              onPress: () => console.log("pressed"),
+            },
+          ].map((icon, index) => (
+            <Pressable
+              key={index}
+              onPress={icon.onPress}
+              style={styles.iconContainer}
             >
-              <Image
-                source={require("@Assets/images/icons/full-post.png")}
-                style={styles.icon}
-              />
-            </View>
-            <Text style={[styles.iconText, { color: textColor }]}>
-              البوستات
-            </Text>
-            <Text style={[styles.iconText, { color: textColor }]}>الشاملة</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => {
-              Linking.openURL("https://www.youtube.com/user/EECommittee");
-            }}
-            style={styles.iconContainer}
-          >
-            <View
-              style={[
-                styles.iconBackground,
-                {
-                  backgroundColor:
-                    theme === "light" ? Colors.lightGray : "#1b2836",
-                },
-              ]}
-            >
-              <Image
-                source={require("@Assets/images/icons/youtube.png")}
-                style={styles.icon}
-              />
-            </View>
-            <Text style={[styles.iconText, { color: textColor }]}>قناة</Text>
-            <Text style={[styles.iconText, { color: textColor }]}>اللجنة</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => {
-              console.log("pressed");
-            }}
-            style={styles.iconContainer}
-          >
-            <View
-              style={[
-                styles.iconBackground,
-                {
-                  backgroundColor:
-                    theme === "light" ? Colors.lightGray : "#1b2836",
-                },
-              ]}
-            >
-              <Image
-                source={require("@Assets/images/icons/weekly-notebooks.png")}
-                style={styles.icon}
-              />
-            </View>
-
-            <Text style={[styles.iconText, { color: textColor }]}>الدفاتر</Text>
-            <Text style={[styles.iconText, { color: textColor }]}>
-              الأسبوعية
-            </Text>
-          </Pressable>
+              <View
+                style={[
+                  styles.iconBackground,
+                  {
+                    backgroundColor:
+                      theme === "light" ? Colors.lightGray : "#1b2836",
+                  },
+                ]}
+              >
+                <Image source={icon.icon} style={styles.icon} />
+              </View>
+              <Text style={[styles.iconText, { color: textColor }]}>
+                {icon.title}
+              </Text>
+              <Text style={[styles.iconText, { color: textColor }]}>
+                {icon.title2}
+              </Text>
+            </Pressable>
+          ))}
         </View>
         <View style={styles.iconsContainer}>
-          <Pressable
-            onPress={() => {
-              console.log("pressed");
-            }}
-            style={styles.iconContainer}
-          >
-            <View
-              style={[
-                styles.iconBackground,
-                {
-                  backgroundColor:
-                    theme === "light" ? Colors.lightGray : "#1b2836",
-                },
-              ]}
+          {[
+            {
+              title: "الهيئة",
+              title2: "التدريسية",
+              icon: require("@Assets/images/icons/teachers.png"),
+              onPress: () => console.log("pressed"),
+            },
+            {
+              title: "مجموعة",
+              title2: "الفيسبوك",
+              icon: require("@Assets/images/icons/facebook.png"),
+              onPress: () =>
+                Linking.openURL("https://www.facebook.com/groups/eelajna.just"),
+            },
+            {
+              title: "موقع",
+              title2: "الجامعة",
+              icon: require("@Assets/images/icons/education-institution.png"),
+              onPress: () => console.log("pressed"),
+            },
+          ].map((icon, index) => (
+            <Pressable
+              key={index}
+              onPress={icon.onPress}
+              style={styles.iconContainer}
             >
-              <Image
-                source={require("@Assets/images/icons/teachers.png")}
-                style={styles.icon}
-              />
-            </View>
-            <Text style={[styles.iconText, { color: textColor }]}>الهيئة</Text>
-            <Text style={[styles.iconText, { color: textColor }]}>
-              التدريسية
-            </Text>
-          </Pressable>
-          <Pressable
-            onPress={() => {
-              Linking.openURL("https://www.facebook.com/groups/eelajna.just");
-            }}
-            style={styles.iconContainer}
-          >
-            <View
-              style={[
-                styles.iconBackground,
-                {
-                  backgroundColor:
-                    theme === "light" ? Colors.lightGray : "#1b2836",
-                },
-              ]}
-            >
-              <Image
-                source={require("@Assets/images/icons/facebook.png")}
-                style={styles.icon}
-              />
-            </View>
-            <Text style={[styles.iconText, { color: textColor }]}>مجموعة</Text>
-            <Text style={[styles.iconText, { color: textColor }]}>
-              الفيسبوك
-            </Text>
-          </Pressable>
-          <Pressable
-            onPress={() => {
-              console.log("pressed");
-            }}
-            style={styles.iconContainer}
-          >
-            <View
-              style={[
-                styles.iconBackground,
-                {
-                  backgroundColor:
-                    theme === "light" ? Colors.lightGray : "#1b2836",
-                },
-              ]}
-            >
-              <Image
-                source={require("@Assets/images/icons/education-institution.png")}
-                style={styles.icon}
-              />
-            </View>
-
-            <Text style={[styles.iconText, { color: textColor }]}>موقع</Text>
-            <Text style={[styles.iconText, { color: textColor }]}>الجامعة</Text>
-          </Pressable>
+              <View
+                style={[
+                  styles.iconBackground,
+                  {
+                    backgroundColor:
+                      theme === "light" ? Colors.lightGray : "#1b2836",
+                  },
+                ]}
+              >
+                <Image source={icon.icon} style={styles.icon} />
+              </View>
+              <Text style={[styles.iconText, { color: textColor }]}>
+                {icon.title}
+              </Text>
+              <Text style={[styles.iconText, { color: textColor }]}>
+                {icon.title2}
+              </Text>
+            </Pressable>
+          ))}
         </View>
       </View>
     </>

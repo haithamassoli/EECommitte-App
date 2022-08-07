@@ -32,8 +32,8 @@ const InfoScreen = ({ navigation }: Props) => {
         />
         <InfoItem
           icon="user"
-          title="المعلمين"
-          subTitle="معلومات عن المعلمين"
+          title="الكادر التدريسي"
+          subTitle="معلومات عن الكادر التدريسي"
           onPress={() => onPress("Doctors")}
         />
         <InfoItem

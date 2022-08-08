@@ -180,7 +180,8 @@ const HomeScreen = ({ navigation }: Props) => {
               title: "الهيئة",
               title2: "التدريسية",
               icon: require("@Assets/images/icons/teachers.png"),
-              onPress: () => console.log("pressed"),
+              onPress: () =>
+                navigation.navigate("InfoNavigation", { screen: "Doctors" }),
             },
             {
               title: "مجموعة",

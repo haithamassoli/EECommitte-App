@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "698743371521",
+    "project_id": "eecommitte",
+    "storage_bucket": "eecommitte.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698743371521:android:0ecac78c101cdb2ad74d00",
+        "android_client_info": {
+          "package_name": "com.haithamassoli.EECommitte"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "698743371521-1pd4br8g8pmjuii3kf4o0ogb63qhfu21.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCX6MEK8KFc-CG2g_zVlx1benWhwMfUzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "698743371521-1pd4br8g8pmjuii3kf4o0ogb63qhfu21.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

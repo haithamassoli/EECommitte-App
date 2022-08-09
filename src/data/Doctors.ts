@@ -1,6 +1,6 @@
-import { Doctors } from "@Types/index";
+import { Doctor } from "@Types/index";
 
-const DoctorsData: Doctors[] = [
+const DoctorsData: Doctor[] = [
   {
     id: 1,
     name: "عبدالرحمن جرادات",

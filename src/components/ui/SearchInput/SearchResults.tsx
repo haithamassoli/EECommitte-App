@@ -1,13 +1,13 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useContext } from "react";
-import { Doctors, Subject } from "@Types/index";
+import { Doctor, Subject } from "@Types/index";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 
 type Props = {
   searchInput: string;
   handlePress: (num: number) => void;
-  results: Subject[] | Doctors[];
+  results: Subject[] | Doctor[];
 };
 
 const SearchResults = ({ results, handlePress, searchInput }: Props) => {
@@ -18,7 +18,7 @@ const SearchResults = ({ results, handlePress, searchInput }: Props) => {
   return (
     <>
       {results.length > 0 ? (
-        results.map((result: Subject | Doctors, index: number) => (
+        results.map((result: Subject | Doctor, index: number) => (
           <View key={index}>
             <TouchableOpacity
               style={{

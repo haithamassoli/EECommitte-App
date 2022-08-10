@@ -14,14 +14,23 @@ import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import SearchInput from "@Components/ui/SearchInput";
 import { BottomTabParamList } from "@Types/navigation";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import {
+  BottomTabNavigationProp,
+  BottomTabScreenProps,
+} from "@react-navigation/bottom-tabs";
 import Subjects from "@Src/data/Subjects";
 import { Subject } from "@Types/index";
 import Overlay from "@Components/Overlay";
+import DoctorsData from "@Src/data/Doctors";
 
 const options = {
   keys: ["name", "name2"],
 };
+
+export type HomeNavigationProp = BottomTabNavigationProp<
+  BottomTabParamList,
+  "Home"
+>;
 
 type Props = BottomTabScreenProps<BottomTabParamList, "Home">;
 

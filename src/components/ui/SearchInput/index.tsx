@@ -9,8 +9,8 @@ import { Doctor, Subject } from "@Types/index";
 import { useNavigation } from "@react-navigation/native";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import SearchResults from "./SearchResults";
-import { SubjectNavigationProp } from "@Screens/subjects/subject";
 import { SearchInputProps } from "@Types/Search";
+import { HomeNavigationProp } from "@Screens/home";
 
 const SearchInput = ({
   searchInput,
@@ -24,7 +24,7 @@ const SearchInput = ({
   setResults,
 }: SearchInputProps) => {
   const { theme } = useContext(ThemeContext);
-  const navigation = useNavigation<SubjectNavigationProp>();
+  const navigation = useNavigation<HomeNavigationProp>();
   const textColor =
     theme === "light" ? Colors.darkTextColor : Colors.lightTextColor;
 
@@ -60,7 +60,10 @@ const SearchInput = ({
     }
     Keyboard.dismiss();
     setSearchInput("");
-    navigation.navigate("Subject", { subjectId: id });
+    navigation.navigate("SubjectsNavigation", {
+      screen: "Subject",
+      params: { subjectId: id },
+    });
   };
 
   return (

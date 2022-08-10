@@ -43,7 +43,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const textColor = theme === "light" ? Colors.gray : Colors.darkTextColor;
 
   return (
-    <>
+    <ScrollView showsVerticalScrollIndicator={false}>
       {searchBarFocused && (
         <Overlay
           onPress={() => {
@@ -232,7 +232,7 @@ const HomeScreen = ({ navigation }: Props) => {
           ))}
         </View>
       </View>
-    </>
+    </ScrollView>
   );
 };
 

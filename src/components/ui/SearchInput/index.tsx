@@ -100,6 +100,7 @@ const SearchInput = ({
         placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
         placeholderTextColor={Colors.gray}
         selectionColor={Colors.primary700}
+        allowFontScaling={false}
         style={[
           styles.searchInput,
           {

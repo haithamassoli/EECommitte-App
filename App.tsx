@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Route from "./src/navigation/main";
-import { I18nManager, Platform } from "react-native";
+import { I18nManager, Platform, Text } from "react-native";
 import * as Updates from "expo-updates";
 import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
@@ -26,6 +26,13 @@ export default function App() {
       }
     };
     forceRTL();
+    // @ts-ignore
+    if (Text.defaultProps == null) {
+      // @ts-ignore
+      Text.defaultProps = {};
+      // @ts-ignore
+      Text.defaultProps.allowFontScaling = false;
+    }
   }, []);
 
   const [loaded] = useFonts({

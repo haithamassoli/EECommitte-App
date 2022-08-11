@@ -83,157 +83,166 @@ const HomeScreen = ({ navigation }: Props) => {
         setResults={setResults}
         options={options}
       />
-      <Text style={[styles.headerText, { color: textColor }]}>جديد لجنتكم</Text>
-      <View
-        style={{
-          height: screenHeight * 0.28,
-        }}
-      >
-        <ScrollView
-          horizontal
-          pagingEnabled
-          alwaysBounceHorizontal
-          showsHorizontalScrollIndicator={false}
-          bounces={true}
-          automaticallyAdjustsScrollIndicatorInsets={false}
-          automaticallyAdjustContentInsets={false}
-          alwaysBounceVertical={false}
-          contentInsetAdjustmentBehavior="never"
-          snapToAlignment="center"
-          onScroll={(e) => {
-            setCurrentIndex(
-              Math.floor(e.nativeEvent.contentOffset.x / (screenWidth - 40))
-            );
-          }}
-          style={styles.sliderContainer}
-        >
-          {[1, 2, 3].map((image, index) => (
-            <Image
-              key={index}
-              source={require("@Assets/images/slider1.png")}
-              style={styles.sliderImage}
-            />
-          ))}
-        </ScrollView>
-        <View style={styles.sliderDotsContainer}>
-          {[1, 2, 3].map((image, index, array) => (
-            <View
-              key={index}
-              style={[
-                styles.sliderDot,
-                currentIndex === array.length - 1 - index && styles.activeDot,
-              ]}
-            />
-          ))}
-        </View>
-      </View>
       <ScrollView
-        showsVerticalScrollIndicator={false}
         style={{
           flex: 1,
-          paddingHorizontal: 16,
-          paddingBottom: 16,
-          marginTop: 40,
-          marginHorizontal: 12,
         }}
       >
-        <View style={styles.iconsContainer}>
-          {[
-            {
-              title: "البوستات",
-              title2: "الشاملة",
-              icon: require("@Assets/images/icons/full-post.png"),
-              onPress: () => console.log("pressed"),
-            },
-            {
-              title: "قناة",
-              title2: "اللجنة",
-              icon: require("@Assets/images/icons/youtube.png"),
-              onPress: () =>
-                Linking.openURL("https://www.youtube.com/user/EECommittee"),
-            },
-            {
-              title: "الدفاتر",
-              title2: "الأسبوعية",
-              icon: require("@Assets/images/icons/weekly-notebooks.png"),
-              onPress: () => console.log("pressed"),
-            },
-          ].map((icon, index) => (
-            <Pressable
-              key={index}
-              onPress={icon.onPress}
-              style={styles.iconContainer}
-            >
+        <Text style={[styles.headerText, { color: textColor }]}>
+          جديد لجنتكم
+        </Text>
+        <View
+          style={{
+            height: screenHeight * 0.28,
+          }}
+        >
+          <ScrollView
+            horizontal
+            pagingEnabled
+            alwaysBounceHorizontal
+            showsHorizontalScrollIndicator={false}
+            bounces={true}
+            automaticallyAdjustsScrollIndicatorInsets={false}
+            automaticallyAdjustContentInsets={false}
+            alwaysBounceVertical={false}
+            contentInsetAdjustmentBehavior="never"
+            snapToAlignment="center"
+            onScroll={(e) => {
+              setCurrentIndex(
+                Math.floor(e.nativeEvent.contentOffset.x / (screenWidth - 40))
+              );
+            }}
+            style={styles.sliderContainer}
+          >
+            {[1, 2, 3].map((image, index) => (
+              <Image
+                key={index}
+                source={require("@Assets/images/slider1.png")}
+                style={styles.sliderImage}
+              />
+            ))}
+          </ScrollView>
+          <View style={styles.sliderDotsContainer}>
+            {[1, 2, 3].map((image, index, array) => (
               <View
+                key={index}
                 style={[
-                  styles.iconBackground,
-                  {
-                    backgroundColor:
-                      theme === "light" ? Colors.lightGray : "#1b2836",
-                  },
+                  styles.sliderDot,
+                  currentIndex === array.length - 1 - index && styles.activeDot,
                 ]}
-              >
-                <Image source={icon.icon} style={styles.icon} />
-              </View>
-              <Text style={[styles.iconText, { color: textColor }]}>
-                {icon.title}
-              </Text>
-              <Text style={[styles.iconText, { color: textColor }]}>
-                {icon.title2}
-              </Text>
-            </Pressable>
-          ))}
+              />
+            ))}
+          </View>
         </View>
-        <View style={styles.iconsContainer}>
-          {[
-            {
-              title: "الهيئة",
-              title2: "التدريسية",
-              icon: require("@Assets/images/icons/teachers.png"),
-              onPress: () =>
-                navigation.navigate("InfoNavigation", {
-                  screen: "Doctors",
-                  params: { doctorId: undefined },
-                }),
-            },
-            {
-              title: "مجموعة",
-              title2: "الفيسبوك",
-              icon: require("@Assets/images/icons/facebook.png"),
-              onPress: () =>
-                Linking.openURL("https://www.facebook.com/groups/eelajna.just"),
-            },
-            {
-              title: "موقع",
-              title2: "الجامعة",
-              icon: require("@Assets/images/icons/education-institution.png"),
-              onPress: () => console.log("pressed"),
-            },
-          ].map((icon, index) => (
-            <Pressable
-              key={index}
-              onPress={icon.onPress}
-              style={styles.iconContainer}
-            >
-              <View
-                style={[
-                  styles.iconBackground,
-                  {
-                    backgroundColor:
-                      theme === "light" ? Colors.lightGray : "#1b2836",
-                  },
-                ]}
+        <View
+          style={{
+            flex: 1,
+            paddingHorizontal: 16,
+            paddingBottom: 16,
+            marginTop: 40,
+            marginHorizontal: 12,
+          }}
+        >
+          <View style={styles.iconsContainer}>
+            {[
+              {
+                title: "البوستات",
+                title2: "الشاملة",
+                icon: require("@Assets/images/icons/full-post.png"),
+                onPress: () => console.log("pressed"),
+              },
+              {
+                title: "قناة",
+                title2: "اللجنة",
+                icon: require("@Assets/images/icons/youtube.png"),
+                onPress: () =>
+                  Linking.openURL("https://www.youtube.com/user/EECommittee"),
+              },
+              {
+                title: "الدفاتر",
+                title2: "الأسبوعية",
+                icon: require("@Assets/images/icons/weekly-notebooks.png"),
+                onPress: () => console.log("pressed"),
+              },
+            ].map((icon, index) => (
+              <Pressable
+                key={index}
+                onPress={icon.onPress}
+                style={styles.iconContainer}
               >
-                <Image source={icon.icon} style={styles.icon} />
-              </View>
-              <Text style={[styles.iconText, { color: textColor }]}>
-                {icon.title}
-              </Text>
-              <Text style={[styles.iconText, { color: textColor }]}>
-                {icon.title2}
-              </Text>
-            </Pressable>
-          ))}
+                <View
+                  style={[
+                    styles.iconBackground,
+                    {
+                      backgroundColor:
+                        theme === "light" ? Colors.lightGray : "#1b2836",
+                    },
+                  ]}
+                >
+                  <Image source={icon.icon} style={styles.icon} />
+                </View>
+                <Text style={[styles.iconText, { color: textColor }]}>
+                  {icon.title}
+                </Text>
+                <Text style={[styles.iconText, { color: textColor }]}>
+                  {icon.title2}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+          <View style={styles.iconsContainer}>
+            {[
+              {
+                title: "الهيئة",
+                title2: "التدريسية",
+                icon: require("@Assets/images/icons/teachers.png"),
+                onPress: () =>
+                  navigation.navigate("InfoNavigation", {
+                    screen: "Doctors",
+                    params: { doctorId: undefined },
+                  }),
+              },
+              {
+                title: "مجموعة",
+                title2: "الفيسبوك",
+                icon: require("@Assets/images/icons/facebook.png"),
+                onPress: () =>
+                  Linking.openURL(
+                    "https://www.facebook.com/groups/eelajna.just"
+                  ),
+              },
+              {
+                title: "موقع",
+                title2: "الجامعة",
+                icon: require("@Assets/images/icons/education-institution.png"),
+                onPress: () => console.log("pressed"),
+              },
+            ].map((icon, index) => (
+              <Pressable
+                key={index}
+                onPress={icon.onPress}
+                style={styles.iconContainer}
+              >
+                <View
+                  style={[
+                    styles.iconBackground,
+                    {
+                      backgroundColor:
+                        theme === "light" ? Colors.lightGray : "#1b2836",
+                    },
+                  ]}
+                >
+                  <Image source={icon.icon} style={styles.icon} />
+                </View>
+                <Text style={[styles.iconText, { color: textColor }]}>
+                  {icon.title}
+                </Text>
+                <Text style={[styles.iconText, { color: textColor }]}>
+                  {icon.title2}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
         </View>
       </ScrollView>
     </>

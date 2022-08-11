@@ -421,18 +421,6 @@ const DoctorsData: Doctor[] = [
     image:
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=aabashaireh",
   },
-  {
-    id: 3600,
-    name: "احمد البشايره",
-    name2: "Ahmad Al-Bashayer",
-    email: "aabashaireh@just.edu.jo",
-    office: "",
-    phone: "",
-    website:
-      "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=aabashaireh",
-    image:
-      "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=aabashaireh",
-  },
 ];
 
 export default DoctorsData;

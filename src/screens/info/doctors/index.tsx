@@ -15,6 +15,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
+import DoctorCard from "@Components/DoctorCard";
 
 type Props = StackScreenProps<InfoStackParamList, "Doctors">;
 
@@ -49,7 +50,7 @@ const DoctorsScreen = ({ route }: Props) => {
   return (
     <>
       {loading}
-      <ScrollView style={{ marginHorizontal: 12 }}>
+      <View style={{ marginHorizontal: 12, flex: 1 }}>
         <SearchInput
           searchInput={searchInput}
           setSearchInput={setSearchInput}
@@ -59,55 +60,20 @@ const DoctorsScreen = ({ route }: Props) => {
           style={{ marginTop: 12 }}
         />
         {results.length > 0 && searchInput.length > 0 ? (
-          results.map((doctor) => (
-            <View
-              key={doctor.id}
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                marginHorizontal: 20,
-                marginVertical: 10,
-              }}
-            >
-              <Image
-                style={{
-                  width: 100,
-                  height: 100,
-                  marginEnd: 12,
-                }}
-                source={{ uri: doctor?.image }}
+          <ScrollView>
+            {results.map((doctor) => (
+              <DoctorCard
+                key={doctor.id}
+                email={doctor.email}
+                image={doctor.image}
+                name={doctor.name}
+                name2={doctor.name2}
+                office={doctor.office}
+                phone={doctor.phone}
+                website={doctor.website}
               />
-              <View>
-                <Text style={{ color: textColor, textAlign: "left" }}>
-                  الإسم: {doctor?.name}
-                </Text>
-                <Text style={{ color: textColor, textAlign: "left" }}>
-                  الإسم: {doctor?.name2}
-                </Text>
-                <Text style={{ color: textColor, textAlign: "left" }}>
-                  المكتب: {doctor?.office}
-                </Text>
-                <Pressable
-                  onPress={() =>
-                    Linking.openURL(`tel:${doctor?.phone?.split(" ")[1]}`)
-                  }
-                >
-                  <Text style={{ color: textColor, textAlign: "left" }}>
-                    الهاتف: {doctor?.phone}
-                  </Text>
-                </Pressable>
-
-                <Pressable
-                  onPress={() => Linking.openURL(`mailto:${doctor?.email}`)}
-                >
-                  <Text style={{ color: textColor, textAlign: "left" }}>
-                    البريد الإلكتروني {doctor?.email}
-                  </Text>
-                </Pressable>
-              </View>
-            </View>
-          ))
+            ))}
+          </ScrollView>
         ) : searchInput.length > 0 ? (
           <>
             <Text
@@ -123,110 +89,24 @@ const DoctorsScreen = ({ route }: Props) => {
             </Text>
           </>
         ) : (
-          DoctorsData.map((doctor: Doctor) => (
-            <View
-              key={doctor.id}
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                marginHorizontal: 20,
-                marginVertical: 10,
-              }}
-            >
-              <Image
-                style={{
-                  width: 100,
-                  height: 100,
-                  marginEnd: 12,
-                }}
-                source={{ uri: doctor?.image }}
+          <ScrollView>
+            {DoctorsData.map((doctor: Doctor) => (
+              <DoctorCard
+                key={doctor.id}
+                email={doctor.email}
+                image={doctor.image}
+                name={doctor.name}
+                name2={doctor.name2}
+                office={doctor.office}
+                phone={doctor.phone}
+                website={doctor.website}
               />
-              <View>
-                <Text style={{ color: textColor, textAlign: "left" }}>
-                  الإسم: {doctor?.name}
-                </Text>
-                <Text style={{ color: textColor, textAlign: "left" }}>
-                  الإسم: {doctor?.name2}
-                </Text>
-                <Text style={{ color: textColor, textAlign: "left" }}>
-                  المكتب: {doctor?.office}
-                </Text>
-                <Pressable
-                  onPress={() =>
-                    Linking.openURL(`tel:${doctor?.phone?.split(" ")[1]}`)
-                  }
-                >
-                  <Text style={{ color: textColor, textAlign: "left" }}>
-                    الهاتف: {doctor?.phone}
-                  </Text>
-                </Pressable>
-
-                <Pressable
-                  onPress={() => Linking.openURL(`mailto:${doctor?.email}`)}
-                >
-                  <Text style={{ color: textColor, textAlign: "left" }}>
-                    البريد الإلكتروني {doctor?.email}
-                  </Text>
-                </Pressable>
-              </View>
-            </View>
-          ))
+            ))}
+          </ScrollView>
         )}
-      </ScrollView>
+      </View>
     </>
   );
 };
 
 export default DoctorsScreen;
-{
-  /* {DoctorsData.map((doctor: Doctor) => (
-        //   <View
-        //     key={doctor.id}
-        //     style={{
-        //       flexDirection: "row",
-        //       justifyContent: "flex-start",
-        //       alignItems: "center",
-        //       marginHorizontal: 20,
-        //       marginVertical: 10,
-        //     }}
-        //   >
-        //     <Image
-        //       style={{
-        //         width: 100,
-        //         height: 100,
-        //         marginEnd: 12,
-        //       }}
-        //       source={{ uri: doctor?.image }}
-        //     />
-        //     <View>
-        //       <Text style={{ color: textColor, textAlign: "left" }}>
-        //         الإسم: {doctor?.name}
-        //       </Text>
-        //       <Text style={{ color: textColor, textAlign: "left" }}>
-        //         الإسم: {doctor?.name2}
-        //       </Text>
-        //       <Text style={{ color: textColor, textAlign: "left" }}>
-        //         المكتب: {doctor?.office}
-        //       </Text>
-        //       <Pressable
-        //         onPress={() =>
-        //           Linking.openURL(`tel:${doctor?.phone?.split(" ")[1]}`)
-        //         }
-        //       >
-        //         <Text style={{ color: textColor, textAlign: "left" }}>
-        //           الهاتف: {doctor?.phone}
-        //         </Text>
-        //       </Pressable>
-
-        //       <Pressable
-        //         onPress={() => Linking.openURL(`mailto:${doctor?.email}`)}
-        //       >
-        //         <Text style={{ color: textColor, textAlign: "left" }}>
-        //           البريد الإلكتروني {doctor?.email}
-        //         </Text>
-        //       </Pressable>
-        //     </View>
-        //   </View>
-        // ))} */
-}

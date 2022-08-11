@@ -43,7 +43,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const textColor = theme === "light" ? Colors.gray : Colors.darkTextColor;
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <>
       {searchBarFocused && (
         <Overlay
           onPress={() => {
@@ -79,7 +79,7 @@ const HomeScreen = ({ navigation }: Props) => {
         searchBarFocused={searchBarFocused}
         setSearchBarFocused={setSearchBarFocused}
         results={results}
-        list={Subjects}
+        list={[...Subjects, ...DoctorsData]}
         setResults={setResults}
         options={options}
       />
@@ -190,7 +190,10 @@ const HomeScreen = ({ navigation }: Props) => {
               title2: "التدريسية",
               icon: require("@Assets/images/icons/teachers.png"),
               onPress: () =>
-                navigation.navigate("InfoNavigation", { screen: "Doctors" }),
+                navigation.navigate("InfoNavigation", {
+                  screen: "Doctors",
+                  params: { doctorId: undefined },
+                }),
             },
             {
               title: "مجموعة",
@@ -232,7 +235,7 @@ const HomeScreen = ({ navigation }: Props) => {
           ))}
         </View>
       </View>
-    </ScrollView>
+    </>
   );
 };
 

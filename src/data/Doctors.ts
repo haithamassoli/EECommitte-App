@@ -2,7 +2,7 @@ import { Doctor } from "@Types/index";
 
 const DoctorsData: Doctor[] = [
   {
-    id: 1,
+    id: 100,
     name: "عبدالرحمن جرادات",
     name2: "Abdel-Rahman Jaradat",
     email: "amjaradat@just.edu.jo",
@@ -14,7 +14,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=amjaradat",
   },
   {
-    id: 2,
+    id: 200,
     name: "احمد ابو الهيجاء",
     name2: "Ahmad Abu-El-Haija",
     email: "haija@just.edu.jo",
@@ -26,7 +26,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=haija",
   },
   {
-    id: 3,
+    id: 300,
     name: "ساري ختالين",
     name2: "SARI KHATALIN",
     email: "smkhatalin@just.edu.jo",
@@ -38,7 +38,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=smkhatalin",
   },
   {
-    id: 4,
+    id: 400,
     name: "احمد ابو الرب",
     name2: "AHMAD ABU ELRUB",
     email: "amabuelrub@just.edu.jo",
@@ -50,7 +50,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=amabuelrub",
   },
   {
-    id: 5,
+    id: 500,
     name: "احمد عبابنه",
     name2: "Ahmad Ababnah",
     email: "aaababnah@just.edu.jo",
@@ -62,7 +62,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=aaababnah",
   },
   {
-    id: 6,
+    id: 600,
     name: "عادل شواقفه",
     name2: "Adel Shawagfeh",
     email: "adelsh@just.edu.jo",
@@ -74,7 +74,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=adelsh",
   },
   {
-    id: 7,
+    id: 700,
     name: "تيمور الدلقموني",
     name2: "TAIMOUR ALDALGAMOUNI",
     email: "tfaldalgamouni@just.edu.jo",
@@ -86,7 +86,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=tfaldalgamouni",
   },
   {
-    id: 8,
+    id: 800,
     name: "يزن الصمادي",
     name2: "YAZAN ALSMADI",
     email: "ymalsmadi@just.edu.jo",
@@ -98,7 +98,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=ymalsmadi",
   },
   {
-    id: 9,
+    id: 900,
     name: "نهاد ذيب",
     name2: "Nihad Dib",
     email: "nihad@just.edu.jo",
@@ -110,7 +110,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=nihad",
   },
   {
-    id: 10,
+    id: 1000,
     name: "نضال العبابنه",
     name2: "Nedal Al-Ababneh",
     email: "nedalk@just.edu.jo",
@@ -122,7 +122,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=nedalk",
   },
   {
-    id: 11,
+    id: 1100,
     name: "فادي الزغول",
     name2: "Fadi Zghoul",
     email: "frnessirzghoul@just.edu.jo",
@@ -134,7 +134,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=frnessirzghoul",
   },
   {
-    id: 12,
+    id: 1200,
     name: "عصام الصمادي",
     name2: "Issam Smadi",
     email: "iasmadi@just.edu.jo",
@@ -146,7 +146,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=iasmadi",
   },
   {
-    id: 13,
+    id: 1300,
     name: "ابراهيم غريب",
     name2: "Ibrahim Ghareeb",
     email: "ghareeb@just.edu.jo",
@@ -158,7 +158,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=ghareeb",
   },
   {
-    id: 14,
+    id: 1400,
     name: "وليد الشهاب",
     name2: "Walid Shahab",
     email: "shahab@just.edu.jo",
@@ -170,7 +170,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=shahab",
   },
   {
-    id: 15,
+    id: 1500,
     name: "جهاد عبابنه",
     name2: "Jehad Ababneh",
     email: "ababnehj@just.edu.jo",
@@ -182,7 +182,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=ababnehj",
   },
   {
-    id: 16,
+    id: 1600,
     name: "حازم مناور",
     name2: "Hazem Al-Otum",
     email: "hazem-ot@just.edu.jo",
@@ -194,7 +194,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=hazem-ot",
   },
   {
-    id: 17,
+    id: 1700,
     name: "هبه الجمل",
     name2: "HEBA AL-JAMAL",
     email: "hmjamal@just.edu.jo",
@@ -206,7 +206,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=hmjamal",
   },
   {
-    id: 18,
+    id: 1800,
     name: "عمر الاصفر",
     name2: "Omar Asfar",
     email: "asfar@just.edu.jo",
@@ -218,7 +218,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=asfar",
   },
   {
-    id: 19,
+    id: 1900,
     name: "عمر قسايمه",
     name2: "Omar Qasaimeh",
     email: "qasaimeh@just.edu.jo",
@@ -230,7 +230,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=qasaimeh",
   },
   {
-    id: 20,
+    id: 2000,
     name: "صالح ردايده",
     name2: "Saleh Radaideh",
     email: "srad@just.edu.jo",
@@ -242,7 +242,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=srad",
   },
   {
-    id: 21,
+    id: 2100,
     name: "ساهر البطران",
     name2: "Saher Albatran",
     email: "saalbatran@just.edu.jo",
@@ -254,7 +254,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=saalbatran",
   },
   {
-    id: 22,
+    id: 2200,
     name: "خالد مياس",
     name2: "Khaled Mayyas",
     email: "mayyas@just.edu.jo",
@@ -266,7 +266,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=mayyas",
   },
   {
-    id: 23,
+    id: 2300,
     name: "رابي الربضي",
     name2: "Rabi Rabady",
     email: "rrabady@just.edu.jo",
@@ -278,7 +278,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=rrabady",
   },
   {
-    id: 24,
+    id: 2400,
     name: "ماجد خضير",
     name2: "Majid Khodier ",
     email: "majidkh@just.edu.jo",
@@ -290,7 +290,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=majidkh",
   },
   {
-    id: 25,
+    id: 2500,
     name: "منصور ابو شريعة العبادي",
     name2: "Mansour Abbadi",
     email: "mabbadi@just.edu.jo",
@@ -302,7 +302,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=mabbadi",
   },
   {
-    id: 26,
+    id: 2600,
     name: "محمد رشاد المظفر",
     name2: "Mohammad Rashad Al-Mothafar",
     email: "mothafar@just.edu.jo",
@@ -314,7 +314,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=mothafar",
   },
   {
-    id: 27,
+    id: 2700,
     name: "محمد ال سلامه",
     name2: "Mohammed Al Salameh",
     email: "salameh@just.edu.jo",
@@ -326,7 +326,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=salameh",
   },
   {
-    id: 28,
+    id: 2800,
     name: "محمد العبيني",
     name2: "Mohammed Ibbini",
     email: "mohib@just.edu.jo",
@@ -338,7 +338,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=mohib",
   },
   {
-    id: 29,
+    id: 2900,
     name: "محمود خضير",
     name2: "Mahmoud Khodeir",
     email: "makhodeir@just.edu.jo",
@@ -350,7 +350,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=makhodeir",
   },
   {
-    id: 30,
+    id: 3000,
     name: "مأمون المستريحي",
     name2: "Mamoun Al-Mistarihi",
     email: "mistarihi@just.edu.jo",
@@ -362,7 +362,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=mistarihi",
   },
   {
-    id: 31,
+    id: 3100,
     name: "محمد بنات",
     name2: "Mohammad Banat",
     email: "banat@just.edu.jo",
@@ -374,7 +374,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=banat",
   },
   {
-    id: 32,
+    id: 3200,
     name: "محمد الشريده",
     name2: "MOHAMMAD AL-SHRIDA",
     email: "mzshrida@just.edu.jo",
@@ -386,7 +386,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=mzshrida",
   },
   {
-    id: 33,
+    id: 3300,
     name: "عامر المقابله",
     name2: "Amer Al-Maqableh",
     email: "ammagableh@just.edu.jo",
@@ -398,7 +398,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=ammagableh",
   },
   {
-    id: 34,
+    id: 3400,
     name: "احمد البشايره",
     name2: "Ahmad Al-Bashayer",
     email: "aabashaireh@just.edu.jo",
@@ -410,7 +410,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=aabashaireh",
   },
   {
-    id: 35,
+    id: 3500,
     name: "اسراء الشرع",
     name2: "Esraa Al-Shar3",
     email: "emalsharoa@just.edu.jo",
@@ -422,7 +422,7 @@ const DoctorsData: Doctor[] = [
       "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=aabashaireh",
   },
   {
-    id: 36,
+    id: 3600,
     name: "احمد البشايره",
     name2: "Ahmad Al-Bashayer",
     email: "aabashaireh@just.edu.jo",

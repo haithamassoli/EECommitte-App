@@ -20,6 +20,6 @@ export type InfoStackParamList = {
   AboutEECommitte: undefined;
   SupportUs: undefined;
   ContactUs: undefined;
-  Doctors: undefined;
+  Doctors: { doctorId?: number };
   QuickLinkes: undefined;
 };

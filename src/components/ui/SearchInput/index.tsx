@@ -11,6 +11,8 @@ import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import SearchResults from "./SearchResults";
 import { SearchInputProps } from "@Types/Search";
 import { HomeNavigationProp } from "@Screens/home";
+import DoctorsData from "@Src/data/Doctors";
+import Subjects from "@Src/data/Subjects";
 
 const SearchInput = ({
   searchInput,
@@ -25,8 +27,6 @@ const SearchInput = ({
 }: SearchInputProps) => {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<HomeNavigationProp>();
-  const textColor =
-    theme === "light" ? Colors.darkTextColor : Colors.lightTextColor;
 
   const searchAnim = useRef(new Animated.Value(0)).current;
 
@@ -49,21 +49,34 @@ const SearchInput = ({
   };
 
   const handlePress = async (id: number) => {
-    const prevData = await getDataFromStorage("searchHistory");
-    if (Array.isArray(prevData) && !prevData.includes(id)) {
-      if (prevData.length >= 5) {
-        prevData.pop();
+    const doctor = DoctorsData.find((doctor) => doctor.id === id);
+    const subject = Subjects.find((subject) => subject.id === id);
+    if (true) {
+      const prevData = await getDataFromStorage("searchHistory");
+      if (Array.isArray(prevData) && !prevData.includes(id)) {
+        if (prevData.length >= 5) {
+          prevData.pop();
+        }
+        await storeDataToStorage("searchHistory", [id, ...prevData]);
+      } else if (!prevData) {
+        await storeDataToStorage("searchHistory", [id]);
       }
-      await storeDataToStorage("searchHistory", [id, ...prevData]);
-    } else if (!prevData) {
-      await storeDataToStorage("searchHistory", [id]);
     }
     Keyboard.dismiss();
     setSearchInput("");
-    navigation.navigate("SubjectsNavigation", {
-      screen: "Subject",
-      params: { subjectId: id },
-    });
+    if (doctor) {
+      navigation.navigate("InfoNavigation", {
+        screen: "Doctors",
+        params: {
+          doctorId: id,
+        },
+      });
+    } else {
+      navigation.navigate("SubjectsNavigation", {
+        screen: "Subject",
+        params: { subjectId: id },
+      });
+    }
   };
 
   return (

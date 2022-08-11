@@ -38,8 +38,8 @@ const SearchResults = ({ results, handlePress, searchInput }: Props) => {
                       key={index}
                       style={{
                         fontSize: 16,
-                        fontFamily: "TajawalMedium",
                         color: textColor,
+                        fontWeight: "bold",
                       }}
                     >
                       {letter}
@@ -52,7 +52,7 @@ const SearchResults = ({ results, handlePress, searchInput }: Props) => {
                       style={{
                         fontSize: 16,
                         color: textColor,
-                        fontFamily: "TajawalMedium",
+                        // fontFamily: "TajawalRegular",
                       }}
                     >
                       {letter}

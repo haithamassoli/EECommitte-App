@@ -16,12 +16,10 @@ type NotFocused = StaticProps &
   };
 
 type SubjectSearchInputProps = {
-  list: readonly Subject[];
   setResults: React.Dispatch<React.SetStateAction<Subject[] | []>>;
   options: Fuse.IFuseOptions<Subject>;
 };
 type DoctorSearchInputProps = {
-  list: readonly Doctor[];
   setResults: React.Dispatch<React.SetStateAction<Doctor[] | []>>;
   options: Fuse.IFuseOptions<Doctor>;
 };
@@ -30,6 +28,7 @@ type StaticProps = {
   searchInput: string;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
   style?: StyleProp<ViewStyle>;
+  list: (Doctor | Subject)[] | (Doctor[] & Subject[]);
 };
 
 export type SearchInputProps = Focused | NotFocused;

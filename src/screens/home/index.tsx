@@ -127,7 +127,8 @@ const HomeScreen = ({ navigation }: Props) => {
           ))}
         </View>
       </View>
-      <View
+      <ScrollView
+        showsVerticalScrollIndicator={false}
         style={{
           flex: 1,
           paddingHorizontal: 16,
@@ -234,7 +235,7 @@ const HomeScreen = ({ navigation }: Props) => {
             </Pressable>
           ))}
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 };

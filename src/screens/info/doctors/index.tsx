@@ -5,6 +5,7 @@ import {
   View,
   Pressable,
   Linking,
+  ActivityIndicator,
 } from "react-native";
 import DoctorsData from "@Src/data/Doctors";
 import { Doctor } from "@Types/index";
@@ -23,12 +24,13 @@ const options = {
 const DoctorsScreen = ({ route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Doctor[] | []>([]);
+  const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
   const textColor =
     theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
 
   useEffect(() => {
-    // find doctor by id
+    setLoading(true);
     const doctor = DoctorsData.find(
       (doctor) => doctor.id === route.params.doctorId
     );
@@ -36,9 +38,17 @@ const DoctorsScreen = ({ route }: Props) => {
       setSearchInput(doctor.name2);
       setResults([doctor]);
     }
+    setLoading(false);
   }, [route.params.doctorId]);
+
+  if (loading) {
+    return (
+      <ActivityIndicator style={{ flex: 1 }} size="large" color={Colors.gray} />
+    );
+  }
   return (
     <>
+      {loading}
       <ScrollView style={{ marginHorizontal: 12 }}>
         <SearchInput
           searchInput={searchInput}

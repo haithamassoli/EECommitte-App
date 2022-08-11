@@ -50,8 +50,7 @@ const SearchInput = ({
 
   const handlePress = async (id: number) => {
     const doctor = DoctorsData.find((doctor) => doctor.id === id);
-    const subject = Subjects.find((subject) => subject.id === id);
-    if (true) {
+    if (!doctor) {
       const prevData = await getDataFromStorage("searchHistory");
       if (Array.isArray(prevData) && !prevData.includes(id)) {
         if (prevData.length >= 5) {

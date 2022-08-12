@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "normal",
     fontFamily: "TajawalMedium",
-    marginTop: 16,
+    marginVertical: 12,
     marginHorizontal: 12,
   },
   sliderContainer: {

@@ -1,15 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
-import {
-  createBottomTabNavigator,
-  BottomTabBarProps,
-} from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SubjectsNavigation from "../subjects";
 import SearchScreen from "@Screens/search";
 import HomeScreen from "@Screens/home";
 import { Feather } from "@expo/vector-icons";
 import type { BottomTabParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
-import { Text, TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
 import {
@@ -24,6 +21,7 @@ const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 export default function Route() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
+
   return (
     <NavigationContainer
       theme={theme === "light" ? LightNavigationColors : DarkNavigationColors}
@@ -96,7 +94,6 @@ export default function Route() {
               tabBarIcon: ({ color }) => (
                 <Feather name="home" size={24} color={color} />
               ),
-              headerShown: false,
               tabBarLabel: "الرئيسية",
             }}
           />

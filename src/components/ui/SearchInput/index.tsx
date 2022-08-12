@@ -30,7 +30,7 @@ const SearchInput = ({
   const searchAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    const fuse = new Fuse<Subject | Doctor | any>(list, options);
+    const fuse = new Fuse<any>(list, options);
     const searchResults = fuse.search(searchInput);
     const newArr = searchResults.slice(0, 5).map((result) => {
       return result.item;

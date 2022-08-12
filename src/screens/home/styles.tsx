@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { screenWidth, screenHeight } from "@Utils/Helper";
+import { screenWidth } from "@Utils/Helper";
 import Colors from "@GlobalStyle/Colors";
 const styles = StyleSheet.create({
   logosContainer: {

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
-import subjects from "@Src/data/Subjects";
+import SubjectsData from "@Src/data/Subjects";
 import Colors from "@GlobalStyle/Colors";
 import SearchInput from "@Components/ui/SearchInput";
 import { useContext, useEffect, useState } from "react";
@@ -22,6 +22,7 @@ import { BottomTabParamList } from "@Types/navigation";
 import styles from "./styles";
 import { ThemeContext } from "@Src/store/themeContext";
 import SearchResults from "@Components/ui/SearchInput/SearchResults";
+import DoctorsData from "@Src/data/Doctors";
 
 const options = {
   keys: ["name", "name2"],
@@ -44,7 +45,7 @@ const SearchScreen = ({ navigation }: Props) => {
       const historySearchResults = await getDataFromStorage("searchHistory");
       if (Array.isArray(historySearchResults)) {
         historySearchResults.map((ids: number) => {
-          const result = subjects.find((subject) => subject.id === ids);
+          const result = SubjectsData.find((subject) => subject.id === ids);
           if (result) {
             setHistoryResults((prev) => [...prev, result]);
           }
@@ -61,13 +62,13 @@ const SearchScreen = ({ navigation }: Props) => {
         prevData.pop();
       }
       await storeDataToStorage("searchHistory", [id, ...prevData]);
-      const result = subjects.find((subject) => subject.id === id);
+      const result = SubjectsData.find((subject) => subject.id === id);
       if (result) {
         setHistoryResults((prev) => [result, ...prev.slice(0, 4)]);
       }
     } else if (!prevData) {
       await storeDataToStorage("searchHistory", [id]);
-      const result = subjects.find((subject) => subject.id === id);
+      const result = SubjectsData.find((subject) => subject.id === id);
       if (result) {
         setHistoryResults([result]);
       }
@@ -114,7 +115,7 @@ const SearchScreen = ({ navigation }: Props) => {
             setSearchInput={setSearchInput}
             setResults={setResults}
             options={options}
-            list={subjects}
+            list={SubjectsData}
           />
         </View>
         {!searchInput ? (

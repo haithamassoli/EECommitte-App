@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useLayoutEffect, useEffect } from "react";
 import {
   View,
   Image,
@@ -8,7 +8,6 @@ import {
   Linking,
   Keyboard,
 } from "react-native";
-import { screenHeight, screenWidth } from "@Utils/Helper";
 import styles from "./styles";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -18,10 +17,12 @@ import {
   BottomTabNavigationProp,
   BottomTabScreenProps,
 } from "@react-navigation/bottom-tabs";
-import Subjects from "@Src/data/Subjects";
+import SubjectsData from "@Src/data/Subjects";
 import { Subject } from "@Types/index";
 import Overlay from "@Components/Overlay";
 import DoctorsData from "@Src/data/Doctors";
+import ImagesCarousel from "@Components/ImagesCarousel";
+import ImagesCarouselData from "@Src/data/ImagesCarousel";
 
 const options = {
   keys: ["name", "name2"],
@@ -36,14 +37,160 @@ type Props = BottomTabScreenProps<BottomTabParamList, "Home">;
 
 const HomeScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [results, setResults] = useState<Subject[] | []>([]);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.gray : Colors.darkTextColor;
 
+  useEffect(() => {
+    navigation.setOptions({
+      header: () => (
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: 12,
+              marginHorizontal: 12,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                source={require("@Assets/images/icons/lagna-logo.png")}
+                style={{ width: 50, height: 50, resizeMode: "contain" }}
+              />
+              <View style={{ marginStart: 8 }}>
+                <Text
+                  style={{
+                    color: textColor,
+                    fontSize: 16,
+                    fontFamily: "Bukra",
+                  }}
+                >
+                  لجنة الهندسة الكهربائية
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 10,
+                    fontFamily: "Bukra",
+                    textAlign: "left",
+                    color: textColor,
+                  }}
+                >
+                  Electrical Engineering EECommitte
+                </Text>
+              </View>
+            </View>
+            <Image
+              source={require("@Assets/images/icons/tasharck.png")}
+              style={{ width: 50, height: 70, resizeMode: "contain" }}
+            />
+          </View>
+          <SearchInput
+            style={{
+              marginHorizontal: 12,
+              paddingBottom: 6,
+            }}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+            searchBarFocused={searchBarFocused}
+            setSearchBarFocused={setSearchBarFocused}
+            results={results}
+            list={[...SubjectsData, ...DoctorsData]}
+            setResults={setResults}
+            options={options}
+          />
+        </>
+      ),
+    });
+  }, [searchInput, searchBarFocused]);
+  const rowOne = [
+    {
+      title: "ما يخص",
+      title2: "المواد",
+      lightIcon: require("@Assets/images/icons/light-icons/about-subject.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/about-subject.png"),
+      onPress: () => console.log("pressed"),
+    },
+    {
+      title: "أبرز",
+      title2: "شروحاتنا",
+      lightIcon: require("@Assets/images/icons/light-icons/best.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/best.png"),
+      onPress: () => console.log("pressed"),
+    },
+    {
+      title: "الدفاتر",
+      title2: "الأسبوعية",
+      lightIcon: require("@Assets/images/icons/light-icons/weekly-notebooks.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/weekly-notebooks.png"),
+      onPress: () => console.log("pressed"),
+    },
+  ];
+
+  const rowTwo = [
+    {
+      title: "الهيئة",
+      title2: "التدريسية",
+      lightIcon: require("@Assets/images/icons/light-icons/doctors.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/doctors.png"),
+      onPress: () =>
+        navigation.navigate("InfoNavigation", {
+          screen: "Doctors",
+          params: { doctorId: undefined },
+        }),
+    },
+    {
+      title: "تسجيلات",
+      title2: "اللجنة",
+      lightIcon: require("@Assets/images/icons/light-icons/records.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/records.png"),
+      onPress: () => console.log("pressed"),
+    },
+    {
+      title: "حساب",
+      title2: "المعدل",
+      lightIcon: require("@Assets/images/icons/light-icons/calculator.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/calculator.png"),
+      onPress: () => console.log("pressed"),
+    },
+  ];
+
+  const rowThree = [
+    {
+      title: "قناة",
+      title2: "اللجنة",
+      lightIcon: require("@Assets/images/icons/light-icons/youtube.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/youtube.png"),
+      onPress: () =>
+        Linking.openURL("https://www.youtube.com/user/EECommittee"),
+    },
+    {
+      title: "مجموعة",
+      title2: "الفيسبوك",
+      lightIcon: require("@Assets/images/icons/light-icons/facebook.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/facebook.png"),
+      onPress: () =>
+        Linking.openURL("https://www.facebook.com/groups/eelajna.just"),
+    },
+    {
+      title: "ما يخص",
+      title2: "التسجيل",
+      lightIcon: require("@Assets/images/icons/light-icons/registration.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/registration.png"),
+      onPress: () => console.log("pressed"),
+    },
+  ];
+
   return (
-    <>
+    <ScrollView>
       {searchBarFocused && (
         <Overlay
           onPress={() => {
@@ -52,200 +199,85 @@ const HomeScreen = ({ navigation }: Props) => {
           }}
         />
       )}
-      <View style={styles.logosContainer}>
-        <View style={styles.logoAndTextContainer}>
-          <Image
-            source={require("@Assets/images/icons/lagna-logo.png")}
-            style={styles.lagnaLogo}
-          />
-          <View style={styles.logoTextContainter}>
-            <Text style={[styles.logoTitleAr, { color: textColor }]}>
-              لجنة الهندسة الكهربائية
-            </Text>
-            <Text style={[styles.logoTitleEn, { color: textColor }]}>
-              Electrical Engineering EECommitte
-            </Text>
-          </View>
-        </View>
-        <Image
-          source={require("@Assets/images/icons/tasharck.png")}
-          style={styles.tasharckLogo}
-        />
-      </View>
-      <SearchInput
-        style={{ marginHorizontal: 12 }}
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-        searchBarFocused={searchBarFocused}
-        setSearchBarFocused={setSearchBarFocused}
-        results={results}
-        list={[...Subjects, ...DoctorsData]}
-        setResults={setResults}
-        options={options}
-      />
-      <ScrollView
+      <Text style={[styles.headerText, { color: textColor }]}>جديد لجنتكم</Text>
+      <ImagesCarousel images={ImagesCarouselData} />
+      <View
         style={{
           flex: 1,
+          paddingHorizontal: 16,
+          paddingBottom: 16,
+          marginTop: 40,
+          marginHorizontal: 12,
         }}
       >
-        <Text style={[styles.headerText, { color: textColor }]}>
-          جديد لجنتكم
-        </Text>
-        <View
-          style={{
-            height: screenHeight * 0.28,
-          }}
-        >
-          <ScrollView
-            horizontal
-            pagingEnabled
-            alwaysBounceHorizontal
-            showsHorizontalScrollIndicator={false}
-            bounces={true}
-            automaticallyAdjustsScrollIndicatorInsets={false}
-            automaticallyAdjustContentInsets={false}
-            alwaysBounceVertical={false}
-            contentInsetAdjustmentBehavior="never"
-            snapToAlignment="center"
-            onScroll={(e) => {
-              setCurrentIndex(
-                Math.floor(e.nativeEvent.contentOffset.x / (screenWidth - 40))
-              );
-            }}
-            style={styles.sliderContainer}
-          >
-            {[1, 2, 3].map((image, index) => (
-              <Image
-                key={index}
-                source={require("@Assets/images/slider1.png")}
-                style={styles.sliderImage}
-              />
-            ))}
-          </ScrollView>
-          <View style={styles.sliderDotsContainer}>
-            {[1, 2, 3].map((image, index, array) => (
-              <View
-                key={index}
-                style={[
-                  styles.sliderDot,
-                  currentIndex === array.length - 1 - index && styles.activeDot,
-                ]}
-              />
-            ))}
-          </View>
+        <View style={styles.iconsContainer}>
+          {rowOne.map((icon, index) => (
+            <Pressable
+              key={index}
+              onPress={icon.onPress}
+              style={styles.iconContainer}
+            >
+              <View>
+                <Image
+                  source={theme === "light" ? icon.lightIcon : icon.darkIcon}
+                  style={styles.icon}
+                />
+              </View>
+              <Text style={[styles.iconText, { color: textColor }]}>
+                {icon.title}
+              </Text>
+              <Text style={[styles.iconText, { color: textColor }]}>
+                {icon.title2}
+              </Text>
+            </Pressable>
+          ))}
         </View>
-        <View
-          style={{
-            flex: 1,
-            paddingHorizontal: 16,
-            paddingBottom: 16,
-            marginTop: 40,
-            marginHorizontal: 12,
-          }}
-        >
-          <View style={styles.iconsContainer}>
-            {[
-              {
-                title: "البوستات",
-                title2: "الشاملة",
-                icon: require("@Assets/images/icons/full-post.png"),
-                onPress: () => console.log("pressed"),
-              },
-              {
-                title: "قناة",
-                title2: "اللجنة",
-                icon: require("@Assets/images/icons/youtube.png"),
-                onPress: () =>
-                  Linking.openURL("https://www.youtube.com/user/EECommittee"),
-              },
-              {
-                title: "الدفاتر",
-                title2: "الأسبوعية",
-                icon: require("@Assets/images/icons/weekly-notebooks.png"),
-                onPress: () => console.log("pressed"),
-              },
-            ].map((icon, index) => (
-              <Pressable
-                key={index}
-                onPress={icon.onPress}
-                style={styles.iconContainer}
-              >
-                <View
-                  style={[
-                    styles.iconBackground,
-                    {
-                      backgroundColor:
-                        theme === "light" ? Colors.lightGray : "#1b2836",
-                    },
-                  ]}
-                >
-                  <Image source={icon.icon} style={styles.icon} />
-                </View>
-                <Text style={[styles.iconText, { color: textColor }]}>
-                  {icon.title}
-                </Text>
-                <Text style={[styles.iconText, { color: textColor }]}>
-                  {icon.title2}
-                </Text>
-              </Pressable>
-            ))}
-          </View>
-          <View style={styles.iconsContainer}>
-            {[
-              {
-                title: "الهيئة",
-                title2: "التدريسية",
-                icon: require("@Assets/images/icons/teachers.png"),
-                onPress: () =>
-                  navigation.navigate("InfoNavigation", {
-                    screen: "Doctors",
-                    params: { doctorId: undefined },
-                  }),
-              },
-              {
-                title: "مجموعة",
-                title2: "الفيسبوك",
-                icon: require("@Assets/images/icons/facebook.png"),
-                onPress: () =>
-                  Linking.openURL(
-                    "https://www.facebook.com/groups/eelajna.just"
-                  ),
-              },
-              {
-                title: "موقع",
-                title2: "الجامعة",
-                icon: require("@Assets/images/icons/education-institution.png"),
-                onPress: () => console.log("pressed"),
-              },
-            ].map((icon, index) => (
-              <Pressable
-                key={index}
-                onPress={icon.onPress}
-                style={styles.iconContainer}
-              >
-                <View
-                  style={[
-                    styles.iconBackground,
-                    {
-                      backgroundColor:
-                        theme === "light" ? Colors.lightGray : "#1b2836",
-                    },
-                  ]}
-                >
-                  <Image source={icon.icon} style={styles.icon} />
-                </View>
-                <Text style={[styles.iconText, { color: textColor }]}>
-                  {icon.title}
-                </Text>
-                <Text style={[styles.iconText, { color: textColor }]}>
-                  {icon.title2}
-                </Text>
-              </Pressable>
-            ))}
-          </View>
+        <View style={styles.iconsContainer}>
+          {rowTwo.map((icon, index) => (
+            <Pressable
+              key={index}
+              onPress={icon.onPress}
+              style={styles.iconContainer}
+            >
+              <View>
+                <Image
+                  source={theme === "light" ? icon.lightIcon : icon.darkIcon}
+                  style={styles.icon}
+                />
+              </View>
+              <Text style={[styles.iconText, { color: textColor }]}>
+                {icon.title}
+              </Text>
+              <Text style={[styles.iconText, { color: textColor }]}>
+                {icon.title2}
+              </Text>
+            </Pressable>
+          ))}
         </View>
-      </ScrollView>
-    </>
+        <View style={styles.iconsContainer}>
+          {rowThree.map((icon, index) => (
+            <Pressable
+              key={index}
+              onPress={icon.onPress}
+              style={styles.iconContainer}
+            >
+              <View>
+                <Image
+                  source={theme === "light" ? icon.lightIcon : icon.darkIcon}
+                  style={styles.icon}
+                />
+              </View>
+              <Text style={[styles.iconText, { color: textColor }]}>
+                {icon.title}
+              </Text>
+              <Text style={[styles.iconText, { color: textColor }]}>
+                {icon.title2}
+              </Text>
+            </Pressable>
+          ))}
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 

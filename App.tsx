@@ -3,11 +3,10 @@ import { useContext, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Route from "./src/navigation/main";
-import { I18nManager, Platform, Text } from "react-native";
+import { I18nManager, Text } from "react-native";
 import * as Updates from "expo-updates";
 import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
-
 import { useFonts } from "expo-font";
 
 export default function App() {
@@ -39,6 +38,7 @@ export default function App() {
     TajawalLight: require("./assets/fonts/Tajawal-Light.ttf"),
     TajawalMedium: require("./assets/fonts/Tajawal-Medium.ttf"),
     TajawalRegular: require("./assets/fonts/Tajawal-Regular.ttf"),
+    TajawalBold: require("./assets/fonts/Tajawal-Bold.ttf"),
     Bukra: require("./assets/fonts/29ltbukra.ttf"),
   });
 

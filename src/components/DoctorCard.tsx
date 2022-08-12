@@ -4,17 +4,9 @@ import { Doctor } from "@Types/index";
 import { useContext } from "react";
 import { View, Text, Pressable, Image, Linking } from "react-native";
 
-type Props = Omit<Doctor, "id">;
+type Props = Omit<Doctor, "id" | "name2">;
 
-const DoctorCard = ({
-  name,
-  name2,
-  image,
-  office,
-  phone,
-  email,
-  website,
-}: Props) => {
+const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
   const { theme } = useContext(ThemeContext);
   const textColor =
     theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
@@ -40,9 +32,6 @@ const DoctorCard = ({
       <View style={{ flex: 1 }}>
         <Text style={{ color: textColor, textAlign: "left" }}>
           الإسم: {name}
-        </Text>
-        <Text style={{ color: textColor, textAlign: "left" }}>
-          الإسم: {name2}
         </Text>
         <Text style={{ color: textColor, textAlign: "left" }}>
           المكتب: {office}

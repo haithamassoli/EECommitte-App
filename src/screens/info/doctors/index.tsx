@@ -1,12 +1,4 @@
-import {
-  Text,
-  Image,
-  ScrollView,
-  View,
-  Pressable,
-  Linking,
-  ActivityIndicator,
-} from "react-native";
+import { Text, ScrollView, View, ActivityIndicator } from "react-native";
 import DoctorsData from "@Src/data/Doctors";
 import { Doctor } from "@Types/index";
 import SearchInput from "@Components/ui/SearchInput";
@@ -20,8 +12,10 @@ import DoctorCard from "@Components/DoctorCard";
 type Props = StackScreenProps<InfoStackParamList, "Doctors">;
 
 const options = {
+  minMatchCharLength: 2,
   keys: ["name", "name2"],
 };
+
 const DoctorsScreen = ({ route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Doctor[] | []>([]);
@@ -60,14 +54,13 @@ const DoctorsScreen = ({ route }: Props) => {
           style={{ marginTop: 12 }}
         />
         {results.length > 0 && searchInput.length > 0 ? (
-          <ScrollView>
+          <ScrollView keyboardShouldPersistTaps="always">
             {results.map((doctor) => (
               <DoctorCard
                 key={doctor.id}
                 email={doctor.email}
                 image={doctor.image}
                 name={doctor.name}
-                name2={doctor.name2}
                 office={doctor.office}
                 phone={doctor.phone}
                 website={doctor.website}
@@ -89,14 +82,13 @@ const DoctorsScreen = ({ route }: Props) => {
             </Text>
           </>
         ) : (
-          <ScrollView>
+          <ScrollView keyboardShouldPersistTaps="always">
             {DoctorsData.map((doctor: Doctor) => (
               <DoctorCard
                 key={doctor.id}
                 email={doctor.email}
                 image={doctor.image}
                 name={doctor.name}
-                name2={doctor.name2}
                 office={doctor.office}
                 phone={doctor.phone}
                 website={doctor.website}

@@ -12,7 +12,6 @@ import SearchResults from "./SearchResults";
 import { SearchInputProps } from "@Types/Search";
 import { HomeNavigationProp } from "@Screens/home";
 import DoctorsData from "@Src/data/Doctors";
-import Subjects from "@Src/data/Subjects";
 
 const SearchInput = ({
   searchInput,
@@ -84,7 +83,6 @@ const SearchInput = ({
         styles.searchContainer,
         style,
         {
-          position: "relative",
           zIndex: 12,
           transform: [
             {

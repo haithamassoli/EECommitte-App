@@ -1,5 +1,5 @@
 import Colors from "@GlobalStyle/Colors";
-import { Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   searchContainer: {
@@ -12,10 +12,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 30,
     backgroundColor: Colors.lightGray,
-    fontFamily: "TajawalMedium",
-    fontSize: 14,
+    fontFamily: "TajawalBold",
+    fontSize: 12,
     width: "100%",
-    zIndex: 1000,
   },
   searchIcon: {
     position: "absolute",

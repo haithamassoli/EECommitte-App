@@ -29,8 +29,7 @@ const NewsScreen = () => {
   const postsCollectionRef = collection(db, "posts");
 
   const { theme } = useContext(ThemeContext);
-  const textColor =
-    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   useEffect(() => {
     // getPosts();

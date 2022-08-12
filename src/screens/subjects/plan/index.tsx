@@ -27,7 +27,7 @@ const PlanScreen = ({ navigation }: Props) => {
         style={{
           fontFamily: "Bukra",
           fontSize: 24,
-          color: theme === "light" ? Colors.gray : Colors.darkTextColor,
+          color: theme === "light" ? Colors.gray : Colors.darkText,
           alignSelf: "flex-start",
           marginLeft: 20,
           marginTop: 20,

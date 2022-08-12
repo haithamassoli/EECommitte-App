@@ -23,6 +23,7 @@ import Overlay from "@Components/Overlay";
 import DoctorsData from "@Src/data/Doctors";
 import ImagesCarousel from "@Components/ImagesCarousel";
 import ImagesCarouselData from "@Src/data/ImagesCarousel";
+import { Feather } from "@expo/vector-icons";
 
 const options = {
   keys: ["name", "name2"],
@@ -39,8 +40,8 @@ const HomeScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Subject[] | []>([]);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
-  const { theme } = useContext(ThemeContext);
-  const textColor = theme === "light" ? Colors.gray : Colors.darkTextColor;
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   useEffect(() => {
     navigation.setOptions({
@@ -199,7 +200,48 @@ const HomeScreen = ({ navigation }: Props) => {
           }}
         />
       )}
-      <Text style={[styles.headerText, { color: textColor }]}>جديد لجنتكم</Text>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginHorizontal: 12,
+        }}
+      >
+        <Text style={[styles.headerText, { color: textColor }]}>
+          جديد لجنتكم
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            width: 80,
+            height: 50,
+            borderRadius: 25,
+            justifyContent: "space-evenly",
+            backgroundColor:
+              theme === "light"
+                ? Colors.lightBackgroundSec
+                : Colors.darkBackgroundSec,
+          }}
+        >
+          <Pressable onPress={() => console.log("pressed")}>
+            <Feather
+              name={"bell"}
+              size={24}
+              color={theme === "light" ? Colors.lightText : Colors.darkText}
+            />
+          </Pressable>
+          <Pressable onPress={toggleTheme}>
+            <Feather
+              name={theme === "light" ? "moon" : "sun"}
+              size={24}
+              color={theme === "light" ? Colors.lightText : Colors.darkText}
+            />
+          </Pressable>
+        </View>
+      </View>
       <ImagesCarousel images={ImagesCarouselData} />
       <View
         style={{

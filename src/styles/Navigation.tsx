@@ -7,7 +7,7 @@ export const LightNavigationColors = {
     card: Colors.lightBackground,
     notification: "rgb(255, 69, 58)",
     primary: Colors.primary400,
-    text: Colors.lightTextColor,
+    text: Colors.lightText,
   },
   dark: false,
 };
@@ -19,7 +19,7 @@ export const DarkNavigationColors = {
     card: "rgb(18, 18, 18)",
     notification: "rgb(255, 69, 58)",
     primary: Colors.primary400,
-    text: Colors.darkTextColor,
+    text: Colors.darkText,
   },
   dark: true,
 };

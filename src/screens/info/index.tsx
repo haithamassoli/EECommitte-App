@@ -10,8 +10,7 @@ type Props = StackScreenProps<InfoStackParamList>;
 
 const InfoScreen = ({ navigation }: Props) => {
   const { theme } = useContext(ThemeContext);
-  const textColor =
-    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const onPress = (page: keyof InfoStackParamList) => {
     navigation.push(page);
   };

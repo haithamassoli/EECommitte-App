@@ -13,8 +13,7 @@ interface InfoItemProps {
 
 const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
   const { theme } = useContext(ThemeContext);
-  const textColor =
-    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
     <Pressable onPress={onPress} style={styles.outerContainer}>
       <View style={styles.innerContainer}>

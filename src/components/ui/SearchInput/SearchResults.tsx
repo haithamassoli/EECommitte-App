@@ -12,8 +12,7 @@ type Props = {
 
 const SearchResults = ({ results, handlePress, searchInput }: Props) => {
   const { theme } = useContext(ThemeContext);
-  const textColor =
-    theme === "light" ? Colors.darkTextColor : Colors.lightTextColor;
+  const textColor = theme === "light" ? Colors.darkText : Colors.lightText;
 
   return (
     <>

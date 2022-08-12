@@ -8,8 +8,7 @@ type Props = Omit<Doctor, "id" | "name2">;
 
 const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
   const { theme } = useContext(ThemeContext);
-  const textColor =
-    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
     <View
       style={{

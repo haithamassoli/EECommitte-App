@@ -35,8 +35,7 @@ const SearchScreen = ({ navigation }: Props) => {
   const [results, setResults] = useState<Subject[] | []>([]);
   const [historyResults, setHistoryResults] = useState([] as Subject[]);
   const { theme } = useContext(ThemeContext);
-  const textColor =
-    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
 

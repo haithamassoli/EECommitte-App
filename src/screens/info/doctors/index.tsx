@@ -21,8 +21,7 @@ const DoctorsScreen = ({ route }: Props) => {
   const [results, setResults] = useState<Doctor[] | []>([]);
   const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
-  const textColor =
-    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   useEffect(() => {
     setLoading(true);

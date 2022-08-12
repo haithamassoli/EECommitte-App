@@ -11,16 +11,14 @@ type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 
 const SubjectFullPostScreen = ({ navigation, route }: Props) => {
   const { theme } = useContext(ThemeContext);
-  const textColor =
-    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "البوست الشامل",
     });
   }, []);
   return (
-    <ScrollView
-    >
+    <ScrollView>
       {route?.params?.post ? (
         <WebDisplay html={route?.params?.post} />
       ) : (

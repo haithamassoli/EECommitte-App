@@ -11,8 +11,7 @@ type StylesDictionary = {
 };
 export const WebDisplay = memo(function WebDisplay({ html }: { html: string }) {
   const { theme } = useContext(ThemeContext);
-  const textColor =
-    theme === "light" ? Colors.lightTextColor : Colors.darkTextColor;
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const tagsStyles: StylesDictionary = {
     p: {
       fontSize: 18,

@@ -6,13 +6,12 @@ import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
-import { InfoStackParamList } from "@Types/navigation";
+import { HomeStackParamList } from "@Types/navigation";
 import DoctorCard from "@Components/DoctorCard";
 
-type Props = StackScreenProps<InfoStackParamList, "Doctors">;
+type Props = StackScreenProps<HomeStackParamList, "Doctors">;
 
 const options = {
-  minMatchCharLength: 2,
   keys: ["name", "name2"],
 };
 

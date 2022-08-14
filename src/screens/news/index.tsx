@@ -1,6 +1,5 @@
 import { View, Text, ScrollView, Image, Pressable } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { AdMobBanner } from "expo-ads-admob";
 import styles from "./styles";
 import { WebDisplay } from "@Components/webDisplay";
 import Colors from "@GlobalStyle/Colors";
@@ -57,24 +56,12 @@ const NewsScreen = () => {
   return (
     <ScrollView style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
-        <AdMobBanner
-          bannerSize="smartBannerLandscape"
-          adUnitID="ca-app-pub-6462207765068097/3044148231" // Test ID, Replace with your-admob-unit-id
-          servePersonalizedAds // true or false
-          onDidFailToReceiveAdWithError={(err) => console.log(err)}
-        />
         <Image
           style={{ width: screenWidth, height: screenHeight }}
           resizeMode="cover"
           source={{
             uri: "https://images.unsplash.com/photo-1659425191734-773850835dad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
           }}
-        />
-        <AdMobBanner
-          bannerSize="smartBannerLandscape"
-          adUnitID="ca-app-pub-6462207765068097/3044148231" // Test ID, Replace with your-admob-unit-id
-          servePersonalizedAds // true or false
-          onDidFailToReceiveAdWithError={(err) => console.log(err)}
         />
         <Image
           style={{ width: screenWidth, height: screenHeight }}
@@ -83,24 +70,12 @@ const NewsScreen = () => {
             uri: "https://images.unsplash.com/photo-1659397426038-7a7ca56e5e15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
           }}
         />
-        <AdMobBanner
-          bannerSize="smartBannerLandscape"
-          adUnitID="ca-app-pub-6462207765068097/3044148231" // Test ID, Replace with your-admob-unit-id
-          servePersonalizedAds // true or false
-          onDidFailToReceiveAdWithError={(err) => console.log(err)}
-        />
         <Image
           style={{ width: screenWidth, height: screenHeight }}
           resizeMode="cover"
           source={{
             uri: "https://images.unsplash.com/photo-1659457706578-06b0e8bbf087?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
           }}
-        />
-        <AdMobBanner
-          bannerSize="smartBannerLandscape"
-          adUnitID="ca-app-pub-6462207765068097/3044148231" // Test ID, Replace with your-admob-unit-id
-          servePersonalizedAds // true or false
-          onDidFailToReceiveAdWithError={(err) => console.log(err)}
         />
         {posts.map((post, index) => (
           <View key={index} style={{ flex: 1 }}>

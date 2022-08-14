@@ -1,16 +1,11 @@
-import { ScrollView, Text, StyleSheet, View, Pressable } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import InfoItem from "@Components/infoItem";
-import { ThemeContext } from "@Src/store/themeContext";
-import { useContext } from "react";
-import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
 
 type Props = StackScreenProps<InfoStackParamList>;
 
 const InfoScreen = ({ navigation }: Props) => {
-  const { theme } = useContext(ThemeContext);
-  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const onPress = (page: keyof InfoStackParamList) => {
     navigation.push(page);
   };
@@ -28,12 +23,6 @@ const InfoScreen = ({ navigation }: Props) => {
           title="تواصل معنا"
           subTitle=""
           onPress={() => onPress("ContactUs")}
-        />
-        <InfoItem
-          icon="user"
-          title="الكادر التدريسي"
-          subTitle="معلومات عن الكادر التدريسي"
-          onPress={() => onPress("Doctors")}
         />
         <InfoItem
           icon="share-2"

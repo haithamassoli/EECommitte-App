@@ -1,7 +1,7 @@
 import { NavigatorScreenParams } from "@react-navigation/native";
 
 export type BottomTabParamList = {
-  Home: undefined;
+  HomeNavigation: NavigatorScreenParams<HomeStackParamList>;
   News: undefined;
   Search: undefined;
   SubjectsNavigation: NavigatorScreenParams<SubjectsStackParamList>;
@@ -20,6 +20,14 @@ export type InfoStackParamList = {
   AboutEECommitte: undefined;
   SupportUs: undefined;
   ContactUs: undefined;
-  Doctors: { doctorId?: number };
   QuickLinkes: undefined;
+};
+
+export type HomeStackParamList = {
+  Home: undefined;
+  AboutEECommitte: undefined;
+  AboutRegistration: undefined;
+  WeeklyNotebooks: undefined;
+  Calculator: undefined;
+  Doctors: { doctorId?: number };
 };

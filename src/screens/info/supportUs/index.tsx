@@ -1,45 +1,14 @@
-import { View, Button, Text } from "react-native";
-import { AdMobRewarded } from "expo-ads-admob";
-import { useContext, useEffect } from "react";
-import { Feather, Ionicons } from "@expo/vector-icons";
+import { View, Text } from "react-native";
+import { useContext } from "react";
+import { Ionicons } from "@expo/vector-icons";
 import { ThemeContext } from "@Src/store/themeContext";
 
 const SupportUsScreen = () => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? "#000" : "#fff";
-  useEffect(() => {
-    return function cleanup() {
-      AdMobRewarded.removeAllListeners();
-    };
-  }, []);
 
-  const loadAd = async () => {
-    await AdMobRewarded.setAdUnitID("ca-app-pub-6462207765068097/2318772812");
-    await AdMobRewarded.requestAdAsync();
-  };
-
-  AdMobRewarded.addEventListener("rewardedVideoUserDidEarnReward", (reward) => {
-    console.log(reward);
-    loadAd();
-  });
-
-  AdMobRewarded.addEventListener("rewardedVideoDidFailToLoad", () => {
-    loadAd();
-  });
-
-  AdMobRewarded.addEventListener("rewardedVideoDidDismiss", () => {
-    loadAd();
-  });
-
-  loadAd();
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Button
-        title="Show Reward Ad"
-        onPress={() => {
-          AdMobRewarded.showAdAsync();
-        }}
-      />
       <Text
         style={{
           fontFamily: "Bukra",

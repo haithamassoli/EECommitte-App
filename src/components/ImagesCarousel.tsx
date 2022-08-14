@@ -46,7 +46,7 @@ const ImagesCarousel = ({ images }: Props) => {
         stretch
         style={{
           width: screenWidth - 40,
-          height: screenHeight * 0.28,
+          height: screenHeight * 0.24,
           borderRadius: 12,
         }}
       >
@@ -69,7 +69,7 @@ const ImagesCarousel = ({ images }: Props) => {
                 source={image}
                 style={{
                   width: screenWidth - 40,
-                  height: screenHeight * 0.28,
+                  height: screenHeight * 0.24,
                   resizeMode: "cover",
                   borderRadius: 12,
                 }}

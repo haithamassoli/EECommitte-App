@@ -4,7 +4,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import InfoScreen from "@Screens/info";
 import AboutUniScreen from "@Screens/info/aboutUni";
 import ContactUsScreen from "@Screens/info/contactUs";
-import DoctorsScreen from "@Screens/info/doctors";
 import QuickLinkesScreen from "@Screens/info/quickLinkes";
 import SupportUsScreen from "@Screens/info/supportUs";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -76,11 +75,6 @@ export default function InfoNavigation() {
         options={{ headerTitle: "تواصل معنا" }}
         name="ContactUs"
         component={ContactUsScreen}
-      />
-      <Stack.Screen
-        options={{ headerTitle: "الكادر التدريسي" }}
-        name="Doctors"
-        component={DoctorsScreen}
       />
       <Stack.Screen
         options={{ headerTitle: "روابط مهمة" }}

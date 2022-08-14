@@ -17,8 +17,8 @@ const SearchResults = ({ results, handlePress, searchInput }: Props) => {
   return (
     <>
       {results.length > 0 ? (
-        results.map((result: Subject | Doctor, index: number) => (
-          <View key={index}>
+        results.map((result, index: number) => (
+          <View style={{ zIndex: 100 }} key={index}>
             <TouchableOpacity
               style={{
                 flexDirection: "row-reverse",
@@ -51,7 +51,6 @@ const SearchResults = ({ results, handlePress, searchInput }: Props) => {
                       style={{
                         fontSize: 16,
                         color: textColor,
-                        // fontFamily: "TajawalRegular",
                       }}
                     >
                       {letter}

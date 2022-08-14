@@ -1,4 +1,4 @@
-import { useState, useContext, useLayoutEffect, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
   View,
   Image,
@@ -12,33 +12,29 @@ import styles from "./styles";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import SearchInput from "@Components/ui/SearchInput";
-import { BottomTabParamList } from "@Types/navigation";
-import {
-  BottomTabNavigationProp,
-  BottomTabScreenProps,
-} from "@react-navigation/bottom-tabs";
+import { HomeStackParamList } from "@Types/navigation";
 import SubjectsData from "@Src/data/Subjects";
-import { Subject } from "@Types/index";
 import Overlay from "@Components/Overlay";
 import DoctorsData from "@Src/data/Doctors";
 import ImagesCarousel from "@Components/ImagesCarousel";
 import ImagesCarouselData from "@Src/data/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
+import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 
 const options = {
   keys: ["name", "name2"],
 };
 
-export type HomeNavigationProp = BottomTabNavigationProp<
-  BottomTabParamList,
+export type HomeNavigationProp = StackNavigationProp<
+  HomeStackParamList,
   "Home"
 >;
 
-type Props = BottomTabScreenProps<BottomTabParamList, "Home">;
+type Props = StackScreenProps<HomeStackParamList, "Home">;
 
 const HomeScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
-  const [results, setResults] = useState<Subject[] | []>([]);
+  const [results, setResults] = useState<any[]>([]);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
@@ -47,6 +43,14 @@ const HomeScreen = ({ navigation }: Props) => {
     navigation.setOptions({
       header: () => (
         <>
+          {searchBarFocused && (
+            <Overlay
+              onPress={() => {
+                setSearchBarFocused(false);
+                Keyboard.dismiss();
+              }}
+            />
+          )}
           <View
             style={{
               flexDirection: "row",
@@ -111,7 +115,7 @@ const HomeScreen = ({ navigation }: Props) => {
         </>
       ),
     });
-  }, [searchInput, searchBarFocused]);
+  }, [searchInput, searchBarFocused, theme]);
   const rowOne = [
     {
       title: "ما يخص",
@@ -142,11 +146,7 @@ const HomeScreen = ({ navigation }: Props) => {
       title2: "التدريسية",
       lightIcon: require("@Assets/images/icons/light-icons/doctors.png"),
       darkIcon: require("@Assets/images/icons/dark-icons/doctors.png"),
-      onPress: () =>
-        navigation.navigate("InfoNavigation", {
-          screen: "Doctors",
-          params: { doctorId: undefined },
-        }),
+      onPress: () => navigation.navigate("Doctors", { doctorId: undefined }),
     },
     {
       title: "تسجيلات",

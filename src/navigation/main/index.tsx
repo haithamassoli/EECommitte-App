@@ -1,8 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SubjectsNavigation from "../subjects";
-import SearchScreen from "@Screens/search";
-import HomeScreen from "@Screens/home";
 import { Feather } from "@expo/vector-icons";
 import type { BottomTabParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
@@ -15,6 +13,7 @@ import {
 } from "@GlobalStyle/Navigation";
 import InfoNavigation from "@Navigation/info";
 import NewsScreen from "@Screens/news";
+import HomeNavigation from "@Navigation/home";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
@@ -88,13 +87,14 @@ export default function Route() {
       >
         <>
           <BottomTabs.Screen
-            name="Home"
-            component={HomeScreen}
+            name="HomeNavigation"
+            component={HomeNavigation}
             options={{
               tabBarIcon: ({ color }) => (
                 <Feather name="home" size={24} color={color} />
               ),
               tabBarLabel: "الرئيسية",
+              headerShown: false,
             }}
           />
           <BottomTabs.Screen
@@ -106,19 +106,6 @@ export default function Route() {
               ),
               tabBarLabel: "أخر الأخبار",
               title: "أخر الأخبار",
-            }}
-          />
-          <BottomTabs.Screen
-            name="Search"
-            component={SearchScreen}
-            options={{
-              headerTitle: "البحث",
-              tabBarButton: () => {
-                return null;
-              },
-              headerRight: () => {
-                return null;
-              },
             }}
           />
           <BottomTabs.Screen

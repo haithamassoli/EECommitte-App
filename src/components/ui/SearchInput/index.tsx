@@ -5,7 +5,6 @@ import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext, useEffect, useRef } from "react";
 import styles from "./styles";
-import { Doctor, Subject } from "@Types/index";
 import { useNavigation } from "@react-navigation/native";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import SearchResults from "./SearchResults";
@@ -26,7 +25,6 @@ const SearchInput = ({
 }: SearchInputProps) => {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<HomeNavigationProp>();
-
   const searchAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -49,28 +47,23 @@ const SearchInput = ({
 
   const handlePress = async (id: number) => {
     const doctor = DoctorsData.find((doctor) => doctor.id === id);
-    if (!doctor) {
-      const prevData = await getDataFromStorage("searchHistory");
-      if (Array.isArray(prevData) && !prevData.includes(id)) {
-        if (prevData.length >= 5) {
-          prevData.pop();
-        }
-        await storeDataToStorage("searchHistory", [id, ...prevData]);
-      } else if (!prevData) {
-        await storeDataToStorage("searchHistory", [id]);
+    const prevData = await getDataFromStorage("searchHistory");
+    if (Array.isArray(prevData) && !prevData.includes(id)) {
+      if (prevData.length >= 10) {
+        prevData.pop();
       }
+      await storeDataToStorage("searchHistory", [id, ...prevData]);
+    } else if (!prevData) {
+      await storeDataToStorage("searchHistory", [id]);
     }
     Keyboard.dismiss();
     setSearchInput("");
     if (doctor) {
-      navigation.navigate("InfoNavigation", {
-        screen: "Doctors",
-        params: {
-          doctorId: id,
-        },
+      navigation.navigate("Doctors", {
+        doctorId: id,
       });
     } else {
-      navigation.navigate("SubjectsNavigation", {
+      navigation.getParent()?.navigate("SubjectsNavigation", {
         screen: "Subject",
         params: { subjectId: id },
       });
@@ -83,7 +76,7 @@ const SearchInput = ({
         styles.searchContainer,
         style,
         {
-          zIndex: 12,
+          zIndex: 1200,
           transform: [
             {
               translateY: searchAnim.interpolate({
@@ -114,6 +107,7 @@ const SearchInput = ({
         style={[
           styles.searchInput,
           {
+            fontSize: 14,
             color: theme === "light" ? Colors.gray : Colors.primary400,
             zIndex: 15,
           },

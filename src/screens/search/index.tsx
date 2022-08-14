@@ -3,10 +3,8 @@ import {
   Text,
   ScrollView,
   KeyboardAvoidingView,
-  Platform,
   Keyboard,
 } from "react-native";
-import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import SubjectsData from "@Src/data/Subjects";
 import Colors from "@GlobalStyle/Colors";
@@ -17,72 +15,100 @@ import {
   getDataFromStorage,
   storeDataToStorage,
 } from "@Utils/Helper";
-import type { Subject } from "@Types/index";
-import { BottomTabParamList } from "@Types/navigation";
+import { HomeStackParamList } from "@Types/navigation";
 import styles from "./styles";
 import { ThemeContext } from "@Src/store/themeContext";
 import SearchResults from "@Components/ui/SearchInput/SearchResults";
 import DoctorsData from "@Src/data/Doctors";
+import { StackScreenProps } from "@react-navigation/stack";
 
 const options = {
   keys: ["name", "name2"],
 };
 
-type Props = BottomTabScreenProps<BottomTabParamList, "Search">;
+type Props = StackScreenProps<HomeStackParamList, "Search">;
 
 const SearchScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
-  const [results, setResults] = useState<Subject[] | []>([]);
-  const [historyResults, setHistoryResults] = useState([] as Subject[]);
+  const [results, setResults] = useState<any[]>([]);
+  const [historyResults, setHistoryResults] = useState([] as any[]);
+
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
 
   useEffect(() => {
-    async function getHistory() {
+    const getHistory = async () => {
       const historySearchResults = await getDataFromStorage("searchHistory");
       if (Array.isArray(historySearchResults)) {
         historySearchResults.map((ids: number) => {
-          const result = SubjectsData.find((subject) => subject.id === ids);
-          if (result) {
-            setHistoryResults((prev) => [...prev, result]);
+          const subjectsResult = SubjectsData.find(
+            (subject) => subject.id === ids
+          );
+          const DoctorsResult = DoctorsData.find((doctor) => doctor.id === ids);
+          if (subjectsResult && DoctorsResult) {
+            setHistoryResults((prev) => [
+              ...prev,
+              subjectsResult,
+              DoctorsResult,
+            ]);
+          } else if (subjectsResult) {
+            setHistoryResults((prev) => [...prev, subjectsResult]);
+          } else if (DoctorsResult) {
+            setHistoryResults((prev) => [...prev, DoctorsResult]);
           }
         });
       }
-    }
+    };
     getHistory();
   }, []);
 
   const handlePress = async (id: number) => {
     const prevData = await getDataFromStorage("searchHistory");
+    const SubjectsResult = SubjectsData.find((subject) => subject.id === id);
+    const DoctorsResult = DoctorsData.find((doctor) => doctor.id === id);
     if (Array.isArray(prevData) && !prevData.includes(id)) {
-      if (prevData.length >= 5) {
+      if (prevData.length >= 10) {
         prevData.pop();
       }
       await storeDataToStorage("searchHistory", [id, ...prevData]);
-      const result = SubjectsData.find((subject) => subject.id === id);
-      if (result) {
-        setHistoryResults((prev) => [result, ...prev.slice(0, 4)]);
+      if (SubjectsResult && DoctorsResult) {
+        setHistoryResults((prev) => [
+          SubjectsResult,
+          DoctorsResult,
+          ...prev.slice(0, 9),
+        ]);
+      } else if (SubjectsResult) {
+        setHistoryResults((prev) => [SubjectsResult, ...prev.slice(0, 9)]);
+      } else if (DoctorsResult) {
+        setHistoryResults((prev) => [DoctorsResult, ...prev.slice(0, 9)]);
       }
     } else if (!prevData) {
       await storeDataToStorage("searchHistory", [id]);
-      const result = SubjectsData.find((subject) => subject.id === id);
-      if (result) {
-        setHistoryResults([result]);
+      if (SubjectsResult) {
+        setHistoryResults([SubjectsResult]);
+      }
+      if (DoctorsResult) {
+        setHistoryResults([DoctorsResult]);
       }
     }
     Keyboard.dismiss();
     setSearchInput("");
-    navigation.navigate("SubjectsNavigation", {
-      screen: "Subject",
-      params: { subjectId: id },
-    });
+    if (SubjectsResult) {
+      navigation.getParent()?.navigate("SubjectsNavigation", {
+        screen: "Subject",
+        params: { subjectId: id },
+      });
+    } else if (DoctorsResult) {
+      navigation.navigate("Doctors", {
+        doctorId: id,
+      });
+    }
   };
 
   const handleDelete = async (id: number) => {
     const prevData = await getDataFromStorage("searchHistory");
-    const newData = historyResults.filter((item: Subject) => item.id !== id);
+    const newData = historyResults.filter((item) => item.id !== id);
     await storeDataToStorage(
       "searchHistory",
       prevData.filter((item: number) => item !== id)
@@ -96,25 +122,30 @@ const SearchScreen = ({ navigation }: Props) => {
   };
 
   const handlePressHistory = (id: number) => {
-    navigation.navigate("SubjectsNavigation", {
-      screen: "Subject",
-      params: { subjectId: id },
-    });
+    const SubjectsResult = SubjectsData.find((subject) => subject.id === id);
+    const DoctorsResult = DoctorsData.find((doctor) => doctor.id === id);
+    if (SubjectsResult) {
+      navigation.getParent()?.navigate("SubjectsNavigation", {
+        screen: "Subject",
+        params: { subjectId: id },
+      });
+    } else if (DoctorsResult) {
+      navigation.navigate("Doctors", {
+        doctorId: id,
+      });
+    }
   };
 
   return (
     <ScrollView keyboardShouldPersistTaps="handled" style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
-      >
+      <KeyboardAvoidingView style={styles.container}>
         <View style={styles.searchContainer}>
           <SearchInput
             searchInput={searchInput}
             setSearchInput={setSearchInput}
             setResults={setResults}
             options={options}
-            list={SubjectsData}
+            list={[...SubjectsData, ...DoctorsData]}
           />
         </View>
         {!searchInput ? (
@@ -205,7 +236,7 @@ const SearchScreen = ({ navigation }: Props) => {
               flex: 1,
               width: "100%",
               height: 203,
-              zIndex: 10,
+              zIndex: 1000,
               backgroundColor:
                 theme === "light" ? Colors.dark : Colors.lightBackground,
               borderRadius: 10,

@@ -2,7 +2,7 @@
   "expo": {
     "name": "لجنة الهندسة الكهربائية",
     "slug": "EECommitte",
-    "version": "0.8.2",
+    "version": "0.8.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -21,16 +21,13 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 9,
+      "versionCode": 10,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.haithamassoli.EECommitte",
-      "googleServicesFile": "./google-services.json",
-      "config": {
-        "googleMobileAdsAppId": "ca-app-pub-6462207765068097~3702623787"
-      }
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -45,14 +42,6 @@
           "measurementId": "G-1PNF6XZRMF"
         }
       }
-    },
-    "plugins": [
-      [
-        "expo-ads-admob",
-        {
-          "userTrackingPermission": "This identifier will be used to deliver personalized ads to you."
-        }
-      ]
-    ]
+    }
   }
 }

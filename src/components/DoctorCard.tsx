@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { View, Text, Pressable, Image, Linking } from "react-native";
 
 type Props = Omit<Doctor, "id" | "name2">;
+const defaultImage = require("@Assets/images/profile-image.jpg");
 
 const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
   const { theme } = useContext(ThemeContext);
@@ -26,6 +27,7 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
           height: "100%",
           marginEnd: 12,
         }}
+        defaultSource={defaultImage}
         source={{ uri: image }}
       />
       <View style={{ flex: 1 }}>

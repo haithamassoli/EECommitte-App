@@ -63,6 +63,13 @@ const CalculatorScreen = ({ navigation }: Props) => {
         display: "none",
       },
     });
+    return () => {
+      navigation.getParent()?.setOptions({
+        tabBarStyle: {
+          display: "flex",
+        },
+      });
+    };
   }, []);
   return (
     <View style={{ flex: 1, backgroundColor: "#000" }}>

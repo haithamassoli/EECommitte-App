@@ -29,7 +29,6 @@ const ImagesCarousel = ({ images }: Props) => {
   const setImageIndex = (event: any) => {
     const contentOffset = event.nativeEvent.contentOffset;
     const viewSize = event.nativeEvent.layoutMeasurement;
-
     const selectedIndex = Math.floor(contentOffset.x / viewSize.width);
     setSelectedIndex(selectedIndex);
   };

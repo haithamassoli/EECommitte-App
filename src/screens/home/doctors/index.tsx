@@ -2,7 +2,7 @@ import { Text, ScrollView, View, ActivityIndicator } from "react-native";
 import DoctorsData from "@Src/data/Doctors";
 import { Doctor } from "@Types/index";
 import SearchInput from "@Components/ui/SearchInput";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -22,7 +22,7 @@ const DoctorsScreen = ({ route }: Props) => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setLoading(true);
     const doctor = DoctorsData.find(
       (doctor) => doctor.id === route.params.doctorId
@@ -36,7 +36,11 @@ const DoctorsScreen = ({ route }: Props) => {
 
   if (loading) {
     return (
-      <ActivityIndicator style={{ flex: 1 }} size="large" color={Colors.gray} />
+      <ActivityIndicator
+        style={{ flex: 1 }}
+        size="large"
+        color={Colors.primary400}
+      />
     );
   }
   return (

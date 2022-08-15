@@ -30,4 +30,5 @@ export type HomeStackParamList = {
   Calculator: undefined;
   Doctors: { doctorId?: number };
   Search: undefined;
+  Records: undefined;
 };

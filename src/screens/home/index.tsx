@@ -153,14 +153,14 @@ const HomeScreen = ({ navigation }: Props) => {
       title2: "اللجنة",
       lightIcon: require("@Assets/images/icons/light-icons/records.png"),
       darkIcon: require("@Assets/images/icons/dark-icons/records.png"),
-      onPress: () => console.log("pressed"),
+      onPress: () => navigation.navigate("Records"),
     },
     {
       title: "حساب",
       title2: "المعدل",
       lightIcon: require("@Assets/images/icons/light-icons/calculator.png"),
       darkIcon: require("@Assets/images/icons/dark-icons/calculator.png"),
-      onPress: () => console.log("pressed"),
+      onPress: () => navigation.navigate("Calculator"),
     },
   ];
 

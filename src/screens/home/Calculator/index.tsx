@@ -5,7 +5,6 @@ import { screenHeight, screenWidth } from "@Utils/Helper";
 import { useLayoutEffect, useRef, useState } from "react";
 import {
   StatusBar,
-  FlatList,
   Text,
   View,
   Dimensions,

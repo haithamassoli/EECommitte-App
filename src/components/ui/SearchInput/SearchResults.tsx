@@ -18,23 +18,23 @@ const SearchResults = ({ results, handlePress, searchInput }: Props) => {
     <>
       {results.length > 0 ? (
         results.map((result, index: number) => (
-          <View style={{ zIndex: 100 }} key={index}>
-            <TouchableOpacity
-              style={{
-                flexDirection: "row-reverse",
-                paddingHorizontal: 10,
-                paddingVertical: 5,
-                borderColor: Colors.gray,
-                borderWidth: 1,
-                borderRadius: 10,
-              }}
-              onPress={() => handlePress(result.id)}
-            >
-              {result.name2.split("").map((letter: string, index: number) => {
-                if (searchInput.toLowerCase().includes(letter.toLowerCase())) {
-                  return (
+          <TouchableOpacity
+            key={index}
+            style={{
+              flexDirection: "row-reverse",
+              paddingHorizontal: 10,
+              paddingVertical: 5,
+              borderColor: Colors.gray,
+              borderWidth: 1,
+              borderRadius: 10,
+            }}
+            onPress={() => handlePress(result.id)}
+          >
+            {result.name2.split("").map((letter: string, index: number) => {
+              if (searchInput.toLowerCase().includes(letter.toLowerCase())) {
+                return (
+                  <View key={index}>
                     <Text
-                      key={index}
                       style={{
                         fontSize: 16,
                         color: textColor,
@@ -43,11 +43,12 @@ const SearchResults = ({ results, handlePress, searchInput }: Props) => {
                     >
                       {letter}
                     </Text>
-                  );
-                } else {
-                  return (
+                  </View>
+                );
+              } else {
+                return (
+                  <View key={index}>
                     <Text
-                      key={index}
                       style={{
                         fontSize: 16,
                         color: textColor,
@@ -55,11 +56,11 @@ const SearchResults = ({ results, handlePress, searchInput }: Props) => {
                     >
                       {letter}
                     </Text>
-                  );
-                }
-              })}
-            </TouchableOpacity>
-          </View>
+                  </View>
+                );
+              }
+            })}
+          </TouchableOpacity>
         ))
       ) : (
         <Text

@@ -1,4 +1,10 @@
-import { View, TextInput, Animated, Keyboard } from "react-native";
+import {
+  View,
+  TextInput,
+  Animated,
+  Keyboard,
+  LayoutAnimation,
+} from "react-native";
 import Fuse from "fuse.js";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
@@ -33,6 +39,7 @@ const SearchInput = ({
     const newArr = searchResults.slice(0, 5).map((result) => {
       return result.item;
     });
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setResults(newArr.slice(0, 5));
   }, [searchInput]);
 

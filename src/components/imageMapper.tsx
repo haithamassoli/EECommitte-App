@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, memo } from "react";
 import {
   ImageBackground,
   View,
@@ -111,4 +111,4 @@ class ImageMapper extends Component<Props> {
   }
 }
 
-export default ImageMapper;
+export default memo(ImageMapper);

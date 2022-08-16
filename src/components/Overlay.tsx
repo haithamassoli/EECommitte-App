@@ -1,5 +1,6 @@
 import { Pressable } from "react-native";
 import Colors from "@GlobalStyle/Colors";
+import { memo } from "react";
 
 type Props = {
   onPress: () => void;
@@ -21,4 +22,4 @@ const Overlay = ({ onPress }: Props) => {
   );
 };
 
-export default Overlay;
+export default memo(Overlay);

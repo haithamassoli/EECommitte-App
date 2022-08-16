@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, memo } from "react";
 import { View, ScrollView, Image, ImageSourcePropType } from "react-native";
 import { screenHeight, screenWidth } from "@Utils/Helper";
 import { useEffect } from "react";
@@ -109,4 +109,4 @@ const ImagesCarousel = ({ images }: Props) => {
   );
 };
 
-export default ImagesCarousel;
+export default memo(ImagesCarousel);

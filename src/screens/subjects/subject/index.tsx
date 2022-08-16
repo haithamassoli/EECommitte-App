@@ -16,6 +16,7 @@ import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { WebDisplay } from "@Components/webDisplay";
+import { Feather } from "@expo/vector-icons";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 export type SubjectNavigationProp = StackNavigationProp<
@@ -40,7 +41,20 @@ const SubjectScreen = ({ navigation, route }: Props) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: subject?.name,
+      headerTitle: subject?.name2,
+      headerLeft: () => (
+        <Pressable
+          onPress={() => navigation.replace("Plan")}
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            paddingStart: 12,
+          }}
+        >
+          <Feather name="arrow-right" size={24} color={textColor} />
+        </Pressable>
+      ),
     });
   }, [subject?.name]);
 
@@ -90,7 +104,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         >
           <Text
             style={{
-              color: Colors.dark,
+              color: Colors.lightText,
             }}
           >
             Drive Link
@@ -110,7 +124,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         >
           <Text
             style={{
-              color: Colors.dark,
+              color: Colors.lightText,
             }}
           >
             Show Full Post

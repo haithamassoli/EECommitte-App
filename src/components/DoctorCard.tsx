@@ -1,7 +1,7 @@
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Doctor } from "@Types/index";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { View, Text, Pressable, Image, Linking } from "react-native";
 
 type Props = Omit<Doctor, "id" | "name2">;
@@ -70,4 +70,4 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
   );
 };
 
-export default DoctorCard;
+export default memo(DoctorCard);

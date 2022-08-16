@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 
 interface InfoItemProps {
   icon: keyof typeof Feather.glyphMap;
@@ -46,7 +46,7 @@ const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
   );
 };
 
-export default InfoItem;
+export default memo(InfoItem);
 
 const styles = StyleSheet.create({
   outerContainer: {

@@ -1,7 +1,7 @@
 const RecordsData = [
   {
     id: 1,
-    subject: "اقتصادهندسي",
+    subject: "اقتصاد هندسي",
     searchName: "Economy",
     doctor: "م. ميساء الشريدة",
     image: require("@Assets/images/subjects/Economy.png"),

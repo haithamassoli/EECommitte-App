@@ -2,7 +2,7 @@ import { Text, View, ActivityIndicator } from "react-native";
 import DoctorsData from "@Src/data/Doctors";
 import { Doctor } from "@Types/index";
 import SearchInput from "@Components/ui/SearchInput";
-import { useContext, useLayoutEffect, useState } from "react";
+import { memo, useContext, useLayoutEffect, useState } from "react";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -110,4 +110,4 @@ const DoctorsScreen = ({ route }: Props) => {
   );
 };
 
-export default DoctorsScreen;
+export default memo(DoctorsScreen);

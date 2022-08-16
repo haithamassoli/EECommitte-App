@@ -8,7 +8,7 @@ import type { SubjectsStackParamList } from "@Types/navigation";
 import styles from "./styles";
 import MAPPING from "./Mapping";
 import { ThemeContext } from "@Src/store/themeContext";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { Text, View } from "react-native";
 import Colors from "@GlobalStyle/Colors";
 
@@ -60,4 +60,4 @@ const PlanScreen = ({ navigation }: Props) => {
   );
 };
 
-export default PlanScreen;
+export default memo(PlanScreen);

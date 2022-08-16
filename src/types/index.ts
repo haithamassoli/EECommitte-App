@@ -66,6 +66,7 @@ export type Doctor = {
 };
 
 export type Record = {
+  id: number;
   subject: string;
   searchName: string;
   doctor: string;

@@ -61,7 +61,7 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
           }}
           onPress={() => Linking.openURL(website)}
         >
-          <Text style={{ color: textColor, textAlign: "left" }}>
+          <Text style={{ color: Colors.lightText, textAlign: "left" }}>
             الموقع الإلكتروني
           </Text>
         </Pressable>

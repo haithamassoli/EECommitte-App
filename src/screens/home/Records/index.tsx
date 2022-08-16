@@ -1,19 +1,12 @@
 import RecordCard from "@Components/RecordCard";
 import SearchInput from "@Components/ui/SearchInput";
 import Colors from "@GlobalStyle/Colors";
+import { FlashList } from "@shopify/flash-list";
 import RecordsData from "@Src/data/Records";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
-import { screenWidth } from "@Utils/Helper";
 import { useContext, useState } from "react";
-import {
-  View,
-  Text,
-  Image,
-  Pressable,
-  Linking,
-  ScrollView,
-} from "react-native";
+import { View, Text } from "react-native";
 
 const options = {
   keys: ["searchName", "subject", "doctor"],
@@ -36,17 +29,20 @@ const RecordsScreen = () => {
         style={{ marginTop: 12 }}
       />
       {results.length > 0 && searchInput.length > 0 ? (
-        <ScrollView keyboardShouldPersistTaps="always">
-          {results.map((item, index) => (
+        <FlashList
+          data={results}
+          estimatedItemSize={24}
+          keyExtractor={(item) => item.id.toString()}
+          keyboardShouldPersistTaps="always"
+          renderItem={({ item }) => (
             <RecordCard
-              key={index}
               link={item.link}
               image={item.image}
               subject={item.subject}
               doctor={item.doctor}
             />
-          ))}
-        </ScrollView>
+          )}
+        />
       ) : searchInput.length > 0 ? (
         <>
           <Text
@@ -62,17 +58,20 @@ const RecordsScreen = () => {
           </Text>
         </>
       ) : (
-        <ScrollView keyboardShouldPersistTaps="always">
-          {RecordsData.map((item, index) => (
+        <FlashList
+          data={RecordsData}
+          keyboardShouldPersistTaps="always"
+          estimatedItemSize={24}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
             <RecordCard
-              key={index}
               link={item.link}
               image={item.image}
               subject={item.subject}
               doctor={item.doctor}
             />
-          ))}
-        </ScrollView>
+          )}
+        />
       )}
     </View>
   );

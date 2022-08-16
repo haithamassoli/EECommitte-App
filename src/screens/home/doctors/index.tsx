@@ -1,4 +1,4 @@
-import { Text, ScrollView, View, ActivityIndicator } from "react-native";
+import { Text, View, ActivityIndicator } from "react-native";
 import DoctorsData from "@Src/data/Doctors";
 import { Doctor } from "@Types/index";
 import SearchInput from "@Components/ui/SearchInput";
@@ -8,6 +8,7 @@ import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
 import DoctorCard from "@Components/DoctorCard";
+import { FlashList } from "@shopify/flash-list";
 
 type Props = StackScreenProps<HomeStackParamList, "Doctors">;
 
@@ -56,19 +57,22 @@ const DoctorsScreen = ({ route }: Props) => {
           style={{ marginTop: 12 }}
         />
         {results.length > 0 && searchInput.length > 0 ? (
-          <ScrollView keyboardShouldPersistTaps="always">
-            {results.map((doctor) => (
+          <FlashList
+            keyboardShouldPersistTaps="always"
+            data={results}
+            estimatedItemSize={100}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
               <DoctorCard
-                key={doctor.id}
-                email={doctor.email}
-                image={doctor.image}
-                name={doctor.name}
-                office={doctor.office}
-                phone={doctor.phone}
-                website={doctor.website}
+                email={item.email}
+                image={item.image}
+                name={item.name}
+                office={item.office}
+                phone={item.phone}
+                website={item.website}
               />
-            ))}
-          </ScrollView>
+            )}
+          />
         ) : searchInput.length > 0 ? (
           <>
             <Text
@@ -84,19 +88,22 @@ const DoctorsScreen = ({ route }: Props) => {
             </Text>
           </>
         ) : (
-          <ScrollView keyboardShouldPersistTaps="always">
-            {DoctorsData.map((doctor: Doctor) => (
+          <FlashList
+            data={DoctorsData}
+            keyboardShouldPersistTaps="always"
+            estimatedItemSize={100}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
               <DoctorCard
-                key={doctor.id}
-                email={doctor.email}
-                image={doctor.image}
-                name={doctor.name}
-                office={doctor.office}
-                phone={doctor.phone}
-                website={doctor.website}
+                email={item.email}
+                image={item.image}
+                name={item.name}
+                office={item.office}
+                phone={item.phone}
+                website={item.website}
               />
-            ))}
-          </ScrollView>
+            )}
+          />
         )}
       </View>
     </>

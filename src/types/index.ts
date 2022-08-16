@@ -64,3 +64,11 @@ export type Doctor = {
   website: string;
   image: string;
 };
+
+export type Record = {
+  subject: string;
+  searchName: string;
+  doctor: string;
+  image: any;
+  link: string;
+};

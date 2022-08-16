@@ -1,99 +1,79 @@
+import RecordCard from "@Components/RecordCard";
+import SearchInput from "@Components/ui/SearchInput";
 import Colors from "@GlobalStyle/Colors";
-import { View, Text, Image, Pressable } from "react-native";
+import RecordsData from "@Src/data/Records";
+import { ThemeContext } from "@Src/store/themeContext";
+import { Record } from "@Types/index";
+import { screenWidth } from "@Utils/Helper";
+import { useContext, useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  Linking,
+  ScrollView,
+} from "react-native";
+
+const options = {
+  keys: ["searchName", "subject", "doctor"],
+};
 
 const RecordsScreen = () => {
+  const [searchInput, setSearchInput] = useState("");
+  const [results, setResults] = useState<Record[] | []>([]);
+  const { theme } = useContext(ThemeContext);
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+
   return (
-    <View
-      style={{
-        marginHorizontal: 12,
-      }}
-    >
-      <Pressable
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginTop: 12,
-        }}
-      >
-        <Image
-          style={{
-            width: 176,
-            height: 100,
-          }}
-          source={require("@Assets/images/subjects/إقتصاد.png")}
-        />
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "space-evenly",
-            padding: 10,
-            backgroundColor: Colors.lightGray,
-            height: 100,
-            marginStart: 10,
-          }}
-        >
+    <View style={{ marginHorizontal: 12, flex: 1 }}>
+      <SearchInput
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        setResults={setResults}
+        options={options}
+        list={RecordsData}
+        style={{ marginTop: 12 }}
+      />
+      {results.length > 0 && searchInput.length > 0 ? (
+        <ScrollView keyboardShouldPersistTaps="always">
+          {results.map((item, index) => (
+            <RecordCard
+              key={index}
+              link={item.link}
+              image={item.image}
+              subject={item.subject}
+              doctor={item.doctor}
+            />
+          ))}
+        </ScrollView>
+      ) : searchInput.length > 0 ? (
+        <>
           <Text
             style={{
-              fontSize: 16,
-              fontFamily: "Bukra",
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: 24,
+              marginTop: 40,
+              color: textColor,
             }}
           >
-            إقتصاد
+            لا يوجد نتائج
           </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              fontFamily: "Bukra",
-            }}
-          >
-            المستوى: 1
-          </Text>
-        </View>
-      </Pressable>
-      <Pressable
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginTop: 12,
-        }}
-      >
-        <Image
-          style={{
-            width: 176,
-            height: 100,
-          }}
-          source={require("@Assets/images/subjects/إقتصاد.png")}
-        />
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "space-evenly",
-            padding: 10,
-            backgroundColor: Colors.lightGray,
-            height: 100,
-            marginStart: 10,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 16,
-              fontFamily: "Bukra",
-            }}
-          >
-            إقتصاد
-          </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              fontFamily: "Bukra",
-            }}
-          >
-            المستوى: 1
-          </Text>
-        </View>
-      </Pressable>
+        </>
+      ) : (
+        <ScrollView keyboardShouldPersistTaps="always">
+          {RecordsData.map((item, index) => (
+            <RecordCard
+              key={index}
+              link={item.link}
+              image={item.image}
+              subject={item.subject}
+              doctor={item.doctor}
+            />
+          ))}
+        </ScrollView>
+      )}
     </View>
   );
 };

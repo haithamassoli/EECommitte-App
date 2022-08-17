@@ -41,8 +41,8 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
       >
         <Text
           style={{
-            fontSize: 12,
-            fontFamily: "Bukra",
+            fontSize: 16,
+            fontFamily: "TajawalBold",
             textAlign: "left",
             color: textColor,
           }}
@@ -51,8 +51,8 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
         </Text>
         <Text
           style={{
-            fontSize: 12,
-            fontFamily: "Bukra",
+            fontSize: 16,
+            fontFamily: "TajawalMedium",
             color: textColor,
           }}
         >

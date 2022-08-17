@@ -12,55 +12,55 @@ type Props = {
 
 const SearchResults = ({ results, handlePress, searchInput }: Props) => {
   const { theme } = useContext(ThemeContext);
-  const textColor = theme === "light" ? Colors.darkText : Colors.lightText;
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   return (
     <>
       {results.length > 0 ? (
         results.map((result, index: number) => (
-          <TouchableOpacity
-            key={index}
-            style={{
-              flexDirection: "row-reverse",
-              paddingHorizontal: 10,
-              paddingVertical: 5,
-              borderColor: Colors.gray,
-              borderWidth: 1,
-              borderRadius: 10,
-            }}
-            onPress={() => handlePress(result.id)}
-          >
-            {result.name2.split("").map((letter: string, index: number) => {
-              if (searchInput.toLowerCase().includes(letter.toLowerCase())) {
-                return (
-                  <View key={index}>
-                    <Text
-                      style={{
-                        fontSize: 16,
-                        color: textColor,
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {letter}
-                    </Text>
-                  </View>
-                );
-              } else {
-                return (
-                  <View key={index}>
-                    <Text
-                      style={{
-                        fontSize: 16,
-                        color: textColor,
-                      }}
-                    >
-                      {letter}
-                    </Text>
-                  </View>
-                );
-              }
-            })}
-          </TouchableOpacity>
+          <View key={index}>
+            <TouchableOpacity
+              style={{
+                flexDirection: "row-reverse",
+                paddingHorizontal: 10,
+                paddingVertical: 5,
+                borderColor: theme === "light" ? "#fff" : "#000",
+                borderWidth: 2,
+              }}
+              onPress={() => handlePress(result.id)}
+            >
+              {result.name2.split("").map((letter: string, index: number) => {
+                if (searchInput.toLowerCase().includes(letter.toLowerCase())) {
+                  return (
+                    <View key={index}>
+                      <Text
+                        style={{
+                          fontSize: 16,
+                          color: textColor,
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {letter}
+                      </Text>
+                    </View>
+                  );
+                } else {
+                  return (
+                    <View key={index}>
+                      <Text
+                        style={{
+                          fontSize: 16,
+                          color: textColor,
+                        }}
+                      >
+                        {letter}
+                      </Text>
+                    </View>
+                  );
+                }
+              })}
+            </TouchableOpacity>
+          </View>
         ))
       ) : (
         <Text

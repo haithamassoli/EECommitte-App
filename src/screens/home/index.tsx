@@ -98,20 +98,21 @@ const HomeScreen = ({ navigation }: Props) => {
               style={{ width: 50, height: 70, resizeMode: "contain" }}
             />
           </View>
-          <SearchInput
-            style={{
-              marginHorizontal: 12,
-              paddingBottom: 6,
-            }}
-            searchInput={searchInput}
-            setSearchInput={setSearchInput}
-            searchBarFocused={searchBarFocused}
-            setSearchBarFocused={setSearchBarFocused}
-            results={results}
-            list={[...SubjectsData, ...DoctorsData]}
-            setResults={setResults}
-            options={options}
-          />
+          <View style={{ marginHorizontal: 8 }}>
+            <SearchInput
+              style={{
+                marginBottom: 6,
+              }}
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+              searchBarFocused={searchBarFocused}
+              setSearchBarFocused={setSearchBarFocused}
+              results={results}
+              list={[...SubjectsData, ...DoctorsData]}
+              setResults={setResults}
+              options={options}
+            />
+          </View>
         </>
       ),
     });

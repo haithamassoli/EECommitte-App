@@ -1,9 +1,10 @@
-import { useState, useRef, memo } from "react";
+import { useState, useRef, memo, useContext } from "react";
 import { View, ScrollView, Image, ImageSourcePropType } from "react-native";
 import { screenHeight, screenWidth } from "@Utils/Helper";
 import { useEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { Shadow } from "react-native-shadow-2";
+import { ThemeContext } from "@Src/store/themeContext";
 
 type Props = {
   images: ImageSourcePropType[];
@@ -12,6 +13,7 @@ type Props = {
 const ImagesCarousel = ({ images }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
+  const { theme } = useContext(ThemeContext);
   useEffect(() => {
     const interval = setInterval(() => {
       setSelectedIndex((prevIndex) =>
@@ -96,7 +98,11 @@ const ImagesCarousel = ({ images }: Props) => {
               width: 8,
               borderRadius: 5,
               borderColor:
-                index === selectedIndex ? Colors.primary600 : Colors.gray,
+                index === selectedIndex
+                  ? theme === "light"
+                    ? Colors.primary700
+                    : Colors.primary400
+                  : Colors.gray,
               borderWidth: 4,
               backgroundColor:
                 index === selectedIndex ? Colors.primary600 : Colors.gray,

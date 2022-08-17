@@ -32,6 +32,7 @@ const SearchInput = ({
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<HomeNavigationProp>();
   const searchAnim = useRef(new Animated.Value(0)).current;
+  const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
 
   useEffect(() => {
     const fuse = new Fuse<any>(list, options);
@@ -114,9 +115,13 @@ const SearchInput = ({
         style={[
           styles.searchInput,
           {
-            fontSize: 14,
-            color: theme === "light" ? Colors.gray : Colors.primary400,
+            fontSize: 15,
+            color: theme === "light" ? Colors.lightText : Colors.darkText,
             zIndex: 15,
+            backgroundColor:
+              theme === "light"
+                ? Colors.lightBackgroundSec
+                : Colors.darkBackgroundSec,
           },
         ]}
       />
@@ -132,7 +137,7 @@ const SearchInput = ({
         <Feather
           name="search"
           size={24}
-          color={Colors.primary700}
+          color={iconColor}
           style={styles.searchIcon}
         />
       )}
@@ -149,7 +154,9 @@ const SearchInput = ({
             height: 203,
             zIndex: 10,
             backgroundColor:
-              theme === "light" ? Colors.dark : Colors.lightBackground,
+              theme === "light"
+                ? Colors.lightBackgroundSec
+                : Colors.darkBackgroundSec,
             paddingTop: 25,
             borderRadius: 10,
           }}

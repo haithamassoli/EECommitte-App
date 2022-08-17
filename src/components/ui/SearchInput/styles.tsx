@@ -11,9 +11,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     paddingVertical: 10,
     borderRadius: 30,
-    backgroundColor: Colors.lightGray,
     fontFamily: "TajawalBold",
-    fontSize: 12,
     width: "100%",
   },
   searchIcon: {

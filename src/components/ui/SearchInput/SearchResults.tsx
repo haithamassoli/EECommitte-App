@@ -29,36 +29,15 @@ const SearchResults = ({ results, handlePress, searchInput }: Props) => {
               }}
               onPress={() => handlePress(result.id)}
             >
-              {result.name2.split("").map((letter: string, index: number) => {
-                if (searchInput.toLowerCase().includes(letter.toLowerCase())) {
-                  return (
-                    <View key={index}>
-                      <Text
-                        style={{
-                          fontSize: 16,
-                          color: textColor,
-                          fontWeight: "bold",
-                        }}
-                      >
-                        {letter}
-                      </Text>
-                    </View>
-                  );
-                } else {
-                  return (
-                    <View key={index}>
-                      <Text
-                        style={{
-                          fontSize: 16,
-                          color: textColor,
-                        }}
-                      >
-                        {letter}
-                      </Text>
-                    </View>
-                  );
-                }
-              })}
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: textColor,
+                  fontWeight: "bold",
+                }}
+              >
+                {result.name2}
+              </Text>
             </TouchableOpacity>
           </View>
         ))

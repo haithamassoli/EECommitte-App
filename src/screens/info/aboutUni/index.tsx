@@ -22,7 +22,7 @@ const data = [
     textAr2: "وهي مستمرّة وستستمر طالما أن لها قلباً يجعلها حيّة..",
     textEn1: "OUR IDEA WAS BORN 30 YEARS AGO!",
     textEn2: "AND IT CONTINUES AND WILL BE FOR EVER. AS LONG AS THE IDEA",
-    image: require("@Assets/images/1stslide.jpg"),
+    image: require("@Assets/images/1stslide.webp"),
     arrPos: "right",
   },
   {
@@ -34,7 +34,7 @@ const data = [
       "ELECTRICAL ENGINEERING COMMITTEE IS ONE OF THE OLDEST STUDENT COMMITTEES AND TEAMS AT JUST!",
     textEn2:
       " IT’S ESTABLISHMENT DATES BACK TO BEFORE 1990, PARALLEL TO THE ESTABLISHMENT OF JUST.",
-    image: require("@Assets/images/2ndslide.jpg"),
+    image: require("@Assets/images/2ndslide.webp"),
     arrPos: "left",
   },
   {
@@ -42,7 +42,7 @@ const data = [
     textAr2: "وهي مستمرّة وستستمر طالما أن لها قلباً يجعلها حيّة..",
     textEn1: "OUR IDEA WAS BORN 30 YEARS AGO!",
     textEn2: "AND IT CONTINUES AND WILL BE FOR EVER. AS LONG AS THE IDEA",
-    image: require("@Assets/images/1stslide.jpg"),
+    image: require("@Assets/images/1stslide.webp"),
     arrPos: "right",
   },
 ];

@@ -5,7 +5,7 @@ import { memo, useContext } from "react";
 import { View, Text, Pressable, Image, Linking } from "react-native";
 
 type Props = Omit<Doctor, "id" | "name2">;
-const defaultImage = require("@Assets/images/profile-image.jpg");
+const defaultImage = require("@Assets/images/profile-image.webp");
 
 const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
   const { theme } = useContext(ThemeContext);

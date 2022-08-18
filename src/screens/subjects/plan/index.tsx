@@ -44,7 +44,7 @@ const PlanScreen = ({ navigation }: Props) => {
         style
       >
         <ImageMapper
-          imgSource={require("@Assets/images/plan.jpg")}
+          imgSource={require("@Assets/images/plan.webp")}
           imgWidth={screenWidth}
           imgHeight={screenWidth * 1.074}
           imgMap={MAPPING}

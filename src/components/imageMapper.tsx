@@ -94,9 +94,9 @@ class ImageMapper extends Component<Props> {
             width: imgWidth || screenWidth,
           }}
           onLoadEnd={() => this.setState({ loading: false })}
-          source={this.state.loading === true ? thumbnail : imgSource}
-          fadeDuration={1000}
+          source={this.state.loading ? thumbnail : imgSource}
           resizeMode="contain"
+          fadeDuration={200}
         >
           {imgMap.map((item: MapperItem, index: number) => (
             <Pressable

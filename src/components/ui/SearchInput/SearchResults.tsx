@@ -26,14 +26,15 @@ const SearchResults = ({ results, handlePress, searchInput }: Props) => {
                 paddingVertical: 5,
                 borderColor: theme === "light" ? "#fff" : "#000",
                 borderWidth: 2,
+                borderRadius: 10,
               }}
               onPress={() => handlePress(result.id)}
             >
               <Text
                 style={{
-                  fontSize: 16,
+                  fontSize: 15,
                   color: textColor,
-                  fontWeight: "bold",
+                  fontFamily: "TajawalMedium",
                 }}
               >
                 {result.name2}

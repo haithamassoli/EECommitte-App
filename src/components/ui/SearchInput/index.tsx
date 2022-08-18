@@ -40,7 +40,17 @@ const SearchInput = ({
     const newArr = searchResults.slice(0, 5).map((result) => {
       return result.item;
     });
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    LayoutAnimation.configureNext({
+      duration: 300,
+      update: {
+        type: LayoutAnimation.Types.easeInEaseOut,
+        property: LayoutAnimation.Properties.scaleY,
+      },
+      delete: {
+        type: LayoutAnimation.Types.easeInEaseOut,
+        property: LayoutAnimation.Properties.opacity,
+      },
+    });
     setResults(newArr.slice(0, 5));
   }, [searchInput]);
 
@@ -115,7 +125,7 @@ const SearchInput = ({
         style={[
           styles.searchInput,
           {
-            fontSize: 15,
+            fontSize: 14,
             color: theme === "light" ? Colors.lightText : Colors.darkText,
             zIndex: 15,
             backgroundColor:
@@ -151,7 +161,7 @@ const SearchInput = ({
             left: 0,
             right: 0,
             width: "100%",
-            height: 203,
+            height: 210,
             zIndex: 10,
             backgroundColor:
               theme === "light"

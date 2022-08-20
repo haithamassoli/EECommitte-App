@@ -1,9 +1,18 @@
-import Constants from "expo-constants";
 import { initializeApp } from "firebase/app";
 import { initializeFirestore, getFirestore } from "firebase/firestore";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBjmfp-bRp7yyil2J_p_AgJteCtpLRHuJo",
+  authDomain: "eecommitte.firebaseapp.com",
+  projectId: "eecommitte",
+  storageBucket: "eecommitte.appspot.com",
+  messagingSenderId: "698743371521",
+  appId: "1:698743371521:web:efbb52edc9cdcd12d74d00",
+  measurementId: "G-1PNF6XZRMF",
+};
+
 // @ts-ignore
-const app = initializeApp(Constants?.manifest?.web?.config?.firebase);
+const app = initializeApp(firebaseConfig);
 
 // export const db = initializeFirestore(app, {
 //   experimentalForceLongPolling: true,

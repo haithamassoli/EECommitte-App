@@ -238,7 +238,9 @@ const SearchScreen = ({ navigation }: Props) => {
               height: 203,
               zIndex: 1000,
               backgroundColor:
-                theme === "light" ? Colors.dark : Colors.lightBackground,
+                theme === "light"
+                  ? Colors.lightBackgroundSec
+                  : Colors.darkBackgroundSec,
               borderRadius: 10,
             }}
           >

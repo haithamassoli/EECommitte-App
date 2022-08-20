@@ -18,6 +18,8 @@ import { SearchInputProps } from "@Types/Search";
 import { HomeNavigationProp } from "@Screens/home";
 import DoctorsData from "@Src/data/Doctors";
 
+let delayTimer: any;
+
 const SearchInput = ({
   searchInput,
   setSearchInput,
@@ -35,23 +37,29 @@ const SearchInput = ({
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
 
   useEffect(() => {
-    const fuse = new Fuse<any>(list, options);
-    const searchResults = fuse.search(searchInput);
-    const newArr = searchResults.slice(0, 5).map((result) => {
-      return result.item;
-    });
-    LayoutAnimation.configureNext({
-      duration: 300,
-      update: {
-        type: LayoutAnimation.Types.easeInEaseOut,
-        property: LayoutAnimation.Properties.scaleY,
-      },
-      delete: {
-        type: LayoutAnimation.Types.easeInEaseOut,
-        property: LayoutAnimation.Properties.opacity,
-      },
-    });
-    setResults(newArr.slice(0, 5));
+    clearTimeout(delayTimer);
+    delayTimer = setTimeout(() => {
+      const fuse = new Fuse<any>(list, options);
+      const searchResults = fuse.search(searchInput);
+      const newArr = searchResults.slice(0, 5).map((result) => {
+        return result.item;
+      });
+      LayoutAnimation.configureNext({
+        duration: 300,
+        update: {
+          type: LayoutAnimation.Types.easeInEaseOut,
+          property: LayoutAnimation.Properties.scaleY,
+        },
+        delete: {
+          type: LayoutAnimation.Types.easeInEaseOut,
+          property: LayoutAnimation.Properties.opacity,
+        },
+      });
+      setResults(newArr.slice(0, 5));
+    }, 500);
+    return () => {
+      clearTimeout(delayTimer);
+    };
   }, [searchInput]);
 
   const handleFocus = () => {

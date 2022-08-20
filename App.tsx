@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Route from "./src/navigation/main";
 import { I18nManager, Platform, Text, UIManager } from "react-native";
-import * as Updates from "expo-updates";
+import { reloadAsync } from "expo-updates";
 import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { useFonts } from "expo-font";
@@ -24,7 +24,7 @@ export default function App() {
         try {
           I18nManager.allowRTL(true);
           I18nManager.forceRTL(true);
-          await Updates.reloadAsync();
+          await reloadAsync();
         } catch (error) {
           console.log(error);
         }

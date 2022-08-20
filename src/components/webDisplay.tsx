@@ -2,7 +2,7 @@ import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { rtlWebview, screenWidth } from "@Utils/Helper";
 import { memo, useContext } from "react";
-import { Falsy, RecursiveArray, View, ViewStyle } from "react-native";
+import { Falsy, RecursiveArray, View } from "react-native";
 import RenderHTML from "react-native-render-html";
 
 type NonRegisteredStylesProp<T> = T | Falsy | RecursiveArray<T | Falsy>;
@@ -31,6 +31,7 @@ export const WebDisplay = memo(function WebDisplay({ html }: { html: string }) {
   return (
     <View style={{ flex: 1, paddingHorizontal: 12, paddingVertical: 4 }}>
       <RenderHTML
+        defaultTextProps={{ selectable: true }}
         contentWidth={screenWidth}
         source={{
           html: rtlWebview(html),

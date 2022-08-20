@@ -116,7 +116,7 @@ const HomeScreen = ({ navigation }: Props) => {
         </>
       ),
     });
-  }, [searchInput, searchBarFocused, theme]);
+  }, [searchInput, searchBarFocused, results, theme]);
   const rowOne = [
     {
       title: "ما يخص",

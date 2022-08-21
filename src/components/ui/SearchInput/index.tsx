@@ -133,7 +133,7 @@ const SearchInput = ({
         style={[
           styles.searchInput,
           {
-            fontSize: 14,
+            fontSize: 13,
             color: theme === "light" ? Colors.lightText : Colors.darkText,
             zIndex: 15,
             backgroundColor:
@@ -147,7 +147,7 @@ const SearchInput = ({
         <Feather
           name="x"
           size={24}
-          color={Colors.primary700}
+          color={iconColor}
           style={styles.searchIcon}
           onPress={() => setSearchInput("")}
         />
@@ -179,11 +179,7 @@ const SearchInput = ({
             borderRadius: 10,
           }}
         >
-          <SearchResults
-            results={results}
-            handlePress={handlePress}
-            searchInput={searchInput}
-          />
+          <SearchResults results={results} handlePress={handlePress} />
         </View>
       )}
     </Animated.View>

@@ -235,7 +235,7 @@ const SearchScreen = ({ navigation }: Props) => {
             style={{
               flex: 1,
               width: "100%",
-              height: 203,
+              minHeight: 124,
               zIndex: 1000,
               backgroundColor:
                 theme === "light"
@@ -244,11 +244,7 @@ const SearchScreen = ({ navigation }: Props) => {
               borderRadius: 10,
             }}
           >
-            <SearchResults
-              results={results}
-              handlePress={handlePress}
-              searchInput={searchInput}
-            />
+            <SearchResults results={results} handlePress={handlePress} />
           </View>
         )}
       </KeyboardAvoidingView>

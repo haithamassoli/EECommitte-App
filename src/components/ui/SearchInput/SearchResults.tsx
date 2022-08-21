@@ -5,19 +5,18 @@ import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 
 type Props = {
-  searchInput: string;
   handlePress: (num: number) => void;
-  results: Subject[] | Doctor[];
+  results: any;
 };
 
-const SearchResults = ({ results, handlePress, searchInput }: Props) => {
+const SearchResults = ({ results, handlePress }: Props) => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   return (
     <>
       {results.length > 0 ? (
-        results.map((result, index: number) => (
+        results.map((result: any, index: number) => (
           <View key={index}>
             <TouchableOpacity
               style={{
@@ -45,15 +44,12 @@ const SearchResults = ({ results, handlePress, searchInput }: Props) => {
       ) : (
         <Text
           style={{
-            fontFamily: "TajawalMedium",
-            textAlign: "center",
-            alignSelf: "center",
-            top: 50,
-            fontSize: 16,
-            color: textColor,
             flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
+            fontSize: 16,
+            fontFamily: "TajawalBold",
+            textAlign: "center",
+            textAlignVertical: "center",
+            color: textColor,
           }}
         >
           لا يوجد نتائج

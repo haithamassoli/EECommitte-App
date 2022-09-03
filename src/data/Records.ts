@@ -109,7 +109,7 @@ const RecordsData = [
     searchName: "درايف",
     doctor: "د. أحمد البشايرة",
     image: require("@Assets/images/subjects/drive.webp"),
-    link: "https://www.youtube.com/playlist?list=PL93etPhHIOOEUD1UnEiDmwYhUlEsXCu0Y",
+    link: "https://youtube.com/playlist?list=PLdL3o9rqPLb5_UnB4njCzAaMW8QGk-ua7",
   },
   {
     id: 15,

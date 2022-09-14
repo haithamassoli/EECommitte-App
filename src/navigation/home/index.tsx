@@ -7,6 +7,7 @@ import WeeklyNotebooksScreen from "@Screens/home/WeeklyNotebooks";
 import DoctorsScreen from "@Screens/home/doctors";
 import SearchScreen from "@Screens/search";
 import RecordsScreen from "@Screens/home/Records";
+import OurExplanationsScreen from "@Screens/home/OurExplanations";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,7 @@ export default function HomeNavigation() {
       />
       <Stack.Screen name="Calculator" component={CalculatorScreen} />
       <Stack.Screen name="Records" component={RecordsScreen} />
+      <Stack.Screen name="OurExplanations" component={OurExplanationsScreen} />
     </Stack.Navigator>
   );
 }

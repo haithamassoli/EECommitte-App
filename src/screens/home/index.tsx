@@ -20,7 +20,7 @@ import ImagesCarousel from "@Components/ImagesCarousel";
 import ImagesCarouselData from "@Src/data/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { getDataFromStorage } from "@Utils/Helper";
 
 const options = {
   keys: ["name", "name2"],
@@ -34,7 +34,6 @@ export type HomeNavigationProp = StackNavigationProp<
 type Props = StackScreenProps<HomeStackParamList, "Home">;
 
 const HomeScreen = ({ navigation }: Props) => {
-  // const [firstTime, setFirstTime] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
@@ -142,7 +141,7 @@ const HomeScreen = ({ navigation }: Props) => {
       title2: "شروحاتنا",
       lightIcon: require("@Assets/images/icons/light-icons/best.png"),
       darkIcon: require("@Assets/images/icons/dark-icons/best.png"),
-      onPress: () => console.log("pressed"),
+      onPress: () => navigation.navigate("OurExplanations"),
     },
     {
       title: "الدفاتر",

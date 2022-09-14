@@ -8,6 +8,7 @@ import { reloadAsync } from "expo-updates";
 import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { useFonts } from "expo-font";
+import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -38,6 +39,13 @@ export default function App() {
       // @ts-ignore
       Text.defaultProps.allowFontScaling = false;
     }
+    const firstTime = async () => {
+      const firstTime = await getDataFromStorage("firstTime");
+      if (firstTime === null) {
+        await storeDataToStorage("firstTime", true);
+      }
+    };
+    firstTime();
   }, []);
 
   const [loaded] = useFonts({

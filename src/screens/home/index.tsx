@@ -20,6 +20,7 @@ import ImagesCarousel from "@Components/ImagesCarousel";
 import ImagesCarouselData from "@Src/data/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
+import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 
 const options = {
   keys: ["name", "name2"],
@@ -33,12 +34,22 @@ export type HomeNavigationProp = StackNavigationProp<
 type Props = StackScreenProps<HomeStackParamList, "Home">;
 
 const HomeScreen = ({ navigation }: Props) => {
+  // const [firstTime, setFirstTime] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
+  useEffect(() => {
+    const firstTime = async () => {
+      const firstTime = await getDataFromStorage("firstTime");
+      if (firstTime == true) {
+        navigation.navigate("AboutEECommitte");
+      }
+    };
+    firstTime();
+  }, []);
   useEffect(() => {
     navigation.setOptions({
       header: () => (
@@ -117,6 +128,7 @@ const HomeScreen = ({ navigation }: Props) => {
       ),
     });
   }, [searchInput, searchBarFocused, results, theme]);
+
   const rowOne = [
     {
       title: "ما يخص",

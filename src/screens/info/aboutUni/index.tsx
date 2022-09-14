@@ -1,7 +1,8 @@
 import { Feather } from "@expo/vector-icons";
+import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
-import { screenHeight, screenWidth } from "@Utils/Helper";
+import { screenHeight, screenWidth, storeDataToStorage } from "@Utils/Helper";
 import { useLayoutEffect, useRef, useState } from "react";
 import {
   StatusBar,
@@ -15,7 +16,7 @@ import {
 
 type Props = StackScreenProps<InfoStackParamList, "AboutEECommitte">;
 
-const { width, height } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 const data = [
   {
     textAr1: "بدأت فكرتنا قبل أكثر من 30 عاماً!",
@@ -36,14 +37,6 @@ const data = [
       " IT’S ESTABLISHMENT DATES BACK TO BEFORE 1990, PARALLEL TO THE ESTABLISHMENT OF JUST.",
     image: require("@Assets/images/2ndslide.webp"),
     arrPos: "left",
-  },
-  {
-    textAr1: "بدأت فكرتنا قبل أكثر من 30 عاماً!",
-    textAr2: "وهي مستمرّة وستستمر طالما أن لها قلباً يجعلها حيّة..",
-    textEn1: "OUR IDEA WAS BORN 30 YEARS AGO!",
-    textEn2: "AND IT CONTINUES AND WILL BE FOR EVER. AS LONG AS THE IDEA",
-    image: require("@Assets/images/1stslide.webp"),
-    arrPos: "right",
   },
 ];
 
@@ -85,8 +78,16 @@ const AboutUniScreen = ({ navigation }: Props) => {
       });
     };
   }, []);
+  const onFinish = async () => {
+    {
+      navigation.getParent()?.navigate("HomeNavigation", {
+        screen: "Home",
+      });
+      // await storeDataToStorage("firstTime", false);
+    }
+  };
   return (
-    <View style={{ flex: 1, backgroundColor: "#000" }}>
+    <View style={{ flex: 1 }}>
       <StatusBar hidden />
       <ScrollView
         ref={scrollRef}
@@ -102,14 +103,6 @@ const AboutUniScreen = ({ navigation }: Props) => {
               flex: 1,
               width,
               justifyContent: "center",
-              overflow: "hidden",
-              shadowRadius: 20,
-              shadowColor: "#000",
-              shadowOpacity: 0.5,
-              shadowOffset: {
-                width: 0,
-                height: 0,
-              },
             }}
           >
             <ImageBackground
@@ -127,60 +120,115 @@ const AboutUniScreen = ({ navigation }: Props) => {
                   padding: 16,
                 }}
               >
-                <Pressable
-                  style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "#000",
-                    width: 50,
-                    height: 50,
-                    borderRadius: 25,
-                    top: -100,
-                    left: item.arrPos === "right" ? 40 : screenWidth - 80,
-                  }}
-                  onPress={onNext}
-                >
-                  <Feather name="arrow-right" size={32} color="#fff" />
-                </Pressable>
+                {index != data.length - 1 ? (
+                  <Pressable
+                    style={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      backgroundColor: Colors.darkBackgroundSec,
+                      width: 50,
+                      height: 50,
+                      borderRadius: 25,
+                      top: -100,
+                      left: item.arrPos === "right" ? 40 : screenWidth - 80,
+                    }}
+                    onPress={onNext}
+                  >
+                    <Feather name="arrow-left" size={32} color="#fff" />
+                  </Pressable>
+                ) : (
+                  <Pressable
+                    style={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      backgroundColor: Colors.darkBackgroundSec,
+                      width: 50,
+                      height: 50,
+                      borderRadius: 25,
+                      top: -100,
+                      left: item.arrPos === "right" ? 40 : screenWidth - 80,
+                    }}
+                    onPress={onFinish}
+                  >
+                    <Feather name="arrow-left" size={32} color="#fff" />
+                  </Pressable>
+                )}
                 <Text
-                  style={{
-                    fontSize: 16,
-                    marginTop: 8,
-                    fontFamily: "Bukra",
-                    top: -80,
-                  }}
+                  style={
+                    index != 1
+                      ? {
+                          fontSize: 20,
+                          marginTop: 8,
+                          color: Colors.lightText,
+                          fontFamily: "Bukra",
+                          top: -80,
+                        }
+                      : {
+                          fontSize: 16,
+                          lineHeight: 24,
+                          marginTop: 8,
+                          color: Colors.lightText,
+                          fontFamily: "Bukra",
+                          top: -80,
+                        }
+                  }
                 >
                   {item.textAr1}
                 </Text>
                 <Text
-                  style={{
-                    fontSize: 14,
-                    marginTop: 8,
-                    fontFamily: "Bukra",
-                    top: -80,
-                    lineHeight: 20,
-                  }}
+                  style={
+                    index != 1
+                      ? {
+                          fontSize: 16,
+                          lineHeight: 28,
+                          marginTop: 8,
+                          fontFamily: "Bukra",
+                          top: -80,
+                          color: Colors.lightText,
+                        }
+                      : {
+                          fontSize: 12,
+                          lineHeight: 24,
+                          marginTop: 8,
+                          fontFamily: "Bukra",
+                          top: -80,
+                          color: Colors.lightText,
+                        }
+                  }
                 >
                   {item.textAr2}
                 </Text>
                 <Text
                   style={{
-                    fontSize: 16,
+                    fontSize: 20,
                     marginTop: 8,
                     fontWeight: "bold",
+                    color: Colors.lightText,
                     top: -55,
                   }}
                 >
                   {item.textEn1}
                 </Text>
                 <Text
-                  style={{
-                    fontSize: 14,
-                    marginTop: 8,
-                    fontWeight: "600",
-                    lineHeight: 20,
-                    top: -55,
-                  }}
+                  style={
+                    index != 1
+                      ? {
+                          fontSize: 16,
+                          lineHeight: 28,
+                          marginTop: 8,
+                          fontWeight: "600",
+                          top: -55,
+                          color: Colors.lightText,
+                        }
+                      : {
+                          fontSize: 14,
+                          lineHeight: 22,
+                          marginTop: 8,
+                          fontWeight: "700",
+                          top: -55,
+                          color: Colors.lightText,
+                        }
+                  }
                 >
                   {item.textEn2}
                 </Text>

@@ -4,6 +4,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Keyboard,
+  LayoutAnimation,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import SubjectsData from "@Src/data/Subjects";
@@ -113,6 +114,7 @@ const SearchScreen = ({ navigation }: Props) => {
       "searchHistory",
       prevData.filter((item: number) => item !== id)
     );
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setHistoryResults(newData);
   };
 

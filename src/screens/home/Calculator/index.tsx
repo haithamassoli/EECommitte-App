@@ -1,196 +1,355 @@
+import CustomHeader from "@Components/ui/CustomHeader";
 import { Feather } from "@expo/vector-icons";
+import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
+import { ThemeContext } from "@Src/store/themeContext";
 import { HomeStackParamList } from "@Types/navigation";
-import { screenHeight, screenWidth } from "@Utils/Helper";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useContext, useLayoutEffect, useState, useRef } from "react";
 import {
-  StatusBar,
-  Text,
   View,
-  Dimensions,
-  ImageBackground,
-  Pressable,
   ScrollView,
+  Image,
+  Text,
+  Pressable,
+  TextInput,
+  LayoutAnimation,
 } from "react-native";
+import CardRate from "./CardRate";
+import SubjectRate from "./SubjectRate";
 
 type Props = StackScreenProps<HomeStackParamList, "Calculator">;
 
-const { width, height } = Dimensions.get("screen");
-const data = [
-  {
-    textAr1: "بدأت فكرتنا قبل أكثر من 30 عاماً!",
-    textAr2: "وهي مستمرّة وستستمر طالما أن لها قلباً يجعلها حيّة..",
-    textEn1: "OUR IDEA WAS BORN 30 YEARS AGO!",
-    textEn2: "AND IT CONTINUES AND WILL BE FOR EVER. AS LONG AS THE IDEA",
-    image: require("@Assets/images/1stslide.webp"),
-    arrPos: "right",
-  },
-  {
-    textAr1:
-      "تعتبر لجنة الهندسة الكهربائية من أقدم اللجان والفرق الطلابية في جامعة العلوم والتكنولوجيا ",
-    textAr2:
-      " حيث يعود تأسيسها لما قبل 1990 توازياَ مع تأسيس جامعة العلوم والتكنولوجيا",
-    textEn1:
-      "ELECTRICAL ENGINEERING COMMITTEE IS ONE OF THE OLDEST STUDENT COMMITTEES AND TEAMS AT JUST!",
-    textEn2:
-      " IT’S ESTABLISHMENT DATES BACK TO BEFORE 1990, PARALLEL TO THE ESTABLISHMENT OF JUST.",
-    image: require("@Assets/images/2ndslide.webp"),
-    arrPos: "left",
-  },
-  {
-    textAr1: "بدأت فكرتنا قبل أكثر من 30 عاماً!",
-    textAr2: "وهي مستمرّة وستستمر طالما أن لها قلباً يجعلها حيّة..",
-    textEn1: "OUR IDEA WAS BORN 30 YEARS AGO!",
-    textEn2: "AND IT CONTINUES AND WILL BE FOR EVER. AS LONG AS THE IDEA",
-    image: require("@Assets/images/1stslide.webp"),
-    arrPos: "right",
-  },
-];
-
 const CalculatorScreen = ({ navigation }: Props) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const scrollRef = useRef<ScrollView>(null);
+  const { theme } = useContext(ThemeContext);
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  const iconColor =
+    theme === "light"
+      ? require("@Assets/images/icons/light-icons/calculator.png")
+      : require("@Assets/images/icons/dark-icons/calculator.png");
 
-  const onNext = () => {
-    setSelectedIndex((prevIndex) =>
-      prevIndex === data.length - 1 ? 0 : prevIndex + 1
-    ),
-      scrollRef.current?.scrollTo({
-        animated: true,
-        x: screenWidth * selectedIndex,
-        y: 0,
-      });
-  };
+  const scrollViewRef = useRef();
+  const [cumulative, setCumulative] = useState(true);
+  const [selectedHour, setSelectedHour] = useState();
+  const [selectedGrade, setSelectedGrade] = useState();
+  const [subjectCount, setSubjectCount] = useState(1);
 
-  const setImageIndex = (event: any) => {
-    const contentOffset = event.nativeEvent.contentOffset;
-    const viewSize = event.nativeEvent.layoutMeasurement;
-    const newSelectedIndex = Math.floor(contentOffset.x / viewSize.width);
-    setSelectedIndex(newSelectedIndex);
-  };
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerShown: false,
-    });
-    navigation.getParent()?.setOptions({
-      tabBarStyle: {
-        display: "none",
+      headerTitle: "حساب المعدل",
+      headerTitleStyle: {
+        fontFamily: "Bukra",
       },
+      headerLeft: () => (
+        <CustomHeader
+          onPress={() => navigation.goBack()}
+          iconColor={iconColor}
+        />
+      ),
     });
-    return () => {
-      navigation.getParent()?.setOptions({
-        tabBarStyle: {
-          display: "flex",
-        },
-      });
-    };
   }, []);
   return (
-    <View style={{ flex: 1, backgroundColor: "#000" }}>
-      <StatusBar hidden />
+    <View style={{ flex: 1, marginHorizontal: 14 }}>
       <ScrollView
-        ref={scrollRef}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        onMomentumScrollEnd={setImageIndex}
-        pagingEnabled
+        style={{ flex: 1 }}
+        // @ts-ignore
+        ref={scrollViewRef}
+        onContentSizeChange={() =>
+          // @ts-ignore
+          scrollViewRef.current?.scrollToEnd({ animated: true })
+        }
       >
-        {data.map((item, index) => (
-          <View
-            key={index}
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            alignItems: "center",
+            marginVertical: 10,
+          }}
+        >
+          <Text
             style={{
-              flex: 1,
-              width,
-              justifyContent: "center",
-              overflow: "hidden",
-              shadowRadius: 20,
-              shadowColor: "#000",
-              shadowOpacity: 0.5,
-              shadowOffset: {
-                width: 0,
-                height: 0,
-              },
+              fontFamily: "TajawalBold",
+              color: textColor,
+              fontSize: 16,
             }}
           >
-            <ImageBackground
-              source={item.image}
+            حساب المعدل التراكمي
+          </Text>
+          <Pressable
+            onPress={() => {
+              LayoutAnimation.configureNext(
+                LayoutAnimation.Presets.easeInEaseOut
+              );
+              setCumulative((e) => !e);
+            }}
+            style={{
+              width: 50,
+              height: 30,
+              borderRadius: 15,
+              backgroundColor: cumulative
+                ? Colors.primaryLight
+                : Colors.lightGray,
+              justifyContent: "center",
+              alignItems: cumulative ? "flex-end" : "flex-start",
+            }}
+          >
+            <View
               style={{
-                width: screenWidth,
-                height: screenHeight,
-                alignSelf: "center",
+                width: 30,
+                height: 30,
+                borderRadius: 15,
+                backgroundColor: cumulative ? Colors.primary400 : Colors.gray,
+              }}
+            ></View>
+          </Pressable>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: cumulative ? "space-between" : "center",
+            alignItems: "center",
+          }}
+        >
+          <CardRate title="المعدل الفصلي" grade="ممتاز" rate={3.5} />
+          {cumulative && (
+            <CardRate title="المعدل التراكمي" grade="ممتاز" rate={3.5} />
+          )}
+        </View>
+        {cumulative && (
+          <>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 20,
               }}
             >
-              <View
+              <Text
                 style={{
-                  flex: 1,
-                  justifyContent: "flex-end",
-                  padding: 16,
+                  fontFamily: "Bukra",
+                  color: textColor,
+                  fontSize: 16,
+                  width: 200,
                 }}
               >
-                <Pressable
-                  style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "#000",
-                    width: 50,
-                    height: 50,
-                    borderRadius: 25,
-                    top: -100,
-                    left: item.arrPos === "right" ? 40 : screenWidth - 80,
-                  }}
-                  onPress={onNext}
-                >
-                  <Feather name="arrow-right" size={32} color="#fff" />
-                </Pressable>
+                عدد الساعات المقطوعة
+              </Text>
+              <TextInput
+                style={{
+                  fontFamily: "TajawalBold",
+                  color: textColor,
+                  fontSize: 18,
+                  width: 72,
+                  textAlign: "center",
+                  borderRadius: 10,
+                  backgroundColor: Colors.lightBackgroundSec,
+                  paddingVertical: 4,
+                  paddingHorizontal: 8,
+                  marginLeft: 14,
+                }}
+                keyboardType="numeric"
+              />
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "flex-start",
+                marginTop: 20,
+              }}
+            >
+              <View>
                 <Text
                   style={{
-                    fontSize: 16,
-                    marginTop: 8,
                     fontFamily: "Bukra",
-                    top: -80,
-                  }}
-                >
-                  {item.textAr1}
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 14,
-                    marginTop: 8,
-                    fontFamily: "Bukra",
-                    top: -80,
-                    lineHeight: 20,
-                  }}
-                >
-                  {item.textAr2}
-                </Text>
-                <Text
-                  style={{
+                    color: textColor,
                     fontSize: 16,
-                    marginTop: 8,
-                    fontWeight: "bold",
-                    top: -55,
+                    width: 200,
                   }}
                 >
-                  {item.textEn1}
+                  المعدل التراكمي السابق
                 </Text>
                 <Text
                   style={{
-                    fontSize: 14,
-                    marginTop: 8,
-                    fontWeight: "600",
-                    lineHeight: 20,
-                    top: -55,
+                    fontFamily: "TajawalMedium",
+                    color: textColor,
+                    fontSize: 12,
+                    marginTop: 4,
+                    width: 150,
+                    alignSelf: "flex-start",
                   }}
                 >
-                  {item.textEn2}
+                  *لا يشمل الساعات التي تم احتسابها ناجح راسب
                 </Text>
               </View>
-            </ImageBackground>
+              <TextInput
+                style={{
+                  fontFamily: "TajawalBold",
+                  color: textColor,
+                  fontSize: 18,
+                  width: 72,
+                  textAlign: "center",
+                  borderRadius: 10,
+                  backgroundColor: Colors.lightBackgroundSec,
+                  paddingVertical: 4,
+                  paddingHorizontal: 8,
+                  marginLeft: 14,
+                }}
+                keyboardType="numeric"
+              />
+            </View>
+          </>
+        )}
+        <Text
+          style={{
+            fontFamily: "TajawalBold",
+            color: textColor,
+            textAlign: "center",
+            fontSize: 28,
+            marginTop: 20,
+          }}
+        >
+          مواد الفصل الحالي
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: 20,
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: Colors.lightBackgroundSec,
+              borderRadius: 20,
+              paddingVertical: 12,
+              paddingHorizontal: 8,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: "Bukra",
+                color: textColor,
+                fontSize: 16,
+              }}
+            >
+              وزن المادة
+            </Text>
           </View>
+          <View
+            style={{
+              backgroundColor: Colors.lightBackgroundSec,
+              borderRadius: 20,
+              paddingVertical: 12,
+              paddingHorizontal: 8,
+              justifyContent: "center",
+              alignItems: "center",
+              width: 174,
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: "Bukra",
+                color: textColor,
+                fontSize: 16,
+              }}
+            >
+              اسم المادة
+            </Text>
+          </View>
+          <View
+            style={{
+              backgroundColor: Colors.lightBackgroundSec,
+              borderRadius: 20,
+              paddingVertical: 12,
+              paddingHorizontal: 8,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: "Bukra",
+                color: textColor,
+                fontSize: 16,
+              }}
+            >
+              العلامة
+            </Text>
+          </View>
+        </View>
+        {numberToArray(subjectCount).map((_, index) => (
+          <SubjectRate
+            key={index}
+            setSelectedHour={setSelectedHour}
+            setSelectedGrade={setSelectedGrade}
+          />
         ))}
       </ScrollView>
+      <Pressable
+        onPress={() => {
+          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+          setSubjectCount((e) => e + 1);
+        }}
+        style={{
+          backgroundColor: Colors.primary400,
+          borderRadius: 20,
+          paddingVertical: 12,
+          paddingHorizontal: 8,
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 8,
+        }}
+      >
+        <Text
+          style={{
+            fontFamily: "Bukra",
+            color: Colors.lightBackground,
+            fontSize: 16,
+          }}
+        >
+          إضافة مادة
+        </Text>
+      </Pressable>
+      <Pressable
+        onPress={() => {
+          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+          setSubjectCount((e) => e + 1);
+        }}
+        style={{
+          backgroundColor: "green",
+          borderRadius: 20,
+          paddingVertical: 12,
+          paddingHorizontal: 8,
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 6,
+        }}
+      >
+        <Text
+          style={{
+            fontFamily: "Bukra",
+            color: Colors.lightBackground,
+            fontSize: 16,
+          }}
+        >
+          احتساب المعدل
+        </Text>
+      </Pressable>
     </View>
   );
 };
 
 export default CalculatorScreen;
+
+const numberToArray = (number: number) => {
+  const array = [];
+  for (let i = 0; i < number; i++) {
+    array.push(i);
+  }
+  return array;
+};

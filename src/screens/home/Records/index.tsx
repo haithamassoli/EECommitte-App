@@ -1,4 +1,5 @@
 import RecordCard from "@Components/RecordCard";
+import CustomHeader from "@Components/ui/CustomHeader";
 import SearchInput from "@Components/ui/SearchInput";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
@@ -34,23 +35,10 @@ const RecordsScreen = ({ navigation }: Props) => {
         fontFamily: "Bukra",
       },
       headerLeft: () => (
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Feather
-            name="arrow-right"
-            style={{ marginLeft: 12 }}
-            size={24}
-            color={textColor}
-            onPress={() => navigation.goBack()}
-          />
-          <Image
-            source={iconColor}
-            style={{
-              width: 50,
-              height: 50,
-              resizeMode: "contain",
-            }}
-          />
-        </View>
+        <CustomHeader
+          onPress={() => navigation.goBack()}
+          iconColor={iconColor}
+        />
       ),
     });
   }, []);

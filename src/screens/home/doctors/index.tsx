@@ -1,4 +1,4 @@
-import { Text, View, ActivityIndicator } from "react-native";
+import { Text, View, ActivityIndicator, Image } from "react-native";
 import DoctorsData from "@Src/data/Doctors";
 import { Doctor } from "@Types/index";
 import SearchInput from "@Components/ui/SearchInput";
@@ -9,6 +9,8 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
 import DoctorCard from "@Components/DoctorCard";
 import { FlashList } from "@shopify/flash-list";
+import { Feather } from "@expo/vector-icons";
+import CustomHeader from "@Components/ui/CustomHeader";
 
 type Props = StackScreenProps<HomeStackParamList, "Doctors">;
 
@@ -16,12 +18,32 @@ const options = {
   keys: ["name", "name2"],
 };
 
-const DoctorsScreen = ({ route }: Props) => {
+const DoctorsScreen = ({ navigation, route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Doctor[] | []>([]);
   const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+
+  const iconColor =
+    theme === "light"
+      ? require("@Assets/images/icons/light-icons/doctors.png")
+      : require("@Assets/images/icons/dark-icons/doctors.png");
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: "الكادر التدريسي",
+      headerTitleStyle: {
+        fontFamily: "Bukra",
+      },
+      headerLeft: () => (
+        <CustomHeader
+          onPress={() => navigation.goBack()}
+          iconColor={iconColor}
+        />
+      ),
+    });
+  }, []);
 
   useLayoutEffect(() => {
     setLoading(true);

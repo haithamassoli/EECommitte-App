@@ -17,9 +17,10 @@ interface Props {
   data: Array<{ label: string; value: string }>;
   onSelect: (item: { label: string; value: string }) => void;
   style: StyleProp<ViewStyle>;
+  itemNumber: number;
 }
 
-const Dropdown: FC<Props> = ({ label, data, onSelect, style }) => {
+const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
   const DropdownButton = useRef();
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(undefined);
@@ -48,7 +49,12 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, style }) => {
 
   const onItemPress = (item: any): void => {
     setSelected(item);
-    onSelect(item);
+    // @ts-ignore
+    onSelect((prev) => {
+      const newState = [...prev];
+      newState[itemNumber] = item;
+      return newState;
+    });
     setVisible(false);
   };
 

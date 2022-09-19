@@ -1,7 +1,7 @@
 import Dropdown from "@Components/ui/Dropdown";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { View, TextInput } from "react-native";
+import { View, TextInput, Text } from "react-native";
 import { useContext } from "react";
 
 const data = [
@@ -26,10 +26,29 @@ const markData = [
 ];
 
 type Props = {
-  setSelectedGrade: React.Dispatch<React.SetStateAction<undefined>>;
-  setSelectedHour: React.Dispatch<React.SetStateAction<undefined>>;
+  setSelectedGrade: React.Dispatch<
+    React.SetStateAction<
+      {
+        label: string;
+        value: number;
+      }[]
+    >
+  >;
+  setSelectedHour: React.Dispatch<
+    React.SetStateAction<
+      {
+        label: string;
+        value: number;
+      }[]
+    >
+  >;
+  itemNumber: number;
 };
-const SubjectRate = ({ setSelectedHour, setSelectedGrade }: Props) => {
+const SubjectRate = ({
+  setSelectedHour,
+  setSelectedGrade,
+  itemNumber,
+}: Props) => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
@@ -43,7 +62,10 @@ const SubjectRate = ({ setSelectedHour, setSelectedGrade }: Props) => {
       <View
         style={{
           width: 100,
-          backgroundColor: Colors.lightBackgroundSec,
+          backgroundColor:
+            theme === "light"
+              ? Colors.lightBackgroundSec
+              : Colors.darkBackgroundSec,
           borderRadius: 20,
           marginTop: 20,
         }}
@@ -55,12 +77,16 @@ const SubjectRate = ({ setSelectedHour, setSelectedGrade }: Props) => {
           data={markData}
           // @ts-ignore
           onSelect={setSelectedHour}
+          itemNumber={itemNumber}
         />
       </View>
       <View
         style={{
           width: 174,
-          backgroundColor: Colors.lightBackgroundSec,
+          backgroundColor:
+            theme === "light"
+              ? Colors.lightBackgroundSec
+              : Colors.darkBackgroundSec,
           borderRadius: 20,
           marginTop: 20,
           paddingVertical: 6,
@@ -73,7 +99,10 @@ const SubjectRate = ({ setSelectedHour, setSelectedGrade }: Props) => {
             color: textColor,
             fontSize: 18,
             textAlign: "center",
-            backgroundColor: Colors.lightBackgroundSec,
+            backgroundColor:
+              theme === "light"
+                ? Colors.lightBackgroundSec
+                : Colors.darkBackgroundSec,
             paddingVertical: 4,
             paddingHorizontal: 8,
             borderRadius: 20,
@@ -81,12 +110,16 @@ const SubjectRate = ({ setSelectedHour, setSelectedGrade }: Props) => {
             alignItems: "center",
           }}
           placeholder="(اختياري)"
+          placeholderTextColor={"gray"}
         />
       </View>
       <View
         style={{
           width: 80,
-          backgroundColor: Colors.lightBackgroundSec,
+          backgroundColor:
+            theme === "light"
+              ? Colors.lightBackgroundSec
+              : Colors.darkBackgroundSec,
           borderRadius: 20,
           marginTop: 20,
         }}
@@ -98,6 +131,7 @@ const SubjectRate = ({ setSelectedHour, setSelectedGrade }: Props) => {
           data={data}
           // @ts-ignore
           onSelect={setSelectedGrade}
+          itemNumber={itemNumber}
         />
       </View>
     </View>

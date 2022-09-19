@@ -1,5 +1,5 @@
 import CustomHeader from "@Components/ui/CustomHeader";
-import { Feather } from "@expo/vector-icons";
+import CustomModal from "@Components/ui/Modal";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -8,7 +8,6 @@ import { useContext, useLayoutEffect, useState, useRef } from "react";
 import {
   View,
   ScrollView,
-  Image,
   Text,
   Pressable,
   TextInput,
@@ -29,8 +28,16 @@ const CalculatorScreen = ({ navigation }: Props) => {
 
   const scrollViewRef = useRef();
   const [cumulative, setCumulative] = useState(true);
-  const [selectedHour, setSelectedHour] = useState();
-  const [selectedGrade, setSelectedGrade] = useState();
+  const [visible, setVisible] = useState(false);
+  const [massage, setMassage] = useState("");
+  const [semester, setSemester] = useState(0);
+  const [GPA, setGPA] = useState(0);
+  const [prevGPA, setPrevGPA] = useState<number | "-">("-");
+  const [prevSemesterHour, setPrevSemesterHour] = useState<number | "-">("-");
+  const [selectedHour, setSelectedHour] = useState([{ label: "3", value: 3 }]);
+  const [selectedGrade, setSelectedGrade] = useState([
+    { label: "A+", value: 4.2 },
+  ]);
   const [subjectCount, setSubjectCount] = useState(1);
 
   useLayoutEffect(() => {
@@ -47,8 +54,76 @@ const CalculatorScreen = ({ navigation }: Props) => {
       ),
     });
   }, []);
+
+  const addSubject = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    if (subjectCount >= 8) {
+      setMassage("لا يمكن اضافة المزيد من المواد");
+      setVisible(true);
+    } else {
+      setSubjectCount((e) => e + 1);
+      setSelectedHour((e) => [...e, { label: "3", value: 3 }]);
+      setSelectedGrade((e) => [...e, { label: "A+", value: 4.2 }]);
+    }
+  };
+
+  const deleteSubject = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    if (subjectCount === 1) {
+      setMassage("لا يمكن حذف كل المواد!");
+      setVisible(true);
+      return;
+    }
+    setSubjectCount((e) => e - 1);
+    setSelectedHour((e) => e.slice(0, -1));
+    setSelectedGrade((e) => e.slice(0, -1));
+  };
+
+  const calculateRate = () => {
+    let totalHour = 0;
+    let totalGrade = 0;
+    for (let i = 0; i < subjectCount; i++) {
+      totalHour += selectedHour[i].value;
+      totalGrade += selectedGrade[i].value * selectedHour[i].value;
+    }
+    setSemester(totalGrade / totalHour);
+    if (cumulative) {
+      // @ts-ignore
+      if (isNaN(prevGPA)) {
+        setMassage("يجب إدخال المعدل التراكمي السابق!");
+        setVisible(true);
+        // @ts-ignore
+      } else if (isNaN(prevSemesterHour)) {
+        setMassage("يجب إدخال عدد الساعات المقطوعة!");
+        setVisible(true);
+      } else if (+prevSemesterHour + totalHour > 160) {
+        setMassage("عدد الساعات المقطوعة لا يمكن أن يتعدى 160 ساعة!");
+        setVisible(true);
+      } else if (prevGPA > 4.2) {
+        setMassage("المعدل التراكمي السابق لا يمكن أن يتعدى 4.2!");
+        setVisible(true);
+      } else {
+        setGPA(
+          // @ts-ignore
+          (prevGPA * prevSemesterHour + totalGrade) /
+            // @ts-ignore
+            (prevSemesterHour + totalHour)
+        );
+      }
+    }
+  };
+
+  const handleGPA = (value: "-" | number) => {
+    setPrevGPA(Number(value));
+  };
+
+  const handleSemesterHour = (value: "-" | number) => {
+    setPrevSemesterHour(Number(value));
+  };
+
   return (
     <View style={{ flex: 1, marginHorizontal: 14 }}>
+      <CustomModal visible={visible} title={massage} setVisible={setVisible} />
       <ScrollView
         style={{ flex: 1 }}
         // @ts-ignore
@@ -86,9 +161,14 @@ const CalculatorScreen = ({ navigation }: Props) => {
               width: 50,
               height: 30,
               borderRadius: 15,
-              backgroundColor: cumulative
-                ? Colors.primaryLight
-                : Colors.lightGray,
+              backgroundColor:
+                cumulative && theme === "light"
+                  ? Colors.primaryLight
+                  : cumulative && theme === "dark"
+                  ? Colors.darkBackgroundSec
+                  : theme === "light"
+                  ? Colors.primaryLight
+                  : Colors.darkBackgroundSec,
               justifyContent: "center",
               alignItems: cumulative ? "flex-end" : "flex-start",
             }}
@@ -98,7 +178,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
                 width: 30,
                 height: 30,
                 borderRadius: 15,
-                backgroundColor: cumulative ? Colors.primary400 : Colors.gray,
+                backgroundColor: cumulative ? Colors.primary500 : Colors.gray,
               }}
             ></View>
           </Pressable>
@@ -110,10 +190,8 @@ const CalculatorScreen = ({ navigation }: Props) => {
             alignItems: "center",
           }}
         >
-          <CardRate title="المعدل الفصلي" grade="ممتاز" rate={3.5} />
-          {cumulative && (
-            <CardRate title="المعدل التراكمي" grade="ممتاز" rate={3.5} />
-          )}
+          <CardRate title="المعدل الفصلي" rate={semester} />
+          {cumulative && <CardRate title="المعدل التراكمي" rate={GPA} />}
         </View>
         {cumulative && (
           <>
@@ -133,8 +211,9 @@ const CalculatorScreen = ({ navigation }: Props) => {
                   width: 200,
                 }}
               >
-                عدد الساعات المقطوعة
+                المعدل التراكمي السابق
               </Text>
+              {/* @ts-ignore */}
               <TextInput
                 style={{
                   fontFamily: "TajawalBold",
@@ -143,12 +222,18 @@ const CalculatorScreen = ({ navigation }: Props) => {
                   width: 72,
                   textAlign: "center",
                   borderRadius: 10,
-                  backgroundColor: Colors.lightBackgroundSec,
+                  backgroundColor:
+                    theme === "light"
+                      ? Colors.lightBackgroundSec
+                      : Colors.darkBackgroundSec,
                   paddingVertical: 4,
                   paddingHorizontal: 8,
                   marginLeft: 14,
                 }}
                 keyboardType="numeric"
+                value={prevGPA}
+                // @ts-ignore
+                onChangeText={handleGPA}
               />
             </View>
             <View
@@ -168,7 +253,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
                     width: 200,
                   }}
                 >
-                  المعدل التراكمي السابق
+                  عدد الساعات المقطوعة
                 </Text>
                 <Text
                   style={{
@@ -191,12 +276,18 @@ const CalculatorScreen = ({ navigation }: Props) => {
                   width: 72,
                   textAlign: "center",
                   borderRadius: 10,
-                  backgroundColor: Colors.lightBackgroundSec,
+                  backgroundColor:
+                    theme === "light"
+                      ? Colors.lightBackgroundSec
+                      : Colors.darkBackgroundSec,
                   paddingVertical: 4,
                   paddingHorizontal: 8,
                   marginLeft: 14,
                 }}
                 keyboardType="numeric"
+                value={prevSemesterHour.toString()}
+                // @ts-ignore
+                onChangeText={handleSemesterHour}
               />
             </View>
           </>
@@ -222,7 +313,10 @@ const CalculatorScreen = ({ navigation }: Props) => {
         >
           <View
             style={{
-              backgroundColor: Colors.lightBackgroundSec,
+              backgroundColor:
+                theme === "light"
+                  ? Colors.lightBackgroundSec
+                  : Colors.darkBackgroundSec,
               borderRadius: 20,
               paddingVertical: 12,
               paddingHorizontal: 8,
@@ -242,7 +336,10 @@ const CalculatorScreen = ({ navigation }: Props) => {
           </View>
           <View
             style={{
-              backgroundColor: Colors.lightBackgroundSec,
+              backgroundColor:
+                theme === "light"
+                  ? Colors.lightBackgroundSec
+                  : Colors.darkBackgroundSec,
               borderRadius: 20,
               paddingVertical: 12,
               paddingHorizontal: 8,
@@ -263,7 +360,10 @@ const CalculatorScreen = ({ navigation }: Props) => {
           </View>
           <View
             style={{
-              backgroundColor: Colors.lightBackgroundSec,
+              backgroundColor:
+                theme === "light"
+                  ? Colors.lightBackgroundSec
+                  : Colors.darkBackgroundSec,
               borderRadius: 20,
               paddingVertical: 12,
               paddingHorizontal: 8,
@@ -287,39 +387,66 @@ const CalculatorScreen = ({ navigation }: Props) => {
             key={index}
             setSelectedHour={setSelectedHour}
             setSelectedGrade={setSelectedGrade}
+            itemNumber={index}
           />
         ))}
-      </ScrollView>
-      <Pressable
-        onPress={() => {
-          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-          setSubjectCount((e) => e + 1);
-        }}
-        style={{
-          backgroundColor: Colors.primary400,
-          borderRadius: 20,
-          paddingVertical: 12,
-          paddingHorizontal: 8,
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: 8,
-        }}
-      >
-        <Text
+        <View
           style={{
-            fontFamily: "Bukra",
-            color: Colors.lightBackground,
-            fontSize: 16,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: 12,
           }}
         >
-          إضافة مادة
-        </Text>
-      </Pressable>
+          <Pressable
+            onPress={addSubject}
+            style={{
+              backgroundColor: Colors.primary500,
+              borderRadius: 20,
+              paddingVertical: 12,
+              paddingHorizontal: 8,
+              justifyContent: "center",
+              alignItems: "center",
+              width: "48%",
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: "Bukra",
+                color: Colors.lightBackground,
+                fontSize: 16,
+              }}
+            >
+              إضافة مادة
+            </Text>
+          </Pressable>
+          <Pressable
+            onPress={deleteSubject}
+            style={{
+              backgroundColor: "red",
+              borderRadius: 20,
+              paddingVertical: 12,
+              paddingHorizontal: 8,
+              justifyContent: "center",
+              alignItems: "center",
+              width: "48%",
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: "Bukra",
+                color: Colors.lightBackground,
+                fontSize: 16,
+              }}
+            >
+              حذف مادة
+            </Text>
+          </Pressable>
+        </View>
+      </ScrollView>
+
       <Pressable
-        onPress={() => {
-          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-          setSubjectCount((e) => e + 1);
-        }}
+        onPress={calculateRate}
         style={{
           backgroundColor: "green",
           borderRadius: 20,

@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useRef, useState } from "react";
+import { FC, ReactElement, useRef, useState, useContext } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
+import { ThemeContext } from "@Src/store/themeContext";
 
 interface Props {
   label: string;
@@ -25,6 +26,8 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(undefined);
   const [dropdownTop, setDropdownTop] = useState(0);
+  const { theme } = useContext(ThemeContext);
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   const toggleDropdown = (): void => {
     visible ? setVisible(false) : openDropdown();
@@ -60,7 +63,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
 
   const renderItem = ({ item }: any): ReactElement<any, any> => (
     <TouchableOpacity style={styles.item} onPress={() => onItemPress(item)}>
-      <Text>{item.label}</Text>
+      <Text style={{ color: textColor }}>{item.label}</Text>
     </TouchableOpacity>
   );
 
@@ -71,7 +74,19 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
           style={styles.overlay}
           onPress={() => setVisible(false)}
         >
-          <View style={[styles.dropdown, { top: dropdownTop - 20 }, style]}>
+          <View
+            style={[
+              styles.dropdown,
+              {
+                top: dropdownTop - 28,
+                backgroundColor:
+                  theme === "light"
+                    ? Colors.lightBackgroundSec
+                    : Colors.darkBackgroundSec,
+              },
+              style,
+            ]}
+          >
             <FlatList
               data={data}
               renderItem={renderItem}
@@ -87,15 +102,23 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
     <TouchableOpacity
       // @ts-ignore
       ref={DropdownButton}
-      style={styles.button}
+      style={[
+        styles.button,
+        {
+          backgroundColor:
+            theme === "light"
+              ? Colors.lightBackgroundSec
+              : Colors.darkBackgroundSec,
+        },
+      ]}
       onPress={toggleDropdown}
     >
       {renderDropdown()}
-      <Text style={styles.buttonText}>
+      <Text style={[styles.buttonText, { color: textColor }]}>
         {/* @ts-ignore */}
         {(!!selected && selected.label) || label}
       </Text>
-      <Feather name="chevron-down" size={24} color="black" />
+      <Feather name="chevron-down" size={24} color={textColor} />
     </TouchableOpacity>
   );
 };
@@ -104,7 +127,6 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: Colors.lightBackgroundSec,
     borderRadius: 20,
     paddingVertical: 12,
     paddingHorizontal: 8,
@@ -119,7 +141,6 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     position: "absolute",
-    backgroundColor: Colors.lightBackgroundSec,
     width: 100,
     height: 160,
     borderRadius: 20,

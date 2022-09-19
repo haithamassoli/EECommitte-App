@@ -2,21 +2,45 @@ import Colors from "@GlobalStyle/Colors";
 import { screenWidth } from "@Utils/Helper";
 import { View, Text } from "react-native";
 import { ThemeContext } from "@Src/store/themeContext";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 
 type Props = {
   title: string;
   rate: number;
-  grade: string;
 };
 
-const CardRate = ({ title, rate, grade }: Props) => {
+const CardRate = ({ title, rate }: Props) => {
+  const [grade, setGrade] = useState("");
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+
+  useEffect(() => {
+    if (rate >= 4) {
+      setGrade("متميز");
+    } else if (rate >= 3.5) {
+      setGrade("ممتاز");
+    } else if (rate >= 3) {
+      setGrade("جيد جدا");
+    } else if (rate >= 2.5) {
+      setGrade("جيد");
+    } else if (rate >= 2) {
+      setGrade("مقبول");
+    } else if (rate >= 1.5) {
+      setGrade("انذار");
+    } else if (rate === 0) {
+      setGrade("لا يوجد بيانات");
+    } else {
+      setGrade("F");
+    }
+  }, [rate]);
+
   return (
     <View
       style={{
-        backgroundColor: Colors.lightBackgroundSec,
+        backgroundColor:
+          theme === "light"
+            ? Colors.lightBackgroundSec
+            : Colors.darkBackgroundSec,
         borderRadius: 20,
         paddingVertical: 20,
         paddingHorizontal: 10,
@@ -41,7 +65,7 @@ const CardRate = ({ title, rate, grade }: Props) => {
           fontSize: 46,
         }}
       >
-        {rate}
+        {rate.toFixed(2)}
       </Text>
       <Text
         style={{

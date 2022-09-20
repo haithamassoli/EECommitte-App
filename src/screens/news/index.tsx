@@ -47,7 +47,7 @@ const NewsScreen = () => {
     );
     const postss = await getDocs(paginatedPosts);
     postss.forEach((post) => {
-      console.log(post.data());
+      // console.log(post.data());
       // @ts-ignore
       setPosts((prevPosts) => [...prevPosts, post.data()]);
     });

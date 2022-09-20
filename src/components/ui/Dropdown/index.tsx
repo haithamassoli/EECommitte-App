@@ -120,6 +120,22 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
       ]}
       onPress={toggleDropdown}
     >
+      {visible && (
+        <View
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 20,
+            backgroundColor:
+              theme === "light" ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
+          }}
+        />
+      )}
       {renderDropdown()}
       <Text style={[styles.buttonText, { color: textColor }]}>
         {/* @ts-ignore */}

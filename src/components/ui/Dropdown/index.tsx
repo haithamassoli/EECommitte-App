@@ -8,10 +8,12 @@ import {
   View,
   StyleProp,
   ViewStyle,
+  LayoutAnimation,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
+import { screenHeight } from "@Utils/Helper";
 
 interface Props {
   label: string;
@@ -19,13 +21,14 @@ interface Props {
   onSelect: (item: { label: string; value: string }) => void;
   style: StyleProp<ViewStyle>;
   itemNumber: number;
+  lastItem: number;
 }
 
 const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
   const DropdownButton = useRef();
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(undefined);
-  const [dropdownTop, setDropdownTop] = useState(0);
+  const [dropdownBottom, setDropdownBottom] = useState(0);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
@@ -44,7 +47,8 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
         _px: number,
         py: number
       ) => {
-        setDropdownTop(py + h);
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        setDropdownBottom(screenHeight - py - 4 * h);
       }
     );
     setVisible(true);
@@ -78,7 +82,10 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
             style={[
               styles.dropdown,
               {
-                top: dropdownTop - 28,
+                bottom:
+                  dropdownBottom < 0
+                    ? dropdownBottom + 200
+                    : dropdownBottom - 18,
                 backgroundColor:
                   theme === "light"
                     ? Colors.lightBackgroundSec

@@ -30,10 +30,10 @@ const CalculatorScreen = ({ navigation }: Props) => {
   const [cumulative, setCumulative] = useState(true);
   const [visible, setVisible] = useState(false);
   const [massage, setMassage] = useState("");
-  const [semester, setSemester] = useState(0);
-  const [GPA, setGPA] = useState(0);
-  const [prevGPA, setPrevGPA] = useState<number>(0);
-  const [prevSemesterHour, setPrevSemesterHour] = useState<number>(0);
+  const [semester, setSemester] = useState("0");
+  const [GPA, setGPA] = useState("0");
+  const [prevGPA, setPrevGPA] = useState("0");
+  const [prevSemesterHour, setPrevSemesterHour] = useState("0");
   const [selectedHour, setSelectedHour] = useState([{ label: "3", value: 3 }]);
   const [selectedGrade, setSelectedGrade] = useState([
     { label: "A+", value: 4.2 },
@@ -86,7 +86,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
       totalHour += selectedHour[i].value;
       totalGrade += selectedGrade[i].value * selectedHour[i].value;
     }
-    setSemester(totalGrade / totalHour);
+    setSemester((+totalGrade / +totalHour).toFixed(2));
     if (cumulative) {
       // @ts-ignore
       if (isNaN(prevGPA)) {
@@ -96,29 +96,21 @@ const CalculatorScreen = ({ navigation }: Props) => {
       } else if (isNaN(prevSemesterHour)) {
         setMassage("يجب إدخال عدد الساعات المقطوعة!");
         setVisible(true);
-      } else if (prevSemesterHour + totalHour > 160) {
+      } else if (+prevSemesterHour + totalHour > 160) {
         setMassage("عدد الساعات المقطوعة لا يمكن أن يتعدى 160 ساعة!");
         setVisible(true);
-      } else if (prevGPA > 4.2) {
+      } else if (+prevGPA > 4.2) {
         setMassage("المعدل التراكمي السابق لا يمكن أن يتعدى 4.2!");
         setVisible(true);
       } else {
         setGPA(
-          // @ts-ignore
-          (prevGPA * prevSemesterHour + totalGrade) /
-            // @ts-ignore
-            (prevSemesterHour + totalHour)
+          (
+            (+prevGPA * +prevSemesterHour + totalGrade) /
+            (+prevSemesterHour + totalHour)
+          ).toFixed(2)
         );
       }
     }
-  };
-
-  const handleGPA = (value: "-" | number) => {
-    setPrevGPA(Number(value));
-  };
-
-  const handleSemesterHour = (value: "-" | number) => {
-    setPrevSemesterHour(Number(value));
   };
 
   return (
@@ -167,7 +159,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
                   : cumulative && theme === "dark"
                   ? Colors.darkBackgroundSec
                   : theme === "light"
-                  ? Colors.primaryLight
+                  ? Colors.lightGray
                   : Colors.darkBackgroundSec,
               justifyContent: "center",
               alignItems: cumulative ? "flex-end" : "flex-start",
@@ -213,7 +205,6 @@ const CalculatorScreen = ({ navigation }: Props) => {
               >
                 المعدل التراكمي السابق
               </Text>
-              {/* @ts-ignore */}
               <TextInput
                 style={{
                   fontFamily: "TajawalBold",
@@ -231,9 +222,8 @@ const CalculatorScreen = ({ navigation }: Props) => {
                   marginLeft: 14,
                 }}
                 keyboardType="numeric"
-                value={prevGPA.toString()}
-                // @ts-ignore
-                onChangeText={handleGPA}
+                value={prevGPA}
+                onChangeText={(e) => setPrevGPA(e)}
               />
             </View>
             <View
@@ -285,9 +275,8 @@ const CalculatorScreen = ({ navigation }: Props) => {
                   marginLeft: 14,
                 }}
                 keyboardType="numeric"
-                value={prevSemesterHour.toString()}
-                // @ts-ignore
-                onChangeText={handleSemesterHour}
+                value={prevSemesterHour}
+                onChangeText={(e) => setPrevSemesterHour(e)}
               />
             </View>
           </>
@@ -444,7 +433,6 @@ const CalculatorScreen = ({ navigation }: Props) => {
           </Pressable>
         </View>
       </ScrollView>
-
       <Pressable
         onPress={calculateRate}
         style={{

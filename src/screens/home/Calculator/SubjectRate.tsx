@@ -1,7 +1,7 @@
 import Dropdown from "@Components/ui/Dropdown";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { View, TextInput, Text } from "react-native";
+import { View, TextInput } from "react-native";
 import { useContext } from "react";
 
 const data = [
@@ -17,6 +17,7 @@ const data = [
   { label: "D+", value: 2 },
   { label: "D", value: 1.75 },
   { label: "D-", value: 1.5 },
+  { label: "F", value: 0.5 },
 ];
 const markData = [
   { label: "3", value: 3 },

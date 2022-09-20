@@ -6,7 +6,7 @@ import { useContext, useState, useEffect } from "react";
 
 type Props = {
   title: string;
-  rate: number;
+  rate: string;
 };
 
 const CardRate = ({ title, rate }: Props) => {
@@ -15,22 +15,22 @@ const CardRate = ({ title, rate }: Props) => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   useEffect(() => {
-    if (rate >= 4) {
+    if (+rate >= 4) {
       setGrade("متميز");
-    } else if (rate >= 3.5) {
+    } else if (+rate >= 3.5) {
       setGrade("ممتاز");
-    } else if (rate >= 3) {
+    } else if (+rate >= 3) {
       setGrade("جيد جدا");
-    } else if (rate >= 2.5) {
+    } else if (+rate >= 2.5) {
       setGrade("جيد");
-    } else if (rate >= 2) {
+    } else if (+rate >= 2) {
       setGrade("مقبول");
-    } else if (rate >= 1.5) {
+    } else if (+rate >= 1.5) {
       setGrade("انذار");
-    } else if (rate === 0) {
+    } else if (+rate === 0) {
       setGrade("لا يوجد بيانات");
     } else {
-      setGrade("F");
+      setGrade("راسب");
     }
   }, [rate]);
 
@@ -65,7 +65,7 @@ const CardRate = ({ title, rate }: Props) => {
           fontSize: 46,
         }}
       >
-        {rate.toFixed(2)}
+        {rate}
       </Text>
       <Text
         style={{

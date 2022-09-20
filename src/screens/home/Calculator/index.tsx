@@ -32,8 +32,8 @@ const CalculatorScreen = ({ navigation }: Props) => {
   const [massage, setMassage] = useState("");
   const [semester, setSemester] = useState(0);
   const [GPA, setGPA] = useState(0);
-  const [prevGPA, setPrevGPA] = useState<number | "-">("-");
-  const [prevSemesterHour, setPrevSemesterHour] = useState<number | "-">("-");
+  const [prevGPA, setPrevGPA] = useState<number>(0);
+  const [prevSemesterHour, setPrevSemesterHour] = useState<number>(0);
   const [selectedHour, setSelectedHour] = useState([{ label: "3", value: 3 }]);
   const [selectedGrade, setSelectedGrade] = useState([
     { label: "A+", value: 4.2 },
@@ -96,7 +96,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
       } else if (isNaN(prevSemesterHour)) {
         setMassage("يجب إدخال عدد الساعات المقطوعة!");
         setVisible(true);
-      } else if (+prevSemesterHour + totalHour > 160) {
+      } else if (prevSemesterHour + totalHour > 160) {
         setMassage("عدد الساعات المقطوعة لا يمكن أن يتعدى 160 ساعة!");
         setVisible(true);
       } else if (prevGPA > 4.2) {
@@ -231,7 +231,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
                   marginLeft: 14,
                 }}
                 keyboardType="numeric"
-                value={prevGPA}
+                value={prevGPA.toString()}
                 // @ts-ignore
                 onChangeText={handleGPA}
               />

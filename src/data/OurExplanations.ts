@@ -11,9 +11,9 @@ const explanationsData = [
     id: 2,
     subject: "Physics II",
     searchName: "فيزياء 2",
-    doctor: "بشّار الزيود",
+    doctor: "محمد لافي",
     image: require("@Assets/images/our-explanations/phy102.jpg"),
-    link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb5lqDJ9EC6a3fzrAlWAxfry",
+    link: "https://youtube.com/playlist?list=PLdL3o9rqPLb65vqvcyHXW_xZ8dudFL1sd",
   },
   {
     id: 3,

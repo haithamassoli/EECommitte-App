@@ -87,7 +87,11 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
                     ? dropdownBottom + 200
                     : dropdownBottom - 18,
                 backgroundColor:
-                  theme === "light"
+                  theme === "light" && visible
+                    ? "#eee"
+                    : theme === "dark" && visible
+                    ? "#444"
+                    : theme === "light"
                     ? Colors.lightBackgroundSec
                     : Colors.darkBackgroundSec,
               },

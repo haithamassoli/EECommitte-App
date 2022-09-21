@@ -5,7 +5,19 @@ export interface Subject {
   aboutSubject?: string;
   subjectLink: string;
   fullPost?: string;
+  notebook?: string;
+  book?: string;
+  prevYears?: string;
+  slides?: string;
+  explanations?: Explanation[];
+  exams?: string;
+  answers?: string;
 }
+
+type Explanation = {
+  name: string;
+  link: string;
+};
 
 type ItemType = {
   x1: number;

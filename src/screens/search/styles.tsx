@@ -1,14 +1,15 @@
 import Colors from "@GlobalStyle/Colors";
-import { Dimensions, StyleSheet } from "react-native";
-const { height } = Dimensions.get("window");
+import { screenHeight } from "@Utils/Helper";
+import { horizontalScale, moderateScale } from "@Utils/Platform";
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 12,
+    paddingHorizontal: horizontalScale(12),
   },
   header: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     color: Colors.primary400,
     fontWeight: "bold",
   },
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    height: height / 8,
+    height: screenHeight / 8,
   },
 });
 

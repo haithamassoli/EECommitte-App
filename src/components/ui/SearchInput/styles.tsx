@@ -1,4 +1,5 @@
 import Colors from "@GlobalStyle/Colors";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -8,9 +9,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   searchInput: {
-    paddingHorizontal: 40,
-    paddingVertical: 10,
-    borderRadius: 30,
+    paddingHorizontal: horizontalScale(40),
+    paddingVertical: verticalScale(10),
+    borderRadius: moderateScale(30),
     fontFamily: "TajawalBold",
     width: "100%",
   },

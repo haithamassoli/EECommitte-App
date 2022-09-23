@@ -9,6 +9,7 @@ import explanationsData from "@Src/data/OurExplanations";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
 import { HomeStackParamList } from "@Types/navigation";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { memo, useContext, useLayoutEffect, useState } from "react";
 import { View, Text, Image } from "react-native";
 
@@ -46,7 +47,7 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
   return (
     <View
       style={{
-        marginHorizontal: 12,
+        marginHorizontal: horizontalScale(12),
         flex: 1,
       }}
     >
@@ -56,7 +57,7 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
         setResults={setResults}
         options={options}
         list={explanationsData}
-        style={{ marginVertical: 8 }}
+        style={{ marginVertical: verticalScale(8) }}
       />
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
@@ -79,8 +80,8 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
             style={{
               textAlign: "center",
               fontWeight: "bold",
-              fontSize: 24,
-              marginTop: 40,
+              fontSize: moderateScale(24),
+              marginTop: verticalScale(40),
               color: textColor,
             }}
           >

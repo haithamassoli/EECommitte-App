@@ -3,6 +3,7 @@ import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { memo, useContext } from "react";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 interface InfoItemProps {
   icon: keyof typeof Feather.glyphMap;
@@ -17,8 +18,8 @@ const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
   return (
     <Pressable onPress={onPress} style={styles.outerContainer}>
       <View style={styles.innerContainer}>
-        <Feather name={icon} color={textColor} size={26} />
-        <View style={{ marginStart: 12 }}>
+        <Feather name={icon} color={textColor} size={moderateScale(26)} />
+        <View style={{ marginStart: horizontalScale(12) }}>
           <Text
             style={[
               styles.title,
@@ -41,7 +42,7 @@ const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
           </Text>
         </View>
       </View>
-      <Feather name="arrow-left" color={textColor} size={20} />
+      <Feather name="arrow-left" color={textColor} size={moderateScale(20)} />
     </Pressable>
   );
 };
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    height: 80,
+    height: verticalScale(80),
   },
   innerContainer: {
     flex: 1,
@@ -61,12 +62,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: "bold",
     textAlign: "left",
   },
   subTitle: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: Colors.gray,
     textAlign: "left",
   },

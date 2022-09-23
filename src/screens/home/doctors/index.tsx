@@ -11,6 +11,7 @@ import DoctorCard from "@Components/DoctorCard";
 import { FlashList } from "@shopify/flash-list";
 import { Feather } from "@expo/vector-icons";
 import CustomHeader from "@Components/ui/CustomHeader";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = StackScreenProps<HomeStackParamList, "Doctors">;
 
@@ -69,14 +70,14 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
   return (
     <>
       {loading}
-      <View style={{ marginHorizontal: 12, flex: 1 }}>
+      <View style={{ marginHorizontal: horizontalScale(12), flex: 1 }}>
         <SearchInput
           searchInput={searchInput}
           setSearchInput={setSearchInput}
           setResults={setResults}
           options={options}
           list={DoctorsData}
-          style={{ marginTop: 12 }}
+          style={{ marginTop: verticalScale(12) }}
         />
         {results.length > 0 && searchInput.length > 0 ? (
           <FlashList
@@ -101,8 +102,8 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
-                fontSize: 24,
-                marginTop: 40,
+                fontSize: moderateScale(24),
+                marginTop: verticalScale(40),
                 color: textColor,
               }}
             >

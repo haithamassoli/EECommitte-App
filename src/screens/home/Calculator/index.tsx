@@ -4,6 +4,7 @@ import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ThemeContext } from "@Src/store/themeContext";
 import { HomeStackParamList } from "@Types/navigation";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext, useLayoutEffect, useState, useRef } from "react";
 import {
   View,
@@ -114,7 +115,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <View style={{ flex: 1, marginHorizontal: 14 }}>
+    <View style={{ flex: 1, marginHorizontal: horizontalScale(14) }}>
       <CustomModal visible={visible} title={massage} setVisible={setVisible} />
       <ScrollView
         style={{ flex: 1 }}
@@ -130,14 +131,14 @@ const CalculatorScreen = ({ navigation }: Props) => {
             flexDirection: "row",
             justifyContent: "space-around",
             alignItems: "center",
-            marginVertical: 10,
+            marginVertical: verticalScale(10),
           }}
         >
           <Text
             style={{
               fontFamily: "TajawalBold",
               color: textColor,
-              fontSize: 16,
+              fontSize: moderateScale(16),
             }}
           >
             حساب المعدل التراكمي
@@ -150,9 +151,9 @@ const CalculatorScreen = ({ navigation }: Props) => {
               setCumulative((e) => !e);
             }}
             style={{
-              width: 50,
-              height: 30,
-              borderRadius: 15,
+              width: horizontalScale(50),
+              height: verticalScale(30),
+              borderRadius: moderateScale(15),
               backgroundColor:
                 cumulative && theme === "light"
                   ? Colors.primaryLight
@@ -167,9 +168,9 @@ const CalculatorScreen = ({ navigation }: Props) => {
           >
             <View
               style={{
-                width: 30,
-                height: 30,
-                borderRadius: 15,
+                width: horizontalScale(30),
+                height: verticalScale(30),
+                borderRadius: moderateScale(15),
                 backgroundColor: cumulative ? Colors.primary500 : Colors.gray,
               }}
             ></View>
@@ -192,15 +193,15 @@ const CalculatorScreen = ({ navigation }: Props) => {
                 flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
-                marginTop: 20,
+                marginTop: verticalScale(20),
               }}
             >
               <Text
                 style={{
                   fontFamily: "Bukra",
                   color: textColor,
-                  fontSize: 16,
-                  width: 200,
+                  fontSize: moderateScale(16),
+                  width: horizontalScale(200),
                 }}
               >
                 المعدل التراكمي السابق
@@ -209,17 +210,17 @@ const CalculatorScreen = ({ navigation }: Props) => {
                 style={{
                   fontFamily: "TajawalBold",
                   color: textColor,
-                  fontSize: 18,
-                  width: 72,
+                  fontSize: moderateScale(18),
+                  width: horizontalScale(72),
                   textAlign: "center",
-                  borderRadius: 10,
+                  borderRadius: moderateScale(10),
                   backgroundColor:
                     theme === "light"
                       ? Colors.lightBackgroundSec
                       : Colors.darkBackgroundSec,
-                  paddingVertical: 4,
-                  paddingHorizontal: 8,
-                  marginLeft: 14,
+                  paddingVertical: verticalScale(4),
+                  paddingHorizontal: horizontalScale(8),
+                  marginLeft: horizontalScale(14),
                 }}
                 keyboardType="numeric"
                 value={prevGPA}
@@ -231,7 +232,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
                 flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "flex-start",
-                marginTop: 20,
+                marginTop: verticalScale(20),
               }}
             >
               <View>
@@ -239,8 +240,8 @@ const CalculatorScreen = ({ navigation }: Props) => {
                   style={{
                     fontFamily: "Bukra",
                     color: textColor,
-                    fontSize: 16,
-                    width: 200,
+                    fontSize: moderateScale(16),
+                    width: horizontalScale(200),
                   }}
                 >
                   عدد الساعات المقطوعة
@@ -249,9 +250,9 @@ const CalculatorScreen = ({ navigation }: Props) => {
                   style={{
                     fontFamily: "TajawalMedium",
                     color: textColor,
-                    fontSize: 12,
-                    marginTop: 4,
-                    width: 150,
+                    fontSize: moderateScale(12),
+                    marginTop: verticalScale(4),
+                    width: horizontalScale(150),
                     alignSelf: "flex-start",
                   }}
                 >
@@ -262,17 +263,17 @@ const CalculatorScreen = ({ navigation }: Props) => {
                 style={{
                   fontFamily: "TajawalBold",
                   color: textColor,
-                  fontSize: 18,
-                  width: 72,
+                  fontSize: moderateScale(18),
+                  width: horizontalScale(72),
                   textAlign: "center",
-                  borderRadius: 10,
+                  borderRadius: moderateScale(10),
                   backgroundColor:
                     theme === "light"
                       ? Colors.lightBackgroundSec
                       : Colors.darkBackgroundSec,
-                  paddingVertical: 4,
-                  paddingHorizontal: 8,
-                  marginLeft: 14,
+                  paddingVertical: verticalScale(4),
+                  paddingHorizontal: horizontalScale(8),
+                  marginLeft: horizontalScale(14),
                 }}
                 keyboardType="numeric"
                 value={prevSemesterHour}
@@ -286,8 +287,8 @@ const CalculatorScreen = ({ navigation }: Props) => {
             fontFamily: "TajawalBold",
             color: textColor,
             textAlign: "center",
-            fontSize: 28,
-            marginTop: 20,
+            fontSize: moderateScale(28),
+            marginTop: verticalScale(20),
           }}
         >
           مواد الفصل الحالي
@@ -297,7 +298,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            marginTop: 20,
+            marginTop: verticalScale(20),
           }}
         >
           <View
@@ -306,9 +307,9 @@ const CalculatorScreen = ({ navigation }: Props) => {
                 theme === "light"
                   ? Colors.lightBackgroundSec
                   : Colors.darkBackgroundSec,
-              borderRadius: 20,
-              paddingVertical: 12,
-              paddingHorizontal: 8,
+              borderRadius: moderateScale(20),
+              paddingVertical: verticalScale(12),
+              paddingHorizontal: horizontalScale(8),
               justifyContent: "center",
               alignItems: "center",
             }}
@@ -317,7 +318,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
               style={{
                 fontFamily: "Bukra",
                 color: textColor,
-                fontSize: 16,
+                fontSize: moderateScale(16),
               }}
             >
               وزن المادة
@@ -329,19 +330,19 @@ const CalculatorScreen = ({ navigation }: Props) => {
                 theme === "light"
                   ? Colors.lightBackgroundSec
                   : Colors.darkBackgroundSec,
-              borderRadius: 20,
-              paddingVertical: 12,
-              paddingHorizontal: 8,
+              borderRadius: moderateScale(20),
+              paddingVertical: verticalScale(12),
+              paddingHorizontal: horizontalScale(8),
               justifyContent: "center",
               alignItems: "center",
-              width: 174,
+              width: horizontalScale(174),
             }}
           >
             <Text
               style={{
                 fontFamily: "Bukra",
                 color: textColor,
-                fontSize: 16,
+                fontSize: moderateScale(16),
               }}
             >
               اسم المادة
@@ -353,9 +354,9 @@ const CalculatorScreen = ({ navigation }: Props) => {
                 theme === "light"
                   ? Colors.lightBackgroundSec
                   : Colors.darkBackgroundSec,
-              borderRadius: 20,
-              paddingVertical: 12,
-              paddingHorizontal: 8,
+              borderRadius: moderateScale(20),
+              paddingVertical: verticalScale(12),
+              paddingHorizontal: horizontalScale(8),
               justifyContent: "center",
               alignItems: "center",
             }}
@@ -364,7 +365,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
               style={{
                 fontFamily: "Bukra",
                 color: textColor,
-                fontSize: 16,
+                fontSize: moderateScale(16),
               }}
             >
               العلامة
@@ -384,16 +385,16 @@ const CalculatorScreen = ({ navigation }: Props) => {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            marginTop: 12,
+            marginTop: verticalScale(12),
           }}
         >
           <Pressable
             onPress={addSubject}
             style={{
               backgroundColor: Colors.primary500,
-              borderRadius: 20,
-              paddingVertical: 12,
-              paddingHorizontal: 8,
+              borderRadius: moderateScale(20),
+              paddingVertical: verticalScale(12),
+              paddingHorizontal: horizontalScale(8),
               justifyContent: "center",
               alignItems: "center",
               width: "48%",
@@ -403,7 +404,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
               style={{
                 fontFamily: "Bukra",
                 color: Colors.lightBackground,
-                fontSize: 16,
+                fontSize: moderateScale(16),
               }}
             >
               إضافة مادة
@@ -413,9 +414,9 @@ const CalculatorScreen = ({ navigation }: Props) => {
             onPress={deleteSubject}
             style={{
               backgroundColor: "red",
-              borderRadius: 20,
-              paddingVertical: 12,
-              paddingHorizontal: 8,
+              borderRadius: moderateScale(20),
+              paddingVertical: verticalScale(12),
+              paddingHorizontal: horizontalScale(8),
               justifyContent: "center",
               alignItems: "center",
               width: "48%",
@@ -425,7 +426,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
               style={{
                 fontFamily: "Bukra",
                 color: Colors.lightBackground,
-                fontSize: 16,
+                fontSize: moderateScale(16),
               }}
             >
               حذف مادة
@@ -437,19 +438,19 @@ const CalculatorScreen = ({ navigation }: Props) => {
         onPress={calculateRate}
         style={{
           backgroundColor: "green",
-          borderRadius: 20,
-          paddingVertical: 12,
-          paddingHorizontal: 8,
+          borderRadius: moderateScale(20),
+          paddingVertical: verticalScale(12),
+          paddingHorizontal: horizontalScale(8),
           justifyContent: "center",
           alignItems: "center",
-          marginTop: 6,
+          marginTop: verticalScale(6),
         }}
       >
         <Text
           style={{
             fontFamily: "Bukra",
             color: Colors.lightBackground,
-            fontSize: 16,
+            fontSize: moderateScale(16),
           }}
         >
           احتساب المعدل

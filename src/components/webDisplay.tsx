@@ -1,6 +1,7 @@
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { rtlWebview, screenWidth } from "@Utils/Helper";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { memo, useContext } from "react";
 import { Falsy, RecursiveArray, View } from "react-native";
 import RenderHTML from "react-native-render-html";
@@ -14,8 +15,8 @@ export const WebDisplay = memo(function WebDisplay({ html }: { html: string }) {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const tagsStyles: StylesDictionary = {
     p: {
-      fontSize: 18,
-      lineHeight: 24,
+      fontSize: moderateScale(18),
+      lineHeight: verticalScale(24),
       fontFamily: "Roboto",
       fontWeight: "normal",
       fontStyle: "normal",
@@ -29,7 +30,13 @@ export const WebDisplay = memo(function WebDisplay({ html }: { html: string }) {
     },
   };
   return (
-    <View style={{ flex: 1, paddingHorizontal: 12, paddingVertical: 4 }}>
+    <View
+      style={{
+        flex: 1,
+        paddingHorizontal: horizontalScale(12),
+        paddingVertical: verticalScale(4),
+      }}
+    >
       <RenderHTML
         defaultTextProps={{ selectable: true }}
         contentWidth={screenWidth}

@@ -3,6 +3,7 @@ import { screenWidth } from "@Utils/Helper";
 import { View, Text } from "react-native";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext, useState, useEffect } from "react";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = {
   title: string;
@@ -41,9 +42,9 @@ const CardRate = ({ title, rate }: Props) => {
           theme === "light"
             ? Colors.lightBackgroundSec
             : Colors.darkBackgroundSec,
-        borderRadius: 20,
-        paddingVertical: 20,
-        paddingHorizontal: 10,
+        borderRadius: moderateScale(20),
+        paddingVertical: verticalScale(20),
+        paddingHorizontal: horizontalScale(10),
         justifyContent: "center",
         alignItems: "center",
         width: screenWidth / 2 - 20,
@@ -53,7 +54,7 @@ const CardRate = ({ title, rate }: Props) => {
         style={{
           fontFamily: "Bukra",
           color: textColor,
-          fontSize: 16,
+          fontSize: moderateScale(16),
         }}
       >
         {title}
@@ -62,7 +63,7 @@ const CardRate = ({ title, rate }: Props) => {
         style={{
           fontFamily: "TajawalBold",
           color: textColor,
-          fontSize: 46,
+          fontSize: moderateScale(46),
         }}
       >
         {rate}
@@ -71,7 +72,7 @@ const CardRate = ({ title, rate }: Props) => {
         style={{
           fontFamily: "TajawalBold",
           color: textColor,
-          fontSize: 24,
+          fontSize: moderateScale(24),
         }}
       >
         {grade}

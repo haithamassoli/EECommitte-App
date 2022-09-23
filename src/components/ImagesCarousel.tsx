@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { Shadow } from "react-native-shadow-2";
 import { ThemeContext } from "@Src/store/themeContext";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = {
   images: ImageSourcePropType[];
@@ -48,7 +49,7 @@ const ImagesCarousel = ({ images }: Props) => {
         style={{
           width: screenWidth - 40,
           height: screenHeight * 0.24,
-          borderRadius: 12,
+          borderRadius: moderateScale(12),
         }}
       >
         <ScrollView
@@ -72,7 +73,7 @@ const ImagesCarousel = ({ images }: Props) => {
                   width: screenWidth - 40,
                   height: screenHeight * 0.24,
                   resizeMode: "cover",
-                  borderRadius: 12,
+                  borderRadius: moderateScale(12),
                 }}
               />
             </View>
@@ -83,7 +84,7 @@ const ImagesCarousel = ({ images }: Props) => {
         style={{
           flexDirection: "row",
           justifyContent: "center",
-          marginTop: 10,
+          marginTop: verticalScale(10),
           position: "absolute",
           zIndex: 100,
           bottom: -24,
@@ -94,9 +95,9 @@ const ImagesCarousel = ({ images }: Props) => {
           <View
             key={index}
             style={{
-              height: 8,
-              width: 8,
-              borderRadius: 5,
+              height: verticalScale(8),
+              width: horizontalScale(8),
+              borderRadius: moderateScale(5),
               borderColor:
                 index === selectedIndex
                   ? theme === "light"

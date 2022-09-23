@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Post } from "@Types/index";
+import { moderateScale } from "@Utils/Platform";
 
 const NewsScreen = () => {
   const [posts, setPosts] = useState<Post[] | []>([]);
@@ -101,7 +102,7 @@ const NewsScreen = () => {
           style={{
             backgroundColor: Colors.primary600,
             padding: 10,
-            borderRadius: 10,
+            borderRadius: moderateScale(10),
           }}
           onPress={() => setPage((prev) => prev + 1)}
         >

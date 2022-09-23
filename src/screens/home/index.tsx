@@ -21,6 +21,12 @@ import ImagesCarouselData from "@Src/data/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 import { getDataFromStorage } from "@Utils/Helper";
+import {
+  fontSizing,
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+} from "@Utils/Platform";
 
 const options = {
   keys: ["name", "name2"],
@@ -66,8 +72,8 @@ const HomeScreen = ({ navigation }: Props) => {
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
-              marginBottom: 12,
-              marginHorizontal: 12,
+              marginBottom: verticalScale(12),
+              marginHorizontal: horizontalScale(12),
             }}
           >
             <View
@@ -79,13 +85,17 @@ const HomeScreen = ({ navigation }: Props) => {
             >
               <Image
                 source={require("@Assets/images/icons/lagna-logo.png")}
-                style={{ width: 50, height: 50, resizeMode: "contain" }}
+                style={{
+                  width: horizontalScale(50),
+                  height: verticalScale(50),
+                  resizeMode: "contain",
+                }}
               />
               <View style={{ marginStart: 8 }}>
                 <Text
                   style={{
                     color: textColor,
-                    fontSize: 16,
+                    fontSize: moderateScale(16),
                     fontFamily: "Bukra",
                   }}
                 >
@@ -93,7 +103,7 @@ const HomeScreen = ({ navigation }: Props) => {
                 </Text>
                 <Text
                   style={{
-                    fontSize: 10,
+                    fontSize: moderateScale(10),
                     fontFamily: "Bukra",
                     textAlign: "left",
                     color: textColor,
@@ -105,13 +115,17 @@ const HomeScreen = ({ navigation }: Props) => {
             </View>
             <Image
               source={require("@Assets/images/icons/tasharck.png")}
-              style={{ width: 50, height: 70, resizeMode: "contain" }}
+              style={{
+                width: horizontalScale(50),
+                height: verticalScale(70),
+                resizeMode: "contain",
+              }}
             />
           </View>
-          <View style={{ marginHorizontal: 8 }}>
+          <View style={{ marginHorizontal: horizontalScale(8) }}>
             <SearchInput
               style={{
-                marginBottom: 6,
+                marginBottom: verticalScale(6),
               }}
               searchInput={searchInput}
               setSearchInput={setSearchInput}
@@ -218,7 +232,7 @@ const HomeScreen = ({ navigation }: Props) => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          marginHorizontal: 12,
+          marginHorizontal: horizontalScale(12),
         }}
       >
         <Text style={[styles.headerText, { color: textColor }]}>
@@ -229,8 +243,8 @@ const HomeScreen = ({ navigation }: Props) => {
             flexDirection: "row",
             alignItems: "center",
             width: 80,
-            height: 50,
-            borderRadius: 25,
+            height: verticalScale(50),
+            borderRadius: moderateScale(25),
             justifyContent: "space-evenly",
             backgroundColor:
               theme === "light"
@@ -241,14 +255,14 @@ const HomeScreen = ({ navigation }: Props) => {
           <Pressable onPress={() => console.log("pressed")}>
             <Feather
               name={"bell"}
-              size={24}
+              size={moderateScale(24)}
               color={theme === "light" ? Colors.lightText : Colors.darkText}
             />
           </Pressable>
           <Pressable onPress={toggleTheme}>
             <Feather
               name={theme === "light" ? "moon" : "sun"}
-              size={24}
+              size={moderateScale(24)}
               color={theme === "light" ? Colors.lightText : Colors.darkText}
             />
           </Pressable>
@@ -258,10 +272,10 @@ const HomeScreen = ({ navigation }: Props) => {
       <View
         style={{
           flex: 1,
-          paddingHorizontal: 16,
-          paddingBottom: 16,
-          marginTop: 40,
-          marginHorizontal: 12,
+          paddingHorizontal: horizontalScale(16),
+          paddingBottom: verticalScale(16),
+          marginTop: verticalScale(40),
+          marginHorizontal: horizontalScale(12),
         }}
       >
         <View style={styles.iconsContainer}>

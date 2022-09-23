@@ -1,6 +1,7 @@
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Doctor } from "@Types/index";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { memo, useContext } from "react";
 import { View, Text, Pressable, Image, Linking } from "react-native";
 
@@ -16,16 +17,16 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
-        marginHorizontal: 20,
-        marginVertical: 10,
+        marginHorizontal: horizontalScale(20),
+        marginVertical: verticalScale(10),
         width: "100%",
       }}
     >
       <Image
         style={{
-          width: 100,
+          width: horizontalScale(100),
           height: "100%",
-          marginEnd: 12,
+          marginEnd: horizontalScale(12),
         }}
         defaultSource={defaultImage}
         source={{ uri: image }}
@@ -55,8 +56,8 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
           style={{
             backgroundColor: Colors.primary400,
             padding: 5,
-            borderRadius: 5,
-            marginVertical: 5,
+            borderRadius: moderateScale(5),
+            marginVertical: verticalScale(5),
             alignSelf: "center",
           }}
           onPress={() => Linking.openURL(website)}

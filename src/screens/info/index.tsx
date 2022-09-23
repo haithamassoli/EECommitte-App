@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import InfoItem from "@Components/infoItem";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = StackScreenProps<InfoStackParamList>;
 
@@ -46,13 +47,13 @@ export default InfoScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingHorizontal: horizontalScale(20),
+    paddingTop: verticalScale(20),
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: moderateScale(24),
     fontWeight: "bold",
-    marginTop: 20,
+    marginTop: verticalScale(20),
     textAlign: "left",
   },
 });

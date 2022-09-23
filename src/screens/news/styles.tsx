@@ -1,42 +1,43 @@
 import { StyleSheet } from "react-native";
 import { screenWidth, screenHeight } from "@Utils/Helper";
 import Colors from "@GlobalStyle/Colors";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 const styles = StyleSheet.create({
   logosContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 20,
-    marginHorizontal: 12,
+    marginBottom: verticalScale(20),
+    marginHorizontal: horizontalScale(12),
   },
   lagnaLogo: {
-    width: 230,
-    height: 80,
+    width: horizontalScale(230),
+    height: verticalScale(80),
     resizeMode: "contain",
   },
   tasharckLogo: {
-    width: 50,
-    height: 70,
+    width: horizontalScale(50),
+    height: verticalScale(70),
     resizeMode: "contain",
   },
   headerText: {
-    fontSize: 30,
+    fontSize: moderateScale(30),
     fontWeight: "normal",
     fontFamily: "TajawalMedium",
-    marginTop: 16,
-    marginHorizontal: 12,
+    marginTop: verticalScale(16),
+    marginHorizontal: horizontalScale(12),
   },
   sliderContainer: {
     flex: 1,
-    marginTop: 8,
+    marginTop: verticalScale(8),
     overflow: "hidden",
   },
   sliderImage: {
     width: screenWidth,
     height: "100%",
     resizeMode: "cover",
-    marginHorizontal: 8,
-    borderRadius: 30,
+    marginHorizontal: horizontalScale(8),
+    borderRadius: moderateScale(30),
   },
   sliderDotsContainer: {
     position: "absolute",
@@ -44,14 +45,14 @@ const styles = StyleSheet.create({
     transform: [{ translateX: -screenWidth / 2 + 40 }],
     flexDirection: "row",
     justifyContent: "center",
-    marginHorizontal: 12,
+    marginHorizontal: horizontalScale(12),
   },
   sliderDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
+    width: horizontalScale(10),
+    height: verticalScale(10),
+    borderRadius: moderateScale(5),
     backgroundColor: Colors.gray,
-    marginHorizontal: 4,
+    marginHorizontal: horizontalScale(4),
   },
   activeDot: {
     backgroundColor: Colors.primary700,
@@ -62,19 +63,19 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     flex: 1,
-    marginHorizontal: 8,
+    marginHorizontal: horizontalScale(8),
     justifyContent: "center",
     alignItems: "center",
     width: screenWidth * 0.3,
     height: screenWidth * 0.3,
   },
   icon: {
-    width: 55,
-    height: 55,
+    width: horizontalScale(55),
+    height: verticalScale(55),
     resizeMode: "contain",
   },
   iconText: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     textAlign: "center",
     fontFamily: "TajawalMedium",
     color: Colors.gray,

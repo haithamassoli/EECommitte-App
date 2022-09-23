@@ -14,6 +14,7 @@ import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { screenHeight } from "@Utils/Helper";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 interface Props {
   label: string;
@@ -134,7 +135,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
             bottom: 0,
             justifyContent: "center",
             alignItems: "center",
-            borderRadius: 20,
+            borderRadius: moderateScale(20),
             backgroundColor:
               theme === "light" ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
           }}
@@ -145,7 +146,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
         {/* @ts-ignore */}
         {(!!selected && selected.label) || label}
       </Text>
-      <Feather name="chevron-down" size={24} color={textColor} />
+      <Feather name="chevron-down" size={moderateScale(24)} color={textColor} />
     </TouchableOpacity>
   );
 };
@@ -154,9 +155,9 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "row",
     alignItems: "center",
-    borderRadius: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 8,
+    borderRadius: moderateScale(20),
+    paddingVertical: verticalScale(12),
+    paddingHorizontal: horizontalScale(8),
     zIndex: 1,
   },
   buttonText: {
@@ -164,16 +165,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   icon: {
-    marginRight: 10,
+    marginRight: horizontalScale(10),
   },
   dropdown: {
     position: "absolute",
-    width: 100,
-    height: 160,
-    borderRadius: 20,
+    width: horizontalScale(100),
+    height: verticalScale(160),
+    borderRadius: moderateScale(20),
     shadowColor: "#000000",
     shadowRadius: 4,
-    shadowOffset: { height: 4, width: 0 },
+    shadowOffset: { height: verticalScale(4), width: 0 },
     shadowOpacity: 0.5,
   },
   overlay: {
@@ -181,8 +182,8 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   item: {
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingHorizontal: horizontalScale(10),
+    paddingVertical: verticalScale(10),
   },
 });
 

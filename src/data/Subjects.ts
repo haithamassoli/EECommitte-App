@@ -104,6 +104,12 @@ const Subjects: Subject[] = [
     name: "اقتصاد",
     name2: "Economy",
     book: "https://drive.google.com/drive/u/4/folders/17WRaRzNYQFb7uHQDp8j4Or9sbg3c6N-m",
+    explanations: [
+      {
+        name: "تسجيل محاضرات م.ميساء الشريدة",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb4huz05DaAjY0UdvxSM-75f",
+      },
+    ],
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1Z2bjn6UmgJiou05Z2OBm3WaBeR8x-mgG",
     slides:
@@ -217,6 +223,10 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/3/folders/1NL-aWVW0XxO_OUKaeyfrsC-0j0ML8QKF",
     explanations: [
       {
+        name: "شرح فريق تسلا",
+        link: "https://drive.google.com/drive/u/3/folders/1nbZKhqUb9EuxF90yo04Bn88aDpm1R4KL",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/3/folders/1h9-HdeYjAzxxFm216wXXv8r93BPvXu3F",
       },
@@ -248,6 +258,22 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/3/folders/1SgFl1fXJ7KwP-VWlio4ZeoQeCsNuIZN3",
     explanations: [
       {
+        name: "تسجيلات محاضرات د.أحمد أبو الهيجاء",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb4fSQ1G87Re8wNrWzzl2tt9",
+      },
+      {
+        name: "سلايدات د.أحمد أبو الهيجاء",
+        link: "https://drive.google.com/drive/u/3/folders/1fMZQ_KDYsEOy4II9fIIp6A_6l8gutkWO",
+      },
+      {
+        name: "شرح طلال الشرع",
+        link: "https://drive.google.com/drive/u/3/folders/1DeQB5pxUYl_wvRVJzehaBNTu4_bdjNTk",
+      },
+      {
+        name: "شرح بشار الزيود",
+        link: "https://drive.google.com/drive/u/3/folders/1f3vn95UQN3jiw4N_ppkS9-jCGgejLdTH",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/3/folders/1DASp0tDCg1d1URwiBDRGCwVDF2Yx_-RJ",
       },
@@ -266,6 +292,10 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/4/folders/1bRwOCTC3fF4Ivat0HtMvCodHkbgthkhy",
     explanations: [
       {
+        name: "شرح طلال الشرع",
+        link: "https://drive.google.com/drive/u/4/folders/1--r0LQdFpKdn97Uc_3WXmWOn_Fdu9qdF",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/4/folders/1bRwOCTC3fF4Ivat0HtMvCodHkbgthkhy",
       },
@@ -280,6 +310,12 @@ const Subjects: Subject[] = [
     name: "لاب مايكرو كنترول",
     name2: "Micro Controllers Lab",
     book: "https://drive.google.com/drive/u/3/folders/16-qL5sZcnwxoegyH2RGOi-5sXax9otra",
+    explanations: [
+      {
+        name: "شرح معن الصوص",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb4wXragq49Mymu0_1pWGZfr",
+      },
+    ],
     prevYears:
       "https://drive.google.com/drive/u/3/folders/1xb9icsbN2Uu6ojQi5Z7Q4t5EdFafcCdi",
     aboutSubject: `<p>#اسأل_اللجنة_عن_المواد</p> <p>#لاب_المايكرو</p> <p>عدد الساعات: 1</p> <p>الاسم في الخطة الأكاديمية: مختبر المتحكمات الدقيقة والانظمة</p> <p>رقم السطر: 244720</p> <p>بتتطلب مايكرو سابق دراسة أو متزامن</p> <p>-------</p> <p>لاب المايكرو هو التطبيق العملي للمادة 😁... خلال اللاب رح تتعلم تجارب أخذتها سابقا كـشرح نظري بالمادة نفسها ولذلك في اللاب ما رح يشرحلك الدكتور أو المهندس عن آلية عمل القطع ورح تضطر ترجع للسلايدات تدرسها في حال كنت ناسيها🙂...ولكن طبعا في شرح للتجربة بعطيك إياه الدكتور انت من خلاله بتحضر البري لاب وبتحضر حالك لكويز بداية كل لاب وبلزمك تفتح على شيت كل قطعة تفهم شغلها كيف😊.</p> <p>اللاب بتكلم عن 10 تجارب بتبدا من الأساسيات حتى الاحتراف أخي بالله 😂</p> <p>التجربة الأولى: Familiarization and Introduction to Logic Gates</p> <p>هاي عبارة عن مقدمة بعرفك فيها على البوابات المنطقية الي أكيد أنت بتعرفهم من أيام التوجيهي مش بس الجامعة وهي تجربة سهلة وما فيها اشي😇</p> <p>التجربة الثانية: Combinational ***** – Half Adder and Full Adder</p> <p>هاي التجربة تتكلم عن موضوع جمع الأعداد الباينري وأنواع الجمع وكيف تتعامل مع الadder بشكل عام.</p> <p>التجربة الثالثة: Combinational ***** – Seven Segment *** Decoders</p> <p>هاي التجربة بتحكي عن قطعة بتضوي بالرقم الي أنت اخترته من المفاتيح وشوي بدها تركيز وافهم القطعة منيح لأني حاس رح تيجيكوا بالميد يا لافي انت وشمري😜</p> <p>التجربة الرابعة: Combinational Logic – ******** and Multiplexers</p> <p>التجربة بتحكي كيف تتعامل مع الديكودرز والملتيبلكسرز... نفس النظري بس اللهم بتشبكه عالمفاتيح والled بضوي حسب الاوتبوت للديكودر والملتيبلكسر برضو ركزوا فيها مش غلط 😂</p> <p>التجربة الخامسة: BCD to Excess-3 Converter and Vice Versa</p> <p>تجربة سهلة وبسيطة الفكرة منها انه بتدخل رقم 5 (0101) مثلا بطلع الاوتبوت 8 (0100) يعني بزيد 3 بالاوتبوت وعشان تبين انها تجربة وبلا بلا بتعملها بالعكس بترجع من 8 ل 5... عشان تتأخر وما تلاقي باصات 😪</p> <p>التجربة السادسة: Sequential Logic: Flip Flops</p> <p>هاي التجربة بتتكلم عن كيف تستخدم الفليب فلوب وتعمل ********** حسب ما بدك وبده الدكتور.</p> <p>التجربة السابعة: ********** Logic: Counters</p> <p>هاي التجربة بتحكي كيف نعمل عداد... يعني مثلا من 0 ل 5 وهكذا.</p> <p>التجربة الثامنة: ******** Load and Shift Registers</p> <p>التجربة هاي بتحكيلك كيف تعمل شفت لليمين ولليسار وكيف تدخل داتا وهكذا... تجربة سهلة بس بدها تركيز كبير... مثال عشان لافي يتحمس😛 بعطيك الدكتور 0100 وبقلك من خلال الأرقام وقصة رح تفهموها لاحقا انه اعمل شفت لليمين وبعطيك الانبوت 1 مثلا فبصير الرقم الفوقاني 1010 أتمنى تكون وصلت... اذا ما فهمتوا في المهندس صديق أبو شريخ رح يساعدكم😬</p> <p>التجربة التاسعة: ************ a ****** Device</p> <p>واضح من العنوان انك بدك تعمل ميموري تخزن الداتا الي عندك😊</p> <p>التجربة الأخيرة: ****** Adder</p> <p>الي بستلم اللاب هو البروف أحمد أبو الهيجا ولكن الي بكون معكم باللاب غالبا مهندس أو مهندسة... مثل ما قلتلكم ما في شرح للتجارب لازم تكون محضر ومجهز البري لاب وتشتغل عليه وجرت العادة يكون في كويز بسيط بداية كل لاب... تجربة الأونلاين باللاب ما رح تحس بفرق كبير عن شغلك باللاب ولكن رح يصير في كويزات أصعب بعض الشيء عن الكويزات الاعتيادية😥</p> <p>نظام العلامات بالعادة 20% عالريبورتات و20% على شغلك باللاب والكويزات اليومية و20% على الميد و40% على الفاينل 💛</p> <p>بالتوفيق جميعا 💛</p> <p>#لجنة_الهندسة_الكهربائية</p> <p>#فكرة_تحيا_على_نبض_قلوبكم</p>`,
@@ -291,6 +327,12 @@ const Subjects: Subject[] = [
     id: 16,
     name: "ميكانيكا هندسية",
     name2: "Engineering Mechanics Statics",
+    explanations: [
+      {
+        name: "شرح محمد الطراونة",
+        link: "https://drive.google.com/drive/u/2/folders/1S0IZ6qNYjvIaWmVgaw38zBClsvDjaA4w",
+      },
+    ],
     book: "https://drive.google.com/drive/u/2/folders/1YEnxHi_uxxZECcdhguc2vNbpIFYyagPd",
     slides:
       "https://drive.google.com/drive/u/2/folders/16r0oWy88bymobzURsFRqwbSleQ_3MpdI",
@@ -356,6 +398,22 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/3/folders/1yJL36k4cBf6NXXvmorZPEwuRn2gOSdjw",
     explanations: [
       {
+        name: "شرح قناة اللجنة",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb7gxVQFuQ5hzn6d-D1frXVr",
+      },
+      {
+        name: "فيديوهات زاهي حداد",
+        link: "https://www.youtube.com/playlist?list=PL21KuaIMCPGq9HRMHYjHHu0AgDEjP28X3",
+      },
+      {
+        name: "حلول practice problems",
+        link: "https://drive.google.com/drive/u/2/folders/11Lxy55PIs-5KIc_fAKGaD-dOIT1_gbK4",
+      },
+      {
+        name: "حلول suggested problems",
+        link: "https://drive.google.com/drive/u/2/folders/1QAm3n5IphHWoxBoFd4Sr0bosf2RsnYYL",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/3/folders/1ruLl-CqrTk9cTLL_l2ThHzIUw5ROvWPz",
       },
@@ -376,6 +434,14 @@ const Subjects: Subject[] = [
     name2: "Circuits 2",
     book: "https://drive.google.com/drive/u/3/folders/1Mlq-RfFUAgnncU2dvlOnSKPszpH-kADV",
     explanations: [
+      {
+        name: "فيديوهات د.ساهر البطران",
+        link: "https://www.youtube.com/playlist?list=PLvgLolfaRAWdMQxSlGTwIRAFg_qHOZMW4",
+      },
+      {
+        name: "تسجيل محاضرات د.يزن الصمادي",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb5xdfpC_EcIBcufxtOdm_fm",
+      },
       {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/3/folders/1gZmjLMQgmXYKNzoMYrAfskzedo5eD9_R",
@@ -405,6 +471,20 @@ const Subjects: Subject[] = [
     name: "لينير",
     name2: "Linear",
     book: "https://drive.google.com/drive/u/2/folders/1r4VtHyi3b0kSRUSpAUn9NwCM41KiTPcf",
+    explanations: [
+      {
+        name: "تسجيلات د.صالح ردايدة",
+        link: "https://www.youtube.com/playlist?app=desktop&list=PLy42_pl2XRL7cFgofwuJMBVIVO6IJxV4G",
+      },
+      {
+        name: "تفريغ عمر أبو العسل لمحاضرات د.صالح",
+        link: "https://drive.google.com/drive/u/2/folders/1bpuSjuyyRb8WlXntSTU-Rge-jkBzwBm2",
+      },
+      {
+        name: "شرح مهند حوامدة",
+        link: "https://drive.google.com/drive/u/2/folders/1KEf0ago2AULJVnO8XABSLUdlZMp4LsqN",
+      },
+    ],
     notebook:
       "https://drive.google.com/drive/u/3/folders/1yZtFYLHo9SGyCqFhe_jN1tFX42V0e5ly",
     prevYears:
@@ -434,6 +514,18 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/3/folders/1582IBXsH_Djgea5wSj0E8UozuFsF2DTh",
     explanations: [
       {
+        name: "فيديوهات بشار الزيود",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb6pX0jukRtna5XE-1ZKPGCI",
+      },
+      {
+        name: "تفاريغ فيديوهات بشار الزيود",
+        link: "https://drive.google.com/drive/u/2/folders/1lXEH7vjZ41_uL0izDB52wXB2dwz3qU0O",
+      },
+      {
+        name: "تسجيلات د.حازم مناور",
+        link: "https://www.youtube.com/playlist?app=desktop&list=PLy42_pl2XRL5c247TbBFyiuZmHeTOGbHl",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/3/folders/1N1zDwbLV_kVXcWo9xe2aHvcKheXpPbMw",
       },
@@ -451,6 +543,18 @@ const Subjects: Subject[] = [
     name2: "Electronics 1",
     book: "https://drive.google.com/drive/u/2/folders/1hBEsdX26Mlafw0IoIo-qfag_3jt4TC-A",
     explanations: [
+      {
+        name: "شرح محمد لافي",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb6Ba-NV-EBAyFnsdz9NaF5s",
+      },
+      {
+        name: "تفريغ شرح محمد لافي",
+        link: "https://drive.google.com/drive/u/2/folders/1iTSMDkN2XFRfwkzLBwDc8APOa4V5E9so",
+      },
+      {
+        name: "تفريغ شرح محمد لافي",
+        link: "https://drive.google.com/drive/u/2/folders/1iTSMDkN2XFRfwkzLBwDc8APOa4V5E9so",
+      },
       {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/3/folders/1uA1lmRy5XaN_GQRk6OxfpcqhnPmgzLlN",
@@ -471,6 +575,18 @@ const Subjects: Subject[] = [
     prevYears:
       "https://drive.google.com/drive/u/3/folders/1fkRRVojThEvmM6LHuhmiotm-2E6DxVx8",
     explanations: [
+      {
+        name: "شرح محمد لافي",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb6AZjEHDnU-bE8PyyRd8Fbi",
+      },
+      {
+        name: "تفريغ فيديوهات محمد لافي",
+        link: "https://drive.google.com/drive/u/3/folders/17_ftJdMDoBU1BKO2ewgPPxEjTTxL5FbM",
+      },
+      {
+        name: "دفتر بشار الزيود",
+        link: "https://drive.google.com/file/d/1AOJ2W2SA2lutGnCtr-WxxBgoB1ZxBD_0/view",
+      },
       {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/3/folders/1BtVtIQgnbDSH6sIIqbX03sezA-apO73N",
@@ -531,6 +647,14 @@ const Subjects: Subject[] = [
     book: "https://drive.google.com/drive/u/2/folders/1KQAzxdNuFNKXYcjmJgwzAXQhN4Mx-ser",
     explanations: [
       {
+        name: "فيديوهات د.نهاد الذيب",
+        link: "https://drive.google.com/drive/u/0/folders/12NMC3u1qb4VgO4HLmcumkm2o7TEEbZaw",
+      },
+      {
+        name: "دوسية د. نهاد",
+        link: "https://drive.google.com/file/d/1glX3V1jc04qMnaTW2IMBArN4sZyiWsDF/view",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/3/folders/1EywQpcGLVCRvwxYnSFIqXPZhKOoyeAnf",
       },
@@ -547,6 +671,24 @@ const Subjects: Subject[] = [
     name: "الكهرومغناطيسية 2",
     name2: "Electromagnetic 2",
     book: "https://drive.google.com/drive/u/3/folders/1gwUM805wryQ1487GzmrOKDviG_jEPDqh",
+    explanations: [
+      {
+        name: "فيديوهات د. نهاد الذيب",
+        link: "https://drive.google.com/drive/u/0/folders/1_WagG0LrOHVNIpFM6mM2wEgO-eurFMjn",
+      },
+      {
+        name: "دوسية د.نهاد الذيب",
+        link: "https://drive.google.com/file/d/1JKWwUhnUX8eP7d2fnfvGq74xPh8McG7a/view",
+      },
+      {
+        name: "تسجيلات محاضرات د.ماجد خضير",
+        link: "https://www.youtube.com/playlist?app=desktop&list=PLdL3o9rqPLb7cMBrc8PTFoRCHH747eQjD",
+      },
+      {
+        name: "سلايدات د.ماجد خضير",
+        link: "https://drive.google.com/drive/u/0/folders/1kk1Zky_0Sfzv_8y45Nx8GWI9CGOHyKfQ",
+      },
+    ],
     prevYears:
       "https://drive.google.com/drive/u/3/folders/1jzSSO4G-BdOXVOVqYc-up8lIQzMfgfrX",
     aboutSubject: `<p>#اسأل_اللجنة_عن_المواد</p> <p>#EM_II</p> <p>الكهرومغناطيسية 2</p> <p>رمز المساق : كه 307</p> <p>رقم السطر : 243071</p> <p>_________________________</p> <p>بتبلش المادة من حد ما وقفت معك اي ام ١ يعني من maxwell's equation</p> <p>اول محاضرتين بتراجع اي ام ١ ع السريع وكل اشي بهمك منها في اي ام ٢</p> <p>وبداسة maxwell's بتخلص شابتر ٩</p> <p>لتدخل شابتر ١٠ ومن هون بتبلش المادة فعليا</p> <p>انتشار الموجات</p> <p>شابتر ١٠ طويل وفي كثير معلومات وتفاصيل مهمة</p> <p>رح تدرس انتشار الموجات في</p> <p>lossless & lossy medium</p> <p>كل وسط إله معادلاته وحالاته الخاصة</p> <p>الي بتحتاج فهم منيح وتركيز وربط معلومات لتقدر تميز بين كل حالة وحالة</p> <p>وفي كل موضوع بدك تحسب المجال الكهربائي والمجال المغناطيسي</p> <p>انواع وحالات ونظريات وحساب البور للموجات، وانتقالها بين وسطين أو ثلاث</p> <p>الموجة المنعكسة والمنكسرة وزاوية الانكسار والخ بكل اشي بتعلق بالموجات</p> <p>وهيك بخلص شابتر ١٠</p> <p>مادة الفيرست بتشمل ٩ وجزء منيح من ١٠</p> <p>شابتر ١١ موضوعه عن transmission line</p> <p>شو هي وشو ال prameters تبعتها يعني</p> <p>resistance, inductance, conductance, capacitance</p> <p>وهون بدك تحسب الجهد والتيار لسيركت باعتبار وجود ال T.L وشو بصير لل wave فيه وشو معادلاته</p> <p>رح تتعلموا طرق مختلفة لحساب ال input impedance</p> <p>وكمان لحالات ال lossless & lossy</p> <p>تفاصيل مليانة وكلها مهمة جدا جدا</p> <p>وهاد الشابتر رح تتعرفوا على اشي اسمه smith chart وهي وسيلة للحل وإيجاد الامبيدنس والطول وكل اشي بالتعليق بموضوع هاد الشابتر، دكتور الأصفر وسلامة بركزوا عليها كثير وبشرحوها بشكل موسع</p> <p>آخر اشي بالمادة شابتر ١٢ ال Waveguide</p> <p>هاد أصغر شابتر وعادة ما بياخد وقت بالشرح يعني بخلص ع السريع</p> <p>بس أسئلته بسهولة بنفع ينلعب فيها او الأصح المادة كلها سهلة التلاعب فيها</p> <p>رح تحسبوا فيه المجال الكهربائي والمغناطيسي وسرعة الموجة وطولها والبور الها والتردد</p> <p>وكمان هون في حالات وتفاصيل كثيرة</p> <p>وهيك بتخلص المادة</p> <p>بالنهاية المادة كالعادة هي مادة تفاصيل، أصغر تفصيل فيها ممكن يكون حل لسؤال مجلد أو سؤال من كلمتين</p> <p>المادة مش صعبة اذا فهمتها وعرفت كل "دهاليزها"</p> <p>مهم تحضر المحاضرات ومهم تحل كل ما حليت أفكار أكثر كان عندك سرعة وقدرة على اكتشاف فكرة السؤال في الامتحان</p> <p>تقسيمة العلامات ممكن تختلف باختلاف الدكتور لكن العادة هي ٢٥ فيرست و٢٥ سكند و١٠ كويزات و٤٠ فاينل</p> <p>ولكثرة تفاصيلها الها شيت بالقوانين</p> <p>إن سمحلكم الدكتور تكتبوها ممتاز بتحطوا كل اشي قدامكم والحالات</p> <p>اما ان وزع الدكتور الشيت فالعادة بتكون الشيت عامة من غير الحالات الخاصة يعني بكون موجود كل القوانين العامة الي ممكن تحتاجها حتى تشتق الحالات الخاصة أو تستنج قانون معين من غير ما تكون حافظ</p> <p>استمتعوا 😌</p> <p><br></p> <p>#لجنة_الهندسة_الكهربائية</p> <p>#فكرة_تحيا_على_نبض_قلوبكم 💛</p>`,
@@ -631,6 +773,26 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/4/folders/1QW48I9UPypx_fQgOLfDoss3B1B7JCufv",
     explanations: [
       {
+        name: "شرح محمد لافي",
+        link: "https://drive.google.com/drive/u/4/folders/1uWrAE4NHNaJlawzXEpq-vvVRnURFProD",
+      },
+      {
+        name: "تسجيل محاضرات د.نضال عبابنة",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb7mdGxb52VK5pfAax4XiHRT",
+      },
+      {
+        name: "سلايدات د.نضال عبابنة",
+        link: "https://drive.google.com/drive/u/4/folders/1ZuMV4EoSIyn1GrvtHZD3PW2vJDUyXcZm",
+      },
+      {
+        name: "تسجيل محاضرات د.عمر قسايمة",
+        link: "https://drive.google.com/drive/u/4/folders/1TXrtZUVURW_TvTjvw5039L99VRVMl4YQ",
+      },
+      {
+        name: "سلايدات د.عمر قسايمة",
+        link: "https://drive.google.com/drive/u/4/folders/13Rmo9rK6N67kYaaMDHhDkmCrQUJiHXeq",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/4/folders/16YON8xbB4l00CMNZjIPOTj2utK4SWcKw",
       },
@@ -661,6 +823,10 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/3/folders/1BcgzXIn8GVxrvxDJ4bLwyrj9260QnpDM",
     explanations: [
       {
+        name: "شرح بشار الزيود",
+        link: "https://drive.google.com/drive/u/3/folders/1C5Z16bBL3bG1y9QgB0Vx2Jvzj7xpWQ9j",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/3/folders/1MqX-rCrylBNGcjtF_t8igeHzsvwfRIhe",
       },
@@ -679,6 +845,14 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/3/folders/1MXfYpCxD8XIRIJpVpBEzIXYiiWYlWM67",
     explanations: [
       {
+        name: "تسجيل محاضرات د.ساري",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb4pNhB1z-zRJBcUxhwohxi7",
+      },
+      {
+        name: "تسجيل محاضرات د.محمد بنات",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb65b4sqp_j3b7HXpB-P3b7-",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/3/folders/1USGeiMNj88uzbX_wzhBSnM84-Fg_x4sf",
       },
@@ -690,12 +864,24 @@ const Subjects: Subject[] = [
   },
   {
     id: 37,
-    name: "أنظمة تحكم",
+    name: "أنظمة تحكم كنترول",
     name2: "Control systems",
     book: "https://drive.google.com/drive/u/4/folders/1jw1KVbNPyDhwbqWKF8wWjh_UdnDxRMp6",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/11g4-w8cXhSCooHT751QqwxoQfNn4RlNZ",
     explanations: [
+      {
+        name: "تسجيل محاضرات د.صالح ردايدة",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb5n-1MbOhKjKtvL69zvyQBq",
+      },
+      {
+        name: "نوتات د.صالح",
+        link: "https://drive.google.com/drive/u/4/folders/1xIZyNwJpickR3xzngW6SBLGgYPlM9z1u",
+      },
+      {
+        name: "تسجيل محاضرات د.عصام الصمادي",
+        link: "https://www.youtube.com/playlist?list=PLGPnhUFUCRm10q34h8DXYKkGlZHjbZJMT",
+      },
       {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/4/folders/1WW8kTvNh6UezVFR-f4b570ibOxPaypzT",
@@ -708,9 +894,15 @@ const Subjects: Subject[] = [
   },
   {
     id: 38,
-    name: "لاب أنظمة تحكم",
+    name: "لاب كنترول أنظمة تحكم",
     name2: "Control systems lab",
     book: "https://drive.google.com/drive/u/4/folders/160N5V3ovTt-il-qegBbjFOaNB-2DSN4N",
+    explanations: [
+      {
+        name: "فيديوهات مهندس خليل",
+        link: "https://www.youtube.com/playlist?app=desktop&list=PL2ZOJ-gLSnDlOGIvZLFzKBcjRo8c_EUug",
+      },
+    ],
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1ntLsaOr36GQKSNCb9z0JJpP29tGZhR1f",
     subjectLink:
@@ -747,6 +939,14 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/4/folders/1gFwhcbR70PycOgcrnFQhjWUo_S5AR3ZG",
     explanations: [
       {
+        name: "تسجيل محاضرات د.عبد الرحمن جرادات",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb4ENU_lPRhuB8D89hmBu2mb",
+      },
+      {
+        name: "شرح بشار الزيود",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb4-9rrI0FhtvlmeWd9BIVYr",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/4/folders/1sPREmaXgbWzjZOYCahHtUFp_dGNu9ZKC",
       },
@@ -763,6 +963,14 @@ const Subjects: Subject[] = [
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1GhXRR4IWAjHyu52FUV0z6UQhPYQ9BIXK",
     explanations: [
+      {
+        name: "تسجيل محاضرات د.محمد بنات",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb70jOFs93UmU3soJGHXfc_9",
+      },
+      {
+        name: "دوسية د.بنات",
+        link: "https://drive.google.com/drive/u/4/folders/1bMWXunm0ab_EnCQbM55lx58SVLYqHweK",
+      },
       {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/4/folders/1zF2ubk5qt4ZY0m3Ugp0ylbgE29AEXzOk",
@@ -843,6 +1051,18 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/4/folders/11xvL4Fo0c4453mGtEQVX1vDd0aGR_aRl",
     explanations: [
       {
+        name: "فيديوهات د.أحمد بشايرة",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb5_UnB4njCzAaMW8QGk-ua7",
+      },
+      {
+        name: "سلايدات د.أحمد بشايرة",
+        link: "https://drive.google.com/drive/u/4/folders/1fb4wFERd2izISny7thnQXJS9G5hXcBQi",
+      },
+      {
+        name: "تسجيل محاضرات د.عصام الصمادي",
+        link: "https://www.youtube.com/playlist?list=PL93etPhHIOOEUD1UnEiDmwYhUlEsXCu0Y",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/4/folders/140-OZ62-kiZjfN7UL2I87oNPMb2DpWz2",
       },
@@ -871,6 +1091,14 @@ const Subjects: Subject[] = [
     book: "https://drive.google.com/drive/u/4/folders/1BNLFYAGMmQ8rM3r8LIFnBuVKqznAY8FF",
     explanations: [
       {
+        name: "محاضرات د.محمد المظفر وجاهية",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb7k0qq04VCPAxtZAMbjv5ki",
+      },
+      {
+        name: "فيديوهات د.ساهر البطران",
+        link: "https://www.youtube.com/playlist?list=PLvgLolfaRAWdk-9YqXm-TQSBoUY6BxyKk",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/4/folders/1RVXUBUau4v-1Onc65as1l7qaVWMnClhd",
       },
@@ -890,6 +1118,22 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/3/folders/1VzK2K1XGwQxW0HSmKnzgLz4IjVIagP5g",
     explanations: [
       {
+        name: "فيديوهات د.أحمد أبو الرب",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb5to3kyjXMawC14zsAWp6Uu",
+      },
+      {
+        name: "سلايدات د.أحمد أبو الرب",
+        link: "https://drive.google.com/drive/u/3/folders/1ie98gZEhv8kaROdGC-CEtrcMCB8CUnCG",
+      },
+      {
+        name: "فيديوهات د.ساهر البطران",
+        link: "https://www.youtube.com/playlist?list=PLvgLolfaRAWc4MxUYECn5mo7Yce7S5LLC",
+      },
+      {
+        name: "حلول سجستد كتاب تشابمان",
+        link: "https://drive.google.com/drive/u/3/folders/1Dn_ACpqX3hRIgO7FLK-iSesx9GLNBTXn",
+      },
+      {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/3/folders/1c4-Y73tBIM5rjwXqI5qDzQAeDeZtuKRv",
       },
@@ -907,6 +1151,10 @@ const Subjects: Subject[] = [
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1pPZwt3jgbSFhtHQ65rLAOeD5cGjgcWnE",
     explanations: [
+      {
+        name: "شرح حمزة حسام",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb6-RBh67pRNmPvMua0CS4Fn",
+      },
       {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/4/folders/1PV9HRVlvm4jYL_kPGTY-NE21c8k-AOUb",
@@ -963,6 +1211,10 @@ const Subjects: Subject[] = [
     prevYears:
       "https://drive.google.com/drive/u/4/folders/16sJV97quqn3DZ7RrygXZ9iw_T8mfxMXj",
     explanations: [
+      {
+        name: "فيديوهات د.ساهر البطران",
+        link: "https://www.youtube.com/playlist?list=PLvgLolfaRAWfZda5PZxeMulM2Ns5uY3v1",
+      },
       {
         name: "الشروحات",
         link: "https://drive.google.com/drive/u/4/folders/1n5vjh2QbVcgHKt1CKViVhg-Eu3mxBc23",

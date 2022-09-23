@@ -2,6 +2,7 @@ import { View, Text } from "react-native";
 import { useContext } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { ThemeContext } from "@Src/store/themeContext";
+import { moderateScale, verticalScale } from "@Utils/Platform";
 
 const SupportUsScreen = () => {
   const { theme } = useContext(ThemeContext);
@@ -12,9 +13,9 @@ const SupportUsScreen = () => {
       <Text
         style={{
           fontFamily: "Bukra",
-          fontSize: 20,
+          fontSize: moderateScale(20),
           textAlign: "center",
-          marginTop: 20,
+          marginTop: verticalScale(20),
           color: textColor,
         }}
       >
@@ -23,9 +24,9 @@ const SupportUsScreen = () => {
       <Text
         style={{
           fontFamily: "TajawalRegular",
-          fontSize: 18,
+          fontSize: moderateScale(18),
           textAlign: "center",
-          marginTop: 8,
+          marginTop: verticalScale(8),
           color: textColor,
         }}
       >
@@ -33,9 +34,9 @@ const SupportUsScreen = () => {
       </Text>
       <Ionicons
         name="heart"
-        size={270}
+        size={moderateScale(270)}
         color="#e74c3c"
-        style={{ marginTop: 20 }}
+        style={{ marginTop: verticalScale(20) }}
       />
     </View>
   );

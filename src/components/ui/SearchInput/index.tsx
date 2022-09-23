@@ -17,6 +17,7 @@ import SearchResults from "./SearchResults";
 import { SearchInputProps } from "@Types/Search";
 import { HomeNavigationProp } from "@Screens/home";
 import DoctorsData from "@Src/data/Doctors";
+import { moderateScale, verticalScale } from "@Utils/Platform";
 
 let delayTimer: any;
 
@@ -133,7 +134,7 @@ const SearchInput = ({
         style={[
           styles.searchInput,
           {
-            fontSize: 13,
+            fontSize: moderateScale(13),
             color: theme === "light" ? Colors.lightText : Colors.darkText,
             zIndex: 15,
             backgroundColor:
@@ -146,7 +147,7 @@ const SearchInput = ({
       {searchInput.length > 0 ? (
         <Feather
           name="x"
-          size={24}
+          size={moderateScale(24)}
           color={iconColor}
           style={styles.searchIcon}
           onPress={() => setSearchInput("")}
@@ -154,7 +155,7 @@ const SearchInput = ({
       ) : (
         <Feather
           name="search"
-          size={24}
+          size={moderateScale(24)}
           color={iconColor}
           style={styles.searchIcon}
         />
@@ -169,14 +170,14 @@ const SearchInput = ({
             left: 0,
             right: 0,
             width: "100%",
-            height: 210,
+            height: verticalScale(210),
             zIndex: 10,
             backgroundColor:
               theme === "light"
                 ? Colors.lightBackgroundSec
                 : Colors.darkBackgroundSec,
-            paddingTop: 25,
-            borderRadius: 10,
+            paddingTop: verticalScale(25),
+            borderRadius: moderateScale(10),
           }}
         >
           <SearchResults results={results} handlePress={handlePress} />

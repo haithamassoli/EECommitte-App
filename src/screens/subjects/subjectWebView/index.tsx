@@ -5,6 +5,7 @@ import type { SubjectsStackParamList } from "@Types/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { isConnected } from "@Utils/Helper";
 import Colors from "@GlobalStyle/Colors";
+import { verticalScale } from "@Utils/Platform";
 
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectWebView">;
 
@@ -49,7 +50,7 @@ const SubjectWebViewScreen = ({ navigation, route }: Props) => {
       <View
         style={{
           flex: 1,
-          paddingVertical: 4,
+          paddingVertical: verticalScale(4),
         }}
       >
         {isConnecte ? (

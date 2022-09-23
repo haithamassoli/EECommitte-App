@@ -3,6 +3,7 @@ import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { View, TextInput } from "react-native";
 import { useContext } from "react";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 const data = [
   { label: "A+", value: 4.2 },
@@ -62,13 +63,13 @@ const SubjectRate = ({
     >
       <View
         style={{
-          width: 100,
+          width: horizontalScale(100),
           backgroundColor:
             theme === "light"
               ? Colors.lightBackgroundSec
               : Colors.darkBackgroundSec,
-          borderRadius: 20,
-          marginTop: 20,
+          borderRadius: moderateScale(20),
+          marginTop: verticalScale(20),
         }}
       >
         <Dropdown
@@ -83,30 +84,30 @@ const SubjectRate = ({
       </View>
       <View
         style={{
-          width: 174,
+          width: horizontalScale(174),
           backgroundColor:
             theme === "light"
               ? Colors.lightBackgroundSec
               : Colors.darkBackgroundSec,
-          borderRadius: 20,
-          marginTop: 20,
-          paddingVertical: 6,
-          paddingHorizontal: 8,
+          borderRadius: moderateScale(20),
+          marginTop: verticalScale(20),
+          paddingVertical: verticalScale(6),
+          paddingHorizontal: horizontalScale(8),
         }}
       >
         <TextInput
           style={{
             fontFamily: "TajawalBold",
             color: textColor,
-            fontSize: 18,
+            fontSize: moderateScale(18),
             textAlign: "center",
             backgroundColor:
               theme === "light"
                 ? Colors.lightBackgroundSec
                 : Colors.darkBackgroundSec,
-            paddingVertical: 4,
-            paddingHorizontal: 8,
-            borderRadius: 20,
+            paddingVertical: verticalScale(4),
+            paddingHorizontal: horizontalScale(8),
+            borderRadius: moderateScale(20),
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -116,13 +117,13 @@ const SubjectRate = ({
       </View>
       <View
         style={{
-          width: 80,
+          width: horizontalScale(80),
           backgroundColor:
             theme === "light"
               ? Colors.lightBackgroundSec
               : Colors.darkBackgroundSec,
-          borderRadius: 20,
-          marginTop: 20,
+          borderRadius: moderateScale(20),
+          marginTop: verticalScale(20),
         }}
       >
         <Dropdown

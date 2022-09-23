@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Doctor, Subject } from "@Types/index";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = {
   handlePress: (num: number) => void;
@@ -21,17 +22,17 @@ const SearchResults = ({ results, handlePress }: Props) => {
             <TouchableOpacity
               style={{
                 flexDirection: "row-reverse",
-                paddingHorizontal: 10,
-                paddingVertical: 5,
+                paddingHorizontal: horizontalScale(10),
+                paddingVertical: verticalScale(5),
                 borderColor: theme === "light" ? "#fff" : "#000",
                 borderWidth: 2,
-                borderRadius: 10,
+                borderRadius: moderateScale(10),
               }}
               onPress={() => handlePress(result.id)}
             >
               <Text
                 style={{
-                  fontSize: 15,
+                  fontSize: moderateScale(15),
                   color: textColor,
                   fontFamily: "TajawalMedium",
                 }}
@@ -45,7 +46,7 @@ const SearchResults = ({ results, handlePress }: Props) => {
         <Text
           style={{
             flex: 1,
-            fontSize: 16,
+            fontSize: moderateScale(16),
             fontFamily: "TajawalBold",
             textAlign: "center",
             textAlignVertical: "center",

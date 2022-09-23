@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import type { MapperItem } from "@Types/index";
 import { screenHeight, screenWidth } from "@Utils/Helper";
+import { moderateScale } from "@Utils/Platform";
 const thumbnail = require("@Assets/images/thumbnailPlan.gif");
 type Props = {
   selectedAreaId?: number[] | number;
@@ -47,7 +48,7 @@ class ImageMapper extends Component<Props> {
       left: x1,
       top: y1,
       backgroundColor: "transparent",
-      borderRadius: 0,
+      borderRadius: moderateScale(0),
     };
     if (prefill !== null && prefill !== undefined) {
       if (

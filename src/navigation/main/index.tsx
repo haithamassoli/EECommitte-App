@@ -14,6 +14,7 @@ import {
 import InfoNavigation from "@Navigation/info";
 import NewsScreen from "@Screens/news";
 import HomeNavigation from "@Navigation/home";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
@@ -38,14 +39,14 @@ export default function Route() {
           //   backgroundColor: "#eee",
           // },
           tabBarStyle: {
-            paddingBottom: 12,
-            paddingTop: 12,
-            height: 64,
+            paddingBottom: verticalScale(12),
+            paddingTop: verticalScale(12),
+            height: verticalScale(64),
             // shadowColor: "transparent",
             // backgroundColor: "#f9ffa1",
             // marginBottom: 20,
             // width: "90%",
-            // paddingVertical: 10,
+            // paddingVertical: verticalScale(10,
             // alignSelf: "center",
           },
           headerRight: () => {
@@ -55,28 +56,28 @@ export default function Route() {
                   flex: 1,
                   flexDirection: "row",
                   alignItems: "center",
-                  paddingEnd: 10,
+                  paddingEnd: horizontalScale(10),
                 }}
               >
                 <Feather
                   onPress={() => navigation.navigate("Search")}
                   name="search"
-                  size={24}
+                  size={moderateScale(24)}
                   color={iconColor}
-                  style={{ paddingStart: 10 }}
+                  style={{ paddingStart: horizontalScale(10) }}
                 />
                 {theme === "light" ? (
                   <Feather
                     onPress={() => toggleTheme()}
                     name="moon"
-                    size={24}
+                    size={moderateScale(24)}
                     color={iconColor}
                   />
                 ) : (
                   <Feather
                     onPress={() => toggleTheme()}
                     name="sun"
-                    size={24}
+                    size={moderateScale(24)}
                     color={iconColor}
                   />
                 )}
@@ -91,7 +92,7 @@ export default function Route() {
             component={HomeNavigation}
             options={{
               tabBarIcon: ({ color }) => (
-                <Feather name="home" size={24} color={color} />
+                <Feather name="home" size={moderateScale(24)} color={color} />
               ),
               tabBarLabel: "الرئيسية",
               headerShown: false,
@@ -102,7 +103,7 @@ export default function Route() {
             component={NewsScreen}
             options={{
               tabBarIcon: ({ color }) => (
-                <Feather name="globe" size={24} color={color} />
+                <Feather name="globe" size={moderateScale(24)} color={color} />
               ),
               tabBarLabel: "أخر الأخبار",
               title: "أخر الأخبار",
@@ -113,7 +114,7 @@ export default function Route() {
             component={SubjectsNavigation}
             options={{
               tabBarIcon: ({ color }) => (
-                <Feather name="map" size={24} color={color} />
+                <Feather name="map" size={moderateScale(24)} color={color} />
               ),
               headerShown: false,
               tabBarLabel: "الخطة الشجرية",
@@ -124,7 +125,7 @@ export default function Route() {
             component={InfoNavigation}
             options={{
               tabBarIcon: ({ color }) => (
-                <Feather name="menu" size={24} color={color} />
+                <Feather name="menu" size={moderateScale(24)} color={color} />
               ),
               headerShown: false,
               tabBarLabel: "المزيد",

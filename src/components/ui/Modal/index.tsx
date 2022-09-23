@@ -2,6 +2,7 @@ import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { View, Text, Modal, Pressable } from "react-native";
 import { useContext } from "react";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = {
   visible: boolean;
@@ -37,8 +38,8 @@ const CustomModal = ({ visible, setVisible, title }: Props) => {
                 ? Colors.lightBackgroundSec
                 : Colors.darkBackgroundSec,
             width: "80%",
-            height: 200,
-            borderRadius: 10,
+            height: verticalScale(200),
+            borderRadius: moderateScale(10),
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -46,11 +47,11 @@ const CustomModal = ({ visible, setVisible, title }: Props) => {
           <Text
             style={{
               fontFamily: "Bukra",
-              fontSize: 18,
+              fontSize: moderateScale(18),
               textAlign: "center",
-              marginHorizontal: 20,
+              marginHorizontal: horizontalScale(20),
               color: textColor,
-              lineHeight: 30,
+              lineHeight: verticalScale(30),
             }}
           >
             {title}
@@ -60,17 +61,17 @@ const CustomModal = ({ visible, setVisible, title }: Props) => {
             style={{
               backgroundColor: Colors.primary400,
               width: "50%",
-              height: 40,
-              borderRadius: 10,
+              height: verticalScale(40),
+              borderRadius: moderateScale(10),
               justifyContent: "center",
               alignItems: "center",
-              marginTop: 20,
+              marginTop: verticalScale(20),
             }}
           >
             <Text
               style={{
                 fontFamily: "Bukra",
-                fontSize: 18,
+                fontSize: moderateScale(18),
                 color: "white",
               }}
             >

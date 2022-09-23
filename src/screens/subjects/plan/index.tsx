@@ -11,6 +11,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { memo, useContext } from "react";
 import { Text, View } from "react-native";
 import Colors from "@GlobalStyle/Colors";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
@@ -26,11 +27,11 @@ const PlanScreen = ({ navigation }: Props) => {
       <Text
         style={{
           fontFamily: "Bukra",
-          fontSize: 24,
+          fontSize: moderateScale(24),
           color: theme === "light" ? Colors.gray : Colors.darkText,
           alignSelf: "flex-start",
-          marginLeft: 20,
-          marginTop: 20,
+          marginLeft: horizontalScale(20),
+          marginTop: verticalScale(20),
         }}
       >
         اختر مادة:

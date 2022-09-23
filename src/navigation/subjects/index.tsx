@@ -6,6 +6,7 @@ import SubjectScreen from "@Screens/subjects/subject";
 import SubjectFullPostScreen from "@Screens/subjects/subjectFullPost";
 import SubjectWebViewScreen from "@Screens/subjects/subjectWebView";
 import { ThemeContext } from "@Src/store/themeContext";
+import { horizontalScale, moderateScale } from "@Utils/Platform";
 import { useContext } from "react";
 import { View } from "react-native";
 
@@ -27,28 +28,28 @@ export default function SubjectsNavigation() {
                 flex: 1,
                 flexDirection: "row",
                 alignItems: "center",
-                paddingEnd: 10,
+                paddingEnd: horizontalScale(10),
               }}
             >
               <Feather
                 onPress={() => navigation.navigate("Search")}
                 name="search"
-                size={24}
+                size={moderateScale(24)}
                 color={iconColor}
-                style={{ paddingStart: 10 }}
+                style={{ paddingStart: horizontalScale(10) }}
               />
               {theme === "light" ? (
                 <Feather
                   onPress={() => toggleTheme()}
                   name="moon"
-                  size={24}
+                  size={moderateScale(24)}
                   color={iconColor}
                 />
               ) : (
                 <Feather
                   onPress={() => toggleTheme()}
                   name="sun"
-                  size={24}
+                  size={moderateScale(24)}
                   color={iconColor}
                 />
               )}

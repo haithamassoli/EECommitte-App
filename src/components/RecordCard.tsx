@@ -2,6 +2,7 @@ import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
 import { screenWidth } from "@Utils/Helper";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { memo, useContext } from "react";
 import { View, Text, Pressable, Linking, Image } from "react-native";
 
@@ -18,14 +19,14 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        marginTop: 12,
+        marginTop: verticalScale(12),
       }}
       onPress={() => Linking.openURL(link)}
     >
       <Image
         style={{
           width: screenWidth * 0.42,
-          height: 100,
+          height: verticalScale(100),
         }}
         source={image}
       />
@@ -35,13 +36,13 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
           justifyContent: "space-evenly",
           padding: 10,
           backgroundColor,
-          height: 100,
-          marginStart: 10,
+          height: verticalScale(100),
+          marginStart: horizontalScale(10),
         }}
       >
         <Text
           style={{
-            fontSize: 16,
+            fontSize: moderateScale(16),
             fontFamily: "TajawalBold",
             textAlign: "left",
             color: textColor,
@@ -51,7 +52,7 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
         </Text>
         <Text
           style={{
-            fontSize: 16,
+            fontSize: moderateScale(16),
             fontFamily: "TajawalMedium",
             color: textColor,
           }}

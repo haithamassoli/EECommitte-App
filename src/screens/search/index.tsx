@@ -22,6 +22,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import SearchResults from "@Components/ui/SearchInput/SearchResults";
 import DoctorsData from "@Src/data/Doctors";
 import { StackScreenProps } from "@react-navigation/stack";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 const options = {
   keys: ["name", "name2"],
@@ -157,12 +158,12 @@ const SearchScreen = ({ navigation }: Props) => {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "center",
-                marginTop: 15,
+                marginTop: verticalScale(15),
               }}
             >
               <Text
                 style={{
-                  fontSize: 20,
+                  fontSize: moderateScale(20),
                   fontWeight: "bold",
                   color: textColor,
                 }}
@@ -172,7 +173,7 @@ const SearchScreen = ({ navigation }: Props) => {
               <Text
                 onPress={deleteAll}
                 style={{
-                  fontSize: 16,
+                  fontSize: moderateScale(16),
                   fontWeight: "bold",
                   color:
                     theme === "light" ? Colors.primary700 : Colors.primary400,
@@ -188,7 +189,7 @@ const SearchScreen = ({ navigation }: Props) => {
                   style={{
                     flexDirection: "row",
                     alignItems: "center",
-                    marginTop: 25,
+                    marginTop: verticalScale(25),
                     justifyContent: "space-between",
                   }}
                 >
@@ -198,12 +199,16 @@ const SearchScreen = ({ navigation }: Props) => {
                       alignItems: "center",
                     }}
                   >
-                    <Feather name="clock" size={20} color={iconColor} />
+                    <Feather
+                      name="clock"
+                      size={moderateScale(20)}
+                      color={iconColor}
+                    />
                     <Text
                       onPress={() => handlePressHistory(item.id)}
                       style={{
-                        fontSize: 16,
-                        marginLeft: 5,
+                        fontSize: moderateScale(16),
+                        marginLeft: horizontalScale(5),
                         color: textColor,
                       }}
                     >
@@ -213,7 +218,7 @@ const SearchScreen = ({ navigation }: Props) => {
                   <Feather
                     onPress={() => handleDelete(item.id)}
                     name="x"
-                    size={20}
+                    size={moderateScale(20)}
                     color={iconColor}
                   />
                 </View>
@@ -223,8 +228,8 @@ const SearchScreen = ({ navigation }: Props) => {
                 style={{
                   textAlign: "center",
                   fontWeight: "bold",
-                  fontSize: 24,
-                  marginTop: 40,
+                  fontSize: moderateScale(24),
+                  marginTop: verticalScale(40),
                   color: textColor,
                 }}
               >
@@ -237,13 +242,13 @@ const SearchScreen = ({ navigation }: Props) => {
             style={{
               flex: 1,
               width: "100%",
-              minHeight: 124,
+              minHeight: verticalScale(124),
               zIndex: 1000,
               backgroundColor:
                 theme === "light"
                   ? Colors.lightBackgroundSec
                   : Colors.darkBackgroundSec,
-              borderRadius: 10,
+              borderRadius: moderateScale(10),
             }}
           >
             <SearchResults results={results} handlePress={handlePress} />

@@ -3,6 +3,7 @@ import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
 import { screenHeight, screenWidth, storeDataToStorage } from "@Utils/Helper";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useLayoutEffect, useRef, useState } from "react";
 import {
   StatusBar,
@@ -126,15 +127,19 @@ const AboutUniScreen = ({ navigation }: Props) => {
                       justifyContent: "center",
                       alignItems: "center",
                       backgroundColor: Colors.darkBackgroundSec,
-                      width: 50,
-                      height: 50,
-                      borderRadius: 25,
+                      width: horizontalScale(50),
+                      height: verticalScale(50),
+                      borderRadius: moderateScale(25),
                       top: -100,
                       left: item.arrPos === "right" ? 40 : screenWidth - 80,
                     }}
                     onPress={onNext}
                   >
-                    <Feather name="arrow-left" size={32} color="#fff" />
+                    <Feather
+                      name="arrow-left"
+                      size={moderateScale(32)}
+                      color="#fff"
+                    />
                   </Pressable>
                 ) : (
                   <Pressable
@@ -142,31 +147,35 @@ const AboutUniScreen = ({ navigation }: Props) => {
                       justifyContent: "center",
                       alignItems: "center",
                       backgroundColor: Colors.darkBackgroundSec,
-                      width: 50,
-                      height: 50,
-                      borderRadius: 25,
+                      width: horizontalScale(50),
+                      height: verticalScale(50),
+                      borderRadius: moderateScale(25),
                       top: -100,
                       left: item.arrPos === "right" ? 40 : screenWidth - 80,
                     }}
                     onPress={onFinish}
                   >
-                    <Feather name="arrow-left" size={32} color="#fff" />
+                    <Feather
+                      name="arrow-left"
+                      size={moderateScale(32)}
+                      color="#fff"
+                    />
                   </Pressable>
                 )}
                 <Text
                   style={
                     index != 1
                       ? {
-                          fontSize: 20,
-                          marginTop: 8,
+                          fontSize: moderateScale(20),
+                          marginTop: verticalScale(8),
                           color: Colors.lightText,
                           fontFamily: "Bukra",
                           top: -80,
                         }
                       : {
-                          fontSize: 16,
-                          lineHeight: 24,
-                          marginTop: 8,
+                          fontSize: moderateScale(16),
+                          lineHeight: verticalScale(24),
+                          marginTop: verticalScale(8),
                           color: Colors.lightText,
                           fontFamily: "Bukra",
                           top: -80,
@@ -179,17 +188,17 @@ const AboutUniScreen = ({ navigation }: Props) => {
                   style={
                     index != 1
                       ? {
-                          fontSize: 16,
-                          lineHeight: 28,
-                          marginTop: 8,
+                          fontSize: moderateScale(16),
+                          lineHeight: verticalScale(28),
+                          marginTop: verticalScale(8),
                           fontFamily: "Bukra",
                           top: -80,
                           color: Colors.lightText,
                         }
                       : {
-                          fontSize: 12,
-                          lineHeight: 24,
-                          marginTop: 8,
+                          fontSize: moderateScale(12),
+                          lineHeight: verticalScale(24),
+                          marginTop: verticalScale(8),
                           fontFamily: "Bukra",
                           top: -80,
                           color: Colors.lightText,
@@ -200,8 +209,8 @@ const AboutUniScreen = ({ navigation }: Props) => {
                 </Text>
                 <Text
                   style={{
-                    fontSize: 20,
-                    marginTop: 8,
+                    fontSize: moderateScale(20),
+                    marginTop: verticalScale(8),
                     fontWeight: "bold",
                     color: Colors.lightText,
                     top: -55,
@@ -213,17 +222,17 @@ const AboutUniScreen = ({ navigation }: Props) => {
                   style={
                     index != 1
                       ? {
-                          fontSize: 16,
-                          lineHeight: 28,
-                          marginTop: 8,
+                          fontSize: moderateScale(16),
+                          lineHeight: verticalScale(28),
+                          marginTop: verticalScale(8),
                           fontWeight: "600",
                           top: -55,
                           color: Colors.lightText,
                         }
                       : {
-                          fontSize: 14,
-                          lineHeight: 22,
-                          marginTop: 8,
+                          fontSize: moderateScale(14),
+                          lineHeight: verticalScale(22),
+                          marginTop: verticalScale(8),
                           fontWeight: "700",
                           top: -55,
                           color: Colors.lightText,

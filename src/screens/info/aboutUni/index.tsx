@@ -118,7 +118,7 @@ const AboutUniScreen = ({ navigation }: Props) => {
                 style={{
                   flex: 1,
                   justifyContent: "flex-end",
-                  padding: 16,
+                  padding: moderateScale(16),
                 }}
               >
                 {index != data.length - 1 ? (
@@ -130,8 +130,11 @@ const AboutUniScreen = ({ navigation }: Props) => {
                       width: horizontalScale(50),
                       height: verticalScale(50),
                       borderRadius: moderateScale(25),
-                      top: -100,
-                      left: item.arrPos === "right" ? 40 : screenWidth - 80,
+                      top: verticalScale(-100),
+                      left:
+                        item.arrPos === "right"
+                          ? horizontalScale(40)
+                          : screenWidth - 80,
                     }}
                     onPress={onNext}
                   >
@@ -150,8 +153,11 @@ const AboutUniScreen = ({ navigation }: Props) => {
                       width: horizontalScale(50),
                       height: verticalScale(50),
                       borderRadius: moderateScale(25),
-                      top: -100,
-                      left: item.arrPos === "right" ? 40 : screenWidth - 80,
+                      top: verticalScale(-100),
+                      left:
+                        item.arrPos === "right"
+                          ? horizontalScale(40)
+                          : screenWidth - 80,
                     }}
                     onPress={onFinish}
                   >
@@ -170,7 +176,7 @@ const AboutUniScreen = ({ navigation }: Props) => {
                           marginTop: verticalScale(8),
                           color: Colors.lightText,
                           fontFamily: "Bukra",
-                          top: -80,
+                          top: verticalScale(-80),
                         }
                       : {
                           fontSize: moderateScale(16),
@@ -178,7 +184,7 @@ const AboutUniScreen = ({ navigation }: Props) => {
                           marginTop: verticalScale(8),
                           color: Colors.lightText,
                           fontFamily: "Bukra",
-                          top: -80,
+                          top: verticalScale(-80),
                         }
                   }
                 >
@@ -192,7 +198,7 @@ const AboutUniScreen = ({ navigation }: Props) => {
                           lineHeight: verticalScale(28),
                           marginTop: verticalScale(8),
                           fontFamily: "Bukra",
-                          top: -80,
+                          top: verticalScale(-80),
                           color: Colors.lightText,
                         }
                       : {
@@ -200,7 +206,7 @@ const AboutUniScreen = ({ navigation }: Props) => {
                           lineHeight: verticalScale(24),
                           marginTop: verticalScale(8),
                           fontFamily: "Bukra",
-                          top: -80,
+                          top: verticalScale(-80),
                           color: Colors.lightText,
                         }
                   }
@@ -213,7 +219,7 @@ const AboutUniScreen = ({ navigation }: Props) => {
                     marginTop: verticalScale(8),
                     fontWeight: "bold",
                     color: Colors.lightText,
-                    top: -55,
+                    top: verticalScale(-55),
                   }}
                 >
                   {item.textEn1}
@@ -226,7 +232,7 @@ const AboutUniScreen = ({ navigation }: Props) => {
                           lineHeight: verticalScale(28),
                           marginTop: verticalScale(8),
                           fontWeight: "600",
-                          top: -55,
+                          top: verticalScale(-55),
                           color: Colors.lightText,
                         }
                       : {
@@ -234,7 +240,7 @@ const AboutUniScreen = ({ navigation }: Props) => {
                           lineHeight: verticalScale(22),
                           marginTop: verticalScale(8),
                           fontWeight: "700",
-                          top: -55,
+                          top: verticalScale(-55),
                           color: Colors.lightText,
                         }
                   }

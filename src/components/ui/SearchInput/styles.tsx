@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   searchIcon: {
     position: "absolute",
     transform: [{ rotate: "90deg" }],
-    left: 10,
+    left: horizontalScale(10),
     zIndex: 100,
   },
 });

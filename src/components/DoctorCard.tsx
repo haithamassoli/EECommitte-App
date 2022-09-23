@@ -55,7 +55,7 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
         <Pressable
           style={{
             backgroundColor: Colors.primary400,
-            padding: 5,
+            padding: moderateScale(5),
             borderRadius: moderateScale(5),
             marginVertical: verticalScale(5),
             alignSelf: "center",

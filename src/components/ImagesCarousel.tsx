@@ -87,7 +87,7 @@ const ImagesCarousel = ({ images }: Props) => {
           marginTop: verticalScale(10),
           position: "absolute",
           zIndex: 100,
-          bottom: -24,
+          bottom: verticalScale(-24),
           left: screenWidth / 2 - 40,
         }}
       >
@@ -97,7 +97,7 @@ const ImagesCarousel = ({ images }: Props) => {
             style={{
               height: verticalScale(8),
               width: horizontalScale(8),
-              borderRadius: moderateScale(5),
+              borderRadius: verticalScale(5),
               borderColor:
                 index === selectedIndex
                   ? theme === "light"
@@ -107,7 +107,7 @@ const ImagesCarousel = ({ images }: Props) => {
               borderWidth: 4,
               backgroundColor:
                 index === selectedIndex ? Colors.primary600 : Colors.gray,
-              margin: 4,
+              margin: moderateScale(4),
             }}
           />
         ))}

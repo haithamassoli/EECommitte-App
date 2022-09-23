@@ -5,7 +5,7 @@ import type { SubjectsStackParamList } from "@Types/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { isConnected } from "@Utils/Helper";
 import Colors from "@GlobalStyle/Colors";
-import { verticalScale } from "@Utils/Platform";
+import { moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectWebView">;
 
@@ -40,7 +40,7 @@ const SubjectWebViewScreen = ({ navigation, route }: Props) => {
             top: "50%",
             left: "50%",
             zIndex: 1,
-            margin: -20,
+            margin: moderateScale(-20),
           }}
           size="large"
           color={Colors.gray}

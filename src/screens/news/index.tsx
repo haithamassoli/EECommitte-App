@@ -101,7 +101,7 @@ const NewsScreen = () => {
         <Pressable
           style={{
             backgroundColor: Colors.primary600,
-            padding: 10,
+            padding: moderateScale(10),
             borderRadius: moderateScale(10),
           }}
           onPress={() => setPage((prev) => prev + 1)}

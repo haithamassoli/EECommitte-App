@@ -34,7 +34,7 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
         style={{
           flex: 1,
           justifyContent: "space-evenly",
-          padding: 10,
+          padding: moderateScale(10),
           backgroundColor,
           height: verticalScale(100),
           marginStart: horizontalScale(10),

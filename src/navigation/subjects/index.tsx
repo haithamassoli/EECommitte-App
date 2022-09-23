@@ -21,6 +21,9 @@ export default function SubjectsNavigation() {
       initialRouteName="Plan"
       screenOptions={({ navigation }) => ({
         headerTitle: "الخطة الشجرية",
+        headerTitleStyle: {
+          fontSize: moderateScale(18),
+        },
         headerRight: () => {
           return (
             <View

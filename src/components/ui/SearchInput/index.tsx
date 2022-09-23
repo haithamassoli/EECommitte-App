@@ -166,7 +166,7 @@ const SearchInput = ({
             flex: 1,
             flexGrow: 1,
             position: "absolute",
-            top: 25,
+            top: verticalScale(25),
             left: 0,
             right: 0,
             width: "100%",

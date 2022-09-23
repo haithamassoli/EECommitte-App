@@ -29,25 +29,18 @@ export default function Route() {
       <BottomTabs.Navigator
         screenOptions={({ navigation }) => ({
           tabBarHideOnKeyboard: true,
-          // tabBarShowLabel: false,
-          tabBarIconStyle: {
-            // color: Colors.primary400,
-          },
           tabBarActiveTintColor: iconColor,
           tabBarInactiveTintColor: "#9b9b9b",
-          // tabBarItemStyle: {
-          //   backgroundColor: "#eee",
-          // },
           tabBarStyle: {
             paddingBottom: verticalScale(12),
             paddingTop: verticalScale(12),
             height: verticalScale(64),
-            // shadowColor: "transparent",
-            // backgroundColor: "#f9ffa1",
-            // marginBottom: 20,
-            // width: "90%",
-            // paddingVertical: verticalScale(10,
-            // alignSelf: "center",
+          },
+          tabBarLabelStyle: {
+            fontSize: moderateScale(12),
+          },
+          headerTitleStyle: {
+            fontSize: moderateScale(18),
           },
           headerRight: () => {
             return (

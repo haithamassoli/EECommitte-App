@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   sliderDotsContainer: {
     position: "absolute",
-    bottom: -25,
+    bottom: verticalScale(-25),
     transform: [{ translateX: -screenWidth / 2 + 40 }],
     flexDirection: "row",
     justifyContent: "center",

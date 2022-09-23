@@ -9,7 +9,6 @@ import type { Subject } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { WebDisplay } from "@Components/webDisplay";
 import { Feather } from "@expo/vector-icons";
 import { horizontalScale, moderateScale } from "@Utils/Platform";
 
@@ -69,7 +68,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       <View
         style={{
           flex: 1,
-          padding: 10,
+          padding: moderateScale(10),
         }}
       >
         {subject.book && (
@@ -170,9 +169,9 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             <Text style={{ color: textColor }}>الشرائح</Text>
           </Pressable>
         )}
-        {subject?.explanations?.map((explanation) => (
+        {subject?.explanations?.map((explanation, index) => (
           <Pressable
-            key={explanation.name}
+            key={index}
             onPress={() =>
               navigation.navigate("SubjectWebView", { url: explanation.link })
             }

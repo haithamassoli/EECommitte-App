@@ -19,6 +19,9 @@ export default function InfoNavigation() {
   return (
     <Stack.Navigator
       screenOptions={({ navigation }) => ({
+        headerTitleStyle: {
+          fontSize: moderateScale(18),
+        },
         headerRight: () => {
           return (
             <View

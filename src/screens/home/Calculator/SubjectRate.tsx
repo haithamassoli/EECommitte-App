@@ -74,7 +74,7 @@ const SubjectRate = ({
       >
         <Dropdown
           label="3"
-          style={{ left: 10 }}
+          style={{ left: horizontalScale(10) }}
           // @ts-ignore
           data={markData}
           // @ts-ignore
@@ -128,7 +128,7 @@ const SubjectRate = ({
       >
         <Dropdown
           label="A+"
-          style={{ right: 10 }}
+          style={{ right: horizontalScale(10) }}
           // @ts-ignore
           data={data}
           // @ts-ignore

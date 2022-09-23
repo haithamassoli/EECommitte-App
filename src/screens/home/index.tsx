@@ -21,12 +21,7 @@ import ImagesCarouselData from "@Src/data/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 import { getDataFromStorage } from "@Utils/Helper";
-import {
-  fontSizing,
-  horizontalScale,
-  moderateScale,
-  verticalScale,
-} from "@Utils/Platform";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 const options = {
   keys: ["name", "name2"],

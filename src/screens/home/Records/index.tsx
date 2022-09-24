@@ -4,13 +4,13 @@ import SearchInput from "@Components/ui/SearchInput";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FlashList } from "@shopify/flash-list";
-import RecordsData from "@Src/data/Records";
+import RecordsData, { RecordsDataSearch } from "@Src/data/Records";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
 import { HomeStackParamList } from "@Types/navigation";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { memo, useContext, useLayoutEffect, useState } from "react";
-import { View, Text, SectionList } from "react-native";
+import { View, Text } from "react-native";
 
 type Props = StackScreenProps<HomeStackParamList, "Records">;
 
@@ -55,7 +55,7 @@ const RecordsScreen = ({ navigation }: Props) => {
         setSearchInput={setSearchInput}
         setResults={setResults}
         options={options}
-        list={RecordsData[0].data}
+        list={RecordsDataSearch}
         style={{ marginVertical: verticalScale(8) }}
       />
       {results.length > 0 && searchInput.length > 0 ? (
@@ -88,29 +88,39 @@ const RecordsScreen = ({ navigation }: Props) => {
           </Text>
         </>
       ) : (
-        <SectionList
-          sections={RecordsData}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <RecordCard
-              link={item.link}
-              image={item.image}
-              subject={item.subject}
-              doctor={item.doctor}
-            />
-          )}
-          renderSectionHeader={({ section: { title } }) => (
-            <Text
-              style={{
-                fontSize: moderateScale(18),
-                color: textColor,
-                fontFamily: "Bukra",
-                marginTop: verticalScale(20),
-              }}
-            >
-              {title}
-            </Text>
-          )}
+        <FlashList
+          data={RecordsData}
+          renderItem={({ item }) => {
+            if (typeof item === "string") {
+              return (
+                <Text
+                  style={{
+                    fontSize: moderateScale(18),
+                    color: textColor,
+                    fontFamily: "Bukra",
+                    marginTop: verticalScale(20),
+                  }}
+                >
+                  {item}
+                </Text>
+              );
+            } else {
+              return (
+                <RecordCard
+                  link={item.link}
+                  image={item.image}
+                  subject={item.subject}
+                  doctor={item.doctor}
+                />
+              );
+            }
+          }}
+          getItemType={(item) => {
+            return typeof item === "string" ? "sectionHeader" : "row";
+          }}
+          estimatedItemSize={24}
+          keyExtractor={(item, index) => index.toString()}
+          keyboardShouldPersistTaps="always"
         />
       )}
     </View>

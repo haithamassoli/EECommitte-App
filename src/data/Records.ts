@@ -166,7 +166,7 @@ const RecordsData = [
     subject: "CONTROL SYSTEMS",
     searchName: "كنترول",
     doctor: "د. عصام صمادي",
-    image: require("@Assets/images/subjects/Economy.webp"),
+    image: require("@Assets/images/subjects/controlSystemsIssam.webp"),
     link: "https://www.youtube.com/playlist?list=PLGPnhUFUCRm10q34h8DXYKkGlZHjbZJMT",
   },
   {
@@ -174,7 +174,7 @@ const RecordsData = [
     subject: "ELECTRICAL MACHINES",
     searchName: "مشين الات كهربائية",
     doctor: "د. ساهر البطران",
-    image: require("@Assets/images/subjects/Economy.webp"),
+    image: require("@Assets/images/subjects/electricMachinesSaher.wepb"),
     link: "https://www.youtube.com/playlist?list=PLvgLolfaRAWc4MxUYECn5mo7Yce7S5LLC",
   },
   {
@@ -182,7 +182,7 @@ const RecordsData = [
     subject: "POWER ELECTRONICS",
     searchName: "بور الكترونيكس",
     doctor: "د. ساهر البطران",
-    image: require("@Assets/images/subjects/Economy.webp"),
+    image: require("@Assets/images/subjects/powerElectronicsSaher.webp"),
     link: "https://www.youtube.com/playlist?list=PLvgLolfaRAWdk-9YqXm-TQSBoUY6BxyKk",
   },
   {
@@ -190,7 +190,7 @@ const RecordsData = [
     subject: "CIRCUITS ||",
     searchName: "دوائر كهربائية 2 سيركت",
     doctor: "د. ساهر البطران",
-    image: require("@Assets/images/subjects/Economy.webp"),
+    image: require("@Assets/images/subjects/circuitsIISaher.webp"),
     link: "https://www.youtube.com/playlist?list=PLvgLolfaRAWdMQxSlGTwIRAFg_qHOZMW4",
   },
   {

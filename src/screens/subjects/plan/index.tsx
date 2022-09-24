@@ -7,7 +7,7 @@ import type { SubjectsStackParamList } from "@Types/navigation";
 import MAPPING from "./Mapping";
 import { memo } from "react";
 import { Image, StyleSheet, ImageBackground } from "react-native";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import { verticalScale } from "@Utils/Platform";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
@@ -18,7 +18,7 @@ const PlanScreen = ({ navigation }: Props) => {
   return (
     <>
       <ImageBackground
-        source={require("@Assets/images/PlanBackground.png")}
+        source={require("@Assets/images/PlanBackground.webp")}
         style={{
           ...StyleSheet.absoluteFillObject,
         }}
@@ -32,7 +32,7 @@ const PlanScreen = ({ navigation }: Props) => {
           bindToBorders={true}
         >
           <ImageMapper
-            imgSource={require("@Assets/images/plan.png")}
+            imgSource={require("@Assets/images/plan.webp")}
             imgWidth={screenWidth}
             imgHeight={screenWidth * 0.97}
             imgMap={MAPPING}
@@ -46,7 +46,7 @@ const PlanScreen = ({ navigation }: Props) => {
             }}
           />
           <Image
-            source={require("@Assets/images/planLowerbar.png")}
+            source={require("@Assets/images/planLowerbar.webp")}
             resizeMode="contain"
             style={{
               width: screenWidth,

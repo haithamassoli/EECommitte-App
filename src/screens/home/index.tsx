@@ -212,7 +212,7 @@ const HomeScreen = ({ navigation }: Props) => {
   ];
 
   return (
-    <ScrollView>
+    <ScrollView overScrollMode="never" showsVerticalScrollIndicator={false}>
       {searchBarFocused && (
         <Overlay
           onPress={() => {

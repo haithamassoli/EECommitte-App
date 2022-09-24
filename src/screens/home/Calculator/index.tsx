@@ -119,6 +119,8 @@ const CalculatorScreen = ({ navigation }: Props) => {
     <View style={{ flex: 1, marginHorizontal: horizontalScale(14) }}>
       <CustomModal visible={visible} title={massage} setVisible={setVisible} />
       <ScrollView
+        overScrollMode="never"
+        showsVerticalScrollIndicator={false}
         style={{ flex: 1 }}
         // @ts-ignore
         ref={scrollViewRef}
@@ -313,7 +315,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
               paddingHorizontal: horizontalScale(8),
               justifyContent: "center",
               alignItems: "center",
-              width: screenWidth / 3 - 87,
+              width: (screenWidth - horizontalScale(174)) / 2 - 8,
             }}
           >
             <Text
@@ -337,7 +339,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
               paddingHorizontal: horizontalScale(8),
               justifyContent: "center",
               alignItems: "center",
-              width: horizontalScale(174),
+              width: horizontalScale(174 - 32),
             }}
           >
             <Text
@@ -361,7 +363,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
               paddingHorizontal: horizontalScale(8),
               justifyContent: "center",
               alignItems: "center",
-              width: screenWidth / 3 - 87,
+              width: (screenWidth - horizontalScale(174)) / 2 - 8,
             }}
           >
             <Text

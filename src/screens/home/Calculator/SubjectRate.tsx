@@ -64,7 +64,7 @@ const SubjectRate = ({
     >
       <View
         style={{
-          width: screenWidth / 3 - 87,
+          width: (screenWidth - horizontalScale(174)) / 2 - 8,
           backgroundColor:
             theme === "light"
               ? Colors.lightBackgroundSec
@@ -85,7 +85,7 @@ const SubjectRate = ({
       </View>
       <View
         style={{
-          width: horizontalScale(174),
+          width: horizontalScale(174 - 32),
           backgroundColor:
             theme === "light"
               ? Colors.lightBackgroundSec
@@ -118,7 +118,7 @@ const SubjectRate = ({
       </View>
       <View
         style={{
-          width: screenWidth / 3 - 87,
+          width: (screenWidth - horizontalScale(174)) / 2 - 8,
           backgroundColor:
             theme === "light"
               ? Colors.lightBackgroundSec

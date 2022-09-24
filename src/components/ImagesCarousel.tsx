@@ -55,6 +55,7 @@ const ImagesCarousel = ({ images }: Props) => {
         <ScrollView
           ref={scrollRef}
           horizontal
+          overScrollMode="never"
           showsHorizontalScrollIndicator={false}
           onMomentumScrollEnd={setImageIndex}
           pagingEnabled

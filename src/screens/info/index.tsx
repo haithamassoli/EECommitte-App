@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import InfoItem from "@Components/infoItem";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
@@ -12,32 +12,30 @@ const InfoScreen = ({ navigation }: Props) => {
   };
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <InfoItem
-          icon="info"
-          title="عن اللجنة"
-          subTitle="لجنة الهندسة الكهربائية"
-          onPress={() => onPress("AboutEECommitte")}
-        />
-        <InfoItem
-          icon="mail"
-          title="تواصل معنا"
-          subTitle=""
-          onPress={() => onPress("ContactUs")}
-        />
-        <InfoItem
-          icon="share-2"
-          title="روابط مهمة"
-          subTitle=""
-          onPress={() => onPress("QuickLinkes")}
-        />
-        <InfoItem
-          icon="heart"
-          title="ادعمنا"
-          subTitle="ساعدنا على تطوير التطبيق"
-          onPress={() => onPress("SupportUs")}
-        />
-      </ScrollView>
+      <InfoItem
+        icon="info"
+        title="عن اللجنة"
+        subTitle="لجنة الهندسة الكهربائية"
+        onPress={() => onPress("AboutEECommitte")}
+      />
+      <InfoItem
+        icon="mail"
+        title="تواصل معنا"
+        subTitle=""
+        onPress={() => onPress("ContactUs")}
+      />
+      <InfoItem
+        icon="share-2"
+        title="روابط مهمة"
+        subTitle=""
+        onPress={() => onPress("QuickLinkes")}
+      />
+      <InfoItem
+        icon="heart"
+        title="ادعمنا"
+        subTitle="ساعدنا على تطوير التطبيق"
+        onPress={() => onPress("SupportUs")}
+      />
     </View>
   );
 };

@@ -55,7 +55,11 @@ const NewsScreen = () => {
   };
 
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView
+      overScrollMode="never"
+      showsVerticalScrollIndicator={false}
+      style={{ flex: 1 }}
+    >
       <View style={{ flex: 1 }}>
         <Image
           style={{ width: screenWidth, height: screenHeight }}

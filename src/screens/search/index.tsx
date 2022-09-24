@@ -140,7 +140,12 @@ const SearchScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <ScrollView keyboardShouldPersistTaps="handled" style={styles.container}>
+    <ScrollView
+      keyboardShouldPersistTaps="handled"
+      overScrollMode="never"
+      showsVerticalScrollIndicator={false}
+      style={styles.container}
+    >
       <KeyboardAvoidingView style={styles.container}>
         <View style={styles.searchContainer}>
           <SearchInput

@@ -17,7 +17,7 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
     });
   }, []);
   return (
-    <ScrollView>
+    <ScrollView overScrollMode="never" showsVerticalScrollIndicator={false}>
       {route?.params?.post ? (
         <WebDisplay html={route?.params?.post} />
       ) : (

@@ -34,7 +34,7 @@ const PlanScreen = ({ navigation }: Props) => {
           <ImageMapper
             imgSource={require("@Assets/images/plan.webp")}
             imgWidth={screenWidth}
-            imgHeight={screenWidth * 0.97}
+            imgHeight={screenWidth * 1.08}
             imgMap={MAPPING}
             containerStyle={{
               flex: 1,
@@ -50,8 +50,8 @@ const PlanScreen = ({ navigation }: Props) => {
             resizeMode="contain"
             style={{
               width: screenWidth,
-              height: screenWidth * 0.18,
-              bottom: verticalScale(30),
+              height: screenWidth * 0.15,
+              bottom: verticalScale(20),
             }}
           />
         </ReactNativeZoomableView>

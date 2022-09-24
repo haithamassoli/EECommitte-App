@@ -26,8 +26,9 @@ const CustomHeader = ({ onPress, iconColor }: Props) => {
       <Image
         source={iconColor}
         style={{
-          width: horizontalScale(50),
-          height: verticalScale(50),
+          width: horizontalScale(40),
+          height: verticalScale(40),
+          marginTop: verticalScale(4),
           resizeMode: "contain",
         }}
       />

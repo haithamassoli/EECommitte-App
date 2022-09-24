@@ -394,7 +394,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
           <Pressable
             onPress={addSubject}
             style={{
-              backgroundColor: Colors.primary500,
+              backgroundColor: "#ffc107",
               borderRadius: moderateScale(20),
               paddingVertical: verticalScale(12),
               paddingHorizontal: horizontalScale(8),
@@ -416,7 +416,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
           <Pressable
             onPress={deleteSubject}
             style={{
-              backgroundColor: "red",
+              backgroundColor: "#CA0B00",
               borderRadius: moderateScale(20),
               paddingVertical: verticalScale(12),
               paddingHorizontal: horizontalScale(8),
@@ -440,7 +440,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
       <Pressable
         onPress={calculateRate}
         style={{
-          backgroundColor: "green",
+          backgroundColor: "#4BB543",
           borderRadius: moderateScale(20),
           paddingVertical: verticalScale(12),
           paddingHorizontal: horizontalScale(8),

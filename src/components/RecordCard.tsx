@@ -26,7 +26,7 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
       <Image
         style={{
           width: screenWidth * 0.42,
-          height: verticalScale(100),
+          height: verticalScale(110),
         }}
         source={image}
       />
@@ -36,7 +36,7 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
           justifyContent: "space-evenly",
           padding: moderateScale(10),
           backgroundColor,
-          height: verticalScale(100),
+          height: verticalScale(110),
           marginStart: horizontalScale(10),
         }}
       >

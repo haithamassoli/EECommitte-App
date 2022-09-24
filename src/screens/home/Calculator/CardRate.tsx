@@ -47,7 +47,7 @@ const CardRate = ({ title, rate }: Props) => {
         paddingHorizontal: horizontalScale(10),
         justifyContent: "center",
         alignItems: "center",
-        width: screenWidth / 2 - 20,
+        width: screenWidth / 2 - horizontalScale(20),
       }}
     >
       <Text

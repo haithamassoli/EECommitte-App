@@ -22,7 +22,7 @@ const ImagesCarousel = ({ images }: Props) => {
       ),
         scrollRef.current?.scrollTo({
           animated: true,
-          x: (screenWidth - 40) * selectedIndex,
+          x: (screenWidth - horizontalScale(40)) * selectedIndex,
           y: 0,
         });
     }, 3000);
@@ -39,7 +39,7 @@ const ImagesCarousel = ({ images }: Props) => {
   return (
     <View
       style={{
-        width: screenWidth - 40,
+        width: screenWidth - horizontalScale(40),
         alignSelf: "center",
       }}
     >
@@ -47,7 +47,7 @@ const ImagesCarousel = ({ images }: Props) => {
         distance={10}
         stretch
         style={{
-          width: screenWidth - 40,
+          width: screenWidth - horizontalScale(40),
           height: screenHeight * 0.24,
           borderRadius: moderateScale(12),
         }}
@@ -70,7 +70,7 @@ const ImagesCarousel = ({ images }: Props) => {
                 key={index}
                 source={image}
                 style={{
-                  width: screenWidth - 40,
+                  width: screenWidth - horizontalScale(40),
                   height: screenHeight * 0.24,
                   resizeMode: "cover",
                   borderRadius: moderateScale(12),
@@ -88,7 +88,7 @@ const ImagesCarousel = ({ images }: Props) => {
           position: "absolute",
           zIndex: 100,
           bottom: verticalScale(-24),
-          left: screenWidth / 2 - 40,
+          left: screenWidth / 2 - horizontalScale(40),
         }}
       >
         {images.map((image, index) => (
@@ -96,15 +96,15 @@ const ImagesCarousel = ({ images }: Props) => {
             key={index}
             style={{
               height: verticalScale(8),
-              width: horizontalScale(8),
-              borderRadius: verticalScale(5),
+              width: 8,
+              borderRadius: moderateScale(5),
               borderColor:
                 index === selectedIndex
                   ? theme === "light"
                     ? Colors.primary700
                     : Colors.primary400
                   : Colors.gray,
-              borderWidth: 4,
+              borderWidth: moderateScale(4),
               backgroundColor:
                 index === selectedIndex ? Colors.primary600 : Colors.gray,
               margin: moderateScale(4),

@@ -2,12 +2,7 @@ import { StyleSheet } from "react-native";
 import { screenWidth, screenHeight } from "@Utils/Helper";
 import Colors from "@GlobalStyle/Colors";
 const styles = StyleSheet.create({
-  lightContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  darkContainer: {
+  container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

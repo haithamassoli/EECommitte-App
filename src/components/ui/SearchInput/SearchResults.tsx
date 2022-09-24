@@ -25,7 +25,7 @@ const SearchResults = ({ results, handlePress }: Props) => {
                 paddingHorizontal: horizontalScale(10),
                 paddingVertical: verticalScale(5),
                 borderColor: theme === "light" ? "#fff" : "#000",
-                borderWidth: 2,
+                borderWidth: moderateScale(2),
                 borderRadius: moderateScale(10),
               }}
               onPress={() => handlePress(result.id)}

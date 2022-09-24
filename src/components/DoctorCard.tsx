@@ -25,32 +25,64 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
       <Image
         style={{
           width: horizontalScale(100),
-          height: "100%",
+          height: verticalScale(150),
           marginEnd: horizontalScale(12),
         }}
         defaultSource={defaultImage}
         source={{ uri: image }}
       />
       <View style={{ flex: 1 }}>
-        <Text style={{ color: textColor, textAlign: "left" }}>
+        <Text
+          style={{
+            color: textColor,
+            textAlign: "left",
+            fontSize: moderateScale(14),
+          }}
+        >
           الإسم: {name}
         </Text>
-        <Text style={{ color: textColor, textAlign: "left" }}>
+        <Text
+          style={{
+            color: textColor,
+            textAlign: "left",
+            fontSize: moderateScale(14),
+          }}
+        >
           المكتب: {office}
         </Text>
         <Pressable
           onPress={() => Linking.openURL(`tel:${phone?.split(" ")[1]}`)}
         >
-          <Text style={{ color: textColor, textAlign: "left" }}>
+          <Text
+            style={{
+              color: textColor,
+              textAlign: "left",
+              fontSize: moderateScale(14),
+            }}
+          >
             الهاتف: {phone}
           </Text>
         </Pressable>
 
         <Pressable onPress={() => Linking.openURL(`mailto:${email}`)}>
-          <Text style={{ color: textColor, textAlign: "left" }}>
+          <Text
+            style={{
+              color: textColor,
+              textAlign: "left",
+              fontSize: moderateScale(14),
+            }}
+          >
             البريد الإلكتروني
           </Text>
-          <Text style={{ color: textColor, textAlign: "left" }}>{email}</Text>
+          <Text
+            style={{
+              color: textColor,
+              textAlign: "left",
+              fontSize: moderateScale(14),
+            }}
+          >
+            {email}
+          </Text>
         </Pressable>
         <Pressable
           style={{
@@ -62,7 +94,13 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
           }}
           onPress={() => Linking.openURL(website)}
         >
-          <Text style={{ color: Colors.lightText, textAlign: "left" }}>
+          <Text
+            style={{
+              color: Colors.lightText,
+              textAlign: "left",
+              fontSize: moderateScale(14),
+            }}
+          >
             الموقع الإلكتروني
           </Text>
         </Pressable>

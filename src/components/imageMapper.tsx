@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import type { MapperItem } from "@Types/index";
 import { screenHeight, screenWidth } from "@Utils/Helper";
-import { moderateScale } from "@Utils/Platform";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 const thumbnail = require("@Assets/images/thumbnailPlan.gif");
 type Props = {
   selectedAreaId?: number[] | number;
@@ -73,13 +73,19 @@ class ImageMapper extends Component<Props> {
       }
     }
     if (shape === "rectangle") {
-      style.width = width === null || width === undefined ? x2 - x1 : width;
-      style.height = height === null || height === undefined ? y2 - y1 : height;
+      style.width =
+        width === null || width === undefined
+          ? horizontalScale(x2 - x1)
+          : horizontalScale(width);
+      style.height =
+        height === null || height === undefined
+          ? verticalScale(y2 - y1)
+          : verticalScale(height);
     }
     if (shape === "circle" && radius !== undefined) {
-      style.width = radius;
-      style.height = radius;
-      style.borderRadius = radius / 2;
+      style.width = horizontalScale(radius);
+      style.height = horizontalScale(radius);
+      style.borderRadius = horizontalScale(radius / 2);
     }
     return style;
   }

@@ -4,6 +4,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { View, TextInput } from "react-native";
 import { useContext } from "react";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import { screenWidth } from "@Utils/Helper";
 
 const data = [
   { label: "A+", value: 4.2 },
@@ -63,7 +64,7 @@ const SubjectRate = ({
     >
       <View
         style={{
-          width: horizontalScale(100),
+          width: screenWidth / 3 - 87,
           backgroundColor:
             theme === "light"
               ? Colors.lightBackgroundSec
@@ -117,7 +118,7 @@ const SubjectRate = ({
       </View>
       <View
         style={{
-          width: horizontalScale(80),
+          width: screenWidth / 3 - 87,
           backgroundColor:
             theme === "light"
               ? Colors.lightBackgroundSec

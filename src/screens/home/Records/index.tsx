@@ -1,7 +1,6 @@
 import RecordCard from "@Components/RecordCard";
 import CustomHeader from "@Components/ui/CustomHeader";
 import SearchInput from "@Components/ui/SearchInput";
-import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FlashList } from "@shopify/flash-list";

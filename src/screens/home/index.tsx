@@ -237,7 +237,7 @@ const HomeScreen = ({ navigation }: Props) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            width: 80,
+            width: horizontalScale(80),
             height: verticalScale(50),
             borderRadius: moderateScale(25),
             justifyContent: "space-evenly",

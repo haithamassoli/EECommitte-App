@@ -4,6 +4,7 @@ import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ThemeContext } from "@Src/store/themeContext";
 import { HomeStackParamList } from "@Types/navigation";
+import { screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext, useLayoutEffect, useState, useRef } from "react";
 import {
@@ -312,6 +313,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
               paddingHorizontal: horizontalScale(8),
               justifyContent: "center",
               alignItems: "center",
+              width: screenWidth / 3 - 87,
             }}
           >
             <Text
@@ -359,6 +361,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
               paddingHorizontal: horizontalScale(8),
               justifyContent: "center",
               alignItems: "center",
+              width: screenWidth / 3 - 87,
             }}
           >
             <Text

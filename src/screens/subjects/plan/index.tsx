@@ -21,9 +21,7 @@ const PlanScreen = ({ navigation }: Props) => {
   };
   const { theme } = useContext(ThemeContext);
   return (
-    <View
-      style={theme === "light" ? styles.lightContainer : styles.darkContainer}
-    >
+    <View style={styles.container}>
       <Text
         style={{
           fontFamily: "Bukra",
@@ -49,9 +47,7 @@ const PlanScreen = ({ navigation }: Props) => {
           imgWidth={screenWidth}
           imgHeight={screenWidth * 1.074}
           imgMap={MAPPING}
-          containerStyle={
-            theme === "light" ? styles.lightContainer : styles.darkContainer
-          }
+          containerStyle={styles.container}
           onPress={(item: MapperItem) => {
             handleSelectArea(item.id);
           }}

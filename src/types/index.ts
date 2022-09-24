@@ -12,6 +12,7 @@ export interface Subject {
   explanations?: Explanation[];
   exams?: string;
   answers?: string;
+  color: string;
 }
 
 type Explanation = {

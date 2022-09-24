@@ -1,3 +1,4 @@
+import Colors from "@GlobalStyle/Colors";
 import { Subject } from "@Types/index";
 
 const Subjects: Subject[] = [
@@ -5,6 +6,7 @@ const Subjects: Subject[] = [
     id: 1,
     name: "كالكولاس 101 تفاضل وتكامل",
     name2: "Calculus 101",
+    color: Colors.firstYear,
     book: "https://drive.google.com/drive/u/1/folders/1yd7rDM76WzIgu-mFt9rJ8MtAcf5EDtxB",
     notebook:
       "https://drive.google.com/drive/u/1/folders/1xjrfMQNQlnjqNlLHfPGKlbHFy8oC2fCl",
@@ -27,6 +29,7 @@ const Subjects: Subject[] = [
     id: 2,
     name: "كالكولاس 102 تفاضل وتكامل",
     name2: "Calculus 102",
+    color: Colors.firstYear,
     book: "https://drive.google.com/drive/u/1/folders/1W_GhXhgO036jdQeScawA_iyILYd6Y232",
     notebook:
       "https://drive.google.com/drive/u/1/folders/16v3-8Es5FMHXXrET2JZwPLvRgDk2jHPH",
@@ -52,6 +55,7 @@ const Subjects: Subject[] = [
     id: 3,
     name: "ديف",
     name2: "Differential Equations",
+    color: Colors.secondYear,
     book: "https://drive.google.com/drive/u/1/folders/1r3XKeqoQNs4_TZjR24_u4Kzk4SszRdw0",
     notebook:
       "https://drive.google.com/drive/u/1/folders/14Axk7wxMyIryQ4V_jJzxgnSnvM2NvVwu",
@@ -80,6 +84,7 @@ const Subjects: Subject[] = [
     id: 4,
     name: "تحليل وسيط",
     name2: "Intermediate Analysis",
+    color: Colors.secondYear,
     book: "https://drive.google.com/drive/u/1/folders/1nM4hT-YRvLsvQMYQz30nAqwoq53WtlxK",
     explanations: [
       {
@@ -103,6 +108,7 @@ const Subjects: Subject[] = [
     id: 5,
     name: "اقتصاد",
     name2: "Economy",
+    color: Colors.thirdYear,
     book: "https://drive.google.com/drive/u/4/folders/17WRaRzNYQFb7uHQDp8j4Or9sbg3c6N-m",
     explanations: [
       {
@@ -121,6 +127,7 @@ const Subjects: Subject[] = [
   {
     id: 6,
     name: "فيزياء 101",
+    color: Colors.firstYear,
     name2: "Physics 101",
     book: "https://drive.google.com/drive/u/1/folders/1FXzSdIezqol1Lv8yEkNzM8H-y1PfcuYN",
     explanations: [
@@ -143,6 +150,7 @@ const Subjects: Subject[] = [
   {
     id: 7,
     name: "فيزياء 102",
+    color: Colors.firstYear,
     name2: "Physics 102",
     book: "https://drive.google.com/drive/u/1/folders/1XM2pOZA-5OFfAwjMuXsWiFLIAOATLDI1",
     notebook:
@@ -170,6 +178,7 @@ const Subjects: Subject[] = [
   {
     id: 8,
     name: "لاب فيزياء",
+    color: Colors.firstYear,
     name2: "Physics Lab",
     prevYears:
       "https://drive.google.com/drive/u/1/folders/1QFtpcR5T6DOwGq6EqA7wCz6jMI_Zg4nC",
@@ -184,6 +193,7 @@ const Subjects: Subject[] = [
   {
     id: 9,
     name: "مقدمة في البرمجة",
+    color: Colors.firstYear,
     name2: "C++",
     book: "https://drive.google.com/drive/u/1/folders/1LMxqII_OcVgNnlKH8vQwo-A2T95aZgfx",
     prevYears:
@@ -208,6 +218,7 @@ const Subjects: Subject[] = [
   {
     id: 10,
     name: "لاب مقدمة في البرمجة",
+    color: Colors.firstYear,
     name2: "C++ lab",
     subjectLink:
       "https://drive.google.com/drive/folders/16eEGjkF49xFI4hvVObo6wTazFgeou1s2",
@@ -216,6 +227,7 @@ const Subjects: Subject[] = [
     id: 11,
     name: "نيوماريكال",
     name2: "Numerical",
+    color: Colors.thirdYear,
     book: "https://drive.google.com/drive/u/3/folders/1mnJ7p6Olmt56KM8tu9qnIXmqTbpZPnIu",
     prevYears:
       "https://drive.google.com/drive/u/3/folders/1fzkk34-noSZfD2NyGPwdycUPf0HT1r28",
@@ -239,6 +251,7 @@ const Subjects: Subject[] = [
   {
     id: 12,
     name: "حاسوب استدراكي",
+    color: Colors.firstYear,
     name2: "Computer Skills",
     subjectLink:
       "https://drive.google.com/drive/u/1/folders/1vXgXncB-U0ycEaM2GTaMELxMtKUad9Sm",
@@ -253,6 +266,7 @@ const Subjects: Subject[] = [
     id: 13,
     name: "مايكرو كنترول",
     name2: "Micro Controllers",
+    color: Colors.thirdYear,
     book: "https://drive.google.com/drive/u/3/folders/1In1sotg5g1JlxMDbYgncPvdLKWHxLLVl",
     prevYears:
       "https://drive.google.com/drive/u/3/folders/1SgFl1fXJ7KwP-VWlio4ZeoQeCsNuIZN3",
@@ -286,6 +300,7 @@ const Subjects: Subject[] = [
   {
     id: 14,
     name: "مايكرو بروسيسر",
+    color: Colors.thirdYear,
     name2: "Micro Processor",
     book: "https://drive.google.com/drive/u/4/folders/1qdWQdMoI4Vgvh-IAh32h7xgS8xcGS8TM",
     prevYears:
@@ -308,6 +323,7 @@ const Subjects: Subject[] = [
   {
     id: 15,
     name: "لاب مايكرو كنترول",
+    color: Colors.thirdYear,
     name2: "Micro Controllers Lab",
     book: "https://drive.google.com/drive/u/3/folders/16-qL5sZcnwxoegyH2RGOi-5sXax9otra",
     explanations: [
@@ -326,6 +342,7 @@ const Subjects: Subject[] = [
   {
     id: 16,
     name: "ميكانيكا هندسية",
+    color: Colors.secondYear,
     name2: "Engineering Mechanics Statics",
     explanations: [
       {
@@ -346,6 +363,7 @@ const Subjects: Subject[] = [
   {
     id: 17,
     name: "ريادة وابداع",
+    color: Colors.firstYear,
     name2: "Entrepreneurship and Entrepreneurs",
     slides:
       "https://drive.google.com/drive/u/1/folders/1zMrgber8JJLdkfmd4e_iBqkgREhmohQO",
@@ -357,6 +375,7 @@ const Subjects: Subject[] = [
   {
     id: 18,
     name: "اللغة الانجليزية 112",
+    color: Colors.firstYear,
     name2: "English 112",
     subjectLink:
       "https://drive.google.com/drive/u/1/folders/1POdols3b_R-DNAMnngSAjwSf6BY21BZT",
@@ -373,6 +392,7 @@ const Subjects: Subject[] = [
   {
     id: 19,
     name: "مهارات عامة",
+    color: Colors.firstYear,
     name2: "General Skills",
     explanations: [
       {
@@ -392,6 +412,7 @@ const Subjects: Subject[] = [
   {
     id: 20,
     name: "سيركت 1",
+    color: Colors.secondYear,
     name2: "Circuits 1",
     book: "https://drive.google.com/drive/u/2/folders/1rKkzkUkI5hyUZKEvk8BDLr-JW1TLiYHe",
     notebook:
@@ -432,6 +453,7 @@ const Subjects: Subject[] = [
     id: 21,
     name: "سيركت 2",
     name2: "Circuits 2",
+    color: Colors.secondYear,
     book: "https://drive.google.com/drive/u/3/folders/1Mlq-RfFUAgnncU2dvlOnSKPszpH-kADV",
     explanations: [
       {
@@ -457,6 +479,7 @@ const Subjects: Subject[] = [
   {
     id: 22,
     name: "لاب سيركت",
+    color: Colors.secondYear,
     name2: "Circuits lab",
     book: "https://drive.google.com/drive/u/2/folders/1Nwoq0ermnGYEw0Y70sNEcTTCyqDkyU4U",
     prevYears:
@@ -469,6 +492,7 @@ const Subjects: Subject[] = [
   {
     id: 23,
     name: "لينير",
+    color: Colors.secondYear,
     name2: "Linear",
     book: "https://drive.google.com/drive/u/2/folders/1r4VtHyi3b0kSRUSpAUn9NwCM41KiTPcf",
     explanations: [
@@ -509,6 +533,7 @@ const Subjects: Subject[] = [
     id: 24,
     name: "سيجنال",
     name2: "Signal",
+    color: Colors.secondYear,
     book: "https://drive.google.com/drive/u/2/folders/1OWiirUE3r0lPavAulcvmshtLUY1FIOeT",
     slides:
       "https://drive.google.com/drive/u/3/folders/1582IBXsH_Djgea5wSj0E8UozuFsF2DTh",
@@ -541,6 +566,7 @@ const Subjects: Subject[] = [
     id: 25,
     name: "الكترونيات 1",
     name2: "Electronics 1",
+    color: Colors.secondYear,
     book: "https://drive.google.com/drive/u/2/folders/1hBEsdX26Mlafw0IoIo-qfag_3jt4TC-A",
     explanations: [
       {
@@ -570,6 +596,7 @@ const Subjects: Subject[] = [
   {
     id: 26,
     name: "الكترونيات 2",
+    color: Colors.thirdYear,
     name2: "Electronics 2",
     book: "https://drive.google.com/drive/u/3/folders/1CyNL5tvU4URv-zlN5XppeeqhYwjtQbKp",
     prevYears:
@@ -643,6 +670,7 @@ const Subjects: Subject[] = [
   {
     id: 27,
     name: "الكهرومغناطيسية 1",
+    color: Colors.secondYear,
     name2: "Electromagnetic 1",
     book: "https://drive.google.com/drive/u/2/folders/1KQAzxdNuFNKXYcjmJgwzAXQhN4Mx-ser",
     explanations: [
@@ -669,6 +697,7 @@ const Subjects: Subject[] = [
   {
     id: 28,
     name: "الكهرومغناطيسية 2",
+    color: Colors.thirdYear,
     name2: "Electromagnetic 2",
     book: "https://drive.google.com/drive/u/3/folders/1gwUM805wryQ1487GzmrOKDviG_jEPDqh",
     explanations: [
@@ -700,6 +729,7 @@ const Subjects: Subject[] = [
     id: 29,
     name: "كيمياء 101",
     name2: "Chemistry 101",
+    color: Colors.firstYear,
     slides:
       "https://drive.google.com/drive/u/1/folders/1r_2AepjamqPIoHxN5pH0h8ITfbNaZA_g",
     notebook:
@@ -720,6 +750,7 @@ const Subjects: Subject[] = [
     id: 30,
     name: "كيمياء 102",
     name2: "Chemistry 102",
+    color: Colors.firstYear,
     book: "https://drive.google.com/drive/u/1/folders/1edxgVQnIOmV8WpFdIV3PwQDJ8b6flbFx",
     notebook:
       "https://drive.google.com/drive/u/1/folders/1prDaYBHux8jVkwl4a9NgMNq2yLsGVT62",
@@ -741,6 +772,7 @@ const Subjects: Subject[] = [
     id: 31,
     name: "لاب كيمياء",
     name2: "Chemistry Lab",
+    color: Colors.firstYear,
     answers:
       "https://drive.google.com/drive/u/1/folders/1INN8ew5EB798LbroONB3Wq3agSOtjkWB",
     explanations: [
@@ -759,6 +791,7 @@ const Subjects: Subject[] = [
     id: 32,
     name: "لاب الكترونيات",
     name2: "Electronics lab",
+    color: Colors.thirdYear,
     prevYears:
       "https://drive.google.com/drive/u/3/folders/1zRfXE2tqLnKixNeJR1mU120mfTC0Q2zw",
     subjectLink:
@@ -769,6 +802,7 @@ const Subjects: Subject[] = [
     id: 33,
     name: "DE",
     name2: "Digital electronics",
+    color: Colors.fourthYear,
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1QW48I9UPypx_fQgOLfDoss3B1B7JCufv",
     explanations: [
@@ -806,6 +840,7 @@ const Subjects: Subject[] = [
     id: 34,
     name: "Digital electronics DE Lab",
     name2: "Digital electronics Lab",
+    color: Colors.fourthYear,
     book: "https://drive.google.com/drive/u/4/folders/1oD6sIV7U2Dxmm1cynl9ZNVuSFz7WFCFC",
 
     prevYears:
@@ -818,6 +853,7 @@ const Subjects: Subject[] = [
     id: 35,
     name: "انسترو",
     name2: "Instrumentation",
+    color: Colors.thirdYear,
     book: "https://drive.google.com/drive/u/3/folders/1Ph0mz6RmiQzwKm82ijuc2FkdAE_eu8_G",
     prevYears:
       "https://drive.google.com/drive/u/3/folders/1BcgzXIn8GVxrvxDJ4bLwyrj9260QnpDM",
@@ -839,6 +875,7 @@ const Subjects: Subject[] = [
   {
     id: 36,
     name: "بروب احتمالات",
+    color: Colors.thirdYear,
     name2: "Probabilities",
     book: "https://drive.google.com/drive/u/3/folders/1pQg_QQw4glCher9S0R1XxMUhtxvldKwF",
     prevYears:
@@ -866,6 +903,7 @@ const Subjects: Subject[] = [
     id: 37,
     name: "أنظمة تحكم كنترول",
     name2: "Control systems",
+    color: Colors.fourthYear,
     book: "https://drive.google.com/drive/u/4/folders/1jw1KVbNPyDhwbqWKF8wWjh_UdnDxRMp6",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/11g4-w8cXhSCooHT751QqwxoQfNn4RlNZ",
@@ -896,6 +934,7 @@ const Subjects: Subject[] = [
     id: 38,
     name: "لاب كنترول أنظمة تحكم",
     name2: "Control systems lab",
+    color: Colors.fourthYear,
     book: "https://drive.google.com/drive/u/4/folders/160N5V3ovTt-il-qegBbjFOaNB-2DSN4N",
     explanations: [
       {
@@ -913,6 +952,7 @@ const Subjects: Subject[] = [
     id: 39,
     name: "عربي 101",
     name2: "Arabic 101",
+    color: Colors.firstYear,
     book: "https://drive.google.com/drive/u/1/folders/1HE2FSO3W0VXx--gh3MMpsfVHg0FsjD9o",
     notebook:
       "https://drive.google.com/drive/u/1/folders/1IKXg0KkhBMz_JnY7oflMItEAgzmImJdf",
@@ -925,6 +965,7 @@ const Subjects: Subject[] = [
     id: 40,
     name: "Communication electronics",
     name2: "Communication electronics",
+    color: Colors.fourthYear,
     subjectLink:
       "https://drive.google.com/drive/folders/1jCGozwbNwk0sbHCfS9DLYlqIRiqK47IV",
   },
@@ -932,6 +973,7 @@ const Subjects: Subject[] = [
     id: 41,
     name: "امديد",
     name2: "Embedded",
+    color: Colors.fourthYear,
     book: "https://drive.google.com/drive/u/4/folders/1bx9lnCXbm60Wy_SLc1A1SYtU8UNAKHrP",
     slides:
       "https://drive.google.com/drive/u/4/folders/1IxzSVbcztMKiLbeaPmVEbGH0REHrHC9X",
@@ -959,6 +1001,7 @@ const Subjects: Subject[] = [
     id: 42,
     name: "Communication systems",
     name2: "Communication systems",
+    color: Colors.fourthYear,
     book: "https://drive.google.com/drive/u/4/folders/1O__OXCdRXg_OfnEeU4Lc8lPM95ErBarS",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1GhXRR4IWAjHyu52FUV0z6UQhPYQ9BIXK",
@@ -984,6 +1027,7 @@ const Subjects: Subject[] = [
     id: 43,
     name: "DSP",
     name2: "DSP",
+    color: Colors.fifthYear,
     book: "https://drive.google.com/drive/u/4/folders/1xZkvNhb3BLQeMNEUbXKr6rZN01zP1eXH",
     slides:
       "https://drive.google.com/drive/u/4/folders/1Z2qssp7B286VYn3-gCUnSwMt1e2v2e8u",
@@ -996,6 +1040,7 @@ const Subjects: Subject[] = [
     id: 44,
     name: "Digital control",
     name2: "DC",
+    color: Colors.fifthYear,
     book: "https://drive.google.com/drive/u/4/folders/1JuW9Fb1dEWTccJ68xKEuv1kCjn4pUiPZ",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1XzazRbViOaREpAxUfi9XvJZ610ChFqNk",
@@ -1013,6 +1058,7 @@ const Subjects: Subject[] = [
     id: 45,
     name: "Comm lab",
     name2: "Communication systems lab",
+    color: Colors.fifthYear,
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1GlW00jgl-BM8uaG8GDHSWKvn1asThbjv",
     subjectLink:
@@ -1022,6 +1068,7 @@ const Subjects: Subject[] = [
     id: 46,
     name: "Digital comm lab",
     name2: "Digital communications lab",
+    color: Colors.fifthYear,
     prevYears:
       "https://drive.google.com/drive/u/4/folders/13Z1NRvHMKN-LrcQfLAjLRtA7ZriezIQM",
     subjectLink:
@@ -1031,6 +1078,7 @@ const Subjects: Subject[] = [
     id: 47,
     name: "Digital comm",
     name2: "Digital communications",
+    color: Colors.fifthYear,
     subjectLink:
       "https://drive.google.com/drive/folders/1URYgtWO6_fkP2vYAGTYYNeyHmLwKL7EG",
   },
@@ -1038,6 +1086,7 @@ const Subjects: Subject[] = [
     id: 48,
     name: "هاتف",
     name2: "Mobile",
+    color: Colors.fifthYear,
     book: "https://drive.google.com/drive/u/4/folders/1R4cYX_0COqf9j0qyC6cNMs-GsoEjgYwD",
     subjectLink:
       "https://drive.google.com/drive/folders/1Ig_4sGGRf4zhOVs2T0A2o8NNXcMqdx4s",
@@ -1046,6 +1095,7 @@ const Subjects: Subject[] = [
     id: 49,
     name: "درايف",
     name2: "Drive",
+    color: Colors.fifthYear,
     book: "https://drive.google.com/drive/u/4/folders/1pKPpsgv8e7YamTufK-A51oOujkhsFHso",
     slides:
       "https://drive.google.com/drive/u/4/folders/11xvL4Fo0c4453mGtEQVX1vDd0aGR_aRl",
@@ -1077,6 +1127,7 @@ const Subjects: Subject[] = [
     id: 50,
     name: "لاب بور الكترو",
     name2: "Power electro lab",
+    color: Colors.fifthYear,
     book: "https://drive.google.com/drive/u/4/folders/1bswPV6qhNhzrBfxxUYkoc479pera8p47",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/18MWPilAupFtmaJlLurSSvHTmZi1FDrrA",
@@ -1088,6 +1139,7 @@ const Subjects: Subject[] = [
     id: 51,
     name: "بور الكترو",
     name2: "Power electro",
+    color: Colors.fifthYear,
     book: "https://drive.google.com/drive/u/4/folders/1BNLFYAGMmQ8rM3r8LIFnBuVKqznAY8FF",
     explanations: [
       {
@@ -1113,6 +1165,7 @@ const Subjects: Subject[] = [
     id: 52,
     name: "الات كهربائية مشين",
     name2: "Machines",
+    color: Colors.thirdYear,
     book: "https://drive.google.com/drive/u/3/folders/1fN9g7uP_L0xjFn2wfZX3RspVHTM7a8JK",
     prevYears:
       "https://drive.google.com/drive/u/3/folders/1VzK2K1XGwQxW0HSmKnzgLz4IjVIagP5g",
@@ -1147,6 +1200,7 @@ const Subjects: Subject[] = [
     id: 53,
     name: "بور 1",
     name2: "Power 1",
+    color: Colors.fourthYear,
     book: "https://drive.google.com/drive/u/4/folders/1Z2kMVdFeiuK3Mqlc8misRd0_goD2jBug",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1pPZwt3jgbSFhtHQ65rLAOeD5cGjgcWnE",
@@ -1168,6 +1222,7 @@ const Subjects: Subject[] = [
     id: 54,
     name: "بور 2",
     name2: "Power 2",
+    color: Colors.fifthYear,
     book: "https://drive.google.com/drive/u/4/folders/1_48yqHrwXHqWjUu4zXmbRzQpQF21WmyT",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1t2vwqAp6oggI2Jq1us2B3CbQufApRvnk",
@@ -1185,6 +1240,7 @@ const Subjects: Subject[] = [
     id: 55,
     name: "لاب مشين",
     name2: "Machines lab",
+    color: Colors.fourthYear,
     book: "https://drive.google.com/drive/u/4/folders/1bmS_Wa_pWT5NEsf9EU57exB3j_jmsZHb",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1RqCdvINn4qMFgNyHoFsfNpSfNy6GcXXR",
@@ -1196,6 +1252,7 @@ const Subjects: Subject[] = [
     id: 56,
     name: "دستربيوشن Power System",
     name2: "Distribution",
+    color: Colors.fifthYear,
     book: "https://drive.google.com/drive/u/4/folders/192s6S2imOvK-p6hh2KGnwdIUqS-gsQsI",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/13LAN5ea1-kP_GYA73Ibelr2Qv0pW5v7C",
@@ -1207,6 +1264,7 @@ const Subjects: Subject[] = [
     id: 57,
     name: "بروداكشن حماية",
     name2: "Protection",
+    color: Colors.fifthYear,
     book: "https://drive.google.com/drive/u/4/folders/1YoY9d8BwhcbXzMzfoo8A4DX9pezRAP-8",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/16sJV97quqn3DZ7RrygXZ9iw_T8mfxMXj",
@@ -1227,6 +1285,7 @@ const Subjects: Subject[] = [
     id: 58,
     name: "لاب بور الكترو",
     name2: "Power electro lab",
+    color: Colors.fifthYear,
     subjectLink:
       "https://drive.google.com/drive/folders/1fsqsnUFijbdBOrs_IsUlVAwBTpSe6_sX",
   },
@@ -1234,6 +1293,7 @@ const Subjects: Subject[] = [
     id: 59,
     name: "لاب بور انتجريشن",
     name2: "Power integration",
+    color: Colors.fifthYear,
     book: "https://drive.google.com/drive/u/4/folders/1RhGoybWpS4ynLVAwKlnbOyHkQJWYT6Up",
     subjectLink:
       "https://drive.google.com/drive/folders/1QABjkq7ItIh8-dUdWSvGwr8emuwBMo1b",
@@ -1243,6 +1303,7 @@ const Subjects: Subject[] = [
     id: 60,
     name: "لاب امديد",
     name2: "Embedded lab",
+    color: Colors.fourthYear,
     book: "https://drive.google.com/drive/u/4/folders/1bhej7MKGrQ6QJt5QE9laWbUipgRJWy6f",
     subjectLink:
       "https://drive.google.com/drive/folders/14ntYYqixsxPMMervAvcSfs1a1Ej6c1E6",
@@ -1251,6 +1312,7 @@ const Subjects: Subject[] = [
     id: 61,
     name: "لاب باور",
     name2: "Power lab",
+    color: Colors.fifthYear,
     subjectLink:
       "https://drive.google.com/drive/folders/1qvZaz2wPSHlJU7WacIAhKZu8KbCeQkdw",
     fullPost: `<p> </p> <p>بسم الله..<img alt="🌾" src="https://static.xx.fbcdn.net/images/emoji.php/v9/tf6/1.5/16/1f33e.png" style="height:16px; width:16px" /></p> <p><a href="https://www.facebook.com/hashtag/power_lap?__eep__=6&__gid__=130614073616824&__cft__[0]=AZVC9FcQCdRmY9t0bVRY3Ch0-U8Wr59vylM15YgY3HT2x-UpEIiExcnHd45iIh5J-QtZSWMth4fJ6ayHrxzG2pPh6kyk-NsTU_IdPKuogUIhNjl6bwpgsS2KF2icM7zziSxh2w9c0mfA0eonG1CrFjU_&__tn__=*NK-R" tabindex="0">#Power_lap</a></p> <p><a href="https://www.facebook.com/hashtag/full_post?__eep__=6&__gid__=130614073616824&__cft__[0]=AZVC9FcQCdRmY9t0bVRY3Ch0-U8Wr59vylM15YgY3HT2x-UpEIiExcnHd45iIh5J-QtZSWMth4fJ6ayHrxzG2pPh6kyk-NsTU_IdPKuogUIhNjl6bwpgsS2KF2icM7zziSxh2w9c0mfA0eonG1CrFjU_&__tn__=*NK-R" tabindex="0">#Full_post</a></p> <p>تطل عليكم لجنتكم بالبوست الشامل للاب البور ..</p> <p>أولا ~</p> <p>المانيوال الحديث :</p> <p><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Fdrive%2Fu%2F3%2Ffolders%2F1qvZaz2wPSHlJU7WacIAhKZu8KbCeQkdw%3Ffbclid%3DIwAR17KwwyxH1cJ2dqtZQTnFAvQdBof4u6A1r_VlABlzJo_5LXVWOb1vmtbX0&h=AT0veTeF3KJB2lLSmPBDAUevcaKRDoxz4VLfh9tkI8W7-UUkSu-9Br2UZOrUBhWohVlxzKja9aTVXO0cx0OcpyHyWI8Ev1-T0ykGyLOja-LjRTgQjxtF1-REL6-l0PsYzpQcb6Sh_C8Vg1lDA60K&__tn__=-UK-R&c[0]=AT1KzmfiG0DLAeEHwuXWeowdzFb5ApRXCUxaIk17HVtSny5DMYi7H-YqilA22Ch_kOcv8e6eCJq0r-dEVstbSWE67BSWM73Eh7M3Qmvn01WPH5yQs8JkzWjqo_epOgqP4gGGgPCxOCs5xtSTEvRz2x4YUOyT81BYwOI" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1qvZaz2wPSHlJU7WacIAhKZu8KbC...</a></p> <p>ثانيا ~</p> <p>الريبورتات:</p> <p><a href="https://drive.google.com/drive/folders/1WR8oIr75SwLSAhXRZMtp5W2x_zU57Sc7?usp=sharing&fbclid=IwAR2nYIXfHTtgFExfBScETuruTpwavG2DI9qyVDUxBaFUrIuohq8EIi7FEFM" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1WR8oIr75SwLSAhXRZMtp5W2x...</a></p> <p>ثالثاً ~</p> <p>سنوات الميد والفاينل :</p> <p><a href="https://drive.google.com/drive/folders/1fRF0qB5kEKjW8eqmE9G649NoU9NHSN-2?usp=sharing&fbclid=IwAR1Xgqet7RZMlmoLUlw-DJCvT8AnSX32pKDkYGCfXD_1CC4pYXMGU2a0NXo" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1fRF0qB5kEKjW8eqmE9G649NoU9N...</a></p> <p>رابعاً ~</p> <p>التوصيلات :</p> <p><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Fdrive%2Fu%2F3%2Ffolders%2F1j727C0O-fNtLF6t_vUAjgYv8S188Xn4u%3Ffbclid%3DIwAR1RDSxJ8V_gqoa18iUJsJC16JZ_n0EpPJTy5yMsGTy6dH_HekFZeEjOSq8&h=AT16njw_iNZFrjyDU4vgzSrw5FUER-1dP3e1aoHyh5Hyel-EWejv244wK-0Z7iC3vPKVCixrzWfe0tmhWCKEYWvtdb2EzKtPWQPAXw80BxfIkjaqWM4FQKfqrYWdjZ5PcTDwIHDl5epk1epplRT1&__tn__=-UK-R&c[0]=AT1KzmfiG0DLAeEHwuXWeowdzFb5ApRXCUxaIk17HVtSny5DMYi7H-YqilA22Ch_kOcv8e6eCJq0r-dEVstbSWE67BSWM73Eh7M3Qmvn01WPH5yQs8JkzWjqo_epOgqP4gGGgPCxOCs5xtSTEvRz2x4YUOyT81BYwOI" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1j727C0O-fNtLF6t...</a></p> <p><a href="https://www.facebook.com/hashtag/%D9%84%D8%AC%D9%86%D8%A9_%D8%A7%D9%84%D9%87%D9%86%D8%AF%D8%B3%D8%A9_%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D8%A7%D8%A6%D9%8A%D8%A9?__eep__=6&__gid__=130614073616824&__cft__[0]=AZVC9FcQCdRmY9t0bVRY3Ch0-U8Wr59vylM15YgY3HT2x-UpEIiExcnHd45iIh5J-QtZSWMth4fJ6ayHrxzG2pPh6kyk-NsTU_IdPKuogUIhNjl6bwpgsS2KF2icM7zziSxh2w9c0mfA0eonG1CrFjU_&__tn__=*NK-R" tabindex="0">#لجنة_الهندسة_الكهربائية</a> <img alt="💛" src="https://static.xx.fbcdn.net/images/emoji.php/v9/t6e/1.5/16/1f49b.png" style="height:16px; width:16px" /></p> <p><a href="https://www.facebook.com/hashtag/%D9%81%D9%83%D8%B1%D8%A9_%D8%AA%D8%AD%D9%8A%D8%A7_%D8%B9%D9%84%D9%89_%D9%86%D8%A8%D8%B6_%D9%82%D9%84%D9%88%D8%A8%D9%83%D9%85?__eep__=6&__gid__=130614073616824&__cft__[0]=AZVC9FcQCdRmY9t0bVRY3Ch0-U8Wr59vylM15YgY3HT2x-UpEIiExcnHd45iIh5J-QtZSWMth4fJ6ayHrxzG2pPh6kyk-NsTU_IdPKuogUIhNjl6bwpgsS2KF2icM7zziSxh2w9c0mfA0eonG1CrFjU_&__tn__=*NK-R" tabindex="0">#فكرة_تحيا_على_نبض_قلوبكم</a></p>`,
@@ -1259,6 +1321,7 @@ const Subjects: Subject[] = [
     id: 62,
     name: "تصميم الدوائر الإلكترونية الكتف",
     name2: "ُElectronic Circuits Design",
+    color: Colors.fifthYear,
     subjectLink:
       "https://drive.google.com/drive/folders/1UVoWZiKwItBFKGXWqFoXjp_fcBgiIGL-",
     fullPost: `<p>السلام عليكم ورحمة الله وبركاته <img alt="💛" src="https://static.xx.fbcdn.net/images/emoji.php/v9/t6e/1.5/16/1f49b.png" style="height:16px; width:16px" /></p> <p><a href="https://www.facebook.com/hashtag/%D8%AA%D8%B5%D9%85%D9%8A%D9%85_%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A6%D8%B1_%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9?__eep__=6&__gid__=130614073616824&__cft__[0]=AZWY1Zn8q-0Fc84uR9jJHBrPoK_mAwdSZPMvSXz9YyqXqwaol8NSpVzfh6E1CcbY7QkmPzjqvQXRe6fToCjUvK3uJqTBRtBep4Z01r2wZKZ1vKaLCydKC68ASbe0OHHMspszUmkNV40ezGctuZvBhR-a&__tn__=*NK-R" tabindex="0">#تصميم_الدوائر_الإلكترونية</a></p> <p><a href="https://www.facebook.com/hashtag/%D8%A7%D9%84%D8%A8%D9%88%D8%B3%D8%AA_%D8%A7%D9%84%D8%B4%D8%A7%D9%85%D9%84?__eep__=6&__gid__=130614073616824&__cft__[0]=AZWY1Zn8q-0Fc84uR9jJHBrPoK_mAwdSZPMvSXz9YyqXqwaol8NSpVzfh6E1CcbY7QkmPzjqvQXRe6fToCjUvK3uJqTBRtBep4Z01r2wZKZ1vKaLCydKC68ASbe0OHHMspszUmkNV40ezGctuZvBhR-a&__tn__=*NK-R" tabindex="0">#البوست_الشامل</a></p> <p>- شرح المهندس محمد لافي :</p> <p><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1zC5RrEMdYX-Ck-F2sXsQX8bxczWZLYR8%2Fview%3Fusp%3Ddrivesdk%26fbclid%3DIwAR0EdQjwpVn8yFEfGRIe12H6lFyNoLmoz0DIUoBdLOaVKecF7fz-PfkcuMc&h=AT1bbzNzLrVNOavROJh25p4BkLfS9799OTOBuO-MWcH0txEMwlQBYnmujWYyJfaVl0xGKV1Bir60aqLBbXAKrm0yD2x8Do29pG111uKWE_sD83acmPVCshNO1u_majCJAbJzZveE1Q6czlLoyxaW&__tn__=-UK-R&c[0]=AT3kmfK8dkj0_W0e_Jwc7gGMlTE9zoDws5W4G061paAkEpc7briN-Pupyw1LE9OtlX9BdmJz0gSnES1XC2JTAeQk9A9oF0Ppul_ogOTXGEKU0JpkZ3E0hZxYAW_S1Vs_xE8MiEddda5CprbqtXIT1amYCUZmHqGxmF8" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1zC5RrEMdYX-Ck.../view...</a></p> <p>- الكتاب المعتمد :</p> <p><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Fdrive%2Fu%2F2%2Ffolders%2F1A83XR17ink2TDBisCPKU30jBrDJKVQlq%3Ffbclid%3DIwAR20bbbXZqeATe2HmhC1UF7RE9EbKAeDnUVXpcaad-g-1K3l7N0p-0Nin-k&h=AT2DGKH5zcdGkgcKqowdSPce0CNE4fIkrZ7-aF9dQHUSVzsDKXlgiJoJOcUKwX37vBsG-pkedmp3PoLILpHxjIQiilS9YnR_6x6hpVj6tmVZB-kxtLEVVi0MBRHdP5ynzz1-ps3JP9Xoh9byrDN0&__tn__=-UK-R&c[0]=AT3kmfK8dkj0_W0e_Jwc7gGMlTE9zoDws5W4G061paAkEpc7briN-Pupyw1LE9OtlX9BdmJz0gSnES1XC2JTAeQk9A9oF0Ppul_ogOTXGEKU0JpkZ3E0hZxYAW_S1Vs_xE8MiEddda5CprbqtXIT1amYCUZmHqGxmF8" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1A83XR17ink2TDBisCPKU30jBrDJ...</a></p> <p>- سلايدات الدكتور فادي زغلول :</p> <p><a href="https://drive.google.com/drive/u/2/folders/1ABC2Gdw7jiO0dxIrJaZA76ugJYwmwFap?fbclid=IwAR2vYOPzGGv4OqkhkobNe5SgFRagBUDlujA1M2uRQav61U_LIvDABW2NyU0" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1ABC2Gdw7jiO0dxIrJaZA76ugJYw...</a></p> <p>سنوات</p> <p><a href="https://drive.google.com/drive/folders/1UVoWZiKwItBFKGXWqFoXjp_fcBgiIGL-?fbclid=IwAR3xAbn_oWxmnyQUBfZ8j-5YwcQp-otwdtq0tcu3glGtFbWFqAdOq17GdC8" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1UVoWZiKwItBFKGXWqFoXjp...</a></p> <p><a href="https://www.facebook.com/hashtag/%D9%84%D8%AC%D9%86%D8%A9_%D8%A7%D9%84%D9%87%D9%86%D8%AF%D8%B3%D8%A9_%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D8%A7%D8%A6%D9%8A%D8%A9?__eep__=6&__gid__=130614073616824&__cft__[0]=AZWY1Zn8q-0Fc84uR9jJHBrPoK_mAwdSZPMvSXz9YyqXqwaol8NSpVzfh6E1CcbY7QkmPzjqvQXRe6fToCjUvK3uJqTBRtBep4Z01r2wZKZ1vKaLCydKC68ASbe0OHHMspszUmkNV40ezGctuZvBhR-a&__tn__=*NK-R" tabindex="0">#لجنة_الهندسة_الكهربائية</a></p> <p><a href="https://www.facebook.com/hashtag/%D9%81%D9%83%D8%B1%D8%A9_%D8%AA%D8%AD%D9%8A%D8%A7_%D8%B9%D9%84%D9%89_%D9%86%D8%A8%D8%B6_%D9%82%D9%84%D9%88%D8%A8%D9%83%D9%85?__eep__=6&__gid__=130614073616824&__cft__[0]=AZWY1Zn8q-0Fc84uR9jJHBrPoK_mAwdSZPMvSXz9YyqXqwaol8NSpVzfh6E1CcbY7QkmPzjqvQXRe6fToCjUvK3uJqTBRtBep4Z01r2wZKZ1vKaLCydKC68ASbe0OHHMspszUmkNV40ezGctuZvBhR-a&__tn__=*NK-R" tabindex="0">#فكرة_تحيا_على_نبض_قلوبكم</a> <img alt="💛" src="https://static.xx.fbcdn.net/images/emoji.php/v9/t6e/1.5/16/1f49b.png" style="height:16px; width:16px" /></p>`,
@@ -1266,6 +1329,7 @@ const Subjects: Subject[] = [
   {
     id: 63,
     name: "اوتوكاد رسم هندسي",
+    color: Colors.firstYear,
     name2: "Autocad",
     subjectLink: "",
     aboutSubject: `<p>الرسم الهندسي أو #الكاد</p> <p>لاب ساعة من قسم الميكانيك</p> <p>بتكون مدته على الجدول ٣ ساعات وهو فعليا بالمتوسط بحتاج من ساعة ونص لساعتين خلال المختبر مع عمل الكلاس وورك.</p> <p>بنتعلم فيه مواضيع  "الرسم الهندسي "من ناحية نظرية وكيفية تطبيقها على جهاز الحاسوب عن طريق البرنامج المعروف باسم الAutoCad.</p> <p>بداية بنتعرف على البرنامج وكيف نبدأ فيه وعلى الأوامر الأساسية  بالبرنامج حتى نبدأ بالرسم مثل و بنبدأ برسم خط ورسم دائرة وبنتعرف على أكثر من طريقة بالرسم مثل طريقة الإحداثيات (وهي مش كثير عملية)  إما مثلا برسم  عن جريقة ادخال نقاط بالإحداثيات الديكارتية أو القطبية (polar)..</p> <p>وغيرهم من الطرق.. </p> <p>وبنتعلم بعدين كيف نرسم بطريقة احترافية رسمات ال2D وبنتعرف على بعض الأوامر الجديدة الي بتساعدنا بهذا الإشي.. وبنتعلم كيفية رسم مضلعات وكيفية تغيير لون الخط وسماكته ونوعه.</p> <p>بننتقل بعدين لنظرية المساقط المتعامدة ووبنتعلم كيفية رسمها على الكاد،  </p> <p>برأيي هذا الموضوع هو أكثر موضوع بحتاج لدقة وتركيز بالرسم، بكون عندي مثلا رسمة لقطعة أو ماكينة أو منشأة، ومطلوب مني كمهندس أعطي وصف دقيق وواضح  لكل تفاصيل القطعة 📐</p> <p> أو ما شابه للفريق الي دوره يقوم بتصنيع القطعة أو المنتج.. 🥸</p> <p>وهذا بكون عن طريق رسم مساقط للقطعة توصفها، طبعا في أكثر من طريقة للإسقاط بمادتنا الرسم الهندسي بنوخذ طريقة (الإسقاط المتعامد) وهي بشكل عام تقريبا عملية بتم فيها تحويل رسمة ثلاثية الأبعاد إلى عدة رسمات ثنائية الأبعاد مثلا رسمة توصف الجزء العلوي فقط ورسمة توصف الجزء الأمامي ورسمة للجزء الجانبي وهكذا..</p> <p>بنتعلم بعدين بعض الأوامر الي بتختصر علينا وقت وتخلي عملية الرسم أسرع إذا استخدمتهم بطريقة مناسبة.</p> <p>وكمان بنتعلم  كيف نحط أبعاد وأطوال على الرسمة في كثير قواعد لهالقصة بس مش كلهم بحتاجوا حفظ فيه منهم بجيوا معك بديهيا.😂</p> <p>بعدين بنيجي لموضوع السيكشنز (المقاطع) وأنواعهم ورسمهم،  أحيانا لما تكثر التفاصيل الداخلية للقطعة الي بدنا نرسمها بصير صعب نرسمها أو نوصفها بالطريقة الاعتيادية.. فبنلجئ لطريقة رسم المقطع وهي بتحتاج لشوية خيال  🤫 كونه بتتطلب منا نتخيل كيف شكل القطعة من جوا كيف بصير بعد عملية القطع اله.. </p> <p>فيه موضوع حلو نادرًا  ما يُعطى الي هو موضوع الBlocks بحكي عن رسم وحدات البناء مثلا للمخططات مثل المخططات الكهربائية مثلا بتتعلم فيه كيف ترسم مقاومة،مواسعة،بطارية..الخ وعناصر الدارت المنطقية مثل بوابات And ,OR,Nand الخ..</p> <p>بعدين بنوصل أخيرا لأحلى موضوع بالمادة، رسم المجسمات بشكل ثلاثي الأبعاد وبنتعلم الأوامر الي بتخصه غالبا بنبدا فيه برسمة 2d وبنحولها ل3d بالأوامر الي رح نتعلمها والموضوع بسيط ومش معقد بالغالب.</p> <p>توزيع العلامات : </p> <p>ما قبل الكورونا والأونلاين كان عادة</p> <p>30 Mid (نظري)</p> <p>15 Classworks</p> <p>15 Homeworks</p> <p>40 Final (عملي)</p> <p>ما بعد الكورونا :</p> <p>استمرت التقسيمة نفسها باختلاف توزيع العلامات وبتختلف حسب المنسق. </p> <p>طريقة الدراسة: </p> <p>إذا كان المهندس الي بتوخذ عنده ممتاز ما في داعي لدراسة بالنسبة للمادة العملية بس الالتزام بالحضور والقيام بالواجبات المطلوبة وتسليمها بأوقاتها..</p> <p>في حال تحتم عليك توخذها عند مهندس سيء ممكن تستفيدوا كثير من الكتاب الي عامله المهندس جمال الفران، مرتب كثير ومفصل وهو المرجع الأساسي.</p> <p>وفيه فيديوهات المهندسة شذى الخصاونة بالفصل الصيفي على اليوتيوب بتقدروا تستفيدوا منها..</p> <p>وهون فيه فيديوهات للمهندسة نسرين مع شذى انعملوا  خلال الفصل الثاني </p> <p>المادة النظرية ممكن تدرسها من الكتاب أو سلايدات المهندسة نسرين بس برأيي سلايدات المهندسة أوضح وأبسط.</p> <p>ملاحظة: إذا كانت المادة أونلاين ضروري يكون عندك لابتوب/كمبيوتر حتى تنول عليه البرنامج وتشتغل عليه وتأكد قبل أنه بنزل على جهازك بسلاسة. </p> <p>علما أنه النسخة الي بتسخدمها الجامعة والمثبتة على أجهزتها هي نسخة 2008.</p> <p>أفضل المهندسين : </p> <p>م.نسرين الزعاترة /م.ميساء فرعون/م.شذى الخصاونة/م.جمال الفران.</p> <p>#لجنة_الهندسة_الكهربائية</p>`,

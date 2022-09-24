@@ -1,5 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 import subjects from "@Src/data/Subjects";
 import type {
   StackScreenProps,
@@ -10,7 +17,8 @@ import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Feather } from "@expo/vector-icons";
-import { horizontalScale, moderateScale } from "@Utils/Platform";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import { screenWidth } from "@Utils/Helper";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 export type SubjectNavigationProp = StackNavigationProp<
@@ -22,6 +30,9 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   const [loading, setLoading] = useState(false);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  const backgroundColor =
+    theme === "light" ? Colors.lightBackgroundSec : Colors.darkBackgroundSec;
+  const backgroundSubjectColor = subject.color;
   useEffect(() => {
     setLoading(true);
     const currentSubject = subjects.find(
@@ -63,28 +74,84 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   }
 
   return (
-    <>
+    <ScrollView style={{ flex: 1 }}>
       {loading}
       <View
         style={{
           flex: 1,
+          backgroundColor: backgroundSubjectColor,
+          borderRadius: moderateScale(30),
           padding: moderateScale(10),
+          marginHorizontal: horizontalScale(30),
+          marginVertical: verticalScale(20),
+          paddingStart: horizontalScale(12),
+          height: moderateScale(300),
         }}
       >
+        <Text
+          style={{
+            flex: 1,
+            textAlign: "center",
+            textAlignVertical: "center",
+            fontSize: moderateScale(24),
+            color: textColor,
+            fontFamily: "Bukra",
+            paddingStart: horizontalScale(12),
+          }}
+        >
+          {subject?.name}
+        </Text>
+      </View>
+      <View
+        style={{
+          flex: 1,
+          padding: moderateScale(10),
+          flexWrap: "wrap",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <TouchableOpacity
+          onPress={
+            () =>
+              // @ts-ignore
+              navigation.navigate("SubjectFullPost", {
+                post: subject?.aboutSubject,
+                postTitle: "عن المادة",
+              })
+
+            // {subject?.aboutSubject && <WebDisplay html={subject?.aboutSubject} />}
+          }
+          style={[style.button, { backgroundColor }]}
+        >
+          <Text style={[style.buttonText, { color: textColor }]}>
+            التعريف بالمادة
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            // @ts-ignore
+            navigation.navigate("SubjectFullPost", {
+              post: subject?.fullPost,
+              postTitle: "البوست الشامل",
+            })
+          }
+          style={[style.button, { backgroundColor }]}
+        >
+          <Text style={[style.buttonText, { color: textColor }]}>
+            البوست الشامل
+          </Text>
+        </TouchableOpacity>
         {subject.book && (
           <TouchableOpacity
             onPress={() =>
               // @ts-ignore
               navigation.navigate("SubjectWebView", { url: subject.book })
             }
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              paddingStart: horizontalScale(12),
-            }}
+            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={{ color: textColor }}>الكتاب</Text>
+            <Text style={[style.buttonText, { color: textColor }]}>الكتاب</Text>
           </TouchableOpacity>
         )}
         {subject.prevYears && (
@@ -93,14 +160,11 @@ const SubjectScreen = ({ navigation, route }: Props) => {
               // @ts-ignore
               navigation.navigate("SubjectWebView", { url: subject.prevYears })
             }
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              paddingStart: horizontalScale(12),
-            }}
+            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={{ color: textColor }}>السنوات السابقة</Text>
+            <Text style={[style.buttonText, { color: textColor }]}>
+              السنوات السابقة
+            </Text>
           </TouchableOpacity>
         )}
         {subject.fullPost && (
@@ -111,14 +175,11 @@ const SubjectScreen = ({ navigation, route }: Props) => {
                 subjectId: subject.id,
               })
             }
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              paddingStart: horizontalScale(12),
-            }}
+            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={{ color: textColor }}>الموضوع كاملا</Text>
+            <Text style={[style.buttonText, { color: textColor }]}>
+              الموضوع كاملا
+            </Text>
           </TouchableOpacity>
         )}
         {subject.exams && (
@@ -127,14 +188,11 @@ const SubjectScreen = ({ navigation, route }: Props) => {
               // @ts-ignore
               navigation.navigate("SubjectWebView", { url: subject.exams })
             }
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              paddingStart: horizontalScale(12),
-            }}
+            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={{ color: textColor }}>الامتحانات</Text>
+            <Text style={[style.buttonText, { color: textColor }]}>
+              الامتحانات
+            </Text>
           </TouchableOpacity>
         )}
         {subject.notebook && (
@@ -143,14 +201,11 @@ const SubjectScreen = ({ navigation, route }: Props) => {
               // @ts-ignore
               navigation.navigate("SubjectWebView", { url: subject.notebook })
             }
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              paddingStart: horizontalScale(12),
-            }}
+            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={{ color: textColor }}>الدفتر المدرسي</Text>
+            <Text style={[style.buttonText, { color: textColor }]}>
+              الدفتر المدرسي
+            </Text>
           </TouchableOpacity>
         )}
         {subject.slides && (
@@ -159,14 +214,11 @@ const SubjectScreen = ({ navigation, route }: Props) => {
               // @ts-ignore
               navigation.navigate("SubjectWebView", { url: subject.slides })
             }
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              paddingStart: horizontalScale(12),
-            }}
+            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={{ color: textColor }}>الشرائح</Text>
+            <Text style={[style.buttonText, { color: textColor }]}>
+              الشرائح
+            </Text>
           </TouchableOpacity>
         )}
         {subject?.explanations?.map((explanation, index) => (
@@ -175,14 +227,11 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             onPress={() =>
               navigation.navigate("SubjectWebView", { url: explanation.link })
             }
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              paddingStart: horizontalScale(12),
-            }}
+            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={{ color: textColor }}>{explanation.name}</Text>
+            <Text style={[style.buttonText, { color: textColor }]}>
+              {explanation.name}
+            </Text>
           </TouchableOpacity>
         ))}
         {subject.aboutSubject && (
@@ -193,14 +242,11 @@ const SubjectScreen = ({ navigation, route }: Props) => {
                 url: subject.aboutSubject,
               })
             }
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              paddingStart: horizontalScale(12),
-            }}
+            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={{ color: textColor }}>عن المادة</Text>
+            <Text style={[style.buttonText, { color: textColor }]}>
+              عن المادة
+            </Text>
           </TouchableOpacity>
         )}
         <TouchableOpacity
@@ -209,17 +255,14 @@ const SubjectScreen = ({ navigation, route }: Props) => {
               url: subject.subjectLink,
             })
           }
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            alignItems: "center",
-            paddingStart: horizontalScale(12),
-          }}
+          style={[style.button, { backgroundColor: backgroundSubjectColor }]}
         >
-          <Text style={{ color: textColor }}>الموقع الرسمي</Text>
+          <Text style={[style.buttonText, { color: textColor }]}>
+            درايف المادة
+          </Text>
         </TouchableOpacity>
       </View>
-    </>
+    </ScrollView>
   );
 
   // return (
@@ -294,3 +337,21 @@ const SubjectScreen = ({ navigation, route }: Props) => {
 };
 
 export default SubjectScreen;
+
+const style = StyleSheet.create({
+  button: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Colors.gray,
+    borderRadius: moderateScale(10),
+    padding: moderateScale(10),
+    margin: moderateScale(10),
+    width: screenWidth / 2 - moderateScale(32),
+  },
+  buttonText: {
+    fontSize: moderateScale(18),
+    textAlign: "center",
+    fontFamily: "TajawalMedium",
+  },
+});

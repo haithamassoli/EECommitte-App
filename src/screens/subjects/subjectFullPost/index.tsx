@@ -13,9 +13,9 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: "البوست الشامل",
+      headerTitle: route?.params?.postTitle,
     });
-  }, []);
+  }, [route?.params]);
   return (
     <ScrollView overScrollMode="never" showsVerticalScrollIndicator={false}>
       {route?.params?.post ? (

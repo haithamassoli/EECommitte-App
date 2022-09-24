@@ -24,6 +24,11 @@ const Colors = {
   lightGray: "#f1f5f7",
   dark: "#222831",
   overlay: "rgba(28,29,28,0.5)",
+  firstYear: "#f7af06",
+  secondYear: "#f41616",
+  thirdYear: "#0100d6",
+  fourthYear: "#8d0dbd",
+  fifthYear: "#3a3a3a",
 };
 
 export default Colors;

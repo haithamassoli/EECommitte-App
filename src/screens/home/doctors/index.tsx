@@ -9,7 +9,6 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
 import DoctorCard from "@Components/DoctorCard";
 import { FlashList } from "@shopify/flash-list";
-import { Feather } from "@expo/vector-icons";
 import CustomHeader from "@Components/ui/CustomHeader";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
@@ -83,7 +82,7 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
           <FlashList
             keyboardShouldPersistTaps="always"
             data={results}
-            estimatedItemSize={100}
+            estimatedItemSize={65}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <DoctorCard
@@ -114,7 +113,7 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
           <FlashList
             data={DoctorsData}
             keyboardShouldPersistTaps="always"
-            estimatedItemSize={100}
+            estimatedItemSize={65}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <DoctorCard

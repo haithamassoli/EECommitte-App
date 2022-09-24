@@ -10,7 +10,7 @@ import { Record } from "@Types/index";
 import { HomeStackParamList } from "@Types/navigation";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { memo, useContext, useLayoutEffect, useState } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text } from "react-native";
 
 type Props = StackScreenProps<HomeStackParamList, "Records">;
 

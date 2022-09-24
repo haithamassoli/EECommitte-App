@@ -174,7 +174,7 @@ const RecordsData = [
     subject: "ELECTRICAL MACHINES",
     searchName: "مشين الات كهربائية",
     doctor: "د. ساهر البطران",
-    image: require("@Assets/images/subjects/electricMachinesSaher.wepb"),
+    image: require("@Assets/images/subjects/electricMachinesSaher.webp"),
     link: "https://www.youtube.com/playlist?list=PLvgLolfaRAWc4MxUYECn5mo7Yce7S5LLC",
   },
   {

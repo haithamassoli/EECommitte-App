@@ -3,7 +3,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { Doctor } from "@Types/index";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { memo, useContext } from "react";
-import { View, Text, Pressable, Image, Linking } from "react-native";
+import { View, Text, Image, Linking, TouchableOpacity } from "react-native";
 
 type Props = Omit<Doctor, "id" | "name2">;
 const defaultImage = require("@Assets/images/profile-image.webp");
@@ -50,7 +50,7 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
         >
           المكتب: {office}
         </Text>
-        <Pressable
+        <TouchableOpacity
           onPress={() => Linking.openURL(`tel:${phone?.split(" ")[1]}`)}
         >
           <Text
@@ -62,9 +62,9 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
           >
             الهاتف: {phone}
           </Text>
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable onPress={() => Linking.openURL(`mailto:${email}`)}>
+        <TouchableOpacity onPress={() => Linking.openURL(`mailto:${email}`)}>
           <Text
             style={{
               color: textColor,
@@ -83,8 +83,8 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
           >
             {email}
           </Text>
-        </Pressable>
-        <Pressable
+        </TouchableOpacity>
+        <TouchableOpacity
           style={{
             backgroundColor: Colors.primary400,
             padding: moderateScale(5),
@@ -103,7 +103,7 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
           >
             الموقع الإلكتروني
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );

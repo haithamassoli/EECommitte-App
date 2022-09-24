@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { View, Text, Pressable, ActivityIndicator } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import subjects from "@Src/data/Subjects";
 import type {
   StackScreenProps,
@@ -37,7 +37,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     navigation.setOptions({
       headerTitle: subject?.name2,
       headerLeft: () => (
-        <Pressable
+        <TouchableOpacity
           onPress={() => navigation.replace("Plan")}
           style={{
             flex: 1,
@@ -51,7 +51,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             size={moderateScale(24)}
             color={textColor}
           />
-        </Pressable>
+        </TouchableOpacity>
       ),
     });
   }, [subject?.name]);
@@ -72,7 +72,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         }}
       >
         {subject.book && (
-          <Pressable
+          <TouchableOpacity
             onPress={() =>
               // @ts-ignore
               navigation.navigate("SubjectWebView", { url: subject.book })
@@ -85,10 +85,10 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             }}
           >
             <Text style={{ color: textColor }}>الكتاب</Text>
-          </Pressable>
+          </TouchableOpacity>
         )}
         {subject.prevYears && (
-          <Pressable
+          <TouchableOpacity
             onPress={() =>
               // @ts-ignore
               navigation.navigate("SubjectWebView", { url: subject.prevYears })
@@ -101,10 +101,10 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             }}
           >
             <Text style={{ color: textColor }}>السنوات السابقة</Text>
-          </Pressable>
+          </TouchableOpacity>
         )}
         {subject.fullPost && (
-          <Pressable
+          <TouchableOpacity
             onPress={() =>
               navigation.navigate("SubjectFullPost", {
                 // @ts-ignore
@@ -119,10 +119,10 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             }}
           >
             <Text style={{ color: textColor }}>الموضوع كاملا</Text>
-          </Pressable>
+          </TouchableOpacity>
         )}
         {subject.exams && (
-          <Pressable
+          <TouchableOpacity
             onPress={() =>
               // @ts-ignore
               navigation.navigate("SubjectWebView", { url: subject.exams })
@@ -135,10 +135,10 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             }}
           >
             <Text style={{ color: textColor }}>الامتحانات</Text>
-          </Pressable>
+          </TouchableOpacity>
         )}
         {subject.notebook && (
-          <Pressable
+          <TouchableOpacity
             onPress={() =>
               // @ts-ignore
               navigation.navigate("SubjectWebView", { url: subject.notebook })
@@ -151,10 +151,10 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             }}
           >
             <Text style={{ color: textColor }}>الدفتر المدرسي</Text>
-          </Pressable>
+          </TouchableOpacity>
         )}
         {subject.slides && (
-          <Pressable
+          <TouchableOpacity
             onPress={() =>
               // @ts-ignore
               navigation.navigate("SubjectWebView", { url: subject.slides })
@@ -167,10 +167,10 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             }}
           >
             <Text style={{ color: textColor }}>الشرائح</Text>
-          </Pressable>
+          </TouchableOpacity>
         )}
         {subject?.explanations?.map((explanation, index) => (
-          <Pressable
+          <TouchableOpacity
             key={index}
             onPress={() =>
               navigation.navigate("SubjectWebView", { url: explanation.link })
@@ -183,10 +183,10 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             }}
           >
             <Text style={{ color: textColor }}>{explanation.name}</Text>
-          </Pressable>
+          </TouchableOpacity>
         ))}
         {subject.aboutSubject && (
-          <Pressable
+          <TouchableOpacity
             onPress={() =>
               navigation.navigate("SubjectWebView", {
                 // @ts-ignore
@@ -201,9 +201,9 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             }}
           >
             <Text style={{ color: textColor }}>عن المادة</Text>
-          </Pressable>
+          </TouchableOpacity>
         )}
-        <Pressable
+        <TouchableOpacity
           onPress={() =>
             navigation.navigate("SubjectWebView", {
               url: subject.subjectLink,
@@ -217,7 +217,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           }}
         >
           <Text style={{ color: textColor }}>الموقع الرسمي</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </>
   );
@@ -248,7 +248,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   //       >
   //         {subject?.aboutSubject && <WebDisplay html={subject?.aboutSubject} />}
   //       </View>
-  //       <Pressable
+  //       <TouchableOpacity
   //         onPress={() =>
   //           navigation.navigate("SubjectWebView", { url: subject?.subjectLink })
   //         }
@@ -267,8 +267,8 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   //         >
   //           Drive Link
   //         </Text>
-  //       </Pressable>
-  //       <Pressable
+  //       </TouchableOpacity>
+  //       <TouchableOpacity
   //         onPress={() =>
   //           navigation.navigate("SubjectFullPost", { post: subject?.fullPost })
   //         }
@@ -287,7 +287,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   //         >
   //           Show Full Post
   //         </Text>
-  //       </Pressable>
+  //       </TouchableOpacity>
   //     </ScrollView>
   //   </>
   // );

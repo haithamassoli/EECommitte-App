@@ -11,7 +11,7 @@ import {
   View,
   ScrollView,
   Text,
-  Pressable,
+  TouchableOpacity,
   TextInput,
   LayoutAnimation,
 } from "react-native";
@@ -146,7 +146,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
           >
             حساب المعدل التراكمي
           </Text>
-          <Pressable
+          <TouchableOpacity
             onPress={() => {
               LayoutAnimation.configureNext(
                 LayoutAnimation.Presets.easeInEaseOut
@@ -177,7 +177,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
                 backgroundColor: cumulative ? Colors.primary500 : Colors.gray,
               }}
             ></View>
-          </Pressable>
+          </TouchableOpacity>
         </View>
         <View
           style={{
@@ -393,7 +393,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
             marginTop: verticalScale(12),
           }}
         >
-          <Pressable
+          <TouchableOpacity
             onPress={addSubject}
             style={{
               backgroundColor: "#ffc107",
@@ -414,8 +414,8 @@ const CalculatorScreen = ({ navigation }: Props) => {
             >
               إضافة مادة
             </Text>
-          </Pressable>
-          <Pressable
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={deleteSubject}
             style={{
               backgroundColor: "#CA0B00",
@@ -436,10 +436,10 @@ const CalculatorScreen = ({ navigation }: Props) => {
             >
               حذف مادة
             </Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </ScrollView>
-      <Pressable
+      <TouchableOpacity
         onPress={calculateRate}
         style={{
           backgroundColor: "#4BB543",
@@ -460,7 +460,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
         >
           احتساب المعدل
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };

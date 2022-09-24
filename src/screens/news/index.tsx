@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, ScrollView, Image, Pressable } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import { WebDisplay } from "@Components/webDisplay";
 import Colors from "@GlobalStyle/Colors";
 import { isConnected, screenHeight, screenWidth } from "@Utils/Helper";
@@ -102,7 +102,7 @@ const NewsScreen = () => {
             )}
           </View>
         ))}
-        <Pressable
+        <TouchableOpacity
           style={{
             backgroundColor: Colors.primary600,
             padding: moderateScale(10),
@@ -117,7 +117,7 @@ const NewsScreen = () => {
           >
             أظهر المزيد
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

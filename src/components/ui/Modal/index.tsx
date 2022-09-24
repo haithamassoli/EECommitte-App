@@ -1,6 +1,6 @@
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { View, Text, Modal, Pressable } from "react-native";
+import { View, Text, Modal, TouchableOpacity } from "react-native";
 import { useContext } from "react";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
@@ -56,7 +56,7 @@ const CustomModal = ({ visible, setVisible, title }: Props) => {
           >
             {title}
           </Text>
-          <Pressable
+          <TouchableOpacity
             onPress={() => setVisible(false)}
             style={{
               backgroundColor: Colors.primary400,
@@ -77,7 +77,7 @@ const CustomModal = ({ visible, setVisible, title }: Props) => {
             >
               حسنا
             </Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>

@@ -11,7 +11,7 @@ import {
   View,
   Dimensions,
   ImageBackground,
-  Pressable,
+  TouchableOpacity,
   ScrollView,
 } from "react-native";
 
@@ -120,7 +120,7 @@ const AboutUniScreen = ({ navigation }: Props) => {
                 }}
               >
                 {index != data.length - 1 ? (
-                  <Pressable
+                  <TouchableOpacity
                     style={{
                       justifyContent: "center",
                       alignItems: "center",
@@ -141,9 +141,9 @@ const AboutUniScreen = ({ navigation }: Props) => {
                       size={moderateScale(32)}
                       color="#fff"
                     />
-                  </Pressable>
+                  </TouchableOpacity>
                 ) : (
-                  <Pressable
+                  <TouchableOpacity
                     style={{
                       justifyContent: "center",
                       alignItems: "center",
@@ -164,7 +164,7 @@ const AboutUniScreen = ({ navigation }: Props) => {
                       size={moderateScale(32)}
                       color="#fff"
                     />
-                  </Pressable>
+                  </TouchableOpacity>
                 )}
                 <Text
                   style={

@@ -4,7 +4,7 @@ import {
   Image,
   ScrollView,
   Text,
-  Pressable,
+  TouchableOpacity,
   Linking,
   Keyboard,
 } from "react-native";
@@ -247,20 +247,20 @@ const HomeScreen = ({ navigation }: Props) => {
                 : Colors.darkBackgroundSec,
           }}
         >
-          <Pressable onPress={() => console.log("pressed")}>
+          <TouchableOpacity onPress={() => console.log("pressed")}>
             <Feather
               name={"bell"}
               size={moderateScale(24)}
               color={theme === "light" ? Colors.lightText : Colors.darkText}
             />
-          </Pressable>
-          <Pressable onPress={toggleTheme}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={toggleTheme}>
             <Feather
               name={theme === "light" ? "moon" : "sun"}
               size={moderateScale(24)}
               color={theme === "light" ? Colors.lightText : Colors.darkText}
             />
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
       <ImagesCarousel images={ImagesCarouselData} />
@@ -275,7 +275,7 @@ const HomeScreen = ({ navigation }: Props) => {
       >
         <View style={styles.iconsContainer}>
           {rowOne.map((icon, index) => (
-            <Pressable
+            <TouchableOpacity
               key={index}
               onPress={icon.onPress}
               style={styles.iconContainer}
@@ -292,12 +292,12 @@ const HomeScreen = ({ navigation }: Props) => {
               <Text style={[styles.iconText, { color: textColor }]}>
                 {icon.title2}
               </Text>
-            </Pressable>
+            </TouchableOpacity>
           ))}
         </View>
         <View style={styles.iconsContainer}>
           {rowTwo.map((icon, index) => (
-            <Pressable
+            <TouchableOpacity
               key={index}
               onPress={icon.onPress}
               style={styles.iconContainer}
@@ -314,12 +314,12 @@ const HomeScreen = ({ navigation }: Props) => {
               <Text style={[styles.iconText, { color: textColor }]}>
                 {icon.title2}
               </Text>
-            </Pressable>
+            </TouchableOpacity>
           ))}
         </View>
         <View style={styles.iconsContainer}>
           {rowThree.map((icon, index) => (
-            <Pressable
+            <TouchableOpacity
               key={index}
               onPress={icon.onPress}
               style={styles.iconContainer}
@@ -336,7 +336,7 @@ const HomeScreen = ({ navigation }: Props) => {
               <Text style={[styles.iconText, { color: textColor }]}>
                 {icon.title2}
               </Text>
-            </Pressable>
+            </TouchableOpacity>
           ))}
         </View>
       </View>

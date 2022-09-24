@@ -4,7 +4,7 @@ import { Record } from "@Types/index";
 import { screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { memo, useContext } from "react";
-import { View, Text, Pressable, Linking, Image } from "react-native";
+import { View, Text, TouchableOpacity, Linking, Image } from "react-native";
 
 type Props = Omit<Record, "id" | "searchName">;
 
@@ -14,7 +14,7 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
     theme === "light" ? Colors.lightBackgroundSec : Colors.darkBackgroundSec;
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
-    <Pressable
+    <TouchableOpacity
       style={{
         flexDirection: "row",
         justifyContent: "space-between",
@@ -60,7 +60,7 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
           {doctor}
         </Text>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

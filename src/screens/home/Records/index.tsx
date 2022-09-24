@@ -10,12 +10,12 @@ import { Record } from "@Types/index";
 import { HomeStackParamList } from "@Types/navigation";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { memo, useContext, useLayoutEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, SectionList } from "react-native";
 
 type Props = StackScreenProps<HomeStackParamList, "Records">;
 
 const options = {
-  keys: ["searchName", "subject", "doctor"],
+  keys: ["subject", "searchName", "doctor"],
 };
 
 const RecordsScreen = ({ navigation }: Props) => {
@@ -55,13 +55,13 @@ const RecordsScreen = ({ navigation }: Props) => {
         setSearchInput={setSearchInput}
         setResults={setResults}
         options={options}
-        list={RecordsData}
+        list={RecordsData[0].data}
         style={{ marginVertical: verticalScale(8) }}
       />
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
           data={results}
-          estimatedItemSize={24}
+          estimatedItemSize={20}
           keyExtractor={(item) => item.id.toString()}
           keyboardShouldPersistTaps="always"
           renderItem={({ item }) => (
@@ -88,10 +88,8 @@ const RecordsScreen = ({ navigation }: Props) => {
           </Text>
         </>
       ) : (
-        <FlashList
-          data={RecordsData}
-          keyboardShouldPersistTaps="always"
-          estimatedItemSize={24}
+        <SectionList
+          sections={RecordsData}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <RecordCard
@@ -100,6 +98,18 @@ const RecordsScreen = ({ navigation }: Props) => {
               subject={item.subject}
               doctor={item.doctor}
             />
+          )}
+          renderSectionHeader={({ section: { title } }) => (
+            <Text
+              style={{
+                fontSize: moderateScale(18),
+                color: textColor,
+                fontFamily: "Bukra",
+                marginTop: verticalScale(20),
+              }}
+            >
+              {title}
+            </Text>
           )}
         />
       )}

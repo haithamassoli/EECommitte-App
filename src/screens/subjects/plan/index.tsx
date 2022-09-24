@@ -1,7 +1,7 @@
 import { StackScreenProps } from "@react-navigation/stack";
 import ReactNativeZoomableView from "@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView";
 import ImageMapper from "@Components/imageMapper";
-import { screenWidth } from "@Utils/Helper";
+import { screenHeight, screenWidth } from "@Utils/Helper";
 import type { MapperItem } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import MAPPING from "./Mapping";
@@ -34,7 +34,9 @@ const PlanScreen = ({ navigation }: Props) => {
           <ImageMapper
             imgSource={require("@Assets/images/plan.webp")}
             imgWidth={screenWidth}
-            imgHeight={screenWidth * 1.08}
+            imgHeight={
+              screenWidth <= 500 ? screenWidth * 1.2 : screenWidth * 1.1
+            }
             imgMap={MAPPING}
             containerStyle={{
               flex: 1,
@@ -50,8 +52,9 @@ const PlanScreen = ({ navigation }: Props) => {
             resizeMode="contain"
             style={{
               width: screenWidth,
-              height: screenWidth * 0.15,
-              bottom: verticalScale(20),
+              height:
+                screenHeight <= 1200 ? screenWidth * 0.18 : screenWidth * 0.1,
+              bottom: screenWidth <= 500 ? verticalScale(32) : 12,
             }}
           />
         </ReactNativeZoomableView>

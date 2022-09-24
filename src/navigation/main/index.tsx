@@ -12,7 +12,7 @@ import {
   LightNavigationColors,
 } from "@GlobalStyle/Navigation";
 import InfoNavigation from "@Navigation/info";
-import NewsScreen from "@Screens/news";
+// import NewsScreen from "@Screens/news";
 import HomeNavigation from "@Navigation/home";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
@@ -91,7 +91,7 @@ export default function Route() {
               headerShown: false,
             }}
           />
-          <BottomTabs.Screen
+          {/* <BottomTabs.Screen
             name="News"
             component={NewsScreen}
             options={{
@@ -101,7 +101,7 @@ export default function Route() {
               tabBarLabel: "أخر الأخبار",
               title: "أخر الأخبار",
             }}
-          />
+          /> */}
           <BottomTabs.Screen
             name="SubjectsNavigation"
             component={SubjectsNavigation}

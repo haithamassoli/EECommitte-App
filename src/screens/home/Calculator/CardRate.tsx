@@ -61,6 +61,7 @@ const CardRate = ({ title, rate }: Props) => {
       </Text>
       <Text
         style={{
+          marginTop: verticalScale(12),
           fontFamily: "TajawalBold",
           color: textColor,
           fontSize: moderateScale(46),

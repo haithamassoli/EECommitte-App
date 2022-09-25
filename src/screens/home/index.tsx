@@ -8,6 +8,7 @@ import {
   Linking,
   Keyboard,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./styles";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -22,6 +23,7 @@ import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 import { getDataFromStorage } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import { StatusBar } from "expo-status-bar";
 
 const options = {
   keys: ["name", "name2"],
@@ -54,69 +56,77 @@ const HomeScreen = ({ navigation }: Props) => {
     navigation.setOptions({
       header: () => (
         <>
-          {searchBarFocused && (
-            <Overlay
-              onPress={() => {
-                setSearchBarFocused(false);
-                Keyboard.dismiss();
-              }}
-            />
-          )}
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: verticalScale(12),
-              marginHorizontal: horizontalScale(12),
-            }}
-          >
+          <StatusBar
+            style={theme === "light" ? "dark" : "light"}
+            backgroundColor={
+              theme === "light" ? Colors.lightBackground : Colors.darkBackground
+            }
+          />
+          <SafeAreaView edges={["top"]}>
+            {searchBarFocused && (
+              <Overlay
+                onPress={() => {
+                  setSearchBarFocused(false);
+                  Keyboard.dismiss();
+                }}
+              />
+            )}
             <View
               style={{
                 flexDirection: "row",
+                justifyContent: "space-between",
                 alignItems: "center",
-                justifyContent: "center",
+                marginBottom: verticalScale(12),
+                marginHorizontal: horizontalScale(12),
               }}
             >
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Image
+                  source={require("@Assets/images/icons/lagna-logo.png")}
+                  style={{
+                    width: horizontalScale(50),
+                    height: verticalScale(50),
+                    resizeMode: "contain",
+                  }}
+                />
+                <View style={{ marginStart: 8 }}>
+                  <Text
+                    style={{
+                      color: textColor,
+                      fontSize: moderateScale(16),
+                      fontFamily: "Bukra",
+                    }}
+                  >
+                    لجنة الهندسة الكهربائية
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: moderateScale(10),
+                      fontFamily: "Bukra",
+                      textAlign: "left",
+                      color: textColor,
+                    }}
+                  >
+                    Electrical Engineering EECommitte
+                  </Text>
+                </View>
+              </View>
               <Image
-                source={require("@Assets/images/icons/lagna-logo.png")}
+                source={require("@Assets/images/icons/tasharck.png")}
                 style={{
                   width: horizontalScale(50),
-                  height: verticalScale(50),
+                  height: verticalScale(70),
                   resizeMode: "contain",
                 }}
               />
-              <View style={{ marginStart: 8 }}>
-                <Text
-                  style={{
-                    color: textColor,
-                    fontSize: moderateScale(16),
-                    fontFamily: "Bukra",
-                  }}
-                >
-                  لجنة الهندسة الكهربائية
-                </Text>
-                <Text
-                  style={{
-                    fontSize: moderateScale(10),
-                    fontFamily: "Bukra",
-                    textAlign: "left",
-                    color: textColor,
-                  }}
-                >
-                  Electrical Engineering EECommitte
-                </Text>
-              </View>
             </View>
-            <Image
-              source={require("@Assets/images/icons/tasharck.png")}
-              style={{
-                width: horizontalScale(50),
-                height: verticalScale(70),
-                resizeMode: "contain",
-              }}
-            />
-          </View>
+          </SafeAreaView>
           <View style={{ marginHorizontal: horizontalScale(8) }}>
             <SearchInput
               style={{

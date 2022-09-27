@@ -62,15 +62,15 @@ const HomeScreen = ({ navigation }: Props) => {
               theme === "light" ? Colors.lightBackground : Colors.darkBackground
             }
           />
+          {searchBarFocused && (
+            <Overlay
+              onPress={() => {
+                setSearchBarFocused(false);
+                Keyboard.dismiss();
+              }}
+            />
+          )}
           <SafeAreaView edges={["top"]}>
-            {searchBarFocused && (
-              <Overlay
-                onPress={() => {
-                  setSearchBarFocused(false);
-                  Keyboard.dismiss();
-                }}
-              />
-            )}
             <View
               style={{
                 flexDirection: "row",

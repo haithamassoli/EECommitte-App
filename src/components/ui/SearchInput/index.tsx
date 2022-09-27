@@ -12,7 +12,11 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { useContext, useEffect, useRef } from "react";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import {
+  getDataFromStorage,
+  screenHeight,
+  storeDataToStorage,
+} from "@Utils/Helper";
 import SearchResults from "./SearchResults";
 import { SearchInputProps } from "@Types/Search";
 import { HomeNavigationProp } from "@Screens/home";
@@ -163,14 +167,12 @@ const SearchInput = ({
       {searchBarFocused && (
         <View
           style={{
-            flex: 1,
-            flexGrow: 1,
             position: "absolute",
             top: verticalScale(25),
             left: 0,
             right: 0,
-            width: "100%",
-            height: verticalScale(210),
+            height:
+              screenHeight < 650 ? verticalScale(250) : verticalScale(210),
             zIndex: 10,
             backgroundColor:
               theme === "light"

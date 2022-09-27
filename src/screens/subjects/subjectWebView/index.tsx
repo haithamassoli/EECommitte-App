@@ -20,6 +20,9 @@ const SubjectWebViewScreen = ({ navigation, route }: Props) => {
 
   useEffect(() => {
     isConnected().then((isConnected) => {
+      if (!isConnected) {
+        setLoading(false);
+      }
       setIsConnecte(isConnected);
     });
   }, []);

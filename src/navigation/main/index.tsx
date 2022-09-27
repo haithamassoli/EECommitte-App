@@ -15,6 +15,7 @@ import InfoNavigation from "@Navigation/info";
 // import NewsScreen from "@Screens/news";
 import HomeNavigation from "@Navigation/home";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import { screenWidth } from "@Utils/Helper";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
@@ -31,13 +32,15 @@ export default function Route() {
           tabBarHideOnKeyboard: true,
           tabBarActiveTintColor: iconColor,
           tabBarInactiveTintColor: "#9b9b9b",
+          tabBarIconStyle: {
+            width: horizontalScale(24),
+          },
           tabBarStyle: {
-            paddingBottom: verticalScale(12),
-            paddingTop: verticalScale(12),
             height: verticalScale(64),
           },
           tabBarLabelStyle: {
             fontSize: moderateScale(12),
+            marginBottom: screenWidth < 500 ? verticalScale(8) : 0,
           },
           headerTitleStyle: {
             fontSize: moderateScale(18),

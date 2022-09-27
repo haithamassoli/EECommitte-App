@@ -6,6 +6,8 @@ import {
   ActivityIndicator,
   StyleSheet,
   ScrollView,
+  Linking,
+  ImageBackground,
 } from "react-native";
 import subjects from "@Src/data/Subjects";
 import type {
@@ -76,32 +78,41 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   return (
     <ScrollView style={{ flex: 1 }}>
       {loading}
-      <View
+      <ImageBackground
+        source={require("@Assets/images/telecomFrame.png")}
         style={{
-          flex: 1,
-          backgroundColor: backgroundSubjectColor,
-          borderRadius: moderateScale(30),
-          padding: moderateScale(10),
-          marginHorizontal: horizontalScale(30),
-          marginVertical: verticalScale(20),
-          paddingStart: horizontalScale(12),
-          height: moderateScale(300),
+          width: screenWidth,
+          height: verticalScale(220),
         }}
       >
-        <Text
+        <View
           style={{
             flex: 1,
-            textAlign: "center",
-            textAlignVertical: "center",
-            fontSize: moderateScale(24),
-            color: textColor,
-            fontFamily: "Bukra",
+            backgroundColor: backgroundSubjectColor,
+            borderRadius: moderateScale(30),
+            padding: moderateScale(10),
+            marginHorizontal: horizontalScale(30),
+            marginVertical: verticalScale(20),
             paddingStart: horizontalScale(12),
+            height: moderateScale(200),
+            zIndex: 10,
           }}
         >
-          {subject?.name}
-        </Text>
-      </View>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: "center",
+              textAlignVertical: "center",
+              fontSize: moderateScale(24),
+              color: Colors.darkText,
+              fontFamily: "Bukra",
+              paddingStart: horizontalScale(12),
+            }}
+          >
+            {subject?.name2}
+          </Text>
+        </View>
+      </ImageBackground>
       <View
         style={{
           flex: 1,
@@ -113,15 +124,12 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         }}
       >
         <TouchableOpacity
-          onPress={
-            () =>
-              // @ts-ignore
-              navigation.navigate("SubjectFullPost", {
-                post: subject?.aboutSubject,
-                postTitle: "عن المادة",
-              })
-
-            // {subject?.aboutSubject && <WebDisplay html={subject?.aboutSubject} />}
+          onPress={() =>
+            // @ts-ignore
+            navigation.navigate("SubjectFullPost", {
+              post: subject?.aboutSubject,
+              postTitle: "عن المادة",
+            })
           }
           style={[style.button, { backgroundColor }]}
         >
@@ -145,26 +153,20 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         </TouchableOpacity>
         {subject.book && (
           <TouchableOpacity
-            onPress={() =>
-              // @ts-ignore
-              navigation.navigate("SubjectWebView", { url: subject.book })
-            }
+            onPress={() => subject.book && Linking.openURL(subject.book)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText, { color: textColor }]}>الكتاب</Text>
+            <Text style={[style.buttonText]}>الكتاب</Text>
           </TouchableOpacity>
         )}
         {subject.prevYears && (
           <TouchableOpacity
             onPress={() =>
-              // @ts-ignore
-              navigation.navigate("SubjectWebView", { url: subject.prevYears })
+              subject.prevYears && Linking.openURL(subject.prevYears)
             }
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText, { color: textColor }]}>
-              السنوات السابقة
-            </Text>
+            <Text style={[style.buttonText]}>السنوات السابقة</Text>
           </TouchableOpacity>
         )}
         {subject.fullPost && (
@@ -177,163 +179,67 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             }
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText, { color: textColor }]}>
-              الموضوع كاملا
-            </Text>
+            <Text style={[style.buttonText]}>البوست الشامل</Text>
           </TouchableOpacity>
         )}
         {subject.exams && (
           <TouchableOpacity
-            onPress={() =>
-              // @ts-ignore
-              navigation.navigate("SubjectWebView", { url: subject.exams })
-            }
+            onPress={() => subject.exams && Linking.openURL(subject.exams)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText, { color: textColor }]}>
-              الامتحانات
-            </Text>
+            <Text style={[style.buttonText]}>الامتحانات</Text>
           </TouchableOpacity>
         )}
         {subject.notebook && (
           <TouchableOpacity
             onPress={() =>
-              // @ts-ignore
-              navigation.navigate("SubjectWebView", { url: subject.notebook })
+              subject.notebook && Linking.openURL(subject.notebook)
             }
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText, { color: textColor }]}>
-              الدفتر المدرسي
-            </Text>
+            <Text style={[style.buttonText]}>الدفاتر</Text>
           </TouchableOpacity>
         )}
         {subject.slides && (
           <TouchableOpacity
-            onPress={() =>
-              // @ts-ignore
-              navigation.navigate("SubjectWebView", { url: subject.slides })
-            }
+            onPress={() => subject.slides && Linking.openURL(subject.slides)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText, { color: textColor }]}>
-              الشرائح
-            </Text>
+            <Text style={[style.buttonText]}>الشرائح</Text>
           </TouchableOpacity>
         )}
         {subject?.explanations?.map((explanation, index) => (
           <TouchableOpacity
             key={index}
             onPress={() =>
-              navigation.navigate("SubjectWebView", { url: explanation.link })
+              explanation.link && Linking.openURL(explanation.link)
             }
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText, { color: textColor }]}>
-              {explanation.name}
-            </Text>
+            <Text style={[style.buttonText]}>{explanation.name}</Text>
           </TouchableOpacity>
         ))}
         {subject.aboutSubject && (
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate("SubjectWebView", {
-                // @ts-ignore
-                url: subject.aboutSubject,
-              })
+              subject.aboutSubject && Linking.openURL(subject.aboutSubject)
             }
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText, { color: textColor }]}>
-              عن المادة
-            </Text>
+            <Text style={[style.buttonText]}>عن المادة</Text>
           </TouchableOpacity>
         )}
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("SubjectWebView", {
-              url: subject.subjectLink,
-            })
+            subject.subjectLink && Linking.openURL(subject.subjectLink)
           }
           style={[style.button, { backgroundColor: backgroundSubjectColor }]}
         >
-          <Text style={[style.buttonText, { color: textColor }]}>
-            درايف المادة
-          </Text>
+          <Text style={[style.buttonText]}>درايف المادة</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
   );
-
-  // return (
-  //   <>
-  //     {loading}
-  //     <ScrollView
-  //       style={{
-  //         flex: 1,
-  //         paddingHorizontal: horizontalScale(12,
-  //         paddingVertical: verticalScale(4,
-  //       }}
-  //     >
-  //       <Text
-  //         style={{
-  //           color: textColor,
-  //           fontSize: 24,
-  //           fontWeight: "bold",
-  //         }}
-  //       >
-  //         {subject?.name2}
-  //       </Text>
-  //       <View
-  //         style={{
-  //           marginTop: verticalScale(16,
-  //         }}
-  //       >
-  //         {subject?.aboutSubject && <WebDisplay html={subject?.aboutSubject} />}
-  //       </View>
-  //       <TouchableOpacity
-  //         onPress={() =>
-  //           navigation.navigate("SubjectWebView", { url: subject?.subjectLink })
-  //         }
-  //         style={{
-  //           backgroundColor:
-  //             theme === "light" ? Colors.primary700 : Colors.primary400,
-  //           padding: 8,
-  //           borderRadius: moderateScale(8,
-  //           marginVertical: 8,
-  //         }}
-  //       >
-  //         <Text
-  //           style={{
-  //             color: Colors.lightText,
-  //           }}
-  //         >
-  //           Drive Link
-  //         </Text>
-  //       </TouchableOpacity>
-  //       <TouchableOpacity
-  //         onPress={() =>
-  //           navigation.navigate("SubjectFullPost", { post: subject?.fullPost })
-  //         }
-  //         style={{
-  //           backgroundColor:
-  //             theme === "light" ? Colors.primary400 : Colors.primary700,
-  //           padding: 8,
-  //           borderRadius: moderateScale(8,
-  //           marginVertical: 8,
-  //         }}
-  //       >
-  //         <Text
-  //           style={{
-  //             color: Colors.lightText,
-  //           }}
-  //         >
-  //           Show Full Post
-  //         </Text>
-  //       </TouchableOpacity>
-  //     </ScrollView>
-  //   </>
-  // );
 };
 
 export default SubjectScreen;
@@ -353,5 +259,6 @@ const style = StyleSheet.create({
     fontSize: moderateScale(18),
     textAlign: "center",
     fontFamily: "TajawalMedium",
+    color: Colors.darkText,
   },
 });

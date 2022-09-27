@@ -802,7 +802,7 @@ const Subjects: Subject[] = [
     id: 33,
     name: "DE",
     name2: "Digital electronics",
-    color: Colors.fourthYear,
+    color: Colors.shared,
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1QW48I9UPypx_fQgOLfDoss3B1B7JCufv",
     explanations: [
@@ -840,7 +840,7 @@ const Subjects: Subject[] = [
     id: 34,
     name: "Digital electronics DE Lab",
     name2: "Digital electronics Lab",
-    color: Colors.fourthYear,
+    color: Colors.shared,
     book: "https://drive.google.com/drive/u/4/folders/1oD6sIV7U2Dxmm1cynl9ZNVuSFz7WFCFC",
 
     prevYears:
@@ -903,7 +903,7 @@ const Subjects: Subject[] = [
     id: 37,
     name: "أنظمة تحكم كنترول",
     name2: "Control systems",
-    color: Colors.fourthYear,
+    color: Colors.shared,
     book: "https://drive.google.com/drive/u/4/folders/1jw1KVbNPyDhwbqWKF8wWjh_UdnDxRMp6",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/11g4-w8cXhSCooHT751QqwxoQfNn4RlNZ",
@@ -934,7 +934,7 @@ const Subjects: Subject[] = [
     id: 38,
     name: "لاب كنترول أنظمة تحكم",
     name2: "Control systems lab",
-    color: Colors.fourthYear,
+    color: Colors.shared,
     book: "https://drive.google.com/drive/u/4/folders/160N5V3ovTt-il-qegBbjFOaNB-2DSN4N",
     explanations: [
       {
@@ -965,7 +965,7 @@ const Subjects: Subject[] = [
     id: 40,
     name: "Communication electronics",
     name2: "Communication electronics",
-    color: Colors.fourthYear,
+    color: Colors.telecom,
     subjectLink:
       "https://drive.google.com/drive/folders/1jCGozwbNwk0sbHCfS9DLYlqIRiqK47IV",
   },
@@ -973,7 +973,7 @@ const Subjects: Subject[] = [
     id: 41,
     name: "امديد",
     name2: "Embedded",
-    color: Colors.fourthYear,
+    color: Colors.shared,
     book: "https://drive.google.com/drive/u/4/folders/1bx9lnCXbm60Wy_SLc1A1SYtU8UNAKHrP",
     slides:
       "https://drive.google.com/drive/u/4/folders/1IxzSVbcztMKiLbeaPmVEbGH0REHrHC9X",
@@ -1001,7 +1001,7 @@ const Subjects: Subject[] = [
     id: 42,
     name: "Communication systems",
     name2: "Communication systems",
-    color: Colors.fourthYear,
+    color: Colors.shared,
     book: "https://drive.google.com/drive/u/4/folders/1O__OXCdRXg_OfnEeU4Lc8lPM95ErBarS",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1GhXRR4IWAjHyu52FUV0z6UQhPYQ9BIXK",
@@ -1027,7 +1027,7 @@ const Subjects: Subject[] = [
     id: 43,
     name: "DSP",
     name2: "DSP",
-    color: Colors.fifthYear,
+    color: Colors.telecom,
     book: "https://drive.google.com/drive/u/4/folders/1xZkvNhb3BLQeMNEUbXKr6rZN01zP1eXH",
     slides:
       "https://drive.google.com/drive/u/4/folders/1Z2qssp7B286VYn3-gCUnSwMt1e2v2e8u",
@@ -1040,7 +1040,7 @@ const Subjects: Subject[] = [
     id: 44,
     name: "Digital control",
     name2: "DC",
-    color: Colors.fifthYear,
+    color: Colors.power,
     book: "https://drive.google.com/drive/u/4/folders/1JuW9Fb1dEWTccJ68xKEuv1kCjn4pUiPZ",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1XzazRbViOaREpAxUfi9XvJZ610ChFqNk",
@@ -1058,7 +1058,7 @@ const Subjects: Subject[] = [
     id: 45,
     name: "Comm lab",
     name2: "Communication systems lab",
-    color: Colors.fifthYear,
+    color: Colors.telecom,
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1GlW00jgl-BM8uaG8GDHSWKvn1asThbjv",
     subjectLink:
@@ -1068,7 +1068,7 @@ const Subjects: Subject[] = [
     id: 46,
     name: "Digital comm lab",
     name2: "Digital communications lab",
-    color: Colors.fifthYear,
+    color: Colors.telecom,
     prevYears:
       "https://drive.google.com/drive/u/4/folders/13Z1NRvHMKN-LrcQfLAjLRtA7ZriezIQM",
     subjectLink:
@@ -1078,7 +1078,7 @@ const Subjects: Subject[] = [
     id: 47,
     name: "Digital comm",
     name2: "Digital communications",
-    color: Colors.fifthYear,
+    color: Colors.telecom,
     subjectLink:
       "https://drive.google.com/drive/folders/1URYgtWO6_fkP2vYAGTYYNeyHmLwKL7EG",
   },
@@ -1086,7 +1086,7 @@ const Subjects: Subject[] = [
     id: 48,
     name: "هاتف",
     name2: "Mobile",
-    color: Colors.fifthYear,
+    color: Colors.telecom,
     book: "https://drive.google.com/drive/u/4/folders/1R4cYX_0COqf9j0qyC6cNMs-GsoEjgYwD",
     subjectLink:
       "https://drive.google.com/drive/folders/1Ig_4sGGRf4zhOVs2T0A2o8NNXcMqdx4s",
@@ -1095,7 +1095,7 @@ const Subjects: Subject[] = [
     id: 49,
     name: "درايف",
     name2: "Drive",
-    color: Colors.fifthYear,
+    color: Colors.power,
     book: "https://drive.google.com/drive/u/4/folders/1pKPpsgv8e7YamTufK-A51oOujkhsFHso",
     slides:
       "https://drive.google.com/drive/u/4/folders/11xvL4Fo0c4453mGtEQVX1vDd0aGR_aRl",
@@ -1127,7 +1127,7 @@ const Subjects: Subject[] = [
     id: 50,
     name: "لاب بور الكترو",
     name2: "Power electro lab",
-    color: Colors.fifthYear,
+    color: Colors.power,
     book: "https://drive.google.com/drive/u/4/folders/1bswPV6qhNhzrBfxxUYkoc479pera8p47",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/18MWPilAupFtmaJlLurSSvHTmZi1FDrrA",
@@ -1139,7 +1139,7 @@ const Subjects: Subject[] = [
     id: 51,
     name: "بور الكترو",
     name2: "Power electro",
-    color: Colors.fifthYear,
+    color: Colors.power,
     book: "https://drive.google.com/drive/u/4/folders/1BNLFYAGMmQ8rM3r8LIFnBuVKqznAY8FF",
     explanations: [
       {
@@ -1200,7 +1200,7 @@ const Subjects: Subject[] = [
     id: 53,
     name: "بور 1",
     name2: "Power 1",
-    color: Colors.fourthYear,
+    color: Colors.shared,
     book: "https://drive.google.com/drive/u/4/folders/1Z2kMVdFeiuK3Mqlc8misRd0_goD2jBug",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1pPZwt3jgbSFhtHQ65rLAOeD5cGjgcWnE",
@@ -1222,7 +1222,7 @@ const Subjects: Subject[] = [
     id: 54,
     name: "بور 2",
     name2: "Power 2",
-    color: Colors.fifthYear,
+    color: Colors.power,
     book: "https://drive.google.com/drive/u/4/folders/1_48yqHrwXHqWjUu4zXmbRzQpQF21WmyT",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1t2vwqAp6oggI2Jq1us2B3CbQufApRvnk",
@@ -1240,7 +1240,7 @@ const Subjects: Subject[] = [
     id: 55,
     name: "لاب مشين",
     name2: "Machines lab",
-    color: Colors.fourthYear,
+    color: Colors.shared,
     book: "https://drive.google.com/drive/u/4/folders/1bmS_Wa_pWT5NEsf9EU57exB3j_jmsZHb",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1RqCdvINn4qMFgNyHoFsfNpSfNy6GcXXR",
@@ -1252,7 +1252,7 @@ const Subjects: Subject[] = [
     id: 56,
     name: "دستربيوشن Power System",
     name2: "Distribution",
-    color: Colors.fifthYear,
+    color: Colors.power,
     book: "https://drive.google.com/drive/u/4/folders/192s6S2imOvK-p6hh2KGnwdIUqS-gsQsI",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/13LAN5ea1-kP_GYA73Ibelr2Qv0pW5v7C",
@@ -1264,7 +1264,7 @@ const Subjects: Subject[] = [
     id: 57,
     name: "بروداكشن حماية",
     name2: "Protection",
-    color: Colors.fifthYear,
+    color: Colors.power,
     book: "https://drive.google.com/drive/u/4/folders/1YoY9d8BwhcbXzMzfoo8A4DX9pezRAP-8",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/16sJV97quqn3DZ7RrygXZ9iw_T8mfxMXj",
@@ -1285,7 +1285,7 @@ const Subjects: Subject[] = [
     id: 58,
     name: "لاب بور الكترو",
     name2: "Power electro lab",
-    color: Colors.fifthYear,
+    color: Colors.power,
     subjectLink:
       "https://drive.google.com/drive/folders/1fsqsnUFijbdBOrs_IsUlVAwBTpSe6_sX",
   },
@@ -1293,7 +1293,7 @@ const Subjects: Subject[] = [
     id: 59,
     name: "لاب بور انتجريشن",
     name2: "Power integration",
-    color: Colors.fifthYear,
+    color: Colors.power,
     book: "https://drive.google.com/drive/u/4/folders/1RhGoybWpS4ynLVAwKlnbOyHkQJWYT6Up",
     subjectLink:
       "https://drive.google.com/drive/folders/1QABjkq7ItIh8-dUdWSvGwr8emuwBMo1b",
@@ -1303,7 +1303,7 @@ const Subjects: Subject[] = [
     id: 60,
     name: "لاب امديد",
     name2: "Embedded lab",
-    color: Colors.fourthYear,
+    color: Colors.shared,
     book: "https://drive.google.com/drive/u/4/folders/1bhej7MKGrQ6QJt5QE9laWbUipgRJWy6f",
     subjectLink:
       "https://drive.google.com/drive/folders/14ntYYqixsxPMMervAvcSfs1a1Ej6c1E6",
@@ -1312,7 +1312,7 @@ const Subjects: Subject[] = [
     id: 61,
     name: "لاب باور",
     name2: "Power lab",
-    color: Colors.fifthYear,
+    color: Colors.power,
     subjectLink:
       "https://drive.google.com/drive/folders/1qvZaz2wPSHlJU7WacIAhKZu8KbCeQkdw",
     fullPost: `<p> </p> <p>بسم الله..<img alt="🌾" src="https://static.xx.fbcdn.net/images/emoji.php/v9/tf6/1.5/16/1f33e.png" style="height:16px; width:16px" /></p> <p><a href="https://www.facebook.com/hashtag/power_lap?__eep__=6&__gid__=130614073616824&__cft__[0]=AZVC9FcQCdRmY9t0bVRY3Ch0-U8Wr59vylM15YgY3HT2x-UpEIiExcnHd45iIh5J-QtZSWMth4fJ6ayHrxzG2pPh6kyk-NsTU_IdPKuogUIhNjl6bwpgsS2KF2icM7zziSxh2w9c0mfA0eonG1CrFjU_&__tn__=*NK-R" tabindex="0">#Power_lap</a></p> <p><a href="https://www.facebook.com/hashtag/full_post?__eep__=6&__gid__=130614073616824&__cft__[0]=AZVC9FcQCdRmY9t0bVRY3Ch0-U8Wr59vylM15YgY3HT2x-UpEIiExcnHd45iIh5J-QtZSWMth4fJ6ayHrxzG2pPh6kyk-NsTU_IdPKuogUIhNjl6bwpgsS2KF2icM7zziSxh2w9c0mfA0eonG1CrFjU_&__tn__=*NK-R" tabindex="0">#Full_post</a></p> <p>تطل عليكم لجنتكم بالبوست الشامل للاب البور ..</p> <p>أولا ~</p> <p>المانيوال الحديث :</p> <p><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Fdrive%2Fu%2F3%2Ffolders%2F1qvZaz2wPSHlJU7WacIAhKZu8KbCeQkdw%3Ffbclid%3DIwAR17KwwyxH1cJ2dqtZQTnFAvQdBof4u6A1r_VlABlzJo_5LXVWOb1vmtbX0&h=AT0veTeF3KJB2lLSmPBDAUevcaKRDoxz4VLfh9tkI8W7-UUkSu-9Br2UZOrUBhWohVlxzKja9aTVXO0cx0OcpyHyWI8Ev1-T0ykGyLOja-LjRTgQjxtF1-REL6-l0PsYzpQcb6Sh_C8Vg1lDA60K&__tn__=-UK-R&c[0]=AT1KzmfiG0DLAeEHwuXWeowdzFb5ApRXCUxaIk17HVtSny5DMYi7H-YqilA22Ch_kOcv8e6eCJq0r-dEVstbSWE67BSWM73Eh7M3Qmvn01WPH5yQs8JkzWjqo_epOgqP4gGGgPCxOCs5xtSTEvRz2x4YUOyT81BYwOI" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1qvZaz2wPSHlJU7WacIAhKZu8KbC...</a></p> <p>ثانيا ~</p> <p>الريبورتات:</p> <p><a href="https://drive.google.com/drive/folders/1WR8oIr75SwLSAhXRZMtp5W2x_zU57Sc7?usp=sharing&fbclid=IwAR2nYIXfHTtgFExfBScETuruTpwavG2DI9qyVDUxBaFUrIuohq8EIi7FEFM" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1WR8oIr75SwLSAhXRZMtp5W2x...</a></p> <p>ثالثاً ~</p> <p>سنوات الميد والفاينل :</p> <p><a href="https://drive.google.com/drive/folders/1fRF0qB5kEKjW8eqmE9G649NoU9NHSN-2?usp=sharing&fbclid=IwAR1Xgqet7RZMlmoLUlw-DJCvT8AnSX32pKDkYGCfXD_1CC4pYXMGU2a0NXo" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1fRF0qB5kEKjW8eqmE9G649NoU9N...</a></p> <p>رابعاً ~</p> <p>التوصيلات :</p> <p><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Fdrive%2Fu%2F3%2Ffolders%2F1j727C0O-fNtLF6t_vUAjgYv8S188Xn4u%3Ffbclid%3DIwAR1RDSxJ8V_gqoa18iUJsJC16JZ_n0EpPJTy5yMsGTy6dH_HekFZeEjOSq8&h=AT16njw_iNZFrjyDU4vgzSrw5FUER-1dP3e1aoHyh5Hyel-EWejv244wK-0Z7iC3vPKVCixrzWfe0tmhWCKEYWvtdb2EzKtPWQPAXw80BxfIkjaqWM4FQKfqrYWdjZ5PcTDwIHDl5epk1epplRT1&__tn__=-UK-R&c[0]=AT1KzmfiG0DLAeEHwuXWeowdzFb5ApRXCUxaIk17HVtSny5DMYi7H-YqilA22Ch_kOcv8e6eCJq0r-dEVstbSWE67BSWM73Eh7M3Qmvn01WPH5yQs8JkzWjqo_epOgqP4gGGgPCxOCs5xtSTEvRz2x4YUOyT81BYwOI" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1j727C0O-fNtLF6t...</a></p> <p><a href="https://www.facebook.com/hashtag/%D9%84%D8%AC%D9%86%D8%A9_%D8%A7%D9%84%D9%87%D9%86%D8%AF%D8%B3%D8%A9_%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D8%A7%D8%A6%D9%8A%D8%A9?__eep__=6&__gid__=130614073616824&__cft__[0]=AZVC9FcQCdRmY9t0bVRY3Ch0-U8Wr59vylM15YgY3HT2x-UpEIiExcnHd45iIh5J-QtZSWMth4fJ6ayHrxzG2pPh6kyk-NsTU_IdPKuogUIhNjl6bwpgsS2KF2icM7zziSxh2w9c0mfA0eonG1CrFjU_&__tn__=*NK-R" tabindex="0">#لجنة_الهندسة_الكهربائية</a> <img alt="💛" src="https://static.xx.fbcdn.net/images/emoji.php/v9/t6e/1.5/16/1f49b.png" style="height:16px; width:16px" /></p> <p><a href="https://www.facebook.com/hashtag/%D9%81%D9%83%D8%B1%D8%A9_%D8%AA%D8%AD%D9%8A%D8%A7_%D8%B9%D9%84%D9%89_%D9%86%D8%A8%D8%B6_%D9%82%D9%84%D9%88%D8%A8%D9%83%D9%85?__eep__=6&__gid__=130614073616824&__cft__[0]=AZVC9FcQCdRmY9t0bVRY3Ch0-U8Wr59vylM15YgY3HT2x-UpEIiExcnHd45iIh5J-QtZSWMth4fJ6ayHrxzG2pPh6kyk-NsTU_IdPKuogUIhNjl6bwpgsS2KF2icM7zziSxh2w9c0mfA0eonG1CrFjU_&__tn__=*NK-R" tabindex="0">#فكرة_تحيا_على_نبض_قلوبكم</a></p>`,
@@ -1321,7 +1321,7 @@ const Subjects: Subject[] = [
     id: 62,
     name: "تصميم الدوائر الإلكترونية الكتف",
     name2: "ُElectronic Circuits Design",
-    color: Colors.fifthYear,
+    color: Colors.telecom,
     subjectLink:
       "https://drive.google.com/drive/folders/1UVoWZiKwItBFKGXWqFoXjp_fcBgiIGL-",
     fullPost: `<p>السلام عليكم ورحمة الله وبركاته <img alt="💛" src="https://static.xx.fbcdn.net/images/emoji.php/v9/t6e/1.5/16/1f49b.png" style="height:16px; width:16px" /></p> <p><a href="https://www.facebook.com/hashtag/%D8%AA%D8%B5%D9%85%D9%8A%D9%85_%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A6%D8%B1_%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9?__eep__=6&__gid__=130614073616824&__cft__[0]=AZWY1Zn8q-0Fc84uR9jJHBrPoK_mAwdSZPMvSXz9YyqXqwaol8NSpVzfh6E1CcbY7QkmPzjqvQXRe6fToCjUvK3uJqTBRtBep4Z01r2wZKZ1vKaLCydKC68ASbe0OHHMspszUmkNV40ezGctuZvBhR-a&__tn__=*NK-R" tabindex="0">#تصميم_الدوائر_الإلكترونية</a></p> <p><a href="https://www.facebook.com/hashtag/%D8%A7%D9%84%D8%A8%D9%88%D8%B3%D8%AA_%D8%A7%D9%84%D8%B4%D8%A7%D9%85%D9%84?__eep__=6&__gid__=130614073616824&__cft__[0]=AZWY1Zn8q-0Fc84uR9jJHBrPoK_mAwdSZPMvSXz9YyqXqwaol8NSpVzfh6E1CcbY7QkmPzjqvQXRe6fToCjUvK3uJqTBRtBep4Z01r2wZKZ1vKaLCydKC68ASbe0OHHMspszUmkNV40ezGctuZvBhR-a&__tn__=*NK-R" tabindex="0">#البوست_الشامل</a></p> <p>- شرح المهندس محمد لافي :</p> <p><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1zC5RrEMdYX-Ck-F2sXsQX8bxczWZLYR8%2Fview%3Fusp%3Ddrivesdk%26fbclid%3DIwAR0EdQjwpVn8yFEfGRIe12H6lFyNoLmoz0DIUoBdLOaVKecF7fz-PfkcuMc&h=AT1bbzNzLrVNOavROJh25p4BkLfS9799OTOBuO-MWcH0txEMwlQBYnmujWYyJfaVl0xGKV1Bir60aqLBbXAKrm0yD2x8Do29pG111uKWE_sD83acmPVCshNO1u_majCJAbJzZveE1Q6czlLoyxaW&__tn__=-UK-R&c[0]=AT3kmfK8dkj0_W0e_Jwc7gGMlTE9zoDws5W4G061paAkEpc7briN-Pupyw1LE9OtlX9BdmJz0gSnES1XC2JTAeQk9A9oF0Ppul_ogOTXGEKU0JpkZ3E0hZxYAW_S1Vs_xE8MiEddda5CprbqtXIT1amYCUZmHqGxmF8" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1zC5RrEMdYX-Ck.../view...</a></p> <p>- الكتاب المعتمد :</p> <p><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Fdrive%2Fu%2F2%2Ffolders%2F1A83XR17ink2TDBisCPKU30jBrDJKVQlq%3Ffbclid%3DIwAR20bbbXZqeATe2HmhC1UF7RE9EbKAeDnUVXpcaad-g-1K3l7N0p-0Nin-k&h=AT2DGKH5zcdGkgcKqowdSPce0CNE4fIkrZ7-aF9dQHUSVzsDKXlgiJoJOcUKwX37vBsG-pkedmp3PoLILpHxjIQiilS9YnR_6x6hpVj6tmVZB-kxtLEVVi0MBRHdP5ynzz1-ps3JP9Xoh9byrDN0&__tn__=-UK-R&c[0]=AT3kmfK8dkj0_W0e_Jwc7gGMlTE9zoDws5W4G061paAkEpc7briN-Pupyw1LE9OtlX9BdmJz0gSnES1XC2JTAeQk9A9oF0Ppul_ogOTXGEKU0JpkZ3E0hZxYAW_S1Vs_xE8MiEddda5CprbqtXIT1amYCUZmHqGxmF8" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1A83XR17ink2TDBisCPKU30jBrDJ...</a></p> <p>- سلايدات الدكتور فادي زغلول :</p> <p><a href="https://drive.google.com/drive/u/2/folders/1ABC2Gdw7jiO0dxIrJaZA76ugJYwmwFap?fbclid=IwAR2vYOPzGGv4OqkhkobNe5SgFRagBUDlujA1M2uRQav61U_LIvDABW2NyU0" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1ABC2Gdw7jiO0dxIrJaZA76ugJYw...</a></p> <p>سنوات</p> <p><a href="https://drive.google.com/drive/folders/1UVoWZiKwItBFKGXWqFoXjp_fcBgiIGL-?fbclid=IwAR3xAbn_oWxmnyQUBfZ8j-5YwcQp-otwdtq0tcu3glGtFbWFqAdOq17GdC8" rel="nofollow noopener" tabindex="0" target="_blank">https://drive.google.com/.../1UVoWZiKwItBFKGXWqFoXjp...</a></p> <p><a href="https://www.facebook.com/hashtag/%D9%84%D8%AC%D9%86%D8%A9_%D8%A7%D9%84%D9%87%D9%86%D8%AF%D8%B3%D8%A9_%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D8%A7%D8%A6%D9%8A%D8%A9?__eep__=6&__gid__=130614073616824&__cft__[0]=AZWY1Zn8q-0Fc84uR9jJHBrPoK_mAwdSZPMvSXz9YyqXqwaol8NSpVzfh6E1CcbY7QkmPzjqvQXRe6fToCjUvK3uJqTBRtBep4Z01r2wZKZ1vKaLCydKC68ASbe0OHHMspszUmkNV40ezGctuZvBhR-a&__tn__=*NK-R" tabindex="0">#لجنة_الهندسة_الكهربائية</a></p> <p><a href="https://www.facebook.com/hashtag/%D9%81%D9%83%D8%B1%D8%A9_%D8%AA%D8%AD%D9%8A%D8%A7_%D8%B9%D9%84%D9%89_%D9%86%D8%A8%D8%B6_%D9%82%D9%84%D9%88%D8%A8%D9%83%D9%85?__eep__=6&__gid__=130614073616824&__cft__[0]=AZWY1Zn8q-0Fc84uR9jJHBrPoK_mAwdSZPMvSXz9YyqXqwaol8NSpVzfh6E1CcbY7QkmPzjqvQXRe6fToCjUvK3uJqTBRtBep4Z01r2wZKZ1vKaLCydKC68ASbe0OHHMspszUmkNV40ezGctuZvBhR-a&__tn__=*NK-R" tabindex="0">#فكرة_تحيا_على_نبض_قلوبكم</a> <img alt="💛" src="https://static.xx.fbcdn.net/images/emoji.php/v9/t6e/1.5/16/1f49b.png" style="height:16px; width:16px" /></p>`,

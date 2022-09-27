@@ -330,7 +330,7 @@ const CalculatorScreen = ({ navigation }: Props) => {
                 fontSize: moderateScale(16),
               }}
             >
-              وزن المادة
+              الساعات
             </Text>
           </View>
           <View

@@ -20,13 +20,21 @@ import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Feather } from "@expo/vector-icons";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { screenWidth } from "@Utils/Helper";
+import { screenHeight, screenWidth } from "@Utils/Helper";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 export type SubjectNavigationProp = StackNavigationProp<
   SubjectsStackParamList,
   "Subject"
 >;
+
+const firstFrame = require("@Assets/images/subjectColors/first.png");
+const secondFrame = require("@Assets/images/subjectColors/second.png");
+const thirdFrame = require("@Assets/images/subjectColors/third.png");
+const sharesFrame = require("@Assets/images/subjectColors/shared.png");
+const telecomFrame = require("@Assets/images/subjectColors/telecom.png");
+const powerFrame = require("@Assets/images/subjectColors/power.png");
+
 const SubjectScreen = ({ navigation, route }: Props) => {
   const [subject, setSubject] = useState({} as Subject);
   const [loading, setLoading] = useState(false);
@@ -34,6 +42,20 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const backgroundColor =
     theme === "light" ? Colors.lightBackgroundSec : Colors.darkBackgroundSec;
+
+  const subjectFrame =
+    subject.color === "#F79606"
+      ? firstFrame
+      : subject.color === "#F31313"
+      ? secondFrame
+      : subject.color === "#0200CF"
+      ? thirdFrame
+      : subject.color === "#29abef"
+      ? sharesFrame
+      : subject.color === "#AF02AB"
+      ? telecomFrame
+      : powerFrame;
+
   const backgroundSubjectColor = subject.color;
   useEffect(() => {
     setLoading(true);
@@ -79,39 +101,24 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     <ScrollView style={{ flex: 1 }}>
       {loading}
       <ImageBackground
-        source={require("@Assets/images/telecomFrame.png")}
+        resizeMode="contain"
+        source={subjectFrame}
         style={{
-          width: screenWidth,
-          height: verticalScale(220),
+          height: screenHeight < 650 ? verticalScale(268) : verticalScale(200),
         }}
       >
-        <View
+        <Text
           style={{
             flex: 1,
-            backgroundColor: backgroundSubjectColor,
-            borderRadius: moderateScale(30),
-            padding: moderateScale(10),
-            marginHorizontal: horizontalScale(30),
-            marginVertical: verticalScale(20),
-            paddingStart: horizontalScale(12),
-            height: moderateScale(200),
-            zIndex: 10,
+            textAlign: "center",
+            textAlignVertical: "center",
+            fontSize: moderateScale(24),
+            color: Colors.darkText,
+            fontFamily: "Bukra",
           }}
         >
-          <Text
-            style={{
-              flex: 1,
-              textAlign: "center",
-              textAlignVertical: "center",
-              fontSize: moderateScale(24),
-              color: Colors.darkText,
-              fontFamily: "Bukra",
-              paddingStart: horizontalScale(12),
-            }}
-          >
-            {subject?.name2}
-          </Text>
-        </View>
+          {subject?.name2}
+        </Text>
       </ImageBackground>
       <View
         style={{

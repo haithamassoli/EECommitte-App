@@ -28,6 +28,7 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
           width: screenWidth * 0.42,
           height: verticalScale(110),
         }}
+        resizeMode="contain"
         source={image}
       />
       <View

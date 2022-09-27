@@ -88,6 +88,11 @@ const CalculatorScreen = ({ navigation }: Props) => {
       totalHour += selectedHour[i].value;
       totalGrade += selectedGrade[i].value * selectedHour[i].value;
     }
+    if (totalHour === 0) {
+      setMassage("لا يمكن ان يكون الساعات 0");
+      setVisible(true);
+      return;
+    }
     setSemester((+totalGrade / +totalHour).toFixed(2));
     if (cumulative) {
       // @ts-ignore

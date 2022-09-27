@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import { useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Route from "./src/navigation/main";
@@ -8,6 +8,7 @@ import { reloadAsync } from "expo-updates";
 import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 
 if (Platform.OS === "android") {
@@ -48,7 +49,7 @@ export default function App() {
     firstTime();
   }, []);
 
-  const [loaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     TajawalLight: require("./assets/fonts/Tajawal-Light.ttf"),
     TajawalMedium: require("./assets/fonts/Tajawal-Medium.ttf"),
     TajawalRegular: require("./assets/fonts/Tajawal-Regular.ttf"),
@@ -56,7 +57,20 @@ export default function App() {
     Bukra: require("./assets/fonts/29ltbukra.ttf"),
   });
 
-  if (!loaded) {
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
     return null;
   }
 
@@ -68,7 +82,7 @@ export default function App() {
           theme === "light" ? Colors.lightBackground : Colors.darkBackground
         }
       />
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
         <Route />
       </SafeAreaView>
     </ThemeProvider>

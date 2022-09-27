@@ -35,15 +35,16 @@ const PlanScreen = ({ navigation }: Props) => {
             imgSource={require("@Assets/images/plan.webp")}
             imgWidth={screenWidth}
             imgHeight={
-              screenWidth < 500
-                ? screenHeight * 0.8
-                : screenWidth < 700
-                ? screenHeight * 0.7
-                : screenHeight * 0.6
+              screenWidth < 500 && screenHeight > 650
+                ? screenHeight * 0.54
+                : screenWidth < 500 && screenHeight! > 650
+                ? screenWidth * 0.6
+                : screenHeight * 0.7
             }
             imgMap={MAPPING}
             containerStyle={{
               flexGrow: 1,
+              justifyContent: "center",
             }}
             onPress={(item: MapperItem) => {
               handleSelectArea(item.id);

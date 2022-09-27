@@ -35,28 +35,34 @@ const PlanScreen = ({ navigation }: Props) => {
             imgSource={require("@Assets/images/plan.webp")}
             imgWidth={screenWidth}
             imgHeight={
-              screenWidth <= 500 ? screenWidth * 1.2 : screenWidth * 1.1
+              screenWidth < 500
+                ? screenHeight * 0.8
+                : screenWidth < 700
+                ? screenHeight * 0.7
+                : screenHeight * 0.6
             }
             imgMap={MAPPING}
             containerStyle={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
+              flexGrow: 1,
             }}
             onPress={(item: MapperItem) => {
               handleSelectArea(item.id);
             }}
           />
-          <Image
-            source={require("@Assets/images/planLowerbar.webp")}
-            resizeMode="contain"
-            style={{
-              width: screenWidth,
-              height:
-                screenHeight <= 1200 ? screenWidth * 0.18 : screenWidth * 0.1,
-              bottom: screenWidth <= 500 ? verticalScale(32) : 12,
-            }}
-          />
+          {screenHeight > 650 && (
+            <Image
+              source={require("@Assets/images/planLowerbar.webp")}
+              resizeMode="contain"
+              style={{
+                width: screenWidth,
+                height:
+                  screenHeight <= 1200
+                    ? screenHeight * 0.08
+                    : screenHeight * 0.12,
+                bottom: screenWidth <= 500 ? verticalScale(32) : 12,
+              }}
+            />
+          )}
         </ReactNativeZoomableView>
       </ImageBackground>
     </>

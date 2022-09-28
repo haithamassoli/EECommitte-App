@@ -113,7 +113,7 @@ export default function Route() {
                 <Feather name="map" size={moderateScale(24)} color={color} />
               ),
               headerShown: false,
-              tabBarLabel: "الخطة الشجرية",
+              tabBarLabel: "ما يخص المواد",
             }}
           />
           <BottomTabs.Screen

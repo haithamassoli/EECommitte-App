@@ -28,7 +28,7 @@ const Colors = {
   secondYear: "#F31313",
   thirdYear: "#0200CF",
   shared: "#29abef",
-  telecom: "##AF02AB",
+  telecom: "#AF02AB",
   power: "#272727",
 };
 

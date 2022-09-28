@@ -20,7 +20,7 @@ export default function SubjectsNavigation() {
     <Stack.Navigator
       initialRouteName="Plan"
       screenOptions={({ navigation }) => ({
-        headerTitle: "الخطة الشجرية",
+        headerTitle: "ما يخص المواد",
         headerTitleStyle: {
           fontSize: moderateScale(18),
         },

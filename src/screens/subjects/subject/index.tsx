@@ -212,7 +212,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             onPress={() => subject.slides && Linking.openURL(subject.slides)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText]}>الشرائح</Text>
+            <Text style={[style.buttonText]}>السلايدات</Text>
           </TouchableOpacity>
         )}
         {subject?.explanations?.map((explanation, index) => (

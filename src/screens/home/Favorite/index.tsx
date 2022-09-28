@@ -13,7 +13,6 @@ const FavoriteScreen = ({ navigation }: Props) => {
   const { theme } = useContext(ThemeContext);
   const { favorite } = useContext(FavoriteContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  console.log(favorite);
   const iconColor =
     theme === "light"
       ? require("@Assets/images/icons/light-icons/doctors.png")

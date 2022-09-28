@@ -283,13 +283,6 @@ const MAPPING: MapperItem[] = [
     radius: 30,
   },
   {
-    id: 41,
-    shape: "circle",
-    x1: (screenWidth / 100) * 49,
-    y1: ((screenWidth * 1.074) / 100) * 50,
-    radius: 25,
-  },
-  {
     id: 42,
     shape: "circle",
     x1: (screenWidth / 100) * 32,

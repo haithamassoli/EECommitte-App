@@ -21,6 +21,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { Feather } from "@expo/vector-icons";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { screenHeight, screenWidth } from "@Utils/Helper";
+import { FavoriteContext } from "@Src/store/favoriteContext";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 export type SubjectNavigationProp = StackNavigationProp<
@@ -39,6 +40,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   const [subject, setSubject] = useState({} as Subject);
   const [loading, setLoading] = useState(false);
   const { theme } = useContext(ThemeContext);
+  const { addFavorite } = useContext(FavoriteContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const backgroundColor =
     theme === "light" ? Colors.lightBackgroundSec : Colors.darkBackgroundSec;
@@ -243,6 +245,17 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           style={[style.button, { backgroundColor: backgroundSubjectColor }]}
         >
           <Text style={[style.buttonText]}>درايف المادة</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            addFavorite({
+              id: subject.id,
+              name: subject.name2,
+            });
+          }}
+          style={[style.button, { backgroundColor: backgroundSubjectColor }]}
+        >
+          <Text style={[style.buttonText]}>اضافة الى المفضلة</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

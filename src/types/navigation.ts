@@ -32,4 +32,5 @@ export type HomeStackParamList = {
   Search: undefined;
   Records: undefined;
   OurExplanations: undefined;
+  Favorite: undefined;
 };

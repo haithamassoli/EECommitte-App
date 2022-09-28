@@ -10,6 +10,7 @@ import Colors from "@GlobalStyle/Colors";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { FavoriteProvider } from "@Src/store/favoriteContext";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -76,15 +77,17 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <StatusBar
-        style={theme === "light" ? "dark" : "light"}
-        backgroundColor={
-          theme === "light" ? Colors.lightBackground : Colors.darkBackground
-        }
-      />
-      <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
-        <Route />
-      </SafeAreaView>
+      <FavoriteProvider>
+        <StatusBar
+          style={theme === "light" ? "dark" : "light"}
+          backgroundColor={
+            theme === "light" ? Colors.lightBackground : Colors.darkBackground
+          }
+        />
+        <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
+          <Route />
+        </SafeAreaView>
+      </FavoriteProvider>
     </ThemeProvider>
   );
 }

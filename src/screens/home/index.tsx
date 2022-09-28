@@ -149,11 +149,11 @@ const HomeScreen = ({ navigation }: Props) => {
 
   const rowOne = [
     {
-      title: "ما يخص",
-      title2: "المواد",
+      title: "المفضلة",
+      title2: "",
       lightIcon: require("@Assets/images/icons/light-icons/about-subject.png"),
       darkIcon: require("@Assets/images/icons/dark-icons/about-subject.png"),
-      onPress: () => console.log("pressed"),
+      onPress: () => navigation.navigate("Favorite"),
     },
     {
       title: "أبرز",

@@ -8,6 +8,7 @@ import DoctorsScreen from "@Screens/home/doctors";
 import SearchScreen from "@Screens/search";
 import RecordsScreen from "@Screens/home/Records";
 import OurExplanationsScreen from "@Screens/home/OurExplanations";
+import FavoriteScreen from "@Screens/home/Favorite";
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,13 @@ export default function HomeNavigation() {
       <Stack.Screen name="Calculator" component={CalculatorScreen} />
       <Stack.Screen name="Records" component={RecordsScreen} />
       <Stack.Screen name="OurExplanations" component={OurExplanationsScreen} />
+      <Stack.Screen
+        name="Favorite"
+        options={{
+          headerTitle: "المفضلة",
+        }}
+        component={FavoriteScreen}
+      />
     </Stack.Navigator>
   );
 }

@@ -23,6 +23,7 @@ export default function SubjectsNavigation() {
         headerTitle: "ما يخص المواد",
         headerTitleStyle: {
           fontSize: moderateScale(18),
+          fontFamily: "Bukra",
         },
         headerRight: () => {
           return (

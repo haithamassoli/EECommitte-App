@@ -40,10 +40,12 @@ export default function Route() {
           },
           tabBarLabelStyle: {
             fontSize: moderateScale(12),
+            fontFamily: "TajawalBold",
             marginBottom: screenWidth < 500 ? verticalScale(8) : 0,
           },
           headerTitleStyle: {
             fontSize: moderateScale(18),
+            fontFamily: "Bukra",
           },
           headerRight: () => {
             return (

@@ -157,7 +157,7 @@ const AboutUniScreen = ({ navigation }: Props) => {
                       left:
                         item.arrPos === "right"
                           ? horizontalScale(40)
-                          : screenWidth - horizontalScale(80),
+                          : screenWidth - 100,
                     }}
                     onPress={onFinish}
                   >

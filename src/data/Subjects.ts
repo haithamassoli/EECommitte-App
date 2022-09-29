@@ -53,8 +53,8 @@ const Subjects: Subject[] = [
   },
   {
     id: 3,
-    name: "ديف",
-    name2: "Differential Equations",
+    name: "ديف Differential Equations",
+    name2: "Diff",
     color: Colors.secondYear,
     book: "https://drive.google.com/drive/u/1/folders/1r3XKeqoQNs4_TZjR24_u4Kzk4SszRdw0",
     notebook:
@@ -82,8 +82,8 @@ const Subjects: Subject[] = [
   },
   {
     id: 4,
-    name: "تحليل وسيط",
-    name2: "Intermediate Analysis",
+    name: "Intermediate Analysis",
+    name2: "تحليل وسيط",
     color: Colors.secondYear,
     book: "https://drive.google.com/drive/u/1/folders/1nM4hT-YRvLsvQMYQz30nAqwoq53WtlxK",
     explanations: [
@@ -107,8 +107,8 @@ const Subjects: Subject[] = [
   },
   {
     id: 5,
-    name: "اقتصاد",
-    name2: "Economy",
+    name: "Economy",
+    name2: "اقتصاد",
     color: Colors.thirdYear,
     book: "https://drive.google.com/drive/u/4/folders/17WRaRzNYQFb7uHQDp8j4Or9sbg3c6N-m",
     explanations: [
@@ -345,9 +345,9 @@ const Subjects: Subject[] = [
   },
   {
     id: 16,
-    name: "ميكانيكا هندسية",
+    name: "Engineering Mechanics Statics",
+    name2: "ميكانيكا هندسية",
     color: Colors.secondYear,
-    name2: "Engineering Mechanics Statics",
     explanations: [
       {
         name: "شرح محمد الطراونة",
@@ -366,9 +366,9 @@ const Subjects: Subject[] = [
   },
   {
     id: 17,
-    name: "ريادة وابداع",
+    name: "Entrepreneurship and Entrepreneurs",
+    name2: "ريادة وابداع",
     color: Colors.firstYear,
-    name2: "Entrepreneurship and Entrepreneurs",
     slides:
       "https://drive.google.com/drive/u/1/folders/1zMrgber8JJLdkfmd4e_iBqkgREhmohQO",
     prevYears:
@@ -630,9 +630,9 @@ const Subjects: Subject[] = [
   },
   {
     id: 27,
-    name: "الكهرومغناطيسية 1",
+    name: "الكهرومغناطيسية 1 Electromagnetic",
     color: Colors.secondYear,
-    name2: "Electromagnetic 1",
+    name2: "EM 1",
     book: "https://drive.google.com/drive/u/2/folders/1KQAzxdNuFNKXYcjmJgwzAXQhN4Mx-ser",
     explanations: [
       {
@@ -657,9 +657,9 @@ const Subjects: Subject[] = [
   },
   {
     id: 28,
-    name: "الكهرومغناطيسية 2",
+    name: "الكهرومغناطيسية 2 Electromagnetic",
     color: Colors.thirdYear,
-    name2: "Electromagnetic 2",
+    name2: "EM 2",
     book: "https://drive.google.com/drive/u/3/folders/1gwUM805wryQ1487GzmrOKDviG_jEPDqh",
     explanations: [
       {
@@ -763,8 +763,8 @@ const Subjects: Subject[] = [
   },
   {
     id: 33,
-    name: "DE",
-    name2: "Digital electronics",
+    name2: "DE",
+    name: "Digital electronics",
     color: Colors.shared,
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1QW48I9UPypx_fQgOLfDoss3B1B7JCufv",
@@ -801,8 +801,8 @@ const Subjects: Subject[] = [
   },
   {
     id: 34,
-    name: "Digital electronics DE Lab",
-    name2: "Digital electronics Lab",
+    name2: "DE Lab",
+    name: "Digital electronics Lab",
     color: Colors.shared,
     book: "https://drive.google.com/drive/u/4/folders/1oD6sIV7U2Dxmm1cynl9ZNVuSFz7WFCFC",
 
@@ -814,8 +814,8 @@ const Subjects: Subject[] = [
   },
   {
     id: 35,
-    name: "انسترو",
-    name2: "Instrumentation",
+    name: "انسترو Instrumentation",
+    name2: "Instru",
     color: Colors.thirdYear,
     book: "https://drive.google.com/drive/u/3/folders/1Ph0mz6RmiQzwKm82ijuc2FkdAE_eu8_G",
     prevYears:
@@ -837,9 +837,9 @@ const Subjects: Subject[] = [
   },
   {
     id: 36,
-    name: "بروب احتمالات",
+    name: "بروب احتمالات Probabilities",
     color: Colors.thirdYear,
-    name2: "Probabilities",
+    name2: "Prob",
     book: "https://drive.google.com/drive/u/3/folders/1pQg_QQw4glCher9S0R1XxMUhtxvldKwF",
     prevYears:
       "https://drive.google.com/drive/u/3/folders/1MXfYpCxD8XIRIJpVpBEzIXYiiWYlWM67",
@@ -913,8 +913,8 @@ const Subjects: Subject[] = [
   },
   {
     id: 39,
-    name: "عربي 101",
-    name2: "Arabic 101",
+    name2: "عربي",
+    name: "Arabic",
     color: Colors.firstYear,
     book: "https://drive.google.com/drive/u/1/folders/1HE2FSO3W0VXx--gh3MMpsfVHg0FsjD9o",
     notebook:
@@ -926,7 +926,7 @@ const Subjects: Subject[] = [
   },
   {
     id: 40,
-    name: "Communication electronics",
+    name: "Comm Electro",
     name2: "Communication electronics",
     color: Colors.telecom,
     subjectLink:
@@ -935,7 +935,7 @@ const Subjects: Subject[] = [
   {
     id: 42,
     name: "Communication systems",
-    name2: "Communication systems",
+    name2: "Comm Systems",
     color: Colors.shared,
     book: "https://drive.google.com/drive/u/4/folders/1O__OXCdRXg_OfnEeU4Lc8lPM95ErBarS",
     prevYears:
@@ -991,8 +991,8 @@ const Subjects: Subject[] = [
   },
   {
     id: 45,
-    name: "Comm lab",
-    name2: "Communication systems lab",
+    name2: "Comm lab",
+    name: "Communication systems lab",
     color: Colors.telecom,
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1GlW00jgl-BM8uaG8GDHSWKvn1asThbjv",
@@ -1001,8 +1001,8 @@ const Subjects: Subject[] = [
   },
   {
     id: 46,
-    name: "Digital comm lab",
-    name2: "Digital communications lab",
+    name2: "Digital comm lab",
+    name: "Digital communications lab",
     color: Colors.telecom,
     prevYears:
       "https://drive.google.com/drive/u/4/folders/13Z1NRvHMKN-LrcQfLAjLRtA7ZriezIQM",
@@ -1011,8 +1011,8 @@ const Subjects: Subject[] = [
   },
   {
     id: 47,
-    name: "Digital comm",
-    name2: "Digital communications",
+    name2: "Digital comm",
+    name: "Digital communications",
     color: Colors.telecom,
     subjectLink:
       "https://drive.google.com/drive/folders/1URYgtWO6_fkP2vYAGTYYNeyHmLwKL7EG",

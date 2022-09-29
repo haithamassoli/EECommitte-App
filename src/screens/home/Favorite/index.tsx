@@ -38,6 +38,27 @@ const FavoriteScreen = ({ navigation }: Props) => {
 
   return (
     <ScrollView style={{ flex: 1 }}>
+      {favorite.length === 0 && (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            height: screenHeight,
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "Bukra",
+              fontSize: moderateScale(20),
+              color: textColor,
+              paddingBottom: verticalScale(180),
+            }}
+          >
+            لا يوجد مفضلة
+          </Text>
+        </View>
+      )}
       {favorite.map((item) => (
         <TouchableOpacity
           key={item.id}
@@ -83,16 +104,17 @@ const FavoriteScreen = ({ navigation }: Props) => {
               <Text
                 style={{
                   textAlign: "center",
-                  fontSize: moderateScale(12),
+                  fontSize: moderateScale(18),
                   color: "#F31313",
-                  fontFamily: "Bukra",
+                  fontFamily: "TajawalRegular",
+                  paddingHorizontal: moderateScale(10),
                 }}
               >
                 إزالة من المفضلة
               </Text>
               <Feather
                 name="trash-2"
-                size={moderateScale(24)}
+                size={moderateScale(18)}
                 color={"#F31313"}
                 style={{
                   textAlign: "center",

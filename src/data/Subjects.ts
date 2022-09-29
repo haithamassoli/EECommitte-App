@@ -926,8 +926,8 @@ const Subjects: Subject[] = [
   },
   {
     id: 40,
-    name: "Comm Electro",
-    name2: "Communication electronics",
+    name2: "Comm Electro",
+    name: "Communication electronics",
     color: Colors.telecom,
     subjectLink:
       "https://drive.google.com/drive/folders/1jCGozwbNwk0sbHCfS9DLYlqIRiqK47IV",

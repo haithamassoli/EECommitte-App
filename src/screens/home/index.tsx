@@ -149,8 +149,8 @@ const HomeScreen = ({ navigation }: Props) => {
 
   const rowOne = [
     {
-      title: "المفضلة",
-      title2: "",
+      title: "المواد",
+      title2: "المفضلة",
       lightIcon: require("@Assets/images/icons/light-icons/about-subject.png"),
       darkIcon: require("@Assets/images/icons/dark-icons/about-subject.png"),
       onPress: () => navigation.navigate("Favorite"),
@@ -296,7 +296,12 @@ const HomeScreen = ({ navigation }: Props) => {
                   style={styles.icon}
                 />
               </View>
-              <Text style={[styles.iconText, { color: textColor }]}>
+              <Text
+                style={[
+                  styles.iconText,
+                  { color: textColor, marginTop: verticalScale(4) },
+                ]}
+              >
                 {icon.title}
               </Text>
               <Text style={[styles.iconText, { color: textColor }]}>
@@ -318,7 +323,12 @@ const HomeScreen = ({ navigation }: Props) => {
                   style={styles.icon}
                 />
               </View>
-              <Text style={[styles.iconText, { color: textColor }]}>
+              <Text
+                style={[
+                  styles.iconText,
+                  { color: textColor, marginTop: verticalScale(4) },
+                ]}
+              >
                 {icon.title}
               </Text>
               <Text style={[styles.iconText, { color: textColor }]}>
@@ -340,7 +350,12 @@ const HomeScreen = ({ navigation }: Props) => {
                   style={styles.icon}
                 />
               </View>
-              <Text style={[styles.iconText, { color: textColor }]}>
+              <Text
+                style={[
+                  styles.iconText,
+                  { color: textColor, marginTop: verticalScale(4) },
+                ]}
+              >
                 {icon.title}
               </Text>
               <Text style={[styles.iconText, { color: textColor }]}>

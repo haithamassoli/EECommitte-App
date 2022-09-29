@@ -37,7 +37,7 @@ const FavoriteScreen = ({ navigation }: Props) => {
   }, []);
 
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={{ flex: 1, paddingTop: verticalScale(16) }}>
       {favorite.length === 0 && (
         <View
           style={{

@@ -32,9 +32,15 @@ export type SubjectNavigationProp = StackNavigationProp<
 const firstFrame = require("@Assets/images/subjectColors/first.png");
 const secondFrame = require("@Assets/images/subjectColors/second.png");
 const thirdFrame = require("@Assets/images/subjectColors/third.png");
-const sharesFrame = require("@Assets/images/subjectColors/shared.png");
+const sharedFrame = require("@Assets/images/subjectColors/shared.png");
 const telecomFrame = require("@Assets/images/subjectColors/telecom.png");
 const powerFrame = require("@Assets/images/subjectColors/power.png");
+const firstDarkFrame = require("@Assets/images/subjectColors/firstDark.png");
+const secondDarkFrame = require("@Assets/images/subjectColors/secondDark.png");
+const thirdDarkFrame = require("@Assets/images/subjectColors/thirdDark.png");
+const sharedDarkFrame = require("@Assets/images/subjectColors/sharedDark.png");
+const telecomDarkFrame = require("@Assets/images/subjectColors/telecomDark.png");
+const powerDarkFrame = require("@Assets/images/subjectColors/powerDark.png");
 
 const SubjectScreen = ({ navigation, route }: Props) => {
   const [subject, setSubject] = useState({} as Subject);
@@ -47,17 +53,29 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     theme === "light" ? Colors.lightBackgroundSec : Colors.darkBackgroundSec;
 
   const subjectFrame =
-    subject.color === "#F79606"
+    subject.color === "#F79606" && theme === "light"
       ? firstFrame
-      : subject.color === "#F31313"
+      : subject.color === "#F79606" && theme === "dark"
+      ? firstDarkFrame
+      : subject.color === "#F31313" && theme === "light"
       ? secondFrame
-      : subject.color === "#0200CF"
+      : subject.color === "#F31313" && theme === "dark"
+      ? secondDarkFrame
+      : subject.color === "#0200CF" && theme === "light"
       ? thirdFrame
-      : subject.color === "#29abef"
-      ? sharesFrame
-      : subject.color === "#AF02AB"
+      : subject.color === "#0200CF" && theme === "dark"
+      ? thirdDarkFrame
+      : subject.color === "#29abef" && theme === "light"
+      ? sharedFrame
+      : subject.color === "#29abef" && theme === "dark"
+      ? sharedDarkFrame
+      : subject.color === "#AF02AB" && theme === "light"
       ? telecomFrame
-      : powerFrame;
+      : subject.color === "#AF02AB" && theme === "dark"
+      ? telecomDarkFrame
+      : subject.color === "#272727" && theme === "light"
+      ? powerFrame
+      : powerDarkFrame;
 
   const backgroundSubjectColor = subject.color;
   useEffect(() => {

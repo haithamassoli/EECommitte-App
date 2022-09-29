@@ -18,8 +18,6 @@ export type InfoStackParamList = {
   Info: undefined;
   AboutEECommitte: undefined;
   SupportUs: undefined;
-  ContactUs: undefined;
-  QuickLinkes: undefined;
 };
 
 export type HomeStackParamList = {

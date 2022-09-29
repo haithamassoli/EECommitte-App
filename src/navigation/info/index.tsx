@@ -3,8 +3,6 @@ import Colors from "@GlobalStyle/Colors";
 import { createStackNavigator } from "@react-navigation/stack";
 import InfoScreen from "@Screens/info";
 import AboutUniScreen from "@Screens/info/aboutUni";
-import ContactUsScreen from "@Screens/info/contactUs";
-import QuickLinkesScreen from "@Screens/info/quickLinkes";
 import SupportUsScreen from "@Screens/info/supportUs";
 import { ThemeContext } from "@Src/store/themeContext";
 import { horizontalScale, moderateScale } from "@Utils/Platform";
@@ -21,6 +19,7 @@ export default function InfoNavigation() {
       screenOptions={({ navigation }) => ({
         headerTitleStyle: {
           fontSize: moderateScale(18),
+          fontFamily: "Bukra",
         },
         headerRight: () => {
           return (
@@ -74,16 +73,6 @@ export default function InfoNavigation() {
         options={{ headerTitle: "الدعم" }}
         name="SupportUs"
         component={SupportUsScreen}
-      />
-      <Stack.Screen
-        options={{ headerTitle: "تواصل معنا" }}
-        name="ContactUs"
-        component={ContactUsScreen}
-      />
-      <Stack.Screen
-        options={{ headerTitle: "روابط مهمة" }}
-        name="QuickLinkes"
-        component={QuickLinkesScreen}
       />
     </Stack.Navigator>
   );

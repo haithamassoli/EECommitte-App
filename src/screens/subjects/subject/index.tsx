@@ -39,8 +39,9 @@ const powerFrame = require("@Assets/images/subjectColors/power.png");
 const SubjectScreen = ({ navigation, route }: Props) => {
   const [subject, setSubject] = useState({} as Subject);
   const [loading, setLoading] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
   const { theme } = useContext(ThemeContext);
-  const { addFavorite } = useContext(FavoriteContext);
+  const { favorite, toggleFavorite } = useContext(FavoriteContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const backgroundColor =
     theme === "light" ? Colors.lightBackgroundSec : Colors.darkBackgroundSec;
@@ -92,6 +93,11 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       ),
     });
   }, [subject?.name]);
+
+  useEffect(() => {
+    const isFavorite = favorite.some((item) => item.id === subject.id);
+    setIsFavorite(isFavorite);
+  }, [favorite]);
 
   if (loading) {
     return (
@@ -246,18 +252,20 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         >
           <Text style={[style.buttonText]}>درايف المادة</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            addFavorite({
-              id: subject.id,
-              name: subject.name2,
-            });
-          }}
-          style={[style.button, { backgroundColor: backgroundSubjectColor }]}
-        >
-          <Text style={[style.buttonText]}>اضافة الى المفضلة</Text>
-        </TouchableOpacity>
       </View>
+      <TouchableOpacity
+        onPress={() => {
+          toggleFavorite({
+            id: subject.id,
+            name: subject.name2,
+          });
+        }}
+        style={[style.button, { width: "100%", backgroundColor }]}
+      >
+        <Text style={[style.buttonText, { color: textColor }]}>
+          {isFavorite ? "ازالة من المفضلة" : "اضافة الى المفضلة"}
+        </Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };

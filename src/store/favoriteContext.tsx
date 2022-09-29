@@ -8,10 +8,10 @@ type FavoriteType = {
 
 export const FavoriteContext = createContext<{
   favorite: FavoriteType[];
-  addFavorite: (subject: FavoriteType) => void;
+  toggleFavorite: (subject: FavoriteType) => void;
 }>({
   favorite: [],
-  addFavorite: (subject: FavoriteType) => {},
+  toggleFavorite: (subject: FavoriteType) => {},
 });
 
 export const FavoriteProvider = ({
@@ -30,7 +30,7 @@ export const FavoriteProvider = ({
     };
     getFavorite();
   }, []);
-  const addFavorite = async (subject: FavoriteType) => {
+  const toggleFavorite = async (subject: FavoriteType) => {
     const prevFavorite = await getDataFromStorage("favorite");
     if (prevFavorite) {
       const isExist = prevFavorite.find(
@@ -54,7 +54,7 @@ export const FavoriteProvider = ({
   };
 
   return (
-    <FavoriteContext.Provider value={{ favorite, addFavorite }}>
+    <FavoriteContext.Provider value={{ favorite, toggleFavorite }}>
       {children}
     </FavoriteContext.Provider>
   );

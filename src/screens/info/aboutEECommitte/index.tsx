@@ -41,7 +41,7 @@ const data = [
   },
 ];
 
-const AboutUniScreen = ({ navigation }: Props) => {
+const aboutEECommitteScreen = ({ navigation }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
 
@@ -256,4 +256,4 @@ const AboutUniScreen = ({ navigation }: Props) => {
   );
 };
 
-export default AboutUniScreen;
+export default aboutEECommitteScreen;

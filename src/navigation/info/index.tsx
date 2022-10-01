@@ -2,7 +2,7 @@ import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { createStackNavigator } from "@react-navigation/stack";
 import InfoScreen from "@Screens/info";
-import AboutUniScreen from "@Screens/info/aboutUni";
+import aboutEECommitteScreen from "@Screens/info/aboutEECommitte";
 import SupportUsScreen from "@Screens/info/supportUs";
 import { ThemeContext } from "@Src/store/themeContext";
 import { horizontalScale, moderateScale } from "@Utils/Platform";
@@ -67,7 +67,7 @@ export default function InfoNavigation() {
       <Stack.Screen
         options={{ headerTitle: "عن الجامعة" }}
         name="AboutEECommitte"
-        component={AboutUniScreen}
+        component={aboutEECommitteScreen}
       />
       <Stack.Screen
         options={{ headerTitle: "الدعم" }}

@@ -41,6 +41,7 @@ const ImagesCarousel = ({ images }: Props) => {
       style={{
         width: screenWidth - horizontalScale(40),
         alignSelf: "center",
+        height: verticalScale(182),
       }}
     >
       <Shadow
@@ -60,25 +61,29 @@ const ImagesCarousel = ({ images }: Props) => {
           onMomentumScrollEnd={setImageIndex}
           pagingEnabled
         >
-          {images.map((image, index) => (
-            <View
-              key={index}
+          {images.length === 0 && (
+            <Image
+              source={require("@Assets/images/slider1.webp")}
               style={{
-                flex: 1,
+                width: screenWidth - horizontalScale(40),
+                height: screenHeight * 0.24,
+                resizeMode: "cover",
+                borderRadius: moderateScale(12),
               }}
-            >
-              <Image
-                key={index}
-                source={{ uri: image }}
-                defaultSource={require("@Assets/images/slider1.webp")}
-                style={{
-                  width: screenWidth - horizontalScale(40),
-                  height: screenHeight * 0.24,
-                  resizeMode: "cover",
-                  borderRadius: moderateScale(12),
-                }}
-              />
-            </View>
+            />
+          )}
+          {images.map((image, index) => (
+            <Image
+              key={index}
+              source={{ uri: image }}
+              defaultSource={require("@Assets/images/slider1.webp")}
+              style={{
+                width: screenWidth - horizontalScale(40),
+                height: screenHeight * 0.24,
+                resizeMode: "cover",
+                borderRadius: moderateScale(12),
+              }}
+            />
           ))}
         </ScrollView>
       </Shadow>

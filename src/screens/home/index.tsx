@@ -48,7 +48,9 @@ const HomeScreen = ({ navigation }: Props) => {
     const firstTime = async () => {
       const firstTime = await getDataFromStorage("firstTime");
       if (firstTime == true) {
-        navigation.navigate("AboutEECommitte");
+        navigation.getParent()?.navigate("InfoNavigation", {
+          screen: "AboutEECommitte",
+        });
       }
     };
     firstTime();

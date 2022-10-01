@@ -51,6 +51,7 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
       }}
     >
       <SearchInput
+        placeholder="ابحث عن شرح..."
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         setResults={setResults}

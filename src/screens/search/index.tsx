@@ -149,6 +149,7 @@ const SearchScreen = ({ navigation }: Props) => {
       <KeyboardAvoidingView style={styles.container}>
         <View style={styles.searchContainer}>
           <SearchInput
+            placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
             searchInput={searchInput}
             setSearchInput={setSearchInput}
             setResults={setResults}

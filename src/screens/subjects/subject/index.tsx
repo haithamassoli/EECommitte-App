@@ -202,19 +202,6 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             <Text style={[style.buttonText]}>السنوات السابقة</Text>
           </TouchableOpacity>
         )}
-        {subject.fullPost && (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("SubjectFullPost", {
-                // @ts-ignore
-                subjectId: subject.id,
-              })
-            }
-            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
-          >
-            <Text style={[style.buttonText]}>البوست الشامل</Text>
-          </TouchableOpacity>
-        )}
         {subject.exams && (
           <TouchableOpacity
             onPress={() => subject.exams && Linking.openURL(subject.exams)}

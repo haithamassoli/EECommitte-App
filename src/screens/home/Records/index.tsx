@@ -51,6 +51,7 @@ const RecordsScreen = ({ navigation }: Props) => {
       }}
     >
       <SearchInput
+        placeholder="ابحث عن تسجيل..."
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         setResults={setResults}

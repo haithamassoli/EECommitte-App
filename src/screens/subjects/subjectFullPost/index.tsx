@@ -5,6 +5,8 @@ import type { SubjectsStackParamList } from "@Types/navigation";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { WebDisplay } from "@Components/webDisplay";
+import { screenHeight } from "@Utils/Helper";
+import { verticalScale, moderateScale } from "@Utils/Platform";
 
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 
@@ -21,7 +23,18 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
       {route?.params?.post ? (
         <WebDisplay html={route?.params?.post} />
       ) : (
-        <Text style={{ color: textColor }}>لا يوجد يوست شامل حاليًا</Text>
+        <Text
+          style={{
+            color: textColor,
+            textAlign: "center",
+            textAlignVertical: "center",
+            height: screenHeight - verticalScale(200),
+            fontSize: moderateScale(20),
+            fontFamily: "TajawalBold",
+          }}
+        >
+          لا يوجد يوست شامل حاليًا
+        </Text>
       )}
     </ScrollView>
   );

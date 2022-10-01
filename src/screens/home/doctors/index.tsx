@@ -71,6 +71,7 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
       {loading}
       <View style={{ marginHorizontal: horizontalScale(12), flex: 1 }}>
         <SearchInput
+          placeholder="ابحث عن أحد الكادر التدريسي..."
           searchInput={searchInput}
           setSearchInput={setSearchInput}
           setResults={setResults}

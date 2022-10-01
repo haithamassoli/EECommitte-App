@@ -18,8 +18,8 @@ const FavoriteScreen = ({ navigation }: Props) => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const iconColor =
     theme === "light"
-      ? require("@Assets/images/icons/light-icons/about-subject.png")
-      : require("@Assets/images/icons/dark-icons/about-subject.png");
+      ? require("@Assets/images/icons/light-icons/fav.png")
+      : require("@Assets/images/icons/dark-icons/fav.png");
 
   useLayoutEffect(() => {
     navigation.setOptions({

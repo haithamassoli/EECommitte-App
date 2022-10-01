@@ -132,6 +132,7 @@ const HomeScreen = ({ navigation }: Props) => {
               style={{
                 marginBottom: verticalScale(6),
               }}
+              placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
               searchInput={searchInput}
               setSearchInput={setSearchInput}
               searchBarFocused={searchBarFocused}
@@ -151,8 +152,8 @@ const HomeScreen = ({ navigation }: Props) => {
     {
       title: "المواد",
       title2: "المفضلة",
-      lightIcon: require("@Assets/images/icons/light-icons/about-subject.png"),
-      darkIcon: require("@Assets/images/icons/dark-icons/about-subject.png"),
+      lightIcon: require("@Assets/images/icons/light-icons/fav.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/fav.png"),
       onPress: () => navigation.navigate("Favorite"),
     },
     {
@@ -163,10 +164,10 @@ const HomeScreen = ({ navigation }: Props) => {
       onPress: () => navigation.navigate("OurExplanations"),
     },
     {
-      title: "الدفاتر",
-      title2: "الأسبوعية",
-      lightIcon: require("@Assets/images/icons/light-icons/weekly-notebooks.png"),
-      darkIcon: require("@Assets/images/icons/dark-icons/weekly-notebooks.png"),
+      title: "ما يخص",
+      title2: "التسجيل",
+      lightIcon: require("@Assets/images/icons/light-icons/registration.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/registration.png"),
       onPress: () => console.log("pressed"),
     },
   ];
@@ -213,10 +214,10 @@ const HomeScreen = ({ navigation }: Props) => {
         Linking.openURL("https://www.facebook.com/groups/eelajna.just"),
     },
     {
-      title: "ما يخص",
-      title2: "التسجيل",
-      lightIcon: require("@Assets/images/icons/light-icons/registration.png"),
-      darkIcon: require("@Assets/images/icons/dark-icons/registration.png"),
+      title: "الأسئلة",
+      title2: "الشائعة",
+      lightIcon: require("@Assets/images/icons/light-icons/faq.png"),
+      darkIcon: require("@Assets/images/icons/dark-icons/faq.png"),
       onPress: () => console.log("pressed"),
     },
   ];

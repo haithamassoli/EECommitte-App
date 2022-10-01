@@ -35,6 +35,7 @@ const SearchInput = ({
   options,
   list,
   setResults,
+  placeholder,
 }: SearchInputProps) => {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<HomeNavigationProp>();
@@ -131,7 +132,7 @@ const SearchInput = ({
         }}
         value={searchInput}
         onChangeText={(searchString) => setSearchInput(searchString)}
-        placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
+        placeholder={placeholder}
         placeholderTextColor={Colors.gray}
         selectionColor={Colors.primary700}
         allowFontScaling={false}

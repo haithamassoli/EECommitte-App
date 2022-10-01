@@ -19,6 +19,7 @@ type StaticProps = {
   list: any[];
   setResults: React.Dispatch<React.SetStateAction<any[] | []>>;
   options: Fuse.IFuseOptions<any>;
+  placeholder: string;
 };
 
 export type SearchInputProps = Focused | NotFocused;

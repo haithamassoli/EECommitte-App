@@ -168,7 +168,7 @@ const HomeScreen = ({ navigation }: Props) => {
       title2: "التسجيل",
       lightIcon: require("@Assets/images/icons/light-icons/registration.png"),
       darkIcon: require("@Assets/images/icons/dark-icons/registration.png"),
-      onPress: () => console.log("pressed"),
+      onPress: () => navigation.navigate("Regestration"),
     },
   ];
 
@@ -218,7 +218,7 @@ const HomeScreen = ({ navigation }: Props) => {
       title2: "الشائعة",
       lightIcon: require("@Assets/images/icons/light-icons/faq.png"),
       darkIcon: require("@Assets/images/icons/dark-icons/faq.png"),
-      onPress: () => console.log("pressed"),
+      onPress: () => navigation.navigate("FAQ"),
     },
   ];
 

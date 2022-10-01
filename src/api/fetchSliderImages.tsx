@@ -9,6 +9,5 @@ export async function fetchSliderImages(): Promise<string[]> {
     const url = await getDownloadURL(itemRef);
     images.push(url);
   });
-  console.log(images);
   return images;
 }

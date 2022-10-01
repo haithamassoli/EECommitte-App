@@ -1,5 +1,5 @@
 import { useState, useRef, memo, useContext } from "react";
-import { View, ScrollView, Image, ImageSourcePropType } from "react-native";
+import { View, ScrollView, Image } from "react-native";
 import { screenHeight, screenWidth } from "@Utils/Helper";
 import { useEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
@@ -8,7 +8,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = {
-  images: ImageSourcePropType[];
+  images: string[];
 };
 
 const ImagesCarousel = ({ images }: Props) => {
@@ -69,7 +69,8 @@ const ImagesCarousel = ({ images }: Props) => {
             >
               <Image
                 key={index}
-                source={image}
+                source={{ uri: image }}
+                defaultSource={require("@Assets/images/slider1.webp")}
                 style={{
                   width: screenWidth - horizontalScale(40),
                   height: screenHeight * 0.24,
@@ -86,13 +87,10 @@ const ImagesCarousel = ({ images }: Props) => {
           flexDirection: "row",
           justifyContent: "center",
           marginTop: verticalScale(10),
-          position: "absolute",
           zIndex: 100,
-          bottom: verticalScale(-24),
-          left: screenWidth / 2 - horizontalScale(40),
         }}
       >
-        {images.map((image, index) => (
+        {images.map((_, index) => (
           <View
             key={index}
             style={{

@@ -18,12 +18,12 @@ import SubjectsData from "@Src/data/Subjects";
 import Overlay from "@Components/Overlay";
 import DoctorsData from "@Src/data/Doctors";
 import ImagesCarousel from "@Components/ImagesCarousel";
-import ImagesCarouselData from "@Src/data/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 import { getDataFromStorage } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { StatusBar } from "expo-status-bar";
+import { fetchSliderImages } from "@Src/api/fetchSliderImages";
 
 const options = {
   keys: ["name", "name2"],
@@ -40,6 +40,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
+  const [images, setImages] = useState<string[]>([]);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
@@ -51,6 +52,9 @@ const HomeScreen = ({ navigation }: Props) => {
       }
     };
     firstTime();
+    fetchSliderImages().then((data) => {
+      setImages(data);
+    });
   }, []);
   useEffect(() => {
     navigation.setOptions({
@@ -274,7 +278,7 @@ const HomeScreen = ({ navigation }: Props) => {
           </TouchableOpacity>
         </View>
       </View>
-      <ImagesCarousel images={ImagesCarouselData} />
+      <ImagesCarousel images={images} />
       <View
         style={{
           flex: 1,

@@ -103,7 +103,11 @@ const ImagesCarousel = ({ images }: Props) => {
               width: 8,
               borderRadius: moderateScale(5),
               borderColor:
-                index === selectedIndex
+                index === selectedIndex && images.length > 1
+                  ? theme === "light"
+                    ? Colors.primary700
+                    : Colors.primary400
+                  : images.length === 1
                   ? theme === "light"
                     ? Colors.primary700
                     : Colors.primary400

@@ -41,7 +41,7 @@ const data = [
   },
 ];
 
-const aboutEECommitteScreen = ({ navigation }: Props) => {
+const AboutEECommitteScreen = ({ navigation }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
 
@@ -256,4 +256,4 @@ const aboutEECommitteScreen = ({ navigation }: Props) => {
   );
 };
 
-export default aboutEECommitteScreen;
+export default AboutEECommitteScreen;

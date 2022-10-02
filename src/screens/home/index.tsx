@@ -25,6 +25,7 @@ import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { StatusBar } from "expo-status-bar";
 import { fetchSliderImages } from "@Src/api/fetchSliderImages";
 import * as Notifications from "expo-notifications";
+import { useIsFocused } from "@react-navigation/native";
 
 const options = {
   keys: ["name", "name2"],
@@ -43,6 +44,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const [searchBarFocused, setSearchBarFocused] = useState(false);
   const [images, setImages] = useState<string[]>([]);
   const [notificationCount, setNotificationCount] = useState(0);
+  const isFocused = useIsFocused();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   useEffect(() => {
@@ -59,26 +61,20 @@ const HomeScreen = ({ navigation }: Props) => {
       setImages(data);
     });
   }, []);
-  useLayoutEffect(() => {
+  useEffect(() => {
     const CheckNotificationCount = async () => {
       const count = await getDataFromStorage("notificationsCount");
       if (count != null) {
         setNotificationCount(count);
-        console.log(count);
       }
     };
     CheckNotificationCount();
-    console.log("sssssssssssssssssssssssssssssssssssss", notificationCount);
-  }, [navigation, notificationCount]);
+  }, [isFocused]);
   useEffect(() => {
     const subscription1 = Notifications.addNotificationReceivedListener(
       (notification) => {
-        console.log("NOTIFICATION RECEIVED");
-        console.log(notification);
         addNotificationCount();
-        // navigation.navigate("Notification");
         // const userName = notification.request.content.data;
-        // console.log(userName);
       }
     );
     const addNotificationCount = async () => {
@@ -87,11 +83,8 @@ const HomeScreen = ({ navigation }: Props) => {
     };
     const subscription2 = Notifications.addNotificationResponseReceivedListener(
       (response) => {
-        console.log("NOTIFICATION RESPONSE RECEIVED");
-        console.log(response);
         navigation.navigate("Notification");
         // const userName = response.notification.request.content.data;
-        // console.log(userName);
       }
     );
 

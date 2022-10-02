@@ -33,7 +33,9 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
             fontFamily: "TajawalBold",
           }}
         >
-          لا يوجد يوست شامل حاليًا
+          {route?.params?.postTitle === "البوست الشامل"
+            ? "لا يوجد بوست شامل حاليًا"
+            : "لا يوجد تعريف للمادة"}
         </Text>
       )}
     </ScrollView>

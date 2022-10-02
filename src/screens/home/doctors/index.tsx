@@ -32,7 +32,7 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: "الكادر التدريسي",
+      headerTitle: "الهيئة التدريسي",
       headerTitleStyle: {
         fontFamily: "Bukra",
       },

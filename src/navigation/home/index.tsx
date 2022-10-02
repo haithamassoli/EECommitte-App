@@ -19,7 +19,7 @@ export default function HomeNavigation() {
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
-        options={{ headerTitle: "الكادر التدريسي" }}
+        options={{ headerTitle: "الهيئة التدريسي" }}
         name="Doctors"
         component={DoctorsScreen}
       />

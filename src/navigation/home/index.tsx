@@ -9,6 +9,8 @@ import OurExplanationsScreen from "@Screens/home/OurExplanations";
 import FavoriteScreen from "@Screens/home/Favorite";
 import FAQScreen from "@Screens/home/FAQ";
 import RegestrationScreen from "@Screens/home/Regestration";
+import NotificationScreen from "@Screens/home/Notification";
+import SubjectNameScreen from "@Screens/home/SubjectName";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +36,8 @@ export default function HomeNavigation() {
       <Stack.Screen name="OurExplanations" component={OurExplanationsScreen} />
       <Stack.Screen name="FAQ" component={FAQScreen} />
       <Stack.Screen name="Regestration" component={RegestrationScreen} />
+      <Stack.Screen name="Notification" component={NotificationScreen} />
+      <Stack.Screen name="SubjectName" component={SubjectNameScreen} />
       <Stack.Screen
         name="Favorite"
         options={{

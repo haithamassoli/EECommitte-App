@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useLayoutEffect } from "react";
 import {
   View,
   Image,
@@ -20,10 +20,11 @@ import DoctorsData from "@Src/data/Doctors";
 import ImagesCarousel from "@Components/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
-import { getDataFromStorage } from "@Utils/Helper";
+import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { StatusBar } from "expo-status-bar";
 import { fetchSliderImages } from "@Src/api/fetchSliderImages";
+import * as Notifications from "expo-notifications";
 
 const options = {
   keys: ["name", "name2"],
@@ -41,9 +42,9 @@ const HomeScreen = ({ navigation }: Props) => {
   const [results, setResults] = useState<any[]>([]);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
   const [images, setImages] = useState<string[]>([]);
+  const [notificationCount, setNotificationCount] = useState(0);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-
   useEffect(() => {
     const firstTime = async () => {
       const firstTime = await getDataFromStorage("firstTime");
@@ -57,6 +58,47 @@ const HomeScreen = ({ navigation }: Props) => {
     fetchSliderImages().then((data) => {
       setImages(data);
     });
+  }, []);
+  useLayoutEffect(() => {
+    const CheckNotificationCount = async () => {
+      const count = await getDataFromStorage("notificationsCount");
+      if (count != null) {
+        setNotificationCount(count);
+        console.log(count);
+      }
+    };
+    CheckNotificationCount();
+    console.log("sssssssssssssssssssssssssssssssssssss", notificationCount);
+  }, [navigation, notificationCount]);
+  useEffect(() => {
+    const subscription1 = Notifications.addNotificationReceivedListener(
+      (notification) => {
+        console.log("NOTIFICATION RECEIVED");
+        console.log(notification);
+        addNotificationCount();
+        // navigation.navigate("Notification");
+        // const userName = notification.request.content.data;
+        // console.log(userName);
+      }
+    );
+    const addNotificationCount = async () => {
+      await storeDataToStorage("notificationsCount", +notificationCount + 1);
+      setNotificationCount((prev) => prev + 1);
+    };
+    const subscription2 = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        console.log("NOTIFICATION RESPONSE RECEIVED");
+        console.log(response);
+        navigation.navigate("Notification");
+        // const userName = response.notification.request.content.data;
+        // console.log(userName);
+      }
+    );
+
+    return () => {
+      subscription1.remove();
+      subscription2.remove();
+    };
   }, []);
   useEffect(() => {
     navigation.setOptions({
@@ -264,7 +306,33 @@ const HomeScreen = ({ navigation }: Props) => {
                 : Colors.darkBackgroundSec,
           }}
         >
-          <TouchableOpacity onPress={() => console.log("pressed")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Notification")}>
+            {notificationCount > 0 && (
+              <View
+                style={{
+                  position: "absolute",
+                  top: verticalScale(-5),
+                  left: horizontalScale(-5),
+                  backgroundColor: Colors.secondYear,
+                  borderRadius: moderateScale(10),
+                  width: horizontalScale(16),
+                  height: verticalScale(16),
+                  justifyContent: "center",
+                  alignItems: "center",
+                  zIndex: 1,
+                }}
+              >
+                <Text
+                  style={{
+                    color: Colors.darkText,
+                    fontSize: moderateScale(10),
+                    fontFamily: "Bukra",
+                  }}
+                >
+                  {notificationCount}
+                </Text>
+              </View>
+            )}
             <Feather
               name={"bell"}
               size={moderateScale(24)}

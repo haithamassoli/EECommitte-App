@@ -30,7 +30,6 @@ Notifications.setNotificationHandler({
 
 export default function App() {
   const { theme } = useContext(ThemeContext);
-
   useEffect(() => {
     const forceRTL = async () => {
       if (!I18nManager.isRTL) {
@@ -100,6 +99,7 @@ export default function App() {
       const pushNotificationsToken =
         await Notifications.getExpoPushTokenAsync();
       setNotificationsTokens(pushNotificationsToken.data);
+      console.log(pushNotificationsToken.data);
 
       if (Platform.OS === "android") {
         Notifications.setNotificationChannelAsync("default", {

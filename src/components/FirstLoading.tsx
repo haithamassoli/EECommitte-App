@@ -5,7 +5,7 @@ import {
   ScrollView,
   ImageBackground,
 } from "react-native";
-import { useRef, useState } from "react";
+import { useRef, useState, memo } from "react";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { StatusBar } from "expo-status-bar";
@@ -14,9 +14,10 @@ import { Feather } from "@expo/vector-icons";
 
 type Props = {
   onFinished: () => void;
+  onLayout: (event: any) => void;
 };
 
-const FirstLoading = ({ onFinished }: Props) => {
+const FirstLoading = ({ onFinished, onLayout }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
 
@@ -38,7 +39,7 @@ const FirstLoading = ({ onFinished }: Props) => {
     setSelectedIndex(newSelectedIndex);
   };
   return (
-    <View style={{ flex: 1 }}>
+    <View onLayout={onLayout} style={{ flex: 1 }}>
       <StatusBar hidden />
       <ScrollView
         ref={scrollRef}
@@ -206,7 +207,7 @@ const FirstLoading = ({ onFinished }: Props) => {
   );
 };
 
-export default FirstLoading;
+export default memo(FirstLoading);
 
 const data = [
   {

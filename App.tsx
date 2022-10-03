@@ -56,7 +56,6 @@ export default function App() {
       const firstTime = await getDataFromStorage("firstTime");
       if (firstTime === null) {
         setIsFirstTime(true);
-        await storeDataToStorage("firstTime", true);
       }
     };
     firstTime();
@@ -115,6 +114,11 @@ export default function App() {
     configurePushNotifications();
   }, []);
 
+  const onFinished = useCallback(async () => {
+    setIsFirstTime(false);
+    await storeDataToStorage("firstTime", true);
+  }, []);
+
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync();
@@ -126,7 +130,7 @@ export default function App() {
   }
 
   if (isFirstTime) {
-    return <FirstLoading onFinished={() => setIsFirstTime(false)} />;
+    return <FirstLoading onLayout={onLayoutRootView} onFinished={onFinished} />;
   }
 
   return (

@@ -119,7 +119,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
 
   if (loading) {
     return (
-      <ActivityIndicator style={{ flex: 1 }} size="large" color={Colors.gray} />
+      <ActivityIndicator style={{ flex: 1 }} size="large" color={textColor} />
     );
   }
 

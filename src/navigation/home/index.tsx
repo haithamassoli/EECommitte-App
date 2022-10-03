@@ -7,7 +7,7 @@ import RecordsScreen from "@Screens/home/Records";
 import OurExplanationsScreen from "@Screens/home/OurExplanations";
 import FavoriteScreen from "@Screens/home/Favorite";
 import FAQScreen from "@Screens/home/FAQ";
-import RegestrationScreen from "@Screens/home/Regestration";
+import RegistrationScreen from "@Screens/home/Registration";
 import NotificationScreen from "@Screens/home/Notification";
 import SubjectNameScreen from "@Screens/home/SubjectName";
 import { Feather } from "@expo/vector-icons";
@@ -229,7 +229,7 @@ export default function HomeNavigation({ navigation }: Props) {
         component={FAQScreen}
       />
       <Stack.Screen
-        name="Regestration"
+        name="Registration"
         options={{
           headerTitle: "ما يخص التسجيل",
           headerLeft: () => (
@@ -239,7 +239,7 @@ export default function HomeNavigation({ navigation }: Props) {
             />
           ),
         }}
-        component={RegestrationScreen}
+        component={RegistrationScreen}
       />
       <Stack.Screen
         name="Notification"

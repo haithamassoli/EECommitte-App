@@ -54,7 +54,7 @@ const screenData = [
   },
 ];
 
-const RegestrationScreen = ({ navigation }: Props) => {
+const RegistrationScreen = ({ navigation }: Props) => {
   const textColor = Colors.lightText;
 
   return (
@@ -126,4 +126,4 @@ const RegestrationScreen = ({ navigation }: Props) => {
   );
 };
 
-export default RegestrationScreen;
+export default RegistrationScreen;

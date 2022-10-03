@@ -200,7 +200,7 @@ const HomeScreen = ({ navigation }: Props) => {
       title2: "التسجيل",
       lightIcon: require("@Assets/images/icons/light-icons/registration.png"),
       darkIcon: require("@Assets/images/icons/dark-icons/registration.png"),
-      onPress: () => navigation.navigate("Regestration"),
+      onPress: () => navigation.navigate("Registration"),
     },
   ];
 

@@ -29,7 +29,7 @@ export type HomeStackParamList = {
   OurExplanations: undefined;
   Favorite: undefined;
   FAQ: undefined;
-  Regestration: undefined;
+  Registration: undefined;
   Notification: undefined;
   SubjectName: undefined;
 };

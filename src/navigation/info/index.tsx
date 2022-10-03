@@ -1,17 +1,22 @@
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  StackScreenProps,
+} from "@react-navigation/stack";
 import InfoScreen from "@Screens/info";
 import AboutEECommitteScreen from "@Screens/info/aboutEECommitte";
 import SupportUsScreen from "@Screens/info/supportUs";
 import { ThemeContext } from "@Src/store/themeContext";
+import { BottomTabParamList } from "@Types/navigation";
 import { horizontalScale, moderateScale } from "@Utils/Platform";
 import { useContext } from "react";
 import { View } from "react-native";
 
 const Stack = createStackNavigator();
+type Props = StackScreenProps<BottomTabParamList, "InfoNavigation">;
 
-export default function InfoNavigation() {
+export default function InfoNavigation({ navigation }: Props) {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const iconColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
@@ -70,7 +75,30 @@ export default function InfoNavigation() {
         component={AboutEECommitteScreen}
       />
       <Stack.Screen
-        options={{ headerTitle: "الدعم" }}
+        options={{
+          headerTitle: "الدعم",
+          headerLeft: () => (
+            <View
+              style={{
+                flexDirection: "row",
+              }}
+            >
+              <Feather
+                name="arrow-right"
+                size={24}
+                color={iconColor}
+                style={{ paddingHorizontal: 10 }}
+                onPress={() => navigation.goBack()}
+              />
+              <Feather
+                name="heart"
+                size={24}
+                color={iconColor}
+                onPress={() => navigation.goBack()}
+              />
+            </View>
+          ),
+        }}
         name="SupportUs"
         component={SupportUsScreen}
       />

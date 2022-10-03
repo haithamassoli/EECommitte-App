@@ -10,7 +10,7 @@ import { Feather } from "@expo/vector-icons";
 import SubjectsData from "@Src/data/Subjects";
 import Colors from "@GlobalStyle/Colors";
 import SearchInput from "@Components/ui/SearchInput";
-import { useContext, useEffect, useState, useLayoutEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   deleteStorage,
   getDataFromStorage,
@@ -35,42 +35,10 @@ const SearchScreen = ({ navigation }: Props) => {
   const [results, setResults] = useState<any[]>([]);
   const [historyResults, setHistoryResults] = useState([] as any[]);
 
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => {
-        return (
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              paddingEnd: horizontalScale(10),
-            }}
-          >
-            {theme === "light" ? (
-              <Feather
-                onPress={() => toggleTheme()}
-                name="moon"
-                size={moderateScale(24)}
-                color={textColor}
-              />
-            ) : (
-              <Feather
-                onPress={() => toggleTheme()}
-                name="sun"
-                size={moderateScale(24)}
-                color={textColor}
-              />
-            )}
-          </View>
-        );
-      },
-    });
-  }, [theme]);
   useEffect(() => {
     const getHistory = async () => {
       const historySearchResults = await getDataFromStorage("searchHistory");

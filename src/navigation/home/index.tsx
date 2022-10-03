@@ -123,6 +123,55 @@ export default function HomeNavigation({ navigation }: Props) {
       <Stack.Screen
         options={{
           headerTitle: "البحث",
+          headerLeft: () => (
+            <View
+              style={{
+                flexDirection: "row",
+              }}
+            >
+              <Feather
+                name="arrow-right"
+                size={24}
+                color={iconColor}
+                style={{ paddingHorizontal: 10 }}
+                onPress={() => navigation.goBack()}
+              />
+              <Feather
+                name="search"
+                size={24}
+                color={iconColor}
+                onPress={() => navigation.goBack()}
+              />
+            </View>
+          ),
+          headerRight: () => {
+            return (
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingEnd: horizontalScale(10),
+                }}
+              >
+                {theme === "light" ? (
+                  <Feather
+                    onPress={() => toggleTheme()}
+                    name="moon"
+                    size={moderateScale(24)}
+                    color={iconColor}
+                  />
+                ) : (
+                  <Feather
+                    onPress={() => toggleTheme()}
+                    name="sun"
+                    size={moderateScale(24)}
+                    color={iconColor}
+                  />
+                )}
+              </View>
+            );
+          },
         }}
         name="Search"
         component={SearchScreen}
@@ -192,7 +241,34 @@ export default function HomeNavigation({ navigation }: Props) {
         }}
         component={RegestrationScreen}
       />
-      <Stack.Screen name="Notification" component={NotificationScreen} />
+      <Stack.Screen
+        name="Notification"
+        options={{
+          headerTitle: "الإشعارات",
+          headerLeft: () => (
+            <View
+              style={{
+                flexDirection: "row",
+              }}
+            >
+              <Feather
+                name="arrow-right"
+                size={24}
+                color={iconColor}
+                style={{ paddingHorizontal: 10 }}
+                onPress={() => navigation.goBack()}
+              />
+              <Feather
+                name="bell"
+                size={24}
+                color={iconColor}
+                onPress={() => navigation.goBack()}
+              />
+            </View>
+          ),
+        }}
+        component={NotificationScreen}
+      />
       <Stack.Screen name="SubjectName" component={SubjectNameScreen} />
       <Stack.Screen
         name="Favorite"

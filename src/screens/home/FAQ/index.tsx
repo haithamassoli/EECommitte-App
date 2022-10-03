@@ -1,4 +1,10 @@
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  ScrollView,
+} from "react-native";
 import { useContext, useEffect, useState } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -25,11 +31,6 @@ const FAQScreen = () => {
       });
   }, []);
 
-  if (loading) {
-    return (
-      <ActivityIndicator style={{ flex: 1 }} size="large" color={textColor} />
-    );
-  }
   const renderHeader = (section: SECTIONSTYPE) => {
     return (
       <View
@@ -83,8 +84,14 @@ const FAQScreen = () => {
   const updateSections = (activeSections: any) => {
     setActiveSections(activeSections);
   };
+
+  if (loading) {
+    return (
+      <ActivityIndicator style={{ flex: 1 }} size="large" color={textColor} />
+    );
+  }
   return (
-    <View style={{ flex: 1, paddingTop: verticalScale(10) }}>
+    <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
       <Accordion
         sections={data}
         containerStyle={{
@@ -106,7 +113,7 @@ const FAQScreen = () => {
         onChange={updateSections}
         touchableComponent={TouchableOpacity}
       />
-    </View>
+    </ScrollView>
   );
 };
 

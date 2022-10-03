@@ -1,88 +1,152 @@
-import { View, Text, ScrollView } from "react-native";
-import { useLayoutEffect, useEffect, useState, useContext } from "react";
-import { StackScreenProps } from "@react-navigation/stack";
-import { HomeStackParamList } from "@Types/navigation";
+import { useEffect, useState, useContext } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  Falsy,
+  RecursiveArray,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
 import { fetchNotifications } from "@Src/api/fetchNotifications";
-import { storeDataToStorage } from "@Utils/Helper";
+import { rtlWebview, screenWidth, storeDataToStorage } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-
-type Props = StackScreenProps<HomeStackParamList, "Notification">;
+import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
+import { Feather } from "@expo/vector-icons";
+import Accordion from "react-native-collapsible/Accordion";
+const systemFonts = [...defaultSystemFonts, "Dubai"];
 
 type NotificationType = {
   title: string;
   body: string;
+  id: string;
+};
+type NonRegisteredStylesProp<T> = T | Falsy | RecursiveArray<T | Falsy>;
+type StylesDictionary = {
+  [tag: string]: NonRegisteredStylesProp<any>;
 };
 
-const NotificationScreen = ({ navigation }: Props) => {
+const NotificationScreen = () => {
   const [notification, setNotification] = useState<NotificationType[]>([]);
+  const [activeSections, setActiveSections] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const backgroundColor =
-    theme === "light" ? Colors.lightBackgroundSec : Colors.darkBackgroundSec;
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: "الاشعارات",
-      headerTitleStyle: {
-        fontFamily: "Bukra",
-      },
-    });
-  }, []);
+
+  const tagsStyles: StylesDictionary = {
+    body: {
+      color: textColor,
+      paddingHorizontal: horizontalScale(10),
+      lineHeight: verticalScale(26),
+      fontSize: moderateScale(18),
+      fontFamily: "Dubai",
+    },
+    a: {
+      color: theme === "light" ? Colors.primary700 : Colors.primary400,
+    },
+  };
+
   useEffect(() => {
     fetchNotifications()
       .then((res: any) => {
-        console.log(res);
         setNotification(res);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
     const deleteNotificationsCount = async () => {
       await storeDataToStorage("notificationsCount", 0);
     };
     deleteNotificationsCount();
   }, []);
-  return (
-    <ScrollView
-      style={{
-        flex: 1,
-        paddingVertical: verticalScale(10),
-        paddingHorizontal: horizontalScale(10),
-      }}
-    >
-      {notification.map((item, index) => (
-        <View
-          key={index}
+
+  const renderHeader = (section: NotificationType) => {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          backgroundColor:
+            theme === "light" ? Colors.lightBackground : Colors.darkBackground,
+          paddingHorizontal: horizontalScale(10),
+          paddingVertical: verticalScale(10),
+          borderRadius: 10,
+          marginBottom: verticalScale(10),
+        }}
+      >
+        <Text
           style={{
-            backgroundColor,
-            paddingVertical: verticalScale(12),
-            paddingHorizontal: horizontalScale(12),
-            borderRadius: moderateScale(16),
-            marginBottom: verticalScale(18),
-            elevation: 5,
+            color: textColor,
+            fontSize: verticalScale(18),
+            fontFamily: "Bukra",
+            paddingHorizontal: horizontalScale(10),
+            paddingVertical: verticalScale(6),
           }}
         >
-          <Text
-            style={{
-              fontFamily: "Bukra",
-              fontSize: moderateScale(20),
-              color: textColor,
-            }}
-          >
-            {item.title}
-          </Text>
-          <Text
-            style={{
-              fontFamily: "TajawalMedium",
-              fontSize: moderateScale(16),
-              color: textColor,
-            }}
-          >
-            {item.body}
-          </Text>
-        </View>
-      ))}
+          {section.title}
+        </Text>
+        <Feather
+          name="chevron-down"
+          size={verticalScale(20)}
+          color={textColor}
+        />
+      </View>
+    );
+  };
+  const renderContent = (section: NotificationType) => {
+    return (
+      <RenderHTML
+        defaultTextProps={{ selectable: true }}
+        contentWidth={screenWidth}
+        baseStyle={{
+          overflow: "hidden",
+        }}
+        source={{
+          html: rtlWebview(section.body),
+        }}
+        tagsStyles={tagsStyles}
+        systemFonts={systemFonts}
+      />
+    );
+  };
+
+  const updateSections = (activeSections: any) => {
+    setActiveSections(activeSections);
+  };
+
+  if (loading) {
+    return (
+      <ActivityIndicator style={{ flex: 1 }} size="large" color={textColor} />
+    );
+  }
+  return (
+    <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
+      <Accordion
+        sections={notification}
+        containerStyle={{
+          paddingHorizontal: horizontalScale(16),
+        }}
+        sectionContainerStyle={{
+          backgroundColor:
+            theme === "light"
+              ? Colors.lightBackgroundSec
+              : Colors.darkBackgroundSec,
+          borderRadius: moderateScale(10),
+          marginBottom: verticalScale(10),
+          paddingHorizontal: horizontalScale(16),
+          paddingVertical: verticalScale(10),
+        }}
+        activeSections={activeSections}
+        renderHeader={renderHeader}
+        renderContent={renderContent}
+        onChange={updateSections}
+        touchableComponent={TouchableOpacity}
+      />
     </ScrollView>
   );
 };

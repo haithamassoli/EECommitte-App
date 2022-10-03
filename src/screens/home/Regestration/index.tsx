@@ -6,10 +6,8 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
-import { useContext } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
-import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { screenWidth } from "@Utils/Helper";
 import { moderateScale, verticalScale } from "@Utils/Platform";
@@ -57,8 +55,7 @@ const screenData = [
 ];
 
 const RegestrationScreen = ({ navigation }: Props) => {
-  const { theme } = useContext(ThemeContext);
-  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  const textColor = Colors.lightText;
 
   return (
     <ScrollView

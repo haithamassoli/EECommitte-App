@@ -1,47 +1,23 @@
 import RecordCard from "@Components/RecordCard";
-import CustomHeader from "@Components/ui/CustomHeader";
 import SearchInput from "@Components/ui/SearchInput";
 import Colors from "@GlobalStyle/Colors";
-import { StackScreenProps } from "@react-navigation/stack";
 import { FlashList } from "@shopify/flash-list";
 import RecordsData, { RecordsDataSearch } from "@Src/data/Records";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
-import { HomeStackParamList } from "@Types/navigation";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { memo, useContext, useLayoutEffect, useState } from "react";
+import { memo, useContext, useState } from "react";
 import { View, Text } from "react-native";
-
-type Props = StackScreenProps<HomeStackParamList, "Records">;
 
 const options = {
   keys: ["subject", "searchName", "doctor"],
 };
 
-const RecordsScreen = ({ navigation }: Props) => {
+const RecordsScreen = () => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Record[] | []>([]);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const iconColor =
-    theme === "light"
-      ? require("@Assets/images/icons/light-icons/records.png")
-      : require("@Assets/images/icons/dark-icons/records.png");
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: "تسجيلات اللجنة",
-      headerTitleStyle: {
-        fontFamily: "Bukra",
-      },
-      headerLeft: () => (
-        <CustomHeader
-          onPress={() => navigation.goBack()}
-          iconColor={iconColor}
-        />
-      ),
-    });
-  }, []);
 
   return (
     <View

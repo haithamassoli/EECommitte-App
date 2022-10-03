@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useLayoutEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
   View,
   Image,

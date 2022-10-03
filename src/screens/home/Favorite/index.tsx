@@ -1,6 +1,5 @@
 import { ScrollView, Text, View, TouchableOpacity } from "react-native";
-import { useLayoutEffect, useContext } from "react";
-import CustomHeader from "@Components/ui/CustomHeader";
+import { useContext } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -16,26 +15,6 @@ const FavoriteScreen = ({ navigation }: Props) => {
   const { theme } = useContext(ThemeContext);
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const iconColor =
-    theme === "light"
-      ? require("@Assets/images/icons/light-icons/fav.png")
-      : require("@Assets/images/icons/dark-icons/fav.png");
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: "المفضلة",
-      headerTitleStyle: {
-        fontFamily: "Bukra",
-      },
-      headerLeft: () => (
-        <CustomHeader
-          onPress={() => navigation.goBack()}
-          iconColor={iconColor}
-        />
-      ),
-    });
-  }, []);
-
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(16) }}>
       {favorite.length === 0 && (

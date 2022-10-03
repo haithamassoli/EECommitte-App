@@ -1,9 +1,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "@Screens/home";
 import CalculatorScreen from "@Screens/home/Calculator";
-import WeeklyNotebooksScreen from "@Screens/home/WeeklyNotebooks";
-import DoctorsScreen from "@Screens/home/doctors";
-import SearchScreen from "@Screens/search";
+import DoctorsScreen from "@Screens/home/Doctors";
+import SearchScreen from "@Screens/home/Search";
 import RecordsScreen from "@Screens/home/Records";
 import OurExplanationsScreen from "@Screens/home/OurExplanations";
 import FavoriteScreen from "@Screens/home/Favorite";
@@ -11,19 +10,117 @@ import FAQScreen from "@Screens/home/FAQ";
 import RegestrationScreen from "@Screens/home/Regestration";
 import NotificationScreen from "@Screens/home/Notification";
 import SubjectNameScreen from "@Screens/home/SubjectName";
+import { Feather } from "@expo/vector-icons";
+import { horizontalScale, moderateScale } from "@Utils/Platform";
+import { View } from "react-native";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
+import Colors from "@GlobalStyle/Colors";
+import { BottomTabParamList } from "@Types/navigation";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import CustomHeader from "@Components/ui/CustomHeader";
 
 const Stack = createStackNavigator();
+type Props = BottomTabScreenProps<BottomTabParamList, "HomeNavigation">;
 
-export default function HomeNavigation() {
+export default function HomeNavigation({ navigation }: Props) {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const iconColor =
+    theme === "light" ? Colors.darkBackgroundSec : Colors.lightBackgroundSec;
+
+  const clacIcon =
+    theme === "light"
+      ? require("@Assets/images/icons/light-icons/calculator.png")
+      : require("@Assets/images/icons/dark-icons/calculator.png");
+
+  const docIcon =
+    theme === "light"
+      ? require("@Assets/images/icons/light-icons/doctors.png")
+      : require("@Assets/images/icons/dark-icons/doctors.png");
+  const faqIcon =
+    theme === "light"
+      ? require("@Assets/images/icons/light-icons/faq.png")
+      : require("@Assets/images/icons/dark-icons/faq.png");
+  const favIcon =
+    theme === "light"
+      ? require("@Assets/images/icons/light-icons/fav.png")
+      : require("@Assets/images/icons/dark-icons/fav.png");
+  const ExpIcon =
+    theme === "light"
+      ? require("@Assets/images/icons/light-icons/best.png")
+      : require("@Assets/images/icons/dark-icons/best.png");
+  const recIcon =
+    theme === "light"
+      ? require("@Assets/images/icons/light-icons/records.png")
+      : require("@Assets/images/icons/dark-icons/records.png");
+  const regIcon =
+    theme === "light"
+      ? require("@Assets/images/icons/light-icons/registration.png")
+      : require("@Assets/images/icons/dark-icons/registration.png");
+
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerTitleStyle: {
+          fontSize: moderateScale(18),
+          fontFamily: "Bukra",
+        },
+        headerRight: () => {
+          return (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                alignItems: "center",
+                paddingEnd: horizontalScale(10),
+              }}
+            >
+              <Feather
+                onPress={() =>
+                  navigation.navigate("HomeNavigation", {
+                    screen: "Search",
+                  })
+                }
+                name="search"
+                size={moderateScale(24)}
+                color={iconColor}
+                style={{ paddingStart: horizontalScale(10) }}
+              />
+              {theme === "light" ? (
+                <Feather
+                  onPress={() => toggleTheme()}
+                  name="moon"
+                  size={moderateScale(24)}
+                  color={iconColor}
+                />
+              ) : (
+                <Feather
+                  onPress={() => toggleTheme()}
+                  name="sun"
+                  size={moderateScale(24)}
+                  color={iconColor}
+                />
+              )}
+            </View>
+          );
+        },
+      }}
+    >
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
-        options={{ headerTitle: "الهيئة التدريسي" }}
+        options={{
+          headerTitle: "الهيئة التدريسي",
+          headerLeft: () => (
+            <CustomHeader
+              onPress={() => navigation.goBack()}
+              iconColor={docIcon}
+            />
+          ),
+        }}
         name="Doctors"
         component={DoctorsScreen}
       />
-      <Stack.Screen name="WeeklyNotebooks" component={WeeklyNotebooksScreen} />
       <Stack.Screen
         options={{
           headerTitle: "البحث",
@@ -31,17 +128,83 @@ export default function HomeNavigation() {
         name="Search"
         component={SearchScreen}
       />
-      <Stack.Screen name="Calculator" component={CalculatorScreen} />
-      <Stack.Screen name="Records" component={RecordsScreen} />
-      <Stack.Screen name="OurExplanations" component={OurExplanationsScreen} />
-      <Stack.Screen name="FAQ" component={FAQScreen} />
-      <Stack.Screen name="Regestration" component={RegestrationScreen} />
+      <Stack.Screen
+        name="Calculator"
+        component={CalculatorScreen}
+        options={{
+          headerTitle: "حساب المعدل",
+          headerLeft: () => (
+            <CustomHeader
+              onPress={() => navigation.goBack()}
+              iconColor={clacIcon}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Records"
+        options={{
+          headerTitle: "تسجيلات اللجنة",
+          headerLeft: () => (
+            <CustomHeader
+              onPress={() => navigation.goBack()}
+              iconColor={recIcon}
+            />
+          ),
+        }}
+        component={RecordsScreen}
+      />
+      <Stack.Screen
+        name="OurExplanations"
+        options={{
+          headerTitle: "أبرز شروحاتنا",
+          headerLeft: () => (
+            <CustomHeader
+              onPress={() => navigation.goBack()}
+              iconColor={ExpIcon}
+            />
+          ),
+        }}
+        component={OurExplanationsScreen}
+      />
+      <Stack.Screen
+        name="FAQ"
+        options={{
+          headerTitle: "الأسئلة الشائعة",
+          headerLeft: () => (
+            <CustomHeader
+              onPress={() => navigation.goBack()}
+              iconColor={faqIcon}
+            />
+          ),
+        }}
+        component={FAQScreen}
+      />
+      <Stack.Screen
+        name="Regestration"
+        options={{
+          headerTitle: "ما يخص التسجيل",
+          headerLeft: () => (
+            <CustomHeader
+              onPress={() => navigation.goBack()}
+              iconColor={regIcon}
+            />
+          ),
+        }}
+        component={RegestrationScreen}
+      />
       <Stack.Screen name="Notification" component={NotificationScreen} />
       <Stack.Screen name="SubjectName" component={SubjectNameScreen} />
       <Stack.Screen
         name="Favorite"
         options={{
           headerTitle: "المفضلة",
+          headerLeft: () => (
+            <CustomHeader
+              onPress={() => navigation.goBack()}
+              iconColor={favIcon}
+            />
+          ),
         }}
         component={FavoriteScreen}
       />

@@ -11,9 +11,6 @@ const SubjectNameScreen = ({ navigation }: Props) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "الأسماء الشائعة للمواد",
-      headerTitleStyle: {
-        fontFamily: "Bukra",
-      },
     });
   }, []);
   return (

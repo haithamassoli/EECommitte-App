@@ -1,12 +1,9 @@
-import CustomHeader from "@Components/ui/CustomHeader";
 import CustomModal from "@Components/ui/Modal";
 import Colors from "@GlobalStyle/Colors";
-import { StackScreenProps } from "@react-navigation/stack";
 import { ThemeContext } from "@Src/store/themeContext";
-import { HomeStackParamList } from "@Types/navigation";
 import { screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { useContext, useLayoutEffect, useState, useRef } from "react";
+import { useContext, useState, useRef } from "react";
 import {
   View,
   ScrollView,
@@ -18,16 +15,9 @@ import {
 import CardRate from "./CardRate";
 import SubjectRate from "./SubjectRate";
 
-type Props = StackScreenProps<HomeStackParamList, "Calculator">;
-
-const CalculatorScreen = ({ navigation }: Props) => {
+const CalculatorScreen = () => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const iconColor =
-    theme === "light"
-      ? require("@Assets/images/icons/light-icons/calculator.png")
-      : require("@Assets/images/icons/dark-icons/calculator.png");
-
   const scrollViewRef = useRef();
   const [cumulative, setCumulative] = useState(true);
   const [visible, setVisible] = useState(false);
@@ -41,21 +31,6 @@ const CalculatorScreen = ({ navigation }: Props) => {
     { label: "A+", value: 4.2 },
   ]);
   const [subjectCount, setSubjectCount] = useState(1);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: "حساب المعدل",
-      headerTitleStyle: {
-        fontFamily: "Bukra",
-      },
-      headerLeft: () => (
-        <CustomHeader
-          onPress={() => navigation.goBack()}
-          iconColor={iconColor}
-        />
-      ),
-    });
-  }, []);
 
   const addSubject = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);

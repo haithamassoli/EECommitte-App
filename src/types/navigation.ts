@@ -22,7 +22,6 @@ export type InfoStackParamList = {
 
 export type HomeStackParamList = {
   Home: undefined;
-  WeeklyNotebooks: undefined;
   Calculator: undefined;
   Doctors: { doctorId?: number };
   Search: undefined;

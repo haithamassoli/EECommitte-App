@@ -1,47 +1,23 @@
 import RecordCard from "@Components/RecordCard";
-import CustomHeader from "@Components/ui/CustomHeader";
 import SearchInput from "@Components/ui/SearchInput";
 import Colors from "@GlobalStyle/Colors";
-import { StackScreenProps } from "@react-navigation/stack";
 import { FlashList } from "@shopify/flash-list";
 import explanationsData from "@Src/data/OurExplanations";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
-import { HomeStackParamList } from "@Types/navigation";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { memo, useContext, useLayoutEffect, useState } from "react";
+import { memo, useContext, useState } from "react";
 import { View, Text } from "react-native";
-
-type Props = StackScreenProps<HomeStackParamList, "OurExplanations">;
 
 const options = {
   keys: ["searchName", "subject", "doctor"],
 };
 
-const OurExplanationsScreen = ({ navigation }: Props) => {
+const OurExplanationsScreen = () => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Record[] | []>([]);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const iconColor =
-    theme === "light"
-      ? require("@Assets/images/icons/light-icons/best.png")
-      : require("@Assets/images/icons/dark-icons/best.png");
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: "أبرز شروحاتنا",
-      headerTitleStyle: {
-        fontFamily: "Bukra",
-      },
-      headerLeft: () => (
-        <CustomHeader
-          onPress={() => navigation.goBack()}
-          iconColor={iconColor}
-        />
-      ),
-    });
-  }, []);
 
   return (
     <View

@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import * as Notifications from "expo-notifications";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -13,6 +13,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import { FavoriteProvider } from "@Src/store/favoriteContext";
 import { setNotificationsTokens } from "@Src/api/setNotificationsTokens";
+import FirstLoading from "@Components/FirstLoading";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -30,6 +31,7 @@ Notifications.setNotificationHandler({
 
 export default function App() {
   const { theme } = useContext(ThemeContext);
+  const [isFirstTime, setIsFirstTime] = useState(false);
   useEffect(() => {
     const forceRTL = async () => {
       if (!I18nManager.isRTL) {
@@ -53,6 +55,7 @@ export default function App() {
     const firstTime = async () => {
       const firstTime = await getDataFromStorage("firstTime");
       if (firstTime === null) {
+        setIsFirstTime(true);
         await storeDataToStorage("firstTime", true);
       }
     };
@@ -120,6 +123,10 @@ export default function App() {
 
   if (!fontsLoaded) {
     return null;
+  }
+
+  if (isFirstTime) {
+    return <FirstLoading onFinished={() => setIsFirstTime(false)} />;
   }
 
   return (

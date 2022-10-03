@@ -48,15 +48,6 @@ const HomeScreen = ({ navigation }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   useEffect(() => {
-    const firstTime = async () => {
-      const firstTime = await getDataFromStorage("firstTime");
-      if (firstTime == true) {
-        navigation.getParent()?.navigate("InfoNavigation", {
-          screen: "AboutEECommitte",
-        });
-      }
-    };
-    firstTime();
     fetchSliderImages().then((data) => {
       setImages(data);
     });

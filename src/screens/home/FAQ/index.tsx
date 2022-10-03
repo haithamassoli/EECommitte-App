@@ -12,11 +12,13 @@ import Accordion from "react-native-collapsible/Accordion";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
 import { fetchFAQ } from "@Src/api/fetchFAQ";
+import { screenHeight, isConnected } from "@Utils/Helper";
 type SECTIONSTYPE = { title: string; content: string };
 
 const FAQScreen = () => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  const [isConnecte, setIsConnecte] = useState<boolean | null>(false);
   const [activeSections, setActiveSections] = useState([]);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,7 +32,14 @@ const FAQScreen = () => {
         console.log(err);
       });
   }, []);
-
+  useEffect(() => {
+    isConnected().then((isConnected) => {
+      if (!isConnected) {
+        setLoading(false);
+      }
+      setIsConnecte(isConnected);
+    });
+  }, []);
   const renderHeader = (section: SECTIONSTYPE) => {
     return (
       <View
@@ -92,6 +101,48 @@ const FAQScreen = () => {
   }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
+      {data.length === 0 && isConnecte && (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            height: screenHeight,
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "Bukra",
+              fontSize: moderateScale(20),
+              color: textColor,
+              paddingBottom: verticalScale(180),
+            }}
+          >
+            لا يوجد اسئلة
+          </Text>
+        </View>
+      )}
+      {isConnecte === false && (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            height: screenHeight,
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "Bukra",
+              fontSize: moderateScale(20),
+              color: textColor,
+              paddingBottom: verticalScale(180),
+            }}
+          >
+            لا يوجد اتصال بالانترنت
+          </Text>
+        </View>
+      )}
       <Accordion
         sections={data}
         containerStyle={{

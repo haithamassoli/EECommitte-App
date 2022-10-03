@@ -9,7 +9,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { fetchNotifications } from "@Src/api/fetchNotifications";
-import { rtlWebview, screenWidth, storeDataToStorage } from "@Utils/Helper";
+import {
+  rtlWebview,
+  screenHeight,
+  screenWidth,
+  storeDataToStorage,
+  isConnected,
+} from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -30,6 +36,7 @@ type StylesDictionary = {
 
 const NotificationScreen = () => {
   const [notification, setNotification] = useState<NotificationType[]>([]);
+  const [isConnecte, setIsConnecte] = useState<boolean | null>(false);
   const [activeSections, setActiveSections] = useState([]);
   const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
@@ -47,6 +54,15 @@ const NotificationScreen = () => {
       color: theme === "light" ? Colors.primary700 : Colors.primary400,
     },
   };
+
+  useEffect(() => {
+    isConnected().then((isConnected) => {
+      if (!isConnected) {
+        setLoading(false);
+      }
+      setIsConnecte(isConnected);
+    });
+  }, []);
 
   useEffect(() => {
     fetchNotifications()
@@ -126,6 +142,48 @@ const NotificationScreen = () => {
   }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
+      {notification.length === 0 && isConnecte && (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            height: screenHeight,
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "Bukra",
+              fontSize: moderateScale(20),
+              color: textColor,
+              paddingBottom: verticalScale(180),
+            }}
+          >
+            لا يوجد إشعارات
+          </Text>
+        </View>
+      )}
+      {isConnecte === false && (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            height: screenHeight,
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "Bukra",
+              fontSize: moderateScale(20),
+              color: textColor,
+              paddingBottom: verticalScale(180),
+            }}
+          >
+            لا يوجد اتصال بالانترنت
+          </Text>
+        </View>
+      )}
       <Accordion
         sections={notification}
         containerStyle={{

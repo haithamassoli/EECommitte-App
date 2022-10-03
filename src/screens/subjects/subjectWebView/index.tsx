@@ -84,7 +84,13 @@ const SubjectWebViewScreen = ({ navigation, route }: Props) => {
               alignItems: "center",
             }}
           >
-            <Text>لا يوجد اتصال بالانترنت</Text>
+            <Text
+              style={{
+                color: Colors.lightText,
+              }}
+            >
+              لا يوجد اتصال بالانترنت
+            </Text>
           </View>
         )}
       </View>

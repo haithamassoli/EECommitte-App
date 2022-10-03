@@ -13,7 +13,8 @@ const Stack = createStackNavigator();
 
 export default function InfoNavigation() {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
+  const iconColor =
+    theme === "light" ? Colors.darkBackgroundSec : Colors.lightBackgroundSec;
   return (
     <Stack.Navigator
       screenOptions={({ navigation }) => ({

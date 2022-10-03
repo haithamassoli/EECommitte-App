@@ -327,7 +327,11 @@ const HomeScreen = ({ navigation }: Props) => {
             <Feather
               name={theme === "light" ? "moon" : "sun"}
               size={moderateScale(24)}
-              color={theme === "light" ? Colors.lightText : Colors.darkText}
+              color={
+                theme === "light"
+                  ? Colors.darkBackgroundSec
+                  : Colors.lightBackgroundSec
+              }
             />
           </TouchableOpacity>
         </View>

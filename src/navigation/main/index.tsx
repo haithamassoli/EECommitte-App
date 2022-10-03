@@ -21,7 +21,10 @@ const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
 export default function Route() {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
+  const tabBarActiveTintColor =
+    theme === "light" ? Colors.primary700 : Colors.primary400;
+  const iconColor =
+    theme === "light" ? Colors.darkBackgroundSec : Colors.lightBackgroundSec;
 
   return (
     <NavigationContainer
@@ -30,7 +33,7 @@ export default function Route() {
       <BottomTabs.Navigator
         screenOptions={({ navigation }) => ({
           tabBarHideOnKeyboard: true,
-          tabBarActiveTintColor: iconColor,
+          tabBarActiveTintColor,
           tabBarInactiveTintColor: "#9b9b9b",
           tabBarIconStyle: {
             width: horizontalScale(24),
@@ -96,17 +99,6 @@ export default function Route() {
               headerShown: false,
             }}
           />
-          {/* <BottomTabs.Screen
-            name="News"
-            component={NewsScreen}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Feather name="globe" size={moderateScale(24)} color={color} />
-              ),
-              tabBarLabel: "أخر الأخبار",
-              title: "أخر الأخبار",
-            }}
-          /> */}
           <BottomTabs.Screen
             name="SubjectsNavigation"
             component={SubjectsNavigation}

@@ -110,7 +110,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         </TouchableOpacity>
       ),
     });
-  }, [subject?.name]);
+  }, [subject?.name, theme]);
 
   useEffect(() => {
     const isFavorite = favorite.some((item) => item.id === subject.id);

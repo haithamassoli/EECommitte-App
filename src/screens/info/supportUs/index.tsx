@@ -3,10 +3,11 @@ import { useContext } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { ThemeContext } from "@Src/store/themeContext";
 import { moderateScale, verticalScale } from "@Utils/Platform";
+import Colors from "@GlobalStyle/Colors";
 
 const SupportUsScreen = () => {
   const { theme } = useContext(ThemeContext);
-  const textColor = theme === "light" ? "#000" : "#fff";
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -35,7 +36,7 @@ const SupportUsScreen = () => {
       <Ionicons
         name="heart"
         size={moderateScale(270)}
-        color="#e74c3c"
+        color={Colors.secondYear}
         style={{ marginTop: verticalScale(20) }}
       />
     </View>

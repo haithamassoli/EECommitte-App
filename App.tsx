@@ -62,11 +62,10 @@ export default function App() {
   }, []);
 
   const [fontsLoaded] = useFonts({
-    TajawalLight: require("./assets/fonts/Tajawal-Light.ttf"),
     TajawalMedium: require("./assets/fonts/Tajawal-Medium.ttf"),
-    TajawalRegular: require("./assets/fonts/Tajawal-Regular.ttf"),
     TajawalBold: require("./assets/fonts/Tajawal-Bold.ttf"),
     Bukra: require("./assets/fonts/29ltbukra.ttf"),
+    Dubai: require("./assets/fonts/dubai.ttf"),
   });
 
   useEffect(() => {

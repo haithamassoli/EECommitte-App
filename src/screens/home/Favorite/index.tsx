@@ -85,7 +85,7 @@ const FavoriteScreen = ({ navigation }: Props) => {
                   textAlign: "center",
                   fontSize: moderateScale(18),
                   color: "#F31313",
-                  fontFamily: "TajawalRegular",
+                  fontFamily: "Dubai",
                   paddingHorizontal: moderateScale(10),
                 }}
               >

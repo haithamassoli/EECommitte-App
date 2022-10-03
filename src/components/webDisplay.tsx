@@ -4,7 +4,8 @@ import { rtlWebview, screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { memo, useContext } from "react";
 import { Falsy, RecursiveArray, View } from "react-native";
-import RenderHTML from "react-native-render-html";
+import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
+const systemFonts = [...defaultSystemFonts, "Dubai"];
 
 type NonRegisteredStylesProp<T> = T | Falsy | RecursiveArray<T | Falsy>;
 type StylesDictionary = {
@@ -14,13 +15,12 @@ export const WebDisplay = memo(function WebDisplay({ html }: { html: string }) {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const tagsStyles: StylesDictionary = {
-    p: {
-      fontSize: moderateScale(18),
-      lineHeight: verticalScale(24),
-      fontFamily: "Roboto",
-      fontWeight: "normal",
-      fontStyle: "normal",
+    body: {
       color: textColor,
+      paddingHorizontal: horizontalScale(10),
+      lineHeight: verticalScale(26),
+      fontSize: moderateScale(18),
+      fontFamily: "Dubai",
     },
     a: {
       color: theme === "light" ? Colors.primary700 : Colors.primary400,
@@ -44,6 +44,7 @@ export const WebDisplay = memo(function WebDisplay({ html }: { html: string }) {
           html: rtlWebview(html),
         }}
         tagsStyles={tagsStyles}
+        systemFonts={systemFonts}
       />
     </View>
   );

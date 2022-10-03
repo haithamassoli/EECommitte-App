@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import { useContext } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { ThemeContext } from "@Src/store/themeContext";
-import { moderateScale, verticalScale } from "@Utils/Platform";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 
 const SupportUsScreen = () => {
@@ -13,8 +13,8 @@ const SupportUsScreen = () => {
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text
         style={{
-          fontFamily: "Bukra",
-          fontSize: moderateScale(20),
+          fontFamily: "TajawalBold",
+          fontSize: moderateScale(26),
           textAlign: "center",
           marginTop: verticalScale(20),
           color: textColor,
@@ -24,8 +24,9 @@ const SupportUsScreen = () => {
       </Text>
       <Text
         style={{
-          fontFamily: "TajawalRegular",
-          fontSize: moderateScale(18),
+          fontFamily: "Dubai",
+          paddingHorizontal: horizontalScale(20),
+          fontSize: moderateScale(20),
           textAlign: "center",
           marginTop: verticalScale(8),
           color: textColor,

@@ -25,8 +25,7 @@ type Props = BottomTabScreenProps<BottomTabParamList, "HomeNavigation">;
 
 export default function HomeNavigation({ navigation }: Props) {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const iconColor =
-    theme === "light" ? Colors.darkBackgroundSec : Colors.lightBackgroundSec;
+  const iconColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   const clacIcon =
     theme === "light"

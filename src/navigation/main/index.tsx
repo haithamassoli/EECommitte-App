@@ -23,8 +23,7 @@ export default function Route() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const tabBarActiveTintColor =
     theme === "light" ? Colors.primary700 : Colors.primary400;
-  const iconColor =
-    theme === "light" ? Colors.darkBackgroundSec : Colors.lightBackgroundSec;
+  const iconColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   return (
     <NavigationContainer

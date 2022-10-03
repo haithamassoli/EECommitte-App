@@ -388,7 +388,7 @@ const CalculatorScreen = () => {
             <Text
               style={{
                 fontFamily: "Bukra",
-                color: Colors.lightBackground,
+                color: Colors.darkText,
                 fontSize: moderateScale(16),
               }}
             >
@@ -410,7 +410,7 @@ const CalculatorScreen = () => {
             <Text
               style={{
                 fontFamily: "Bukra",
-                color: Colors.lightBackground,
+                color: Colors.darkText,
                 fontSize: moderateScale(16),
               }}
             >
@@ -434,7 +434,7 @@ const CalculatorScreen = () => {
         <Text
           style={{
             fontFamily: "Bukra",
-            color: Colors.lightBackground,
+            color: Colors.darkText,
             fontSize: moderateScale(16),
           }}
         >

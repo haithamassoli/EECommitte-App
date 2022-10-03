@@ -14,8 +14,7 @@ const Stack = createStackNavigator();
 
 export default function SubjectsNavigation() {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const iconColor =
-    theme === "light" ? Colors.darkBackgroundSec : Colors.lightBackgroundSec;
+  const iconColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   return (
     <Stack.Navigator

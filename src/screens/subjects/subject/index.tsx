@@ -192,6 +192,14 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             <Text style={[style.buttonText]}>الكتاب</Text>
           </TouchableOpacity>
         )}
+        {subject.manual && (
+          <TouchableOpacity
+            onPress={() => subject.manual && Linking.openURL(subject.manual)}
+            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
+          >
+            <Text style={[style.buttonText]}>المانيول</Text>
+          </TouchableOpacity>
+        )}
         {subject.prevYears && (
           <TouchableOpacity
             onPress={() =>
@@ -208,16 +216,6 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
             <Text style={[style.buttonText]}>الامتحانات</Text>
-          </TouchableOpacity>
-        )}
-        {subject.notebook && (
-          <TouchableOpacity
-            onPress={() =>
-              subject.notebook && Linking.openURL(subject.notebook)
-            }
-            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
-          >
-            <Text style={[style.buttonText]}>الدفاتر</Text>
           </TouchableOpacity>
         )}
         {subject.slides && (

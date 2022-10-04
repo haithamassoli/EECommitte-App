@@ -5,13 +5,13 @@ export interface Subject {
   aboutSubject?: string;
   subjectLink: string;
   fullPost?: string;
-  notebook?: string;
   book?: string;
   prevYears?: string;
   slides?: string;
   explanations?: Explanation[];
   exams?: string;
   answers?: string;
+  manual?: string;
   color: string;
 }
 

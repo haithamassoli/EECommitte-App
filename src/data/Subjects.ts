@@ -8,15 +8,13 @@ const Subjects: Subject[] = [
     name2: "Calculus 101",
     color: Colors.firstYear,
     book: "https://drive.google.com/drive/u/1/folders/1yd7rDM76WzIgu-mFt9rJ8MtAcf5EDtxB",
-    notebook:
-      "https://drive.google.com/drive/u/1/folders/1xjrfMQNQlnjqNlLHfPGKlbHFy8oC2fCl",
     explanations: [
       {
         name: "شرح محمد الطراونة",
         link: "https://drive.google.com/drive/u/1/folders/1bsPlOxLoNaIy9XYFMf8q6W7uiq1RYtzK",
       },
       {
-        name: "شروحات أخرى",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/1ugGwOaZtChnWxJETsrWM1uwOnGb3AOPF",
       },
     ],
@@ -32,15 +30,13 @@ const Subjects: Subject[] = [
     name2: "Calculus 102",
     color: Colors.firstYear,
     book: "https://drive.google.com/drive/u/1/folders/1W_GhXhgO036jdQeScawA_iyILYd6Y232",
-    notebook:
-      "https://drive.google.com/drive/u/1/folders/16v3-8Es5FMHXXrET2JZwPLvRgDk2jHPH",
     explanations: [
       {
         name: "شرح محمد الطراونة",
         link: "https://drive.google.com/drive/u/1/folders/1r67FDv5GpK_AosiSVbJgzgCYjB-z6gPc",
       },
       {
-        name: "شروحات أخرى",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/1shTpL6d8Ujtxc_C3ZlBHzQzEcUDGygGp",
       },
     ],
@@ -57,8 +53,6 @@ const Subjects: Subject[] = [
     name2: "Diff",
     color: Colors.secondYear,
     book: "https://drive.google.com/drive/u/1/folders/1r3XKeqoQNs4_TZjR24_u4Kzk4SszRdw0",
-    notebook:
-      "https://drive.google.com/drive/u/1/folders/14Axk7wxMyIryQ4V_jJzxgnSnvM2NvVwu",
     explanations: [
       {
         name: "شرح صهيب أبو طوق",
@@ -69,7 +63,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/1/folders/1ATAAU2fq8FwQTIsH5JPS48qFUPD0VF3e",
       },
       {
-        name: "شروحات أخرى",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/1jZlPIAiqSn20pl3cT8OJ9V4nVon5wf8i",
       },
     ],
@@ -92,12 +86,10 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/1/folders/1bmVUopIhB7ioMl8KaBzQDeZnWXF5Fr0Q",
       },
       {
-        name: "شروحات أخرى",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/1DuKXnbOFk85m5oVwaKqx63-BxDS5r-xT",
       },
     ],
-    notebook:
-      "https://drive.google.com/drive/u/1/folders/1-nZhFnOqbEqUjZuAZ9fZawoXMTNhqf4-",
     prevYears:
       "https://drive.google.com/drive/u/1/folders/1uzQPIvC9TbPWM02qp8t9mIfzt8Xl5rt4",
     aboutSubject: `<p>#اسأل_اللجنة_عن_المواد</p> <p>#تحليل_وسيط </p> <p>موقعها في الجدول : كلية العلوم والآداب - - > قسم الرياضيات - - > تحليل وسيط </p> <p>رقم السطر : 902010</p> <p>________________________</p> <p>المادة مش سهلة و كمان مش صعبة و كثير ممتعة لما تركز فيها ، و بدها فهم عشان تعرف تحل ، و المادة تجميع ل cal 1, 2 🥰.</p> <p>الفيرست بحكي عن ال line و ال plane و تقاطعهم و معادلاتهم ، و بحكي عن الvectors و ال dot / cross product . </p> <p>السكند بكون functions بس لأكثر من متغير و نهايات و اشتقاق و القيم القصوى و كمان ال gradient اللي كثير مهم بال em 🥰. </p> <p>الفاينالintegrations (****** , triple)</p> <p>بنطلع منهم ال area و volume ، و كمان ال polar integration.</p> <p>طبيعة دراستها ركز مع الدكتور حتى لو كان مش شاطر*( بس اشطر الدكاترة الي بعطوها هو محمد الدولات حاولو تنزلوا عنده رح تستفيدو كثير ) * و فيديوهات عبدالله نقاوة( آخر الplay list موضيع فيرست em , ممكن تحتاجوهن 😏) و دوسية قيام أو ليميت و أكيد سنوات 🤷‍♂️. </p> <p>بالنسبة للامتحان بيجي ملتبل و إسيى ، و في أسئلة بدها أنه تكون فاهم عشان تنحل صح و بشكل عام الامتحان متوسط . </p> <p><br></p> <p>كل التوفيق</p> <p>#لجنة_الهندسة_الكهربائية ll الفريق الأكاديمي</p> <p>#فكرة_تحيا_على_نبض_قلوبكم 💛💙</p>`,
@@ -138,12 +130,10 @@ const Subjects: Subject[] = [
         link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb458vBEgCvCONoMuyU6iC70",
       },
       {
-        name: "شروحات أخرى",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/11cj6PiZ9Pa7osQ7GzDYrfL1sH7JbqHqS",
       },
     ],
-    notebook:
-      "https://drive.google.com/drive/u/1/folders/1QrwW73UAc2F-JRb9AyD3jYnCHHPphkj0",
     prevYears:
       "https://drive.google.com/drive/u/1/folders/1DuqyXNEbLCe_x3V5YWNCLKI3OppMT8QG",
     subjectLink:
@@ -156,8 +146,6 @@ const Subjects: Subject[] = [
     color: Colors.firstYear,
     name2: "Physics 102",
     book: "https://drive.google.com/drive/u/1/folders/1XM2pOZA-5OFfAwjMuXsWiFLIAOATLDI1",
-    notebook:
-      "https://drive.google.com/drive/u/1/folders/1_LihYbaadVN_vAcW3dYTQ-BdCk0mwPCL",
     explanations: [
       {
         name: "شرح محمد لافي",
@@ -168,7 +156,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/1/folders/1-7rIwHPOAOcSlf824T1cvN9qZX0yR9VK",
       },
       {
-        name: "شروحات أخرى",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/1uzriON9xmJDNQfBrdZIqn7jEeUBBgKFN",
       },
     ],
@@ -188,8 +176,12 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/1/folders/1QFtpcR5T6DOwGq6EqA7wCz6jMI_Zg4nC",
     answers:
       "https://drive.google.com/drive/u/1/folders/1mzH64ISVK_srz3yRNnDTynD39HbA1qzC",
-    notebook:
-      "https://drive.google.com/drive/u/1/folders/1QY1CsqER7jSoaKtpPwACH8B51bGeAN_-",
+    explanations: [
+      {
+        name: "الشروحات والدفاتر",
+        link: "https://drive.google.com/drive/u/1/folders/1QY1CsqER7jSoaKtpPwACH8B51bGeAN_-",
+      },
+    ],
     subjectLink:
       "https://drive.google.com/drive/u/1/folders/189RKf64430FZc7uZXJty0SciB4s0-I6R",
     fullPost: `<p>#lab_physics</p> <p>#full_post</p> <p>السلام عليكم ورحمة الله وبركاته ❤️</p> <p>يقدم لكم الفريق الأكاديمي ll لجنة الهندسة الكهربائية البوست الشامل للاب فيزياء 107</p> <p>كل ما يلزم المادة تجدونه هنا..</p> <p>********</p> <p>💡تلخيص قوانين :</p> <p><a data-fr-linked="true" href="https://drive.google.com/.../1QY1CsqER7jSoaKtpPwACH8B51bG">https://drive.google.com/.../1QY1CsqER7jSoaKtpPwACH8B51bG</a>...</p> <p>💡شرح ايمان القاسم :</p> <p><a data-fr-linked="true" href="https://drive.google.com/.../10">https://drive.google.com/.../10</a>...</p> <p>💡شرح سماح القيّم :</p> <p><a data-fr-linked="true" href="https://drive.google.com/.../1QY1CsqER7jSoaKtpPwACH8B51bG">https://drive.google.com/.../1QY1CsqER7jSoaKtpPwACH8B51bG</a>...</p> <p>💡شرح اسماء اسماعيل :</p> <p><a data-fr-linked="true" href="https://drive.google.com/.../1QY1CsqER7jSoaKtpPwACH8B51bG">https://drive.google.com/.../1QY1CsqER7jSoaKtpPwACH8B51bG</a>...</p> <p>💡الريبورتات :</p> <p><a data-fr-linked="true" href="https://drive.google.com/.../1mzH64ISVK">https://drive.google.com/.../1mzH64ISVK</a>...</p> <p>💡سنوات :</p> <p><a data-fr-linked="true" href="https://drive.google.com/.../1QFtpcR5T6DOwGq6EqA7wCz6jMI">https://drive.google.com/.../1QFtpcR5T6DOwGq6EqA7wCz6jMI</a>...</p> <p>#تقطيعاً_موفقاً</p> <p>#لجنة_الهندسة_الكهربائية</p> <p>#فكرة_تحيا_على_نبض_قلوبكم💛</p>`,
@@ -208,7 +200,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/1/folders/1jhlm2STpEzfmLcoOYQZqkExc3mbnF1qV",
       },
       {
-        name: "شروحات أخرى",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/18f62NTqzVCyL7M3SzsxrSR0NxzwrRf1u",
       },
     ],
@@ -243,7 +235,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/3/folders/1nbZKhqUb9EuxF90yo04Bn88aDpm1R4KL",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/3/folders/1h9-HdeYjAzxxFm216wXXv8r93BPvXu3F",
       },
     ],
@@ -292,7 +284,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/3/folders/1f3vn95UQN3jiw4N_ppkS9-jCGgejLdTH",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/3/folders/1DASp0tDCg1d1URwiBDRGCwVDF2Yx_-RJ",
       },
     ],
@@ -315,7 +307,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/4/folders/1--r0LQdFpKdn97Uc_3WXmWOn_Fdu9qdF",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/4/folders/1bRwOCTC3fF4Ivat0HtMvCodHkbgthkhy",
       },
     ],
@@ -329,7 +321,8 @@ const Subjects: Subject[] = [
     name: "لاب مايكرو كنترول",
     color: Colors.thirdYear,
     name2: "Micro Controllers Lab",
-    book: "https://drive.google.com/drive/u/3/folders/16-qL5sZcnwxoegyH2RGOi-5sXax9otra",
+    manual:
+      "https://drive.google.com/drive/u/3/folders/16-qL5sZcnwxoegyH2RGOi-5sXax9otra",
     explanations: [
       {
         name: "شرح معن الصوص",
@@ -388,7 +381,7 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/1/folders/1RtvuiPZReyWST3s2_560dq8uDegjodWg",
     explanations: [
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/1oWd4JEzEk8zPtEVArjZjhU9SP5Z2QYQb",
       },
     ],
@@ -400,7 +393,7 @@ const Subjects: Subject[] = [
     name2: "General Skills",
     explanations: [
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/1x4a2BuQTrtXvXVShM4diHdp2BhPBcCu5",
       },
     ],
@@ -419,8 +412,6 @@ const Subjects: Subject[] = [
     color: Colors.secondYear,
     name2: "Circuits 1",
     book: "https://drive.google.com/drive/u/2/folders/1rKkzkUkI5hyUZKEvk8BDLr-JW1TLiYHe",
-    notebook:
-      "https://drive.google.com/drive/u/3/folders/1yJL36k4cBf6NXXvmorZPEwuRn2gOSdjw",
     explanations: [
       {
         name: "شرح قناة اللجنة",
@@ -439,7 +430,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/2/folders/1QAm3n5IphHWoxBoFd4Sr0bosf2RsnYYL",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/3/folders/1ruLl-CqrTk9cTLL_l2ThHzIUw5ROvWPz",
       },
       {
@@ -469,7 +460,7 @@ const Subjects: Subject[] = [
         link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb5xdfpC_EcIBcufxtOdm_fm",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/3/folders/1gZmjLMQgmXYKNzoMYrAfskzedo5eD9_R",
       },
     ],
@@ -485,7 +476,8 @@ const Subjects: Subject[] = [
     name: "لاب سيركت",
     color: Colors.secondYear,
     name2: "Circuits lab",
-    book: "https://drive.google.com/drive/u/2/folders/1Nwoq0ermnGYEw0Y70sNEcTTCyqDkyU4U",
+    manual:
+      "https://drive.google.com/drive/u/2/folders/1Nwoq0ermnGYEw0Y70sNEcTTCyqDkyU4U",
     prevYears:
       "https://drive.google.com/drive/u/2/folders/1vS0C0p7hlEX94084wuOGjtUYcBlzR817",
     aboutSubject: `<p>#اسأل_اللجنة_عن_المواد</p> <p>#لاب_السيركت</p> <p>عدد الساعات: 1</p> <p>الاسم في الخطة الأكاديمية: مختبرالدوائر الكهربائية</p> <p>رقم السطر: 242130</p> <p>---------------</p> <p>لاب السيركت لاب ممتع وبسيط جدا ❤️❤️ ساعة وحدة خلال التخصص</p> <p>ولازم تكون منزل سيركت ١ عشان تقدر تنزله</p> <p>اللاب بالمقدمة باول لاب بتوخذو تعريف عن القطع والادوات الى بتستخدمها باللاب</p> <p>وكمان بتعرفو اكثر كيف النظام الى رح يكون خلال اللاب من تسليم ريبورتات وكويزات خلال اللابات</p> <p>غالبا النظام رح يكون انو بتكتبو ريبورتات اللاب وبتحضروها قبل كل لاب مطلوب منكم وبس توخذوه بتعبو القيم الى بتطلع معكم خلال التجارب وبعد هيكا اللاب القادم خلال اول ٥ د بتوخذو كويز بسيط باللاب الى اخذتوه قبل وبالعادة بختلف حسب المهندسين الى بساعدو الدكتور باللاب.</p> <p>بالنسبة للابات</p> <p>اول لابات موضوعهم سهل حيكون عن قوانين كيرشوف وكيف تطبق عليهم بالدارة الكهربائية الموجودة عندك 👀</p> <p>بعدين رح تختلف المواضيع وتطور شوي شوي حتصير توخذ الدارة ac</p> <p>وتدخل ال capacitors وال inductors</p> <p>وتشتغل عليهم مع الاجهزة تبعتهم</p> <p>لازم تكون دقيق بشغلك وارقامك خلال اللاب</p> <p>وتنتبه لشغلك بالجروب عشان غالبا عليه علامات مشاركة</p> <p>الميد ما بكون صعب وشغله سهل 👌🏻❤️</p> <p>الصعوبة شوي بالفاينال لازم تنتبه</p> <p>حاولو اختارو دكتور يكون ممتاز</p> <p>وإبعدو عن بعض الدكاترة الى بتكون ما بتعرف تشرح وبتظلم الطلاب بالعلامات كثير</p> <p>حاول اشتغل الريبورت لحالك وحضره مش صعب ابدا</p> <p>بالتوفيق جميعا 💪</p> <p>#لجنة_الهندسة_الكهربائية</p> <p>#فكرة_تحيا_على_نبض_قلوبكم</p>`,
@@ -512,9 +504,11 @@ const Subjects: Subject[] = [
         name: "شرح مهند حوامدة",
         link: "https://drive.google.com/drive/u/2/folders/1KEf0ago2AULJVnO8XABSLUdlZMp4LsqN",
       },
+      {
+        name: "الشروحات والدفاتر",
+        link: "https://drive.google.com/drive/u/3/folders/1yZtFYLHo9SGyCqFhe_jN1tFX42V0e5ly",
+      },
     ],
-    notebook:
-      "https://drive.google.com/drive/u/3/folders/1yZtFYLHo9SGyCqFhe_jN1tFX42V0e5ly",
     prevYears:
       "https://drive.google.com/drive/u/2/folders/1ZDQmVYnAnO8erF8UhLfWTK0gVE1nG6Ic",
     aboutSubject: `<p>الاسم المختصر : لينير&nbsp;</p>
@@ -555,7 +549,7 @@ const Subjects: Subject[] = [
         link: "https://www.youtube.com/playlist?app=desktop&list=PLy42_pl2XRL5c247TbBFyiuZmHeTOGbHl",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/3/folders/1N1zDwbLV_kVXcWo9xe2aHvcKheXpPbMw",
       },
     ],
@@ -582,11 +576,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/2/folders/1iTSMDkN2XFRfwkzLBwDc8APOa4V5E9so",
       },
       {
-        name: "تفريغ شرح محمد لافي",
-        link: "https://drive.google.com/drive/u/2/folders/1iTSMDkN2XFRfwkzLBwDc8APOa4V5E9so",
-      },
-      {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/3/folders/1uA1lmRy5XaN_GQRk6OxfpcqhnPmgzLlN",
       },
     ],
@@ -619,7 +609,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/file/d/1AOJ2W2SA2lutGnCtr-WxxBgoB1ZxBD_0/view",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/3/folders/1BtVtIQgnbDSH6sIIqbX03sezA-apO73N",
       },
     ],
@@ -644,7 +634,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/file/d/1glX3V1jc04qMnaTW2IMBArN4sZyiWsDF/view",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/3/folders/1EywQpcGLVCRvwxYnSFIqXPZhKOoyeAnf",
       },
     ],
@@ -693,11 +683,9 @@ const Subjects: Subject[] = [
     color: Colors.firstYear,
     slides:
       "https://drive.google.com/drive/u/1/folders/1r_2AepjamqPIoHxN5pH0h8ITfbNaZA_g",
-    notebook:
-      "https://drive.google.com/drive/u/1/folders/1-XUWZiJKgpyL_XqgdfuvkMOMADaOU67J",
     explanations: [
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/1K0AMQrymZJ3r4NDgVzjl088uS8lDhfTh",
       },
     ],
@@ -714,11 +702,9 @@ const Subjects: Subject[] = [
     name2: "Chemistry 102",
     color: Colors.firstYear,
     book: "https://drive.google.com/drive/u/1/folders/1edxgVQnIOmV8WpFdIV3PwQDJ8b6flbFx",
-    notebook:
-      "https://drive.google.com/drive/u/1/folders/1prDaYBHux8jVkwl4a9NgMNq2yLsGVT62",
     explanations: [
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/1al54UzyqwOo_afqfOw1dSxW0FKbPJDUp",
       },
     ],
@@ -740,7 +726,7 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/1/folders/1INN8ew5EB798LbroONB3Wq3agSOtjkWB",
     explanations: [
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/1/folders/1XmPdm3Henpd7ozY6oZe1TMo9mvagzTyB",
       },
     ],
@@ -790,7 +776,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/4/folders/13Rmo9rK6N67kYaaMDHhDkmCrQUJiHXeq",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/4/folders/16YON8xbB4l00CMNZjIPOTj2utK4SWcKw",
       },
     ],
@@ -826,7 +812,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/3/folders/1C5Z16bBL3bG1y9QgB0Vx2Jvzj7xpWQ9j",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/3/folders/1MqX-rCrylBNGcjtF_t8igeHzsvwfRIhe",
       },
     ],
@@ -853,7 +839,7 @@ const Subjects: Subject[] = [
         link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb65b4sqp_j3b7HXpB-P3b7-",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/3/folders/1USGeiMNj88uzbX_wzhBSnM84-Fg_x4sf",
       },
     ],
@@ -884,7 +870,7 @@ const Subjects: Subject[] = [
         link: "https://www.youtube.com/playlist?list=PLGPnhUFUCRm10q34h8DXYKkGlZHjbZJMT",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/4/folders/1WW8kTvNh6UezVFR-f4b570ibOxPaypzT",
       },
     ],
@@ -898,7 +884,8 @@ const Subjects: Subject[] = [
     name: "لاب كنترول أنظمة تحكم",
     name2: "Control systems lab",
     color: Colors.shared,
-    book: "https://drive.google.com/drive/u/4/folders/160N5V3ovTt-il-qegBbjFOaNB-2DSN4N",
+    manual:
+      "https://drive.google.com/drive/u/4/folders/160N5V3ovTt-il-qegBbjFOaNB-2DSN4N",
     explanations: [
       {
         name: "فيديوهات مهندس خليل",
@@ -917,8 +904,12 @@ const Subjects: Subject[] = [
     name: "Arabic",
     color: Colors.firstYear,
     book: "https://drive.google.com/drive/u/1/folders/1HE2FSO3W0VXx--gh3MMpsfVHg0FsjD9o",
-    notebook:
-      "https://drive.google.com/drive/u/1/folders/1IKXg0KkhBMz_JnY7oflMItEAgzmImJdf",
+    explanations: [
+      {
+        name: "الشروحات والدفاتر",
+        link: "https://drive.google.com/drive/u/1/folders/1IKXg0KkhBMz_JnY7oflMItEAgzmImJdf",
+      },
+    ],
     prevYears:
       "https://drive.google.com/drive/u/1/folders/1H3FkAtWx5AWTqnLljwNn_g1SHX2iAs2Z",
     subjectLink:
@@ -950,7 +941,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/4/folders/1bMWXunm0ab_EnCQbM55lx58SVLYqHweK",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/4/folders/1zF2ubk5qt4ZY0m3Ugp0ylbgE29AEXzOk",
       },
     ],
@@ -981,7 +972,7 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/4/folders/1XzazRbViOaREpAxUfi9XvJZ610ChFqNk",
     explanations: [
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/4/folders/1c2Utyieq5qgkfevMfqM1ONVDS-D0w_h8",
       },
     ],
@@ -1048,7 +1039,7 @@ const Subjects: Subject[] = [
         link: "https://www.youtube.com/playlist?list=PL93etPhHIOOEUD1UnEiDmwYhUlEsXCu0Y",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/4/folders/140-OZ62-kiZjfN7UL2I87oNPMb2DpWz2",
       },
     ],
@@ -1078,7 +1069,7 @@ const Subjects: Subject[] = [
         link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb4-9rrI0FhtvlmeWd9BIVYr",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/4/folders/1sPREmaXgbWzjZOYCahHtUFp_dGNu9ZKC",
       },
     ],
@@ -1102,7 +1093,7 @@ const Subjects: Subject[] = [
         link: "https://www.youtube.com/playlist?list=PLvgLolfaRAWdk-9YqXm-TQSBoUY6BxyKk",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/4/folders/1RVXUBUau4v-1Onc65as1l7qaVWMnClhd",
       },
     ],
@@ -1138,7 +1129,7 @@ const Subjects: Subject[] = [
         link: "https://drive.google.com/drive/u/3/folders/1Dn_ACpqX3hRIgO7FLK-iSesx9GLNBTXn",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/3/folders/1c4-Y73tBIM5rjwXqI5qDzQAeDeZtuKRv",
       },
     ],
@@ -1161,7 +1152,7 @@ const Subjects: Subject[] = [
         link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb6-RBh67pRNmPvMua0CS4Fn",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/4/folders/1PV9HRVlvm4jYL_kPGTY-NE21c8k-AOUb",
       },
     ],
@@ -1179,7 +1170,7 @@ const Subjects: Subject[] = [
       "https://drive.google.com/drive/u/4/folders/1t2vwqAp6oggI2Jq1us2B3CbQufApRvnk",
     explanations: [
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/4/folders/16f-kbY8RxhNOpDC4Tqn9zCmW1W5cdcj2",
       },
     ],
@@ -1192,7 +1183,8 @@ const Subjects: Subject[] = [
     name: "لاب مشين",
     name2: "Machines lab",
     color: Colors.shared,
-    book: "https://drive.google.com/drive/u/4/folders/1bmS_Wa_pWT5NEsf9EU57exB3j_jmsZHb",
+    manual:
+      "https://drive.google.com/drive/u/4/folders/1bmS_Wa_pWT5NEsf9EU57exB3j_jmsZHb",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/1RqCdvINn4qMFgNyHoFsfNpSfNy6GcXXR",
     subjectLink:
@@ -1205,6 +1197,16 @@ const Subjects: Subject[] = [
     name2: "Distribution",
     color: Colors.power,
     book: "https://drive.google.com/drive/u/4/folders/192s6S2imOvK-p6hh2KGnwdIUqS-gsQsI",
+    explanations: [
+      {
+        name: "محاضرات د.أحمد أبو الرب",
+        link: "https://www.youtube.com/playlist?list=PLdL3o9rqPLb6TKPEzoAk4J70UZ86pQSwF",
+      },
+      {
+        name: "الشروحات والدفاتر",
+        link: "https://drive.google.com/drive/folders/1zOVXbONViUqekL3Nx6oip3i46-596iCe",
+      },
+    ],
     prevYears:
       "https://drive.google.com/drive/u/4/folders/13LAN5ea1-kP_GYA73Ibelr2Qv0pW5v7C",
     subjectLink:
@@ -1225,7 +1227,7 @@ const Subjects: Subject[] = [
         link: "https://www.youtube.com/playlist?list=PLvgLolfaRAWfZda5PZxeMulM2Ns5uY3v1",
       },
       {
-        name: "الشروحات",
+        name: "الشروحات والدفاتر",
         link: "https://drive.google.com/drive/u/4/folders/1n5vjh2QbVcgHKt1CKViVhg-Eu3mxBc23",
       },
     ],
@@ -1238,7 +1240,8 @@ const Subjects: Subject[] = [
     name: "لاب بور الكترو",
     name2: "Power electro lab",
     color: Colors.power,
-    book: "https://drive.google.com/drive/u/4/folders/1bswPV6qhNhzrBfxxUYkoc479pera8p47",
+    manual:
+      "https://drive.google.com/drive/u/4/folders/1bswPV6qhNhzrBfxxUYkoc479pera8p47",
     prevYears:
       "https://drive.google.com/drive/u/4/folders/18MWPilAupFtmaJlLurSSvHTmZi1FDrrA",
     subjectLink:
@@ -1250,7 +1253,8 @@ const Subjects: Subject[] = [
     name: "لاب بور انتجريشن",
     name2: "Integration lab",
     color: Colors.power,
-    book: "https://drive.google.com/drive/u/4/folders/1RhGoybWpS4ynLVAwKlnbOyHkQJWYT6Up",
+    manual:
+      "https://drive.google.com/drive/u/4/folders/1RhGoybWpS4ynLVAwKlnbOyHkQJWYT6Up",
     subjectLink:
       "https://drive.google.com/drive/folders/1QABjkq7ItIh8-dUdWSvGwr8emuwBMo1b",
     fullPost: `<div> <p>#integration_lab</p> <p>#Full_post</p> <p>السّلامُ عليكُم ورحمةُ اللهِ وبركاته💛</p> <p>تقدّم لكم لجنتكم كل ما يخصّ لاب الانتيجريشن</p> <p>المانيوال:</p> <p><a data-fr-linked="true" href="https://drive.google.com/.../1Law8OBxHs3fA0uUu3H5ZyeTTJCo">https://drive.google.com/.../1Law8OBxHs3fA0uUu3H5ZyeTTJCo</a>...</p> <p>تاسكات 2021/2022:</p> <p><a data-fr-linked="true" href="https://drive.google.com/.../1bwM3qvUk6">https://drive.google.com/.../1bwM3qvUk6</a>...</p> <p>سنوات:</p> <p><a data-fr-linked="true" href="https://drive.google.com/.../1RhGoybWpS4ynLVAwKlnbOyHkQJW">https://drive.google.com/.../1RhGoybWpS4ynLVAwKlnbOyHkQJW</a>...</p> <p>#لجنة_الهندسة_الكهربائية</p> <p>#الفريق_الاكاديمي</p> </div> <div><br></div>`,
@@ -1260,7 +1264,8 @@ const Subjects: Subject[] = [
     name: "لاب امديد",
     name2: "Embedded lab",
     color: Colors.shared,
-    book: "https://drive.google.com/drive/u/4/folders/1bhej7MKGrQ6QJt5QE9laWbUipgRJWy6f",
+    manual:
+      "https://drive.google.com/drive/u/4/folders/1bhej7MKGrQ6QJt5QE9laWbUipgRJWy6f",
     subjectLink:
       "https://drive.google.com/drive/folders/14ntYYqixsxPMMervAvcSfs1a1Ej6c1E6",
   },

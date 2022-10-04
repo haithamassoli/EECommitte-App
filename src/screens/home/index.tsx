@@ -69,8 +69,14 @@ const HomeScreen = ({ navigation }: Props) => {
       }
     );
     const addNotificationCount = async () => {
-      await storeDataToStorage("notificationsCount", +notificationCount + 1);
-      setNotificationCount((prev) => prev + 1);
+      const count = await getDataFromStorage("notificationsCount");
+      if (count != null) {
+        await storeDataToStorage("notificationsCount", count + 1);
+        setNotificationCount(count + 1);
+      } else {
+        await storeDataToStorage("notificationsCount", 1);
+        setNotificationCount(1);
+      }
     };
     const subscription2 = Notifications.addNotificationResponseReceivedListener(
       (response) => {

@@ -19,6 +19,16 @@ const InfoScreen = ({ navigation }: Props) => {
         onPress={() => onPress("AboutEECommitte")}
       />
       <InfoItem
+        icon="smartphone"
+        title="تطبيق Engineers"
+        subTitle="كل ما يهم طالب السنة الأولى في الهندسة والعلوم"
+        onPress={() =>
+          Linking.openURL(
+            "https://play.google.com/store/apps/details?id=com.taimaah.edu"
+          )
+        }
+      />
+      <InfoItem
         icon="mail"
         title="تواصل معنا"
         subTitle="للملاحظات والاقتراحات"

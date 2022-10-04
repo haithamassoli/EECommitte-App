@@ -107,6 +107,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             size={moderateScale(24)}
             color={textColor}
           />
+          <Feather name="book" size={moderateScale(24)} color={textColor} />
         </TouchableOpacity>
       ),
     });

@@ -237,16 +237,6 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             <Text style={[style.buttonText]}>{explanation.name}</Text>
           </TouchableOpacity>
         ))}
-        {subject.aboutSubject && (
-          <TouchableOpacity
-            onPress={() =>
-              subject.aboutSubject && Linking.openURL(subject.aboutSubject)
-            }
-            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
-          >
-            <Text style={[style.buttonText]}>عن المادة</Text>
-          </TouchableOpacity>
-        )}
         <TouchableOpacity
           onPress={() =>
             subject.subjectLink && Linking.openURL(subject.subjectLink)

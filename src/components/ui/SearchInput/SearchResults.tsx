@@ -1,6 +1,5 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useContext } from "react";
-import { Doctor, Subject } from "@Types/index";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
@@ -20,23 +19,15 @@ const SearchResults = ({ results, handlePress }: Props) => {
         results.map((result: any, index: number) => (
           <View key={index}>
             <TouchableOpacity
-              style={{
-                flexDirection: "row-reverse",
-                paddingHorizontal: horizontalScale(10),
-                paddingVertical: verticalScale(5),
-                borderColor: theme === "light" ? "#fff" : "#000",
-                borderWidth: moderateScale(2),
-                borderRadius: moderateScale(10),
-              }}
+              style={[
+                styles.button,
+                {
+                  borderColor: theme === "light" ? "#fff" : "#000",
+                },
+              ]}
               onPress={() => handlePress(result.id)}
             >
-              <Text
-                style={{
-                  fontSize: moderateScale(15),
-                  color: textColor,
-                  fontFamily: "TajawalMedium",
-                }}
-              >
+              <Text style={[styles.text, { color: textColor }]}>
                 {result.name2}
               </Text>
             </TouchableOpacity>
@@ -61,3 +52,17 @@ const SearchResults = ({ results, handlePress }: Props) => {
 };
 
 export default SearchResults;
+
+const styles = StyleSheet.create({
+  button: {
+    flexDirection: "row-reverse",
+    paddingHorizontal: horizontalScale(10),
+    paddingVertical: verticalScale(5),
+    borderWidth: moderateScale(2),
+    borderRadius: moderateScale(10),
+  },
+  text: {
+    fontSize: moderateScale(15),
+    fontFamily: "TajawalMedium",
+  },
+});

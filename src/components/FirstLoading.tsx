@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   ScrollView,
   ImageBackground,
+  StyleSheet,
 } from "react-native";
 import { useRef, useState, memo } from "react";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
@@ -49,44 +50,20 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
         pagingEnabled
       >
         {data.map((item, index) => (
-          <View
-            key={index}
-            style={{
-              flex: 1,
-              width: screenWidth,
-              justifyContent: "center",
-            }}
-          >
-            <ImageBackground
-              source={item.image}
-              style={{
-                width: screenWidth,
-                height: screenHeight,
-                alignSelf: "center",
-              }}
-            >
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "flex-end",
-                  padding: moderateScale(16),
-                }}
-              >
+          <View key={index} style={styles.container}>
+            <ImageBackground source={item.image} style={styles.image}>
+              <View style={styles.contentContainer}>
                 {index != data.length - 1 ? (
                   <TouchableOpacity
-                    style={{
-                      justifyContent: "center",
-                      alignItems: "center",
-                      backgroundColor: Colors.darkBackgroundSec,
-                      width: horizontalScale(50),
-                      height: verticalScale(50),
-                      borderRadius: moderateScale(25),
-                      top: verticalScale(-100),
-                      left:
-                        item.arrPos === "right"
-                          ? horizontalScale(40)
-                          : screenWidth - 80,
-                    }}
+                    style={[
+                      styles.button,
+                      {
+                        left:
+                          item.arrPos === "right"
+                            ? horizontalScale(40)
+                            : screenWidth - 86,
+                      },
+                    ]}
                     onPress={onNext}
                   >
                     <Feather
@@ -97,19 +74,15 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
                   </TouchableOpacity>
                 ) : (
                   <TouchableOpacity
-                    style={{
-                      justifyContent: "center",
-                      alignItems: "center",
-                      backgroundColor: Colors.darkBackgroundSec,
-                      width: horizontalScale(50),
-                      height: verticalScale(50),
-                      borderRadius: moderateScale(25),
-                      top: verticalScale(-100),
-                      left:
-                        item.arrPos === "right"
-                          ? horizontalScale(40)
-                          : screenWidth - 100,
-                    }}
+                    style={[
+                      styles.button,
+                      {
+                        left:
+                          item.arrPos === "right"
+                            ? horizontalScale(40)
+                            : screenWidth - 100,
+                      },
+                    ]}
                     onPress={onFinished}
                   >
                     <Feather
@@ -119,82 +92,15 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
                     />
                   </TouchableOpacity>
                 )}
-                <Text
-                  style={
-                    index != 1
-                      ? {
-                          fontSize: moderateScale(20),
-                          marginTop: verticalScale(8),
-                          color: Colors.lightText,
-                          fontFamily: "Bukra",
-                          top: verticalScale(-80),
-                        }
-                      : {
-                          fontSize: moderateScale(16),
-                          lineHeight: verticalScale(24),
-                          marginTop: verticalScale(8),
-                          color: Colors.lightText,
-                          fontFamily: "Bukra",
-                          top: verticalScale(-80),
-                        }
-                  }
-                >
+                <Text style={index != 1 ? styles.title1 : styles.customTitle1}>
                   {item.textAr1}
                 </Text>
-                <Text
-                  style={
-                    index != 1
-                      ? {
-                          fontSize: moderateScale(16),
-                          lineHeight: verticalScale(28),
-                          marginTop: verticalScale(8),
-                          fontFamily: "Bukra",
-                          top: verticalScale(-80),
-                          color: Colors.lightText,
-                        }
-                      : {
-                          fontSize: moderateScale(12),
-                          lineHeight: verticalScale(24),
-                          marginTop: verticalScale(8),
-                          fontFamily: "Bukra",
-                          top: verticalScale(-80),
-                          color: Colors.lightText,
-                        }
-                  }
-                >
+                <Text style={index != 1 ? styles.title2 : styles.customTitle2}>
                   {item.textAr2}
                 </Text>
+                <Text style={styles.title1En}>{item.textEn1}</Text>
                 <Text
-                  style={{
-                    fontSize: moderateScale(20),
-                    marginTop: verticalScale(8),
-                    fontWeight: "bold",
-                    color: Colors.lightText,
-                    top: verticalScale(-55),
-                  }}
-                >
-                  {item.textEn1}
-                </Text>
-                <Text
-                  style={
-                    index != 1
-                      ? {
-                          fontSize: moderateScale(16),
-                          lineHeight: verticalScale(28),
-                          marginTop: verticalScale(8),
-                          fontWeight: "600",
-                          top: verticalScale(-55),
-                          color: Colors.lightText,
-                        }
-                      : {
-                          fontSize: moderateScale(14),
-                          lineHeight: verticalScale(22),
-                          marginTop: verticalScale(8),
-                          fontWeight: "700",
-                          top: verticalScale(-55),
-                          color: Colors.lightText,
-                        }
-                  }
+                  style={index != 1 ? styles.title2En : styles.customTitle2En}
                 >
                   {item.textEn2}
                 </Text>
@@ -208,6 +114,87 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
 };
 
 export default memo(FirstLoading);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: screenWidth,
+    justifyContent: "center",
+  },
+  image: {
+    width: screenWidth,
+    height: screenHeight,
+    alignSelf: "center",
+  },
+  contentContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    padding: moderateScale(16),
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colors.darkBackgroundSec,
+    width: horizontalScale(50),
+    height: verticalScale(50),
+    borderRadius: moderateScale(25),
+    top: verticalScale(-100),
+  },
+  title1: {
+    fontSize: moderateScale(20),
+    marginTop: verticalScale(8),
+    color: Colors.lightText,
+    fontFamily: "Bukra",
+    top: verticalScale(-80),
+  },
+  customTitle1: {
+    fontSize: moderateScale(16),
+    lineHeight: verticalScale(24),
+    marginTop: verticalScale(8),
+    color: Colors.lightText,
+    fontFamily: "Bukra",
+    top: verticalScale(-80),
+  },
+  title2: {
+    fontSize: moderateScale(16),
+    lineHeight: verticalScale(28),
+    marginTop: verticalScale(8),
+    fontFamily: "Bukra",
+    top: verticalScale(-80),
+    color: Colors.lightText,
+  },
+  customTitle2: {
+    fontSize: moderateScale(12),
+    lineHeight: verticalScale(24),
+    marginTop: verticalScale(8),
+    fontFamily: "Bukra",
+    top: verticalScale(-80),
+    color: Colors.lightText,
+  },
+  title1En: {
+    fontSize: moderateScale(20),
+    marginTop: verticalScale(8),
+    fontWeight: "bold",
+    color: Colors.lightText,
+    top: verticalScale(-55),
+  },
+  title2En: {
+    fontSize: moderateScale(16),
+    lineHeight: verticalScale(28),
+    marginTop: verticalScale(8),
+    fontWeight: "600",
+    top: verticalScale(-55),
+    color: Colors.lightText,
+  },
+  customTitle2En: {
+    fontSize: moderateScale(14),
+    lineHeight: verticalScale(22),
+    marginTop: verticalScale(8),
+    fontWeight: "700",
+    top: verticalScale(-55),
+    color: Colors.lightText,
+  },
+});
 
 const data = [
   {

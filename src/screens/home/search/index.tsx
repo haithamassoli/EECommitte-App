@@ -5,6 +5,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   LayoutAnimation,
+  StyleSheet,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import SubjectsData from "@Src/data/Subjects";
@@ -14,10 +15,10 @@ import { useContext, useEffect, useState } from "react";
 import {
   deleteStorage,
   getDataFromStorage,
+  screenHeight,
   storeDataToStorage,
 } from "@Utils/Helper";
 import { HomeStackParamList } from "@Types/navigation";
-import styles from "./styles";
 import { ThemeContext } from "@Src/store/themeContext";
 import SearchResults from "@Components/ui/SearchInput/SearchResults";
 import DoctorsData from "@Src/data/Doctors";
@@ -190,21 +191,8 @@ const SearchScreen = ({ navigation }: Props) => {
             </View>
             {historyResults.length > 0 ? (
               historyResults.map((item, index) => (
-                <View
-                  key={index}
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    marginTop: verticalScale(25),
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                    }}
-                  >
+                <View key={index} style={styles.historyContainer}>
+                  <View style={styles.historyItem}>
                     <Feather
                       name="clock"
                       size={moderateScale(20)}
@@ -212,11 +200,7 @@ const SearchScreen = ({ navigation }: Props) => {
                     />
                     <Text
                       onPress={() => handlePressHistory(item.id)}
-                      style={{
-                        fontSize: moderateScale(16),
-                        marginLeft: horizontalScale(5),
-                        color: textColor,
-                      }}
+                      style={[styles.historyText, { color: textColor }]}
                     >
                       {item.name2}
                     </Text>
@@ -245,17 +229,15 @@ const SearchScreen = ({ navigation }: Props) => {
           </>
         ) : (
           <View
-            style={{
-              flex: 1,
-              width: "100%",
-              minHeight: verticalScale(124),
-              zIndex: 1000,
-              backgroundColor:
-                theme === "light"
-                  ? Colors.lightBackgroundSec
-                  : Colors.darkBackgroundSec,
-              borderRadius: moderateScale(10),
-            }}
+            style={[
+              styles.resultsContainer,
+              {
+                backgroundColor:
+                  theme === "light"
+                    ? Colors.lightBackgroundSec
+                    : Colors.darkBackgroundSec,
+              },
+            ]}
           >
             <SearchResults results={results} handlePress={handlePress} />
           </View>
@@ -266,3 +248,37 @@ const SearchScreen = ({ navigation }: Props) => {
 };
 
 export default SearchScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: horizontalScale(12),
+  },
+  searchContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    height: screenHeight / 8,
+  },
+  historyContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: verticalScale(25),
+    justifyContent: "space-between",
+  },
+  historyItem: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  historyText: {
+    fontSize: moderateScale(16),
+    marginLeft: horizontalScale(5),
+  },
+  resultsContainer: {
+    flex: 1,
+    width: "100%",
+    minHeight: verticalScale(124),
+    zIndex: 1000,
+    borderRadius: moderateScale(10),
+  },
+});

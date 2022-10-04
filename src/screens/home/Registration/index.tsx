@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   Linking,
+  StyleSheet,
 } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
@@ -55,8 +56,6 @@ const screenData = [
 ];
 
 const RegistrationScreen = ({ navigation }: Props) => {
-  const textColor = Colors.lightText;
-
   return (
     <ScrollView
       style={{
@@ -80,41 +79,23 @@ const RegistrationScreen = ({ navigation }: Props) => {
                 ? item.onPress
                 : () => navigation.navigate("SubjectName")
             }
-            style={{
-              borderRadius: moderateScale(24),
-              overflow: "hidden",
-            }}
+            style={styles.button}
           >
             <ImageBackground
               source={item.image}
               resizeMode="cover"
-              style={{
-                height: verticalScale(200),
-                justifyContent: "center",
-                alignItems: "center",
-                alignContent: "center",
-                marginVertical: verticalScale(10),
-                width: screenWidth / 2 - 20,
-              }}
+              style={styles.image}
             >
-              <Text
-                style={{
-                  color: textColor,
-                  fontSize: moderateScale(40),
-                  fontFamily: "Bukra",
-                  textAlign: "center",
-                }}
-                numberOfLines={1}
-              >
+              <Text style={styles.title1} numberOfLines={1}>
                 {item.title}
               </Text>
               <Text
-                style={{
-                  color: textColor,
-                  fontSize: moderateScale(22),
-                  fontFamily: "Bukra",
-                  marginBottom: item.title ? 0 : verticalScale(32),
-                }}
+                style={[
+                  styles.title2,
+                  {
+                    marginBottom: item.title ? 0 : verticalScale(32),
+                  },
+                ]}
               >
                 {item.title2}
               </Text>
@@ -127,3 +108,29 @@ const RegistrationScreen = ({ navigation }: Props) => {
 };
 
 export default RegistrationScreen;
+
+const styles = StyleSheet.create({
+  button: {
+    borderRadius: moderateScale(24),
+    overflow: "hidden",
+  },
+  image: {
+    height: verticalScale(200),
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+    marginVertical: verticalScale(10),
+    width: screenWidth / 2 - 20,
+  },
+  title1: {
+    color: Colors.lightText,
+    fontSize: moderateScale(40),
+    fontFamily: "Bukra",
+    textAlign: "center",
+  },
+  title2: {
+    color: Colors.lightText,
+    fontSize: moderateScale(22),
+    fontFamily: "Bukra",
+  },
+});

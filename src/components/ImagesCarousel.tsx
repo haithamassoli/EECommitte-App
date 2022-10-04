@@ -1,5 +1,5 @@
 import { useState, useRef, memo, useContext } from "react";
-import { View, ScrollView, Image } from "react-native";
+import { View, ScrollView, Image, StyleSheet } from "react-native";
 import { screenHeight, screenWidth } from "@Utils/Helper";
 import { useEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
@@ -77,12 +77,7 @@ const ImagesCarousel = ({ images }: Props) => {
               key={index}
               source={{ uri: image }}
               defaultSource={require("@Assets/images/slider1.webp")}
-              style={{
-                width: screenWidth - horizontalScale(40),
-                height: screenHeight * 0.24,
-                resizeMode: "cover",
-                borderRadius: moderateScale(12),
-              }}
+              style={styles.image}
             />
           ))}
         </ScrollView>
@@ -98,25 +93,23 @@ const ImagesCarousel = ({ images }: Props) => {
         {images.map((_, index) => (
           <View
             key={index}
-            style={{
-              height: verticalScale(8),
-              width: 8,
-              borderRadius: moderateScale(5),
-              borderColor:
-                index === selectedIndex && images.length > 1
-                  ? theme === "light"
-                    ? Colors.primary700
-                    : Colors.primary400
-                  : images.length === 1
-                  ? theme === "light"
-                    ? Colors.primary700
-                    : Colors.primary400
-                  : Colors.gray,
-              borderWidth: moderateScale(4),
-              backgroundColor:
-                index === selectedIndex ? Colors.primary600 : Colors.gray,
-              margin: moderateScale(4),
-            }}
+            style={[
+              styles.dot,
+              {
+                borderColor:
+                  index === selectedIndex && images.length > 1
+                    ? theme === "light"
+                      ? Colors.primary700
+                      : Colors.primary400
+                    : images.length === 1
+                    ? theme === "light"
+                      ? Colors.primary700
+                      : Colors.primary400
+                    : Colors.gray,
+                backgroundColor:
+                  index === selectedIndex ? Colors.primary600 : Colors.gray,
+              },
+            ]}
           />
         ))}
       </View>
@@ -125,3 +118,19 @@ const ImagesCarousel = ({ images }: Props) => {
 };
 
 export default memo(ImagesCarousel);
+
+const styles = StyleSheet.create({
+  image: {
+    width: screenWidth - horizontalScale(40),
+    height: screenHeight * 0.24,
+    resizeMode: "cover",
+    borderRadius: moderateScale(12),
+  },
+  dot: {
+    height: verticalScale(8),
+    width: verticalScale(8),
+    borderRadius: moderateScale(5),
+    borderWidth: moderateScale(4),
+    margin: moderateScale(4),
+  },
+});

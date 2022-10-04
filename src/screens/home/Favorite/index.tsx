@@ -1,4 +1,10 @@
-import { ScrollView, Text, View, TouchableOpacity } from "react-native";
+import {
+  ScrollView,
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import { useContext } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
@@ -41,18 +47,15 @@ const FavoriteScreen = ({ navigation }: Props) => {
       {favorite.map((item) => (
         <TouchableOpacity
           key={item.id}
-          style={{
-            backgroundColor:
-              theme === "light"
-                ? Colors.lightBackgroundSec
-                : Colors.darkBackgroundSec,
-            width: "95%",
-            height: verticalScale(100),
-            alignSelf: "center",
-            marginBottom: verticalScale(10),
-            borderRadius: 10,
-            padding: 10,
-          }}
+          style={[
+            styles.button,
+            {
+              backgroundColor:
+                theme === "light"
+                  ? Colors.lightBackgroundSec
+                  : Colors.darkBackgroundSec,
+            },
+          ]}
           onPress={() =>
             navigation.getParent()?.navigate("SubjectsNavigation", {
               screen: "Subject",
@@ -61,36 +64,18 @@ const FavoriteScreen = ({ navigation }: Props) => {
           }
         >
           <Text
-            style={{
-              flex: 1,
-              textAlign: "center",
-              textAlignVertical: "center",
-              fontSize: moderateScale(24),
-              color: textColor,
-              fontFamily: "Bukra",
-            }}
+            style={[
+              styles.text,
+              {
+                color: textColor,
+              },
+            ]}
           >
             {item?.name}
           </Text>
           <TouchableOpacity onPress={() => toggleFavorite(item)}>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontSize: moderateScale(18),
-                  color: "#F31313",
-                  fontFamily: "Dubai",
-                  paddingHorizontal: moderateScale(10),
-                }}
-              >
-                إزالة من المفضلة
-              </Text>
+            <View style={styles.removeButton}>
+              <Text style={styles.removeButtonText}>إزالة من المفضلة</Text>
               <Feather
                 name="trash-2"
                 size={moderateScale(18)}
@@ -108,3 +93,33 @@ const FavoriteScreen = ({ navigation }: Props) => {
 };
 
 export default FavoriteScreen;
+
+const styles = StyleSheet.create({
+  button: {
+    width: "95%",
+    height: verticalScale(100),
+    alignSelf: "center",
+    marginBottom: verticalScale(10),
+    borderRadius: 10,
+    padding: 10,
+  },
+  text: {
+    flex: 1,
+    textAlign: "center",
+    textAlignVertical: "center",
+    fontSize: moderateScale(24),
+    fontFamily: "Bukra",
+  },
+  removeButton: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  removeButtonText: {
+    textAlign: "center",
+    fontSize: moderateScale(18),
+    color: "#F31313",
+    fontFamily: "Dubai",
+    paddingHorizontal: moderateScale(10),
+  },
+});

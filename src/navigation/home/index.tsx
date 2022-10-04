@@ -109,7 +109,7 @@ export default function HomeNavigation({ navigation }: Props) {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
         options={{
-          headerTitle: "الهيئة التدريسي",
+          headerTitle: "الهيئة التدريسية",
           headerLeft: () => (
             <CustomHeader
               onPress={() => navigation.goBack()}

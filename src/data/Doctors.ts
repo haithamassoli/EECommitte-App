@@ -2,18 +2,6 @@ import { Doctor } from "@Types/index";
 
 const DoctorsData: Doctor[] = [
   {
-    id: 100,
-    name: "عبدالرحمن جرادات",
-    name2: "Abdel-Rahman Jaradat",
-    email: "amjaradat@just.edu.jo",
-    office: "E1L2",
-    phone: "Ext: 22553",
-    website:
-      "https://www.just.edu.jo/ar/eportfolio/Pages/Default.aspx?email=amjaradat",
-    image:
-      "https://services.just.edu.jo/JUSTHandlers/GetPortfolioImage.ashx?email=amjaradat",
-  },
-  {
     id: 200,
     name: "احمد ابو الهيجاء",
     name2: "Ahmad Abu-El-Haija",

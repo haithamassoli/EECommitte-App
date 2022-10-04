@@ -265,7 +265,15 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             name: subject.name2,
           });
         }}
-        style={[style.button, { width: "100%", backgroundColor }]}
+        style={[
+          style.button,
+          {
+            width: screenWidth - horizontalScale(32),
+            backgroundColor,
+            alignSelf: "center",
+            marginVertical: verticalScale(10),
+          },
+        ]}
       >
         <Text style={[style.buttonText, { color: textColor }]}>
           {isFavorite ? "ازالة من المفضلة" : "اضافة الى المفضلة"}
@@ -284,9 +292,11 @@ const style = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: Colors.gray,
     borderRadius: moderateScale(10),
-    padding: moderateScale(10),
-    margin: moderateScale(10),
-    width: screenWidth / 2 - moderateScale(32),
+    paddingHorizontal: moderateScale(20),
+    paddingVertical: moderateScale(10),
+    marginHorizontal: horizontalScale(10),
+    marginVertical: verticalScale(10),
+    width: screenWidth / 2 - horizontalScale(32),
   },
   buttonText: {
     fontSize: moderateScale(18),

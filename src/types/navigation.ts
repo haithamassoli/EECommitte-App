@@ -10,7 +10,7 @@ export type BottomTabParamList = {
 export type SubjectsStackParamList = {
   Plan: undefined;
   Subject: { subjectId: number; from?: string };
-  SubjectFullPost: { post?: string; postTitle: string };
+  SubjectFullPost: { post?: string; postTitle: string; from?: string };
 };
 
 export type InfoStackParamList = {

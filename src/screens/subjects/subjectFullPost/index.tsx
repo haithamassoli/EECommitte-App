@@ -1,13 +1,14 @@
-import { useContext, useLayoutEffect } from "react";
-import { Text, ScrollView } from "react-native";
+import { useContext, useLayoutEffect, useEffect } from "react";
+import { Text, ScrollView, BackHandler, TouchableOpacity } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { WebDisplay } from "@Components/webDisplay";
 import { screenHeight } from "@Utils/Helper";
-import { verticalScale, moderateScale } from "@Utils/Platform";
+import { verticalScale, moderateScale, horizontalScale } from "@Utils/Platform";
 import HeaderRight from "../HeaderRight";
+import { Feather } from "@expo/vector-icons";
 
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 
@@ -17,6 +18,23 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: route?.params?.postTitle,
+      headerLeft: () => (
+        <TouchableOpacity
+          onPress={backAction}
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            paddingStart: horizontalScale(12),
+          }}
+        >
+          <Feather
+            name="arrow-right"
+            size={moderateScale(24)}
+            color={textColor}
+          />
+        </TouchableOpacity>
+      ),
       headerRight: () => {
         return (
           <HeaderRight
@@ -35,6 +53,28 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
       },
     });
   }, [route?.params]);
+
+  const backAction = () => {
+    if (route?.params?.from === "Search") {
+      navigation.reset({
+        index: 0,
+        // @ts-ignore
+        routes: [{ name: "SubjectsNavigation" }],
+      });
+    } else {
+      navigation.goBack();
+    }
+
+    return true;
+  };
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
+  }, []);
+
   return (
     <ScrollView overScrollMode="never" showsVerticalScrollIndicator={false}>
       {route?.params?.post ? (

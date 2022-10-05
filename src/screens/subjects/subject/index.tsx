@@ -8,6 +8,7 @@ import {
   ScrollView,
   Linking,
   ImageBackground,
+  BackHandler,
 } from "react-native";
 import subjects from "@Src/data/Subjects";
 import type {
@@ -96,18 +97,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       headerTitle: subject?.name2,
       headerLeft: () => (
         <TouchableOpacity
-          onPress={() => {
-            if (route.params?.from === "Home") {
-              navigation.dispatch(
-                CommonActions.reset({
-                  index: 0,
-                  routes: [{ name: "HomeNavigation" }],
-                })
-              );
-            } else {
-              navigation.goBack();
-            }
-          }}
+          onPress={backAction}
           style={{
             flex: 1,
             flexDirection: "row",
@@ -146,6 +136,33 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     const isFavorite = favorite.some((item) => item.id === subject.id);
     setIsFavorite(isFavorite);
   }, [favorite]);
+
+  const backAction = () => {
+    if (route.params?.from === "Home") {
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "HomeNavigation" }],
+        })
+      );
+    } else {
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "SubjectsNavigation" }],
+        })
+      );
+    }
+    return true;
+  };
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   if (loading) {
     return (

@@ -1,5 +1,5 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import { useContext, useLayoutEffect } from "react";
+import { View, Text, TouchableOpacity, BackHandler } from "react-native";
+import { useContext, useEffect, useLayoutEffect } from "react";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { ThemeContext } from "@Src/store/themeContext";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
@@ -20,7 +20,7 @@ const SupportUsScreen = ({ navigation }: Props) => {
           style={{
             flexDirection: "row",
           }}
-          onPress={() => navigation.goBack()}
+          onPress={backAction}
         >
           <Feather
             name="arrow-right"
@@ -80,6 +80,19 @@ const SupportUsScreen = ({ navigation }: Props) => {
       },
     });
   }, [theme]);
+
+  const backAction = () => {
+    navigation.navigate("Info");
+    return true;
+  };
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text

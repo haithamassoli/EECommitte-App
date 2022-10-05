@@ -7,6 +7,7 @@ import {
   LayoutAnimation,
   StyleSheet,
   TouchableOpacity,
+  BackHandler,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import SubjectsData from "@Src/data/Subjects";
@@ -48,58 +49,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
           style={{
             flexDirection: "row",
           }}
-          onPress={() => {
-            if (
-              route.params?.backTo === "Info" ||
-              route.params?.backTo === "SupportUs"
-            ) {
-              navigation.getParent()?.navigate("InfoNavigation", {
-                screen: route.params?.backTo,
-              });
-            } else if (route.params?.backTo === "Plan") {
-              navigation.getParent()?.navigate("SubjectsNavigation", {
-                screen: "Plan",
-              });
-            } else if (
-              route.params?.backTo === "Subject" &&
-              // @ts-ignore
-              route.params?.from
-            ) {
-              navigation.getParent()?.navigate("SubjectsNavigation", {
-                screen: "Subject",
-                params: {
-                  // @ts-ignore
-                  subjectId: route.params?.subjectId,
-                  // @ts-ignore
-                  from: route.params?.from,
-                },
-              });
-            } else if (
-              route.params?.backTo === "Subject" &&
-              // @ts-ignore
-              !route.params?.from
-            ) {
-              navigation.getParent()?.navigate("SubjectsNavigation", {
-                screen: "Subject",
-                params: {
-                  // @ts-ignore
-                  subjectId: route.params?.subjectId,
-                },
-              });
-            } else if (route.params?.backTo === "SubjectFullPost") {
-              navigation.getParent()?.navigate("SubjectsNavigation", {
-                screen: "SubjectFullPost",
-                params: {
-                  // @ts-ignore
-                  post: route.params?.post,
-                  // @ts-ignore
-                  postTitle: route.params?.postTitle,
-                },
-              });
-            } else {
-              navigation.goBack();
-            }
-          }}
+          onPress={backAction}
         >
           <Feather
             name="arrow-right"
@@ -142,6 +92,133 @@ const SearchScreen = ({ navigation, route }: Props) => {
       },
     });
   }, [theme, route]);
+
+  const backAction = () => {
+    if (
+      route.params?.backTo === "Info" ||
+      route.params?.backTo === "SupportUs"
+    ) {
+      // navigation.getParent()?.navigate("InfoNavigation", {
+      //   screen: route.params?.backTo,
+      // });
+      // reset navigation stack
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            // @ts-ignore
+            name: "InfoNavigation",
+            params: { screen: route.params?.backTo },
+          },
+        ],
+      });
+    } else if (route.params?.backTo === "Plan") {
+      navigation.getParent()?.navigate("SubjectsNavigation", {
+        screen: "Plan",
+      });
+    } else if (
+      route.params?.backTo === "Subject" &&
+      // @ts-ignore
+      route.params?.from
+    ) {
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            // @ts-ignore
+            name: "SubjectsNavigation",
+            params: {
+              screen: "Subject",
+              params: {
+                // @ts-ignore
+                subjectId: route.params?.subjectId,
+                from: route.params?.from,
+              },
+            },
+          },
+        ],
+      });
+      // navigation.getParent()?.navigate("SubjectsNavigation", {
+      //   screen: "Subject",
+      //   params: {
+      //     // @ts-ignore
+      //     subjectId: route.params?.subjectId,
+      //     // @ts-ignore
+      //     from: route.params?.from,
+      //   },
+      // });
+    } else if (
+      route.params?.backTo === "Subject" &&
+      // @ts-ignore
+      !route.params?.from
+    ) {
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            // @ts-ignore
+            name: "SubjectsNavigation",
+            params: {
+              screen: "Subject",
+              params: {
+                // @ts-ignore
+                subjectId: route.params?.subjectId,
+              },
+            },
+          },
+        ],
+      });
+      // navigation.getParent()?.navigate("SubjectsNavigation", {
+      //   screen: "Subject",
+      //   params: {
+      //     // @ts-ignore
+      //     subjectId: route.params?.subjectId,
+      //   },
+      // });
+    } else if (route.params?.backTo === "SubjectFullPost") {
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            // @ts-ignore
+            name: "SubjectsNavigation",
+            params: {
+              screen: "SubjectFullPost",
+              params: {
+                // @ts-ignore
+                post: route.params?.post,
+                // @ts-ignore
+                postTitle: route.params?.postTitle,
+                // @ts-ignore
+                from: "Search",
+              },
+            },
+          },
+        ],
+      });
+      // navigation.getParent()?.navigate("SubjectsNavigation", {
+      //   screen: "SubjectFullPost",
+      //   params: {
+      //     // @ts-ignore
+      //     post: route.params?.post,
+      //     // @ts-ignore
+      //     postTitle: route.params?.postTitle,
+      //   },
+      // });
+    } else {
+      navigation.goBack();
+    }
+    return true;
+  };
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   useEffect(() => {
     const getHistory = async () => {

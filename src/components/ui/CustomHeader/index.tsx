@@ -1,4 +1,4 @@
-import { View, Image, ImageSourcePropType } from "react-native";
+import { Image, ImageSourcePropType, TouchableOpacity } from "react-native";
 import { useContext } from "react";
 import { Feather } from "@expo/vector-icons";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -15,13 +15,15 @@ const CustomHeader = ({ onPress, iconColor }: Props) => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   return (
-    <View style={{ flexDirection: "row", alignItems: "center" }}>
+    <TouchableOpacity
+      style={{ flexDirection: "row", alignItems: "center" }}
+      onPress={onPress}
+    >
       <Feather
         name="arrow-right"
         style={{ marginLeft: horizontalScale(12) }}
         size={moderateScale(24)}
         color={textColor}
-        onPress={onPress}
       />
       <Image
         source={iconColor}
@@ -32,7 +34,7 @@ const CustomHeader = ({ onPress, iconColor }: Props) => {
           resizeMode: "contain",
         }}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 

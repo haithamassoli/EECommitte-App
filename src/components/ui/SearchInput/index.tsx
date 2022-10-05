@@ -36,6 +36,7 @@ const SearchInput = ({
   list,
   setResults,
   placeholder,
+  from,
 }: SearchInputProps) => {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<HomeNavigationProp>();
@@ -97,7 +98,10 @@ const SearchInput = ({
     } else {
       navigation.getParent()?.navigate("SubjectsNavigation", {
         screen: "Subject",
-        params: { subjectId: id },
+        params: {
+          subjectId: id,
+          from,
+        },
       });
     }
   };

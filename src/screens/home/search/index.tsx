@@ -6,12 +6,13 @@ import {
   Keyboard,
   LayoutAnimation,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import SubjectsData from "@Src/data/Subjects";
 import Colors from "@GlobalStyle/Colors";
 import SearchInput from "@Components/ui/SearchInput";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useLayoutEffect } from "react";
 import {
   deleteStorage,
   getDataFromStorage,
@@ -31,14 +32,116 @@ const options = {
 
 type Props = StackScreenProps<HomeStackParamList, "Search">;
 
-const SearchScreen = ({ navigation }: Props) => {
+const SearchScreen = ({ navigation, route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [historyResults, setHistoryResults] = useState([] as any[]);
-
-  const { theme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: "البحث",
+      headerLeft: () => (
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+          }}
+          onPress={() => {
+            if (
+              route.params?.backTo === "Info" ||
+              route.params?.backTo === "SupportUs"
+            ) {
+              navigation.getParent()?.navigate("InfoNavigation", {
+                screen: route.params?.backTo,
+              });
+            } else if (route.params?.backTo === "Plan") {
+              navigation.getParent()?.navigate("SubjectsNavigation", {
+                screen: "Plan",
+              });
+            } else if (
+              route.params?.backTo === "Subject" &&
+              // @ts-ignore
+              route.params?.from
+            ) {
+              navigation.getParent()?.navigate("SubjectsNavigation", {
+                screen: "Subject",
+                params: {
+                  // @ts-ignore
+                  subjectId: route.params?.subjectId,
+                  // @ts-ignore
+                  from: route.params?.from,
+                },
+              });
+            } else if (
+              route.params?.backTo === "Subject" &&
+              // @ts-ignore
+              !route.params?.from
+            ) {
+              navigation.getParent()?.navigate("SubjectsNavigation", {
+                screen: "Subject",
+                params: {
+                  // @ts-ignore
+                  subjectId: route.params?.subjectId,
+                },
+              });
+            } else if (route.params?.backTo === "SubjectFullPost") {
+              navigation.getParent()?.navigate("SubjectsNavigation", {
+                screen: "SubjectFullPost",
+                params: {
+                  // @ts-ignore
+                  post: route.params?.post,
+                  // @ts-ignore
+                  postTitle: route.params?.postTitle,
+                },
+              });
+            } else {
+              navigation.goBack();
+            }
+          }}
+        >
+          <Feather
+            name="arrow-right"
+            size={24}
+            color={textColor}
+            style={{ paddingHorizontal: 10 }}
+          />
+          <Feather name="search" size={24} color={textColor} />
+        </TouchableOpacity>
+      ),
+      headerRight: () => {
+        return (
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              alignItems: "center",
+              paddingEnd: horizontalScale(10),
+            }}
+          >
+            {theme === "light" ? (
+              <TouchableOpacity onPress={() => toggleTheme()}>
+                <Feather
+                  name="moon"
+                  size={moderateScale(24)}
+                  color={textColor}
+                />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={() => toggleTheme()}>
+                <Feather
+                  name="sun"
+                  size={moderateScale(24)}
+                  color={textColor}
+                />
+              </TouchableOpacity>
+            )}
+          </View>
+        );
+      },
+    });
+  }, [theme, route]);
 
   useEffect(() => {
     const getHistory = async () => {

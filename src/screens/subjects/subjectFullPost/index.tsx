@@ -7,6 +7,7 @@ import Colors from "@GlobalStyle/Colors";
 import { WebDisplay } from "@Components/webDisplay";
 import { screenHeight } from "@Utils/Helper";
 import { verticalScale, moderateScale } from "@Utils/Platform";
+import HeaderRight from "../HeaderRight";
 
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 
@@ -16,6 +17,22 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: route?.params?.postTitle,
+      headerRight: () => {
+        return (
+          <HeaderRight
+            onPress={() => {
+              navigation.getParent()?.navigate("HomeNavigation", {
+                screen: "Search",
+                params: {
+                  backTo: "SubjectFullPost",
+                  postTitle: route?.params?.postTitle,
+                  post: route?.params?.post,
+                },
+              });
+            }}
+          />
+        );
+      },
     });
   }, [route?.params]);
   return (

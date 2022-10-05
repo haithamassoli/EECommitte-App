@@ -1,14 +1,85 @@
-import { View, Text } from "react-native";
-import { useContext } from "react";
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text, TouchableOpacity } from "react-native";
+import { useContext, useLayoutEffect } from "react";
+import { Feather, Ionicons } from "@expo/vector-icons";
 import { ThemeContext } from "@Src/store/themeContext";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
+import { StackScreenProps } from "@react-navigation/stack";
+import { InfoStackParamList } from "@Types/navigation";
 
-const SupportUsScreen = () => {
-  const { theme } = useContext(ThemeContext);
+type Props = StackScreenProps<InfoStackParamList, "SupportUs">;
+
+const SupportUsScreen = ({ navigation }: Props) => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: "الدعم",
+      headerLeft: () => (
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+          }}
+          onPress={() => navigation.goBack()}
+        >
+          <Feather
+            name="arrow-right"
+            size={24}
+            color={textColor}
+            style={{ paddingHorizontal: 10 }}
+          />
+          <Feather name="heart" size={24} color={textColor} />
+        </TouchableOpacity>
+      ),
+      headerRight: () => {
+        return (
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              alignItems: "center",
+              paddingEnd: horizontalScale(10),
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                navigation.getParent()?.navigate("HomeNavigation", {
+                  screen: "Search",
+                  params: {
+                    backTo: "SupportUs",
+                  },
+                });
+              }}
+            >
+              <Feather
+                name="search"
+                size={moderateScale(24)}
+                color={textColor}
+                style={{ paddingStart: horizontalScale(10) }}
+              />
+            </TouchableOpacity>
+            {theme === "light" ? (
+              <TouchableOpacity onPress={() => toggleTheme()}>
+                <Feather
+                  name="moon"
+                  size={moderateScale(24)}
+                  color={textColor}
+                />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={() => toggleTheme()}>
+                <Feather
+                  name="sun"
+                  size={moderateScale(24)}
+                  color={textColor}
+                />
+              </TouchableOpacity>
+            )}
+          </View>
+        );
+      },
+    });
+  }, [theme]);
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text

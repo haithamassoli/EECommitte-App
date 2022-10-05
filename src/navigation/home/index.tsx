@@ -12,7 +12,7 @@ import NotificationScreen from "@Screens/home/Notification";
 import SubjectNameScreen from "@Screens/home/SubjectName";
 import { Feather } from "@expo/vector-icons";
 import { horizontalScale, moderateScale } from "@Utils/Platform";
-import { View } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
 import Colors from "@GlobalStyle/Colors";
@@ -60,6 +60,8 @@ export default function HomeNavigation({ navigation }: Props) {
   return (
     <Stack.Navigator
       initialRouteName="Home"
+      id="Home"
+      key={"Home"}
       screenOptions={{
         headerTitleStyle: {
           fontSize: moderateScale(18),
@@ -75,31 +77,35 @@ export default function HomeNavigation({ navigation }: Props) {
                 paddingEnd: horizontalScale(10),
               }}
             >
-              <Feather
-                onPress={() =>
-                  navigation.navigate("HomeNavigation", {
-                    screen: "Search",
-                  })
-                }
-                name="search"
-                size={moderateScale(24)}
-                color={iconColor}
-                style={{ paddingStart: horizontalScale(10) }}
-              />
+              <TouchableOpacity
+                onPress={() => {
+                  // @ts-ignore
+                  navigation.navigate("Search");
+                }}
+              >
+                <Feather
+                  name="search"
+                  size={moderateScale(24)}
+                  color={iconColor}
+                  style={{ paddingStart: horizontalScale(10) }}
+                />
+              </TouchableOpacity>
               {theme === "light" ? (
-                <Feather
-                  onPress={() => toggleTheme()}
-                  name="moon"
-                  size={moderateScale(24)}
-                  color={iconColor}
-                />
+                <TouchableOpacity onPress={() => toggleTheme()}>
+                  <Feather
+                    name="moon"
+                    size={moderateScale(24)}
+                    color={iconColor}
+                  />
+                </TouchableOpacity>
               ) : (
-                <Feather
-                  onPress={() => toggleTheme()}
-                  name="sun"
-                  size={moderateScale(24)}
-                  color={iconColor}
-                />
+                <TouchableOpacity onPress={() => toggleTheme()}>
+                  <Feather
+                    name="sun"
+                    size={moderateScale(24)}
+                    color={iconColor}
+                  />
+                </TouchableOpacity>
               )}
             </View>
           );
@@ -120,62 +126,7 @@ export default function HomeNavigation({ navigation }: Props) {
         name="Doctors"
         component={DoctorsScreen}
       />
-      <Stack.Screen
-        options={{
-          headerTitle: "البحث",
-          headerLeft: () => (
-            <View
-              style={{
-                flexDirection: "row",
-              }}
-            >
-              <Feather
-                name="arrow-right"
-                size={24}
-                color={iconColor}
-                style={{ paddingHorizontal: 10 }}
-                onPress={() => navigation.goBack()}
-              />
-              <Feather
-                name="search"
-                size={24}
-                color={iconColor}
-                onPress={() => navigation.goBack()}
-              />
-            </View>
-          ),
-          headerRight: () => {
-            return (
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  paddingEnd: horizontalScale(10),
-                }}
-              >
-                {theme === "light" ? (
-                  <Feather
-                    onPress={() => toggleTheme()}
-                    name="moon"
-                    size={moderateScale(24)}
-                    color={iconColor}
-                  />
-                ) : (
-                  <Feather
-                    onPress={() => toggleTheme()}
-                    name="sun"
-                    size={moderateScale(24)}
-                    color={iconColor}
-                  />
-                )}
-              </View>
-            );
-          },
-        }}
-        name="Search"
-        component={SearchScreen}
-      />
+      <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen
         name="Calculator"
         component={CalculatorScreen}

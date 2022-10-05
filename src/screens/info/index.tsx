@@ -1,12 +1,76 @@
-import { Linking, Share, StyleSheet, View } from "react-native";
+import {
+  Linking,
+  Share,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import InfoItem from "@Components/infoItem";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext, useLayoutEffect } from "react";
+import Colors from "@GlobalStyle/Colors";
+import { Feather } from "@expo/vector-icons";
 
-type Props = StackScreenProps<InfoStackParamList>;
+type Props = StackScreenProps<InfoStackParamList, "Info">;
 
 const InfoScreen = ({ navigation }: Props) => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: "القائمة",
+      headerRight: () => {
+        return (
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              alignItems: "center",
+              paddingEnd: horizontalScale(10),
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                navigation.getParent()?.navigate("HomeNavigation", {
+                  screen: "Search",
+                  params: {
+                    backTo: "Info",
+                  },
+                });
+              }}
+            >
+              <Feather
+                name="search"
+                size={moderateScale(24)}
+                color={textColor}
+                style={{ paddingStart: horizontalScale(10) }}
+              />
+            </TouchableOpacity>
+            {theme === "light" ? (
+              <TouchableOpacity onPress={() => toggleTheme()}>
+                <Feather
+                  name="moon"
+                  size={moderateScale(24)}
+                  color={textColor}
+                />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={() => toggleTheme()}>
+                <Feather
+                  name="sun"
+                  size={moderateScale(24)}
+                  color={textColor}
+                />
+              </TouchableOpacity>
+            )}
+          </View>
+        );
+      },
+    });
+  }, [theme]);
   const onPress = (page: keyof InfoStackParamList) => {
     navigation.push(page);
   };

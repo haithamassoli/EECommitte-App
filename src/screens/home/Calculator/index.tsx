@@ -34,7 +34,7 @@ const CalculatorScreen = () => {
 
   const addSubject = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    if (subjectCount >= 8) {
+    if (subjectCount >= 12) {
       setMassage("لا يمكن اضافة المزيد من المواد");
       setVisible(true);
     } else {

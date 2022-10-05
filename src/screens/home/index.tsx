@@ -179,6 +179,7 @@ const HomeScreen = ({ navigation }: Props) => {
               list={[...SubjectsData, ...DoctorsData]}
               setResults={setResults}
               options={options}
+              from="Home"
             />
           </View>
         </>

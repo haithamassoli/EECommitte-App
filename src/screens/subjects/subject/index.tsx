@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useLayoutEffect } from "react";
 import {
   View,
   Text,
@@ -14,6 +14,7 @@ import type {
   StackScreenProps,
   StackNavigationProp,
 } from "@react-navigation/stack";
+import { CommonActions } from "@react-navigation/native";
 import type { Subject } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
@@ -22,6 +23,7 @@ import { Feather } from "@expo/vector-icons";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { screenHeight, screenWidth } from "@Utils/Helper";
 import { FavoriteContext } from "@Src/store/favoriteContext";
+import HeaderRight from "../HeaderRight";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 export type SubjectNavigationProp = StackNavigationProp<
@@ -78,7 +80,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       : powerDarkFrame;
 
   const backgroundSubjectColor = subject.color;
-  useEffect(() => {
+  useLayoutEffect(() => {
     setLoading(true);
     const currentSubject = subjects.find(
       (subject) => subject.id === route.params.subjectId
@@ -89,12 +91,23 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     setLoading(false);
   }, [route?.params?.subjectId]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: subject?.name2,
       headerLeft: () => (
         <TouchableOpacity
-          onPress={() => navigation.replace("Plan")}
+          onPress={() => {
+            if (route.params?.from === "Home") {
+              navigation.dispatch(
+                CommonActions.reset({
+                  index: 0,
+                  routes: [{ name: "HomeNavigation" }],
+                })
+              );
+            } else {
+              navigation.goBack();
+            }
+          }}
           style={{
             flex: 1,
             flexDirection: "row",
@@ -110,8 +123,24 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           <Feather name="book" size={moderateScale(24)} color={textColor} />
         </TouchableOpacity>
       ),
+      headerRight: () => {
+        return (
+          <HeaderRight
+            onPress={() => {
+              navigation.getParent()?.navigate("HomeNavigation", {
+                screen: "Search",
+                params: {
+                  backTo: "Subject",
+                  subjectId: subject.id,
+                  from: route.params?.from,
+                },
+              });
+            }}
+          />
+        );
+      },
     });
-  }, [subject?.name, theme]);
+  }, [subject?.name, theme, route]);
 
   useEffect(() => {
     const isFavorite = favorite.some((item) => item.id === subject.id);

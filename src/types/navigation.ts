@@ -9,8 +9,7 @@ export type BottomTabParamList = {
 
 export type SubjectsStackParamList = {
   Plan: undefined;
-  Subject: { subjectId: number };
-  SubjectWebView: { url: string };
+  Subject: { subjectId: number; from?: string };
   SubjectFullPost: { post?: string; postTitle: string };
 };
 
@@ -24,7 +23,7 @@ export type HomeStackParamList = {
   Home: undefined;
   Calculator: undefined;
   Doctors: { doctorId?: number };
-  Search: undefined;
+  Search: { backTo?: string; from?: string };
   Records: undefined;
   OurExplanations: undefined;
   Favorite: undefined;

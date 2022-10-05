@@ -5,13 +5,34 @@ import { screenHeight, screenWidth } from "@Utils/Helper";
 import type { MapperItem } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import MAPPING from "./Mapping";
-import { memo } from "react";
+import { memo, useLayoutEffect, useContext } from "react";
 import { Image, StyleSheet, ImageBackground } from "react-native";
 import { verticalScale } from "@Utils/Platform";
+import { ThemeContext } from "@Src/store/themeContext";
+import HeaderRight from "../HeaderRight";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
 const PlanScreen = ({ navigation }: Props) => {
+  const { theme } = useContext(ThemeContext);
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <HeaderRight
+            onPress={() => {
+              navigation.getParent()?.navigate("HomeNavigation", {
+                screen: "Search",
+                params: {
+                  backTo: "Plan",
+                },
+              });
+            }}
+          />
+        );
+      },
+    });
+  }, [theme]);
   const handleSelectArea = (subjectId: number) => {
     navigation.navigate("Subject", { subjectId });
   };

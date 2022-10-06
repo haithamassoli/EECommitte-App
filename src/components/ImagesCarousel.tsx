@@ -90,6 +90,18 @@ const ImagesCarousel = ({ images }: Props) => {
           zIndex: 100,
         }}
       >
+        {images.length === 0 && (
+          <View
+            style={[
+              styles.dot,
+              {
+                borderColor:
+                  theme === "light" ? Colors.primary700 : Colors.primary400,
+                backgroundColor: Colors.primary600,
+              },
+            ]}
+          />
+        )}
         {images.map((_, index) => (
           <View
             key={index}

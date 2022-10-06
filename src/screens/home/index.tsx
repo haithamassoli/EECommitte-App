@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, memo } from "react";
 import {
   View,
   Image,
@@ -459,4 +459,4 @@ const HomeScreen = ({ navigation }: Props) => {
   );
 };
 
-export default HomeScreen;
+export default memo(HomeScreen);

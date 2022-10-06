@@ -2,7 +2,7 @@ import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { rtlWebview, screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { memo, useContext } from "react";
+import { useContext } from "react";
 import { Falsy, RecursiveArray, View } from "react-native";
 import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
 const systemFonts = [...defaultSystemFonts, "Dubai"];
@@ -11,7 +11,7 @@ type NonRegisteredStylesProp<T> = T | Falsy | RecursiveArray<T | Falsy>;
 type StylesDictionary = {
   [tag: string]: NonRegisteredStylesProp<any>;
 };
-export const WebDisplay = memo(function WebDisplay({ html }: { html: string }) {
+export const WebDisplay = function WebDisplay({ html }: { html: string }) {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const tagsStyles: StylesDictionary = {
@@ -48,4 +48,4 @@ export const WebDisplay = memo(function WebDisplay({ html }: { html: string }) {
       />
     </View>
   );
-});
+};

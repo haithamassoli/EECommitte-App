@@ -3,7 +3,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
 import { screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { memo, useContext } from "react";
+import { useContext } from "react";
 import { View, Text, TouchableOpacity, Linking, Image } from "react-native";
 
 type Props = Omit<Record, "id" | "searchName">;
@@ -65,4 +65,4 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
   );
 };
 
-export default memo(RecordCard);
+export default RecordCard;

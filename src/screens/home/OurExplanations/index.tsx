@@ -6,7 +6,7 @@ import explanationsData from "@Src/data/OurExplanations";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { memo, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { View, Text } from "react-native";
 
 const options = {
@@ -84,4 +84,4 @@ const OurExplanationsScreen = () => {
   );
 };
 
-export default memo(OurExplanationsScreen);
+export default OurExplanationsScreen;

@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { memo, useContext } from "react";
+import { useContext } from "react";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 interface InfoItemProps {
@@ -47,7 +47,7 @@ const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
   );
 };
 
-export default memo(InfoItem);
+export default InfoItem;
 
 const styles = StyleSheet.create({
   outerContainer: {

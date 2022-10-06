@@ -14,6 +14,7 @@ import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import { FavoriteProvider } from "@Src/store/favoriteContext";
 import { setNotificationsTokens } from "@Src/api/setNotificationsTokens";
 import FirstLoading from "@Components/FirstLoading";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -27,6 +28,16 @@ Notifications.setNotificationHandler({
     shouldPlaySound: true,
     shouldSetBadge: true,
   }),
+});
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      staleTime: Infinity,
+      refetchInterval: false,
+    },
+  },
 });
 
 export default function App() {
@@ -142,7 +153,9 @@ export default function App() {
           }
         />
         <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
-          <Route />
+          <QueryClientProvider client={queryClient}>
+            <Route />
+          </QueryClientProvider>
         </SafeAreaView>
       </FavoriteProvider>
     </ThemeProvider>

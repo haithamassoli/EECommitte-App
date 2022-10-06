@@ -18,27 +18,16 @@ type SECTIONSTYPE = { title: string; content: string };
 const FAQScreen = () => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const [isConnecte, setIsConnecte] = useState<boolean | null>(false);
+  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
   const [activeSections, setActiveSections] = useState([]);
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading }: any = fetchFAQ();
+
   useEffect(() => {
-    fetchFAQ()
-      .then((res: any) => {
-        setData(res);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
+    if (!data) {
+      isConnected().then((isConnected) => {
+        setIsConnecte(isConnected);
       });
-  }, []);
-  useEffect(() => {
-    isConnected().then((isConnected) => {
-      if (!isConnected) {
-        setLoading(false);
-      }
-      setIsConnecte(isConnected);
-    });
+    }
   }, []);
   const renderHeader = (section: SECTIONSTYPE) => {
     return (
@@ -94,7 +83,7 @@ const FAQScreen = () => {
     setActiveSections(activeSections);
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <ActivityIndicator style={{ flex: 1 }} size="large" color={textColor} />
     );

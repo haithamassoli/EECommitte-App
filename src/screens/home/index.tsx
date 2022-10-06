@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Linking,
   Keyboard,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./styles";
@@ -20,7 +21,11 @@ import DoctorsData from "@Src/data/Doctors";
 import ImagesCarousel from "@Components/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import {
+  getDataFromStorage,
+  isConnected,
+  storeDataToStorage,
+} from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { StatusBar } from "expo-status-bar";
 import { fetchSliderImages } from "@Src/api/fetchSliderImages";
@@ -42,16 +47,12 @@ const HomeScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
-  const [images, setImages] = useState<string[]>([]);
   const [notificationCount, setNotificationCount] = useState(0);
+  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
   const isFocused = useIsFocused();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  useEffect(() => {
-    fetchSliderImages().then((data) => {
-      setImages(data);
-    });
-  }, []);
+  const { data, isLoading }: any = fetchSliderImages();
   useEffect(() => {
     const CheckNotificationCount = async () => {
       const count = await getDataFromStorage("notificationsCount");
@@ -84,6 +85,11 @@ const HomeScreen = ({ navigation }: Props) => {
         // const userName = response.notification.request.content.data;
       }
     );
+    if (!data) {
+      isConnected().then((isConnected) => {
+        setIsConnecte(isConnected);
+      });
+    }
 
     return () => {
       subscription1.remove();
@@ -343,7 +349,21 @@ const HomeScreen = ({ navigation }: Props) => {
           </TouchableOpacity>
         </View>
       </View>
-      <ImagesCarousel images={images} />
+      {isLoading && isConnecte ? (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: verticalScale(100),
+            marginBottom: verticalScale(50),
+          }}
+        >
+          <ActivityIndicator size="large" color={Colors.secondYear} />
+        </View>
+      ) : (
+        <ImagesCarousel images={data} />
+      )}
       <View
         style={{
           flex: 1,

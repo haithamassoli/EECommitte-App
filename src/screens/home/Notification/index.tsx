@@ -35,12 +35,11 @@ type StylesDictionary = {
 };
 
 const NotificationScreen = () => {
-  const [notification, setNotification] = useState<NotificationType[]>([]);
-  const [isConnecte, setIsConnecte] = useState<boolean | null>(false);
+  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
   const [activeSections, setActiveSections] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  const { data, isLoading }: any = fetchNotifications();
 
   const tagsStyles: StylesDictionary = {
     body: {
@@ -56,24 +55,14 @@ const NotificationScreen = () => {
   };
 
   useEffect(() => {
-    isConnected().then((isConnected) => {
-      if (!isConnected) {
-        setLoading(false);
-      }
-      setIsConnecte(isConnected);
-    });
+    if (!data) {
+      isConnected().then((isConnected) => {
+        setIsConnecte(isConnected);
+      });
+    }
   }, []);
 
   useEffect(() => {
-    fetchNotifications()
-      .then((res: any) => {
-        setNotification(res);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
     const deleteNotificationsCount = async () => {
       await storeDataToStorage("notificationsCount", 0);
     };
@@ -135,14 +124,14 @@ const NotificationScreen = () => {
     setActiveSections(activeSections);
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <ActivityIndicator style={{ flex: 1 }} size="large" color={textColor} />
     );
   }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
-      {notification.length === 0 && isConnecte && (
+      {data.length === 0 && isConnecte && (
         <View
           style={{
             flex: 1,
@@ -185,7 +174,7 @@ const NotificationScreen = () => {
         </View>
       )}
       <Accordion
-        sections={notification}
+        sections={data}
         containerStyle={{
           paddingHorizontal: horizontalScale(16),
         }}

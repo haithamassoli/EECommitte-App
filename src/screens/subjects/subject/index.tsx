@@ -118,7 +118,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         );
       },
     });
-  }, [data?.name, theme, route]);
+  }, [data?.name, theme]);
 
   useEffect(() => {
     const isFavorite = favorite.some((item) => item.id === data?.id);

@@ -2,17 +2,6 @@ export interface Subject {
   id: number;
   name: string;
   name2: string;
-  aboutSubject?: string;
-  subjectLink: string;
-  fullPost?: string;
-  book?: string;
-  prevYears?: string;
-  slides?: string;
-  explanations?: Explanation[];
-  exams?: string;
-  answers?: string;
-  manual?: string;
-  color: string;
 }
 
 type Explanation = {

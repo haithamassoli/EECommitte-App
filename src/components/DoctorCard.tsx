@@ -22,7 +22,8 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
         marginVertical: verticalScale(10),
         width: "100%",
         backgroundColor,
-        padding: moderateScale(10),
+        paddingStart: horizontalScale(10),
+        paddingVertical: verticalScale(10),
         borderRadius: moderateScale(10),
       }}
     >
@@ -61,9 +62,9 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
         >
           <Text
             style={{
-              backgroundColor: "#555",
+              backgroundColor: Colors.primaryLight,
               borderRadius: moderateScale(10),
-              color: textColor,
+              color: Colors.lightText,
               textAlign: "left",
               fontSize: moderateScale(14),
               marginEnd: horizontalScale(20),
@@ -77,7 +78,7 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
         </TouchableOpacity>
         <View
           style={{
-            backgroundColor: "#555",
+            backgroundColor: Colors.primaryLight,
             borderRadius: moderateScale(10),
             marginEnd: horizontalScale(20),
             paddingVertical: verticalScale(6),
@@ -87,7 +88,7 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
           <TouchableOpacity onPress={() => Linking.openURL(`mailto:${email}`)}>
             <Text
               style={{
-                color: textColor,
+                color: Colors.lightText,
                 textAlign: "left",
                 fontSize: moderateScale(14),
                 paddingEnd: horizontalScale(10),
@@ -97,7 +98,7 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
             </Text>
             <Text
               style={{
-                color: textColor,
+                color: Colors.lightText,
                 textAlign: "left",
                 fontSize: moderateScale(14),
                 paddingEnd: horizontalScale(10),
@@ -111,7 +112,7 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
           style={{
             backgroundColor: Colors.primary400,
             padding: moderateScale(5),
-            borderRadius: moderateScale(5),
+            borderRadius: moderateScale(10),
             marginVertical: verticalScale(5),
             alignSelf: "center",
           }}

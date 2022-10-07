@@ -82,7 +82,6 @@ const SearchInput = ({
   const handlePress = async (id: number) => {
     if (!isLoading) {
       const doctor = data.find((doctor: any) => doctor.id === id);
-
       const prevData = await getDataFromStorage("searchHistory");
       if (Array.isArray(prevData) && !prevData.includes(id)) {
         if (prevData.length >= 10) {

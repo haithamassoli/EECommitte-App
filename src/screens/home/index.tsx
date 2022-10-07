@@ -92,7 +92,6 @@ const HomeScreen = ({ navigation }: Props) => {
         setIsConnecte(isConnected);
       });
     }
-
     return () => {
       subscription1.remove();
       subscription2.remove();

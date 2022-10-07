@@ -1,17 +1,12 @@
-import { storage } from "@Src/firebase-config";
+import { db } from "@Src/firebase-config";
 import { useQuery } from "@tanstack/react-query";
-import { ref, getDownloadURL, listAll } from "firebase/storage";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 export function fetchSliderImages() {
   const { data, isLoading } = useQuery(["slider"], async () => {
-    const images: string[] = [];
-    const listRef = ref(storage, "slider");
-    const res = await listAll(listRef);
-    res.items.forEach(async (itemRef) => {
-      const url = await getDownloadURL(itemRef);
-      images.push(url);
-    });
-    return images;
+    const q = query(collection(db, "slider"), orderBy("time", "desc"));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map((doc) => doc.data());
   });
   return { data, isLoading };
 }

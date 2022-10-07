@@ -1,5 +1,12 @@
 import { useState, useRef, memo, useContext } from "react";
-import { View, ScrollView, Image, StyleSheet } from "react-native";
+import {
+  View,
+  ScrollView,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 import { screenHeight, screenWidth } from "@Utils/Helper";
 import { useEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
@@ -8,7 +15,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = {
-  images: string[];
+  images: any[];
 };
 
 const ImagesCarousel = ({ images }: Props) => {
@@ -73,12 +80,21 @@ const ImagesCarousel = ({ images }: Props) => {
             />
           )}
           {images.map((image, index) => (
-            <Image
+            <TouchableOpacity
+              onPress={() => {
+                if (image.url) {
+                  Linking.openURL(image?.url);
+                }
+              }}
               key={index}
-              source={{ uri: image }}
-              defaultSource={require("@Assets/images/slider1.webp")}
-              style={styles.image}
-            />
+              activeOpacity={image.url ? 0.5 : 1}
+            >
+              <Image
+                source={{ uri: image?.image }}
+                defaultSource={require("@Assets/images/slider1.webp")}
+                style={styles.image}
+              />
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </Shadow>

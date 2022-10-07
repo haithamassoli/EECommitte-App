@@ -18,7 +18,7 @@ import { CommonActions } from "@react-navigation/native";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { Feather } from "@expo/vector-icons";
+import { Feather, AntDesign } from "@expo/vector-icons";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { screenHeight, screenWidth } from "@Utils/Helper";
 import { FavoriteContext } from "@Src/store/favoriteContext";
@@ -134,12 +134,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         })
       );
     } else {
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: "SubjectsNavigation" }],
-        })
-      );
+      navigation.navigate("Plan");
     }
     return true;
   };
@@ -299,6 +294,12 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         <Text style={[style.buttonText, { color: textColor }]}>
           {isFavorite ? "ازالة من المفضلة" : "اضافة الى المفضلة"}
         </Text>
+        <AntDesign
+          name={isFavorite ? "heart" : "hearto"}
+          size={moderateScale(24)}
+          color={textColor}
+          style={{ marginHorizontal: horizontalScale(10) }}
+        />
       </TouchableOpacity>
     </ScrollView>
   );

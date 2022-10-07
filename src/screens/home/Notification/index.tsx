@@ -126,7 +126,11 @@ const NotificationScreen = () => {
 
   if (isLoading) {
     return (
-      <ActivityIndicator style={{ flex: 1 }} size="large" color={textColor} />
+      <ActivityIndicator
+        style={{ flex: 1 }}
+        size="large"
+        color={theme === "light" ? Colors.primary700 : Colors.primary400}
+      />
     );
   }
   return (

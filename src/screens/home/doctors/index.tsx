@@ -39,12 +39,17 @@ const DoctorsScreen = ({ route }: Props) => {
       <ActivityIndicator
         style={{ flex: 1 }}
         size="large"
-        color={Colors.primary400}
+        color={theme === "light" ? Colors.primary700 : Colors.primary400}
       />
     );
   }
   return (
-    <View style={{ marginHorizontal: horizontalScale(12), flex: 1 }}>
+    <View
+      style={{
+        marginHorizontal: horizontalScale(12),
+        flex: 1,
+      }}
+    >
       <SearchInput
         placeholder="ابحث عن أحد الكادر التدريسي..."
         searchInput={searchInput}

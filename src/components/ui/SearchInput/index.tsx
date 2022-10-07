@@ -188,7 +188,8 @@ const SearchInput = ({
                 ? Colors.lightBackgroundSec
                 : Colors.darkBackgroundSec,
             paddingTop: verticalScale(25),
-            borderRadius: moderateScale(10),
+            borderBottomLeftRadius: moderateScale(10),
+            borderBottomRightRadius: moderateScale(10),
           }}
         >
           <SearchResults results={results} handlePress={handlePress} />

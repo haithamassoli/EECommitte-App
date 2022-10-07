@@ -19,9 +19,11 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
-        marginHorizontal: horizontalScale(20),
         marginVertical: verticalScale(10),
         width: "100%",
+        backgroundColor,
+        padding: moderateScale(10),
+        borderRadius: moderateScale(10),
       }}
     >
       <Image
@@ -59,7 +61,7 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
         >
           <Text
             style={{
-              backgroundColor,
+              backgroundColor: "#555",
               borderRadius: moderateScale(10),
               color: textColor,
               textAlign: "left",
@@ -75,7 +77,7 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
         </TouchableOpacity>
         <View
           style={{
-            backgroundColor,
+            backgroundColor: "#555",
             borderRadius: moderateScale(10),
             marginEnd: horizontalScale(20),
             paddingVertical: verticalScale(6),

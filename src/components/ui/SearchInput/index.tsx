@@ -20,8 +20,8 @@ import {
 import SearchResults from "./SearchResults";
 import { SearchInputProps } from "@Types/Search";
 import { HomeNavigationProp } from "@Screens/home";
-import DoctorsData from "@Src/data/Doctors";
 import { moderateScale, verticalScale } from "@Utils/Platform";
+import { fetchDoctors } from "@Src/api/fetchDoctors";
 
 let delayTimer: any;
 
@@ -42,6 +42,7 @@ const SearchInput = ({
   const navigation = useNavigation<HomeNavigationProp>();
   const searchAnim = useRef(new Animated.Value(0)).current;
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
+  const { data, isLoading }: any = fetchDoctors();
 
   useEffect(() => {
     clearTimeout(delayTimer);
@@ -79,30 +80,33 @@ const SearchInput = ({
   };
 
   const handlePress = async (id: number) => {
-    const doctor = DoctorsData.find((doctor) => doctor.id === id);
-    const prevData = await getDataFromStorage("searchHistory");
-    if (Array.isArray(prevData) && !prevData.includes(id)) {
-      if (prevData.length >= 10) {
-        prevData.pop();
+    if (!isLoading) {
+      const doctor = data.find((doctor: any) => doctor.id === id);
+
+      const prevData = await getDataFromStorage("searchHistory");
+      if (Array.isArray(prevData) && !prevData.includes(id)) {
+        if (prevData.length >= 10) {
+          prevData.pop();
+        }
+        await storeDataToStorage("searchHistory", [id, ...prevData]);
+      } else if (!prevData) {
+        await storeDataToStorage("searchHistory", [id]);
       }
-      await storeDataToStorage("searchHistory", [id, ...prevData]);
-    } else if (!prevData) {
-      await storeDataToStorage("searchHistory", [id]);
-    }
-    Keyboard.dismiss();
-    setSearchInput("");
-    if (doctor) {
-      navigation.navigate("Doctors", {
-        doctorId: id,
-      });
-    } else {
-      navigation.getParent()?.navigate("SubjectsNavigation", {
-        screen: "Subject",
-        params: {
-          subjectId: id,
-          from,
-        },
-      });
+      Keyboard.dismiss();
+      setSearchInput("");
+      if (doctor) {
+        navigation.navigate("Doctors", {
+          doctorId: id,
+        });
+      } else {
+        navigation.getParent()?.navigate("SubjectsNavigation", {
+          screen: "Subject",
+          params: {
+            subjectId: id,
+            from,
+          },
+        });
+      }
     }
   };
 

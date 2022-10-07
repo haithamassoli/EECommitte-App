@@ -1,5 +1,4 @@
 import { Text, View, ActivityIndicator } from "react-native";
-import DoctorsData from "@Src/data/Doctors";
 import { Doctor } from "@Types/index";
 import SearchInput from "@Components/ui/SearchInput";
 import { useContext, useLayoutEffect, useState } from "react";
@@ -10,6 +9,7 @@ import { HomeStackParamList } from "@Types/navigation";
 import DoctorCard from "@Components/DoctorCard";
 import { FlashList } from "@shopify/flash-list";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import { fetchDoctors } from "@Src/api/fetchDoctors";
 
 type Props = StackScreenProps<HomeStackParamList, "Doctors">;
 
@@ -20,23 +20,21 @@ const options = {
 const DoctorsScreen = ({ route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Doctor[] | []>([]);
-  const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-
+  const { data, isLoading }: any = fetchDoctors();
   useLayoutEffect(() => {
-    setLoading(true);
-    const doctor = DoctorsData.find(
-      (doctor) => doctor.id === route.params.doctorId
-    );
-    if (doctor) {
-      setSearchInput(doctor.name2);
-      setResults([doctor]);
+    if (!isLoading) {
+      const doctor = data.find(
+        (doctor: any) => doctor.id === route.params.doctorId
+      );
+      if (doctor) {
+        setSearchInput(doctor.name2);
+        setResults([doctor]);
+      }
     }
-    setLoading(false);
   }, [route.params.doctorId]);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <ActivityIndicator
         style={{ flex: 1 }}
@@ -53,7 +51,7 @@ const DoctorsScreen = ({ route }: Props) => {
         setSearchInput={setSearchInput}
         setResults={setResults}
         options={options}
-        list={DoctorsData}
+        list={!isLoading && data}
         style={{ marginTop: verticalScale(12) }}
       />
       {results.length > 0 && searchInput.length > 0 ? (
@@ -89,11 +87,11 @@ const DoctorsScreen = ({ route }: Props) => {
         </>
       ) : (
         <FlashList
-          data={DoctorsData}
+          data={!isLoading && data}
           keyboardShouldPersistTaps="always"
           estimatedItemSize={65}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
+          keyExtractor={(item: any) => item.id.toString()}
+          renderItem={({ item }: any) => (
             <DoctorCard
               email={item.email}
               image={item.image}

@@ -17,7 +17,6 @@ import SearchInput from "@Components/ui/SearchInput";
 import { HomeStackParamList } from "@Types/navigation";
 import SubjectsData from "@Src/data/Subjects";
 import Overlay from "@Components/Overlay";
-import DoctorsData from "@Src/data/Doctors";
 import ImagesCarousel from "@Components/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
@@ -31,6 +30,7 @@ import { StatusBar } from "expo-status-bar";
 import { fetchSliderImages } from "@Src/api/fetchSliderImages";
 import * as Notifications from "expo-notifications";
 import { useIsFocused } from "@react-navigation/native";
+import { fetchDoctors } from "@Src/api/fetchDoctors";
 
 const options = {
   keys: ["name", "name2"],
@@ -53,6 +53,8 @@ const HomeScreen = ({ navigation }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading }: any = fetchSliderImages();
+  const { data: DoctorsData }: any = fetchDoctors();
+
   useEffect(() => {
     const CheckNotificationCount = async () => {
       const count = await getDataFromStorage("notificationsCount");
@@ -182,7 +184,8 @@ const HomeScreen = ({ navigation }: Props) => {
               searchBarFocused={searchBarFocused}
               setSearchBarFocused={setSearchBarFocused}
               results={results}
-              list={[...SubjectsData, ...DoctorsData]}
+              // @ts-ignore
+              list={!isLoading && [...SubjectsData, ...DoctorsData]}
               setResults={setResults}
               options={options}
               from="Home"

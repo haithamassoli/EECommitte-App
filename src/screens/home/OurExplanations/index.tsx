@@ -2,12 +2,12 @@ import RecordCard from "@Components/RecordCard";
 import SearchInput from "@Components/ui/SearchInput";
 import Colors from "@GlobalStyle/Colors";
 import { FlashList } from "@shopify/flash-list";
-import explanationsData from "@Src/data/OurExplanations";
+import { fetchExplanations } from "@Src/api/fetchExplanations";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 
 const options = {
   keys: ["searchName", "subject", "doctor"],
@@ -18,6 +18,17 @@ const OurExplanationsScreen = () => {
   const [results, setResults] = useState<Record[] | []>([]);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  const { data, isLoading }: any = fetchExplanations();
+
+  if (isLoading) {
+    return (
+      <ActivityIndicator
+        style={{ flex: 1 }}
+        size="large"
+        color={theme === "light" ? Colors.primary700 : Colors.primary400}
+      />
+    );
+  }
 
   return (
     <View
@@ -32,7 +43,7 @@ const OurExplanationsScreen = () => {
         setSearchInput={setSearchInput}
         setResults={setResults}
         options={options}
-        list={explanationsData}
+        list={data}
         style={{ marginVertical: verticalScale(8) }}
       />
       {results.length > 0 && searchInput.length > 0 ? (
@@ -66,10 +77,10 @@ const OurExplanationsScreen = () => {
         </>
       ) : (
         <FlashList
-          data={explanationsData}
+          data={data}
           keyboardShouldPersistTaps="always"
           estimatedItemSize={24}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item: any) => item.id.toString()}
           renderItem={({ item }) => (
             <RecordCard
               link={item.link}

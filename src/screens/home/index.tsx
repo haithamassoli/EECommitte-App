@@ -53,7 +53,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading }: any = fetchSliderImages();
-  const { data: DoctorsData }: any = fetchDoctors();
+  const { data: DoctorsData, isLoading: isLoadingDoctor }: any = fetchDoctors();
 
   useEffect(() => {
     const CheckNotificationCount = async () => {
@@ -173,22 +173,24 @@ const HomeScreen = ({ navigation }: Props) => {
             </View>
           </SafeAreaView>
           <View style={{ marginHorizontal: horizontalScale(8) }}>
-            <SearchInput
-              style={{
-                marginBottom: verticalScale(6),
-              }}
-              placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
-              searchInput={searchInput}
-              setSearchInput={setSearchInput}
-              searchBarFocused={searchBarFocused}
-              setSearchBarFocused={setSearchBarFocused}
-              results={results}
-              // @ts-ignore
-              list={!isLoading && [...SubjectsData, ...DoctorsData]}
-              setResults={setResults}
-              options={options}
-              from="Home"
-            />
+            {!isLoadingDoctor && (
+              <SearchInput
+                style={{
+                  marginBottom: verticalScale(6),
+                }}
+                placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
+                searchBarFocused={searchBarFocused}
+                setSearchBarFocused={setSearchBarFocused}
+                results={results}
+                // @ts-ignore
+                list={[...SubjectsData, ...DoctorsData]}
+                setResults={setResults}
+                options={options}
+                from="Home"
+              />
+            )}
           </View>
         </>
       ),

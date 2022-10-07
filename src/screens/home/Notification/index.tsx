@@ -135,27 +135,6 @@ const NotificationScreen = () => {
   }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
-      {data.length === 0 && isConnecte && (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            height: screenHeight,
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "Bukra",
-              fontSize: moderateScale(20),
-              color: textColor,
-              paddingBottom: verticalScale(180),
-            }}
-          >
-            لا يوجد إشعارات
-          </Text>
-        </View>
-      )}
       {isConnecte === false && (
         <View
           style={{

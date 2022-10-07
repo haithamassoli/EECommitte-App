@@ -23,11 +23,9 @@ const FAQScreen = () => {
   const { data, isLoading }: any = fetchFAQ();
 
   useEffect(() => {
-    if (!data) {
-      isConnected().then((isConnected) => {
-        setIsConnecte(isConnected);
-      });
-    }
+    isConnected().then((isConnected) => {
+      setIsConnecte(isConnected);
+    });
   }, []);
   const renderHeader = (section: SECTIONSTYPE) => {
     return (
@@ -94,28 +92,7 @@ const FAQScreen = () => {
   }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
-      {data.length === 0 && isConnecte && (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            height: screenHeight,
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "Bukra",
-              fontSize: moderateScale(20),
-              color: textColor,
-              paddingBottom: verticalScale(180),
-            }}
-          >
-            لا يوجد اسئلة
-          </Text>
-        </View>
-      )}
-      {isConnecte === false && (
+      {!isConnecte && (
         <View
           style={{
             flex: 1,

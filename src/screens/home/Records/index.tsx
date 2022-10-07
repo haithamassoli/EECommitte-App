@@ -2,12 +2,12 @@ import RecordCard from "@Components/RecordCard";
 import SearchInput from "@Components/ui/SearchInput";
 import Colors from "@GlobalStyle/Colors";
 import { FlashList } from "@shopify/flash-list";
-import RecordsData, { RecordsDataSearch } from "@Src/data/Records";
+import { fetchRecords, fetchSearchRecords } from "@Src/api/fetchRecords";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 
 const options = {
   keys: ["subject", "searchName", "doctor"],
@@ -16,9 +16,20 @@ const options = {
 const RecordsScreen = () => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Record[] | []>([]);
+  const { data, isLoading }: any = fetchRecords();
+  const { data: searchRecord, isLoading: isLoadingSearchRecord }: any =
+    fetchSearchRecords();
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-
+  if (isLoading) {
+    return (
+      <ActivityIndicator
+        style={{ flex: 1 }}
+        size="large"
+        color={theme === "light" ? Colors.primary700 : Colors.primary400}
+      />
+    );
+  }
   return (
     <View
       style={{
@@ -26,15 +37,17 @@ const RecordsScreen = () => {
         flex: 1,
       }}
     >
-      <SearchInput
-        placeholder="ابحث عن تسجيل..."
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-        setResults={setResults}
-        options={options}
-        list={RecordsDataSearch}
-        style={{ marginVertical: verticalScale(8) }}
-      />
+      {!isLoadingSearchRecord && (
+        <SearchInput
+          placeholder="ابحث عن تسجيل..."
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+          setResults={setResults}
+          options={options}
+          list={searchRecord}
+          style={{ marginVertical: verticalScale(8) }}
+        />
+      )}
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
           data={results}
@@ -66,8 +79,8 @@ const RecordsScreen = () => {
         </>
       ) : (
         <FlashList
-          data={RecordsData}
-          renderItem={({ item }) => {
+          data={data}
+          renderItem={({ item }: any) => {
             if (typeof item === "string") {
               return (
                 <Text

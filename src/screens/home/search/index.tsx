@@ -336,15 +336,17 @@ const SearchScreen = ({ navigation, route }: Props) => {
     >
       <KeyboardAvoidingView style={styles.container}>
         <View style={styles.searchContainer}>
-          <SearchInput
-            placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
-            searchInput={searchInput}
-            setSearchInput={setSearchInput}
-            setResults={setResults}
-            options={options}
-            // @ts-ignore
-            list={!isLoading && [...SubjectsData, ...data]}
-          />
+          {!isLoading && (
+            <SearchInput
+              placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+              setResults={setResults}
+              options={options}
+              // @ts-ignore
+              list={[...SubjectsData, ...data]}
+            />
+          )}
         </View>
         {!searchInput ? (
           <>

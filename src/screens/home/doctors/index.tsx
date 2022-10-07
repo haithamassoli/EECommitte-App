@@ -56,7 +56,7 @@ const DoctorsScreen = ({ route }: Props) => {
         setSearchInput={setSearchInput}
         setResults={setResults}
         options={options}
-        list={!isLoading && data}
+        list={data}
         style={{ marginTop: verticalScale(12) }}
       />
       {results.length > 0 && searchInput.length > 0 ? (
@@ -92,7 +92,7 @@ const DoctorsScreen = ({ route }: Props) => {
         </>
       ) : (
         <FlashList
-          data={!isLoading && data}
+          data={data}
           keyboardShouldPersistTaps="always"
           estimatedItemSize={65}
           keyExtractor={(item: any) => item.id.toString()}

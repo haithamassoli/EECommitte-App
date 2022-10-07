@@ -29,7 +29,7 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
           height: verticalScale(110),
         }}
         resizeMode="contain"
-        source={image}
+        source={{ uri: image }}
       />
       <View
         style={{

@@ -1,7 +1,7 @@
 import { Text, View, ActivityIndicator } from "react-native";
 import { Doctor } from "@Types/index";
 import SearchInput from "@Components/ui/SearchInput";
-import { useContext, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -10,6 +10,8 @@ import DoctorCard from "@Components/DoctorCard";
 import { FlashList } from "@shopify/flash-list";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { fetchDoctors } from "@Src/api/fetchDoctors";
+import { isConnected } from "@Utils/Helper";
+import NoConnectoin from "@Components/noConnectoin";
 
 type Props = StackScreenProps<HomeStackParamList, "Doctors">;
 
@@ -20,9 +22,11 @@ const options = {
 const DoctorsScreen = ({ route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Doctor[] | []>([]);
+  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading }: any = fetchDoctors();
+
   useLayoutEffect(() => {
     if (!isLoading) {
       const doctor = data.find(
@@ -34,6 +38,14 @@ const DoctorsScreen = ({ route }: Props) => {
       }
     }
   }, [route.params.doctorId]);
+
+  useEffect(() => {
+    if (!data) {
+      isConnected().then((isConnected) => {
+        setIsConnecte(isConnected);
+      });
+    }
+  }, []);
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -42,6 +54,9 @@ const DoctorsScreen = ({ route }: Props) => {
         color={theme === "light" ? Colors.primary700 : Colors.primary400}
       />
     );
+  }
+  if (isConnecte === false) {
+    return <NoConnectoin />;
   }
   return (
     <View

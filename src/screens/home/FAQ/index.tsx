@@ -19,6 +19,7 @@ import {
   screenWidth,
 } from "@Utils/Helper";
 import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
+import NoConnectoin from "@Components/noConnectoin";
 type SECTIONSTYPE = { title: string; content: string };
 const systemFonts = [...defaultSystemFonts, "Dubai"];
 
@@ -30,9 +31,11 @@ const FAQScreen = () => {
   const { data, isLoading }: any = fetchFAQ();
 
   useEffect(() => {
-    isConnected().then((isConnected) => {
-      setIsConnecte(isConnected);
-    });
+    if (!data) {
+      isConnected().then((isConnected) => {
+        setIsConnecte(isConnected);
+      });
+    }
   }, []);
 
   const tagsStyles: any = {
@@ -111,29 +114,11 @@ const FAQScreen = () => {
       />
     );
   }
+  if (isConnecte === false) {
+    return <NoConnectoin />;
+  }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
-      {!isConnecte && (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            height: screenHeight,
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "Bukra",
-              fontSize: moderateScale(20),
-              color: textColor,
-              paddingBottom: verticalScale(180),
-            }}
-          >
-            لا يوجد اتصال بالانترنت
-          </Text>
-        </View>
-      )}
       <Accordion
         sections={data}
         containerStyle={{

@@ -14,16 +14,16 @@ import type {
   StackScreenProps,
   StackNavigationProp,
 } from "@react-navigation/stack";
-import { CommonActions } from "@react-navigation/native";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { screenHeight, screenWidth } from "@Utils/Helper";
+import { isConnected, screenHeight, screenWidth } from "@Utils/Helper";
 import { FavoriteContext } from "@Src/store/favoriteContext";
 import HeaderRight from "../HeaderRight";
 import { fetchSubjectById } from "@Src/api/fetchSubjectById";
+import NoConnectoin from "@Components/noConnectoin";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 export type SubjectNavigationProp = StackNavigationProp<
@@ -48,6 +48,8 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const { theme } = useContext(ThemeContext);
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
+  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
+
   const { data, isLoading }: any = fetchSubjectById(route.params.subjectId);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const backgroundColor =
@@ -124,15 +126,21 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     const isFavorite = favorite.some((item) => item.id === data?.id);
     setIsFavorite(isFavorite);
   }, [favorite]);
+  useEffect(() => {
+    if (!data) {
+      isConnected().then((isConnected) => {
+        setIsConnecte(isConnected);
+      });
+    }
+  }, []);
 
   const backAction = () => {
     if (route.params?.from === "Home") {
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: "HomeNavigation" }],
-        })
-      );
+      navigation.reset({
+        index: 0,
+        // @ts-ignore
+        routes: [{ name: "HomeNavigation" }],
+      });
     } else {
       navigation.navigate("Plan");
     }
@@ -155,7 +163,9 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       />
     );
   }
-
+  if (isConnecte === false) {
+    return <NoConnectoin />;
+  }
   return (
     <ScrollView style={{ flex: 1 }}>
       <ImageBackground
@@ -216,7 +226,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             البوست الشامل
           </Text>
         </TouchableOpacity>
-        {data.book && (
+        {data?.book && (
           <TouchableOpacity
             onPress={() => data.book && Linking.openURL(data.book)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
@@ -224,7 +234,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             <Text style={[style.buttonText]}>الكتاب</Text>
           </TouchableOpacity>
         )}
-        {data.manual && (
+        {data?.manual && (
           <TouchableOpacity
             onPress={() => data.manual && Linking.openURL(data.manual)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
@@ -232,7 +242,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             <Text style={[style.buttonText]}>المانيول</Text>
           </TouchableOpacity>
         )}
-        {data.prevYears && (
+        {data?.prevYears && (
           <TouchableOpacity
             onPress={() => data.prevYears && Linking.openURL(data.prevYears)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
@@ -240,7 +250,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             <Text style={[style.buttonText]}>السنوات السابقة</Text>
           </TouchableOpacity>
         )}
-        {data.exams && (
+        {data?.exams && (
           <TouchableOpacity
             onPress={() => data.exams && Linking.openURL(data.exams)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
@@ -248,7 +258,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             <Text style={[style.buttonText]}>الامتحانات</Text>
           </TouchableOpacity>
         )}
-        {data.slides && (
+        {data?.slides && (
           <TouchableOpacity
             onPress={() => data.slides && Linking.openURL(data.slides)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
@@ -268,7 +278,9 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           </TouchableOpacity>
         ))}
         <TouchableOpacity
-          onPress={() => data.subjectLink && Linking.openURL(data.subjectLink)}
+          onPress={() =>
+            data?.subjectLink && Linking.openURL(data?.subjectLink)
+          }
           style={[style.button, { backgroundColor: backgroundSubjectColor }]}
         >
           <Text style={[style.buttonText]}>درايف المادة</Text>

@@ -1,3 +1,4 @@
+import NoConnectoin from "@Components/noConnectoin";
 import RecordCard from "@Components/RecordCard";
 import SearchInput from "@Components/ui/SearchInput";
 import Colors from "@GlobalStyle/Colors";
@@ -5,8 +6,9 @@ import { FlashList } from "@shopify/flash-list";
 import { fetchRecords, fetchSearchRecords } from "@Src/api/fetchRecords";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
+import { isConnected } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 
 const options = {
@@ -16,11 +18,20 @@ const options = {
 const RecordsScreen = () => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Record[] | []>([]);
+  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
   const { data, isLoading }: any = fetchRecords();
   const { data: searchRecord, isLoading: isLoadingSearchRecord }: any =
     fetchSearchRecords();
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+
+  useEffect(() => {
+    if (!data && !searchRecord) {
+      isConnected().then((isConnected) => {
+        setIsConnecte(isConnected);
+      });
+    }
+  }, []);
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -29,6 +40,9 @@ const RecordsScreen = () => {
         color={theme === "light" ? Colors.primary700 : Colors.primary400}
       />
     );
+  }
+  if (isConnecte === false) {
+    return <NoConnectoin />;
   }
   return (
     <View

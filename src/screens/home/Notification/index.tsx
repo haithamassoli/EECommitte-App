@@ -22,6 +22,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
 import { Feather } from "@expo/vector-icons";
 import Accordion from "react-native-collapsible/Accordion";
+import NoConnectoin from "@Components/noConnectoin";
 const systemFonts = [...defaultSystemFonts, "Dubai"];
 
 type NotificationType = {
@@ -133,29 +134,11 @@ const NotificationScreen = () => {
       />
     );
   }
+  if (isConnecte === false) {
+    return <NoConnectoin />;
+  }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
-      {isConnecte === false && (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            height: screenHeight,
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "Bukra",
-              fontSize: moderateScale(20),
-              color: textColor,
-              paddingBottom: verticalScale(180),
-            }}
-          >
-            لا يوجد اتصال بالانترنت
-          </Text>
-        </View>
-      )}
       <Accordion
         sections={data}
         containerStyle={{

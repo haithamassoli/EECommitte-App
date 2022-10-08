@@ -18,6 +18,7 @@ import { useContext, useEffect, useState, useLayoutEffect } from "react";
 import {
   deleteStorage,
   getDataFromStorage,
+  isConnected,
   screenHeight,
   storeDataToStorage,
 } from "@Utils/Helper";
@@ -27,6 +28,7 @@ import SearchResults from "@Components/ui/SearchInput/SearchResults";
 import { StackScreenProps } from "@react-navigation/stack";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { fetchDoctors } from "@Src/api/fetchDoctors";
+import NoConnectoin from "@Components/noConnectoin";
 
 const options = {
   keys: ["name", "name2"],
@@ -38,11 +40,19 @@ const SearchScreen = ({ navigation, route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [historyResults, setHistoryResults] = useState([] as any[]);
+  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { data, isLoading }: any = fetchDoctors();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
 
+  useEffect(() => {
+    if (!data) {
+      isConnected().then((isConnected) => {
+        setIsConnecte(isConnected);
+      });
+    }
+  }, []);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "البحث",
@@ -337,7 +347,9 @@ const SearchScreen = ({ navigation, route }: Props) => {
       />
     );
   }
-
+  if (isConnecte === false) {
+    return <NoConnectoin />;
+  }
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"

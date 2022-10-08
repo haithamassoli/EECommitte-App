@@ -68,7 +68,6 @@ const CalculatorScreen = () => {
       setVisible(true);
       return;
     }
-    setSemester((+totalGrade / +totalHour).toFixed(2));
     if (cumulative) {
       // @ts-ignore
       if (isNaN(prevGPA)) {
@@ -91,6 +90,7 @@ const CalculatorScreen = () => {
             (+prevSemesterHour + totalHour)
           ).toFixed(2)
         );
+        setSemester((+totalGrade / +totalHour).toFixed(2));
       }
     }
   };

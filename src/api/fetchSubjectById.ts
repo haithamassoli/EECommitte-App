@@ -6,11 +6,16 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 const cacheIntervalInHours = 100;
 const cacheExpiryTime = new Date();
 cacheExpiryTime.setHours(cacheExpiryTime.getHours() + cacheIntervalInHours);
+import NetInfo from "@react-native-community/netinfo";
 
 export function fetchSubjectById(id: number) {
   const { data, isLoading } = useQuery(["subjectById", id], async () => {
     const lastRequest = await getDataFromStorage(`lastRequestsubjectById${id}`);
-    if (lastRequest == null || lastRequest > cacheExpiryTime) {
+    const connectionStatus = await NetInfo.fetch();
+    if (
+      (lastRequest == null && connectionStatus.isConnected) ||
+      (lastRequest > cacheExpiryTime && connectionStatus.isConnected)
+    ) {
       const q = query(collection(db, "subjects"), where("id", "==", id));
       const querySnapshot = await getDocs(q);
       await storeDataToStorage(`lastRequestsubjectById${id}`, new Date());
@@ -18,8 +23,11 @@ export function fetchSubjectById(id: number) {
       await storeDataToStorage(`subjectById${id}`, snapshot);
       return snapshot;
     } else {
-      const records = await getDataFromStorage(`subjectById${id}`);
-      return records;
+      const subject = await getDataFromStorage(`subjectById${id}`);
+      if (subject == null) {
+        return [];
+      }
+      return subject;
     }
   });
   return { data, isLoading };

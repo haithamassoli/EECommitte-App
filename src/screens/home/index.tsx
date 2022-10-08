@@ -48,7 +48,6 @@ const HomeScreen = ({ navigation }: Props) => {
   const [results, setResults] = useState<any[]>([]);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
-  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
   const isFocused = useIsFocused();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
@@ -87,11 +86,6 @@ const HomeScreen = ({ navigation }: Props) => {
         // const userName = response.notification.request.content.data;
       }
     );
-    if (!data) {
-      isConnected().then((isConnected) => {
-        setIsConnecte(isConnected);
-      });
-    }
     return () => {
       subscription1.remove();
       subscription2.remove();
@@ -173,7 +167,7 @@ const HomeScreen = ({ navigation }: Props) => {
             </View>
           </SafeAreaView>
           <View style={{ marginHorizontal: horizontalScale(8) }}>
-            {!isLoadingDoctor && (
+            {!isLoadingDoctor && Array.isArray(DoctorsData) && (
               <SearchInput
                 style={{
                   marginBottom: verticalScale(6),
@@ -353,7 +347,7 @@ const HomeScreen = ({ navigation }: Props) => {
           </TouchableOpacity>
         </View>
       </View>
-      {isLoading && isConnecte ? (
+      {isLoading ? (
         <View
           style={{
             flex: 1,
@@ -366,7 +360,7 @@ const HomeScreen = ({ navigation }: Props) => {
           <ActivityIndicator size="large" color={Colors.secondYear} />
         </View>
       ) : (
-        <ImagesCarousel images={data} />
+        Array.isArray(data) && <ImagesCarousel images={data} />
       )}
       <View
         style={{

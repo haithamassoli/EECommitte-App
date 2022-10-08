@@ -18,7 +18,6 @@ import { useContext, useEffect, useState, useLayoutEffect } from "react";
 import {
   deleteStorage,
   getDataFromStorage,
-  isConnected,
   screenHeight,
   storeDataToStorage,
 } from "@Utils/Helper";
@@ -40,19 +39,11 @@ const SearchScreen = ({ navigation, route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [historyResults, setHistoryResults] = useState([] as any[]);
-  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { data, isLoading }: any = fetchDoctors();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
 
-  useEffect(() => {
-    if (!data) {
-      isConnected().then((isConnected) => {
-        setIsConnecte(isConnected);
-      });
-    }
-  }, []);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "البحث",
@@ -240,7 +231,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
           const subjectsResult = SubjectsData.find(
             (subject) => subject.id === ids
           );
-          if (!isLoading) {
+          if (Array.isArray(data)) {
             const DoctorsResult = data.find((doctor: any) => doctor.id === ids);
             if (subjectsResult && DoctorsResult) {
               setHistoryResults((prev) => [
@@ -263,7 +254,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
   const handlePress = async (id: number) => {
     const prevData = await getDataFromStorage("searchHistory");
     const SubjectsResult = SubjectsData.find((subject) => subject.id === id);
-    if (!isLoading) {
+    if (Array.isArray(data)) {
       const DoctorsResult = data.find((doctor: any) => doctor.id === id);
       if (Array.isArray(prevData) && !prevData.includes(id)) {
         if (prevData.length >= 10) {
@@ -323,7 +314,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
 
   const handlePressHistory = (id: number) => {
     const SubjectsResult = SubjectsData.find((subject) => subject.id === id);
-    if (!isLoading) {
+    if (Array.isArray(data)) {
       const DoctorsResult = data.find((doctor: any) => doctor.id === id);
       if (SubjectsResult) {
         navigation.getParent()?.navigate("SubjectsNavigation", {
@@ -347,7 +338,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
       />
     );
   }
-  if (isConnecte === false) {
+  if (Array.isArray(data) && data.length === 0) {
     return <NoConnectoin />;
   }
   return (

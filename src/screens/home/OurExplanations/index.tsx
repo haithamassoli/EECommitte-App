@@ -6,9 +6,8 @@ import { FlashList } from "@shopify/flash-list";
 import { fetchExplanations } from "@Src/api/fetchExplanations";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
-import { isConnected } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 
 const options = {
@@ -18,18 +17,10 @@ const options = {
 const OurExplanationsScreen = () => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Record[] | []>([]);
-  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading }: any = fetchExplanations();
 
-  useEffect(() => {
-    if (!data) {
-      isConnected().then((isConnected) => {
-        setIsConnecte(isConnected);
-      });
-    }
-  }, []);
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -39,7 +30,7 @@ const OurExplanationsScreen = () => {
       />
     );
   }
-  if (isConnecte === false) {
+  if (Array.isArray(data) && data.length === 0) {
     return <NoConnectoin />;
   }
   return (

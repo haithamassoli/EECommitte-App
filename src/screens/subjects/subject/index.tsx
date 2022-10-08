@@ -19,7 +19,7 @@ import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { isConnected, screenHeight, screenWidth } from "@Utils/Helper";
+import { screenHeight, screenWidth } from "@Utils/Helper";
 import { FavoriteContext } from "@Src/store/favoriteContext";
 import HeaderRight from "../HeaderRight";
 import { fetchSubjectById } from "@Src/api/fetchSubjectById";
@@ -48,8 +48,6 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const { theme } = useContext(ThemeContext);
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
-  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
-
   const { data, isLoading }: any = fetchSubjectById(route.params.subjectId);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const backgroundColor =
@@ -84,7 +82,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: data?.name2,
+      headerTitle: data?.name2 || "المادة",
       headerLeft: () => (
         <TouchableOpacity
           onPress={backAction}
@@ -126,13 +124,6 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     const isFavorite = favorite.some((item) => item.id === data?.id);
     setIsFavorite(isFavorite);
   }, [favorite]);
-  useEffect(() => {
-    if (!data) {
-      isConnected().then((isConnected) => {
-        setIsConnecte(isConnected);
-      });
-    }
-  }, []);
 
   const backAction = () => {
     if (route.params?.from === "Home") {
@@ -163,7 +154,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       />
     );
   }
-  if (isConnecte === false) {
+  if (Array.isArray(data) && data.length === 0) {
     return <NoConnectoin />;
   }
   return (

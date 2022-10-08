@@ -10,7 +10,6 @@ import DoctorCard from "@Components/DoctorCard";
 import { FlashList } from "@shopify/flash-list";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { fetchDoctors } from "@Src/api/fetchDoctors";
-import { isConnected } from "@Utils/Helper";
 import NoConnectoin from "@Components/noConnectoin";
 
 type Props = StackScreenProps<HomeStackParamList, "Doctors">;
@@ -22,13 +21,12 @@ const options = {
 const DoctorsScreen = ({ route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Doctor[] | []>([]);
-  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading }: any = fetchDoctors();
 
   useLayoutEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && Array.isArray(data)) {
       const doctor = data.find(
         (doctor: any) => doctor.id === route.params.doctorId
       );
@@ -39,13 +37,6 @@ const DoctorsScreen = ({ route }: Props) => {
     }
   }, [route.params.doctorId]);
 
-  useEffect(() => {
-    if (!data) {
-      isConnected().then((isConnected) => {
-        setIsConnecte(isConnected);
-      });
-    }
-  }, []);
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -55,7 +46,7 @@ const DoctorsScreen = ({ route }: Props) => {
       />
     );
   }
-  if (isConnecte === false) {
+  if (Array.isArray(data) && data.length === 0) {
     return <NoConnectoin />;
   }
   return (

@@ -11,7 +11,6 @@ import {
 import { fetchNotifications } from "@Src/api/fetchNotifications";
 import {
   rtlWebview,
-  screenHeight,
   screenWidth,
   storeDataToStorage,
   isConnected,
@@ -36,7 +35,6 @@ type StylesDictionary = {
 };
 
 const NotificationScreen = () => {
-  const [isConnecte, setIsConnecte] = useState<boolean | null>(true);
   const [activeSections, setActiveSections] = useState([]);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
@@ -54,14 +52,6 @@ const NotificationScreen = () => {
       color: theme === "light" ? Colors.primary700 : Colors.primary400,
     },
   };
-
-  useEffect(() => {
-    if (!data) {
-      isConnected().then((isConnected) => {
-        setIsConnecte(isConnected);
-      });
-    }
-  }, []);
 
   useEffect(() => {
     const deleteNotificationsCount = async () => {
@@ -134,7 +124,7 @@ const NotificationScreen = () => {
       />
     );
   }
-  if (isConnecte === false) {
+  if (Array.isArray(data) && data.length === 0) {
     return <NoConnectoin />;
   }
   return (

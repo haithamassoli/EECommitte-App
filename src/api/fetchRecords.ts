@@ -9,14 +9,17 @@ cacheExpiryTime.setHours(cacheExpiryTime.getHours() + cacheIntervalInHours);
 
 export function fetchRecords() {
   const { data, isLoading } = useQuery(["records"], async () => {
-    const recordsSec = ["تسجيلات اللجنة"];
+    const recordsSec: any = [];
     const lastRequest = await getDataFromStorage("lastRequestRecords");
     if (lastRequest == null || lastRequest > cacheExpiryTime) {
       const q = query(collection(db, "records"), orderBy("id", "asc"));
       const querySnapshot = await getDocs(q);
       await storeDataToStorage("lastRequestRecords", new Date());
       const snapshot = querySnapshot.docs.map((doc) => doc.data());
-      snapshot.forEach((doc: any) => {
+      snapshot.forEach((doc: any, index: number) => {
+        if (index == 0) {
+          recordsSec.push("تسجيلات اللجنة");
+        }
         if (!doc.notEEC) {
           recordsSec.push(doc);
         }
@@ -24,7 +27,8 @@ export function fetchRecords() {
       snapshot.forEach((doc: any, index: number) => {
         if (index == 0) {
           recordsSec.push("تسجيلات  المعلمين");
-        } else if (doc.notEEC) {
+        }
+        if (doc.notEEC) {
           recordsSec.push(doc);
         }
       });

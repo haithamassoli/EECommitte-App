@@ -1,4 +1,4 @@
-import NoConnectoin from "@Components/noConnectoin";
+import NoConnection from "@Components/NoConnection";
 import RecordCard from "@Components/RecordCard";
 import SearchInput from "@Components/ui/SearchInput";
 import Colors from "@GlobalStyle/Colors";
@@ -33,7 +33,7 @@ const RecordsScreen = () => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnectoin />;
+    return <NoConnection />;
   }
   return (
     <View

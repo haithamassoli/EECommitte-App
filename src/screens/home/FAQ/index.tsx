@@ -14,7 +14,7 @@ import { Feather } from "@expo/vector-icons";
 import { fetchFAQ } from "@Src/api/fetchFAQ";
 import { rtlWebview, screenWidth } from "@Utils/Helper";
 import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
-import NoConnectoin from "@Components/noConnectoin";
+import NoConnection from "@Components/NoConnection";
 type SECTIONSTYPE = { title: string; content: string };
 const systemFonts = [...defaultSystemFonts, "Dubai"];
 
@@ -101,7 +101,7 @@ const FAQScreen = () => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnectoin />;
+    return <NoConnection />;
   }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>

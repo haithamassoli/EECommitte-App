@@ -90,7 +90,6 @@ export default function App() {
     const configurePushNotifications = async () => {
       const { status } = await Notifications.getPermissionsAsync();
       let finalStatus = status;
-
       if (finalStatus !== "granted") {
         const { status } = await Notifications.requestPermissionsAsync();
         finalStatus = status;

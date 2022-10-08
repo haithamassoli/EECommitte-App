@@ -27,7 +27,7 @@ import SearchResults from "@Components/ui/SearchInput/SearchResults";
 import { StackScreenProps } from "@react-navigation/stack";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { fetchDoctors } from "@Src/api/fetchDoctors";
-import NoConnectoin from "@Components/noConnectoin";
+import NoConnection from "@Components/NoConnection";
 
 const options = {
   keys: ["name", "name2"],
@@ -339,7 +339,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnectoin />;
+    return <NoConnection />;
   }
   return (
     <ScrollView

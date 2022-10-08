@@ -4,7 +4,7 @@ import { moderateScale } from "@Utils/Platform";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 
-const NoConnectoin = () => {
+const NoConnection = () => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
@@ -28,4 +28,4 @@ const NoConnectoin = () => {
   );
 };
 
-export default NoConnectoin;
+export default NoConnection;

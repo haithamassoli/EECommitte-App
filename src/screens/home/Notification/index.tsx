@@ -21,7 +21,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
 import { Feather } from "@expo/vector-icons";
 import Accordion from "react-native-collapsible/Accordion";
-import NoConnectoin from "@Components/noConnectoin";
+import NoConnection from "@Components/NoConnection";
 const systemFonts = [...defaultSystemFonts, "Dubai"];
 
 type NotificationType = {
@@ -125,7 +125,7 @@ const NotificationScreen = () => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnectoin />;
+    return <NoConnection />;
   }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>

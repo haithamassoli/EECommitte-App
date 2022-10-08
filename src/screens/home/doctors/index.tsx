@@ -10,7 +10,7 @@ import DoctorCard from "@Components/DoctorCard";
 import { FlashList } from "@shopify/flash-list";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { fetchDoctors } from "@Src/api/fetchDoctors";
-import NoConnectoin from "@Components/noConnectoin";
+import NoConnection from "@Components/NoConnection";
 
 type Props = StackScreenProps<HomeStackParamList, "Doctors">;
 
@@ -47,7 +47,7 @@ const DoctorsScreen = ({ route }: Props) => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnectoin />;
+    return <NoConnection />;
   }
   return (
     <View

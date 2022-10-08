@@ -4,7 +4,7 @@ import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import NetInfo from "@react-native-community/netinfo";
 
 export function fetchNotifications() {
-  const { data, isLoading } = useQuery(["notifications"], async () => {
+  const { data, isLoading, refetch } = useQuery(["notifications"], async () => {
     const connectionStatus = await NetInfo.fetch();
     if (connectionStatus.isConnected) {
       const q = query(collection(db, "notifications"), orderBy("time", "desc"));
@@ -14,5 +14,5 @@ export function fetchNotifications() {
       return [];
     }
   });
-  return { data, isLoading };
+  return { data, isLoading, refetch };
 }

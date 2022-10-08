@@ -38,7 +38,7 @@ const NotificationScreen = () => {
   const [activeSections, setActiveSections] = useState([]);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading }: any = fetchNotifications();
+  const { data, isLoading, refetch }: any = fetchNotifications();
 
   const tagsStyles: StylesDictionary = {
     body: {
@@ -125,7 +125,7 @@ const NotificationScreen = () => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection />;
+    return <NoConnection refetch={refetch} />;
   }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>

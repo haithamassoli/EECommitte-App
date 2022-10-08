@@ -17,7 +17,7 @@ const options = {
 const RecordsScreen = () => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Record[] | []>([]);
-  const { data, isLoading }: any = fetchRecords();
+  const { data, isLoading, refetch }: any = fetchRecords();
   const { data: searchRecord, isLoading: isLoadingSearchRecord }: any =
     fetchSearchRecords();
   const { theme } = useContext(ThemeContext);
@@ -33,7 +33,7 @@ const RecordsScreen = () => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection />;
+    return <NoConnection refetch={refetch} />;
   }
   return (
     <View

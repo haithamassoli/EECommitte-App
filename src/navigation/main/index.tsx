@@ -12,7 +12,6 @@ import {
   LightNavigationColors,
 } from "@GlobalStyle/Navigation";
 import InfoNavigation from "@Navigation/info";
-// import NewsScreen from "@Screens/news";
 import HomeNavigation from "@Navigation/home";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { screenWidth } from "@Utils/Helper";

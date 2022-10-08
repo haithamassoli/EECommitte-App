@@ -5,7 +5,7 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import Accordion from "react-native-collapsible/Accordion";
@@ -22,7 +22,7 @@ const FAQScreen = () => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const [activeSections, setActiveSections] = useState([]);
-  const { data, isLoading }: any = fetchFAQ();
+  const { data, isLoading, refetch }: any = fetchFAQ();
 
   const tagsStyles: any = {
     body: {
@@ -101,7 +101,7 @@ const FAQScreen = () => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection />;
+    return <NoConnection refetch={refetch} />;
   }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>

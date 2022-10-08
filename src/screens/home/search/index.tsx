@@ -40,7 +40,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
   const [results, setResults] = useState<any[]>([]);
   const [historyResults, setHistoryResults] = useState([] as any[]);
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { data, isLoading }: any = fetchDoctors();
+  const { data, isLoading, refetch }: any = fetchDoctors();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
 
@@ -339,7 +339,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection />;
+    return <NoConnection refetch={refetch} />;
   }
   return (
     <ScrollView

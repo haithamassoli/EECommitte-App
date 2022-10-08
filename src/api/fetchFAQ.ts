@@ -9,7 +9,7 @@ const cacheExpiryTime = new Date();
 cacheExpiryTime.setHours(cacheExpiryTime.getHours() + cacheIntervalInHours);
 
 export function fetchFAQ() {
-  const { data, isLoading } = useQuery(["faq"], async () => {
+  const { data, isLoading, refetch } = useQuery(["faq"], async () => {
     const lastRequest = await getDataFromStorage("lastRequestFaq");
     const connectionStatus = await NetInfo.fetch();
     if (
@@ -30,5 +30,5 @@ export function fetchFAQ() {
       return faq;
     }
   });
-  return { data, isLoading };
+  return { data, isLoading, refetch };
 }

@@ -23,7 +23,7 @@ const DoctorsScreen = ({ route }: Props) => {
   const [results, setResults] = useState<Doctor[] | []>([]);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading }: any = fetchDoctors();
+  const { data, isLoading, refetch }: any = fetchDoctors();
 
   useLayoutEffect(() => {
     if (!isLoading && Array.isArray(data)) {
@@ -47,7 +47,7 @@ const DoctorsScreen = ({ route }: Props) => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection />;
+    return <NoConnection refetch={refetch} />;
   }
   return (
     <View

@@ -19,7 +19,7 @@ const OurExplanationsScreen = () => {
   const [results, setResults] = useState<Record[] | []>([]);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading }: any = fetchExplanations();
+  const { data, isLoading, refetch }: any = fetchExplanations();
 
   if (isLoading) {
     return (
@@ -31,7 +31,7 @@ const OurExplanationsScreen = () => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection />;
+    return <NoConnection refetch={refetch} />;
   }
   return (
     <View

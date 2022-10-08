@@ -195,7 +195,7 @@ const HomeScreen = ({ navigation }: Props) => {
         </>
       ),
     });
-  }, [searchInput, searchBarFocused, results, theme]);
+  }, [searchInput, searchBarFocused, results, theme, isLoadingDoctor]);
 
   const rowOne = [
     {

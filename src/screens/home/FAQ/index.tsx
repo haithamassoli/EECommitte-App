@@ -12,8 +12,15 @@ import Accordion from "react-native-collapsible/Accordion";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
 import { fetchFAQ } from "@Src/api/fetchFAQ";
-import { screenHeight, isConnected } from "@Utils/Helper";
+import {
+  screenHeight,
+  isConnected,
+  rtlWebview,
+  screenWidth,
+} from "@Utils/Helper";
+import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
 type SECTIONSTYPE = { title: string; content: string };
+const systemFonts = [...defaultSystemFonts, "Dubai"];
 
 const FAQScreen = () => {
   const { theme } = useContext(ThemeContext);
@@ -27,6 +34,19 @@ const FAQScreen = () => {
       setIsConnecte(isConnected);
     });
   }, []);
+
+  const tagsStyles: any = {
+    body: {
+      color: textColor,
+      paddingHorizontal: horizontalScale(10),
+      lineHeight: verticalScale(26),
+      fontSize: moderateScale(18),
+      fontFamily: "Dubai",
+    },
+    a: {
+      color: theme === "light" ? Colors.primary700 : Colors.primary400,
+    },
+  };
   const renderHeader = (section: SECTIONSTYPE) => {
     return (
       <View
@@ -63,17 +83,18 @@ const FAQScreen = () => {
   };
   const renderContent = (section: SECTIONSTYPE) => {
     return (
-      <Text
-        style={{
-          color: textColor,
-          paddingHorizontal: horizontalScale(10),
-          lineHeight: verticalScale(26),
-          fontSize: moderateScale(18),
-          fontFamily: "Dubai",
+      <RenderHTML
+        defaultTextProps={{ selectable: true }}
+        contentWidth={screenWidth}
+        baseStyle={{
+          overflow: "hidden",
         }}
-      >
-        {section.content}
-      </Text>
+        source={{
+          html: rtlWebview(section.content),
+        }}
+        tagsStyles={tagsStyles}
+        systemFonts={systemFonts}
+      />
     );
   };
 

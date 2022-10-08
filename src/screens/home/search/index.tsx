@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   BackHandler,
+  ActivityIndicator,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import SubjectsData from "@Src/data/Subjects";
@@ -327,6 +328,16 @@ const SearchScreen = ({ navigation, route }: Props) => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <ActivityIndicator
+        style={{ flex: 1 }}
+        size="large"
+        color={theme === "light" ? Colors.primary700 : Colors.primary400}
+      />
+    );
+  }
+
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"
@@ -336,17 +347,15 @@ const SearchScreen = ({ navigation, route }: Props) => {
     >
       <KeyboardAvoidingView style={styles.container}>
         <View style={styles.searchContainer}>
-          {!isLoading && (
-            <SearchInput
-              placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
-              searchInput={searchInput}
-              setSearchInput={setSearchInput}
-              setResults={setResults}
-              options={options}
-              // @ts-ignore
-              list={[...SubjectsData, ...data]}
-            />
-          )}
+          <SearchInput
+            placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+            setResults={setResults}
+            options={options}
+            // @ts-ignore
+            list={[...SubjectsData, ...data]}
+          />
         </View>
         {!searchInput ? (
           <>

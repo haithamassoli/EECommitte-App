@@ -1,5 +1,4 @@
 import { Text, View, ActivityIndicator } from "react-native";
-import { Doctor } from "@Types/index";
 import SearchInput from "@Components/ui/SearchInput";
 import { useContext, useLayoutEffect, useState } from "react";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -21,7 +20,7 @@ const options = {
 
 const DoctorsScreen = ({ route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
-  const [results, setResults] = useState<Doctor[] | []>([]);
+  const [results, setResults] = useState<any[]>([]);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading, refetch }: any = fetchDoctors();
@@ -72,9 +71,10 @@ const DoctorsScreen = ({ route }: Props) => {
           keyboardShouldPersistTaps="always"
           data={results}
           estimatedItemSize={65}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
+          keyExtractor={(item): any => item.id.toString()}
+          renderItem={({ item }: any) => (
             <DoctorCard
+              // @ts-ignore
               email={item.email}
               image={item.image}
               name={item.name}
@@ -106,6 +106,7 @@ const DoctorsScreen = ({ route }: Props) => {
           keyExtractor={(item: any) => item.id.toString()}
           renderItem={({ item }: any) => (
             <DoctorCard
+              // @ts-ignore
               email={item.email}
               image={item.image}
               name={item.name}

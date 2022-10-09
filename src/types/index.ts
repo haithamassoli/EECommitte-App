@@ -60,11 +60,6 @@ export type Doctor = {
   id: number;
   name: string;
   name2: string;
-  email: string;
-  office?: string;
-  phone?: string;
-  website: string;
-  image: string;
 };
 
 export type Record = {

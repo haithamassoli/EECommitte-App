@@ -26,8 +26,8 @@ import { StatusBar } from "expo-status-bar";
 import { fetchSliderImages } from "@Src/api/fetchSliderImages";
 import * as Notifications from "expo-notifications";
 import { useIsFocused } from "@react-navigation/native";
-import { fetchDoctors } from "@Src/api/fetchDoctors";
 import BannerAdmob from "@Components/BannerAdmob";
+import DoctorsData from "@Src/data/Doctors";
 
 const options = {
   keys: ["name", "name2"],
@@ -49,7 +49,6 @@ const HomeScreen = ({ navigation }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading }: any = fetchSliderImages();
-  const { data: DoctorsData, isLoading: isLoadingDoctor }: any = fetchDoctors();
 
   useEffect(() => {
     const CheckNotificationCount = async () => {
@@ -164,29 +163,27 @@ const HomeScreen = ({ navigation }: Props) => {
             </View>
           </SafeAreaView>
           <View style={{ marginHorizontal: horizontalScale(8) }}>
-            {!isLoadingDoctor && Array.isArray(DoctorsData) && (
-              <SearchInput
-                style={{
-                  marginBottom: verticalScale(6),
-                }}
-                placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
-                searchBarFocused={searchBarFocused}
-                setSearchBarFocused={setSearchBarFocused}
-                results={results}
-                // @ts-ignore
-                list={[...SubjectsData, ...DoctorsData]}
-                setResults={setResults}
-                options={options}
-                from="Home"
-              />
-            )}
+            <SearchInput
+              style={{
+                marginBottom: verticalScale(6),
+              }}
+              placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+              searchBarFocused={searchBarFocused}
+              setSearchBarFocused={setSearchBarFocused}
+              results={results}
+              // @ts-ignore
+              list={[...SubjectsData, ...DoctorsData]}
+              setResults={setResults}
+              options={options}
+              from="Home"
+            />
           </View>
         </>
       ),
     });
-  }, [searchInput, searchBarFocused, results, theme, isLoadingDoctor]);
+  }, [searchInput, searchBarFocused, results, theme]);
 
   const rowOne = [
     {

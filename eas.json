@@ -13,6 +13,12 @@
     "production": {}
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId": "ehabamawi98@outlook.com",
+        "ascAppId": "6443760623",
+        "appleTeamId": "D4FF3393XV"
+      }
+    }
   }
 }

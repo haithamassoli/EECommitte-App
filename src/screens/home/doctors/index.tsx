@@ -1,7 +1,7 @@
 import { Text, View, ActivityIndicator } from "react-native";
 import { Doctor } from "@Types/index";
 import SearchInput from "@Components/ui/SearchInput";
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -11,6 +11,7 @@ import { FlashList } from "@shopify/flash-list";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { fetchDoctors } from "@Src/api/fetchDoctors";
 import NoConnection from "@Components/NoConnection";
+import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<HomeStackParamList, "Doctors">;
 
@@ -56,6 +57,7 @@ const DoctorsScreen = ({ route }: Props) => {
         flex: 1,
       }}
     >
+      <BannerAdmob position="top" />
       <SearchInput
         placeholder="ابحث عن أحد الكادر التدريسي..."
         searchInput={searchInput}
@@ -114,6 +116,7 @@ const DoctorsScreen = ({ route }: Props) => {
           )}
         />
       )}
+      <BannerAdmob position="bottom" />
     </View>
   );
 };

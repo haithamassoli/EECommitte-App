@@ -1,5 +1,11 @@
 import { useContext, useLayoutEffect, useEffect } from "react";
-import { Text, ScrollView, BackHandler, TouchableOpacity } from "react-native";
+import {
+  Text,
+  ScrollView,
+  BackHandler,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -9,6 +15,7 @@ import { screenHeight } from "@Utils/Helper";
 import { verticalScale, moderateScale, horizontalScale } from "@Utils/Platform";
 import HeaderRight from "../HeaderRight";
 import { Feather } from "@expo/vector-icons";
+import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 
@@ -77,6 +84,7 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
 
   return (
     <ScrollView overScrollMode="never" showsVerticalScrollIndicator={false}>
+      <BannerAdmob position="top" />
       {route?.params?.post ? (
         <WebDisplay html={route?.params?.post} />
       ) : (
@@ -95,6 +103,7 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
             : "لا يوجد تعريف للمادة"}
         </Text>
       )}
+      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

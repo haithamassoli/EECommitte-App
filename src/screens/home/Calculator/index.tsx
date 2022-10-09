@@ -1,3 +1,4 @@
+import BannerAdmob from "@Components/BannerAdmob";
 import CustomModal from "@Components/ui/Modal";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -97,6 +98,7 @@ const CalculatorScreen = () => {
 
   return (
     <View style={{ flex: 1, marginHorizontal: horizontalScale(14) }}>
+      <BannerAdmob position="top" />
       <CustomModal visible={visible} title={massage} setVisible={setVisible} />
       <ScrollView
         overScrollMode="never"
@@ -418,6 +420,7 @@ const CalculatorScreen = () => {
             </Text>
           </TouchableOpacity>
         </View>
+        <BannerAdmob position="bottom" />
       </ScrollView>
       <TouchableOpacity
         onPress={calculateRate}

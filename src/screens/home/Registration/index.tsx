@@ -12,6 +12,7 @@ import { HomeStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
 import { screenWidth } from "@Utils/Helper";
 import { moderateScale, verticalScale } from "@Utils/Platform";
+import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<HomeStackParamList, "Favorite">;
 
@@ -62,6 +63,7 @@ const RegistrationScreen = ({ navigation }: Props) => {
         flex: 1,
       }}
     >
+      <BannerAdmob position="top" />
       <View
         style={{
           flex: 1,
@@ -103,6 +105,7 @@ const RegistrationScreen = ({ navigation }: Props) => {
           </TouchableOpacity>
         ))}
       </View>
+      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

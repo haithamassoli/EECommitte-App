@@ -28,6 +28,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { fetchDoctors } from "@Src/api/fetchDoctors";
 import NoConnection from "@Components/NoConnection";
+import BannerAdmob from "@Components/BannerAdmob";
 
 const options = {
   keys: ["name", "name2"],
@@ -348,6 +349,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
       showsVerticalScrollIndicator={false}
       style={styles.container}
     >
+      <BannerAdmob position="top" />
       <KeyboardAvoidingView style={styles.container}>
         <View style={styles.searchContainer}>
           <SearchInput
@@ -445,6 +447,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
           </View>
         )}
       </KeyboardAvoidingView>
+      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

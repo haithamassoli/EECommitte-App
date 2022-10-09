@@ -1,3 +1,4 @@
+import BannerAdmob from "@Components/BannerAdmob";
 import NoConnection from "@Components/NoConnection";
 import RecordCard from "@Components/RecordCard";
 import SearchInput from "@Components/ui/SearchInput";
@@ -40,6 +41,7 @@ const OurExplanationsScreen = () => {
         flex: 1,
       }}
     >
+      <BannerAdmob position="top" />
       <SearchInput
         placeholder="ابحث عن شرح..."
         searchInput={searchInput}
@@ -94,6 +96,7 @@ const OurExplanationsScreen = () => {
           )}
         />
       )}
+      <BannerAdmob position="bottom" />
     </View>
   );
 };

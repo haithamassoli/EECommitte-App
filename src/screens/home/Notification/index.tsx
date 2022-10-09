@@ -22,6 +22,7 @@ import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
 import { Feather } from "@expo/vector-icons";
 import Accordion from "react-native-collapsible/Accordion";
 import NoConnection from "@Components/NoConnection";
+import BannerAdmob from "@Components/BannerAdmob";
 const systemFonts = [...defaultSystemFonts, "Dubai"];
 
 type NotificationType = {
@@ -75,6 +76,7 @@ const NotificationScreen = () => {
           marginBottom: verticalScale(10),
         }}
       >
+        <BannerAdmob position="top" />
         <Text
           style={{
             color: textColor,
@@ -150,6 +152,7 @@ const NotificationScreen = () => {
         onChange={updateSections}
         touchableComponent={TouchableOpacity}
       />
+      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

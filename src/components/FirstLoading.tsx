@@ -15,7 +15,7 @@ import { Feather } from "@expo/vector-icons";
 
 type Props = {
   onFinished: () => void;
-  onLayout: (event: any) => void;
+  onLayout?: (event: any) => void;
 };
 
 const FirstLoading = ({ onFinished, onLayout }: Props) => {

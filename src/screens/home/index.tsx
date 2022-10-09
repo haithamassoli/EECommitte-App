@@ -20,17 +20,14 @@ import Overlay from "@Components/Overlay";
 import ImagesCarousel from "@Components/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
-import {
-  getDataFromStorage,
-  isConnected,
-  storeDataToStorage,
-} from "@Utils/Helper";
+import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { StatusBar } from "expo-status-bar";
 import { fetchSliderImages } from "@Src/api/fetchSliderImages";
 import * as Notifications from "expo-notifications";
 import { useIsFocused } from "@react-navigation/native";
 import { fetchDoctors } from "@Src/api/fetchDoctors";
+import BannerAdmob from "@Components/BannerAdmob";
 
 const options = {
   keys: ["name", "name2"],
@@ -275,6 +272,7 @@ const HomeScreen = ({ navigation }: Props) => {
           }}
         />
       )}
+      <BannerAdmob position="top" />
       <View
         style={{
           flex: 1,
@@ -453,6 +451,7 @@ const HomeScreen = ({ navigation }: Props) => {
           ))}
         </View>
       </View>
+      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

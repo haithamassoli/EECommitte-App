@@ -1,3 +1,4 @@
+import BannerAdmob from "@Components/BannerAdmob";
 import NoConnection from "@Components/NoConnection";
 import RecordCard from "@Components/RecordCard";
 import SearchInput from "@Components/ui/SearchInput";
@@ -42,6 +43,7 @@ const RecordsScreen = () => {
         flex: 1,
       }}
     >
+      <BannerAdmob position="top" />
       {!isLoadingSearchRecord && Array.isArray(searchRecord) && (
         <SearchInput
           placeholder="ابحث عن تسجيل..."
@@ -118,6 +120,7 @@ const RecordsScreen = () => {
           keyboardShouldPersistTaps="always"
         />
       )}
+      <BannerAdmob position="bottom" />
     </View>
   );
 };

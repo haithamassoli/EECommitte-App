@@ -24,6 +24,7 @@ import { FavoriteContext } from "@Src/store/favoriteContext";
 import HeaderRight from "../HeaderRight";
 import { fetchSubjectById } from "@Src/api/fetchSubjectById";
 import NoConnection from "@Components/NoConnection";
+import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 export type SubjectNavigationProp = StackNavigationProp<
@@ -159,6 +160,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   }
   return (
     <ScrollView style={{ flex: 1 }}>
+      <BannerAdmob position="top" />
       <ImageBackground
         resizeMode="contain"
         source={subjectFrame}
@@ -304,6 +306,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           style={{ marginHorizontal: horizontalScale(10) }}
         />
       </TouchableOpacity>
+      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

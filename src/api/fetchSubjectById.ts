@@ -3,14 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-const cacheIntervalInHours = 100;
+const cacheIntervalInHours = 500;
 const cacheExpiryTime = new Date();
 cacheExpiryTime.setHours(cacheExpiryTime.getHours() + cacheIntervalInHours);
 import NetInfo from "@react-native-community/netinfo";
 
-export function fetchSubjectById(id: number) {
-  const { data, isLoading, refetch } = useQuery(
-    ["subjectById", id],
+export function fetchSubjectById(id: number, refetchCounter: number) {
+  const { data, isLoading, refetch, isFetching } = useQuery(
+    ["subjectById", id, refetchCounter],
     async () => {
       const lastRequest = await getDataFromStorage(
         `lastRequestsubjectById${id}`
@@ -18,7 +18,8 @@ export function fetchSubjectById(id: number) {
       const connectionStatus = await NetInfo.fetch();
       if (
         (lastRequest == null && connectionStatus.isConnected) ||
-        (lastRequest > cacheExpiryTime && connectionStatus.isConnected)
+        (lastRequest > cacheExpiryTime && connectionStatus.isConnected) ||
+        (refetchCounter === 1 && connectionStatus.isConnected)
       ) {
         const q = query(collection(db, "subjects"), where("id", "==", id));
         const querySnapshot = await getDocs(q);
@@ -35,5 +36,5 @@ export function fetchSubjectById(id: number) {
       }
     }
   );
-  return { data, isLoading, refetch };
+  return { data, isLoading, refetch, isFetching };
 }

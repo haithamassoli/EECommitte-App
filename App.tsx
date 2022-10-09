@@ -19,9 +19,8 @@ import mobileAds from "react-native-google-mobile-ads";
 
 mobileAds()
   .initialize()
-  .then((adapterStatuses) => {
-    // Initialization complete!
-  });
+  .then((adapterStatuses) => {});
+
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -36,15 +35,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-      staleTime: Infinity,
-      refetchInterval: false,
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 export default function App() {
   const { theme } = useContext(ThemeContext);

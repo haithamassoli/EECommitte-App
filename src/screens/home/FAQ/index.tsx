@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   ScrollView,
+  RefreshControl,
 } from "react-native";
 import { useContext, useState } from "react";
 import Colors from "@GlobalStyle/Colors";
@@ -23,7 +24,9 @@ const FAQScreen = () => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const [activeSections, setActiveSections] = useState([]);
-  const { data, isLoading, refetch }: any = fetchFAQ();
+  const [refetchCounter, setRefetchCounter] = useState(0);
+  const { data, isLoading, refetch, isFetching }: any =
+    fetchFAQ(refetchCounter);
 
   const tagsStyles: any = {
     body: {
@@ -105,7 +108,19 @@ const FAQScreen = () => {
     return <NoConnection refetch={refetch} />;
   }
   return (
-    <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
+    <ScrollView
+      style={{ flex: 1, paddingTop: verticalScale(10) }}
+      refreshControl={
+        <RefreshControl
+          refreshing={isFetching}
+          onRefresh={() => {
+            if (refetchCounter === 0) {
+              setRefetchCounter(1);
+            }
+          }}
+        />
+      }
+    >
       <BannerAdmob position="top" />
       <Accordion
         sections={data}

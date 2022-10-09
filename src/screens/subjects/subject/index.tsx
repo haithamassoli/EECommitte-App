@@ -9,6 +9,7 @@ import {
   Linking,
   ImageBackground,
   BackHandler,
+  RefreshControl,
 } from "react-native";
 import type {
   StackScreenProps,
@@ -47,9 +48,13 @@ const powerDarkFrame = require("@Assets/images/subjectColors/powerDark.png");
 
 const SubjectScreen = ({ navigation, route }: Props) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [refetchCounter, setRefetchCounter] = useState(0);
   const { theme } = useContext(ThemeContext);
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
-  const { data, isLoading }: any = fetchSubjectById(route.params.subjectId);
+  const { data, isLoading, refetch, isFetching }: any = fetchSubjectById(
+    route.params.subjectId,
+    refetchCounter
+  );
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const backgroundColor =
     theme === "light" ? Colors.lightBackgroundSec : Colors.darkBackgroundSec;
@@ -156,10 +161,22 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection />;
+    return <NoConnection refetch={refetch} />;
   }
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView
+      style={{ flex: 1 }}
+      refreshControl={
+        <RefreshControl
+          refreshing={isFetching}
+          onRefresh={() => {
+            if (refetchCounter === 0) {
+              setRefetchCounter(1);
+            }
+          }}
+        />
+      }
+    >
       <BannerAdmob position="top" />
       <ImageBackground
         resizeMode="contain"

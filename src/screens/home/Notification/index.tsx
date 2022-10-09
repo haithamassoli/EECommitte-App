@@ -7,6 +7,7 @@ import {
   RecursiveArray,
   ActivityIndicator,
   TouchableOpacity,
+  RefreshControl,
 } from "react-native";
 import { fetchNotifications } from "@Src/api/fetchNotifications";
 import {
@@ -37,9 +38,11 @@ type StylesDictionary = {
 
 const NotificationScreen = () => {
   const [activeSections, setActiveSections] = useState([]);
+  const [refetchCounter, setRefetchCounter] = useState(0);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading, refetch }: any = fetchNotifications();
+  const { data, isLoading, refetch, isFetching }: any =
+    fetchNotifications(refetchCounter);
 
   const tagsStyles: StylesDictionary = {
     body: {
@@ -130,7 +133,19 @@ const NotificationScreen = () => {
     return <NoConnection refetch={refetch} />;
   }
   return (
-    <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
+    <ScrollView
+      style={{ flex: 1, paddingTop: verticalScale(10) }}
+      refreshControl={
+        <RefreshControl
+          refreshing={isFetching}
+          onRefresh={() => {
+            if (refetchCounter === 0) {
+              setRefetchCounter(1);
+            }
+          }}
+        />
+      }
+    >
       <Accordion
         sections={data}
         containerStyle={{

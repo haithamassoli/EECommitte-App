@@ -1,4 +1,4 @@
-import { Text, View, ActivityIndicator } from "react-native";
+import { Text, View, ActivityIndicator, RefreshControl } from "react-native";
 import SearchInput from "@Components/ui/SearchInput";
 import { useContext, useLayoutEffect, useState } from "react";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -21,9 +21,11 @@ const options = {
 const DoctorsScreen = ({ route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
+  const [refetchCounter, setRefetchCounter] = useState(0);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading, refetch }: any = fetchDoctors();
+  const { data, isLoading, refetch, isFetching }: any =
+    fetchDoctors(refetchCounter);
 
   useLayoutEffect(() => {
     if (!isLoading && Array.isArray(data)) {
@@ -68,6 +70,16 @@ const DoctorsScreen = ({ route }: Props) => {
       />
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
+          refreshControl={
+            <RefreshControl
+              refreshing={isFetching}
+              onRefresh={() => {
+                if (refetchCounter === 0) {
+                  setRefetchCounter(1);
+                }
+              }}
+            />
+          }
           keyboardShouldPersistTaps="always"
           data={results}
           estimatedItemSize={65}
@@ -101,6 +113,9 @@ const DoctorsScreen = ({ route }: Props) => {
       ) : (
         <FlashList
           data={data}
+          refreshControl={
+            <RefreshControl refreshing={isLoading} onRefresh={refetch} />
+          }
           keyboardShouldPersistTaps="always"
           estimatedItemSize={65}
           keyExtractor={(item: any) => item.id.toString()}

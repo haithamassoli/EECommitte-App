@@ -99,10 +99,6 @@ const SearchScreen = ({ navigation, route }: Props) => {
       route.params?.backTo === "Info" ||
       route.params?.backTo === "SupportUs"
     ) {
-      // navigation.getParent()?.navigate("InfoNavigation", {
-      //   screen: route.params?.backTo,
-      // });
-      // reset navigation stack
       navigation.reset({
         index: 0,
         routes: [
@@ -139,15 +135,6 @@ const SearchScreen = ({ navigation, route }: Props) => {
           },
         ],
       });
-      // navigation.getParent()?.navigate("SubjectsNavigation", {
-      //   screen: "Subject",
-      //   params: {
-      //     // @ts-ignore
-      //     subjectId: route.params?.subjectId,
-      //     // @ts-ignore
-      //     from: route.params?.from,
-      //   },
-      // });
     } else if (
       route.params?.backTo === "Subject" &&
       // @ts-ignore
@@ -169,13 +156,6 @@ const SearchScreen = ({ navigation, route }: Props) => {
           },
         ],
       });
-      // navigation.getParent()?.navigate("SubjectsNavigation", {
-      //   screen: "Subject",
-      //   params: {
-      //     // @ts-ignore
-      //     subjectId: route.params?.subjectId,
-      //   },
-      // });
     } else if (route.params?.backTo === "SubjectFullPost") {
       navigation.reset({
         index: 0,
@@ -197,15 +177,6 @@ const SearchScreen = ({ navigation, route }: Props) => {
           },
         ],
       });
-      // navigation.getParent()?.navigate("SubjectsNavigation", {
-      //   screen: "SubjectFullPost",
-      //   params: {
-      //     // @ts-ignore
-      //     post: route.params?.post,
-      //     // @ts-ignore
-      //     postTitle: route.params?.postTitle,
-      //   },
-      // });
     } else {
       navigation.goBack();
     }

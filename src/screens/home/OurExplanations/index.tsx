@@ -9,7 +9,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext, useState } from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, RefreshControl } from "react-native";
 
 const options = {
   keys: ["searchName", "subject", "doctor"],
@@ -18,9 +18,11 @@ const options = {
 const OurExplanationsScreen = () => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<Record[] | []>([]);
+  const [refetchCounter, setRefetchCounter] = useState(0);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading, refetch }: any = fetchExplanations();
+  const { data, isLoading, refetch, isFetching }: any =
+    fetchExplanations(refetchCounter);
 
   if (isLoading) {
     return (
@@ -55,6 +57,16 @@ const OurExplanationsScreen = () => {
         <FlashList
           data={results}
           estimatedItemSize={24}
+          refreshControl={
+            <RefreshControl
+              refreshing={isFetching}
+              onRefresh={() => {
+                if (refetchCounter === 0) {
+                  setRefetchCounter(1);
+                }
+              }}
+            />
+          }
           keyExtractor={(item) => item.id.toString()}
           keyboardShouldPersistTaps="always"
           renderItem={({ item }) => (
@@ -84,6 +96,9 @@ const OurExplanationsScreen = () => {
         <FlashList
           data={data}
           keyboardShouldPersistTaps="always"
+          refreshControl={
+            <RefreshControl refreshing={isLoading} onRefresh={refetch} />
+          }
           estimatedItemSize={24}
           keyExtractor={(item: any) => item.id.toString()}
           renderItem={({ item }) => (

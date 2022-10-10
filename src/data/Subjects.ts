@@ -302,16 +302,6 @@ const Subjects: Subject[] = [
     name: "لاب باور",
     name2: "Power lab",
   },
-  {
-    id: 62,
-    name: "تصميم الدوائر الإلكترونية الكتف",
-    name2: "ُElectronic Circuits Design",
-  },
-  {
-    id: 63,
-    name: "اوتوكاد رسم هندسي",
-    name2: "Autocad",
-  },
 ];
 
 export default Subjects;

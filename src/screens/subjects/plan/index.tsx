@@ -53,6 +53,7 @@ const PlanScreen = ({ navigation }: Props) => {
           zoomStep={0.5}
           initialZoom={1}
           bindToBorders={true}
+          visualTouchFeedbackEnabled={false}
         >
           <ImageMapper
             imgSource={require("@Assets/images/plan.webp")}

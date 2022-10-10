@@ -23,7 +23,7 @@ const InfoScreen = ({ navigation }: Props) => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const appUrl =
     Platform.OS === "ios"
-      ? "https://apps.apple.com/us/app/%D9%84%D8%AC%D9%86%D8%A9-%D8%A7%D9%84%D9%87%D9%86%D8%AF%D8%B3%D8%A9-%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D8%A7%D8%A6%D9%8A%D8%A9/id6443760623"
+      ? "https://apps.apple.com/us/app/eecommittee/id6443760623"
       : "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte";
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -35,7 +35,7 @@ const InfoScreen = ({ navigation }: Props) => {
               flex: 1,
               flexDirection: "row",
               alignItems: "center",
-              paddingEnd: horizontalScale(10),
+              paddingRight: horizontalScale(16),
             }}
           >
             <TouchableOpacity
@@ -52,7 +52,7 @@ const InfoScreen = ({ navigation }: Props) => {
                 name="search"
                 size={moderateScale(24)}
                 color={textColor}
-                style={{ paddingStart: horizontalScale(10) }}
+                style={{ paddingLeft: horizontalScale(12) }}
               />
             </TouchableOpacity>
             {theme === "light" ? (

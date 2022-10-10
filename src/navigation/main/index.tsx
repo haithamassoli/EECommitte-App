@@ -37,12 +37,12 @@ export default function Route() {
             width: horizontalScale(24),
           },
           tabBarStyle: {
-            height: verticalScale(64),
+            minHeight: "8%",
           },
           tabBarLabelStyle: {
             fontSize: moderateScale(12),
             fontFamily: "TajawalBold",
-            marginBottom: screenWidth < 500 ? verticalScale(8) : 0,
+            paddingBottom: screenWidth < 500 ? verticalScale(8) : 0,
           },
           headerTitleStyle: {
             fontSize: moderateScale(18),

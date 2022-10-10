@@ -11,7 +11,7 @@ const Overlay = ({ onPress }: Props) => {
       onPress={onPress}
       style={{
         backgroundColor: Colors.overlay,
-        zIndex: 10,
+        zIndex: 1000,
         position: "absolute",
         top: 0,
         left: 0,

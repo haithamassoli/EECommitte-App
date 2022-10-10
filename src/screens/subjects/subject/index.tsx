@@ -183,13 +183,14 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         source={subjectFrame}
         style={{
           height: screenHeight < 650 ? verticalScale(268) : verticalScale(200),
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Text
           style={{
-            flex: 1,
             textAlign: "center",
-            textAlignVertical: "center",
             fontSize: moderateScale(24),
             color: Colors.darkText,
             fontFamily: "Bukra",

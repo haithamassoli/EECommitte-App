@@ -61,7 +61,7 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
                         left:
                           item.arrPos === "right"
                             ? horizontalScale(40)
-                            : screenWidth - 86,
+                            : screenWidth - 100,
                       },
                     ]}
                     onPress={onNext}
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: Colors.darkBackgroundSec,
-    width: horizontalScale(50),
+    width: verticalScale(50),
     height: verticalScale(50),
     borderRadius: moderateScale(25),
     top: verticalScale(-100),
@@ -146,6 +146,7 @@ const styles = StyleSheet.create({
     color: Colors.lightText,
     fontFamily: "Bukra",
     top: verticalScale(-80),
+    textAlign: "left",
   },
   customTitle1: {
     fontSize: moderateScale(16),
@@ -154,6 +155,7 @@ const styles = StyleSheet.create({
     color: Colors.lightText,
     fontFamily: "Bukra",
     top: verticalScale(-80),
+    textAlign: "left",
   },
   title2: {
     fontSize: moderateScale(16),
@@ -162,6 +164,7 @@ const styles = StyleSheet.create({
     fontFamily: "Bukra",
     top: verticalScale(-80),
     color: Colors.lightText,
+    textAlign: "left",
   },
   customTitle2: {
     fontSize: moderateScale(12),
@@ -170,6 +173,7 @@ const styles = StyleSheet.create({
     fontFamily: "Bukra",
     top: verticalScale(-80),
     color: Colors.lightText,
+    textAlign: "left",
   },
   title1En: {
     fontSize: moderateScale(20),

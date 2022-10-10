@@ -21,7 +21,7 @@ import SearchResults from "./SearchResults";
 import { SearchInputProps } from "@Types/Search";
 import { HomeNavigationProp } from "@Screens/home";
 import { moderateScale, verticalScale } from "@Utils/Platform";
-import { fetchDoctors } from "@Src/api/fetchDoctors";
+import DoctorsData from "@Src/data/Doctors";
 
 let delayTimer: any;
 
@@ -42,7 +42,6 @@ const SearchInput = ({
   const navigation = useNavigation<HomeNavigationProp>();
   const searchAnim = useRef(new Animated.Value(0)).current;
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
-  const { data, isLoading }: any = fetchDoctors();
 
   useEffect(() => {
     clearTimeout(delayTimer);
@@ -80,32 +79,30 @@ const SearchInput = ({
   };
 
   const handlePress = async (id: number) => {
-    if (!isLoading) {
-      const doctor = data.find((doctor: any) => doctor.id === id);
-      const prevData = await getDataFromStorage("searchHistory");
-      if (Array.isArray(prevData) && !prevData.includes(id)) {
-        if (prevData.length >= 10) {
-          prevData.pop();
-        }
-        await storeDataToStorage("searchHistory", [id, ...prevData]);
-      } else if (!prevData) {
-        await storeDataToStorage("searchHistory", [id]);
+    const doctor = DoctorsData.find((doctor: any) => doctor.id === id);
+    const prevData = await getDataFromStorage("searchHistory");
+    if (Array.isArray(prevData) && !prevData.includes(id)) {
+      if (prevData.length >= 10) {
+        prevData.pop();
       }
-      Keyboard.dismiss();
-      setSearchInput("");
-      if (doctor) {
-        navigation.navigate("Doctors", {
-          doctorId: id,
-        });
-      } else {
-        navigation.getParent()?.navigate("SubjectsNavigation", {
-          screen: "Subject",
-          params: {
-            subjectId: id,
-            from,
-          },
-        });
-      }
+      await storeDataToStorage("searchHistory", [id, ...prevData]);
+    } else if (!prevData) {
+      await storeDataToStorage("searchHistory", [id]);
+    }
+    Keyboard.dismiss();
+    setSearchInput("");
+    if (doctor) {
+      navigation.navigate("Doctors", {
+        doctorId: id,
+      });
+    } else {
+      navigation.getParent()?.navigate("SubjectsNavigation", {
+        screen: "Subject",
+        params: {
+          subjectId: id,
+          from,
+        },
+      });
     }
   };
 
@@ -115,7 +112,7 @@ const SearchInput = ({
         styles.searchContainer,
         style,
         {
-          zIndex: 1200,
+          zIndex: 12000,
           transform: [
             {
               translateY: searchAnim.interpolate({
@@ -143,12 +140,13 @@ const SearchInput = ({
         placeholderTextColor={Colors.gray}
         selectionColor={Colors.primary700}
         allowFontScaling={false}
+        textAlign="right"
         style={[
           styles.searchInput,
           {
-            fontSize: moderateScale(13),
+            fontSize: moderateScale(14),
             color: theme === "light" ? Colors.lightText : Colors.darkText,
-            zIndex: 15,
+            zIndex: 15000,
             backgroundColor:
               theme === "light"
                 ? Colors.lightBackgroundSec
@@ -176,7 +174,7 @@ const SearchInput = ({
         <View
           style={{
             position: "absolute",
-            top: verticalScale(25),
+            top: verticalScale(28),
             left: 0,
             right: 0,
             height:

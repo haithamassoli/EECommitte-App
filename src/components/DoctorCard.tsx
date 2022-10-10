@@ -1,14 +1,12 @@
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { Doctor } from "@Types/index";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext } from "react";
 import { View, Text, Image, Linking, TouchableOpacity } from "react-native";
 
-type Props = Omit<Doctor, "id" | "name2">;
 const defaultImage = require("@Assets/images/profile-image.webp");
 
-const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
+const DoctorCard = ({ name, image, office, phone, email, website }: any) => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const backgroundColor =
@@ -47,35 +45,39 @@ const DoctorCard = ({ name, image, office, phone, email, website }: Props) => {
         >
           الإسم: {name}
         </Text>
-        <Text
-          style={{
-            color: textColor,
-            textAlign: "left",
-            fontSize: moderateScale(14),
-          }}
-        >
-          المكتب: {office}
-        </Text>
-        <TouchableOpacity
-          onPress={() => Linking.openURL(`tel:${phone?.split(" ")[1]}`)}
-          style={{ overflow: "hidden" }}
-        >
+        {office && (
           <Text
             style={{
-              backgroundColor: Colors.primaryLight,
-              borderRadius: moderateScale(10),
-              color: Colors.lightText,
+              color: textColor,
               textAlign: "left",
               fontSize: moderateScale(14),
-              marginEnd: horizontalScale(20),
-              paddingEnd: horizontalScale(10),
-              paddingVertical: verticalScale(6),
-              marginTop: verticalScale(8),
             }}
           >
-            الهاتف: {phone}
+            المكتب: {office}
           </Text>
-        </TouchableOpacity>
+        )}
+        {phone && (
+          <TouchableOpacity
+            onPress={() => Linking.openURL(`tel:${phone?.split(" ")[1]}`)}
+            style={{ overflow: "hidden" }}
+          >
+            <Text
+              style={{
+                backgroundColor: Colors.primaryLight,
+                borderRadius: moderateScale(10),
+                color: Colors.lightText,
+                textAlign: "left",
+                fontSize: moderateScale(14),
+                marginEnd: horizontalScale(20),
+                paddingEnd: horizontalScale(10),
+                paddingVertical: verticalScale(6),
+                marginTop: verticalScale(8),
+              }}
+            >
+              الهاتف: {phone}
+            </Text>
+          </TouchableOpacity>
+        )}
         <View
           style={{
             backgroundColor: Colors.primaryLight,

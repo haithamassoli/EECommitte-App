@@ -92,16 +92,10 @@ export default function App() {
         finalStatus = status;
       }
       if (finalStatus !== "granted") {
-        Alert.alert("التنبيهات معطلة", "يجب تفعيل التنبيهات لتتمكن من تلقيها", [
-          {
-            text: "الغاء",
-            style: "cancel",
-          },
-          {
-            text: "تفعيل",
-            onPress: () => configurePushNotifications(),
-          },
-        ]);
+        Alert.alert(
+          "الصلاحيات مطلوبة",
+          "يجب السماح بالإشعارات لتتمكن من استلامها"
+        );
         return;
       }
       const pushNotificationsToken =

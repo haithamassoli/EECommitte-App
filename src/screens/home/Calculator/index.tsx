@@ -136,9 +136,9 @@ const CalculatorScreen = () => {
               setCumulative((e) => !e);
             }}
             style={{
-              width: horizontalScale(50),
+              width: verticalScale(50),
               height: verticalScale(30),
-              borderRadius: moderateScale(15),
+              borderRadius: verticalScale(15),
               backgroundColor:
                 cumulative && theme === "light"
                   ? Colors.primaryLight
@@ -153,9 +153,9 @@ const CalculatorScreen = () => {
           >
             <View
               style={{
-                width: horizontalScale(30),
+                width: verticalScale(30),
                 height: verticalScale(30),
-                borderRadius: moderateScale(15),
+                borderRadius: verticalScale(15),
                 backgroundColor: cumulative ? Colors.primary500 : Colors.gray,
               }}
             ></View>

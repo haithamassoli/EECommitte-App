@@ -111,6 +111,7 @@ const RecordsScreen = () => {
                     color: textColor,
                     fontFamily: "Bukra",
                     marginTop: verticalScale(20),
+                    textAlign: "left",
                   }}
                 >
                   {item}

@@ -77,7 +77,7 @@ const FAQScreen = () => {
   const renderContent = (section: SECTIONSTYPE) => {
     return (
       <RenderHTML
-        defaultTextProps={{ selectable: true }}
+        defaultTextProps={{ selectable: true, allowFontScaling: false }}
         contentWidth={screenWidth}
         baseStyle={{
           overflow: "hidden",

@@ -4032,10 +4032,10 @@ expo-modules-autolinking@0.10.3:
     find-up "^5.0.0"
     fs-extra "^9.1.0"
 
-expo-modules-core@0.11.6:
-  version "0.11.6"
-  resolved "https://registry.yarnpkg.com/expo-modules-core/-/expo-modules-core-0.11.6.tgz#0fb166ce6c18def4bfef7a617d4ba8b20cd87d9f"
-  integrity sha512-Z3DSfyLCag5JxMas+rdPbb8PzhN0F7v0GGx2VuaiC3QvIITrybdRS5lJaXlsfqrJZ36j80p3ZKzfMjMX/RF9kA==
+expo-modules-core@0.11.7:
+  version "0.11.7"
+  resolved "https://registry.yarnpkg.com/expo-modules-core/-/expo-modules-core-0.11.7.tgz#538f2a4d7c353467fb0313de4788e86dd8f251e3"
+  integrity sha512-lTH6MYULX99JK3zN4bhjRD3I9Y1CGx0RAhpZ6gCTO8GQ/DNw4xZRUwburKL9dJeZM5G1xJOcGoBkTfeMjUVe+g==
   dependencies:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
@@ -4097,10 +4097,10 @@ expo-updates@~0.14.6:
     resolve-from "^5.0.0"
     uuid "^3.4.0"
 
-expo@^46.0.14:
-  version "46.0.14"
-  resolved "https://registry.yarnpkg.com/expo/-/expo-46.0.14.tgz#bdb134fbc73f806f3d92a385c00d34a778e11973"
-  integrity sha512-l44Dn1/eXLoUOyXevffpKgQhqsf4PEB8bUp7aR97C7Hlcg7Rx9dbv7sTh8wV0M6ylJ+2M1kB5GgNX+CCuIwiSQ==
+expo@^46.0.15:
+  version "46.0.15"
+  resolved "https://registry.yarnpkg.com/expo/-/expo-46.0.15.tgz#c10d27c0ee85669132310949f2e56e95b4a14469"
+  integrity sha512-/uZLQgXKni/rLoJPUESte901Z8owZH4weItLGhac2T37zZEUHIqcWdI/1+BaN8Racz9x54PzgbIMh09QMgv9mQ==
   dependencies:
     "@babel/runtime" "^7.14.0"
     "@expo/cli" "0.3.1"
@@ -4114,7 +4114,7 @@ expo@^46.0.14:
     expo-font "~10.2.1"
     expo-keep-awake "~10.2.0"
     expo-modules-autolinking "0.10.3"
-    expo-modules-core "0.11.6"
+    expo-modules-core "0.11.7"
     fbemitter "^3.0.0"
     getenv "^1.0.0"
     invariant "^2.2.4"
@@ -6655,7 +6655,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-promise@^8.2.0:
+promise@^8.0.3:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/promise/-/promise-8.2.0.tgz#a1f6280ab67457fbfc8aad2b198c9497e9e5c806"
   integrity sha512-+CMAlLHqwRYwBMXKCP+o8ns7DN+xHDUiI+0nArsiJ9y+kJVPLFxEaSw6Ha9s9H0tftxg2Yzl25wqj9G7m5wLZg==
@@ -6927,10 +6927,10 @@ react-native-web@~0.18.7:
     postcss-value-parser "^4.2.0"
     styleq "^0.1.2"
 
-react-native@0.69.6:
-  version "0.69.6"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.69.6.tgz#cdd1a5757d902b91b165c28fdda4e518ed6f683a"
-  integrity sha512-wwXpqM+12kdEYdBZCJUb5SBu95CzgejrwFeYJ78RzHZV/Sj6DBRekbsHGrDDsY4R25QXALQxy4DQYQCObVvWjA==
+react-native@0.69.5:
+  version "0.69.5"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.69.5.tgz#959142bfef21beed837160b54aa17313f5e1898f"
+  integrity sha512-4Psrj1nDMLQjBXVH8n3UikzOHQc8+sa6NbxZQR0XKtpx8uC3HiJBgX+/FIum/RWxfi5J/Dt/+A2gLGmq2Hps8g==
   dependencies:
     "@jest/create-cache-key-function" "^27.0.1"
     "@react-native-community/cli" "^8.0.4"
@@ -6953,7 +6953,7 @@ react-native@0.69.6:
     mkdirp "^0.5.1"
     nullthrows "^1.1.1"
     pretty-format "^26.5.2"
-    promise "^8.2.0"
+    promise "^8.0.3"
     react-devtools-core "4.24.0"
     react-native-codegen "^0.69.2"
     react-native-gradle-plugin "^0.0.7"

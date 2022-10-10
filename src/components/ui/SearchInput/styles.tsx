@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   searchInput: {
     paddingHorizontal: horizontalScale(20),
     paddingStart: horizontalScale(40),
-    paddingVertical: verticalScale(10),
+    paddingVertical: verticalScale(11),
     borderRadius: moderateScale(30),
     fontFamily: "TajawalBold",
     width: "100%",
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     transform: [{ rotate: "90deg" }],
     left: horizontalScale(10),
-    zIndex: 100,
+    zIndex: 16000,
   },
 });
 

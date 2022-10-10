@@ -56,6 +56,7 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
             fontSize: moderateScale(16),
             fontFamily: "TajawalMedium",
             color: textColor,
+            textAlign: "left",
           }}
         >
           {doctor}

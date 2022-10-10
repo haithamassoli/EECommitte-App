@@ -72,7 +72,7 @@ export default function HomeNavigation({ navigation }: Props) {
                 flex: 1,
                 flexDirection: "row",
                 alignItems: "center",
-                paddingEnd: horizontalScale(10),
+                paddingRight: horizontalScale(16),
               }}
             >
               <TouchableOpacity
@@ -85,7 +85,7 @@ export default function HomeNavigation({ navigation }: Props) {
                   name="search"
                   size={moderateScale(24)}
                   color={iconColor}
-                  style={{ paddingStart: horizontalScale(10) }}
+                  style={{ paddingLeft: horizontalScale(12) }}
                 />
               </TouchableOpacity>
               {theme === "light" ? (

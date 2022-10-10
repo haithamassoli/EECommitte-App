@@ -34,18 +34,24 @@ const SearchResults = ({ results, handlePress }: Props) => {
           </View>
         ))
       ) : (
-        <Text
+        <View
           style={{
             flex: 1,
-            fontSize: moderateScale(16),
-            fontFamily: "TajawalBold",
-            textAlign: "center",
-            textAlignVertical: "center",
-            color: textColor,
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          لا يوجد نتائج
-        </Text>
+          <Text
+            style={{
+              fontSize: moderateScale(16),
+              fontFamily: "TajawalBold",
+              textAlign: "center",
+              color: textColor,
+            }}
+          >
+            لا يوجد نتائج
+          </Text>
+        </View>
       )}
     </>
   );
@@ -55,7 +61,7 @@ export default SearchResults;
 
 const styles = StyleSheet.create({
   button: {
-    flexDirection: "row-reverse",
+    justifyContent: "flex-end",
     paddingHorizontal: horizontalScale(10),
     paddingVertical: verticalScale(5),
     borderWidth: moderateScale(2),
@@ -64,5 +70,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: moderateScale(15),
     fontFamily: "TajawalMedium",
+    textAlign: "left",
   },
 });

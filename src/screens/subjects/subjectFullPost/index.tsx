@@ -11,8 +11,7 @@ import type { SubjectsStackParamList } from "@Types/navigation";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { WebDisplay } from "@Components/webDisplay";
-import { screenHeight } from "@Utils/Helper";
-import { verticalScale, moderateScale, horizontalScale } from "@Utils/Platform";
+import { moderateScale, horizontalScale } from "@Utils/Platform";
 import HeaderRight from "../HeaderRight";
 import { Feather } from "@expo/vector-icons";
 import BannerAdmob from "@Components/BannerAdmob";
@@ -83,25 +82,37 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
   }, []);
 
   return (
-    <ScrollView overScrollMode="never" showsVerticalScrollIndicator={false}>
+    <ScrollView
+      overScrollMode="never"
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        flexGrow: 1,
+      }}
+    >
       <BannerAdmob position="top" />
       {route?.params?.post ? (
         <WebDisplay html={route?.params?.post} />
       ) : (
-        <Text
+        <View
           style={{
-            color: textColor,
-            textAlign: "center",
-            textAlignVertical: "center",
-            height: screenHeight - verticalScale(200),
-            fontSize: moderateScale(20),
-            fontFamily: "TajawalBold",
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          {route?.params?.postTitle === "البوست الشامل"
-            ? "لا يوجد بوست شامل حاليًا"
-            : "لا يوجد تعريف للمادة"}
-        </Text>
+          <Text
+            style={{
+              color: textColor,
+              textAlign: "center",
+              fontSize: moderateScale(20),
+              fontFamily: "TajawalBold",
+            }}
+          >
+            {route?.params?.postTitle === "البوست الشامل"
+              ? "لا يوجد بوست شامل حاليًا"
+              : "لا يوجد تعريف للمادة"}
+          </Text>
+        </View>
       )}
       <BannerAdmob position="bottom" />
     </ScrollView>

@@ -162,7 +162,7 @@ const HomeScreen = ({ navigation }: Props) => {
               />
             </View>
           </SafeAreaView>
-          <View style={{ marginHorizontal: horizontalScale(8) }}>
+          <View style={{ marginHorizontal: horizontalScale(8), zIndex: 10000 }}>
             <SearchInput
               style={{
                 marginBottom: verticalScale(6),

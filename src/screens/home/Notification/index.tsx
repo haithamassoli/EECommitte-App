@@ -10,12 +10,7 @@ import {
   RefreshControl,
 } from "react-native";
 import { fetchNotifications } from "@Src/api/fetchNotifications";
-import {
-  rtlWebview,
-  screenWidth,
-  storeDataToStorage,
-  isConnected,
-} from "@Utils/Helper";
+import { rtlWebview, screenWidth, storeDataToStorage } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -102,7 +97,7 @@ const NotificationScreen = () => {
   const renderContent = (section: NotificationType) => {
     return (
       <RenderHTML
-        defaultTextProps={{ selectable: true }}
+        defaultTextProps={{ selectable: true, allowFontScaling: false }}
         contentWidth={screenWidth}
         baseStyle={{
           overflow: "hidden",

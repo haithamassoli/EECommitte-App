@@ -30,6 +30,7 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
         }}
         resizeMode="contain"
         source={{ uri: image }}
+        defaultSource={require("@Assets/images/bookPlacholder.jpg")}
       />
       <View
         style={{

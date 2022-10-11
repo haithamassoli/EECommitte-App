@@ -122,12 +122,12 @@ const InfoScreen = ({ navigation }: Props) => {
       <InfoItem
         icon="star"
         title="قيم التطبيق"
-        subTitle="قيم التطبيق على متجر جوجل بلاي"
-        onPress={() =>
-          Linking.openURL(
-            "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte"
-          )
+        subTitle={
+          Platform.OS === "ios"
+            ? "قيم التطبيق على الأب ستور"
+            : "قيم التطبيق على جوجل بلاي"
         }
+        onPress={() => Linking.openURL(appUrl)}
       />
       <InfoItem
         icon="heart"

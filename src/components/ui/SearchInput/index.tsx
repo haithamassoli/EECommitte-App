@@ -79,7 +79,7 @@ const SearchInput = ({
   };
 
   const handlePress = async (id: number) => {
-    const doctor = DoctorsData.find((doctor: any) => doctor.id === id);
+    const doctor = DoctorsData.find((doctor: any) => doctor.id == id);
     const prevData = await getDataFromStorage("searchHistory");
     if (Array.isArray(prevData) && !prevData.includes(id)) {
       if (prevData.length >= 10) {
@@ -135,6 +135,11 @@ const SearchInput = ({
           if (setSearchBarFocused) setSearchBarFocused(false);
         }}
         value={searchInput}
+        onSubmitEditing={() => {
+          if (results) {
+            handlePress(results[0].id);
+          }
+        }}
         onChangeText={(searchString) => setSearchInput(searchString)}
         placeholder={placeholder}
         placeholderTextColor={Colors.gray}

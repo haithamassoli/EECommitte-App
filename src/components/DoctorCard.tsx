@@ -4,7 +4,7 @@ import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext } from "react";
 import { View, Text, Image, Linking, TouchableOpacity } from "react-native";
 
-const defaultImage = require("@Assets/images/profile-image.webp");
+const defaultImage = require("@Assets/images/person-placeholder.jpg");
 
 const DoctorCard = ({ name, image, office, phone, email, website }: any) => {
   const { theme } = useContext(ThemeContext);

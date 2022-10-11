@@ -112,7 +112,7 @@ const SearchInput = ({
         styles.searchContainer,
         style,
         {
-          zIndex: 12000,
+          zIndex: 1500,
           transform: [
             {
               translateY: searchAnim.interpolate({
@@ -151,7 +151,7 @@ const SearchInput = ({
           {
             fontSize: moderateScale(14),
             color: theme === "light" ? Colors.lightText : Colors.darkText,
-            zIndex: 15000,
+            zIndex: 1400,
             backgroundColor:
               theme === "light"
                 ? Colors.lightBackgroundSec

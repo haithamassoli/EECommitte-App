@@ -66,10 +66,10 @@ export function fetchSearchRecords() {
       const querySnapshot = await getDocs(q);
       await storeDataToStorage("lastRequestSearchRecords", new Date());
       const snapshot = querySnapshot.docs.map((doc) => doc.data());
-      await storeDataToStorage("records", snapshot);
+      await storeDataToStorage("searchRecords", snapshot);
       return snapshot;
     } else {
-      const records = await getDataFromStorage("records");
+      const records = await getDataFromStorage("searchRecords");
       if (records == null) {
         return [];
       }

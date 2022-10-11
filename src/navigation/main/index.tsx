@@ -37,7 +37,7 @@ export default function Route() {
             width: horizontalScale(24),
           },
           tabBarStyle: {
-            minHeight: "8%",
+            minHeight: "8.25%",
           },
           tabBarLabelStyle: {
             fontSize: moderateScale(12),

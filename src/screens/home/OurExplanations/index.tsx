@@ -6,7 +6,6 @@ import Colors from "@GlobalStyle/Colors";
 import { FlashList } from "@shopify/flash-list";
 import { fetchExplanations } from "@Src/api/fetchExplanations";
 import { ThemeContext } from "@Src/store/themeContext";
-import { Record } from "@Types/index";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext, useState } from "react";
 import { View, Text, ActivityIndicator, RefreshControl } from "react-native";
@@ -17,7 +16,7 @@ const options = {
 
 const OurExplanationsScreen = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [results, setResults] = useState<Record[] | []>([]);
+  const [results, setResults] = useState<any[]>([]);
   const [refetchCounter, setRefetchCounter] = useState(0);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
@@ -57,16 +56,6 @@ const OurExplanationsScreen = () => {
         <FlashList
           data={results}
           estimatedItemSize={24}
-          refreshControl={
-            <RefreshControl
-              refreshing={isFetching}
-              onRefresh={() => {
-                if (refetchCounter === 0) {
-                  setRefetchCounter(1);
-                }
-              }}
-            />
-          }
           keyExtractor={(item) => item.id.toString()}
           keyboardShouldPersistTaps="always"
           renderItem={({ item }) => (
@@ -97,7 +86,14 @@ const OurExplanationsScreen = () => {
           data={data}
           keyboardShouldPersistTaps="always"
           refreshControl={
-            <RefreshControl refreshing={isLoading} onRefresh={refetch} />
+            <RefreshControl
+              refreshing={isFetching}
+              onRefresh={() => {
+                if (refetchCounter === 0) {
+                  setRefetchCounter(1);
+                }
+              }}
+            />
           }
           estimatedItemSize={24}
           keyExtractor={(item: any) => item.id.toString()}

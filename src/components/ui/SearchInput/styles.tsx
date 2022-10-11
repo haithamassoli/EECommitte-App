@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     transform: [{ rotate: "90deg" }],
     left: horizontalScale(10),
-    zIndex: 16000,
+    zIndex: 2000,
   },
 });
 

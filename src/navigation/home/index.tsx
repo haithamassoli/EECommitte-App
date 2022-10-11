@@ -85,7 +85,7 @@ export default function HomeNavigation({ navigation }: Props) {
                   name="search"
                   size={moderateScale(24)}
                   color={iconColor}
-                  style={{ paddingLeft: horizontalScale(12) }}
+                  style={{ paddingHorizontal: horizontalScale(12) }}
                 />
               </TouchableOpacity>
               {theme === "light" ? (

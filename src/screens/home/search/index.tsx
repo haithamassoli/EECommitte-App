@@ -68,7 +68,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
               flex: 1,
               flexDirection: "row",
               alignItems: "center",
-              paddingEnd: horizontalScale(10),
+              paddingHorizontal: horizontalScale(16),
             }}
           >
             {theme === "light" ? (
@@ -416,6 +416,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: screenHeight / 8,
+    width: "100%",
   },
   historyContainer: {
     flexDirection: "row",

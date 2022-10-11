@@ -58,7 +58,7 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
         );
       },
     });
-  }, [route?.params]);
+  }, [route?.params, theme]);
 
   const backAction = () => {
     if (route?.params?.from === "Search") {

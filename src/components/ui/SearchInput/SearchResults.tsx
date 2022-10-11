@@ -28,7 +28,7 @@ const SearchResults = ({ results, handlePress }: Props) => {
               onPress={() => handlePress(result.id)}
             >
               <Text style={[styles.text, { color: textColor }]}>
-                {result.name2}
+                {result.name}
               </Text>
             </TouchableOpacity>
           </View>

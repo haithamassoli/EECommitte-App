@@ -46,6 +46,7 @@ const NotificationScreen = () => {
       lineHeight: verticalScale(26),
       fontSize: moderateScale(18),
       fontFamily: "Dubai",
+      textAlign: "left",
     },
     a: {
       color: theme === "light" ? Colors.primary700 : Colors.primary400,

@@ -31,6 +31,7 @@ const FAQScreen = () => {
   const tagsStyles: any = {
     body: {
       color: textColor,
+      textAlign: "left",
       paddingHorizontal: horizontalScale(10),
       lineHeight: verticalScale(26),
       fontSize: moderateScale(18),

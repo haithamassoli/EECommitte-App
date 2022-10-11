@@ -70,16 +70,6 @@ const DoctorsScreen = ({ route }: Props) => {
       />
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
-          refreshControl={
-            <RefreshControl
-              refreshing={isFetching}
-              onRefresh={() => {
-                if (refetchCounter === 0) {
-                  setRefetchCounter(1);
-                }
-              }}
-            />
-          }
           keyboardShouldPersistTaps="always"
           data={results}
           estimatedItemSize={65}
@@ -114,7 +104,14 @@ const DoctorsScreen = ({ route }: Props) => {
         <FlashList
           data={data}
           refreshControl={
-            <RefreshControl refreshing={isLoading} onRefresh={refetch} />
+            <RefreshControl
+              refreshing={isFetching}
+              onRefresh={() => {
+                if (refetchCounter === 0) {
+                  setRefetchCounter(1);
+                }
+              }}
+            />
           }
           keyboardShouldPersistTaps="always"
           estimatedItemSize={65}

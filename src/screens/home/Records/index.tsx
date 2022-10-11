@@ -6,7 +6,6 @@ import Colors from "@GlobalStyle/Colors";
 import { FlashList } from "@shopify/flash-list";
 import { fetchRecords, fetchSearchRecords } from "@Src/api/fetchRecords";
 import { ThemeContext } from "@Src/store/themeContext";
-import { Record } from "@Types/index";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext, useState } from "react";
 import { View, Text, ActivityIndicator, RefreshControl } from "react-native";
@@ -18,7 +17,7 @@ const options = {
 const RecordsScreen = () => {
   const [searchInput, setSearchInput] = useState("");
   const [refetchCounter, setRefetchCounter] = useState(0);
-  const [results, setResults] = useState<Record[] | []>([]);
+  const [results, setResults] = useState<any[]>([]);
   const { data, isLoading, refetch, isFetching }: any =
     fetchRecords(refetchCounter);
   const { data: searchRecord, isLoading: isLoadingSearchRecord }: any =
@@ -26,7 +25,7 @@ const RecordsScreen = () => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
-  if (isLoading) {
+  if (isLoading || isLoadingSearchRecord) {
     return (
       <ActivityIndicator
         style={{ flex: 1 }}
@@ -46,30 +45,18 @@ const RecordsScreen = () => {
       }}
     >
       <BannerAdmob position="top" />
-      {!isLoadingSearchRecord && Array.isArray(searchRecord) && (
-        <SearchInput
-          placeholder="ابحث عن تسجيل..."
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-          setResults={setResults}
-          options={options}
-          list={searchRecord}
-          style={{ marginVertical: verticalScale(8) }}
-        />
-      )}
+      <SearchInput
+        placeholder="ابحث عن تسجيل..."
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        setResults={setResults}
+        options={options}
+        list={searchRecord}
+        style={{ marginVertical: verticalScale(8) }}
+      />
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
           data={results}
-          refreshControl={
-            <RefreshControl
-              refreshing={isFetching}
-              onRefresh={() => {
-                if (refetchCounter === 0) {
-                  setRefetchCounter(1);
-                }
-              }}
-            />
-          }
           estimatedItemSize={20}
           keyExtractor={(item) => item.id.toString()}
           keyboardShouldPersistTaps="always"
@@ -100,7 +87,14 @@ const RecordsScreen = () => {
         <FlashList
           data={data}
           refreshControl={
-            <RefreshControl refreshing={isLoading} onRefresh={refetch} />
+            <RefreshControl
+              refreshing={isFetching}
+              onRefresh={() => {
+                if (refetchCounter === 0) {
+                  setRefetchCounter(1);
+                }
+              }}
+            />
           }
           renderItem={({ item }: any) => {
             if (typeof item === "string") {

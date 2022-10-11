@@ -17,6 +17,7 @@ export const WebDisplay = function WebDisplay({ html }: { html: string }) {
   const tagsStyles: StylesDictionary = {
     body: {
       color: textColor,
+      textAlign: "left",
       paddingHorizontal: horizontalScale(10),
       lineHeight: verticalScale(26),
       fontSize: moderateScale(18),

@@ -26,7 +26,7 @@ const HeaderRight = ({ onPress }: Props) => {
           name="search"
           size={moderateScale(24)}
           color={textColor}
-          style={{ paddingLeft: horizontalScale(12) }}
+          style={{ paddingHorizontal: horizontalScale(12) }}
         />
       </TouchableOpacity>
       {theme === "light" ? (

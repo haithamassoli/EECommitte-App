@@ -52,7 +52,7 @@ const InfoScreen = ({ navigation }: Props) => {
                 name="search"
                 size={moderateScale(24)}
                 color={textColor}
-                style={{ paddingLeft: horizontalScale(12) }}
+                style={{ paddingHorizontal: horizontalScale(12) }}
               />
             </TouchableOpacity>
             {theme === "light" ? (
@@ -101,7 +101,7 @@ const InfoScreen = ({ navigation }: Props) => {
       />
       <InfoItem
         icon="mail"
-        title="تواصل معنا"
+        title="تواصل مع المطور"
         subTitle="للملاحظات والاقتراحات"
         onPress={() =>
           Linking.openURL(
@@ -115,7 +115,11 @@ const InfoScreen = ({ navigation }: Props) => {
         subTitle="شارك التطبيق مع أصدقائك"
         onPress={() =>
           Share.share({
-            message: appUrl,
+            message: `تطبيق لجنة الهندسة الكهربائية على الاندرويد
+https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte
+            
+تطبيق لجنة الهندسة الكهربائية على الايفون
+https://apps.apple.com/us/app/eecommittee/id6443760623`,
           })
         }
       />

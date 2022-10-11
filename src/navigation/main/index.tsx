@@ -48,41 +48,6 @@ export default function Route() {
             fontSize: moderateScale(18),
             fontFamily: "Bukra",
           },
-          headerRight: () => {
-            return (
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  paddingEnd: horizontalScale(10),
-                }}
-              >
-                <Feather
-                  onPress={() => navigation.navigate("Search")}
-                  name="search"
-                  size={moderateScale(24)}
-                  color={iconColor}
-                  style={{ paddingStart: horizontalScale(10) }}
-                />
-                {theme === "light" ? (
-                  <Feather
-                    onPress={() => toggleTheme()}
-                    name="moon"
-                    size={moderateScale(24)}
-                    color={iconColor}
-                  />
-                ) : (
-                  <Feather
-                    onPress={() => toggleTheme()}
-                    name="sun"
-                    size={moderateScale(24)}
-                    color={iconColor}
-                  />
-                )}
-              </View>
-            );
-          },
         })}
       >
         <>
@@ -102,7 +67,18 @@ export default function Route() {
             component={SubjectsNavigation}
             options={{
               tabBarIcon: ({ color }) => (
-                <Feather name="map" size={moderateScale(24)} color={color} />
+                <Feather
+                  name="share-2"
+                  size={moderateScale(28)}
+                  color={color}
+                  style={{
+                    transform: [
+                      { rotate: "-30deg" },
+                      { translateY: 3 },
+                      { translateX: -3 },
+                    ],
+                  }}
+                />
               ),
               headerShown: false,
               tabBarLabel: "ما يخص المواد",

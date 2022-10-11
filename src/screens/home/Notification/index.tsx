@@ -98,7 +98,12 @@ const NotificationScreen = () => {
   const renderContent = (section: NotificationType) => {
     return (
       <RenderHTML
-        defaultTextProps={{ selectable: true, allowFontScaling: false }}
+        defaultTextProps={{
+          selectable: true,
+          allowFontScaling: false,
+          selectionColor:
+            theme === "light" ? Colors.primary400 : Colors.primary700,
+        }}
         contentWidth={screenWidth}
         baseStyle={{
           overflow: "hidden",

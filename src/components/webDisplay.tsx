@@ -39,7 +39,11 @@ export const WebDisplay = function WebDisplay({ html }: { html: string }) {
       }}
     >
       <RenderHTML
-        defaultTextProps={{ selectable: true }}
+        defaultTextProps={{
+          selectable: true,
+          selectionColor:
+            theme === "light" ? Colors.primary400 : Colors.primary700,
+        }}
         contentWidth={screenWidth}
         source={{
           html: rtlWebview(html),

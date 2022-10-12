@@ -2,7 +2,7 @@ import { Platform, View } from "react-native";
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 
 type Props = {
-  position: "top" | "bottom";
+  position: "top" | "bottom" | "center";
 };
 
 const BannerAdmob = ({ position }: Props) => {
@@ -18,7 +18,18 @@ const BannerAdmob = ({ position }: Props) => {
           position: "absolute",
           zIndex: -10,
         },
-        position === "top" ? { top: 0 } : { bottom: 0 },
+        position === "top"
+          ? { top: 0 }
+          : position === "bottom"
+          ? { bottom: 0 }
+          : {
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              justifyContent: "center",
+              alignItems: "center",
+            },
       ]}
     >
       <BannerAd unitId={unitId} size={BannerAdSize.LARGE_BANNER} />

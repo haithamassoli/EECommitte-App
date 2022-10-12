@@ -151,6 +151,7 @@ const FAQScreen = () => {
         onChange={updateSections}
         touchableComponent={TouchableOpacity}
       />
+      <BannerAdmob position="center" />
       <BannerAdmob position="bottom" />
     </ScrollView>
   );

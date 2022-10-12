@@ -65,6 +65,7 @@ const FavoriteScreen = ({ navigation }: Props) => {
             })
           }
         >
+          <BannerAdmob position="center" />
           <Text
             style={[
               styles.text,

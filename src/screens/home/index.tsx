@@ -298,6 +298,7 @@ const HomeScreen = ({ navigation }: Props) => {
         <Text style={[styles.headerText, { color: textColor }]}>
           جديد لجنتكم
         </Text>
+        <BannerAdmob position="center" />
         <View
           style={{
             flexDirection: "row",

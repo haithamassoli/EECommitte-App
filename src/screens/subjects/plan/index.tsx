@@ -47,6 +47,7 @@ const PlanScreen = ({ navigation }: Props) => {
         resizeMode="cover"
       >
         <BannerAdmob position="top" />
+        <BannerAdmob position="center" />
         <ReactNativeZoomableView
           maxZoom={1.5}
           minZoom={0.5}

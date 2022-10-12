@@ -90,6 +90,7 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
       }}
     >
       <BannerAdmob position="top" />
+      <BannerAdmob position="center" />
       {route?.params?.post ? (
         <WebDisplay html={route?.params?.post} />
       ) : (

@@ -297,6 +297,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           <Text style={[style.buttonText]}>درايف المادة</Text>
         </TouchableOpacity>
       </View>
+      <BannerAdmob position="center" />
       <TouchableOpacity
         onPress={() => {
           toggleFavorite({

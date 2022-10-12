@@ -64,6 +64,7 @@ const RegistrationScreen = ({ navigation }: Props) => {
       }}
     >
       <BannerAdmob position="top" />
+      <BannerAdmob position="center" />
       <View
         style={{
           flex: 1,

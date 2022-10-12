@@ -83,6 +83,7 @@ const InfoScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <BannerAdmob position="top" />
+      <BannerAdmob position="center" />
       <InfoItem
         icon="info"
         title="عن اللجنة"

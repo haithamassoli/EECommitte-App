@@ -183,6 +183,7 @@ const NotificationScreen = () => {
         />
       }
     >
+      <BannerAdmob position="center" />
       <Accordion
         sections={data}
         containerStyle={{

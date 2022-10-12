@@ -302,6 +302,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
       style={styles.container}
     >
       <BannerAdmob position="top" />
+      <BannerAdmob position="center" />
       <KeyboardAvoidingView style={styles.container}>
         <View style={styles.searchContainer}>
           <SearchInput

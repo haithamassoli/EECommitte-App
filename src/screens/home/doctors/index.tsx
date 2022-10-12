@@ -59,6 +59,7 @@ const DoctorsScreen = ({ route }: Props) => {
       }}
     >
       <BannerAdmob position="top" />
+      <BannerAdmob position="center" />
       <SearchInput
         placeholder="ابحث عن أحد الكادر التدريسي..."
         searchInput={searchInput}

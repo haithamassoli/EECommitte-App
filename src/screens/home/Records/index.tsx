@@ -45,6 +45,7 @@ const RecordsScreen = () => {
       }}
     >
       <BannerAdmob position="top" />
+      <BannerAdmob position="center" />
       <SearchInput
         placeholder="ابحث عن تسجيل..."
         searchInput={searchInput}

@@ -97,6 +97,7 @@ const SupportUsScreen = ({ navigation }: Props) => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <BannerAdmob position="top" />
+      <BannerAdmob position="center" />
       <Text
         style={{
           fontFamily: "TajawalBold",

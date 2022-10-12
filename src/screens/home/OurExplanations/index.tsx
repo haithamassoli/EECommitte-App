@@ -43,6 +43,7 @@ const OurExplanationsScreen = () => {
       }}
     >
       <BannerAdmob position="top" />
+      <BannerAdmob position="center" />
       <SearchInput
         placeholder="ابحث عن شرح..."
         searchInput={searchInput}

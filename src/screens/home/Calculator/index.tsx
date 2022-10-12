@@ -359,6 +359,7 @@ const CalculatorScreen = () => {
             </Text>
           </View>
         </View>
+        <BannerAdmob position="center" />
         {numberToArray(subjectCount).map((_, index) => (
           <SubjectRate
             key={index}

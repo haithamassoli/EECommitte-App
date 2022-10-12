@@ -32,9 +32,9 @@ const FAQScreen = () => {
     body: {
       color: textColor,
       textAlign: "left",
-      paddingHorizontal: horizontalScale(10),
-      lineHeight: verticalScale(26),
-      fontSize: moderateScale(18),
+      paddingLeft: horizontalScale(10),
+      lineHeight: verticalScale(32),
+      fontSize: moderateScale(16),
       fontFamily: "Dubai",
     },
     a: {
@@ -59,9 +59,10 @@ const FAQScreen = () => {
         <Text
           style={{
             color: textColor,
-            fontSize: verticalScale(18),
-            fontFamily: "Bukra",
-            paddingHorizontal: horizontalScale(10),
+            fontSize: verticalScale(16),
+            fontFamily: "TajawalBold",
+            lineHeight: verticalScale(26),
+            paddingLeft: horizontalScale(10),
             paddingVertical: verticalScale(6),
           }}
         >

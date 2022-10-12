@@ -42,9 +42,9 @@ const NotificationScreen = () => {
   const tagsStyles: StylesDictionary = {
     body: {
       color: textColor,
-      paddingHorizontal: horizontalScale(10),
-      lineHeight: verticalScale(26),
-      fontSize: moderateScale(18),
+      paddingLeft: horizontalScale(10),
+      lineHeight: verticalScale(32),
+      fontSize: moderateScale(16),
       fontFamily: "Dubai",
       textAlign: "left",
     },
@@ -79,9 +79,10 @@ const NotificationScreen = () => {
         <Text
           style={{
             color: textColor,
-            fontSize: verticalScale(18),
-            fontFamily: "Bukra",
-            paddingHorizontal: horizontalScale(10),
+            fontSize: verticalScale(16),
+            fontFamily: "TajawalBold",
+            lineHeight: verticalScale(26),
+            paddingLeft: horizontalScale(10),
             paddingVertical: verticalScale(6),
           }}
         >

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   searchInput: {
     paddingHorizontal: horizontalScale(20),
     paddingStart: horizontalScale(40),
-    paddingVertical: verticalScale(11),
+    paddingVertical: verticalScale(10),
     borderRadius: moderateScale(30),
     fontFamily: "TajawalBold",
     width: "100%",

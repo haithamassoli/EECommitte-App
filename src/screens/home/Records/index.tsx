@@ -57,7 +57,7 @@ const RecordsScreen = () => {
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
           data={results}
-          estimatedItemSize={20}
+          estimatedItemSize={25}
           keyExtractor={(item) => item.id.toString()}
           keyboardShouldPersistTaps="always"
           renderItem={({ item }) => (
@@ -125,7 +125,7 @@ const RecordsScreen = () => {
           getItemType={(item) => {
             return typeof item === "string" ? "sectionHeader" : "row";
           }}
-          estimatedItemSize={24}
+          estimatedItemSize={25}
           keyExtractor={(item, index) => index.toString()}
           keyboardShouldPersistTaps="always"
         />

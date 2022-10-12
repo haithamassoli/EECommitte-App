@@ -179,7 +179,8 @@ const SearchInput = ({
         <View
           style={{
             position: "absolute",
-            top: verticalScale(28),
+            top: verticalScale(22),
+            overflow: "hidden",
             left: 0,
             right: 0,
             height:
@@ -190,8 +191,8 @@ const SearchInput = ({
                 ? Colors.lightBackgroundSec
                 : Colors.darkBackgroundSec,
             paddingTop: verticalScale(25),
-            borderBottomLeftRadius: moderateScale(10),
-            borderBottomRightRadius: moderateScale(10),
+            borderBottomLeftRadius: moderateScale(14),
+            borderBottomRightRadius: moderateScale(14),
           }}
         >
           <SearchResults results={results} handlePress={handlePress} />

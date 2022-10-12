@@ -55,7 +55,7 @@ const OurExplanationsScreen = () => {
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
           data={results}
-          estimatedItemSize={24}
+          estimatedItemSize={19}
           keyExtractor={(item) => item.id.toString()}
           keyboardShouldPersistTaps="always"
           renderItem={({ item }) => (
@@ -95,7 +95,7 @@ const OurExplanationsScreen = () => {
               }}
             />
           }
-          estimatedItemSize={24}
+          estimatedItemSize={19}
           keyExtractor={(item: any) => item.id.toString()}
           renderItem={({ item }) => (
             <RecordCard

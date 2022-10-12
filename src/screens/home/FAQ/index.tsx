@@ -133,6 +133,7 @@ const FAQScreen = () => {
         sections={data}
         containerStyle={{
           paddingHorizontal: horizontalScale(16),
+          paddingBottom: verticalScale(10),
         }}
         sectionContainerStyle={{
           backgroundColor:

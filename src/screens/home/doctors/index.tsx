@@ -72,7 +72,7 @@ const DoctorsScreen = ({ route }: Props) => {
         <FlashList
           keyboardShouldPersistTaps="always"
           data={results}
-          estimatedItemSize={65}
+          estimatedItemSize={33}
           keyExtractor={(item): any => item.id.toString()}
           renderItem={({ item }: any) => (
             <DoctorCard
@@ -114,7 +114,7 @@ const DoctorsScreen = ({ route }: Props) => {
             />
           }
           keyboardShouldPersistTaps="always"
-          estimatedItemSize={65}
+          estimatedItemSize={33}
           keyExtractor={(item: any) => item.id.toString()}
           renderItem={({ item }: any) => (
             <DoctorCard

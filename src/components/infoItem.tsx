@@ -62,13 +62,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: moderateScale(16),
-    fontWeight: "bold",
+    fontSize: moderateScale(14),
+    fontFamily: "Bukra",
     textAlign: "left",
   },
   subTitle: {
     fontSize: moderateScale(14),
     color: Colors.gray,
     textAlign: "left",
+    fontFamily: "TajawalMedium",
   },
 });

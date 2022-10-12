@@ -4,7 +4,7 @@ import SubjectsNavigation from "../subjects";
 import { Feather } from "@expo/vector-icons";
 import type { BottomTabParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
-import { View } from "react-native";
+import { Platform } from "react-native";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
 import {
@@ -19,17 +19,16 @@ import { screenWidth } from "@Utils/Helper";
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
 export default function Route() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const tabBarActiveTintColor =
     theme === "light" ? Colors.primary700 : Colors.primary400;
-  const iconColor = theme === "light" ? Colors.lightText : Colors.darkText;
-
+  const isIOS = Platform.OS === "ios";
   return (
     <NavigationContainer
       theme={theme === "light" ? LightNavigationColors : DarkNavigationColors}
     >
       <BottomTabs.Navigator
-        screenOptions={({ navigation }) => ({
+        screenOptions={{
           tabBarHideOnKeyboard: true,
           tabBarActiveTintColor,
           tabBarInactiveTintColor: "#9b9b9b",
@@ -37,18 +36,23 @@ export default function Route() {
             width: horizontalScale(24),
           },
           tabBarStyle: {
-            minHeight: "8.25%",
+            minHeight: "8%",
           },
           tabBarLabelStyle: {
             fontSize: moderateScale(12),
             fontFamily: "TajawalBold",
-            paddingBottom: screenWidth < 500 ? verticalScale(8) : 0,
+            paddingBottom:
+              screenWidth < 500 && isIOS
+                ? 0
+                : screenWidth < 500
+                ? verticalScale(8)
+                : 0,
           },
           headerTitleStyle: {
             fontSize: moderateScale(18),
             fontFamily: "Bukra",
           },
-        })}
+        }}
       >
         <>
           <BottomTabs.Screen

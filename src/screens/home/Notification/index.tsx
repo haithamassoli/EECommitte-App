@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   RefreshControl,
 } from "react-native";
+import NetInfo from "@react-native-community/netinfo";
 import { fetchNotifications } from "@Src/api/fetchNotifications";
 import { rtlWebview, screenWidth, storeDataToStorage } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
@@ -34,6 +35,7 @@ type StylesDictionary = {
 const NotificationScreen = () => {
   const [activeSections, setActiveSections] = useState([]);
   const [refetchCounter, setRefetchCounter] = useState(0);
+  const [isConnected, setIsConnected] = useState<boolean | null>();
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading, refetch, isFetching }: any =
@@ -56,6 +58,8 @@ const NotificationScreen = () => {
   useEffect(() => {
     const deleteNotificationsCount = async () => {
       await storeDataToStorage("notificationsCount", 0);
+      const connectionStatus = await NetInfo.fetch();
+      setIsConnected(connectionStatus.isConnected);
     };
     deleteNotificationsCount();
   }, []);
@@ -131,8 +135,39 @@ const NotificationScreen = () => {
       />
     );
   }
-  if (Array.isArray(data) && data.length === 0) {
+  if (Array.isArray(data) && data.length === 0 && isConnected === false) {
     return <NoConnection refetch={refetch} />;
+  }
+  if (Array.isArray(data) && data.length === 0 && isConnected === true) {
+    return (
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={isFetching}
+            onRefresh={() => {
+              if (refetchCounter === 0) {
+                setRefetchCounter(1);
+              }
+            }}
+          />
+        }
+      >
+        <Text
+          style={{
+            fontFamily: "Bukra",
+            fontSize: moderateScale(20),
+            color: textColor,
+          }}
+        >
+          لا يوجد اشعارات
+        </Text>
+      </ScrollView>
+    );
   }
   return (
     <ScrollView
@@ -152,6 +187,7 @@ const NotificationScreen = () => {
         sections={data}
         containerStyle={{
           paddingHorizontal: horizontalScale(16),
+          paddingBottom: verticalScale(10),
         }}
         sectionContainerStyle={{
           backgroundColor:

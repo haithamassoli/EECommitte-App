@@ -8,6 +8,7 @@ import {
   Linking,
   Keyboard,
   ActivityIndicator,
+  RefreshControl,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./styles";
@@ -45,10 +46,12 @@ const HomeScreen = ({ navigation }: Props) => {
   const [results, setResults] = useState<any[]>([]);
   const [searchBarFocused, setSearchBarFocused] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
+  const [refetchCounter, setRefetchCounter] = useState(0);
   const isFocused = useIsFocused();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading }: any = fetchSliderImages();
+  const { data, isLoading, isFetching }: any =
+    fetchSliderImages(refetchCounter);
 
   useEffect(() => {
     const CheckNotificationCount = async () => {
@@ -260,7 +263,20 @@ const HomeScreen = ({ navigation }: Props) => {
   ];
 
   return (
-    <ScrollView overScrollMode="never" showsVerticalScrollIndicator={false}>
+    <ScrollView
+      overScrollMode="never"
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl
+          refreshing={isFetching}
+          onRefresh={() => {
+            if (refetchCounter === 0) {
+              setRefetchCounter(1);
+            }
+          }}
+        />
+      }
+    >
       {searchBarFocused && (
         <Overlay
           onPress={() => {

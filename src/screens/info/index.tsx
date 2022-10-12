@@ -92,7 +92,7 @@ const InfoScreen = ({ navigation }: Props) => {
       <InfoItem
         icon="smartphone"
         title="تطبيق Engineers"
-        subTitle="كل ما يهم طالب السنة الأولى في الهندسة والعلوم"
+        subTitle="كل ما يهم طالب الهندسة في السنة الأولى"
         onPress={() =>
           Linking.openURL(
             "https://play.google.com/store/apps/details?id=com.taimaah.edu"
@@ -102,7 +102,7 @@ const InfoScreen = ({ navigation }: Props) => {
       <InfoItem
         icon="mail"
         title="تواصل مع المطور"
-        subTitle="للملاحظات والاقتراحات"
+        subTitle="للملاحظات والإقتراحات"
         onPress={() =>
           Linking.openURL(
             "mailto:haitham.b.assoli@gmail.com?subject=تطبيق لجنة الهندسة الكهربائية&body=مرحباً هيثم،"

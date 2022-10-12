@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";

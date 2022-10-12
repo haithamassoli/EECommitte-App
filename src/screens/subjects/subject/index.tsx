@@ -315,7 +315,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         ]}
       >
         <Text style={[style.buttonText, { color: textColor }]}>
-          {isFavorite ? "ازالة من المفضلة" : "اضافة الى المفضلة"}
+          {isFavorite ? "إزالة من المفضلة" : "إضافة الى المفضلة"}
         </Text>
         <AntDesign
           name={isFavorite ? "heart" : "hearto"}

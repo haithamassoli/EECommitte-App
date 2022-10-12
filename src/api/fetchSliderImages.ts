@@ -8,27 +8,31 @@ const cacheIntervalInHours = 24;
 const cacheExpiryTime = new Date();
 cacheExpiryTime.setHours(cacheExpiryTime.getHours() + cacheIntervalInHours);
 
-export function fetchSliderImages() {
-  const { data, isLoading } = useQuery(["slider"], async () => {
-    const lastRequest = await getDataFromStorage("lastRequestSlider");
-    const connectionStatus = await NetInfo.fetch();
-    if (
-      (lastRequest == null && connectionStatus.isConnected) ||
-      (lastRequest > cacheExpiryTime && connectionStatus.isConnected)
-    ) {
-      const q = query(collection(db, "slider"), orderBy("time", "desc"));
-      const querySnapshot = await getDocs(q);
-      await storeDataToStorage("lastRequestSlider", new Date());
-      const snapshot = querySnapshot.docs.map((doc) => doc.data());
-      await storeDataToStorage("slider", snapshot);
-      return snapshot;
-    } else {
-      const slider = await getDataFromStorage("slider");
-      if (slider == null) {
-        return [];
+export function fetchSliderImages(refetchCounter: number) {
+  const { data, isLoading, isFetching } = useQuery(
+    ["slider", refetchCounter],
+    async () => {
+      const lastRequest = await getDataFromStorage("lastRequestSlider");
+      const connectionStatus = await NetInfo.fetch();
+      if (
+        (lastRequest == null && connectionStatus.isConnected) ||
+        (lastRequest > cacheExpiryTime && connectionStatus.isConnected) ||
+        (refetchCounter === 1 && connectionStatus.isConnected)
+      ) {
+        const q = query(collection(db, "slider"), orderBy("time", "desc"));
+        const querySnapshot = await getDocs(q);
+        await storeDataToStorage("lastRequestSlider", new Date());
+        const snapshot = querySnapshot.docs.map((doc) => doc.data());
+        await storeDataToStorage("slider", snapshot);
+        return snapshot;
+      } else {
+        const slider = await getDataFromStorage("slider");
+        if (slider == null) {
+          return [];
+        }
+        return slider;
       }
-      return slider;
     }
-  });
-  return { data, isLoading };
+  );
+  return { data, isLoading, isFetching };
 }

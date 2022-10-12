@@ -36,7 +36,7 @@ const CalculatorScreen = () => {
   const addSubject = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     if (subjectCount >= 12) {
-      setMassage("لا يمكن اضافة المزيد من المواد");
+      setMassage("لا يمكن إضافة المزيد من المواد");
       setVisible(true);
     } else {
       setSubjectCount((e) => e + 1);
@@ -441,7 +441,7 @@ const CalculatorScreen = () => {
             fontSize: moderateScale(16),
           }}
         >
-          احتساب المعدل
+          حساب المعدل
         </Text>
       </TouchableOpacity>
     </View>

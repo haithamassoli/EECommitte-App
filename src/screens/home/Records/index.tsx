@@ -24,7 +24,9 @@ const RecordsScreen = () => {
     fetchSearchRecords();
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-
+  const handleRefetch = async () => {
+    await refetch();
+  };
   if (isLoading || isLoadingSearchRecord) {
     return (
       <ActivityIndicator
@@ -35,7 +37,7 @@ const RecordsScreen = () => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection refetch={refetch} />;
+    return <NoConnection refetch={handleRefetch} />;
   }
   return (
     <View

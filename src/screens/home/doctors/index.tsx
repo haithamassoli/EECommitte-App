@@ -38,7 +38,9 @@ const DoctorsScreen = ({ route }: Props) => {
       }
     }
   }, [route.params.doctorId]);
-
+  const handleRefetch = async () => {
+    await refetch();
+  };
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -49,7 +51,7 @@ const DoctorsScreen = ({ route }: Props) => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection refetch={refetch} />;
+    return <NoConnection refetch={handleRefetch} />;
   }
   return (
     <View

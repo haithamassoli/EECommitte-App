@@ -101,7 +101,9 @@ const FAQScreen = () => {
   const updateSections = (activeSections: any) => {
     setActiveSections(activeSections);
   };
-
+  const handleRefetch = async () => {
+    await refetch();
+  };
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -112,7 +114,7 @@ const FAQScreen = () => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection refetch={refetch} />;
+    return <NoConnection refetch={handleRefetch} />;
   }
   return (
     <ScrollView

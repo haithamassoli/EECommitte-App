@@ -150,7 +150,9 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     );
     return () => backHandler.remove();
   }, []);
-
+  const handleRefetch = async () => {
+    await refetch();
+  };
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -161,7 +163,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection refetch={refetch} />;
+    return <NoConnection refetch={handleRefetch} />;
   }
   return (
     <ScrollView

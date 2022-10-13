@@ -35,7 +35,18 @@ Notifications.setNotificationHandler({
   }),
 });
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      staleTime: Infinity,
+      refetchInterval: false,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  },
+});
 
 export default function App() {
   const { theme } = useContext(ThemeContext);

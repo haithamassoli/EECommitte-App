@@ -16,19 +16,14 @@ const BannerAdmob = ({ position }: Props) => {
       style={[
         {
           position: "absolute",
-          zIndex: -10,
+          zIndex: -100000,
         },
         position === "top"
-          ? { top: 0 }
+          ? { top: -200 }
           : position === "bottom"
-          ? { bottom: 0 }
+          ? { bottom: -200 }
           : {
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              justifyContent: "center",
-              alignItems: "center",
+              left: -500,
             },
       ]}
     >

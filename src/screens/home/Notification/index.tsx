@@ -125,7 +125,9 @@ const NotificationScreen = () => {
   const updateSections = (activeSections: any) => {
     setActiveSections(activeSections);
   };
-
+  const handleRefetch = async () => {
+    await refetch();
+  };
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -136,7 +138,7 @@ const NotificationScreen = () => {
     );
   }
   if (Array.isArray(data) && data.length === 0 && isConnected === false) {
-    return <NoConnection refetch={refetch} />;
+    return <NoConnection refetch={handleRefetch} />;
   }
   if (Array.isArray(data) && data.length === 0 && isConnected === true) {
     return (

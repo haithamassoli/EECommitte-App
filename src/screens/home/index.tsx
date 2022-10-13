@@ -50,7 +50,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const isFocused = useIsFocused();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading, isFetching }: any =
+  const { data, isLoading, isFetching, refetch }: any =
     fetchSliderImages(refetchCounter);
 
   useEffect(() => {
@@ -187,7 +187,9 @@ const HomeScreen = ({ navigation }: Props) => {
       ),
     });
   }, [searchInput, searchBarFocused, results, theme]);
-
+  const handleRefetch = async () => {
+    await refetch();
+  };
   const rowOne = [
     {
       title: "المواد",

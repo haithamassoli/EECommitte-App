@@ -2,7 +2,7 @@
   "expo": {
     "name": "لجنة الهندسة الكهربائية",
     "slug": "EECommitte",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,12 +18,12 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "1.1.1",
+      "buildNumber": "1.1.2",
       "supportsTablet": true,
       "bundleIdentifier": "com.haithamassoli.EECommitte"
     },
     "android": {
-      "versionCode": 34,
+      "versionCode": 35,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(14),
     fontFamily: "Bukra",
     textAlign: "left",
+    marginBottom: verticalScale(6),
   },
   subTitle: {
     fontSize: moderateScale(14),

@@ -22,7 +22,9 @@ const OurExplanationsScreen = () => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading, refetch, isFetching }: any =
     fetchExplanations(refetchCounter);
-
+  const handleRefetch = async () => {
+    await refetch();
+  };
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -33,7 +35,7 @@ const OurExplanationsScreen = () => {
     );
   }
   if (Array.isArray(data) && data.length === 0) {
-    return <NoConnection refetch={refetch} />;
+    return <NoConnection refetch={handleRefetch} />;
   }
   return (
     <View

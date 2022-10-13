@@ -302,6 +302,36 @@ const Subjects: Subject[] = [
     name: "لاب باور",
     name2: "Power lab",
   },
+  {
+    id: 62,
+    name: "راديو ويف",
+    name2: "Radio Wave",
+  },
+  {
+    id: 63,
+    name: "لاب مايكروويف",
+    name2: "Lab Microwave",
+  },
+  {
+    id: 64,
+    name: "نيتورك",
+    name2: "Network",
+  },
+  {
+    id: 65,
+    name: "اوبتيكال فايبر",
+    name2: "Optical Fiber",
+  },
+  {
+    id: 66,
+    name: "ساتالايت",
+    name2: "Satellite",
+  },
+  {
+    id: 67,
+    name: "تصميم الدوائر الإلكترونية الكتف",
+    name2: "ُElectives",
+  },
 ];
 
 export default Subjects;

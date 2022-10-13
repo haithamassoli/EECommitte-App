@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -12,6 +18,7 @@ interface InfoItemProps {
   onPress: () => void;
 }
 
+const isIOS = Platform.OS === "ios";
 const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
@@ -65,7 +72,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(14),
     fontFamily: "Bukra",
     textAlign: "left",
-    marginBottom: verticalScale(6),
+    marginBottom: isIOS ? verticalScale(6) : verticalScale(4),
   },
   subTitle: {
     fontSize: moderateScale(14),

@@ -28,7 +28,7 @@ const DoctorsScreen = ({ route }: Props) => {
     fetchDoctors(refetchCounter);
 
   useLayoutEffect(() => {
-    if (!isLoading && Array.isArray(data)) {
+    if (route.params.doctorId && !isLoading && Array.isArray(data)) {
       const doctor = data.find(
         (doctor: any) => doctor.id === route.params.doctorId
       );

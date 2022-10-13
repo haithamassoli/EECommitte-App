@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import { screenHeight, screenWidth } from "./Helper";
 
 const guidelineBaseWidth = 375;
@@ -11,3 +12,5 @@ const moderateScale = (size: number, factor = 0.5) =>
   size + (horizontalScale(size) - size) * factor;
 
 export { horizontalScale, verticalScale, moderateScale };
+
+export const isIOS = Platform.OS === "ios";

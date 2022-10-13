@@ -9,7 +9,12 @@ import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  isIOS,
+  moderateScale,
+  verticalScale,
+} from "@Utils/Platform";
 
 interface InfoItemProps {
   icon: keyof typeof Feather.glyphMap;
@@ -18,7 +23,6 @@ interface InfoItemProps {
   onPress: () => void;
 }
 
-const isIOS = Platform.OS === "ios";
 const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;

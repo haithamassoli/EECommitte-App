@@ -4,12 +4,16 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  Platform,
 } from "react-native";
 import InfoItem from "@Components/infoItem";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  isIOS,
+  moderateScale,
+  verticalScale,
+} from "@Utils/Platform";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext, useLayoutEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
@@ -18,13 +22,12 @@ import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<InfoStackParamList, "Info">;
 
+const appUrl = isIOS
+  ? "https://apps.apple.com/us/app/eecommittee/id6443760623"
+  : "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte";
 const InfoScreen = ({ navigation }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const appUrl =
-    Platform.OS === "ios"
-      ? "https://apps.apple.com/us/app/eecommittee/id6443760623"
-      : "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte";
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "القائمة",
@@ -128,9 +131,7 @@ https://apps.apple.com/us/app/eecommittee/id6443760623`,
         icon="star"
         title="قيم التطبيق"
         subTitle={
-          Platform.OS === "ios"
-            ? "قيم التطبيق على الأب ستور"
-            : "قيم التطبيق على جوجل بلاي"
+          isIOS ? "قيم التطبيق على الأب ستور" : "قيم التطبيق على جوجل بلاي"
         }
         onPress={() => Linking.openURL(appUrl)}
       />

@@ -13,7 +13,12 @@ import {
 } from "@GlobalStyle/Navigation";
 import InfoNavigation from "@Navigation/info";
 import HomeNavigation from "@Navigation/home";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  isIOS,
+  moderateScale,
+  verticalScale,
+} from "@Utils/Platform";
 import { screenWidth } from "@Utils/Helper";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
@@ -22,7 +27,6 @@ export default function Route() {
   const { theme } = useContext(ThemeContext);
   const tabBarActiveTintColor =
     theme === "light" ? Colors.primary700 : Colors.primary400;
-  const isIOS = Platform.OS === "ios";
   return (
     <NavigationContainer
       theme={theme === "light" ? LightNavigationColors : DarkNavigationColors}

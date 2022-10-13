@@ -1,16 +1,15 @@
-import { Platform, View } from "react-native";
+import { isIOS } from "@Utils/Platform";
+import { View } from "react-native";
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 
 type Props = {
   position: "top" | "bottom" | "center";
 };
 
+const unitId = isIOS
+  ? "ca-app-pub-6462207765068097/9898281250"
+  : "ca-app-pub-6462207765068097/5461145128";
 const BannerAdmob = ({ position }: Props) => {
-  const isAndroid = Platform.OS === "android";
-  const unitId = isAndroid
-    ? "ca-app-pub-6462207765068097/5461145128"
-    : "ca-app-pub-6462207765068097/9898281250";
-
   return (
     <View
       style={[

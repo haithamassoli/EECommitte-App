@@ -1,4 +1,9 @@
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  isIOS,
+  moderateScale,
+  verticalScale,
+} from "@Utils/Platform";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -10,7 +15,7 @@ const styles = StyleSheet.create({
   searchInput: {
     paddingHorizontal: horizontalScale(20),
     paddingStart: horizontalScale(40),
-    paddingVertical: verticalScale(10),
+    paddingVertical: isIOS ? verticalScale(12) : verticalScale(8),
     borderRadius: moderateScale(30),
     fontFamily: "TajawalBold",
     width: "100%",

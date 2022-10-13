@@ -6,7 +6,6 @@ import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
-import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<InfoStackParamList, "SupportUs">;
 
@@ -96,8 +95,6 @@ const SupportUsScreen = ({ navigation }: Props) => {
   }, []);
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <BannerAdmob position="top" />
-      <BannerAdmob position="center" />
       <Text
         style={{
           fontFamily: "TajawalBold",
@@ -127,7 +124,6 @@ const SupportUsScreen = ({ navigation }: Props) => {
         color={Colors.secondYear}
         style={{ marginTop: verticalScale(20) }}
       />
-      <BannerAdmob position="bottom" />
     </View>
   );
 };

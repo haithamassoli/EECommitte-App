@@ -18,7 +18,6 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { useContext, useLayoutEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { Feather } from "@expo/vector-icons";
-import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<InfoStackParamList, "Info">;
 
@@ -85,8 +84,6 @@ const InfoScreen = ({ navigation }: Props) => {
   };
   return (
     <View style={styles.container}>
-      <BannerAdmob position="top" />
-      <BannerAdmob position="center" />
       <InfoItem
         icon="info"
         title="عن اللجنة"
@@ -141,7 +138,6 @@ https://apps.apple.com/us/app/eecommittee/id6443760623`,
         subTitle="ساعدنا على تطوير التطبيق"
         onPress={() => onPress("SupportUs")}
       />
-      <BannerAdmob position="bottom" />
     </View>
   );
 };

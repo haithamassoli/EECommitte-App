@@ -25,7 +25,6 @@ import { ThemeContext } from "@Src/store/themeContext";
 import SearchResults from "@Components/ui/SearchInput/SearchResults";
 import { StackScreenProps } from "@react-navigation/stack";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import BannerAdmob from "@Components/BannerAdmob";
 import DoctorsData from "@Src/data/Doctors";
 
 const options = {
@@ -301,8 +300,6 @@ const SearchScreen = ({ navigation, route }: Props) => {
       showsVerticalScrollIndicator={false}
       style={styles.container}
     >
-      <BannerAdmob position="top" />
-      <BannerAdmob position="center" />
       <KeyboardAvoidingView style={styles.container}>
         <View style={styles.searchContainer}>
           <SearchInput
@@ -400,7 +397,6 @@ const SearchScreen = ({ navigation, route }: Props) => {
           </View>
         )}
       </KeyboardAvoidingView>
-      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

@@ -4,7 +4,6 @@ import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { Feather } from "@expo/vector-icons";
-import BannerAdmob from "./BannerAdmob";
 
 const NoConnection = ({ refetch }: any) => {
   const { theme } = useContext(ThemeContext);
@@ -41,9 +40,6 @@ const NoConnection = ({ refetch }: any) => {
       >
         <Feather name="refresh-cw" size={moderateScale(20)} color={textColor} />
       </TouchableOpacity>
-      <BannerAdmob position="top" />
-      <BannerAdmob position="center" />
-      <BannerAdmob position="bottom" />
     </View>
   );
 };

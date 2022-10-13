@@ -16,7 +16,6 @@ import { fetchFAQ } from "@Src/api/fetchFAQ";
 import { rtlWebview, screenWidth } from "@Utils/Helper";
 import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
 import NoConnection from "@Components/NoConnection";
-import BannerAdmob from "@Components/BannerAdmob";
 type SECTIONSTYPE = { title: string; content: string };
 const systemFonts = [...defaultSystemFonts, "Dubai"];
 
@@ -130,7 +129,6 @@ const FAQScreen = () => {
         />
       }
     >
-      <BannerAdmob position="top" />
       <Accordion
         sections={data}
         containerStyle={{
@@ -153,8 +151,6 @@ const FAQScreen = () => {
         onChange={updateSections}
         touchableComponent={TouchableOpacity}
       />
-      <BannerAdmob position="center" />
-      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

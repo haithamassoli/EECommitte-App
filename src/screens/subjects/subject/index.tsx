@@ -25,7 +25,6 @@ import { FavoriteContext } from "@Src/store/favoriteContext";
 import HeaderRight from "../HeaderRight";
 import { fetchSubjectById } from "@Src/api/fetchSubjectById";
 import NoConnection from "@Components/NoConnection";
-import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 export type SubjectNavigationProp = StackNavigationProp<
@@ -179,7 +178,6 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         />
       }
     >
-      <BannerAdmob position="top" />
       <ImageBackground
         resizeMode="contain"
         source={subjectFrame}
@@ -299,7 +297,6 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           <Text style={[style.buttonText]}>درايف المادة</Text>
         </TouchableOpacity>
       </View>
-      <BannerAdmob position="center" />
       <TouchableOpacity
         onPress={() => {
           toggleFavorite({
@@ -327,7 +324,6 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           style={{ marginHorizontal: horizontalScale(10) }}
         />
       </TouchableOpacity>
-      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

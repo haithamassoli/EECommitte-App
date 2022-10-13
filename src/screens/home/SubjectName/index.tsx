@@ -4,7 +4,6 @@ import { HomeStackParamList } from "@Types/navigation";
 import { StackScreenProps } from "@react-navigation/stack";
 import ReactNativeZoomableView from "@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView";
 import { screenHeight, screenWidth } from "@Utils/Helper";
-import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<HomeStackParamList, "SubjectName">;
 
@@ -22,8 +21,6 @@ const SubjectNameScreen = ({ navigation }: Props) => {
       }}
       resizeMode="cover"
     >
-      <BannerAdmob position="top" />
-      <BannerAdmob position="center" />
       <ReactNativeZoomableView
         maxZoom={1.5}
         minZoom={0.5}
@@ -48,7 +45,6 @@ const SubjectNameScreen = ({ navigation }: Props) => {
           }}
         />
       </ReactNativeZoomableView>
-      <BannerAdmob position="bottom" />
     </ImageBackground>
   );
 };

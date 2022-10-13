@@ -27,7 +27,6 @@ import { StatusBar } from "expo-status-bar";
 import { fetchSliderImages } from "@Src/api/fetchSliderImages";
 import * as Notifications from "expo-notifications";
 import { useIsFocused } from "@react-navigation/native";
-import BannerAdmob from "@Components/BannerAdmob";
 import DoctorsData from "@Src/data/Doctors";
 
 const options = {
@@ -287,7 +286,6 @@ const HomeScreen = ({ navigation }: Props) => {
           }}
         />
       )}
-      <BannerAdmob position="top" />
       <View
         style={{
           flex: 1,
@@ -300,7 +298,6 @@ const HomeScreen = ({ navigation }: Props) => {
         <Text style={[styles.headerText, { color: textColor }]}>
           جديد لجنتكم
         </Text>
-        <BannerAdmob position="center" />
         <View
           style={{
             flexDirection: "row",
@@ -467,7 +464,6 @@ const HomeScreen = ({ navigation }: Props) => {
           ))}
         </View>
       </View>
-      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

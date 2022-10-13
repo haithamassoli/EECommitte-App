@@ -10,7 +10,6 @@ import { Image, StyleSheet, ImageBackground, View } from "react-native";
 import { verticalScale } from "@Utils/Platform";
 import { ThemeContext } from "@Src/store/themeContext";
 import HeaderRight from "../HeaderRight";
-import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
@@ -46,8 +45,6 @@ const PlanScreen = ({ navigation }: Props) => {
         }}
         resizeMode="cover"
       >
-        <BannerAdmob position="top" />
-        <BannerAdmob position="center" />
         <ReactNativeZoomableView
           maxZoom={1.5}
           minZoom={0.5}
@@ -90,7 +87,6 @@ const PlanScreen = ({ navigation }: Props) => {
             />
           )}
         </ReactNativeZoomableView>
-        <BannerAdmob position="bottom" />
       </ImageBackground>
     </>
   );

@@ -14,7 +14,6 @@ import { WebDisplay } from "@Components/webDisplay";
 import { moderateScale, horizontalScale } from "@Utils/Platform";
 import HeaderRight from "../HeaderRight";
 import { Feather } from "@expo/vector-icons";
-import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 
@@ -89,8 +88,6 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
         flexGrow: 1,
       }}
     >
-      <BannerAdmob position="top" />
-      <BannerAdmob position="center" />
       {route?.params?.post ? (
         <WebDisplay html={route?.params?.post} />
       ) : (
@@ -115,7 +112,6 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
           </Text>
         </View>
       )}
-      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

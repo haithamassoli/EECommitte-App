@@ -14,7 +14,6 @@ import { FavoriteContext } from "@Src/store/favoriteContext";
 import { moderateScale, verticalScale } from "@Utils/Platform";
 import { screenHeight } from "@Utils/Helper";
 import { Feather } from "@expo/vector-icons";
-import BannerAdmob from "@Components/BannerAdmob";
 
 type Props = StackScreenProps<HomeStackParamList, "Favorite">;
 
@@ -24,7 +23,6 @@ const FavoriteScreen = ({ navigation }: Props) => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(16) }}>
-      <BannerAdmob position="top" />
       {favorite.length === 0 && (
         <View
           style={{
@@ -65,7 +63,6 @@ const FavoriteScreen = ({ navigation }: Props) => {
             })
           }
         >
-          <BannerAdmob position="center" />
           <Text
             style={[
               styles.text,
@@ -91,7 +88,6 @@ const FavoriteScreen = ({ navigation }: Props) => {
           </TouchableOpacity>
         </TouchableOpacity>
       ))}
-      <BannerAdmob position="bottom" />
     </ScrollView>
   );
 };

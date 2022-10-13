@@ -15,11 +15,6 @@ import { FavoriteProvider } from "@Src/store/favoriteContext";
 import { setNotificationsTokens } from "@Src/api/setNotificationsTokens";
 import FirstLoading from "@Components/FirstLoading";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import mobileAds from "react-native-google-mobile-ads";
-
-mobileAds()
-  .initialize()
-  .then((adapterStatuses) => {});
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {

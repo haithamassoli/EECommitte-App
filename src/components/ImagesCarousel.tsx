@@ -62,6 +62,9 @@ const ImagesCarousel = ({ images }: Props) => {
       >
         <ScrollView
           ref={scrollRef}
+          contentContainerStyle={{
+            flexDirection: "row-reverse",
+          }}
           horizontal
           overScrollMode="never"
           showsHorizontalScrollIndicator={false}
@@ -125,7 +128,7 @@ const ImagesCarousel = ({ images }: Props) => {
               styles.dot,
               {
                 borderColor:
-                  index === selectedIndex && images.length > 1
+                  index === images.length - selectedIndex - 1
                     ? theme === "light"
                       ? Colors.primary700
                       : Colors.primary400

@@ -51,19 +51,9 @@ const SearchInput = ({
       const newArr = searchResults.slice(0, 5).map((result) => {
         return result.item;
       });
-      LayoutAnimation.configureNext({
-        duration: 300,
-        update: {
-          type: LayoutAnimation.Types.easeInEaseOut,
-          property: LayoutAnimation.Properties.scaleY,
-        },
-        delete: {
-          type: LayoutAnimation.Types.easeInEaseOut,
-          property: LayoutAnimation.Properties.opacity,
-        },
-      });
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       setResults(newArr.slice(0, 5));
-    }, 500);
+    }, 400);
     return () => {
       clearTimeout(delayTimer);
     };

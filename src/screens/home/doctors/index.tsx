@@ -32,7 +32,7 @@ const DoctorsScreen = ({ route }: Props) => {
         (doctor: any) => doctor.id === route.params.doctorId
       );
       if (doctor) {
-        setSearchInput(doctor.name2);
+        setSearchInput(doctor.name);
         setResults([doctor]);
       }
     }

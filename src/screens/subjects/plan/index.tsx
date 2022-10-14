@@ -6,11 +6,12 @@ import type { MapperItem } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import MAPPING from "./Mapping";
 import { memo, useLayoutEffect, useContext } from "react";
-import { Image, StyleSheet, ImageBackground, View } from "react-native";
+import { Image, StyleSheet, ImageBackground, Dimensions } from "react-native";
 import { verticalScale } from "@Utils/Platform";
 import { ThemeContext } from "@Src/store/themeContext";
 import HeaderRight from "../HeaderRight";
-
+export const iosWidth = Dimensions.get("screen").width;
+export const iosHeight = Dimensions.get("screen").height;
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
 const PlanScreen = ({ navigation }: Props) => {
@@ -56,13 +57,7 @@ const PlanScreen = ({ navigation }: Props) => {
           <ImageMapper
             imgSource={require("@Assets/images/plan.webp")}
             imgWidth={screenWidth}
-            imgHeight={
-              screenWidth < 500 && screenHeight > 650
-                ? screenHeight * 0.54
-                : screenWidth < 500 && screenHeight! > 650
-                ? screenWidth * 0.6
-                : screenHeight * 0.7
-            }
+            imgHeight={screenWidth * 1.089}
             imgMap={MAPPING}
             containerStyle={{
               flexGrow: 1,
@@ -72,21 +67,21 @@ const PlanScreen = ({ navigation }: Props) => {
               handleSelectArea(item.id);
             }}
           />
-          {screenHeight > 650 && (
-            <Image
-              source={require("@Assets/images/planLowerbar.webp")}
-              resizeMode="contain"
-              style={{
-                width: screenWidth,
-                height:
-                  screenHeight <= 1200
-                    ? screenHeight * 0.08
-                    : screenHeight * 0.12,
-                bottom: screenWidth <= 500 ? verticalScale(32) : 12,
-              }}
-            />
-          )}
         </ReactNativeZoomableView>
+        {screenHeight > 650 && (
+          <Image
+            source={require("@Assets/images/planLowerbar.webp")}
+            resizeMode="contain"
+            style={{
+              width: screenWidth,
+              height:
+                screenHeight <= 1200
+                  ? screenHeight * 0.08
+                  : screenHeight * 0.12,
+              bottom: screenWidth <= 500 ? verticalScale(32) : 12,
+            }}
+          />
+        )}
       </ImageBackground>
     </>
   );

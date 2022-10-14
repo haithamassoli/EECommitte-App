@@ -92,6 +92,8 @@ const CalculatorScreen = () => {
         );
         setSemester((+totalGrade / +totalHour).toFixed(2));
       }
+    } else {
+      setSemester((+totalGrade / +totalHour).toFixed(2));
     }
   };
 

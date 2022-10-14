@@ -19,13 +19,10 @@ type Props = {
 };
 
 const FirstLoading = ({ onFinished, onLayout }: Props) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(data.length - 2);
   const scrollRef = useRef<ScrollView>(null);
-
   const onNext = () => {
-    setSelectedIndex((prevIndex) =>
-      prevIndex === data.length - 1 ? 0 : prevIndex + 1
-    ),
+    setSelectedIndex((prevIndex) => (prevIndex !== 0 ? prevIndex - 1 : 0)),
       scrollRef.current?.scrollTo({
         animated: true,
         x: screenWidth * selectedIndex,
@@ -92,15 +89,25 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
                     />
                   </TouchableOpacity>
                 )}
-                <Text style={index != 1 ? styles.title1 : styles.customTitle1}>
+                <Text style={index != 4 ? styles.customTitle1 : styles.title1}>
                   {item.textAr1}
                 </Text>
-                <Text style={index != 1 ? styles.title2 : styles.customTitle2}>
+                <Text
+                  style={
+                    index != 3 && index != 1
+                      ? styles.title2
+                      : styles.customTitle2
+                  }
+                >
                   {item.textAr2}
                 </Text>
                 <Text style={styles.title1En}>{item.textEn1}</Text>
                 <Text
-                  style={index != 1 ? styles.title2En : styles.customTitle2En}
+                  style={
+                    index != 3 && index != 1
+                      ? styles.title2En
+                      : styles.customTitle2En
+                  }
                 >
                   {item.textEn2}
                 </Text>
@@ -219,6 +226,27 @@ const data = [
     textEn2:
       " IT’S ESTABLISHMENT DATES BACK TO BEFORE 1990, PARALLEL TO THE ESTABLISHMENT OF JUST.",
     image: require("@Assets/images/2ndslide.webp"),
+    arrPos: "left",
+  },
+
+  {
+    textAr1:
+      "أما فيما يخص إرشاد الطلبة فإن اللجنة ترافق كل دفعة منذ دخولها الجامعة وحتى تخرجها بفريق طلابي من أبناء الدفعة نفسها!",
+    textAr2: "",
+    textEn1:
+      "AS FOR THE GUIDANCE OF STUDENTS, THE COMMITTEE ACCOMPANIES EVERY BATCH SINCE ENTERING THE UNIVERSITY UNTIL GRADUATION WITH A TEAM FROM THE SAME BATCH!",
+    textEn2: "",
+    image: require("@Assets/images/3rdSlide.webp"),
+    arrPos: "right",
+  },
+  {
+    textAr1:
+      "وفرت لجنتكم منذ نشأتها محتوى أكاديمي متميز ساهم في تسهيل العملية التعليمية!",
+    textAr2: "وما تزال مكتبة اللجنة اليوم شاهدة على ذلك",
+    textEn1:
+      "SINCE ITS INCEPTION, YOUR COMMITTEE HAS PROVIDED DISTINGUISHED ACADEMICS TO FACILITATE THE EDUCATIONAL PROCESS!",
+    textEn2: "TODAY, THE COMMITTEE LIBRARY STILL BEARS WITNESS TO THAT",
+    image: require("@Assets/images/4thSlide.webp"),
     arrPos: "left",
   },
 ];

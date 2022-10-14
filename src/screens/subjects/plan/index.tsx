@@ -6,12 +6,10 @@ import type { MapperItem } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import MAPPING from "./Mapping";
 import { memo, useLayoutEffect, useContext } from "react";
-import { Image, StyleSheet, ImageBackground, Dimensions } from "react-native";
+import { Image, StyleSheet, ImageBackground } from "react-native";
 import { verticalScale } from "@Utils/Platform";
 import { ThemeContext } from "@Src/store/themeContext";
 import HeaderRight from "../HeaderRight";
-export const iosWidth = Dimensions.get("screen").width;
-export const iosHeight = Dimensions.get("screen").height;
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
 const PlanScreen = ({ navigation }: Props) => {

@@ -356,7 +356,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
                       onPress={() => handlePressHistory(item.id)}
                       style={[styles.historyText, { color: textColor }]}
                     >
-                      {item.name2}
+                      {item.name}
                     </Text>
                   </View>
                   <Feather

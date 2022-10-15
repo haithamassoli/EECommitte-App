@@ -10,7 +10,7 @@ import { useRef, useState, memo } from "react";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { StatusBar } from "expo-status-bar";
-import { screenHeight, screenWidth } from "@Utils/Helper";
+import { screenWidth } from "@Utils/Helper";
 import { Feather } from "@expo/vector-icons";
 
 type Props = {
@@ -22,7 +22,7 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState(data.length - 2);
   const scrollRef = useRef<ScrollView>(null);
   const onNext = () => {
-    setSelectedIndex((prevIndex) => (prevIndex !== 0 ? prevIndex - 1 : 0)),
+    setSelectedIndex(selectedIndex != 0 ? selectedIndex - 1 : 0),
       scrollRef.current?.scrollTo({
         animated: true,
         x: screenWidth * selectedIndex,
@@ -53,7 +53,11 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
                 {index != data.length - 1 ? (
                   <TouchableOpacity
                     style={[
-                      styles.button,
+                      index === 0
+                        ? styles.buttonSlide1
+                        : index === 4
+                        ? styles.buttonSlide5
+                        : styles.button,
                       {
                         left:
                           item.arrPos === "right"
@@ -71,46 +75,67 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
                   </TouchableOpacity>
                 ) : (
                   <TouchableOpacity
-                    style={[
-                      styles.button,
-                      {
-                        left:
-                          item.arrPos === "right"
-                            ? horizontalScale(40)
-                            : screenWidth - 100,
-                      },
-                    ]}
+                    style={{
+                      position: "absolute",
+                      bottom: verticalScale(80),
+                      right: 50,
+                      backgroundColor: Colors.lightText,
+                      height: verticalScale(50),
+                      borderRadius: moderateScale(15),
+                      padding: moderateScale(10),
+                      justifyContent: "center",
+                      zIndex: 10,
+                      alignItems: "center",
+                    }}
                     onPress={onFinished}
                   >
-                    <Feather
-                      name="arrow-left"
-                      size={moderateScale(32)}
-                      color="#fff"
-                    />
+                    <Text
+                      style={{
+                        color: Colors.darkText,
+                        fontSize: moderateScale(16),
+                        fontFamily: "Bukra",
+                      }}
+                    >
+                      بدء الاستخدام
+                    </Text>
                   </TouchableOpacity>
                 )}
-                <Text style={index != 4 ? styles.customTitle1 : styles.title1}>
-                  {item.textAr1}
-                </Text>
-                <Text
-                  style={
-                    index != 3 && index != 1
-                      ? styles.title2
-                      : styles.customTitle2
-                  }
-                >
-                  {item.textAr2}
-                </Text>
-                <Text style={styles.title1En}>{item.textEn1}</Text>
-                <Text
-                  style={
-                    index != 3 && index != 1
-                      ? styles.title2En
-                      : styles.customTitle2En
-                  }
-                >
-                  {item.textEn2}
-                </Text>
+                {item.textAr1 && (
+                  <Text style={index === 0 ? styles.slide1 : styles.title1}>
+                    {item.textAr1}
+                  </Text>
+                )}
+                {item.textAr2 && (
+                  <Text
+                    style={
+                      index === 0
+                        ? styles.slide2
+                        : index === 4
+                        ? styles.slide5
+                        : styles.title2
+                    }
+                  >
+                    {item.textAr2}
+                  </Text>
+                )}
+                {item.textEn1 && (
+                  <Text style={index === 0 ? styles.slide1En : styles.title1En}>
+                    {item.textEn1}
+                  </Text>
+                )}
+                {item.textEn2 && (
+                  <Text
+                    style={
+                      index === 0
+                        ? styles.slide2En
+                        : index === 4
+                        ? styles.slideEn5
+                        : styles.title2En
+                    }
+                  >
+                    {item.textEn2}
+                  </Text>
+                )}
               </View>
             </ImageBackground>
           </View>
@@ -129,39 +154,85 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    width: screenWidth,
-    height: screenHeight,
+    width: "100%",
+    height: "100%",
     alignSelf: "center",
+    resizeMode: "cover",
   },
   contentContainer: {
     flex: 1,
     justifyContent: "flex-end",
     padding: moderateScale(16),
   },
-  button: {
+  buttonSlide1: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Colors.darkBackgroundSec,
+    backgroundColor: Colors.lightText,
     width: verticalScale(50),
     height: verticalScale(50),
     borderRadius: moderateScale(25),
-    top: verticalScale(-100),
+    top: verticalScale(-140),
+    zIndex: 10,
+  },
+  buttonSlide5: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colors.lightText,
+    width: verticalScale(50),
+    height: verticalScale(50),
+    borderRadius: moderateScale(25),
+    zIndex: 10,
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colors.lightText,
+    width: verticalScale(50),
+    height: verticalScale(50),
+    borderRadius: moderateScale(25),
+    top: verticalScale(-80),
+    zIndex: 10,
+  },
+  slide1: {
+    fontSize: moderateScale(20),
+    marginTop: verticalScale(8),
+    lineHeight: verticalScale(30),
+    color: Colors.lightText,
+    fontFamily: "Bukra",
+    top: verticalScale(-120),
+    textAlign: "left",
+  },
+  slide2: {
+    fontSize: moderateScale(16),
+    lineHeight: verticalScale(28),
+    marginTop: verticalScale(8),
+    fontFamily: "Bukra",
+    top: verticalScale(-120),
+    color: Colors.lightText,
+    textAlign: "left",
+  },
+  slide1En: {
+    fontSize: moderateScale(20),
+    marginTop: verticalScale(8),
+    fontWeight: "bold",
+    color: Colors.lightText,
+    top: verticalScale(-85),
+  },
+  slide2En: {
+    fontSize: moderateScale(16),
+    lineHeight: verticalScale(28),
+    marginTop: verticalScale(8),
+    fontWeight: "600",
+    top: verticalScale(-85),
+    color: Colors.lightText,
   },
   title1: {
     fontSize: moderateScale(20),
     marginTop: verticalScale(8),
+    lineHeight: verticalScale(30),
     color: Colors.lightText,
     fontFamily: "Bukra",
-    top: verticalScale(-80),
-    textAlign: "left",
-  },
-  customTitle1: {
-    fontSize: moderateScale(16),
-    lineHeight: verticalScale(24),
-    marginTop: verticalScale(8),
-    color: Colors.lightText,
-    fontFamily: "Bukra",
-    top: verticalScale(-80),
+    top: verticalScale(-50),
     textAlign: "left",
   },
   title2: {
@@ -169,16 +240,16 @@ const styles = StyleSheet.create({
     lineHeight: verticalScale(28),
     marginTop: verticalScale(8),
     fontFamily: "Bukra",
-    top: verticalScale(-80),
+    top: verticalScale(-50),
     color: Colors.lightText,
     textAlign: "left",
   },
-  customTitle2: {
-    fontSize: moderateScale(12),
-    lineHeight: verticalScale(24),
+  slide5: {
+    fontSize: moderateScale(15),
+    lineHeight: verticalScale(22),
     marginTop: verticalScale(8),
     fontFamily: "Bukra",
-    top: verticalScale(-80),
+    top: verticalScale(-50),
     color: Colors.lightText,
     textAlign: "left",
   },
@@ -187,22 +258,22 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(8),
     fontWeight: "bold",
     color: Colors.lightText,
-    top: verticalScale(-55),
+    top: verticalScale(-25),
   },
   title2En: {
     fontSize: moderateScale(16),
     lineHeight: verticalScale(28),
     marginTop: verticalScale(8),
     fontWeight: "600",
-    top: verticalScale(-55),
+    top: verticalScale(-25),
     color: Colors.lightText,
   },
-  customTitle2En: {
-    fontSize: moderateScale(14),
+  slideEn5: {
+    fontSize: moderateScale(16),
     lineHeight: verticalScale(22),
     marginTop: verticalScale(8),
-    fontWeight: "700",
-    top: verticalScale(-55),
+    fontWeight: "bold",
+    top: verticalScale(-25),
     color: Colors.lightText,
   },
 });
@@ -228,16 +299,13 @@ const data = [
     image: require("@Assets/images/2ndslide.webp"),
     arrPos: "left",
   },
-
   {
     textAr1:
       "أما فيما يخص إرشاد الطلبة فإن اللجنة ترافق كل دفعة منذ دخولها الجامعة وحتى تخرجها بفريق طلابي من أبناء الدفعة نفسها!",
-    textAr2: "",
     textEn1:
       "AS FOR THE GUIDANCE OF STUDENTS, THE COMMITTEE ACCOMPANIES EVERY BATCH SINCE ENTERING THE UNIVERSITY UNTIL GRADUATION WITH A TEAM FROM THE SAME BATCH!",
-    textEn2: "",
     image: require("@Assets/images/3rdSlide.webp"),
-    arrPos: "right",
+    arrPos: "left",
   },
   {
     textAr1:
@@ -247,6 +315,31 @@ const data = [
       "SINCE ITS INCEPTION, YOUR COMMITTEE HAS PROVIDED DISTINGUISHED ACADEMICS TO FACILITATE THE EDUCATIONAL PROCESS!",
     textEn2: "TODAY, THE COMMITTEE LIBRARY STILL BEARS WITNESS TO THAT",
     image: require("@Assets/images/4thSlide.webp"),
+    arrPos: "right",
+  },
+  {
+    textAr2: `قامت اللجنة بتمثيل قسم الهندسة
+الكهربائية في معظم السنوات
+وقد سهلت عملية التسجيل على الطلبة
+من خلال فريق التسجيل الذي كان دائما
+متواجد في الجامعة لمساعدة الطلبة وحل
+مشاكلهم!`,
+    textEn2: `THE COMMITTEE HAS REPRESENTED THE DEPARTMENT OF ELECTRICAL ENGINEERING IN MOST YEARS.
+
+THE REGISTRATION PROCESS WAS MADE EASIER FOR STUDENTS THROUGH THE REGISTRATION TEAM, WHICH WAS ALWAYS PRESENT IN THE UNIVERSITY TO HELP STUDENTS AND SOLVE THEIR PROBLEMS!`,
+    image: require("@Assets/images/5thSlide.webp"),
+    arrPos: "left",
+  },
+  {
+    textAr1:
+      "يضاف جديثًا للجنتكم، تطبيقنا الذي يقدم كل ما يحتاجه طالب الهندسة الكهربائية",
+    textEn1:
+      "RECENTLY ADDED TO YOUR COMMITTEE, OUR APPLICATION WHICH PROVIDES EVERYTHING AN ELECTRICAL ENGINEERING STUDENT NEEDS!",
+    textEn2: `
+    
+    
+    `,
+    image: require("@Assets/images/6thSlide.webp"),
     arrPos: "left",
   },
 ];

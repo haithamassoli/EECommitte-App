@@ -275,6 +275,13 @@ const HomeScreen = ({ navigation }: Props) => {
               setRefetchCounter(1);
             }
           }}
+          colors={theme === "light" ? [Colors.primary700] : [Colors.primary400]}
+          progressBackgroundColor={
+            theme === "light"
+              ? Colors.lightBackgroundSec
+              : Colors.darkBackgroundSec
+          }
+          tintColor={theme === "light" ? Colors.primary700 : Colors.primary400}
         />
       }
     >

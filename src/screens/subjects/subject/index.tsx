@@ -137,6 +137,17 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         // @ts-ignore
         routes: [{ name: "HomeNavigation" }],
       });
+    } else if (route.params?.from === "Favorite") {
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            // @ts-ignore
+            name: "HomeNavigation",
+            params: { screen: route.params?.from },
+          },
+        ],
+      });
     } else {
       navigation.navigate("Plan");
     }

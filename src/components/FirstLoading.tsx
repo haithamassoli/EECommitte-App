@@ -283,7 +283,8 @@ const data = [
     textAr1: "بدأت فكرتنا قبل أكثر من 30 عاماً!",
     textAr2: "وهي مستمرّة وستستمر طالما أن لها قلباً يجعلها حيّة..",
     textEn1: "OUR IDEA WAS BORN 30 YEARS AGO!",
-    textEn2: "AND IT CONTINUES AND WILL BE FOR EVER. AS LONG AS THE IDEA",
+    textEn2:
+      "AND IT CONTINUES AND WILL BE FOR EVER. AS LONG AS THE IDEA HAS A HEART OF THAT MAKES IT ALIVE..",
     image: require("@Assets/images/1stslide.webp"),
     arrPos: "right",
   },
@@ -313,7 +314,7 @@ const data = [
     textAr2: "وما تزال مكتبة اللجنة اليوم شاهدة على ذلك",
     textEn1:
       "SINCE ITS INCEPTION, YOUR COMMITTEE HAS PROVIDED DISTINGUISHED ACADEMICS TO FACILITATE THE EDUCATIONAL PROCESS!",
-    textEn2: "TODAY, THE COMMITTEE LIBRARY STILL BEARS WITNESS TO THAT",
+    textEn2: "TODAY, THE COMMITTEE'S LIBRARY STILL BEARS WITNESS TO THAT",
     image: require("@Assets/images/4thSlide.webp"),
     arrPos: "right",
   },
@@ -332,7 +333,7 @@ THE REGISTRATION PROCESS WAS MADE EASIER FOR STUDENTS THROUGH THE REGISTRATION T
   },
   {
     textAr1:
-      "يضاف جديثًا للجنتكم، تطبيقنا الذي يقدم كل ما يحتاجه طالب الهندسة الكهربائية",
+      "يضاف حديثًا للجنتكم، تطبيقنا الذي يقدم كل ما يحتاجه طالب الهندسة الكهربائية",
     textEn1:
       "RECENTLY ADDED TO YOUR COMMITTEE, OUR APPLICATION WHICH PROVIDES EVERYTHING AN ELECTRICAL ENGINEERING STUDENT NEEDS!",
     textEn2: `

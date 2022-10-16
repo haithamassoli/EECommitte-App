@@ -4,8 +4,9 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
+  BackHandler,
 } from "react-native";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -21,6 +22,17 @@ const FavoriteScreen = ({ navigation }: Props) => {
   const { theme } = useContext(ThemeContext);
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  const backAction = () => {
+    navigation.navigate("Home");
+    return true;
+  };
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    return () => backHandler.remove();
+  }, []);
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(16) }}>
       {favorite.length === 0 && (
@@ -59,7 +71,7 @@ const FavoriteScreen = ({ navigation }: Props) => {
           onPress={() =>
             navigation.getParent()?.navigate("SubjectsNavigation", {
               screen: "Subject",
-              params: { subjectId: item.id },
+              params: { subjectId: item.id, from: "Favorite" },
             })
           }
         >
@@ -73,18 +85,19 @@ const FavoriteScreen = ({ navigation }: Props) => {
           >
             {item?.name}
           </Text>
-          <TouchableOpacity onPress={() => toggleFavorite(item)}>
-            <View style={styles.removeButton}>
-              <Text style={styles.removeButtonText}>إزالة من المفضلة</Text>
-              <Feather
-                name="trash-2"
-                size={moderateScale(18)}
-                color={"#F31313"}
-                style={{
-                  textAlign: "center",
-                }}
-              />
-            </View>
+          <TouchableOpacity
+            style={styles.removeButton}
+            onPress={() => toggleFavorite(item)}
+          >
+            <Text style={styles.removeButtonText}>إزالة من المفضلة</Text>
+            <Feather
+              name="trash-2"
+              size={moderateScale(18)}
+              color={"#F31313"}
+              style={{
+                textAlign: "center",
+              }}
+            />
           </TouchableOpacity>
         </TouchableOpacity>
       ))}
@@ -111,6 +124,12 @@ const styles = StyleSheet.create({
     fontFamily: "Bukra",
   },
   removeButton: {
+    width: "50%",
+    // backgroundColor: "#FCECEC",
+    alignSelf: "center",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#F31313",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

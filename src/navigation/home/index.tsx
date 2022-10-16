@@ -225,7 +225,7 @@ export default function HomeNavigation({ navigation }: Props) {
           headerTitle: "المفضلة",
           headerLeft: () => (
             <CustomHeader
-              onPress={() => navigation.goBack()}
+              onPress={() => navigation.navigate("Home")}
               iconColor={favIcon}
             />
           ),

@@ -4,7 +4,6 @@ import SubjectsNavigation from "../subjects";
 import { Feather } from "@expo/vector-icons";
 import type { BottomTabParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
-import { Platform } from "react-native";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
 import {

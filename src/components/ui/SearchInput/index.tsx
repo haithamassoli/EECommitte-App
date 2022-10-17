@@ -126,7 +126,7 @@ const SearchInput = ({
         }}
         value={searchInput}
         onSubmitEditing={() => {
-          if (results) {
+          if (Array.isArray(results) && results.length > 0) {
             handlePress(results[0].id);
           }
         }}

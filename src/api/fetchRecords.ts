@@ -9,7 +9,7 @@ const cacheExpiryTime = new Date();
 cacheExpiryTime.setHours(cacheExpiryTime.getHours() + cacheIntervalInHours);
 
 export function fetchRecords(refetchCounter: number) {
-  const { data, isLoading, refetch, isFetching } = useQuery(
+  const { data, isLoading, isFetching } = useQuery(
     ["records", refetchCounter],
     async () => {
       const recordsSec: any = [];
@@ -51,11 +51,11 @@ export function fetchRecords(refetchCounter: number) {
       }
     }
   );
-  return { data, isLoading, refetch, isFetching };
+  return { data, isLoading, isFetching };
 }
 
 export function fetchSearchRecords() {
-  const { data, isLoading, refetch } = useQuery(["searchRecords"], async () => {
+  const { data, isLoading } = useQuery(["searchRecords"], async () => {
     const lastRequest = await getDataFromStorage("lastRequestSearchRecords");
     const connectionStatus = await NetInfo.fetch();
     if (
@@ -76,5 +76,5 @@ export function fetchSearchRecords() {
       return records;
     }
   });
-  return { data, isLoading, refetch };
+  return { data, isLoading };
 }

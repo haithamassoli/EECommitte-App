@@ -24,8 +24,7 @@ const FAQScreen = () => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const [activeSections, setActiveSections] = useState([]);
   const [refetchCounter, setRefetchCounter] = useState(0);
-  const { data, isLoading, refetch, isFetching }: any =
-    fetchFAQ(refetchCounter);
+  const { data, isLoading, isFetching }: any = fetchFAQ(refetchCounter);
 
   const tagsStyles: any = {
     body: {
@@ -101,8 +100,9 @@ const FAQScreen = () => {
   const updateSections = (activeSections: any) => {
     setActiveSections(activeSections);
   };
-  const handleRefetch = async () => {
-    await refetch();
+  const handleRefetch = () => {
+    setRefetchCounter(0);
+    setRefetchCounter((prev) => prev + 1);
   };
   if (isLoading) {
     return (

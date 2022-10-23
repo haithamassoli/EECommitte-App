@@ -49,7 +49,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   const [refetchCounter, setRefetchCounter] = useState(0);
   const { theme } = useContext(ThemeContext);
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
-  const { data, isLoading, refetch, isFetching }: any = fetchSubjectById(
+  const { data, isLoading, isFetching }: any = fetchSubjectById(
     route.params.subjectId,
     refetchCounter
   );
@@ -122,8 +122,9 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     setIsFavorite(isFavorite);
   }, [favorite]);
 
-  const handleRefetch = async () => {
-    await refetch();
+  const handleRefetch = () => {
+    setRefetchCounter(0);
+    setRefetchCounter((prev) => prev + 1);
   };
   if (isLoading) {
     return (

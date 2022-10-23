@@ -17,14 +17,14 @@ const RecordsScreen = () => {
   const [searchInput, setSearchInput] = useState("");
   const [refetchCounter, setRefetchCounter] = useState(0);
   const [results, setResults] = useState<any[]>([]);
-  const { data, isLoading, refetch, isFetching }: any =
-    fetchRecords(refetchCounter);
+  const { data, isLoading, isFetching }: any = fetchRecords(refetchCounter);
   const { data: searchRecord, isLoading: isLoadingSearchRecord }: any =
     fetchSearchRecords();
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const handleRefetch = async () => {
-    await refetch();
+  const handleRefetch = () => {
+    setRefetchCounter(0);
+    setRefetchCounter((prev) => prev + 1);
   };
   if (isLoading || isLoadingSearchRecord) {
     return (

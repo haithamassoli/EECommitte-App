@@ -19,10 +19,11 @@ const OurExplanationsScreen = () => {
   const [refetchCounter, setRefetchCounter] = useState(0);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading, refetch, isFetching }: any =
+  const { data, isLoading, isFetching }: any =
     fetchExplanations(refetchCounter);
-  const handleRefetch = async () => {
-    await refetch();
+  const handleRefetch = () => {
+    setRefetchCounter(0);
+    setRefetchCounter((prev) => prev + 1);
   };
   if (isLoading) {
     return (

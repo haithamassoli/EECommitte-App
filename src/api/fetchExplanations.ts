@@ -9,7 +9,7 @@ const cacheExpiryTime = new Date();
 cacheExpiryTime.setHours(cacheExpiryTime.getHours() + cacheIntervalInHours);
 
 export function fetchExplanations(refetchCounter: number) {
-  const { data, isLoading, refetch, isFetching } = useQuery(
+  const { data, isLoading, isFetching } = useQuery(
     ["explanations", refetchCounter],
     async () => {
       const lastRequest = await getDataFromStorage("lastRequestExplanations");
@@ -37,5 +37,5 @@ export function fetchExplanations(refetchCounter: number) {
       }
     }
   );
-  return { data, isLoading, refetch, isFetching };
+  return { data, isLoading, isFetching };
 }

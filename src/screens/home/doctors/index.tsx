@@ -23,8 +23,7 @@ const DoctorsScreen = ({ route }: Props) => {
   const [refetchCounter, setRefetchCounter] = useState(0);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading, refetch, isFetching }: any =
-    fetchDoctors(refetchCounter);
+  const { data, isLoading, isFetching }: any = fetchDoctors(refetchCounter);
 
   useLayoutEffect(() => {
     if (route.params.doctorId && Array.isArray(data)) {
@@ -37,8 +36,9 @@ const DoctorsScreen = ({ route }: Props) => {
       }
     }
   }, [route.params.doctorId, isLoading]);
-  const handleRefetch = async () => {
-    await refetch();
+  const handleRefetch = () => {
+    setRefetchCounter(0);
+    setRefetchCounter((prev) => prev + 1);
   };
   if (isLoading) {
     return (

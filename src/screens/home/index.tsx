@@ -49,7 +49,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const isFocused = useIsFocused();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading, isFetching, refetch }: any =
+  const { data, isLoading, isFetching }: any =
     fetchSliderImages(refetchCounter);
 
   useEffect(() => {
@@ -186,8 +186,9 @@ const HomeScreen = ({ navigation }: Props) => {
       ),
     });
   }, [searchInput, searchBarFocused, results, theme]);
-  const handleRefetch = async () => {
-    await refetch();
+  const handleRefetch = () => {
+    setRefetchCounter(0);
+    setRefetchCounter((prev) => prev + 1);
   };
   const rowOne = [
     {

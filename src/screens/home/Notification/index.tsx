@@ -37,7 +37,7 @@ const NotificationScreen = () => {
   const [isConnected, setIsConnected] = useState<boolean | null>();
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading, refetch, isFetching }: any =
+  const { data, isLoading, isFetching }: any =
     fetchNotifications(refetchCounter);
 
   const tagsStyles: StylesDictionary = {
@@ -124,8 +124,9 @@ const NotificationScreen = () => {
   const updateSections = (activeSections: any) => {
     setActiveSections(activeSections);
   };
-  const handleRefetch = async () => {
-    await refetch();
+  const handleRefetch = () => {
+    setRefetchCounter(0);
+    setRefetchCounter((prev) => prev + 1);
   };
   if (isLoading) {
     return (

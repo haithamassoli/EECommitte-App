@@ -4,7 +4,7 @@ import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import NetInfo from "@react-native-community/netinfo";
 
 export function fetchNotifications(refetchCounter: number) {
-  const { data, isLoading, refetch, isFetching } = useQuery(
+  const { data, isLoading, isFetching } = useQuery(
     ["notifications", refetchCounter],
     async () => {
       const connectionStatus = await NetInfo.fetch();
@@ -23,5 +23,5 @@ export function fetchNotifications(refetchCounter: number) {
       }
     }
   );
-  return { data, isLoading, refetch, isFetching };
+  return { data, isLoading, isFetching };
 }

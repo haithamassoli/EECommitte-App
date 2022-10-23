@@ -9,7 +9,7 @@ cacheExpiryTime.setHours(cacheExpiryTime.getHours() + cacheIntervalInHours);
 import NetInfo from "@react-native-community/netinfo";
 
 export function fetchSubjectById(id: number, refetchCounter: number) {
-  const { data, isLoading, refetch, isFetching } = useQuery(
+  const { data, isLoading, isFetching } = useQuery(
     ["subjectById", id, refetchCounter],
     async () => {
       const lastRequest = await getDataFromStorage(
@@ -36,5 +36,5 @@ export function fetchSubjectById(id: number, refetchCounter: number) {
       }
     }
   );
-  return { data, isLoading, refetch, isFetching };
+  return { data, isLoading, isFetching };
 }

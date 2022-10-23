@@ -1,10 +1,12 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import SearchScreen from "@Screens/home/Search";
 import InfoScreen from "@Screens/info";
 import AboutEECommitteScreen from "@Screens/info/aboutEECommitte";
 import SupportUsScreen from "@Screens/info/supportUs";
+import { InfoStackParamList } from "@Types/navigation";
 import { moderateScale } from "@Utils/Platform";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<InfoStackParamList>();
 
 export default function InfoNavigation() {
   return (
@@ -18,6 +20,7 @@ export default function InfoNavigation() {
       initialRouteName="Info"
     >
       <Stack.Screen name="Info" component={InfoScreen} />
+      <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen
         options={{ headerTitle: "عن اللجنة" }}
         name="AboutEECommitte"

@@ -13,7 +13,7 @@ import Colors from "@GlobalStyle/Colors";
 import { screenWidth } from "@Utils/Helper";
 import { moderateScale, verticalScale } from "@Utils/Platform";
 
-type Props = StackScreenProps<HomeStackParamList, "Favorite">;
+type Props = StackScreenProps<HomeStackParamList, "Registration">;
 
 const screenData = [
   {

@@ -42,12 +42,7 @@ const InfoScreen = ({ navigation }: Props) => {
           >
             <TouchableOpacity
               onPress={() => {
-                navigation.getParent()?.navigate("HomeNavigation", {
-                  screen: "Search",
-                  params: {
-                    backTo: "Info",
-                  },
-                });
+                navigation.navigate("Search");
               }}
             >
               <Feather

@@ -16,11 +16,13 @@ import { View, TouchableOpacity } from "react-native";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
 import Colors from "@GlobalStyle/Colors";
-import { BottomTabParamList } from "@Types/navigation";
+import { BottomTabParamList, HomeStackParamList } from "@Types/navigation";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import CustomHeader from "@Components/ui/CustomHeader";
+import SubjectScreen from "@Screens/subjects/subject";
+import SubjectFullPostScreen from "@Screens/subjects/subjectFullPost";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<HomeStackParamList>();
 type Props = BottomTabScreenProps<BottomTabParamList, "HomeNavigation">;
 
 export default function HomeNavigation({ navigation }: Props) {
@@ -125,6 +127,8 @@ export default function HomeNavigation({ navigation }: Props) {
         component={DoctorsScreen}
       />
       <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="Subject" component={SubjectScreen} />
+      <Stack.Screen name="SubjectFullPost" component={SubjectFullPostScreen} />
       <Stack.Screen
         name="Calculator"
         component={CalculatorScreen}
@@ -225,7 +229,7 @@ export default function HomeNavigation({ navigation }: Props) {
           headerTitle: "المفضلة",
           headerLeft: () => (
             <CustomHeader
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => navigation.goBack()}
               iconColor={favIcon}
             />
           ),

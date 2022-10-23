@@ -9,21 +9,23 @@ export type BottomTabParamList = {
 
 export type SubjectsStackParamList = {
   Plan: undefined;
-  Subject: { subjectId: number; from?: string };
-  SubjectFullPost: { post?: string; postTitle: string; from?: string };
+  Subject: { subjectId: number };
+  SubjectFullPost: { post?: string; postTitle: string };
+  Search: undefined;
 };
 
 export type InfoStackParamList = {
   Info: undefined;
   AboutEECommitte: undefined;
   SupportUs: undefined;
+  Search: undefined;
 };
 
 export type HomeStackParamList = {
   Home: undefined;
   Calculator: undefined;
   Doctors: { doctorId?: number };
-  Search: { backTo?: string; from?: string };
+  Search: undefined;
   Records: undefined;
   OurExplanations: undefined;
   Favorite: undefined;
@@ -31,4 +33,6 @@ export type HomeStackParamList = {
   Registration: undefined;
   Notification: undefined;
   SubjectName: undefined;
+  Subject: { subjectId: number };
+  SubjectFullPost: { post?: string; postTitle: string };
 };

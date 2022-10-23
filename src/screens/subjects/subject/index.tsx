@@ -8,7 +8,6 @@ import {
   ScrollView,
   Linking,
   ImageBackground,
-  BackHandler,
   RefreshControl,
 } from "react-native";
 import type {
@@ -90,7 +89,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       headerTitle: data?.name2 || "المادة",
       headerLeft: () => (
         <TouchableOpacity
-          onPress={backAction}
+          onPress={() => navigation.goBack()}
           style={{
             flex: 1,
             flexDirection: "row",
@@ -110,14 +109,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         return (
           <HeaderRight
             onPress={() => {
-              navigation.getParent()?.navigate("HomeNavigation", {
-                screen: "Search",
-                params: {
-                  backTo: "Subject",
-                  subjectId: data?.id,
-                  from: route.params?.from,
-                },
-              });
+              navigation.navigate("Search");
             }}
           />
         );
@@ -130,36 +122,6 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     setIsFavorite(isFavorite);
   }, [favorite]);
 
-  const backAction = () => {
-    if (route.params?.from === "Home") {
-      navigation.reset({
-        index: 0,
-        // @ts-ignore
-        routes: [{ name: "HomeNavigation" }],
-      });
-    } else if (route.params?.from === "Favorite") {
-      navigation.reset({
-        index: 0,
-        routes: [
-          {
-            // @ts-ignore
-            name: "HomeNavigation",
-            params: { screen: route.params?.from },
-          },
-        ],
-      });
-    } else {
-      navigation.navigate("Plan");
-    }
-    return true;
-  };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-    return () => backHandler.remove();
-  }, []);
   const handleRefetch = async () => {
     await refetch();
   };

@@ -86,13 +86,7 @@ const SearchInput = ({
         doctorId: id,
       });
     } else {
-      navigation.getParent()?.navigate("SubjectsNavigation", {
-        screen: "Subject",
-        params: {
-          subjectId: id,
-          from,
-        },
-      });
+      navigation.navigate("Subject", { subjectId: id });
     }
   };
 

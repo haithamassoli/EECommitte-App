@@ -20,12 +20,7 @@ const PlanScreen = ({ navigation }: Props) => {
         return (
           <HeaderRight
             onPress={() => {
-              navigation.getParent()?.navigate("HomeNavigation", {
-                screen: "Search",
-                params: {
-                  backTo: "Plan",
-                },
-              });
+              navigation.navigate("Search");
             }}
           />
         );

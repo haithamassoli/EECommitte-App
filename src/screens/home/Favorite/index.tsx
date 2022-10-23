@@ -4,9 +4,8 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  BackHandler,
 } from "react-native";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -22,17 +21,6 @@ const FavoriteScreen = ({ navigation }: Props) => {
   const { theme } = useContext(ThemeContext);
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const backAction = () => {
-    navigation.navigate("Home");
-    return true;
-  };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-    return () => backHandler.remove();
-  }, []);
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(16) }}>
       {favorite.length === 0 && (
@@ -68,12 +56,7 @@ const FavoriteScreen = ({ navigation }: Props) => {
                   : Colors.darkBackgroundSec,
             },
           ]}
-          onPress={() =>
-            navigation.getParent()?.navigate("SubjectsNavigation", {
-              screen: "Subject",
-              params: { subjectId: item.id, from: "Favorite" },
-            })
-          }
+          onPress={() => navigation.navigate("Subject", { subjectId: item.id })}
         >
           <Text
             style={[

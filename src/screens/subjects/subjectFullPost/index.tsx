@@ -1,11 +1,5 @@
 import { useContext, useLayoutEffect, useEffect } from "react";
-import {
-  Text,
-  ScrollView,
-  BackHandler,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Text, ScrollView, TouchableOpacity, View } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -25,7 +19,7 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
       headerTitle: route?.params?.postTitle,
       headerLeft: () => (
         <TouchableOpacity
-          onPress={backAction}
+          onPress={() => navigation.goBack()}
           style={{
             flex: 1,
             flexDirection: "row",
@@ -44,41 +38,13 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
         return (
           <HeaderRight
             onPress={() => {
-              navigation.getParent()?.navigate("HomeNavigation", {
-                screen: "Search",
-                params: {
-                  backTo: "SubjectFullPost",
-                  postTitle: route?.params?.postTitle,
-                  post: route?.params?.post,
-                },
-              });
+              navigation.navigate("Search");
             }}
           />
         );
       },
     });
   }, [route?.params, theme]);
-
-  const backAction = () => {
-    if (route?.params?.from === "Search") {
-      navigation.reset({
-        index: 0,
-        // @ts-ignore
-        routes: [{ name: "SubjectsNavigation" }],
-      });
-    } else {
-      navigation.goBack();
-    }
-
-    return true;
-  };
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-    return () => backHandler.remove();
-  }, []);
 
   return (
     <ScrollView

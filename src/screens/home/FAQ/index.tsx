@@ -63,6 +63,7 @@ const FAQScreen = () => {
             lineHeight: verticalScale(26),
             paddingLeft: horizontalScale(10),
             paddingVertical: verticalScale(6),
+            textAlign: "left",
           }}
         >
           {section.title}

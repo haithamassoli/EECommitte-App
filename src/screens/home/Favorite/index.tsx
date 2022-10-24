@@ -22,7 +22,10 @@ const FavoriteScreen = ({ navigation }: Props) => {
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
-    <ScrollView style={{ flex: 1, paddingTop: verticalScale(16) }}>
+    <ScrollView
+      style={{ flex: 1, paddingTop: verticalScale(16) }}
+      contentContainerStyle={{ paddingBottom: verticalScale(16) }}
+    >
       {favorite.length === 0 && (
         <View
           style={{
@@ -75,7 +78,7 @@ const FavoriteScreen = ({ navigation }: Props) => {
             <Text style={styles.removeButtonText}>إزالة من المفضلة</Text>
             <Feather
               name="trash-2"
-              size={moderateScale(18)}
+              size={moderateScale(16)}
               color={"#F31313"}
               style={{
                 textAlign: "center",
@@ -92,12 +95,12 @@ export default FavoriteScreen;
 
 const styles = StyleSheet.create({
   button: {
-    width: "95%",
-    height: verticalScale(100),
+    width: "90%",
+    height: verticalScale(112),
     alignSelf: "center",
     marginBottom: verticalScale(10),
-    borderRadius: 10,
-    padding: 10,
+    borderRadius: moderateScale(10),
+    paddingVertical: verticalScale(10),
   },
   text: {
     flex: 1,
@@ -108,9 +111,8 @@ const styles = StyleSheet.create({
   },
   removeButton: {
     width: "50%",
-    // backgroundColor: "#FCECEC",
     alignSelf: "center",
-    borderRadius: 10,
+    borderRadius: moderateScale(10),
     borderWidth: 1,
     borderColor: "#F31313",
     flexDirection: "row",
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
   },
   removeButtonText: {
     textAlign: "center",
-    fontSize: moderateScale(18),
+    fontSize: moderateScale(16),
     color: "#F31313",
     fontFamily: "Dubai",
     paddingHorizontal: moderateScale(10),

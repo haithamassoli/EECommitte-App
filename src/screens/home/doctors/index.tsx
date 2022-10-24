@@ -70,6 +70,7 @@ const DoctorsScreen = ({ route }: Props) => {
       />
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
+          contentContainerStyle={{ paddingBottom: verticalScale(12) }}
           keyboardShouldPersistTaps="always"
           data={results}
           estimatedItemSize={33}
@@ -103,6 +104,7 @@ const DoctorsScreen = ({ route }: Props) => {
       ) : (
         <FlashList
           data={data}
+          contentContainerStyle={{ paddingBottom: verticalScale(12) }}
           refreshControl={
             <RefreshControl
               refreshing={isFetching}

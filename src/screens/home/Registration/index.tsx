@@ -61,6 +61,7 @@ const RegistrationScreen = ({ navigation }: Props) => {
       style={{
         flex: 1,
       }}
+      contentContainerStyle={{ paddingBottom: verticalScale(12) }}
     >
       <View
         style={{

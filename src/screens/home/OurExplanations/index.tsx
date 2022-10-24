@@ -56,6 +56,7 @@ const OurExplanationsScreen = () => {
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
           data={results}
+          contentContainerStyle={{ paddingBottom: verticalScale(12) }}
           estimatedItemSize={19}
           keyExtractor={(item) => item.id.toString()}
           keyboardShouldPersistTaps="always"
@@ -85,6 +86,7 @@ const OurExplanationsScreen = () => {
       ) : (
         <FlashList
           data={data}
+          contentContainerStyle={{ paddingBottom: verticalScale(12) }}
           keyboardShouldPersistTaps="always"
           refreshControl={
             <RefreshControl

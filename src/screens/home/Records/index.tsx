@@ -57,6 +57,7 @@ const RecordsScreen = () => {
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
           data={results}
+          contentContainerStyle={{ paddingBottom: verticalScale(12) }}
           estimatedItemSize={25}
           keyExtractor={(item) => item.id.toString()}
           keyboardShouldPersistTaps="always"
@@ -86,6 +87,7 @@ const RecordsScreen = () => {
       ) : (
         <FlashList
           data={data}
+          contentContainerStyle={{ paddingBottom: verticalScale(12) }}
           refreshControl={
             <RefreshControl
               refreshing={isFetching}

@@ -50,7 +50,7 @@ const FAQScreen = () => {
             theme === "light" ? Colors.lightBackground : Colors.darkBackground,
           paddingHorizontal: horizontalScale(10),
           paddingVertical: verticalScale(10),
-          borderRadius: 10,
+          borderRadius: moderateScale(10),
           marginBottom: verticalScale(10),
         }}
       >

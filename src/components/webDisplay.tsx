@@ -19,7 +19,7 @@ export const WebDisplay = function WebDisplay({ html }: { html: string }) {
       color: textColor,
       textAlign: "left",
       paddingHorizontal: horizontalScale(10),
-      lineHeight: verticalScale(26),
+      lineHeight: verticalScale(36),
       fontSize: moderateScale(18),
       fontFamily: "Dubai",
     },

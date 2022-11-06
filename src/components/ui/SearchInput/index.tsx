@@ -36,7 +36,6 @@ const SearchInput = ({
   list,
   setResults,
   placeholder,
-  from,
 }: SearchInputProps) => {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<HomeNavigationProp>();

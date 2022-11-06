@@ -1,3 +1,4 @@
+import { Swipeable } from "react-native-gesture-handler";
 import {
   ScrollView,
   Text,
@@ -23,8 +24,11 @@ const FavoriteScreen = ({ navigation }: Props) => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
     <ScrollView
-      style={{ flex: 1, paddingTop: verticalScale(16) }}
-      contentContainerStyle={{ paddingBottom: verticalScale(16) }}
+      contentContainerStyle={{
+        flexGrow: 1,
+        paddingTop: verticalScale(16),
+        paddingBottom: verticalScale(16),
+      }}
     >
       {favorite.length === 0 && (
         <View
@@ -48,44 +52,54 @@ const FavoriteScreen = ({ navigation }: Props) => {
         </View>
       )}
       {favorite.map((item) => (
-        <TouchableOpacity
+        <View
           key={item.id}
-          style={[
-            styles.button,
-            {
-              backgroundColor:
-                theme === "light"
-                  ? Colors.lightBackgroundSec
-                  : Colors.darkBackgroundSec,
-            },
-          ]}
-          onPress={() => navigation.navigate("Subject", { subjectId: item.id })}
+          style={{
+            paddingHorizontal: moderateScale(16),
+          }}
         >
-          <Text
-            style={[
-              styles.text,
-              {
-                color: textColor,
-              },
-            ]}
+          <Swipeable
+            activeOffsetX={[-100, 200]}
+            renderRightActions={() => (
+              <TouchableOpacity
+                style={styles.removeButton}
+                onPress={() => toggleFavorite(item)}
+              >
+                <Feather
+                  name="trash-2"
+                  size={moderateScale(18)}
+                  color={"#fff"}
+                />
+              </TouchableOpacity>
+            )}
           >
-            {item?.name}
-          </Text>
-          <TouchableOpacity
-            style={styles.removeButton}
-            onPress={() => toggleFavorite(item)}
-          >
-            <Text style={styles.removeButtonText}>إزالة من المفضلة</Text>
-            <Feather
-              name="trash-2"
-              size={moderateScale(16)}
-              color={"#F31313"}
-              style={{
-                textAlign: "center",
-              }}
-            />
-          </TouchableOpacity>
-        </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.button,
+                {
+                  backgroundColor:
+                    theme === "light"
+                      ? Colors.lightBackgroundSec
+                      : Colors.darkBackgroundSec,
+                },
+              ]}
+              onPress={() =>
+                navigation.navigate("Subject", { subjectId: item.id })
+              }
+            >
+              <Text
+                style={[
+                  styles.text,
+                  {
+                    color: textColor,
+                  },
+                ]}
+              >
+                {item?.name}
+              </Text>
+            </TouchableOpacity>
+          </Swipeable>
+        </View>
       ))}
     </ScrollView>
   );
@@ -95,35 +109,26 @@ export default FavoriteScreen;
 
 const styles = StyleSheet.create({
   button: {
-    width: "90%",
-    height: verticalScale(112),
-    alignSelf: "center",
     marginBottom: verticalScale(10),
-    borderRadius: moderateScale(10),
-    paddingVertical: verticalScale(10),
+    borderRadius: moderateScale(16),
+    width: "94%",
+    alignSelf: "center",
+    height: verticalScale(114),
   },
   text: {
     flex: 1,
     textAlign: "center",
-    textAlignVertical: "center",
+    lineHeight: verticalScale(114),
     fontSize: moderateScale(24),
     fontFamily: "Bukra",
   },
   removeButton: {
-    width: "50%",
-    alignSelf: "center",
-    borderRadius: moderateScale(10),
-    borderWidth: 1,
-    borderColor: "#F31313",
-    flexDirection: "row",
+    overflow: "hidden",
+    width: "30%",
+    height: verticalScale(114),
+    borderRadius: moderateScale(16),
+    backgroundColor: "#F31313",
     justifyContent: "center",
     alignItems: "center",
-  },
-  removeButtonText: {
-    textAlign: "center",
-    fontSize: moderateScale(16),
-    color: "#F31313",
-    fontFamily: "Dubai",
-    paddingHorizontal: moderateScale(10),
   },
 });

@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { LayoutAnimation } from "react-native";
 
 type FavoriteType = {
   id: number;
@@ -45,10 +46,12 @@ export const FavoriteProvider = ({
           (item: FavoriteType) => item.id !== subject.id
         );
         await storeDataToStorage("favorite", newFavorite);
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         setFavorite(newFavorite);
       }
     } else {
       await storeDataToStorage("favorite", [subject]);
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       setFavorite([subject]);
     }
   };

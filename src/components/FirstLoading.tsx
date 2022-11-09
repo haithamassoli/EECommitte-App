@@ -18,16 +18,85 @@ type Props = {
   onLayout?: (event: any) => void;
 };
 
+const data = [
+  {
+    textAr1: "بدأت فكرتنا قبل أكثر من 30 عاماً!",
+    textAr2: "وهي مستمرّة وستستمر طالما أن لها قلباً يجعلها حيّة..",
+    textEn1: "OUR IDEA WAS BORN 30 YEARS AGO!",
+    textEn2:
+      "AND IT CONTINUES AND WILL BE FOR EVER. AS LONG AS THE IDEA HAS A HEART OF THAT MAKES IT ALIVE..",
+    image: require("@Assets/images/1stslide.webp"),
+    arrPos: "right",
+  },
+  {
+    textAr1:
+      "تعتبر لجنة الهندسة الكهربائية من أقدم اللجان والفرق الطلابية في جامعة العلوم والتكنولوجيا ",
+    textAr2:
+      " حيث يعود تأسيسها لما قبل 1990 توازياَ مع تأسيس جامعة العلوم والتكنولوجيا",
+    textEn1:
+      "ELECTRICAL ENGINEERING COMMITTEE IS ONE OF THE OLDEST STUDENT COMMITTEES AND TEAMS AT JUST!",
+    textEn2:
+      " IT’S ESTABLISHMENT DATES BACK TO BEFORE 1990, PARALLEL TO THE ESTABLISHMENT OF JUST.",
+    image: require("@Assets/images/2ndslide.webp"),
+    arrPos: "left",
+  },
+  {
+    textAr1:
+      "أما فيما يخص إرشاد الطلبة فإن اللجنة ترافق كل دفعة منذ دخولها الجامعة وحتى تخرجها بفريق طلابي من أبناء الدفعة نفسها!",
+    textEn1:
+      "AS FOR THE GUIDANCE OF STUDENTS, THE COMMITTEE ACCOMPANIES EVERY BATCH SINCE ENTERING THE UNIVERSITY UNTIL GRADUATION WITH A TEAM FROM THE SAME BATCH!",
+    image: require("@Assets/images/3rdSlide.webp"),
+    arrPos: "left",
+  },
+  {
+    textAr1:
+      "وفرت لجنتكم منذ نشأتها محتوى أكاديمي متميز ساهم في تسهيل العملية التعليمية!",
+    textAr2: "وما تزال مكتبة اللجنة اليوم شاهدة على ذلك",
+    textEn1:
+      "SINCE ITS INCEPTION, YOUR COMMITTEE HAS PROVIDED DISTINGUISHED ACADEMICS TO FACILITATE THE EDUCATIONAL PROCESS!",
+    textEn2: "TODAY, THE COMMITTEE'S LIBRARY STILL BEARS WITNESS TO THAT",
+    image: require("@Assets/images/4thSlide.webp"),
+    arrPos: "right",
+  },
+  {
+    textAr2: `قامت اللجنة بتمثيل قسم الهندسة
+الكهربائية في معظم السنوات
+وقد سهلت عملية التسجيل على الطلبة
+من خلال فريق التسجيل الذي كان دائما
+متواجد في الجامعة لمساعدة الطلبة وحل
+مشاكلهم!`,
+    textEn2: `THE COMMITTEE HAS REPRESENTED THE DEPARTMENT OF ELECTRICAL ENGINEERING IN MOST YEARS.
+
+THE REGISTRATION PROCESS WAS MADE EASIER FOR STUDENTS THROUGH THE REGISTRATION TEAM, WHICH WAS ALWAYS PRESENT IN THE UNIVERSITY TO HELP STUDENTS AND SOLVE THEIR PROBLEMS!`,
+    image: require("@Assets/images/5thSlide.webp"),
+    arrPos: "left",
+  },
+  {
+    textAr1:
+      "يضاف حديثًا للجنتكم، تطبيقنا الذي يقدم كل ما يحتاجه طالب الهندسة الكهربائية",
+    textEn1:
+      "RECENTLY ADDED TO YOUR COMMITTEE, OUR APPLICATION WHICH PROVIDES EVERYTHING AN ELECTRICAL ENGINEERING STUDENT NEEDS!",
+    textEn2: `
+    
+    
+    `,
+    image: require("@Assets/images/6thSlide.webp"),
+    arrPos: "left",
+  },
+];
+
 const FirstLoading = ({ onFinished, onLayout }: Props) => {
-  const [selectedIndex, setSelectedIndex] = useState(data.length - 2);
+  const [selectedIndex, setSelectedIndex] = useState(data.length - 1);
   const scrollRef = useRef<ScrollView>(null);
   const onNext = () => {
-    setSelectedIndex(selectedIndex != 0 ? selectedIndex - 1 : 0),
+    setSelectedIndex((prev) => {
       scrollRef.current?.scrollTo({
         animated: true,
-        x: screenWidth * selectedIndex,
+        x: screenWidth * (prev != 0 ? prev - 1 : 0),
         y: 0,
       });
+      return prev != 0 ? prev - 1 : 0;
+    });
   };
 
   const setImageIndex = (event: any) => {
@@ -75,18 +144,7 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
                   </TouchableOpacity>
                 ) : (
                   <TouchableOpacity
-                    style={{
-                      position: "absolute",
-                      bottom: verticalScale(80),
-                      right: 50,
-                      backgroundColor: Colors.lightText,
-                      height: verticalScale(50),
-                      borderRadius: moderateScale(15),
-                      padding: moderateScale(10),
-                      justifyContent: "center",
-                      zIndex: 10,
-                      alignItems: "center",
-                    }}
+                    style={styles.palyButton}
                     onPress={onFinished}
                   >
                     <Text
@@ -193,6 +251,19 @@ const styles = StyleSheet.create({
     top: verticalScale(-80),
     zIndex: 10,
   },
+  palyButton: {
+    position: "absolute",
+    bottom: verticalScale(80),
+    right: 50,
+    backgroundColor: Colors.lightText,
+    height: verticalScale(50),
+    borderRadius: moderateScale(15),
+    paddingHorizontal: horizontalScale(10),
+    paddingVertical: verticalScale(10),
+    justifyContent: "center",
+    zIndex: 10,
+    alignItems: "center",
+  },
   slide1: {
     fontSize: moderateScale(20),
     marginTop: verticalScale(8),
@@ -277,70 +348,3 @@ const styles = StyleSheet.create({
     color: Colors.lightText,
   },
 });
-
-const data = [
-  {
-    textAr1: "بدأت فكرتنا قبل أكثر من 30 عاماً!",
-    textAr2: "وهي مستمرّة وستستمر طالما أن لها قلباً يجعلها حيّة..",
-    textEn1: "OUR IDEA WAS BORN 30 YEARS AGO!",
-    textEn2:
-      "AND IT CONTINUES AND WILL BE FOR EVER. AS LONG AS THE IDEA HAS A HEART OF THAT MAKES IT ALIVE..",
-    image: require("@Assets/images/1stslide.webp"),
-    arrPos: "right",
-  },
-  {
-    textAr1:
-      "تعتبر لجنة الهندسة الكهربائية من أقدم اللجان والفرق الطلابية في جامعة العلوم والتكنولوجيا ",
-    textAr2:
-      " حيث يعود تأسيسها لما قبل 1990 توازياَ مع تأسيس جامعة العلوم والتكنولوجيا",
-    textEn1:
-      "ELECTRICAL ENGINEERING COMMITTEE IS ONE OF THE OLDEST STUDENT COMMITTEES AND TEAMS AT JUST!",
-    textEn2:
-      " IT’S ESTABLISHMENT DATES BACK TO BEFORE 1990, PARALLEL TO THE ESTABLISHMENT OF JUST.",
-    image: require("@Assets/images/2ndslide.webp"),
-    arrPos: "left",
-  },
-  {
-    textAr1:
-      "أما فيما يخص إرشاد الطلبة فإن اللجنة ترافق كل دفعة منذ دخولها الجامعة وحتى تخرجها بفريق طلابي من أبناء الدفعة نفسها!",
-    textEn1:
-      "AS FOR THE GUIDANCE OF STUDENTS, THE COMMITTEE ACCOMPANIES EVERY BATCH SINCE ENTERING THE UNIVERSITY UNTIL GRADUATION WITH A TEAM FROM THE SAME BATCH!",
-    image: require("@Assets/images/3rdSlide.webp"),
-    arrPos: "left",
-  },
-  {
-    textAr1:
-      "وفرت لجنتكم منذ نشأتها محتوى أكاديمي متميز ساهم في تسهيل العملية التعليمية!",
-    textAr2: "وما تزال مكتبة اللجنة اليوم شاهدة على ذلك",
-    textEn1:
-      "SINCE ITS INCEPTION, YOUR COMMITTEE HAS PROVIDED DISTINGUISHED ACADEMICS TO FACILITATE THE EDUCATIONAL PROCESS!",
-    textEn2: "TODAY, THE COMMITTEE'S LIBRARY STILL BEARS WITNESS TO THAT",
-    image: require("@Assets/images/4thSlide.webp"),
-    arrPos: "right",
-  },
-  {
-    textAr2: `قامت اللجنة بتمثيل قسم الهندسة
-الكهربائية في معظم السنوات
-وقد سهلت عملية التسجيل على الطلبة
-من خلال فريق التسجيل الذي كان دائما
-متواجد في الجامعة لمساعدة الطلبة وحل
-مشاكلهم!`,
-    textEn2: `THE COMMITTEE HAS REPRESENTED THE DEPARTMENT OF ELECTRICAL ENGINEERING IN MOST YEARS.
-
-THE REGISTRATION PROCESS WAS MADE EASIER FOR STUDENTS THROUGH THE REGISTRATION TEAM, WHICH WAS ALWAYS PRESENT IN THE UNIVERSITY TO HELP STUDENTS AND SOLVE THEIR PROBLEMS!`,
-    image: require("@Assets/images/5thSlide.webp"),
-    arrPos: "left",
-  },
-  {
-    textAr1:
-      "يضاف حديثًا للجنتكم، تطبيقنا الذي يقدم كل ما يحتاجه طالب الهندسة الكهربائية",
-    textEn1:
-      "RECENTLY ADDED TO YOUR COMMITTEE, OUR APPLICATION WHICH PROVIDES EVERYTHING AN ELECTRICAL ENGINEERING STUDENT NEEDS!",
-    textEn2: `
-    
-    
-    `,
-    image: require("@Assets/images/6thSlide.webp"),
-    arrPos: "left",
-  },
-];

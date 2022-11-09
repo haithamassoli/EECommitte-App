@@ -127,18 +127,13 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
     >
       {visible && (
         <View
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: moderateScale(20),
-            backgroundColor:
-              theme === "light" ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
-          }}
+          style={[
+            styles.triangle,
+            {
+              backgroundColor:
+                theme === "light" ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
+            },
+          ]}
         />
       )}
       {renderDropdown()}
@@ -184,6 +179,16 @@ const styles = StyleSheet.create({
   item: {
     paddingHorizontal: horizontalScale(10),
     paddingVertical: verticalScale(10),
+  },
+  triangle: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: moderateScale(20),
   },
 });
 

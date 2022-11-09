@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useContext } from "react";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -9,34 +9,21 @@ const NoConnection = ({ refetch }: any) => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text
-        style={{
-          fontFamily: "Bukra",
-          fontSize: moderateScale(20),
-          color: textColor,
-        }}
-      >
+    <View style={styles.container}>
+      <Text style={[styles.text, { color: textColor }]}>
         لا يوجد اتصال بالانترنت
       </Text>
       <TouchableOpacity
         onPress={refetch}
-        style={{
-          backgroundColor:
-            theme === "light"
-              ? Colors.lightBackgroundSec
-              : Colors.darkBackgroundSec,
-          paddingHorizontal: horizontalScale(20),
-          paddingVertical: verticalScale(12),
-          borderRadius: moderateScale(10),
-          marginTop: verticalScale(10),
-        }}
+        style={[
+          styles.button,
+          {
+            backgroundColor:
+              theme === "light"
+                ? Colors.lightBackgroundSec
+                : Colors.darkBackgroundSec,
+          },
+        ]}
       >
         <Feather name="refresh-cw" size={moderateScale(20)} color={textColor} />
       </TouchableOpacity>
@@ -45,3 +32,20 @@ const NoConnection = ({ refetch }: any) => {
 };
 
 export default NoConnection;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    fontFamily: "Bukra",
+    fontSize: moderateScale(20),
+  },
+  button: {
+    paddingHorizontal: horizontalScale(20),
+    paddingVertical: verticalScale(12),
+    borderRadius: moderateScale(10),
+    marginTop: verticalScale(10),
+  },
+});

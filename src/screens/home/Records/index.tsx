@@ -7,7 +7,13 @@ import { fetchRecords, fetchSearchRecords } from "@Src/api/fetchRecords";
 import { ThemeContext } from "@Src/store/themeContext";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext, useState } from "react";
-import { View, Text, ActivityIndicator, RefreshControl } from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  RefreshControl,
+  StyleSheet,
+} from "react-native";
 
 const options = {
   keys: ["subject", "searchName", "doctor"],
@@ -26,6 +32,30 @@ const RecordsScreen = () => {
     setRefetchCounter(0);
     setRefetchCounter((prev) => prev + 1);
   };
+  const renderItem = ({ item }: any) => (
+    <RecordCard
+      link={item.link}
+      image={item.image}
+      subject={item.subject}
+      doctor={item.doctor}
+    />
+  );
+  const renderItemList = ({ item }: any) => {
+    if (typeof item === "string") {
+      return (
+        <Text style={[styles.listTitle, { color: textColor }]}>{item}</Text>
+      );
+    } else {
+      return (
+        <RecordCard
+          link={item.link}
+          image={item.image}
+          subject={item.subject}
+          doctor={item.doctor}
+        />
+      );
+    }
+  };
   if (isLoading || isLoadingSearchRecord) {
     return (
       <ActivityIndicator
@@ -39,12 +69,7 @@ const RecordsScreen = () => {
     return <NoConnection refetch={handleRefetch} />;
   }
   return (
-    <View
-      style={{
-        marginHorizontal: horizontalScale(12),
-        flex: 1,
-      }}
-    >
+    <View style={styles.container}>
       <SearchInput
         placeholder="ابحث عن تسجيل..."
         searchInput={searchInput}
@@ -52,42 +77,27 @@ const RecordsScreen = () => {
         setResults={setResults}
         options={options}
         list={searchRecord}
-        style={{ marginVertical: verticalScale(8) }}
+        style={styles.searchInput}
       />
       {results.length > 0 && searchInput.length > 0 ? (
         <FlashList
           data={results}
-          contentContainerStyle={{ paddingBottom: verticalScale(12) }}
+          contentContainerStyle={styles.contentContainerStyle}
           estimatedItemSize={25}
           keyExtractor={(item) => item.id.toString()}
           keyboardShouldPersistTaps="always"
-          renderItem={({ item }) => (
-            <RecordCard
-              link={item.link}
-              image={item.image}
-              subject={item.subject}
-              doctor={item.doctor}
-            />
-          )}
+          renderItem={renderItem}
         />
       ) : searchInput.length > 0 ? (
         <>
-          <Text
-            style={{
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: moderateScale(24),
-              marginTop: verticalScale(40),
-              color: textColor,
-            }}
-          >
+          <Text style={[styles.noResults, { color: textColor }]}>
             لا يوجد نتائج
           </Text>
         </>
       ) : (
         <FlashList
           data={data}
-          contentContainerStyle={{ paddingBottom: verticalScale(12) }}
+          contentContainerStyle={styles.contentContainerStyle}
           refreshControl={
             <RefreshControl
               refreshing={isFetching}
@@ -109,37 +119,12 @@ const RecordsScreen = () => {
               }
             />
           }
-          renderItem={({ item }: any) => {
-            if (typeof item === "string") {
-              return (
-                <Text
-                  style={{
-                    fontSize: moderateScale(18),
-                    color: textColor,
-                    fontFamily: "Bukra",
-                    marginTop: verticalScale(20),
-                    textAlign: "left",
-                  }}
-                >
-                  {item}
-                </Text>
-              );
-            } else {
-              return (
-                <RecordCard
-                  link={item.link}
-                  image={item.image}
-                  subject={item.subject}
-                  doctor={item.doctor}
-                />
-              );
-            }
-          }}
+          renderItem={renderItemList}
           getItemType={(item) => {
             return typeof item === "string" ? "sectionHeader" : "row";
           }}
           estimatedItemSize={25}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(_, index) => index.toString()}
           keyboardShouldPersistTaps="always"
         />
       )}
@@ -148,3 +133,24 @@ const RecordsScreen = () => {
 };
 
 export default RecordsScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: horizontalScale(12),
+    flex: 1,
+  },
+  contentContainerStyle: { paddingBottom: verticalScale(12) },
+  listTitle: {
+    fontSize: moderateScale(18),
+    fontFamily: "Bukra",
+    marginTop: verticalScale(20),
+    textAlign: "left",
+  },
+  noResults: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: moderateScale(24),
+    marginTop: verticalScale(40),
+  },
+  searchInput: { marginVertical: verticalScale(8) },
+});

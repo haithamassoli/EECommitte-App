@@ -44,22 +44,8 @@ const ImagesCarousel = ({ images }: Props) => {
   };
 
   return (
-    <View
-      style={{
-        width: screenWidth - horizontalScale(40),
-        alignSelf: "center",
-        height: verticalScale(182),
-      }}
-    >
-      <Shadow
-        distance={10}
-        stretch
-        style={{
-          width: screenWidth - horizontalScale(40),
-          height: screenHeight * 0.24,
-          borderRadius: moderateScale(12),
-        }}
-      >
+    <View style={styles.container}>
+      <Shadow distance={10} stretch style={styles.shadow}>
         <ScrollView
           ref={scrollRef}
           contentContainerStyle={{
@@ -74,12 +60,7 @@ const ImagesCarousel = ({ images }: Props) => {
           {images.length === 0 && (
             <Image
               source={require("@Assets/images/slider1.webp")}
-              style={{
-                width: screenWidth - horizontalScale(40),
-                height: screenHeight * 0.24,
-                resizeMode: "cover",
-                borderRadius: moderateScale(12),
-              }}
+              style={styles.image}
             />
           )}
           {images.map((image, index) => (
@@ -101,14 +82,7 @@ const ImagesCarousel = ({ images }: Props) => {
           ))}
         </ScrollView>
       </Shadow>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "center",
-          marginTop: verticalScale(10),
-          zIndex: 100,
-        }}
-      >
+      <View style={styles.dotsContainer}>
         {images.length === 0 && (
           <View
             style={[
@@ -116,7 +90,6 @@ const ImagesCarousel = ({ images }: Props) => {
               {
                 borderColor:
                   theme === "light" ? Colors.primary700 : Colors.primary400,
-                backgroundColor: Colors.primary600,
               },
             ]}
           />
@@ -151,11 +124,27 @@ const ImagesCarousel = ({ images }: Props) => {
 export default memo(ImagesCarousel);
 
 const styles = StyleSheet.create({
+  container: {
+    width: screenWidth - horizontalScale(40),
+    alignSelf: "center",
+    height: verticalScale(182),
+  },
+  shadow: {
+    width: screenWidth - horizontalScale(40),
+    height: screenHeight * 0.24,
+    borderRadius: moderateScale(12),
+  },
   image: {
     width: screenWidth - horizontalScale(40),
     height: screenHeight * 0.24,
     resizeMode: "cover",
     borderRadius: moderateScale(12),
+  },
+  dotsContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: verticalScale(10),
+    zIndex: 100,
   },
   dot: {
     height: verticalScale(8),
@@ -163,5 +152,6 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(5),
     borderWidth: moderateScale(4),
     margin: moderateScale(4),
+    backgroundColor: Colors.primary600,
   },
 });

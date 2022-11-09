@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   TextInput,
   LayoutAnimation,
+  StyleSheet,
 } from "react-native";
 import CardRate from "./CardRate";
 import SubjectRate from "./SubjectRate";
@@ -111,21 +112,8 @@ const CalculatorScreen = () => {
           scrollViewRef.current?.scrollToEnd({ animated: true })
         }
       >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-around",
-            alignItems: "center",
-            marginVertical: verticalScale(10),
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "TajawalBold",
-              color: textColor,
-              fontSize: moderateScale(16),
-            }}
-          >
+        <View style={styles.container}>
+          <Text style={[styles.gpa, { color: textColor }]}>
             حساب المعدل التراكمي
           </Text>
           <TouchableOpacity
@@ -135,29 +123,28 @@ const CalculatorScreen = () => {
               );
               setCumulative((e) => !e);
             }}
-            style={{
-              width: verticalScale(50),
-              height: verticalScale(30),
-              borderRadius: verticalScale(15),
-              backgroundColor:
-                cumulative && theme === "light"
-                  ? Colors.primaryLight
-                  : cumulative && theme === "dark"
-                  ? Colors.darkBackgroundSec
-                  : theme === "light"
-                  ? Colors.lightGray
-                  : Colors.darkBackgroundSec,
-              justifyContent: "center",
-              alignItems: cumulative ? "flex-end" : "flex-start",
-            }}
+            style={[
+              styles.gpaToggle,
+              {
+                backgroundColor:
+                  cumulative && theme === "light"
+                    ? Colors.primaryLight
+                    : cumulative && theme === "dark"
+                    ? Colors.darkBackgroundSec
+                    : theme === "light"
+                    ? Colors.lightGray
+                    : Colors.darkBackgroundSec,
+                alignItems: cumulative ? "flex-end" : "flex-start",
+              },
+            ]}
           >
             <View
-              style={{
-                width: verticalScale(30),
-                height: verticalScale(30),
-                borderRadius: verticalScale(15),
-                backgroundColor: cumulative ? Colors.primary500 : Colors.gray,
-              }}
+              style={[
+                styles.gpaToggleCircle,
+                {
+                  backgroundColor: cumulative ? Colors.primary500 : Colors.gray,
+                },
+              ]}
             ></View>
           </TouchableOpacity>
         </View>
@@ -287,74 +274,47 @@ const CalculatorScreen = () => {
           }}
         >
           <View
-            style={{
-              backgroundColor:
-                theme === "light"
-                  ? Colors.lightBackgroundSec
-                  : Colors.darkBackgroundSec,
-              borderRadius: moderateScale(20),
-              paddingVertical: verticalScale(12),
-              paddingHorizontal: horizontalScale(8),
-              justifyContent: "center",
-              alignItems: "center",
-              width: (screenWidth - horizontalScale(174)) / 2 - 8,
-            }}
+            style={[
+              styles.subjectHG,
+              {
+                backgroundColor:
+                  theme === "light"
+                    ? Colors.lightBackgroundSec
+                    : Colors.darkBackgroundSec,
+              },
+            ]}
           >
-            <Text
-              style={{
-                fontFamily: "Bukra",
-                color: textColor,
-                fontSize: moderateScale(16),
-              }}
-            >
+            <Text style={[styles.calculateButtonText, { color: textColor }]}>
               الساعات
             </Text>
           </View>
           <View
-            style={{
-              backgroundColor:
-                theme === "light"
-                  ? Colors.lightBackgroundSec
-                  : Colors.darkBackgroundSec,
-              borderRadius: moderateScale(20),
-              paddingVertical: verticalScale(12),
-              paddingHorizontal: horizontalScale(8),
-              justifyContent: "center",
-              alignItems: "center",
-              width: horizontalScale(174 - 32),
-            }}
+            style={[
+              styles.subjectName,
+              {
+                backgroundColor:
+                  theme === "light"
+                    ? Colors.lightBackgroundSec
+                    : Colors.darkBackgroundSec,
+              },
+            ]}
           >
-            <Text
-              style={{
-                fontFamily: "Bukra",
-                color: textColor,
-                fontSize: moderateScale(16),
-              }}
-            >
+            <Text style={[styles.calculateButtonText, { color: textColor }]}>
               اسم المادة
             </Text>
           </View>
           <View
-            style={{
-              backgroundColor:
-                theme === "light"
-                  ? Colors.lightBackgroundSec
-                  : Colors.darkBackgroundSec,
-              borderRadius: moderateScale(20),
-              paddingVertical: verticalScale(12),
-              paddingHorizontal: horizontalScale(8),
-              justifyContent: "center",
-              alignItems: "center",
-              width: (screenWidth - horizontalScale(174)) / 2 - 8,
-            }}
+            style={[
+              styles.subjectHG,
+              {
+                backgroundColor:
+                  theme === "light"
+                    ? Colors.lightBackgroundSec
+                    : Colors.darkBackgroundSec,
+              },
+            ]}
           >
-            <Text
-              style={{
-                fontFamily: "Bukra",
-                color: textColor,
-                fontSize: moderateScale(16),
-              }}
-            >
+            <Text style={[styles.calculateButtonText, { color: textColor }]}>
               العلامة
             </Text>
           </View>
@@ -367,81 +327,20 @@ const CalculatorScreen = () => {
             itemNumber={index}
           />
         ))}
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginTop: verticalScale(12),
-          }}
-        >
+        <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={addSubject}
-            style={{
-              backgroundColor: "#ffc107",
-              borderRadius: moderateScale(20),
-              paddingVertical: verticalScale(12),
-              paddingHorizontal: horizontalScale(8),
-              justifyContent: "center",
-              alignItems: "center",
-              width: "48%",
-            }}
+            style={styles.addSubjectButton}
           >
-            <Text
-              style={{
-                fontFamily: "Bukra",
-                color: Colors.darkText,
-                fontSize: moderateScale(16),
-              }}
-            >
-              إضافة مادة
-            </Text>
+            <Text style={styles.calculateButtonText}>إضافة مادة</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={deleteSubject}
-            style={{
-              backgroundColor: "#CA0B00",
-              borderRadius: moderateScale(20),
-              paddingVertical: verticalScale(12),
-              paddingHorizontal: horizontalScale(8),
-              justifyContent: "center",
-              alignItems: "center",
-              width: "48%",
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: "Bukra",
-                color: Colors.darkText,
-                fontSize: moderateScale(16),
-              }}
-            >
-              حذف مادة
-            </Text>
+          <TouchableOpacity onPress={deleteSubject} style={styles.deleteButton}>
+            <Text style={styles.calculateButtonText}>حذف مادة</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
-      <TouchableOpacity
-        onPress={calculateRate}
-        style={{
-          backgroundColor: "#4BB543",
-          borderRadius: moderateScale(20),
-          paddingVertical: verticalScale(12),
-          paddingHorizontal: horizontalScale(8),
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: verticalScale(6),
-        }}
-      >
-        <Text
-          style={{
-            fontFamily: "Bukra",
-            color: Colors.darkText,
-            fontSize: moderateScale(16),
-          }}
-        >
-          حساب المعدل
-        </Text>
+      <TouchableOpacity onPress={calculateRate} style={styles.calculateButton}>
+        <Text style={styles.calculateButtonText}>حساب المعدل</Text>
       </TouchableOpacity>
     </View>
   );
@@ -456,3 +355,81 @@ const numberToArray = (number: number) => {
   }
   return array;
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginVertical: verticalScale(10),
+  },
+  gpa: {
+    fontFamily: "TajawalBold",
+    fontSize: moderateScale(16),
+  },
+  gpaToggle: {
+    width: verticalScale(50),
+    height: verticalScale(30),
+    borderRadius: verticalScale(15),
+    justifyContent: "center",
+  },
+  gpaToggleCircle: {
+    width: verticalScale(30),
+    height: verticalScale(30),
+    borderRadius: verticalScale(15),
+  },
+  subjectHG: {
+    borderRadius: moderateScale(20),
+    paddingVertical: verticalScale(12),
+    paddingHorizontal: horizontalScale(8),
+    justifyContent: "center",
+    alignItems: "center",
+    width: (screenWidth - horizontalScale(174)) / 2 - 8,
+  },
+  subjectName: {
+    borderRadius: moderateScale(20),
+    paddingVertical: verticalScale(12),
+    paddingHorizontal: horizontalScale(8),
+    justifyContent: "center",
+    alignItems: "center",
+    width: horizontalScale(174 - 32),
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: verticalScale(12),
+  },
+  addSubjectButton: {
+    backgroundColor: "#ffc107",
+    borderRadius: moderateScale(20),
+    paddingVertical: verticalScale(12),
+    paddingHorizontal: horizontalScale(8),
+    justifyContent: "center",
+    alignItems: "center",
+    width: "48%",
+  },
+  deleteButton: {
+    backgroundColor: "#CA0B00",
+    borderRadius: moderateScale(20),
+    paddingVertical: verticalScale(12),
+    paddingHorizontal: horizontalScale(8),
+    justifyContent: "center",
+    alignItems: "center",
+    width: "48%",
+  },
+  calculateButton: {
+    backgroundColor: "#4BB543",
+    borderRadius: moderateScale(20),
+    paddingVertical: verticalScale(12),
+    paddingHorizontal: horizontalScale(8),
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: verticalScale(6),
+  },
+  calculateButtonText: {
+    fontFamily: "Bukra",
+    color: Colors.darkText,
+    fontSize: moderateScale(16),
+  },
+});

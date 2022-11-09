@@ -74,16 +74,19 @@ const styles = StyleSheet.create({
   activeDot: {
     backgroundColor: Colors.primary700,
   },
-  iconsContainer: {
+  buttonsContainer: {
+    flex: 1,
+    marginTop: verticalScale(40),
+    marginHorizontal: horizontalScale(28),
+    flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
-  iconContainer: {
-    flex: 1,
-    marginHorizontal: horizontalScale(8),
+  buttonContainer: {
     justifyContent: "center",
     alignItems: "center",
-    width: screenWidth * 0.3,
+    width: "33.33%",
     height: screenWidth * 0.3,
   },
   icon: {

@@ -150,7 +150,17 @@ export default function App() {
         />
         <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
           <QueryClientProvider client={queryClient}>
+            {/* <View
+              style={{
+                flex: 1,
+                paddingHorizontal:
+                  Dimensions.get("window").width > 1000
+                    ? horizontalScale(500)
+                    : 0,
+              }}
+            > */}
             <Route />
+            {/* </View> */}
           </QueryClientProvider>
         </SafeAreaView>
       </FavoriteProvider>

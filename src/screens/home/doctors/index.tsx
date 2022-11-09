@@ -40,6 +40,18 @@ const DoctorsScreen = ({ route }: Props) => {
     setRefetchCounter(0);
     setRefetchCounter((prev) => prev + 1);
   };
+
+  const renderItem = ({ item }: any) => (
+    <DoctorCard
+      // @ts-ignore
+      email={item.email}
+      image={item.image}
+      name={item.name}
+      office={item.office}
+      phone={item.phone}
+      website={item.website}
+    />
+  );
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -75,17 +87,7 @@ const DoctorsScreen = ({ route }: Props) => {
           data={results}
           estimatedItemSize={33}
           keyExtractor={(item): any => item.id.toString()}
-          renderItem={({ item }: any) => (
-            <DoctorCard
-              // @ts-ignore
-              email={item.email}
-              image={item.image}
-              name={item.name}
-              office={item.office}
-              phone={item.phone}
-              website={item.website}
-            />
-          )}
+          renderItem={renderItem}
         />
       ) : searchInput.length > 0 ? (
         <>
@@ -129,17 +131,7 @@ const DoctorsScreen = ({ route }: Props) => {
           keyboardShouldPersistTaps="always"
           estimatedItemSize={33}
           keyExtractor={(item: any) => item.id.toString()}
-          renderItem={({ item }: any) => (
-            <DoctorCard
-              // @ts-ignore
-              email={item.email}
-              image={item.image}
-              name={item.name}
-              office={item.office}
-              phone={item.phone}
-              website={item.website}
-            />
-          )}
+          renderItem={renderItem}
         />
       )}
     </View>

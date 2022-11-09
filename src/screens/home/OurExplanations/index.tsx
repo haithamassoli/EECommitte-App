@@ -25,6 +25,15 @@ const OurExplanationsScreen = () => {
     setRefetchCounter(0);
     setRefetchCounter((prev) => prev + 1);
   };
+  const renderItem = ({ item }: any) => (
+    <RecordCard
+      link={item.link}
+      image={item.image}
+      subject={item.subject}
+      doctor={item.doctor}
+    />
+  );
+
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -60,14 +69,7 @@ const OurExplanationsScreen = () => {
           estimatedItemSize={19}
           keyExtractor={(item) => item.id.toString()}
           keyboardShouldPersistTaps="always"
-          renderItem={({ item }) => (
-            <RecordCard
-              link={item.link}
-              image={item.image}
-              subject={item.subject}
-              doctor={item.doctor}
-            />
-          )}
+          renderItem={renderItem}
         />
       ) : searchInput.length > 0 ? (
         <>
@@ -111,14 +113,7 @@ const OurExplanationsScreen = () => {
           }
           estimatedItemSize={19}
           keyExtractor={(item: any) => item.id.toString()}
-          renderItem={({ item }) => (
-            <RecordCard
-              link={item.link}
-              image={item.image}
-              subject={item.subject}
-              doctor={item.doctor}
-            />
-          )}
+          renderItem={renderItem}
         />
       )}
     </View>

@@ -150,7 +150,7 @@ const HomeScreen = ({ navigation }: Props) => {
                       color: textColor,
                     }}
                   >
-                    Electrical Engineering EECommitte
+                    Electrical Engineering Committee
                   </Text>
                 </View>
               </View>
@@ -186,11 +186,8 @@ const HomeScreen = ({ navigation }: Props) => {
       ),
     });
   }, [searchInput, searchBarFocused, results, theme]);
-  const handleRefetch = () => {
-    setRefetchCounter(0);
-    setRefetchCounter((prev) => prev + 1);
-  };
-  const rowOne = [
+
+  const buttons = [
     {
       title: "المواد",
       title2: "المفضلة",
@@ -212,9 +209,6 @@ const HomeScreen = ({ navigation }: Props) => {
       darkIcon: require("@Assets/images/icons/dark-icons/registration.png"),
       onPress: () => navigation.navigate("Registration"),
     },
-  ];
-
-  const rowTwo = [
     {
       title: "الهيئة",
       title2: "التدريسية",
@@ -236,9 +230,6 @@ const HomeScreen = ({ navigation }: Props) => {
       darkIcon: require("@Assets/images/icons/dark-icons/calculator.png"),
       onPress: () => navigation.navigate("Calculator"),
     },
-  ];
-
-  const rowThree = [
     {
       title: "قناة",
       title2: "اللجنة",
@@ -381,96 +372,30 @@ const HomeScreen = ({ navigation }: Props) => {
       ) : (
         Array.isArray(data) && <ImagesCarousel images={data} />
       )}
-      <View
-        style={{
-          flex: 1,
-          paddingHorizontal: horizontalScale(16),
-          paddingBottom: verticalScale(16),
-          marginTop: verticalScale(40),
-          marginHorizontal: horizontalScale(12),
-        }}
-      >
-        <View style={styles.iconsContainer}>
-          {rowOne.map((icon, index) => (
-            <TouchableOpacity
-              key={index}
-              onPress={icon.onPress}
-              style={styles.iconContainer}
+      <View style={styles.buttonsContainer}>
+        {buttons.map((button, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.buttonContainer}
+            onPress={button.onPress}
+          >
+            <Image
+              source={theme === "light" ? button.lightIcon : button.darkIcon}
+              style={styles.icon}
+            />
+            <Text
+              style={[
+                styles.iconText,
+                { color: textColor, marginTop: verticalScale(4) },
+              ]}
             >
-              <View>
-                <Image
-                  source={theme === "light" ? icon.lightIcon : icon.darkIcon}
-                  style={styles.icon}
-                />
-              </View>
-              <Text
-                style={[
-                  styles.iconText,
-                  { color: textColor, marginTop: verticalScale(4) },
-                ]}
-              >
-                {icon.title}
-              </Text>
-              <Text style={[styles.iconText, { color: textColor }]}>
-                {icon.title2}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-        <View style={styles.iconsContainer}>
-          {rowTwo.map((icon, index) => (
-            <TouchableOpacity
-              key={index}
-              onPress={icon.onPress}
-              style={styles.iconContainer}
-            >
-              <View>
-                <Image
-                  source={theme === "light" ? icon.lightIcon : icon.darkIcon}
-                  style={styles.icon}
-                />
-              </View>
-              <Text
-                style={[
-                  styles.iconText,
-                  { color: textColor, marginTop: verticalScale(4) },
-                ]}
-              >
-                {icon.title}
-              </Text>
-              <Text style={[styles.iconText, { color: textColor }]}>
-                {icon.title2}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-        <View style={styles.iconsContainer}>
-          {rowThree.map((icon, index) => (
-            <TouchableOpacity
-              key={index}
-              onPress={icon.onPress}
-              style={styles.iconContainer}
-            >
-              <View>
-                <Image
-                  source={theme === "light" ? icon.lightIcon : icon.darkIcon}
-                  style={styles.icon}
-                />
-              </View>
-              <Text
-                style={[
-                  styles.iconText,
-                  { color: textColor, marginTop: verticalScale(4) },
-                ]}
-              >
-                {icon.title}
-              </Text>
-              <Text style={[styles.iconText, { color: textColor }]}>
-                {icon.title2}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+              {button.title}
+            </Text>
+            <Text style={[styles.iconText, { color: textColor }]}>
+              {button.title2}
+            </Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </ScrollView>
   );

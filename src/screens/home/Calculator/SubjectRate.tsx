@@ -1,7 +1,7 @@
 import Dropdown from "@Components/ui/Dropdown";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { View, TextInput } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
 import { useContext } from "react";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { screenWidth } from "@Utils/Helper";
@@ -55,27 +55,21 @@ const SubjectRate = ({
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
+    <View style={styles.container}>
       <View
-        style={{
-          width: (screenWidth - horizontalScale(174)) / 2 - 8,
-          backgroundColor:
-            theme === "light"
-              ? Colors.lightBackgroundSec
-              : Colors.darkBackgroundSec,
-          borderRadius: moderateScale(20),
-          marginTop: verticalScale(20),
-        }}
+        style={[
+          styles.row,
+          {
+            backgroundColor:
+              theme === "light"
+                ? Colors.lightBackgroundSec
+                : Colors.darkBackgroundSec,
+          },
+        ]}
       >
         <Dropdown
           label="3"
-          style={{ left: horizontalScale(10) }}
+          style={styles.dropdown}
           // @ts-ignore
           data={markData}
           // @ts-ignore
@@ -84,48 +78,41 @@ const SubjectRate = ({
         />
       </View>
       <View
-        style={{
-          width: horizontalScale(174 - 32),
-          backgroundColor:
-            theme === "light"
-              ? Colors.lightBackgroundSec
-              : Colors.darkBackgroundSec,
-          borderRadius: moderateScale(20),
-          marginTop: verticalScale(20),
-          paddingVertical: verticalScale(6),
-          paddingHorizontal: horizontalScale(8),
-        }}
-      >
-        <TextInput
-          style={{
-            fontFamily: "TajawalBold",
-            color: textColor,
-            fontSize: moderateScale(18),
-            textAlign: "center",
+        style={[
+          styles.row2,
+          {
             backgroundColor:
               theme === "light"
                 ? Colors.lightBackgroundSec
                 : Colors.darkBackgroundSec,
-            paddingVertical: verticalScale(4),
-            paddingHorizontal: horizontalScale(8),
-            borderRadius: moderateScale(20),
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          },
+        ]}
+      >
+        <TextInput
+          style={[
+            styles.textInput,
+            {
+              backgroundColor:
+                theme === "light"
+                  ? Colors.lightBackgroundSec
+                  : Colors.darkBackgroundSec,
+              color: textColor,
+            },
+          ]}
           placeholder="(اختياري)"
           placeholderTextColor={"gray"}
         />
       </View>
       <View
-        style={{
-          width: (screenWidth - horizontalScale(174)) / 2 - 8,
-          backgroundColor:
-            theme === "light"
-              ? Colors.lightBackgroundSec
-              : Colors.darkBackgroundSec,
-          borderRadius: moderateScale(20),
-          marginTop: verticalScale(20),
-        }}
+        style={[
+          styles.row,
+          {
+            backgroundColor:
+              theme === "light"
+                ? Colors.lightBackgroundSec
+                : Colors.darkBackgroundSec,
+          },
+        ]}
       >
         <Dropdown
           label="A+"
@@ -142,3 +129,33 @@ const SubjectRate = ({
 };
 
 export default SubjectRate;
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  dropdown: { left: horizontalScale(10) },
+  row: {
+    width: (screenWidth - horizontalScale(174)) / 2 - 8,
+    borderRadius: moderateScale(20),
+    marginTop: verticalScale(20),
+  },
+  row2: {
+    width: horizontalScale(174 - 32),
+    borderRadius: moderateScale(20),
+    marginTop: verticalScale(20),
+    paddingVertical: verticalScale(6),
+    paddingHorizontal: horizontalScale(8),
+  },
+  textInput: {
+    fontFamily: "TajawalBold",
+    fontSize: moderateScale(18),
+    textAlign: "center",
+    paddingVertical: verticalScale(4),
+    paddingHorizontal: horizontalScale(8),
+    borderRadius: moderateScale(20),
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

@@ -3,7 +3,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { rtlWebview, screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext } from "react";
-import { Falsy, RecursiveArray, View } from "react-native";
+import { Falsy, RecursiveArray, StyleSheet, View } from "react-native";
 import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
 const systemFonts = [...defaultSystemFonts, "Dubai"];
 
@@ -31,13 +31,7 @@ export const WebDisplay = function WebDisplay({ html }: { html: string }) {
     },
   };
   return (
-    <View
-      style={{
-        flex: 1,
-        paddingHorizontal: horizontalScale(12),
-        paddingVertical: verticalScale(4),
-      }}
-    >
+    <View style={styles.container}>
       <RenderHTML
         defaultTextProps={{
           selectable: true,
@@ -54,3 +48,11 @@ export const WebDisplay = function WebDisplay({ html }: { html: string }) {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: horizontalScale(12),
+    paddingVertical: verticalScale(4),
+  },
+});

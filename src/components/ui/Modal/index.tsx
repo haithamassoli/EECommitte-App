@@ -1,6 +1,6 @@
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { View, Text, Modal, TouchableOpacity } from "react-native";
+import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
 import { useContext } from "react";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
@@ -23,60 +23,25 @@ const CustomModal = ({ visible, setVisible, title }: Props) => {
         setVisible(false);
       }}
     >
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "rgba(0,0,0,0.5)",
-        }}
-      >
+      <View style={styles.centeredView}>
         <View
-          style={{
-            backgroundColor:
-              theme === "light"
-                ? Colors.lightBackgroundSec
-                : Colors.darkBackgroundSec,
-            width: "80%",
-            height: verticalScale(200),
-            borderRadius: moderateScale(10),
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          style={[
+            styles.modalView,
+            ,
+            {
+              backgroundColor:
+                theme === "light"
+                  ? Colors.lightBackgroundSec
+                  : Colors.darkBackgroundSec,
+            },
+          ]}
         >
-          <Text
-            style={{
-              fontFamily: "Bukra",
-              fontSize: moderateScale(18),
-              textAlign: "center",
-              marginHorizontal: horizontalScale(20),
-              color: textColor,
-              lineHeight: verticalScale(30),
-            }}
-          >
-            {title}
-          </Text>
+          <Text style={[styles.modalText, { color: textColor }]}>{title}</Text>
           <TouchableOpacity
             onPress={() => setVisible(false)}
-            style={{
-              backgroundColor: Colors.primary400,
-              width: "50%",
-              height: verticalScale(40),
-              borderRadius: moderateScale(10),
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: verticalScale(20),
-            }}
+            style={styles.button}
           >
-            <Text
-              style={{
-                fontFamily: "Bukra",
-                fontSize: moderateScale(18),
-                color: "white",
-              }}
-            >
-              حسنا
-            </Text>
+            <Text style={styles.textStyle}>حسنا</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -85,3 +50,40 @@ const CustomModal = ({ visible, setVisible, title }: Props) => {
 };
 
 export default CustomModal;
+
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalView: {
+    width: "80%",
+    height: verticalScale(200),
+    borderRadius: moderateScale(10),
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalText: {
+    fontFamily: "Bukra",
+    fontSize: moderateScale(18),
+    textAlign: "center",
+    marginHorizontal: horizontalScale(20),
+    lineHeight: verticalScale(30),
+  },
+  button: {
+    backgroundColor: Colors.primary400,
+    width: "50%",
+    height: verticalScale(40),
+    borderRadius: moderateScale(10),
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: verticalScale(20),
+  },
+  textStyle: {
+    fontFamily: "Bukra",
+    fontSize: moderateScale(18),
+    color: "white",
+  },
+});

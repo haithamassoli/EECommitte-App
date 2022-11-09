@@ -34,21 +34,8 @@ const SearchResults = ({ results, handlePress }: Props) => {
           </View>
         ))
       ) : (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              fontSize: moderateScale(16),
-              fontFamily: "TajawalBold",
-              textAlign: "center",
-              color: textColor,
-            }}
-          >
+        <View style={styles.noResults}>
+          <Text style={[styles.noResultsText, { color: textColor }]}>
             لا يوجد نتائج
           </Text>
         </View>
@@ -71,5 +58,15 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(15),
     fontFamily: "TajawalMedium",
     textAlign: "left",
+  },
+  noResults: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  noResultsText: {
+    fontSize: moderateScale(16),
+    fontFamily: "TajawalBold",
+    textAlign: "center",
   },
 });

@@ -132,9 +132,7 @@ const SearchInput = ({
         style={[
           styles.searchInput,
           {
-            fontSize: moderateScale(14),
             color: theme === "light" ? Colors.lightText : Colors.darkText,
-            zIndex: 1400,
             backgroundColor:
               theme === "light"
                 ? Colors.lightBackgroundSec
@@ -160,23 +158,15 @@ const SearchInput = ({
       )}
       {searchBarFocused && (
         <View
-          style={{
-            position: "absolute",
-            top: verticalScale(22),
-            overflow: "hidden",
-            left: 0,
-            right: 0,
-            height:
-              screenHeight < 650 ? verticalScale(250) : verticalScale(210),
-            zIndex: 10,
-            backgroundColor:
-              theme === "light"
-                ? Colors.lightBackgroundSec
-                : Colors.darkBackgroundSec,
-            paddingTop: verticalScale(25),
-            borderBottomLeftRadius: moderateScale(14),
-            borderBottomRightRadius: moderateScale(14),
-          }}
+          style={[
+            styles.searchResults,
+            {
+              backgroundColor:
+                theme === "light"
+                  ? Colors.lightBackgroundSec
+                  : Colors.darkBackgroundSec,
+            },
+          ]}
         >
           <SearchResults results={results} handlePress={handlePress} />
         </View>

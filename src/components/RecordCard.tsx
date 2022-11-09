@@ -4,7 +4,14 @@ import { Record } from "@Types/index";
 import { screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useContext } from "react";
-import { View, Text, TouchableOpacity, Linking, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Linking,
+  Image,
+  StyleSheet,
+} from "react-native";
 
 type Props = Omit<Record, "id" | "searchName">;
 
@@ -15,56 +22,51 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
     <TouchableOpacity
-      style={{
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginTop: verticalScale(12),
-      }}
+      style={styles.container}
       onPress={() => Linking.openURL(link)}
     >
       <Image
-        style={{
-          width: screenWidth * 0.42,
-          height: verticalScale(110),
-        }}
+        style={styles.image}
         resizeMode="contain"
         source={{ uri: image }}
         defaultSource={require("@Assets/images/bookPlacholder.jpg")}
       />
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "space-evenly",
-          padding: moderateScale(10),
-          backgroundColor,
-          height: verticalScale(110),
-          marginStart: horizontalScale(10),
-        }}
-      >
-        <Text
-          style={{
-            fontSize: moderateScale(16),
-            fontFamily: "TajawalBold",
-            textAlign: "left",
-            color: textColor,
-          }}
-        >
-          {subject}
-        </Text>
-        <Text
-          style={{
-            fontSize: moderateScale(16),
-            fontFamily: "TajawalMedium",
-            color: textColor,
-            textAlign: "left",
-          }}
-        >
-          {doctor}
-        </Text>
+      <View style={[styles.textContainer, { backgroundColor }]}>
+        <Text style={[styles.subject, { color: textColor }]}>{subject}</Text>
+        <Text style={[styles.doctor, { color: textColor }]}>{doctor}</Text>
       </View>
     </TouchableOpacity>
   );
 };
 
 export default RecordCard;
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: verticalScale(12),
+  },
+  image: {
+    width: screenWidth * 0.42,
+    height: verticalScale(110),
+  },
+  textContainer: {
+    flex: 1,
+    justifyContent: "space-evenly",
+    padding: moderateScale(10),
+    height: verticalScale(110),
+    marginStart: horizontalScale(10),
+  },
+  subject: {
+    fontSize: moderateScale(16),
+    fontFamily: "TajawalBold",
+    textAlign: "left",
+  },
+  doctor: {
+    fontSize: moderateScale(16),
+    fontFamily: "TajawalMedium",
+    textAlign: "left",
+  },
+});

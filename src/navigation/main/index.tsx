@@ -19,6 +19,7 @@ import {
   verticalScale,
 } from "@Utils/Platform";
 import { screenWidth } from "@Utils/Helper";
+import { Shadow } from "react-native-shadow-2";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
@@ -26,6 +27,10 @@ export default function Route() {
   const { theme } = useContext(ThemeContext);
   const tabBarActiveTintColor =
     theme === "light" ? Colors.primary700 : Colors.primary400;
+  const shadowColor =
+    theme === "light" ? Colors.lightShadow : Colors.darkShadow;
+  const tabBarBackground =
+    theme === "light" ? Colors.lightBackground : Colors.darkBackground;
   return (
     <NavigationContainer
       theme={theme === "light" ? LightNavigationColors : DarkNavigationColors}
@@ -34,12 +39,12 @@ export default function Route() {
         screenOptions={{
           tabBarHideOnKeyboard: true,
           tabBarActiveTintColor,
-          tabBarInactiveTintColor: "#9b9b9b",
           tabBarIconStyle: {
             width: horizontalScale(24),
           },
           tabBarStyle: {
-            minHeight: isIOS ? "8.18%" : "8%",
+            minHeight: isIOS ? "8.4%" : "8%",
+            backgroundColor: tabBarBackground,
           },
           tabBarLabelStyle: {
             fontSize: moderateScale(12),
@@ -52,8 +57,24 @@ export default function Route() {
                 : 0,
           },
           headerTitleStyle: {
-            fontSize: moderateScale(18),
+            fontSize: moderateScale(16),
             fontFamily: "Bukra",
+          },
+          tabBarBackground() {
+            return (
+              <Shadow
+                style={{ width: "100%" }}
+                distance={12}
+                startColor={shadowColor}
+                endColor="rgba(0, 0, 0, 0)"
+                sides={{
+                  top: true,
+                  bottom: false,
+                  end: false,
+                  start: false,
+                }}
+              />
+            );
           },
         }}
       >

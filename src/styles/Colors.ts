@@ -19,6 +19,8 @@ const Colors = {
   shared: "#29abef",
   telecom: "#AF02AB",
   power: "#272727",
+  lightShadow: "rgba(34, 34, 34, 0.081)",
+  darkShadow: "rgba(255, 255, 255, 0.1)",
 };
 
 export default Colors;

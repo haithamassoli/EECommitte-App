@@ -10,6 +10,7 @@ import { FlashList } from "@shopify/flash-list";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { fetchDoctors } from "@Src/api/fetchDoctors";
 import NoConnection from "@Components/NoConnection";
+import { Shadow } from "react-native-shadow-2";
 
 type Props = StackScreenProps<HomeStackParamList, "Doctors">;
 
@@ -17,12 +18,14 @@ const options = {
   keys: ["name", "name2"],
 };
 
-const DoctorsScreen = ({ route }: Props) => {
+const DoctorsScreen = ({ navigation, route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [refetchCounter, setRefetchCounter] = useState(0);
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  const shadowColor =
+    theme === "light" ? Colors.lightShadow : Colors.darkShadow;
   const { data, isLoading, isFetching }: any = fetchDoctors(refetchCounter);
 
   useLayoutEffect(() => {
@@ -36,6 +39,13 @@ const DoctorsScreen = ({ route }: Props) => {
       }
     }
   }, [route.params.doctorId, isLoading]);
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerBackground() {
+        return null;
+      },
+    });
+  }, []);
   const handleRefetch = () => {
     setRefetchCounter(0);
     setRefetchCounter((prev) => prev + 1);
@@ -67,28 +77,49 @@ const DoctorsScreen = ({ route }: Props) => {
   return (
     <View
       style={{
-        marginHorizontal: horizontalScale(12),
         flex: 1,
       }}
     >
-      <SearchInput
-        placeholder="ابحث عن أحد الكادر التدريسي..."
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-        setResults={setResults}
-        options={options}
-        list={data}
-        style={{ marginTop: verticalScale(12) }}
-      />
-      {results.length > 0 && searchInput.length > 0 ? (
-        <FlashList
-          contentContainerStyle={{ paddingBottom: verticalScale(12) }}
-          keyboardShouldPersistTaps="always"
-          data={results}
-          estimatedItemSize={33}
-          keyExtractor={(item): any => item.id.toString()}
-          renderItem={renderItem}
+      <Shadow
+        distance={12}
+        startColor={shadowColor}
+        endColor="rgba(0, 0, 0, 0)"
+        sides={{
+          top: false,
+          bottom: true,
+          end: false,
+          start: false,
+        }}
+        containerStyle={{
+          zIndex: 1,
+        }}
+      >
+        <SearchInput
+          placeholder="ابحث عن أحد الكادر التدريسي..."
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+          setResults={setResults}
+          options={options}
+          list={data}
+          style={{
+            marginTop: verticalScale(6),
+            marginHorizontal: horizontalScale(12),
+          }}
         />
+      </Shadow>
+      {results.length > 0 && searchInput.length > 0 ? (
+        <View style={{ flex: 1, marginHorizontal: horizontalScale(12) }}>
+          <FlashList
+            contentContainerStyle={{
+              paddingBottom: verticalScale(12),
+            }}
+            keyboardShouldPersistTaps="always"
+            data={results}
+            estimatedItemSize={33}
+            keyExtractor={(item): any => item.id.toString()}
+            renderItem={renderItem}
+          />
+        </View>
       ) : searchInput.length > 0 ? (
         <>
           <Text
@@ -104,35 +135,37 @@ const DoctorsScreen = ({ route }: Props) => {
           </Text>
         </>
       ) : (
-        <FlashList
-          data={data}
-          contentContainerStyle={{ paddingBottom: verticalScale(12) }}
-          refreshControl={
-            <RefreshControl
-              refreshing={isFetching}
-              onRefresh={() => {
-                if (refetchCounter === 0) {
-                  setRefetchCounter(1);
+        <View style={{ flex: 1, marginHorizontal: horizontalScale(12) }}>
+          <FlashList
+            data={data}
+            contentContainerStyle={{ paddingBottom: verticalScale(12) }}
+            refreshControl={
+              <RefreshControl
+                refreshing={isFetching}
+                onRefresh={() => {
+                  if (refetchCounter === 0) {
+                    setRefetchCounter(1);
+                  }
+                }}
+                colors={
+                  theme === "light" ? [Colors.primary700] : [Colors.primary400]
                 }
-              }}
-              colors={
-                theme === "light" ? [Colors.primary700] : [Colors.primary400]
-              }
-              progressBackgroundColor={
-                theme === "light"
-                  ? Colors.lightBackgroundSec
-                  : Colors.darkBackgroundSec
-              }
-              tintColor={
-                theme === "light" ? Colors.primary700 : Colors.primary400
-              }
-            />
-          }
-          keyboardShouldPersistTaps="always"
-          estimatedItemSize={33}
-          keyExtractor={(item: any) => item.id.toString()}
-          renderItem={renderItem}
-        />
+                progressBackgroundColor={
+                  theme === "light"
+                    ? Colors.lightBackgroundSec
+                    : Colors.darkBackgroundSec
+                }
+                tintColor={
+                  theme === "light" ? Colors.primary700 : Colors.primary400
+                }
+              />
+            }
+            keyboardShouldPersistTaps="always"
+            estimatedItemSize={33}
+            keyExtractor={(item: any) => item.id.toString()}
+            renderItem={renderItem}
+          />
+        </View>
       )}
     </View>
   );

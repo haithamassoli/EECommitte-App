@@ -28,6 +28,7 @@ import { fetchSliderImages } from "@Src/api/fetchSliderImages";
 import * as Notifications from "expo-notifications";
 import { useIsFocused } from "@react-navigation/native";
 import DoctorsData from "@Src/data/Doctors";
+import { Shadow } from "react-native-shadow-2";
 
 const options = {
   keys: ["name", "name2"],
@@ -49,9 +50,10 @@ const HomeScreen = ({ navigation }: Props) => {
   const isFocused = useIsFocused();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  const shadowColor =
+    theme === "light" ? Colors.lightShadow : Colors.darkShadow;
   const { data, isLoading, isFetching }: any =
     fetchSliderImages(refetchCounter);
-
   useEffect(() => {
     const CheckNotificationCount = async () => {
       const count = await getDataFromStorage("notificationsCount");
@@ -164,24 +166,35 @@ const HomeScreen = ({ navigation }: Props) => {
               />
             </View>
           </SafeAreaView>
-          <View style={{ marginHorizontal: horizontalScale(8), zIndex: 10000 }}>
-            <SearchInput
-              style={{
-                marginBottom: verticalScale(6),
-              }}
-              placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
-              searchInput={searchInput}
-              setSearchInput={setSearchInput}
-              searchBarFocused={searchBarFocused}
-              setSearchBarFocused={setSearchBarFocused}
-              results={results}
-              // @ts-ignore
-              list={[...SubjectsData, ...DoctorsData]}
-              setResults={setResults}
-              options={options}
-              from="Home"
-            />
-          </View>
+          <Shadow
+            distance={12}
+            startColor={shadowColor}
+            endColor="rgba(0, 0, 0, 0)"
+            sides={{
+              top: false,
+              bottom: true,
+              end: false,
+              start: false,
+            }}
+          >
+            <View
+              style={{ marginHorizontal: horizontalScale(8), zIndex: 10000 }}
+            >
+              <SearchInput
+                placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
+                searchBarFocused={searchBarFocused}
+                setSearchBarFocused={setSearchBarFocused}
+                results={results}
+                // @ts-ignore
+                list={[...SubjectsData, ...DoctorsData]}
+                setResults={setResults}
+                options={options}
+                from="Home"
+              />
+            </View>
+          </Shadow>
         </>
       ),
     });

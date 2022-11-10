@@ -21,6 +21,7 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import CustomHeader from "@Components/ui/CustomHeader";
 import SubjectScreen from "@Screens/subjects/subject";
 import SubjectFullPostScreen from "@Screens/subjects/subjectFullPost";
+import { Shadow } from "react-native-shadow-2";
 
 const Stack = createStackNavigator<HomeStackParamList>();
 type Props = BottomTabScreenProps<BottomTabParamList, "HomeNavigation">;
@@ -28,7 +29,8 @@ type Props = BottomTabScreenProps<BottomTabParamList, "HomeNavigation">;
 export default function HomeNavigation({ navigation }: Props) {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const iconColor = theme === "light" ? Colors.lightText : Colors.darkText;
-
+  const shadowColor =
+    theme === "light" ? Colors.lightShadow : Colors.darkShadow;
   const clacIcon =
     theme === "light"
       ? require("@Assets/images/icons/light-icons/calculator.png")
@@ -64,8 +66,27 @@ export default function HomeNavigation({ navigation }: Props) {
       initialRouteName="Home"
       screenOptions={{
         headerTitleStyle: {
-          fontSize: moderateScale(18),
+          fontSize: moderateScale(16),
           fontFamily: "Bukra",
+        },
+        headerBackground() {
+          return (
+            <Shadow
+              distance={12}
+              startColor={shadowColor}
+              endColor="rgba(0, 0, 0, 0)"
+              sides={{
+                top: false,
+                bottom: true,
+                end: false,
+                start: false,
+              }}
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          );
         },
         headerRight: () => {
           return (

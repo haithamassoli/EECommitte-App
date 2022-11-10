@@ -13,7 +13,6 @@ import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { FavoriteContext } from "@Src/store/favoriteContext";
 import { moderateScale, verticalScale } from "@Utils/Platform";
-import { screenHeight } from "@Utils/Helper";
 import { Feather } from "@expo/vector-icons";
 
 type Props = StackScreenProps<HomeStackParamList, "Favorite">;
@@ -36,7 +35,6 @@ const FavoriteScreen = ({ navigation }: Props) => {
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
-            height: screenHeight,
           }}
         >
           <Text
@@ -44,7 +42,6 @@ const FavoriteScreen = ({ navigation }: Props) => {
               fontFamily: "Bukra",
               fontSize: moderateScale(20),
               color: textColor,
-              paddingBottom: verticalScale(180),
             }}
           >
             لا يوجد مفضلة

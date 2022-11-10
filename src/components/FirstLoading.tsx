@@ -7,7 +7,12 @@ import {
   StyleSheet,
 } from "react-native";
 import { useRef, useState, memo } from "react";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  isIOS,
+  moderateScale,
+  verticalScale,
+} from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { StatusBar } from "expo-status-bar";
 import { screenWidth } from "@Utils/Helper";
@@ -86,24 +91,25 @@ THE REGISTRATION PROCESS WAS MADE EASIER FOR STUDENTS THROUGH THE REGISTRATION T
 ];
 
 const FirstLoading = ({ onFinished, onLayout }: Props) => {
-  const [selectedIndex, setSelectedIndex] = useState(data.length - 1);
+  const [selectedIndex, setSelectedIndex] = useState(
+    isIOS ? 0 : data.length - 1
+  );
   const scrollRef = useRef<ScrollView>(null);
   const onNext = () => {
     setSelectedIndex((prev) => {
       scrollRef.current?.scrollTo({
         animated: true,
-        x: screenWidth * (prev != 0 ? prev - 1 : 0),
+        x: screenWidth * (isIOS ? prev + 1 : prev - 1),
         y: 0,
       });
-      return prev != 0 ? prev - 1 : 0;
+      return isIOS ? prev + 1 : prev - 1;
     });
   };
 
   const setImageIndex = (event: any) => {
-    const contentOffset = event.nativeEvent.contentOffset;
-    const viewSize = event.nativeEvent.layoutMeasurement;
-    const newSelectedIndex = Math.floor(contentOffset.x / viewSize.width);
-    setSelectedIndex(newSelectedIndex);
+    const { contentOffset } = event.nativeEvent;
+    const index = Math.round(contentOffset.x / screenWidth);
+    setSelectedIndex(index);
   };
   return (
     <View onLayout={onLayout} style={{ flex: 1 }}>

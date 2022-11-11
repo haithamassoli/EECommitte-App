@@ -20,6 +20,7 @@ export default function SubjectsNavigation() {
       initialRouteName="Plan"
       screenOptions={{
         headerTitle: "ما يخص المواد",
+        headerMode: "screen",
         headerTitleStyle: {
           fontSize: moderateScale(16),
           fontFamily: "Bukra",

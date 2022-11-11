@@ -43,7 +43,7 @@ export default function Route() {
             width: horizontalScale(24),
           },
           tabBarStyle: {
-            minHeight: isIOS ? "8.4%" : "8%",
+            minHeight: isIOS ? "9%" : "8.5%",
             backgroundColor: tabBarBackground,
           },
           tabBarLabelStyle: {

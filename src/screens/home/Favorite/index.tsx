@@ -29,25 +29,6 @@ const FavoriteScreen = ({ navigation }: Props) => {
         paddingBottom: verticalScale(16),
       }}
     >
-      {favorite.length === 0 && (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "Bukra",
-              fontSize: moderateScale(20),
-              color: textColor,
-            }}
-          >
-            لا يوجد مفضلة
-          </Text>
-        </View>
-      )}
       {favorite.map((item) => (
         <View
           key={item.id}
@@ -98,6 +79,39 @@ const FavoriteScreen = ({ navigation }: Props) => {
           </Swipeable>
         </View>
       ))}
+      {favorite.length === 0 ? (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "Bukra",
+              fontSize: moderateScale(20),
+              color: textColor,
+            }}
+          >
+            لا يوجد مفضلة
+          </Text>
+        </View>
+      ) : (
+        <Text
+          style={{
+            fontFamily: "TajawalMedium",
+            color: textColor,
+            fontSize: moderateScale(12),
+            marginTop: verticalScale(4),
+            width: "100%",
+            alignSelf: "flex-start",
+            textAlign: "center",
+          }}
+        >
+          اسحب لليسار للحذف
+        </Text>
+      )}
     </ScrollView>
   );
 };

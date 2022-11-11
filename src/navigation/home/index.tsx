@@ -65,6 +65,7 @@ export default function HomeNavigation({ navigation }: Props) {
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={{
+        headerMode: "screen",
         headerTitleStyle: {
           fontSize: moderateScale(16),
           fontFamily: "Bukra",

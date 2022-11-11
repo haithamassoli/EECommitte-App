@@ -22,6 +22,7 @@ export default function InfoNavigation() {
           fontSize: moderateScale(16),
           fontFamily: "Bukra",
         },
+        headerMode: "screen",
         headerBackground() {
           return (
             <Shadow

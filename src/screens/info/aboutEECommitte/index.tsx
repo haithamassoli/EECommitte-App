@@ -1,7 +1,7 @@
 import FirstLoading from "@Components/FirstLoading";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
-import { isIOS, verticalScale } from "@Utils/Platform";
+import { isIOS } from "@Utils/Platform";
 import { useLayoutEffect } from "react";
 
 type Props = StackScreenProps<InfoStackParamList, "AboutEECommitte">;
@@ -20,7 +20,10 @@ const AboutEECommitteScreen = ({ navigation }: Props) => {
       navigation.getParent()?.setOptions({
         tabBarStyle: {
           display: "flex",
-          minHeight: isIOS ? "8.18%" : "8%",
+          minHeight: isIOS ? "8.4%" : "8%",
+        },
+        tabBarBackground() {
+          return null;
         },
       });
     };

@@ -12,15 +12,11 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { useContext, useEffect, useRef } from "react";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import {
-  getDataFromStorage,
-  screenHeight,
-  storeDataToStorage,
-} from "@Utils/Helper";
+import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
 import SearchResults from "./SearchResults";
 import { SearchInputProps } from "@Types/Search";
 import { HomeNavigationProp } from "@Screens/home";
-import { moderateScale, verticalScale } from "@Utils/Platform";
+import { moderateScale } from "@Utils/Platform";
 import DoctorsData from "@Src/data/Doctors";
 
 let delayTimer: any;

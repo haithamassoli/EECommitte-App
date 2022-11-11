@@ -1,17 +1,22 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { useContext, useLayoutEffect } from "react";
-import { Feather, Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { ThemeContext } from "@Src/store/themeContext";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
+import LottieView from "lottie-react-native";
 
 type Props = StackScreenProps<InfoStackParamList, "SupportUs">;
 
 const SupportUsScreen = ({ navigation }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  const heartsIcons =
+    theme === "light"
+      ? require("@Assets/images/icons/7593-love-pop-up.json")
+      : require("@Assets/images/icons/42243-love-bubble.json");
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "الدعم",
@@ -77,7 +82,13 @@ const SupportUsScreen = ({ navigation }: Props) => {
   }, [theme]);
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Text
         style={{
           fontFamily: "TajawalBold",
@@ -97,15 +108,42 @@ const SupportUsScreen = ({ navigation }: Props) => {
           textAlign: "center",
           marginTop: verticalScale(8),
           color: textColor,
+          marginBottom: verticalScale(20),
         }}
       >
         أشكرك لمجرد وصولك إلى هنا لدعمنا نحتاج دعوتك الجميلة فقط :)
       </Text>
-      <Ionicons
-        name="heart"
-        size={moderateScale(270)}
-        color={Colors.secondYear}
-        style={{ marginTop: verticalScale(20) }}
+      <LottieView
+        autoPlay
+        style={{
+          width: moderateScale(150),
+          height: moderateScale(150),
+          marginBottom: verticalScale(80),
+        }}
+        autoSize
+        source={require("@Assets/images/icons/92501-love.json")}
+      />
+      <LottieView
+        autoPlay
+        style={{
+          width: moderateScale(150),
+          height: moderateScale(150),
+          position: "absolute",
+          bottom: 0,
+          left: -20,
+        }}
+        source={heartsIcons}
+      />
+      <LottieView
+        autoPlay
+        style={{
+          width: moderateScale(150),
+          height: moderateScale(150),
+          position: "absolute",
+          bottom: 0,
+          right: -20,
+        }}
+        source={heartsIcons}
       />
     </View>
   );

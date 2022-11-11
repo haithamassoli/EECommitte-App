@@ -44,6 +44,10 @@ const queryClient = new QueryClient({
 });
 
 export default function App() {
+  // @ts-ignore
+  Text.defaultProps = Text.defaultProps || {};
+  // @ts-ignore
+  Text.defaultProps.allowFontScaling = false;
   const { theme } = useContext(ThemeContext);
   const [isFirstTime, setIsFirstTime] = useState(false);
   useEffect(() => {
@@ -59,13 +63,6 @@ export default function App() {
       }
     };
     forceRTL();
-    // @ts-ignore
-    if (Text.defaultProps == null) {
-      // @ts-ignore
-      Text.defaultProps = {};
-      // @ts-ignore
-      Text.defaultProps.allowFontScaling = false;
-    }
     const firstTime = async () => {
       const firstTime = await getDataFromStorage("firstTime");
       if (firstTime === null) {
@@ -150,17 +147,7 @@ export default function App() {
         />
         <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
           <QueryClientProvider client={queryClient}>
-            {/* <View
-              style={{
-                flex: 1,
-                paddingHorizontal:
-                  Dimensions.get("window").width > 1000
-                    ? horizontalScale(500)
-                    : 0,
-              }}
-            > */}
             <Route />
-            {/* </View> */}
           </QueryClientProvider>
         </SafeAreaView>
       </FavoriteProvider>

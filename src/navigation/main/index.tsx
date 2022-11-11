@@ -63,7 +63,22 @@ export default function Route() {
           tabBarBackground() {
             return (
               <Shadow
-                style={{ width: "100%" }}
+                containerStyle={{
+                  width: "100%",
+                  height: "100%",
+                  backgroundColor:
+                    theme === "light"
+                      ? Colors.lightBackground
+                      : Colors.darkBackground,
+                }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  backgroundColor:
+                    theme === "light"
+                      ? Colors.lightBackground
+                      : Colors.darkBackground,
+                }}
                 distance={12}
                 startColor={shadowColor}
                 endColor="rgba(0, 0, 0, 0)"

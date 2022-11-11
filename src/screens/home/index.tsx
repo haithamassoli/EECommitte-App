@@ -166,19 +166,19 @@ const HomeScreen = ({ navigation }: Props) => {
               />
             </View>
           </SafeAreaView>
-          <Shadow
-            distance={12}
-            startColor={shadowColor}
-            endColor="rgba(0, 0, 0, 0)"
-            sides={{
-              top: false,
-              bottom: true,
-              end: false,
-              start: false,
-            }}
+          <View
+            style={{ paddingHorizontal: horizontalScale(8), zIndex: 10000 }}
           >
-            <View
-              style={{ marginHorizontal: horizontalScale(8), zIndex: 10000 }}
+            <Shadow
+              distance={12}
+              startColor={shadowColor}
+              endColor="rgba(0, 0, 0, 0)"
+              sides={{
+                top: false,
+                bottom: true,
+                end: false,
+                start: false,
+              }}
             >
               <SearchInput
                 placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
@@ -187,14 +187,12 @@ const HomeScreen = ({ navigation }: Props) => {
                 searchBarFocused={searchBarFocused}
                 setSearchBarFocused={setSearchBarFocused}
                 results={results}
-                // @ts-ignore
                 list={[...SubjectsData, ...DoctorsData]}
                 setResults={setResults}
                 options={options}
-                from="Home"
               />
-            </View>
-          </Shadow>
+            </Shadow>
+          </View>
         </>
       ),
     });

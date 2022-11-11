@@ -100,8 +100,9 @@ export default function HomeNavigation({ navigation }: Props) {
             >
               <TouchableOpacity
                 onPress={() => {
-                  // @ts-ignore
-                  navigation.navigate("Search");
+                  navigation.navigate("HomeNavigation", {
+                    screen: "Search",
+                  });
                 }}
               >
                 <Feather

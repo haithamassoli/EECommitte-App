@@ -204,7 +204,6 @@ const SearchScreen = ({ navigation, route }: Props) => {
             setSearchInput={setSearchInput}
             setResults={setResults}
             options={options}
-            // @ts-ignore
             list={[...SubjectsData, ...DoctorsData]}
           />
         </View>

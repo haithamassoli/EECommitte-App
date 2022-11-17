@@ -303,6 +303,8 @@ const HomeScreen = ({ navigation }: Props) => {
           justifyContent: "space-between",
           alignItems: "center",
           marginHorizontal: horizontalScale(12),
+          marginTop: verticalScale(10),
+          marginBottom: verticalScale(4),
         }}
       >
         <Text style={[styles.headerText, { color: textColor }]}>

@@ -14,14 +14,16 @@ export function fetchFAQ(refetchCounter: number) {
     async () => {
       const lastRequest = await getDataFromStorage("lastRequestFaq");
       const connectionStatus = await NetInfo.fetch();
+      const isCacheExpired =
+        new Date().getTime() > new Date(lastRequest).getTime();
       if (
         (lastRequest == null && connectionStatus.isConnected) ||
-        (lastRequest > cacheExpiryTime && connectionStatus.isConnected) ||
+        (isCacheExpired && connectionStatus.isConnected) ||
         (refetchCounter === 1 && connectionStatus.isConnected)
       ) {
         const q = query(collection(db, "faq"), orderBy("time", "desc"));
         const querySnapshot = await getDocs(q);
-        await storeDataToStorage("lastRequestFaq", new Date());
+        await storeDataToStorage("lastRequestFaq", cacheExpiryTime);
         const snapshot = querySnapshot.docs.map((doc) => doc.data());
         await storeDataToStorage("faq", snapshot);
         return snapshot;

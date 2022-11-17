@@ -11,12 +11,13 @@ export async function setNotificationsTokens(token: string) {
   const lastSet = await getDataFromStorage("lastSetNotificationsTokens");
   const connectionStatus = await NetInfo.fetch();
   if (
-    (lastSet == null && connectionStatus.isConnected) ||
-    (lastSet > cacheExpiryTime && connectionStatus.isConnected)
+    lastSet == null &&
+    connectionStatus.isConnected
+    // || (new Date() > lastSet && connectionStatus.isConnected)
   ) {
     const q = query(collection(db, "notificationsTokens"));
     const querySnapshot = await getDocs(q);
-    await storeDataToStorage("lastSetNotificationsTokens", new Date());
+    await storeDataToStorage("lastSetNotificationsTokens", cacheExpiryTime);
     const tokens = querySnapshot.docs.map((doc) => doc.data().token);
     if (!tokens.includes(token)) {
       await addDoc(collection(db, "notificationsTokens"), {

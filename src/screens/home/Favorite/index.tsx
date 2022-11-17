@@ -109,7 +109,7 @@ const FavoriteScreen = ({ navigation }: Props) => {
             textAlign: "center",
           }}
         >
-          اسحب لليسار للحذف
+          اسحب يسارًا للحذف من المفضلة
         </Text>
       )}
     </ScrollView>

@@ -15,14 +15,16 @@ export function fetchRecords(refetchCounter: number) {
       const recordsSec: any = [];
       const lastRequest = await getDataFromStorage("lastRequestRecords");
       const connectionStatus = await NetInfo.fetch();
+      const isCacheExpired =
+        new Date().getTime() > new Date(lastRequest).getTime();
       if (
         (lastRequest == null && connectionStatus.isConnected) ||
-        (lastRequest > cacheExpiryTime && connectionStatus.isConnected) ||
+        (isCacheExpired && connectionStatus.isConnected) ||
         (refetchCounter === 1 && connectionStatus.isConnected)
       ) {
         const q = query(collection(db, "records"), orderBy("time", "desc"));
         const querySnapshot = await getDocs(q);
-        await storeDataToStorage("lastRequestRecords", new Date());
+        await storeDataToStorage("lastRequestRecords", cacheExpiryTime);
         const snapshot = querySnapshot.docs.map((doc) => doc.data());
         snapshot.forEach((doc: any, index: number) => {
           if (index == 0) {
@@ -58,13 +60,15 @@ export function fetchSearchRecords() {
   const { data, isLoading } = useQuery(["searchRecords"], async () => {
     const lastRequest = await getDataFromStorage("lastRequestSearchRecords");
     const connectionStatus = await NetInfo.fetch();
+    const isCacheExpired =
+      new Date().getTime() > new Date(lastRequest).getTime();
     if (
       (lastRequest == null && connectionStatus.isConnected) ||
-      (lastRequest > cacheExpiryTime && connectionStatus.isConnected)
+      (isCacheExpired && connectionStatus.isConnected)
     ) {
       const q = query(collection(db, "records"), orderBy("id", "asc"));
       const querySnapshot = await getDocs(q);
-      await storeDataToStorage("lastRequestSearchRecords", new Date());
+      await storeDataToStorage("lastRequestSearchRecords", cacheExpiryTime);
       const snapshot = querySnapshot.docs.map((doc) => doc.data());
       await storeDataToStorage("searchRecords", snapshot);
       return snapshot;

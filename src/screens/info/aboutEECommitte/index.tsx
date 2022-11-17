@@ -20,7 +20,7 @@ const AboutEECommitteScreen = ({ navigation }: Props) => {
       navigation.getParent()?.setOptions({
         tabBarStyle: {
           display: "flex",
-          minHeight: isIOS ? "8.4%" : "8%",
+          minHeight: isIOS ? "9%" : "8.5%",
         },
         tabBarBackground() {
           return null;

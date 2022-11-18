@@ -179,6 +179,9 @@ const HomeScreen = ({ navigation }: Props) => {
                 end: false,
                 start: false,
               }}
+              style={{
+                paddingBottom: verticalScale(4),
+              }}
             >
               <SearchInput
                 placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."

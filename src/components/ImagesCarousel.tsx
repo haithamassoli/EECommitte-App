@@ -22,6 +22,8 @@ const ImagesCarousel = ({ images }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
   const { theme } = useContext(ThemeContext);
+  const shadowColor =
+    theme === "light" ? "rgba(34, 34, 34, 0.18)" : "rgba(255, 255, 255, 0.34)";
   useEffect(() => {
     const interval = setInterval(() => {
       setSelectedIndex((prevIndex) =>
@@ -45,7 +47,13 @@ const ImagesCarousel = ({ images }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Shadow distance={10} stretch style={styles.shadow}>
+      <Shadow
+        distance={8}
+        stretch
+        startColor={shadowColor}
+        endColor="rgba(0, 0, 0, 0)"
+        style={styles.shadow}
+      >
         <ScrollView
           ref={scrollRef}
           contentContainerStyle={{

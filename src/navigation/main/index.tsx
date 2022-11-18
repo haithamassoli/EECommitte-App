@@ -79,7 +79,7 @@ export default function Route() {
                       ? Colors.lightBackground
                       : Colors.darkBackground,
                 }}
-                distance={12}
+                distance={8}
                 startColor={shadowColor}
                 endColor="rgba(0, 0, 0, 0)"
                 sides={{

@@ -103,6 +103,7 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
           list={data}
           style={{
             marginTop: verticalScale(6),
+            marginBottom: verticalScale(4),
             marginHorizontal: horizontalScale(12),
           }}
         />

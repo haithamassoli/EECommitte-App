@@ -89,7 +89,8 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
           options={options}
           list={data}
           style={{
-            marginVertical: verticalScale(6),
+            marginTop: verticalScale(6),
+            marginBottom: verticalScale(4),
             marginHorizontal: horizontalScale(12),
           }}
         />

@@ -185,5 +185,9 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(24),
     marginTop: verticalScale(40),
   },
-  searchInput: { marginVertical: verticalScale(6) },
+  searchInput: {
+    marginTop: verticalScale(6),
+    marginBottom: verticalScale(4),
+    marginHorizontal: horizontalScale(12),
+  },
 });

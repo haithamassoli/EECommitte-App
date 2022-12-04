@@ -5,7 +5,7 @@ import { Feather } from "@expo/vector-icons";
 import type { BottomTabParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   DarkNavigationColors,
   LightNavigationColors,
@@ -20,11 +20,42 @@ import {
 } from "@Utils/Platform";
 import { screenWidth } from "@Utils/Helper";
 import { Shadow } from "react-native-shadow-2";
+import { Animated } from "react-native";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
 export default function Route() {
   const { theme } = useContext(ThemeContext);
+  const [labelYPositionTab1] = useState(new Animated.Value(40));
+  const [labelYPositionTab2] = useState(new Animated.Value(40));
+  const [labelYPositionTab3] = useState(new Animated.Value(40));
+
+  useEffect(() => {
+    Animated.spring(labelYPositionTab1, {
+      toValue: 0,
+      delay: 200,
+      velocity: 0.1,
+      speed: 0.1,
+      bounciness: 0,
+      useNativeDriver: true,
+    }).start();
+    Animated.spring(labelYPositionTab2, {
+      toValue: 0,
+      delay: 400,
+      velocity: 0.1,
+      speed: 0.1,
+      bounciness: 0,
+      useNativeDriver: true,
+    }).start();
+    Animated.spring(labelYPositionTab3, {
+      toValue: 0,
+      delay: 600,
+      velocity: 0.1,
+      speed: 0.1,
+      bounciness: 0,
+      useNativeDriver: true,
+    }).start();
+  }, []);
   const tabBarActiveTintColor =
     theme === "light" ? Colors.primary700 : Colors.primary400;
   const shadowColor =
@@ -43,7 +74,7 @@ export default function Route() {
             width: horizontalScale(24),
           },
           tabBarStyle: {
-            minHeight: isIOS ? "9%" : "8.5%",
+            minHeight: isIOS ? "8.8%" : "8.2%",
             backgroundColor: tabBarBackground,
           },
           tabBarLabelStyle: {
@@ -79,7 +110,7 @@ export default function Route() {
                       ? Colors.lightBackground
                       : Colors.darkBackground,
                 }}
-                distance={8}
+                distance={10}
                 startColor={shadowColor}
                 endColor="rgba(0, 0, 0, 0)"
                 sides={{
@@ -101,7 +132,24 @@ export default function Route() {
               tabBarIcon: ({ color }) => (
                 <Feather name="home" size={moderateScale(24)} color={color} />
               ),
-              tabBarLabel: "الرئيسية",
+              tabBarLabel: ({ color }) => (
+                <Animated.Text
+                  style={{
+                    color,
+                    transform: [{ translateY: labelYPositionTab1 }],
+                    fontSize: moderateScale(12),
+                    fontFamily: "TajawalBold",
+                    paddingBottom:
+                      screenWidth < 500 && isIOS
+                        ? 0
+                        : screenWidth < 500
+                        ? verticalScale(8)
+                        : 0,
+                  }}
+                >
+                  الرئيسية
+                </Animated.Text>
+              ),
               headerShown: false,
             }}
           />
@@ -109,6 +157,24 @@ export default function Route() {
             name="SubjectsNavigation"
             component={SubjectsNavigation}
             options={{
+              tabBarLabel: ({ color }) => (
+                <Animated.Text
+                  style={{
+                    color,
+                    transform: [{ translateY: labelYPositionTab2 }],
+                    fontSize: moderateScale(12),
+                    fontFamily: "TajawalBold",
+                    paddingBottom:
+                      screenWidth < 500 && isIOS
+                        ? 0
+                        : screenWidth < 500
+                        ? verticalScale(8)
+                        : 0,
+                  }}
+                >
+                  ما يخص المواد
+                </Animated.Text>
+              ),
               tabBarIcon: ({ color }) => (
                 <Feather
                   name="share-2"
@@ -124,18 +190,34 @@ export default function Route() {
                 />
               ),
               headerShown: false,
-              tabBarLabel: "ما يخص المواد",
             }}
           />
           <BottomTabs.Screen
             name="InfoNavigation"
             component={InfoNavigation}
             options={{
+              tabBarLabel: ({ color }) => (
+                <Animated.Text
+                  style={{
+                    color,
+                    transform: [{ translateY: labelYPositionTab3 }],
+                    fontSize: moderateScale(12),
+                    fontFamily: "TajawalBold",
+                    paddingBottom:
+                      screenWidth < 500 && isIOS
+                        ? 0
+                        : screenWidth < 500
+                        ? verticalScale(8)
+                        : 0,
+                  }}
+                >
+                  المزيد
+                </Animated.Text>
+              ),
               tabBarIcon: ({ color }) => (
                 <Feather name="menu" size={moderateScale(24)} color={color} />
               ),
               headerShown: false,
-              tabBarLabel: "المزيد",
             }}
           />
         </>

@@ -129,8 +129,8 @@ const SupportUsScreen = ({ navigation }: Props) => {
           width: moderateScale(150),
           height: moderateScale(150),
           position: "absolute",
-          bottom: 0,
-          left: -20,
+          bottom: 4,
+          left: -8,
         }}
         source={heartsIcons}
       />
@@ -140,8 +140,8 @@ const SupportUsScreen = ({ navigation }: Props) => {
           width: moderateScale(150),
           height: moderateScale(150),
           position: "absolute",
-          bottom: 0,
-          right: -20,
+          bottom: 4,
+          right: -8,
         }}
         source={heartsIcons}
       />

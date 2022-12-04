@@ -33,7 +33,7 @@ export default function Route() {
   useEffect(() => {
     Animated.spring(labelYPositionTab1, {
       toValue: 0,
-      delay: 200,
+      delay: 600,
       velocity: 0.1,
       speed: 0.1,
       bounciness: 0,
@@ -41,7 +41,7 @@ export default function Route() {
     }).start();
     Animated.spring(labelYPositionTab2, {
       toValue: 0,
-      delay: 400,
+      delay: 800,
       velocity: 0.1,
       speed: 0.1,
       bounciness: 0,
@@ -49,7 +49,7 @@ export default function Route() {
     }).start();
     Animated.spring(labelYPositionTab3, {
       toValue: 0,
-      delay: 600,
+      delay: 1000,
       velocity: 0.1,
       speed: 0.1,
       bounciness: 0,

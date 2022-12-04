@@ -1,10 +1,19 @@
+// @ts-nocheck
 import "react-native-gesture-handler";
 import { useCallback, useContext, useEffect, useState } from "react";
 import * as Notifications from "expo-notifications";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Route from "./src/navigation/main";
-import { I18nManager, Platform, Text, UIManager, Alert } from "react-native";
+import {
+  I18nManager,
+  Platform,
+  Text,
+  UIManager,
+  Alert,
+  TextInput,
+  ScrollView,
+} from "react-native";
 import { reloadAsync } from "expo-updates";
 import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
@@ -15,6 +24,7 @@ import { FavoriteProvider } from "@Src/store/favoriteContext";
 import { setNotificationsTokens } from "@Src/api/setNotificationsTokens";
 import FirstLoading from "@Components/FirstLoading";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { FlashList } from "@shopify/flash-list";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -44,10 +54,22 @@ const queryClient = new QueryClient({
 });
 
 export default function App() {
-  // @ts-ignore
+  TextInput.defaultProps = TextInput.defaultProps || {};
+  TextInput.defaultProps.allowFontScaling = false;
+
   Text.defaultProps = Text.defaultProps || {};
-  // @ts-ignore
   Text.defaultProps.allowFontScaling = false;
+
+  ScrollView.defaultProps = ScrollView.defaultProps || {};
+  ScrollView.defaultProps.showsVerticalScrollIndicator = false;
+  ScrollView.defaultProps.showsHorizontalScrollIndicator = false;
+
+  FlashList.defaultProps = FlashList.defaultProps || {};
+  FlashList.defaultProps.showsVerticalScrollIndicator = false;
+  FlashList.defaultProps.showsHorizontalScrollIndicator = false;
+  Text.defaultProps = Text.defaultProps || {};
+  Text.defaultProps.allowFontScaling = false;
+
   const { theme } = useContext(ThemeContext);
   const [isFirstTime, setIsFirstTime] = useState(false);
   useEffect(() => {

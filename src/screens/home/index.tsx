@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, memo } from "react";
+import { useState, useContext, useEffect, memo, useRef } from "react";
 import {
   View,
   Image,
@@ -9,6 +9,7 @@ import {
   Keyboard,
   ActivityIndicator,
   RefreshControl,
+  Animated,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./styles";
@@ -49,8 +50,6 @@ const HomeScreen = ({ navigation }: Props) => {
   const isFocused = useIsFocused();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const shadowColor =
-    theme === "light" ? Colors.lightShadow : Colors.darkShadow;
   const { data, isLoading, isFetching }: any =
     fetchSliderImages(refetchCounter);
   useEffect(() => {
@@ -168,17 +167,17 @@ const HomeScreen = ({ navigation }: Props) => {
           <View
             style={{ paddingHorizontal: horizontalScale(8), zIndex: 10000 }}
           >
-              <SearchInput
-                placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
-                searchBarFocused={searchBarFocused}
-                setSearchBarFocused={setSearchBarFocused}
-                results={results}
-                list={[...SubjectsData, ...DoctorsData]}
-                setResults={setResults}
-                options={options}
-              />
+            <SearchInput
+              placeholder="ابحث عن ما يهمك: مواد، مدرسين، سنوات..."
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+              searchBarFocused={searchBarFocused}
+              setSearchBarFocused={setSearchBarFocused}
+              results={results}
+              list={[...SubjectsData, ...DoctorsData]}
+              setResults={setResults}
+              options={options}
+            />
           </View>
         </>
       ),
@@ -252,6 +251,23 @@ const HomeScreen = ({ navigation }: Props) => {
       onPress: () => navigation.navigate("FAQ"),
     },
   ];
+
+  // animation for the buttons first time with delay
+  const animatedButtons = useRef(
+    buttons.map((_, i) => new Animated.Value(0))
+  ).current;
+  useEffect(() => {
+    Animated.stagger(
+      100,
+      animatedButtons.map((value) =>
+        Animated.timing(value, {
+          toValue: 100,
+          duration: 500,
+          useNativeDriver: true,
+        })
+      )
+    ).start();
+  }, []);
 
   return (
     <ScrollView
@@ -379,21 +395,38 @@ const HomeScreen = ({ navigation }: Props) => {
             style={styles.buttonContainer}
             onPress={button.onPress}
           >
-            <Image
-              source={theme === "light" ? button.lightIcon : button.darkIcon}
-              style={styles.icon}
-            />
-            <Text
-              style={[
-                styles.iconText,
-                { color: textColor, marginTop: verticalScale(4) },
-              ]}
+            <Animated.View
+              style={{
+                opacity: animatedButtons[index].interpolate({
+                  inputRange: [0, 100],
+                  outputRange: [0, 1],
+                }),
+                transform: [
+                  {
+                    translateY: animatedButtons[index].interpolate({
+                      inputRange: [0, 100],
+                      outputRange: [verticalScale(20), 0],
+                    }),
+                  },
+                ],
+              }}
             >
-              {button.title}
-            </Text>
-            <Text style={[styles.iconText, { color: textColor }]}>
-              {button.title2}
-            </Text>
+              <Image
+                source={theme === "light" ? button.lightIcon : button.darkIcon}
+                style={styles.icon}
+              />
+              <Text
+                style={[
+                  styles.iconText,
+                  { color: textColor, marginTop: verticalScale(4) },
+                ]}
+              >
+                {button.title}
+              </Text>
+              <Text style={[styles.iconText, { color: textColor }]}>
+                {button.title2}
+              </Text>
+            </Animated.View>
           </TouchableOpacity>
         ))}
       </View>

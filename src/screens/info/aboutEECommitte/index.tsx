@@ -15,15 +15,15 @@ const AboutEECommitteScreen = ({ navigation }: Props) => {
       tabBarStyle: {
         display: "none",
       },
+      tabBarBackground() {
+        return null;
+      },
     });
     return () => {
       navigation.getParent()?.setOptions({
         tabBarStyle: {
           display: "flex",
-          minHeight: isIOS ? "9%" : "8.5%",
-        },
-        tabBarBackground() {
-          return null;
+          minHeight: isIOS ? "8.8%" : "8.2%",
         },
       });
     };

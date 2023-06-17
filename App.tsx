@@ -25,6 +25,7 @@ import { setNotificationsTokens } from "@Src/api/setNotificationsTokens";
 import FirstLoading from "@Components/FirstLoading";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FlashList } from "@shopify/flash-list";
+import { ScreenSizeProvider } from "@Src/store/screenSizeContext";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -161,17 +162,19 @@ export default function App() {
   return (
     <ThemeProvider>
       <FavoriteProvider>
-        <StatusBar
-          style={theme === "light" ? "dark" : "light"}
-          backgroundColor={
-            theme === "light" ? Colors.lightBackground : Colors.darkBackground
-          }
-        />
-        <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
-          <QueryClientProvider client={queryClient}>
-            <Route />
-          </QueryClientProvider>
-        </SafeAreaView>
+        <ScreenSizeProvider>
+          <StatusBar
+            style={theme === "light" ? "dark" : "light"}
+            backgroundColor={
+              theme === "light" ? Colors.lightBackground : Colors.darkBackground
+            }
+          />
+          <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
+            <QueryClientProvider client={queryClient}>
+              <Route />
+            </QueryClientProvider>
+          </SafeAreaView>
+        </ScreenSizeProvider>
       </FavoriteProvider>
     </ThemeProvider>
   );

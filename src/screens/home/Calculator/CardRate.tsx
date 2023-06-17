@@ -54,6 +54,7 @@ const CardRate = ({ title, rate }: Props) => {
         style={{
           fontFamily: "Bukra",
           color: textColor,
+          textAlign: "left",
           fontSize: moderateScale(16),
         }}
       >
@@ -63,6 +64,7 @@ const CardRate = ({ title, rate }: Props) => {
         style={{
           marginTop: verticalScale(12),
           fontFamily: "TajawalBold",
+          textAlign: "left",
           color: textColor,
           fontSize: moderateScale(46),
         }}
@@ -72,6 +74,7 @@ const CardRate = ({ title, rate }: Props) => {
       <Text
         style={{
           fontFamily: "TajawalBold",
+          textAlign: "left",
           color: textColor,
           fontSize: moderateScale(24),
         }}

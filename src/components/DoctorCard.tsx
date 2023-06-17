@@ -1,6 +1,7 @@
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import { Feather } from "@expo/vector-icons";
 import { useContext } from "react";
 import {
   View,
@@ -35,15 +36,45 @@ const DoctorCard = ({ name, image, office, phone, email, website }: any) => {
         {phone && (
           <TouchableOpacity
             onPress={() => Linking.openURL(`tel:${phone?.split(" ")[1]}`)}
-            style={{ overflow: "hidden" }}
+            style={{
+              overflow: "hidden",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingEnd: horizontalScale(10),
+            }}
           >
-            <Text style={styles.phone}>الهاتف: {phone}</Text>
+            <Text style={[styles.name, { color: textColor }]}>
+              الهاتف: {phone}
+            </Text>
+            <Feather
+              name="phone-call"
+              size={horizontalScale(16)}
+              color={Colors.primary600}
+            />
           </TouchableOpacity>
         )}
-        <View style={styles.linksContainer}>
-          <TouchableOpacity onPress={() => Linking.openURL(`mailto:${email}`)}>
-            <Text style={styles.email}>البريد الإلكتروني</Text>
-            <Text style={styles.email}>{email}</Text>
+        <View>
+          <TouchableOpacity
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingEnd: horizontalScale(10),
+            }}
+            onPress={() => Linking.openURL(`mailto:${email}`)}
+          >
+            <View>
+              <Text style={[styles.name, { color: textColor }]}>
+                البريد الإلكتروني:
+              </Text>
+              <Text style={[styles.name, { color: textColor }]}>{email}</Text>
+            </View>
+            <Feather
+              name="mail"
+              size={horizontalScale(16)}
+              color={Colors.primary600}
+            />
           </TouchableOpacity>
         </View>
         <TouchableOpacity
@@ -105,9 +136,9 @@ const styles = StyleSheet.create({
   },
   website: {
     backgroundColor: Colors.primary400,
-    padding: moderateScale(5),
-    borderRadius: moderateScale(10),
-    marginVertical: verticalScale(5),
+    padding: moderateScale(6),
+    borderRadius: moderateScale(12),
+    marginVertical: verticalScale(6),
     alignSelf: "center",
   },
   websiteText: {

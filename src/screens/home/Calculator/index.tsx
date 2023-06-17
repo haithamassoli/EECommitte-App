@@ -174,6 +174,7 @@ const CalculatorScreen = () => {
                   color: textColor,
                   fontSize: moderateScale(16),
                   width: horizontalScale(200),
+                  textAlign: "left",
                 }}
               >
                 المعدل التراكمي السابق
@@ -212,6 +213,7 @@ const CalculatorScreen = () => {
                   style={{
                     fontFamily: "Bukra",
                     color: textColor,
+                    textAlign: "left",
                     fontSize: moderateScale(16),
                     width: horizontalScale(200),
                   }}
@@ -221,6 +223,7 @@ const CalculatorScreen = () => {
                 <Text
                   style={{
                     fontFamily: "TajawalMedium",
+                    textAlign: "left",
                     color: textColor,
                     fontSize: moderateScale(12),
                     marginTop: verticalScale(4),
@@ -372,6 +375,7 @@ const styles = StyleSheet.create({
     height: verticalScale(30),
     borderRadius: verticalScale(15),
     justifyContent: "center",
+    textAlign: "left",
   },
   gpaToggleCircle: {
     width: verticalScale(30),
@@ -431,5 +435,6 @@ const styles = StyleSheet.create({
     fontFamily: "Bukra",
     color: Colors.darkText,
     fontSize: moderateScale(16),
+    textAlign: "left",
   },
 });

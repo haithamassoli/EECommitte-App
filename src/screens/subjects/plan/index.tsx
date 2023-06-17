@@ -1,7 +1,6 @@
 import { StackScreenProps } from "@react-navigation/stack";
 import ReactNativeZoomableView from "@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView";
 import ImageMapper from "@Components/imageMapper";
-import { screenHeight, screenWidth } from "@Utils/Helper";
 import type { MapperItem } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import MAPPING from "./Mapping";
@@ -10,10 +9,12 @@ import { Image, StyleSheet, ImageBackground } from "react-native";
 import { verticalScale } from "@Utils/Platform";
 import { ThemeContext } from "@Src/store/themeContext";
 import HeaderRight from "../HeaderRight";
+import { ScreenSizeContext } from "@Src/store/screenSizeContext";
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
 const PlanScreen = ({ navigation }: Props) => {
   const { theme } = useContext(ThemeContext);
+  const { screenHeight, screenWidth } = useContext(ScreenSizeContext);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
@@ -43,14 +44,18 @@ const PlanScreen = ({ navigation }: Props) => {
           maxZoom={1.5}
           minZoom={0.5}
           zoomStep={0.5}
-          initialZoom={1}
+          initialZoom={screenWidth > screenHeight ? 0.7 : 1}
           bindToBorders={true}
           visualTouchFeedbackEnabled={false}
         >
           <ImageMapper
             imgSource={require("@Assets/images/plan.webp")}
-            imgWidth={screenWidth}
-            imgHeight={screenWidth * 1.089}
+            imgWidth={screenWidth > screenHeight ? screenHeight : screenWidth}
+            imgHeight={
+              screenWidth > screenHeight
+                ? screenHeight * 1.089
+                : screenWidth * 1.089
+            }
             imgMap={MAPPING}
             containerStyle={{
               flexGrow: 1,
@@ -61,7 +66,7 @@ const PlanScreen = ({ navigation }: Props) => {
             }}
           />
         </ReactNativeZoomableView>
-        {screenHeight > 650 && (
+        {screenHeight > 650 && screenWidth < screenHeight && (
           <Image
             source={require("@Assets/images/planLowerbar.webp")}
             resizeMode="contain"

@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import InfoItem from "@Components/infoItem";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -18,6 +19,8 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { useContext, useLayoutEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { Feather } from "@expo/vector-icons";
+import { screenHeight, screenWidth } from "@Utils/Helper";
+import { ScreenSizeContext } from "@Src/store/screenSizeContext";
 
 type Props = StackScreenProps<InfoStackParamList, "Info">;
 
@@ -26,6 +29,7 @@ const appUrl = isIOS
   : "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte";
 const InfoScreen = ({ navigation }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const { screenHeight, screenWidth } = useContext(ScreenSizeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -78,62 +82,66 @@ const InfoScreen = ({ navigation }: Props) => {
     navigation.push(page);
   };
   return (
-    <View style={styles.container}>
-      <InfoItem
-        icon="info"
-        title="عن اللجنة"
-        subTitle="لجنة الهندسة الكهربائية"
-        onPress={() => onPress("AboutEECommitte")}
-      />
-      <InfoItem
-        icon="smartphone"
-        title="تطبيق Engineers"
-        subTitle="كل ما يهم طالب الهندسة في السنة الأولى"
-        onPress={() =>
-          Linking.openURL(
-            "https://play.google.com/store/apps/details?id=com.taimaah.edu"
-          )
-        }
-      />
-      <InfoItem
-        icon="mail"
-        title="تواصل مع المطور"
-        subTitle="للملاحظات والإقتراحات"
-        onPress={() =>
-          Linking.openURL(
-            "mailto:haitham.b.assoli@gmail.com?subject=تطبيق لجنة الهندسة الكهربائية&body=مرحباً هيثم،"
-          )
-        }
-      />
-      <InfoItem
-        icon="share"
-        title="شارك التطبيق"
-        subTitle="شارك التطبيق مع أصدقائك"
-        onPress={() =>
-          Share.share({
-            message: `تطبيق لجنة الهندسة الكهربائية على الاندرويد
+    <ScrollView style={styles.container}>
+      <View style={styles.content}>
+        {screenWidth < screenHeight ? (
+          <InfoItem
+            icon="info"
+            title="عن اللجنة"
+            subTitle="لجنة الهندسة الكهربائية"
+            onPress={() => onPress("AboutEECommitte")}
+          />
+        ) : null}
+        <InfoItem
+          icon="smartphone"
+          title="تطبيق Engineers"
+          subTitle="كل ما يهم طالب الهندسة في السنة الأولى"
+          onPress={() =>
+            Linking.openURL(
+              "https://play.google.com/store/apps/details?id=com.taimaah.edu"
+            )
+          }
+        />
+        <InfoItem
+          icon="mail"
+          title="تواصل مع المطور"
+          subTitle="للملاحظات والإقتراحات"
+          onPress={() =>
+            Linking.openURL(
+              "mailto:haitham.b.assoli@gmail.com?subject=تطبيق لجنة الهندسة الكهربائية&body=مرحباً هيثم،"
+            )
+          }
+        />
+        <InfoItem
+          icon="share"
+          title="شارك التطبيق"
+          subTitle="شارك التطبيق مع أصدقائك"
+          onPress={() =>
+            Share.share({
+              message: `تطبيق لجنة الهندسة الكهربائية على الاندرويد
 https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte
             
 تطبيق لجنة الهندسة الكهربائية على الايفون
 https://apps.apple.com/us/app/eecommittee/id6443760623`,
-          })
-        }
-      />
-      <InfoItem
-        icon="star"
-        title="قيم التطبيق"
-        subTitle={
-          isIOS ? "قيم التطبيق على الأب ستور" : "قيم التطبيق على جوجل بلاي"
-        }
-        onPress={() => Linking.openURL(appUrl)}
-      />
-      <InfoItem
-        icon="heart"
-        title="ادعمنا"
-        subTitle="ساعدنا على تطوير التطبيق"
-        onPress={() => onPress("SupportUs")}
-      />
-    </View>
+            })
+          }
+        />
+        <InfoItem
+          icon="star"
+          title="قيم التطبيق"
+          subTitle={
+            isIOS ? "قيم التطبيق على الأب ستور" : "قيم التطبيق على جوجل بلاي"
+          }
+          onPress={() => Linking.openURL(appUrl)}
+        />
+        <InfoItem
+          icon="heart"
+          title="ادعمنا"
+          subTitle="ساعدنا على تطوير التطبيق"
+          onPress={() => onPress("SupportUs")}
+        />
+      </View>
+    </ScrollView>
   );
 };
 
@@ -144,6 +152,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: horizontalScale(20),
     paddingTop: verticalScale(20),
+    paddingBottom: verticalScale(20),
+  },
+  content: {
+    flex: 1,
+    paddingBottom: verticalScale(16),
   },
   headerTitle: {
     fontSize: moderateScale(24),

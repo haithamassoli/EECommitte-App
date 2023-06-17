@@ -18,13 +18,14 @@ import {
   moderateScale,
   verticalScale,
 } from "@Utils/Platform";
-import { screenWidth } from "@Utils/Helper";
 import { Shadow } from "react-native-shadow-2";
-import { Animated } from "react-native";
+import { Animated, View } from "react-native";
+import { ScreenSizeContext } from "@Src/store/screenSizeContext";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 
 export default function Route() {
+  const { screenWidth, screenHeight } = useContext(ScreenSizeContext);
   const { theme } = useContext(ThemeContext);
   const [labelYPositionTab1] = useState(new Animated.Value(40));
   const [labelYPositionTab2] = useState(new Animated.Value(40));
@@ -63,165 +64,208 @@ export default function Route() {
   const tabBarBackground =
     theme === "light" ? Colors.lightBackground : Colors.darkBackground;
   return (
-    <NavigationContainer
-      theme={theme === "light" ? LightNavigationColors : DarkNavigationColors}
+    <View
+      style={{
+        flex: 1,
+        paddingEnd: screenWidth > screenHeight ? verticalScale(60) : 0,
+        backgroundColor:
+          theme === "light" ? Colors.lightBackground : Colors.darkBackground,
+      }}
     >
-      <BottomTabs.Navigator
-        screenOptions={{
-          tabBarHideOnKeyboard: true,
-          tabBarActiveTintColor,
-          tabBarIconStyle: {
-            width: horizontalScale(24),
-          },
-          tabBarStyle: {
-            minHeight: isIOS ? "8.8%" : "8.2%",
-            backgroundColor: tabBarBackground,
-          },
-          tabBarLabelStyle: {
-            fontSize: moderateScale(12),
-            fontFamily: "TajawalBold",
-            paddingBottom:
-              screenWidth < 500 && isIOS
-                ? 0
-                : screenWidth < 500
-                ? verticalScale(8)
-                : 0,
-          },
-          headerTitleStyle: {
-            fontSize: moderateScale(16),
-            fontFamily: "Bukra",
-          },
-          tabBarBackground() {
-            return (
-              <Shadow
-                containerStyle={{
-                  width: "100%",
-                  height: "100%",
-                  backgroundColor:
-                    theme === "light"
-                      ? Colors.lightBackground
-                      : Colors.darkBackground,
-                }}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  backgroundColor:
-                    theme === "light"
-                      ? Colors.lightBackground
-                      : Colors.darkBackground,
-                }}
-                distance={10}
-                startColor={shadowColor}
-                endColor="rgba(0, 0, 0, 0)"
-                sides={{
-                  top: true,
-                  bottom: false,
-                  end: false,
-                  start: false,
-                }}
-              />
-            );
-          },
-        }}
+      <NavigationContainer
+        theme={theme === "light" ? LightNavigationColors : DarkNavigationColors}
       >
-        <>
-          <BottomTabs.Screen
-            name="HomeNavigation"
-            component={HomeNavigation}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Feather name="home" size={moderateScale(24)} color={color} />
-              ),
-              tabBarLabel: ({ color }) => (
-                <Animated.Text
-                  style={{
-                    color,
-                    transform: [{ translateY: labelYPositionTab1 }],
-                    fontSize: moderateScale(12),
-                    fontFamily: "TajawalBold",
-                    paddingBottom:
-                      screenWidth < 500 && isIOS
-                        ? 0
-                        : screenWidth < 500
-                        ? verticalScale(8)
-                        : 0,
+        <BottomTabs.Navigator
+          screenOptions={{
+            tabBarHideOnKeyboard: true,
+            tabBarActiveTintColor,
+            tabBarIconStyle: {
+              width: horizontalScale(24),
+              transform: [
+                { rotate: screenWidth > screenHeight ? "90deg" : "0deg" },
+              ],
+            },
+            tabBarStyle: {
+              position: screenWidth > screenHeight ? "absolute" : "relative",
+              top: screenWidth > screenHeight ? "42%" : 0,
+              transform: [
+                { rotate: screenWidth > screenHeight ? "270deg" : "0deg" },
+                {
+                  translateY:
+                    screenWidth > screenHeight ? -screenWidth / 1.38 : 0,
+                },
+              ],
+              height: screenWidth > screenHeight ? "22%" : "8.5%",
+              width: screenWidth > screenHeight ? screenHeight : "100%",
+              backgroundColor: tabBarBackground,
+            },
+            tabBarItemStyle: {
+              height: screenWidth > screenHeight ? verticalScale(100) : "100%",
+            },
+            tabBarLabelStyle: {
+              fontSize: moderateScale(12),
+              fontFamily: "TajawalBold",
+              paddingBottom:
+                screenWidth < 500 && isIOS
+                  ? 0
+                  : screenWidth < 500
+                  ? verticalScale(8)
+                  : 0,
+            },
+            headerTitleStyle: {
+              fontSize: moderateScale(16),
+              fontFamily: "Bukra",
+            },
+            tabBarBackground() {
+              return (
+                <Shadow
+                  containerStyle={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor:
+                      theme === "light"
+                        ? Colors.lightBackground
+                        : Colors.darkBackground,
                   }}
-                >
-                  الرئيسية
-                </Animated.Text>
-              ),
-              headerShown: false,
-            }}
-          />
-          <BottomTabs.Screen
-            name="SubjectsNavigation"
-            component={SubjectsNavigation}
-            options={{
-              tabBarLabel: ({ color }) => (
-                <Animated.Text
                   style={{
-                    color,
-                    transform: [{ translateY: labelYPositionTab2 }],
-                    fontSize: moderateScale(12),
-                    fontFamily: "TajawalBold",
-                    paddingBottom:
-                      screenWidth < 500 && isIOS
-                        ? 0
-                        : screenWidth < 500
-                        ? verticalScale(8)
-                        : 0,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor:
+                      theme === "light"
+                        ? Colors.lightBackground
+                        : Colors.darkBackground,
                   }}
-                >
-                  ما يخص المواد
-                </Animated.Text>
-              ),
-              tabBarIcon: ({ color }) => (
-                <Feather
-                  name="share-2"
-                  size={moderateScale(28)}
-                  color={color}
-                  style={{
-                    transform: [
-                      { rotate: "-30deg" },
-                      { translateY: 3 },
-                      { translateX: -3 },
-                    ],
+                  distance={10}
+                  startColor={shadowColor}
+                  endColor="rgba(0, 0, 0, 0)"
+                  sides={{
+                    top: true,
+                    bottom: false,
+                    end: false,
+                    start: false,
                   }}
                 />
-              ),
-              headerShown: false,
-            }}
-          />
-          <BottomTabs.Screen
-            name="InfoNavigation"
-            component={InfoNavigation}
-            options={{
-              tabBarLabel: ({ color }) => (
-                <Animated.Text
-                  style={{
-                    color,
-                    transform: [{ translateY: labelYPositionTab3 }],
-                    fontSize: moderateScale(12),
-                    fontFamily: "TajawalBold",
-                    paddingBottom:
-                      screenWidth < 500 && isIOS
-                        ? 0
-                        : screenWidth < 500
-                        ? verticalScale(8)
-                        : 0,
-                  }}
-                >
-                  المزيد
-                </Animated.Text>
-              ),
-              tabBarIcon: ({ color }) => (
-                <Feather name="menu" size={moderateScale(24)} color={color} />
-              ),
-              headerShown: false,
-            }}
-          />
-        </>
-      </BottomTabs.Navigator>
-    </NavigationContainer>
+              );
+            },
+          }}
+        >
+          <>
+            <BottomTabs.Screen
+              name="HomeNavigation"
+              component={HomeNavigation}
+              options={{
+                tabBarIcon: ({ color }) => (
+                  <Feather name="home" size={moderateScale(24)} color={color} />
+                ),
+                tabBarLabel: ({ color }) => (
+                  <Animated.Text
+                    style={{
+                      color,
+                      transform: [
+                        { translateY: labelYPositionTab1 },
+                        {
+                          rotate: screenWidth > screenHeight ? "90deg" : "0deg",
+                        },
+                      ],
+                      fontSize: moderateScale(12),
+                      fontFamily: "TajawalBold",
+                      paddingBottom:
+                        screenWidth < 500 && isIOS
+                          ? 0
+                          : screenWidth < 500
+                          ? verticalScale(8)
+                          : 0,
+                    }}
+                  >
+                    الرئيسية
+                  </Animated.Text>
+                ),
+                headerShown: false,
+              }}
+            />
+            <BottomTabs.Screen
+              name="SubjectsNavigation"
+              component={SubjectsNavigation}
+              options={{
+                tabBarLabel: ({ color }) => (
+                  <Animated.Text
+                    style={{
+                      color,
+                      transform: [
+                        { translateY: labelYPositionTab2 },
+                        {
+                          rotate: screenWidth > screenHeight ? "90deg" : "0deg",
+                        },
+                      ],
+                      width:
+                        screenWidth > screenHeight ? verticalScale(60) : "100%",
+                      textAlign: "center",
+                      fontSize: moderateScale(12),
+                      fontFamily: "TajawalBold",
+                      paddingBottom:
+                        screenWidth < 500 && isIOS
+                          ? 0
+                          : screenWidth < 500
+                          ? verticalScale(8)
+                          : 0,
+                    }}
+                  >
+                    ما يخص المواد
+                  </Animated.Text>
+                ),
+                tabBarIcon: ({ color }) => (
+                  <Feather
+                    name="share-2"
+                    size={moderateScale(28)}
+                    color={color}
+                    style={{
+                      transform: [
+                        { rotate: "-30deg" },
+                        { translateY: 3 },
+                        { translateX: -3 },
+                      ],
+                    }}
+                  />
+                ),
+                headerShown: false,
+              }}
+            />
+            <BottomTabs.Screen
+              name="InfoNavigation"
+              component={InfoNavigation}
+              options={{
+                tabBarLabel: ({ color }) => (
+                  <Animated.Text
+                    style={{
+                      color,
+                      transform: [
+                        { translateY: labelYPositionTab3 },
+                        {
+                          rotate: screenWidth > screenHeight ? "90deg" : "0deg",
+                        },
+                      ],
+                      fontSize: moderateScale(12),
+                      fontFamily: "TajawalBold",
+                      paddingBottom:
+                        screenWidth < 500 && isIOS
+                          ? 0
+                          : screenWidth < 500
+                          ? verticalScale(8)
+                          : 0,
+                    }}
+                  >
+                    المزيد
+                  </Animated.Text>
+                ),
+                tabBarIcon: ({ color }) => (
+                  <Feather name="menu" size={moderateScale(24)} color={color} />
+                ),
+                headerShown: false,
+              }}
+            />
+          </>
+        </BottomTabs.Navigator>
+      </NavigationContainer>
+    </View>
   );
 }

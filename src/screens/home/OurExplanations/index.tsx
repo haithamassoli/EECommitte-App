@@ -101,7 +101,7 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
             data={results}
             contentContainerStyle={{ paddingBottom: verticalScale(12) }}
             estimatedItemSize={19}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(_, index) => index.toString()}
             keyboardShouldPersistTaps="always"
             renderItem={renderItem}
           />
@@ -148,7 +148,7 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
               />
             }
             estimatedItemSize={19}
-            keyExtractor={(item: any) => item.id.toString()}
+            keyExtractor={(_, index) => index.toString()}
             renderItem={renderItem}
           />
         </View>

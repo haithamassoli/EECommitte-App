@@ -117,7 +117,7 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
             keyboardShouldPersistTaps="always"
             data={results}
             estimatedItemSize={33}
-            keyExtractor={(item): any => item.id.toString()}
+            keyExtractor={(item, index) => index.toString()}
             renderItem={renderItem}
           />
         </View>
@@ -163,7 +163,7 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
             }
             keyboardShouldPersistTaps="always"
             estimatedItemSize={33}
-            keyExtractor={(item: any) => item.id.toString()}
+            keyExtractor={(item, index) => index.toString()}
             renderItem={renderItem}
           />
         </View>

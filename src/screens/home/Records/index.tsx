@@ -115,7 +115,7 @@ const RecordsScreen = ({ navigation }: Props) => {
             data={results}
             contentContainerStyle={styles.contentContainerStyle}
             estimatedItemSize={25}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(_, index) => index.toString()}
             keyboardShouldPersistTaps="always"
             renderItem={renderItem}
           />

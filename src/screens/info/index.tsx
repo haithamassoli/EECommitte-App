@@ -19,8 +19,6 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { useContext, useLayoutEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { Feather } from "@expo/vector-icons";
-import { screenHeight, screenWidth } from "@Utils/Helper";
-import { ScreenSizeContext } from "@Src/store/screenSizeContext";
 
 type Props = StackScreenProps<InfoStackParamList, "Info">;
 
@@ -29,7 +27,6 @@ const appUrl = isIOS
   : "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte";
 const InfoScreen = ({ navigation }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { screenHeight, screenWidth } = useContext(ScreenSizeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -84,14 +81,12 @@ const InfoScreen = ({ navigation }: Props) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
-        {screenWidth < screenHeight ? (
-          <InfoItem
-            icon="info"
-            title="عن اللجنة"
-            subTitle="لجنة الهندسة الكهربائية"
-            onPress={() => onPress("AboutEECommitte")}
-          />
-        ) : null}
+        <InfoItem
+          icon="info"
+          title="عن اللجنة"
+          subTitle="لجنة الهندسة الكهربائية"
+          onPress={() => onPress("AboutEECommitte")}
+        />
         <InfoItem
           icon="smartphone"
           title="تطبيق Engineers"

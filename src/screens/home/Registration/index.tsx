@@ -6,12 +6,12 @@ import {
   TouchableOpacity,
   Linking,
   StyleSheet,
+  useWindowDimensions,
 } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
-import { screenWidth } from "@Utils/Helper";
-import { moderateScale, verticalScale } from "@Utils/Platform";
+import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = StackScreenProps<HomeStackParamList, "Registration">;
 
@@ -56,6 +56,7 @@ const screenData = [
 ];
 
 const RegistrationScreen = ({ navigation }: Props) => {
+  const { width, height } = useWindowDimensions();
   return (
     <ScrollView
       style={{
@@ -68,7 +69,9 @@ const RegistrationScreen = ({ navigation }: Props) => {
           flex: 1,
           flexDirection: "row",
           flexWrap: "wrap",
-          justifyContent: "space-around",
+          justifyContent: "center",
+          gap: moderateScale(16),
+          paddingTop: verticalScale(16),
         }}
       >
         {screenData.map((item, index) => (
@@ -85,7 +88,15 @@ const RegistrationScreen = ({ navigation }: Props) => {
             <ImageBackground
               source={item.image}
               resizeMode="cover"
-              style={styles.image}
+              style={[
+                styles.image,
+                {
+                  width:
+                    width > height
+                      ? width / 2 - horizontalScale(80)
+                      : width / 2 - horizontalScale(20),
+                },
+              ]}
             >
               <Text style={styles.title1} numberOfLines={1}>
                 {item.title}
@@ -120,8 +131,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
-    marginVertical: verticalScale(10),
-    width: screenWidth / 2 - 20,
   },
   title1: {
     color: Colors.lightText,

@@ -4,7 +4,7 @@ import ImageMapper from "@Components/imageMapper";
 import type { MapperItem } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import MAPPING from "./Mapping";
-import { memo, useLayoutEffect, useContext } from "react";
+import { memo, useLayoutEffect, useContext, useMemo } from "react";
 import {
   Image,
   StyleSheet,
@@ -14,6 +14,7 @@ import {
 import { verticalScale } from "@Utils/Platform";
 import { ThemeContext } from "@Src/store/themeContext";
 import HeaderRight from "../HeaderRight";
+
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
 const PlanScreen = ({ navigation }: Props) => {
@@ -35,6 +36,24 @@ const PlanScreen = ({ navigation }: Props) => {
   const handleSelectArea = (subjectId: number) => {
     navigation.navigate("Subject", { subjectId });
   };
+  const mapping = useMemo(
+    () =>
+      MAPPING.map((item) => {
+        return {
+          ...item,
+          x1:
+            width > height
+              ? ((height * 0.994) / 100) * item.x1
+              : (width / 100) * item.x1,
+          y1:
+            width > height
+              ? ((height * 1.074) / 100) * item.y1
+              : ((width * 1.074) / 100) * item.y1,
+        };
+      }),
+    [width, height]
+  );
+
   return (
     <>
       <ImageBackground
@@ -56,7 +75,7 @@ const PlanScreen = ({ navigation }: Props) => {
             imgSource={require("@Assets/images/plan.webp")}
             imgWidth={width > height ? height : width}
             imgHeight={width > height ? height * 1.089 : width * 1.089}
-            imgMap={MAPPING}
+            imgMap={mapping}
             containerStyle={{
               flexGrow: 1,
               justifyContent: "center",

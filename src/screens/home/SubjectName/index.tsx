@@ -1,4 +1,10 @@
-import { View, Image, StyleSheet, ImageBackground } from "react-native";
+import {
+  View,
+  Image,
+  StyleSheet,
+  ImageBackground,
+  useWindowDimensions,
+} from "react-native";
 import { useLayoutEffect } from "react";
 import { HomeStackParamList } from "@Types/navigation";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -8,6 +14,7 @@ import { screenHeight, screenWidth } from "@Utils/Helper";
 type Props = StackScreenProps<HomeStackParamList, "SubjectName">;
 
 const SubjectNameScreen = ({ navigation }: Props) => {
+  const { height, width } = useWindowDimensions();
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "الأسماء الشائعة للمواد",
@@ -25,25 +32,34 @@ const SubjectNameScreen = ({ navigation }: Props) => {
         maxZoom={1.5}
         minZoom={0.5}
         zoomStep={0.5}
-        initialZoom={1}
+        initialZoom={width > height ? 0.8 : 1}
         bindToBorders={true}
       >
-        <Image
-          source={require("@Assets/images/subjects-name/1.webp")}
-          resizeMode="contain"
+        <View
           style={{
-            width: screenWidth,
-            height: screenHeight * 0.4,
+            flexDirection: width > height ? "row" : "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 10,
           }}
-        />
-        <Image
-          source={require("@Assets/images/subjects-name/2.webp")}
-          resizeMode="contain"
-          style={{
-            width: screenWidth,
-            height: screenHeight * 0.4,
-          }}
-        />
+        >
+          <Image
+            source={require("@Assets/images/subjects-name/1.webp")}
+            resizeMode="contain"
+            style={{
+              width: width > height ? screenWidth * 0.48 : screenWidth,
+              height: width > height ? screenHeight : screenHeight * 0.4,
+            }}
+          />
+          <Image
+            source={require("@Assets/images/subjects-name/2.webp")}
+            resizeMode="contain"
+            style={{
+              width: width > height ? screenWidth * 0.48 : screenWidth,
+              height: width > height ? screenHeight : screenHeight * 0.4,
+            }}
+          />
+        </View>
       </ReactNativeZoomableView>
     </ImageBackground>
   );

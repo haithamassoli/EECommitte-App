@@ -86,8 +86,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     justifyContent: "center",
     alignItems: "center",
-    width: "33.33%",
-    height: screenWidth * 0.3,
   },
   icon: {
     width: horizontalScale(55),

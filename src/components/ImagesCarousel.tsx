@@ -6,8 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Linking,
+  useWindowDimensions,
 } from "react-native";
-import { screenHeight, screenWidth } from "@Utils/Helper";
 import { useEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { Shadow } from "react-native-shadow-2";
@@ -22,6 +22,8 @@ const ImagesCarousel = ({ images }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
   const { theme } = useContext(ThemeContext);
+  const { width, height } = useWindowDimensions();
+
   const shadowColor =
     theme === "light" ? "rgba(34, 34, 34, 0.18)" : "rgba(255, 255, 255, 0.34)";
   useEffect(() => {
@@ -31,7 +33,7 @@ const ImagesCarousel = ({ images }: Props) => {
       ),
         scrollRef.current?.scrollTo({
           animated: true,
-          x: (screenWidth - horizontalScale(40)) * selectedIndex,
+          x: (width - horizontalScale(40)) * selectedIndex,
           y: 0,
         });
     }, 3000);
@@ -46,13 +48,32 @@ const ImagesCarousel = ({ images }: Props) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          width:
+            width < height
+              ? width - horizontalScale(40)
+              : width - horizontalScale(120),
+        },
+      ]}
+    >
       <Shadow
         distance={8}
         stretch
         startColor={shadowColor}
         endColor="rgba(0, 0, 0, 0)"
-        style={styles.shadow}
+        style={[
+          styles.shadow,
+          {
+            width:
+              width < height
+                ? width - horizontalScale(40)
+                : width - horizontalScale(120),
+            height: width < height ? height * 0.24 : height * 0.5,
+          },
+        ]}
       >
         <ScrollView
           ref={scrollRef}
@@ -68,7 +89,16 @@ const ImagesCarousel = ({ images }: Props) => {
           {images.length === 0 && (
             <Image
               source={require("@Assets/images/slider1.webp")}
-              style={styles.image}
+              style={[
+                styles.image,
+                {
+                  width:
+                    width < height
+                      ? width - horizontalScale(40)
+                      : width - horizontalScale(120),
+                  height: width < height ? height * 0.24 : height * 0.5,
+                },
+              ]}
             />
           )}
           {images.map((image, index) => (
@@ -84,7 +114,16 @@ const ImagesCarousel = ({ images }: Props) => {
               <Image
                 source={{ uri: image?.image }}
                 defaultSource={require("@Assets/images/slider1.webp")}
-                style={styles.image}
+                style={[
+                  styles.image,
+                  {
+                    width:
+                      width < height
+                        ? width - horizontalScale(40)
+                        : width - horizontalScale(120),
+                    height: width < height ? height * 0.24 : height * 0.5,
+                  },
+                ]}
               />
             </TouchableOpacity>
           ))}
@@ -133,18 +172,13 @@ export default memo(ImagesCarousel);
 
 const styles = StyleSheet.create({
   container: {
-    width: screenWidth - horizontalScale(40),
     alignSelf: "center",
     height: verticalScale(182),
   },
   shadow: {
-    width: screenWidth - horizontalScale(40),
-    height: screenHeight * 0.24,
     borderRadius: moderateScale(12),
   },
   image: {
-    width: screenWidth - horizontalScale(40),
-    height: screenHeight * 0.24,
     resizeMode: "cover",
     borderRadius: moderateScale(12),
   },

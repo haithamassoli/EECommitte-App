@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   RefreshControl,
   Animated,
+  useWindowDimensions,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./styles";
@@ -49,6 +50,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const [refetchCounter, setRefetchCounter] = useState(0);
   const isFocused = useIsFocused();
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const { width, height } = useWindowDimensions();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading, isFetching }: any =
     fetchSliderImages(refetchCounter);
@@ -392,7 +394,10 @@ const HomeScreen = ({ navigation }: Props) => {
         {buttons.map((button, index) => (
           <TouchableOpacity
             key={index}
-            style={styles.buttonContainer}
+            style={[
+              styles.buttonContainer,
+              { width: "33.33%", height: verticalScale(120) },
+            ]}
             onPress={button.onPress}
           >
             <Animated.View

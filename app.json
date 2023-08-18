@@ -30,9 +30,6 @@
       "package": "com.haithamassoli.EECommitte",
       "googleServicesFile": "./google-services.json"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
     "plugins": [
       [
         "expo-notifications",

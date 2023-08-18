@@ -66,7 +66,7 @@ export default function Route() {
     <View
       style={{
         flex: 1,
-        paddingStart: width > height ? verticalScale(78) : 0,
+        paddingStart: width > height ? horizontalScale(78) : 0,
         backgroundColor:
           theme === "light" ? Colors.lightBackground : Colors.darkBackground,
       }}
@@ -88,7 +88,7 @@ export default function Route() {
               transform: [
                 { rotate: width > height ? "270deg" : "0deg" },
                 {
-                  translateY: width > height ? verticalScale(236) : 0,
+                  translateY: width > height ? horizontalScale(228) : 0,
                 },
               ],
               height: width > height ? "20%" : verticalScale(64),

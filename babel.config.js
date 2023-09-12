@@ -19,6 +19,7 @@ module.exports = function (api) {
           extensions: [".js", ".jsx", ".ts", ".tsx"],
         },
       ],
+      "react-native-reanimated/plugin",
     ],
     env: {
       production: {

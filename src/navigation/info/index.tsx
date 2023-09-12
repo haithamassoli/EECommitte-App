@@ -1,12 +1,12 @@
 import Colors from "@GlobalStyle/Colors";
 import { createStackNavigator } from "@react-navigation/stack";
-import SearchScreen from "@Screens/home/Search";
+import SearchScreen from "@Screens/home/search";
 import InfoScreen from "@Screens/info";
 import AboutEECommitteScreen from "@Screens/info/aboutEECommitte";
 import SupportUsScreen from "@Screens/info/supportUs";
 import { ThemeContext } from "@Src/store/themeContext";
 import { InfoStackParamList } from "@Types/navigation";
-import { moderateScale } from "@Utils/Platform";
+import { moderateScale, vs } from "@Utils/Platform";
 import { Shadow } from "react-native-shadow-2";
 import { useContext } from "react";
 const Stack = createStackNavigator<InfoStackParamList>();
@@ -21,6 +21,9 @@ export default function InfoNavigation() {
         headerTitleStyle: {
           fontSize: moderateScale(16),
           fontFamily: "Bukra",
+        },
+        headerStyle: {
+          height: vs(68),
         },
         headerMode: "screen",
         headerBackground() {
@@ -53,6 +56,7 @@ export default function InfoNavigation() {
         component={AboutEECommitteScreen}
       />
       <Stack.Screen name="SupportUs" component={SupportUsScreen} />
+      {/* <Stack.Screen name="DashboardNavigation" component={SupportUsScreen} /> */}
     </Stack.Navigator>
   );
 }

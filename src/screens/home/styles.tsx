@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flex: 1,
-    marginTop: verticalScale(40),
+    marginTop: verticalScale(8),
     marginHorizontal: horizontalScale(28),
     flexWrap: "wrap",
     flexDirection: "row",

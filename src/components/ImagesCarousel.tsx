@@ -1,199 +1,78 @@
-import { useState, useRef, memo, useContext } from "react";
-import {
-  View,
-  ScrollView,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Linking,
-  useWindowDimensions,
-} from "react-native";
-import { useEffect } from "react";
+import { useState, memo } from "react";
+import { Image } from "expo-image";
+import Carousel from "react-native-reanimated-carousel";
+import Animated, { SlideInLeft } from "react-native-reanimated";
+import { blurhash, screenWidth } from "@Utils/Helper";
+import { hs, ms, vs } from "@Utils/Platform";
+import { View } from "react-native";
 import Colors from "@GlobalStyle/Colors";
-import { Shadow } from "react-native-shadow-2";
-import { ThemeContext } from "@Src/store/themeContext";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = {
-  images: any[];
+  images: string[];
 };
 
 const ImagesCarousel = ({ images }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const scrollRef = useRef<ScrollView>(null);
-  const { theme } = useContext(ThemeContext);
-  const { width, height } = useWindowDimensions();
-
-  const shadowColor =
-    theme === "light" ? "rgba(34, 34, 34, 0.18)" : "rgba(255, 255, 255, 0.34)";
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSelectedIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      ),
-        scrollRef.current?.scrollTo({
-          animated: true,
-          x: (width - horizontalScale(40)) * selectedIndex,
-          y: 0,
-        });
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [selectedIndex]);
-
-  const setImageIndex = (event: any) => {
-    const contentOffset = event.nativeEvent.contentOffset;
-    const viewSize = event.nativeEvent.layoutMeasurement;
-    const selectedIndex = Math.floor(contentOffset.x / viewSize.width);
-    setSelectedIndex(selectedIndex);
-  };
 
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          width:
-            width < height
-              ? width - horizontalScale(40)
-              : width - horizontalScale(120),
-        },
-      ]}
-    >
-      <Shadow
-        distance={8}
-        stretch
-        startColor={shadowColor}
-        endColor="rgba(0, 0, 0, 0)"
-        style={[
-          styles.shadow,
-          {
-            width:
-              width < height
-                ? width - horizontalScale(40)
-                : width - horizontalScale(120),
-            height: width < height ? height * 0.24 : height * 0.5,
-          },
-        ]}
-      >
-        <ScrollView
-          ref={scrollRef}
-          contentContainerStyle={{
-            flexDirection: "row-reverse",
-          }}
-          horizontal
-          overScrollMode="never"
-          showsHorizontalScrollIndicator={false}
-          onMomentumScrollEnd={setImageIndex}
-          pagingEnabled
-        >
-          {images.length === 0 && (
-            <Image
-              source={require("@Assets/images/slider1.webp")}
-              style={[
-                styles.image,
-                {
-                  width:
-                    width < height
-                      ? width - horizontalScale(40)
-                      : width - horizontalScale(120),
-                  height: width < height ? height * 0.24 : height * 0.5,
-                },
-              ]}
-            />
-          )}
-          {images.map((image, index) => (
-            <TouchableOpacity
-              onPress={() => {
-                if (image.url) {
-                  Linking.openURL(image?.url);
-                }
-              }}
-              key={index}
-              activeOpacity={image.url ? 0.5 : 1}
-            >
-              <Image
-                source={{ uri: image?.image }}
-                defaultSource={require("@Assets/images/slider1.webp")}
-                style={[
-                  styles.image,
-                  {
-                    width:
-                      width < height
-                        ? width - horizontalScale(40)
-                        : width - horizontalScale(120),
-                    height: width < height ? height * 0.24 : height * 0.5,
-                  },
-                ]}
-              />
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </Shadow>
-      <View style={styles.dotsContainer}>
-        {images.length === 0 && (
-          <View
-            style={[
-              styles.dot,
-              {
-                borderColor:
-                  theme === "light" ? Colors.primary700 : Colors.primary400,
-              },
-            ]}
+    <>
+      <Carousel
+        width={screenWidth}
+        height={screenWidth / 2}
+        autoPlay={true}
+        data={images!}
+        autoPlayInterval={3000}
+        autoPlayReverse
+        onSnapToItem={setSelectedIndex}
+        renderItem={({ item }) => (
+          <Image
+            source={item}
+            transition={400}
+            style={{
+              width: screenWidth - hs(32),
+              height: screenWidth / 2,
+              borderRadius: ms(10),
+            }}
+            contentFit="cover"
+            placeholder={blurhash}
+            placeholderContentFit="cover"
           />
         )}
+      />
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "flex-end",
+          alignItems: "center",
+          marginTop: vs(8),
+        }}
+      >
         {images.map((_, index) => (
-          <View
+          <Animated.View
             key={index}
-            style={[
-              styles.dot,
-              {
-                borderColor:
-                  index === images.length - selectedIndex - 1
-                    ? theme === "light"
-                      ? Colors.primary700
-                      : Colors.primary400
-                    : images.length === 1
-                    ? theme === "light"
-                      ? Colors.primary700
-                      : Colors.primary400
-                    : Colors.gray,
+            layout={SlideInLeft.withInitialValues({
+              originX: 0,
+            })}
+          >
+            <View
+              style={{
+                height: ms(8),
+                borderRadius: ms(8),
+                marginHorizontal: hs(4),
+                marginVertical: vs(4),
                 backgroundColor:
-                  index === selectedIndex ? Colors.primary600 : Colors.gray,
-              },
-            ]}
-          />
+                  index === images.length - selectedIndex - 1
+                    ? Colors.primary600
+                    : Colors.gray,
+                width:
+                  index === images.length - selectedIndex - 1 ? ms(24) : ms(8),
+              }}
+            />
+          </Animated.View>
         ))}
       </View>
-    </View>
+    </>
   );
 };
 
 export default memo(ImagesCarousel);
-
-const styles = StyleSheet.create({
-  container: {
-    alignSelf: "center",
-    height: verticalScale(182),
-  },
-  shadow: {
-    borderRadius: moderateScale(12),
-  },
-  image: {
-    resizeMode: "cover",
-    borderRadius: moderateScale(12),
-  },
-  dotsContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: verticalScale(10),
-    zIndex: 100,
-  },
-  dot: {
-    height: verticalScale(8),
-    width: verticalScale(8),
-    borderRadius: moderateScale(5),
-    borderWidth: moderateScale(4),
-    margin: moderateScale(4),
-    backgroundColor: Colors.primary600,
-  },
-});

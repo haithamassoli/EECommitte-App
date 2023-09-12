@@ -35,3 +35,5 @@ export const isConnected = async () => {
   const connectionStatus = await NetInfo.fetch();
   return connectionStatus.isConnected;
 };
+
+export const blurhash = "L7Oy^s[V}K=M~B00*|U_L%#W00]Q";

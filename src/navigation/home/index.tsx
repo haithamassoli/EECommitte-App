@@ -1,8 +1,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "@Screens/home";
 import CalculatorScreen from "@Screens/home/Calculator";
-import DoctorsScreen from "@Screens/home/Doctors";
-import SearchScreen from "@Screens/home/Search";
+import DoctorsScreen from "@Screens/home/doctors";
+import SearchScreen from "@Screens/home/search";
 import RecordsScreen from "@Screens/home/Records";
 import OurExplanationsScreen from "@Screens/home/OurExplanations";
 import FavoriteScreen from "@Screens/home/Favorite";
@@ -11,7 +11,7 @@ import RegistrationScreen from "@Screens/home/Registration";
 import NotificationScreen from "@Screens/home/Notification";
 import SubjectNameScreen from "@Screens/home/SubjectName";
 import { Feather } from "@expo/vector-icons";
-import { horizontalScale, moderateScale } from "@Utils/Platform";
+import { horizontalScale, moderateScale, vs } from "@Utils/Platform";
 import { View, TouchableOpacity } from "react-native";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
@@ -69,6 +69,9 @@ export default function HomeNavigation({ navigation }: Props) {
         headerTitleStyle: {
           fontSize: moderateScale(16),
           fontFamily: "Bukra",
+        },
+        headerStyle: {
+          height: vs(68),
         },
         headerBackground() {
           return (

@@ -1,11 +1,11 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import SearchScreen from "@Screens/home/Search";
+import SearchScreen from "@Screens/home/search";
 import PlanScreen from "@Screens/subjects/plan";
 import SubjectScreen from "@Screens/subjects/subject";
 import SubjectFullPostScreen from "@Screens/subjects/subjectFullPost";
 import { ThemeContext } from "@Src/store/themeContext";
 import { SubjectsStackParamList } from "@Types/navigation";
-import { moderateScale } from "@Utils/Platform";
+import { moderateScale, vs } from "@Utils/Platform";
 import { Shadow } from "react-native-shadow-2";
 import { useContext } from "react";
 import Colors from "@GlobalStyle/Colors";
@@ -24,6 +24,9 @@ export default function SubjectsNavigation() {
         headerTitleStyle: {
           fontSize: moderateScale(16),
           fontFamily: "Bukra",
+        },
+        headerStyle: {
+          height: vs(68),
         },
         headerBackground() {
           return (

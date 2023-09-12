@@ -26,6 +26,7 @@ type Props = StackScreenProps<InfoStackParamList, "Info">;
 const appUrl = isIOS
   ? "https://apps.apple.com/us/app/eecommittee/id6443760623"
   : "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte";
+
 const InfoScreen = ({ navigation }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { width, height } = useWindowDimensions();
@@ -78,9 +79,11 @@ const InfoScreen = ({ navigation }: Props) => {
       },
     });
   }, [theme]);
+
   const onPress = (page: keyof InfoStackParamList) => {
     navigation.push(page);
   };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
@@ -101,6 +104,12 @@ const InfoScreen = ({ navigation }: Props) => {
               "https://play.google.com/store/apps/details?id=com.taimaah.edu"
             )
           }
+        />
+        <InfoItem
+          title="لوحة التحكم"
+          subTitle="لوحة التحكم للجنة الهندسة الكهربائية"
+          icon="grid"
+          onPress={() => {}}
         />
         <InfoItem
           icon="mail"
@@ -150,7 +159,7 @@ export default InfoScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: horizontalScale(20),
+    marginHorizontal: horizontalScale(20),
     paddingTop: verticalScale(20),
     paddingBottom: verticalScale(20),
   },

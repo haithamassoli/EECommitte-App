@@ -23,7 +23,12 @@ import { HomeStackParamList } from "@Types/navigation";
 import { ThemeContext } from "@Src/store/themeContext";
 import SearchResults from "@Components/ui/SearchInput/SearchResults";
 import { StackScreenProps } from "@react-navigation/stack";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  moderateScale,
+  ms,
+  verticalScale,
+} from "@Utils/Platform";
 import DoctorsData from "@Src/data/Doctors";
 
 const options = {
@@ -52,11 +57,11 @@ const SearchScreen = ({ navigation, route }: Props) => {
         >
           <Feather
             name="arrow-right"
-            size={24}
+            size={ms(24)}
             color={textColor}
             style={{ paddingHorizontal: 10 }}
           />
-          <Feather name="search" size={24} color={textColor} />
+          <Feather name="search" size={ms(24)} color={textColor} />
         </TouchableOpacity>
       ),
       headerRight: () => {

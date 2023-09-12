@@ -2,7 +2,12 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { useContext, useLayoutEffect } from "react";
 import { Feather } from "@expo/vector-icons";
 import { ThemeContext } from "@Src/store/themeContext";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  moderateScale,
+  ms,
+  verticalScale,
+} from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
@@ -29,11 +34,11 @@ const SupportUsScreen = ({ navigation }: Props) => {
         >
           <Feather
             name="arrow-right"
-            size={24}
+            size={ms(24)}
             color={textColor}
             style={{ paddingHorizontal: 10 }}
           />
-          <Feather name="heart" size={24} color={textColor} />
+          <Feather name="heart" size={ms(24)} color={textColor} />
         </TouchableOpacity>
       ),
       headerRight: () => {

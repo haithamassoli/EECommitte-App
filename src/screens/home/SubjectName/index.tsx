@@ -1,15 +1,10 @@
-import {
-  View,
-  Image,
-  StyleSheet,
-  ImageBackground,
-  useWindowDimensions,
-} from "react-native";
+import { View, StyleSheet, useWindowDimensions } from "react-native";
 import { useLayoutEffect } from "react";
 import { HomeStackParamList } from "@Types/navigation";
 import { StackScreenProps } from "@react-navigation/stack";
 import ReactNativeZoomableView from "@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView";
-import { screenHeight, screenWidth } from "@Utils/Helper";
+import { blurhash, screenHeight, screenWidth } from "@Utils/Helper";
+import { Image, ImageBackground } from "expo-image";
 
 type Props = StackScreenProps<HomeStackParamList, "SubjectName">;
 
@@ -23,10 +18,13 @@ const SubjectNameScreen = ({ navigation }: Props) => {
   return (
     <ImageBackground
       source={require("@Assets/images/PlanBackground.webp")}
+      placeholder={blurhash}
+      transition={400}
+      placeholderContentFit="cover"
       style={{
         ...StyleSheet.absoluteFillObject,
       }}
-      resizeMode="cover"
+      contentFit="cover"
     >
       <ReactNativeZoomableView
         maxZoom={1.5}
@@ -45,7 +43,8 @@ const SubjectNameScreen = ({ navigation }: Props) => {
         >
           <Image
             source={require("@Assets/images/subjects-name/1.webp")}
-            resizeMode="contain"
+            transition={400}
+            contentFit="contain"
             style={{
               width: width > height ? screenWidth * 0.48 : screenWidth,
               height: width > height ? screenHeight : screenHeight * 0.4,
@@ -53,7 +52,8 @@ const SubjectNameScreen = ({ navigation }: Props) => {
           />
           <Image
             source={require("@Assets/images/subjects-name/2.webp")}
-            resizeMode="contain"
+            transition={400}
+            contentFit="contain"
             style={{
               width: width > height ? screenWidth * 0.48 : screenWidth,
               height: width > height ? screenHeight : screenHeight * 0.4,

@@ -4,11 +4,16 @@ import Carousel from "react-native-reanimated-carousel";
 import Animated, { SlideInLeft } from "react-native-reanimated";
 import { blurhash, screenWidth } from "@Utils/Helper";
 import { hs, ms, vs } from "@Utils/Platform";
-import { View } from "react-native";
+import { View, Linking, TouchableOpacity } from "react-native";
 import Colors from "@GlobalStyle/Colors";
 
 type Props = {
-  images: string[];
+  images: ImageItem[];
+};
+
+type ImageItem = {
+  url: string;
+  image: string;
 };
 
 const ImagesCarousel = ({ images }: Props) => {
@@ -25,18 +30,27 @@ const ImagesCarousel = ({ images }: Props) => {
         autoPlayReverse
         onSnapToItem={setSelectedIndex}
         renderItem={({ item }) => (
-          <Image
-            source={item}
-            transition={400}
-            style={{
-              width: screenWidth - hs(32),
-              height: screenWidth / 2,
-              borderRadius: ms(10),
+          <TouchableOpacity
+            onPress={() => {
+              if (item.url) {
+                Linking.openURL(item?.url);
+              }
             }}
-            contentFit="cover"
-            placeholder={blurhash}
-            placeholderContentFit="cover"
-          />
+            activeOpacity={item.url ? 0.5 : 1}
+          >
+            <Image
+              source={item.image}
+              transition={400}
+              style={{
+                width: screenWidth - hs(32),
+                height: screenWidth / 2,
+                borderRadius: ms(10),
+              }}
+              contentFit="cover"
+              placeholder={blurhash}
+              placeholderContentFit="cover"
+            />
+          </TouchableOpacity>
         )}
       />
       <View

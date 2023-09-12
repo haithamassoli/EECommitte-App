@@ -5,15 +5,12 @@ import type { MapperItem } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import MAPPING from "./Mapping";
 import { memo, useLayoutEffect, useContext, useMemo } from "react";
-import {
-  Image,
-  StyleSheet,
-  ImageBackground,
-  useWindowDimensions,
-} from "react-native";
+import { StyleSheet, useWindowDimensions } from "react-native";
 import { verticalScale } from "@Utils/Platform";
 import { ThemeContext } from "@Src/store/themeContext";
 import HeaderRight from "../HeaderRight";
+import { Image, ImageBackground } from "expo-image";
+import { blurhash } from "@Utils/Helper";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
@@ -58,10 +55,13 @@ const PlanScreen = ({ navigation }: Props) => {
     <>
       <ImageBackground
         source={require("@Assets/images/PlanBackground.webp")}
+        transition={400}
+        placeholderContentFit="cover"
+        placeholder={blurhash}
         style={{
           ...StyleSheet.absoluteFillObject,
         }}
-        resizeMode="cover"
+        contentFit="cover"
       >
         <ReactNativeZoomableView
           maxZoom={1.5}
@@ -88,7 +88,8 @@ const PlanScreen = ({ navigation }: Props) => {
         {height > 650 && width < height && (
           <Image
             source={require("@Assets/images/planLowerbar.webp")}
-            resizeMode="contain"
+            contentFit="contain"
+            transition={400}
             style={{
               width: width,
               height: height <= 1200 ? height * 0.08 : height * 0.12,

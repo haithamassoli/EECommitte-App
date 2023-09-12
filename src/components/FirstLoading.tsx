@@ -3,7 +3,6 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  ImageBackground,
   StyleSheet,
 } from "react-native";
 import { useRef, useState, memo } from "react";
@@ -17,6 +16,7 @@ import Colors from "@GlobalStyle/Colors";
 import { StatusBar } from "expo-status-bar";
 import { screenWidth } from "@Utils/Helper";
 import { Feather } from "@expo/vector-icons";
+import { ImageBackground } from "expo-image";
 
 type Props = {
   onFinished: () => void;
@@ -123,7 +123,12 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
       >
         {data.map((item, index) => (
           <View key={index} style={styles.container}>
-            <ImageBackground source={item.image} style={styles.image}>
+            <ImageBackground
+              source={item.image}
+              contentFit="cover"
+              transition={400}
+              style={styles.image}
+            >
               <View style={styles.contentContainer}>
                 {index != data.length - 1 ? (
                   <TouchableOpacity
@@ -221,7 +226,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     alignSelf: "center",
-    resizeMode: "cover",
   },
   contentContainer: {
     flex: 1,

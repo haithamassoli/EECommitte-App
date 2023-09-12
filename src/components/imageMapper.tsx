@@ -1,6 +1,5 @@
 import React, { Component, memo } from "react";
 import {
-  ImageBackground,
   View,
   StyleProp,
   ViewStyle,
@@ -9,9 +8,10 @@ import {
   Pressable,
 } from "react-native";
 import type { MapperItem } from "@Types/index";
-import { screenHeight, screenWidth } from "@Utils/Helper";
+import { blurhash, screenHeight, screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-const thumbnail = require("@Assets/images/thumbnailPlan.gif");
+import { ImageBackground } from "expo-image";
+
 type Props = {
   selectedAreaId?: number[] | number;
   multiselect?: boolean;
@@ -101,9 +101,11 @@ class ImageMapper extends Component<Props> {
             width: imgWidth || screenWidth,
           }}
           onLoadEnd={() => this.setState({ loading: false })}
-          source={this.state.loading ? thumbnail : imgSource}
-          resizeMode="contain"
-          fadeDuration={200}
+          source={imgSource}
+          placeholder={blurhash}
+          placeholderContentFit="cover"
+          contentFit="contain"
+          transition={400}
         >
           {imgMap.map((item: MapperItem, index: number) => (
             <Pressable

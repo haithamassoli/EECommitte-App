@@ -1,5 +1,4 @@
 import {
-  Image,
   ImageSourcePropType,
   StyleSheet,
   TouchableOpacity,
@@ -9,6 +8,7 @@ import { Feather } from "@expo/vector-icons";
 import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import { Image } from "expo-image";
 
 type Props = {
   onPress: () => void;
@@ -27,7 +27,12 @@ const CustomHeader = ({ onPress, iconColor }: Props) => {
         size={moderateScale(24)}
         color={textColor}
       />
-      <Image source={iconColor} style={styles.image} />
+      <Image
+        transition={400}
+        contentFit="contain"
+        source={iconColor}
+        style={styles.image}
+      />
     </TouchableOpacity>
   );
 };
@@ -40,6 +45,5 @@ const styles = StyleSheet.create({
     width: horizontalScale(40),
     height: verticalScale(40),
     marginTop: verticalScale(4),
-    resizeMode: "contain",
   },
 });

@@ -7,7 +7,6 @@ import {
   StyleSheet,
   ScrollView,
   Linking,
-  ImageBackground,
   RefreshControl,
 } from "react-native";
 import type {
@@ -19,11 +18,12 @@ import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { screenHeight, screenWidth } from "@Utils/Helper";
+import { blurhash, screenHeight, screenWidth } from "@Utils/Helper";
 import { FavoriteContext } from "@Src/store/favoriteContext";
 import HeaderRight from "../HeaderRight";
 import { fetchSubjectById } from "@Src/api/fetchSubjectById";
 import NoConnection from "@Components/NoConnection";
+import { ImageBackground } from "expo-image";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 export type SubjectNavigationProp = StackNavigationProp<
@@ -160,8 +160,11 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       }
     >
       <ImageBackground
-        resizeMode="contain"
+        contentFit="contain"
         source={subjectFrame}
+        placeholder={blurhash}
+        placeholderContentFit="cover"
+        transition={400}
         style={{
           height: screenHeight < 650 ? verticalScale(268) : verticalScale(200),
           flex: 1,

@@ -2,11 +2,11 @@ import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { useContext } from "react";
 import {
   View,
   Text,
-  Image,
   Linking,
   TouchableOpacity,
   StyleSheet,
@@ -23,8 +23,9 @@ const DoctorCard = ({ name, image, office, phone, email, website }: any) => {
     <View style={[styles.container, { backgroundColor }]}>
       <Image
         style={styles.image}
-        defaultSource={defaultImage}
-        source={{ uri: image }}
+        placeholder={defaultImage}
+        source={image}
+        transition={400}
       />
       <View style={{ flex: 1 }}>
         <Text style={[styles.name, { color: textColor }]}>الإسم: {name}</Text>

@@ -3,13 +3,13 @@ import { ThemeContext } from "@Src/store/themeContext";
 import { Record } from "@Types/index";
 import { screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import { Image } from "expo-image";
 import { useContext } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   Linking,
-  Image,
   StyleSheet,
 } from "react-native";
 
@@ -27,9 +27,11 @@ const RecordCard = ({ link, image, subject, doctor }: Props) => {
     >
       <Image
         style={styles.image}
-        resizeMode="contain"
-        source={{ uri: image }}
-        defaultSource={require("@Assets/images/bookPlacholder.jpg")}
+        contentFit="contain"
+        source={image}
+        placeholder={require("@Assets/images/bookPlacholder.jpg")}
+        transition={400}
+        placeholderContentFit="contain"
       />
       <View style={[styles.textContainer, { backgroundColor }]}>
         <Text style={[styles.subject, { color: textColor }]}>{subject}</Text>

@@ -1,6 +1,5 @@
 import {
   ScrollView,
-  ImageBackground,
   Text,
   View,
   TouchableOpacity,
@@ -12,6 +11,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import { ImageBackground } from "expo-image";
 
 type Props = StackScreenProps<HomeStackParamList, "Registration">;
 
@@ -87,7 +87,7 @@ const RegistrationScreen = ({ navigation }: Props) => {
           >
             <ImageBackground
               source={item.image}
-              resizeMode="cover"
+              contentFit="cover"
               style={[
                 styles.image,
                 {

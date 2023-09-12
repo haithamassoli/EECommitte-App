@@ -1,7 +1,12 @@
 import { StyleSheet } from "react-native";
 import { screenWidth } from "@Utils/Helper";
 import Colors from "@GlobalStyle/Colors";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  moderateScale,
+  ms,
+  verticalScale,
+} from "@Utils/Platform";
 const styles = StyleSheet.create({
   logosContainer: {
     flexDirection: "row",
@@ -88,9 +93,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   icon: {
-    width: horizontalScale(55),
-    height: verticalScale(55),
-    resizeMode: "contain",
+    width: ms(55),
+    height: ms(55),
   },
   iconBackground: {
     justifyContent: "center",

@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect, memo, useRef } from "react";
 import {
   View,
-  Image,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -23,12 +22,18 @@ import ImagesCarousel from "@Components/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  moderateScale,
+  ms,
+  verticalScale,
+} from "@Utils/Platform";
 import { StatusBar } from "expo-status-bar";
 import { fetchSliderImages } from "@Src/api/fetchSliderImages";
 import * as Notifications from "expo-notifications";
 import { useIsFocused } from "@react-navigation/native";
 import DoctorsData from "@Src/data/Doctors";
+import { Image } from "expo-image";
 
 const options = {
   keys: ["name", "name2"],
@@ -50,8 +55,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const isFocused = useIsFocused();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
-  const { data, isLoading, isFetching }: any =
-    fetchSliderImages(refetchCounter);
+  const { data, isLoading, isFetching } = fetchSliderImages(refetchCounter);
   useEffect(() => {
     const CheckNotificationCount = async () => {
       const count = await getDataFromStorage("notificationsCount");
@@ -126,10 +130,11 @@ const HomeScreen = ({ navigation }: Props) => {
               >
                 <Image
                   source={require("@Assets/images/icons/lagna-logo.png")}
+                  transition={400}
+                  contentFit="contain"
                   style={{
-                    width: horizontalScale(50),
-                    height: verticalScale(50),
-                    resizeMode: "contain",
+                    width: ms(50),
+                    height: ms(50),
                   }}
                 />
                 <View style={{ marginStart: 8 }}>
@@ -156,10 +161,11 @@ const HomeScreen = ({ navigation }: Props) => {
               </View>
               <Image
                 source={require("@Assets/images/icons/tasharck.png")}
+                contentFit="contain"
+                transition={400}
                 style={{
-                  width: horizontalScale(50),
-                  height: verticalScale(70),
-                  resizeMode: "contain",
+                  width: ms(50),
+                  height: ms(70),
                 }}
               />
             </View>
@@ -363,7 +369,7 @@ const HomeScreen = ({ navigation }: Props) => {
           <TouchableOpacity onPress={toggleTheme}>
             <Feather
               name={theme === "light" ? "moon" : "sun"}
-              size={moderateScale(24)}
+              size={ms(24)}
               color={
                 theme === "light"
                   ? Colors.darkBackgroundSec
@@ -425,6 +431,7 @@ const HomeScreen = ({ navigation }: Props) => {
               <Image
                 source={theme === "light" ? button.lightIcon : button.darkIcon}
                 style={styles.icon}
+                contentFit="contain"
               />
               <Text
                 style={[

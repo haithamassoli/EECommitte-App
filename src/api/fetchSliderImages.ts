@@ -8,6 +8,11 @@ const cacheIntervalInHours = 24;
 const cacheExpiryTime = new Date();
 cacheExpiryTime.setHours(cacheExpiryTime.getHours() + cacheIntervalInHours);
 
+type SliderImage = {
+  url: string;
+  image: string;
+};
+
 export function fetchSliderImages(refetchCounter: number) {
   const { data, isLoading, isFetching } = useQuery(
     ["slider", refetchCounter],
@@ -26,13 +31,13 @@ export function fetchSliderImages(refetchCounter: number) {
         await storeDataToStorage("lastRequestSlider", cacheExpiryTime);
         const snapshot = querySnapshot.docs.map((doc) => doc.data());
         await storeDataToStorage("slider", snapshot);
-        return snapshot;
+        return snapshot as SliderImage[];
       } else {
         const slider = await getDataFromStorage("slider");
         if (slider == null) {
           return [];
         }
-        return slider;
+        return slider as SliderImage[];
       }
     }
   );

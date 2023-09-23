@@ -1,9 +1,9 @@
 {
   "expo": {
     "name": "لجنة الهندسة الكهربائية",
-    "slug": "EECommittee",
+    "slug": "EECommitte",
     "version": "2.5.0",
-    "orientation": "default",
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "backgroundColor": "#121212",

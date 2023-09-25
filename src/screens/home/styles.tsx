@@ -37,11 +37,6 @@ const styles = StyleSheet.create({
     fontFamily: "Bukra",
     textAlign: "left",
   },
-  tasharckLogo: {
-    width: horizontalScale(50),
-    height: verticalScale(70),
-    resizeMode: "contain",
-  },
   headerText: {
     fontSize: moderateScale(30),
     fontWeight: "normal",

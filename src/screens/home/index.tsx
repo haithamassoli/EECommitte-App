@@ -115,59 +115,42 @@ const HomeScreen = ({ navigation }: Props) => {
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "space-between",
                 alignItems: "center",
                 marginBottom: verticalScale(12),
                 marginHorizontal: horizontalScale(12),
               }}
             >
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Image
-                  source={require("@Assets/images/icons/lagna-logo.png")}
-                  transition={400}
-                  contentFit="contain"
-                  style={{
-                    width: ms(50),
-                    height: ms(50),
-                  }}
-                />
-                <View style={{ marginStart: 8 }}>
-                  <Text
-                    style={{
-                      color: textColor,
-                      fontSize: moderateScale(16),
-                      fontFamily: "Bukra",
-                    }}
-                  >
-                    لجنة الهندسة الكهربائية
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: moderateScale(10),
-                      fontFamily: "Bukra",
-                      textAlign: "left",
-                      color: textColor,
-                    }}
-                  >
-                    Electrical Engineering Committee
-                  </Text>
-                </View>
-              </View>
               <Image
-                source={require("@Assets/images/icons/tasharck.png")}
-                contentFit="contain"
+                source={require("@Assets/images/icons/lagna-logo.png")}
                 transition={400}
+                contentFit="contain"
                 style={{
                   width: ms(50),
-                  height: ms(70),
+                  height: ms(50),
                 }}
               />
+              <View style={{ marginStart: 8 }}>
+                <Text
+                  style={{
+                    color: textColor,
+                    fontSize: moderateScale(16),
+                    fontFamily: "Bukra",
+                  }}
+                >
+                  لجنة الهندسة الكهربائية
+                </Text>
+                <Text
+                  style={{
+                    fontSize: moderateScale(10),
+                    fontFamily: "Bukra",
+                    textAlign: "left",
+                    color: textColor,
+                    marginTop: verticalScale(2),
+                  }}
+                >
+                  Electrical Engineering Committee
+                </Text>
+              </View>
             </View>
           </SafeAreaView>
           <View

@@ -15,6 +15,7 @@ type ItemType = {
   id: number;
   fill?: string;
   prefill?: string;
+  isFinished?: boolean;
 };
 
 type DimnesionWH = {
@@ -38,11 +39,13 @@ type CircleType = ItemType & {
   y2?: never;
   width?: never;
   height?: never;
+  prefill?: string;
 };
 
 type RectangleType = ItemType & {
   shape: "rectangle";
   radius?: never;
+  prefill?: string;
 };
 
 type RectangleTypeDimensions = RectangleType &

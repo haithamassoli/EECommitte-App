@@ -11,6 +11,7 @@ import type { MapperItem } from "@Types/index";
 import { blurhash, screenHeight, screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { ImageBackground } from "expo-image";
+import { Feather } from "@expo/vector-icons";
 
 type Props = {
   selectedAreaId?: number[] | number;
@@ -112,7 +113,19 @@ class ImageMapper extends Component<Props> {
               key={item.id}
               onPress={(event) => this.props.onPress(item, index, event)}
               style={[{ position: "absolute" }, this.buildStyle(item, index)]}
-            />
+            >
+              {item.isFinished && (
+                <Feather
+                  name="check"
+                  size={moderateScale(16)}
+                  color="black"
+                  style={{
+                    alignSelf: "center",
+                    top: verticalScale(moderateScale(item?.radius!) / 3.7),
+                  }}
+                />
+              )}
+            </Pressable>
           ))}
         </ImageBackground>
       </View>

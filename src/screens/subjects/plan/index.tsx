@@ -4,19 +4,37 @@ import ImageMapper from "@Components/imageMapper";
 import type { MapperItem } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import MAPPING from "./Mapping";
-import { memo, useLayoutEffect, useContext, useMemo } from "react";
-import { StyleSheet, useWindowDimensions } from "react-native";
-import { verticalScale } from "@Utils/Platform";
+import { useLayoutEffect, useContext, useState, useEffect } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { ms, verticalScale } from "@Utils/Platform";
 import { ThemeContext } from "@Src/store/themeContext";
 import HeaderRight from "../HeaderRight";
 import { Image, ImageBackground } from "expo-image";
-import { blurhash } from "@Utils/Helper";
+import {
+  blurhash,
+  getDataFromStorage,
+  screenHeight,
+  screenWidth,
+  storeDataToStorage,
+} from "@Utils/Helper";
+import { Feather } from "@expo/vector-icons";
+import Colors from "@GlobalStyle/Colors";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 
 const PlanScreen = ({ navigation }: Props) => {
-  const { width, height } = useWindowDimensions();
+  const [editMode, setEditMode] = useState(false);
+  const [mappingData, setMappingData] = useState<MapperItem[]>([]);
   const { theme } = useContext(ThemeContext);
+
+  const onPressEdit = () => {
+    setEditMode((prev) => !prev);
+  };
+
+  const onPressCheck = () => {
+    setEditMode((prev) => !prev);
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
@@ -29,27 +47,57 @@ const PlanScreen = ({ navigation }: Props) => {
         );
       },
     });
-  }, [theme]);
-  const handleSelectArea = (subjectId: number) => {
-    navigation.navigate("Subject", { subjectId });
+  }, [theme, editMode]);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity onPress={editMode ? onPressCheck : onPressEdit}>
+          <Feather
+            name={editMode ? "check" : "edit"}
+            size={ms(24)}
+            color={theme === "light" ? Colors.lightText : Colors.darkText}
+            style={{ paddingHorizontal: ms(12) }}
+          />
+        </TouchableOpacity>
+      ),
+    });
+  }, [theme, editMode]);
+
+  const getMappingData = async () => {
+    const data = await getDataFromStorage("mappingData");
+    if (data) {
+      setMappingData(data);
+    } else {
+      setMappingData(MAPPING);
+    }
   };
-  const mapping = useMemo(
-    () =>
-      MAPPING.map((item) => {
-        return {
-          ...item,
-          x1:
-            width > height
-              ? ((height * 0.994) / 100) * item.x1
-              : (width / 100) * item.x1,
-          y1:
-            width > height
-              ? ((height * 1.074) / 100) * item.y1
-              : ((width * 1.074) / 100) * item.y1,
-        };
-      }),
-    [width, height]
-  );
+
+  useEffect(() => {
+    getMappingData();
+  }, []);
+
+  const handleSelectArea = async (subjectId: number) => {
+    if (editMode) {
+      // change subject prefill from mappingData state and save to storage again
+      setMappingData((prev) => {
+        const newData = prev.map((item) => {
+          if (item?.id === subjectId) {
+            return {
+              ...item,
+              prefill: item?.prefill === "#fff" ? "transparent" : "#fff",
+              isFinished: item?.isFinished === true ? false : true,
+            };
+          }
+          return item;
+        });
+        storeDataToStorage("mappingData", newData);
+        return newData;
+      });
+    } else {
+      navigation.navigate("Subject", { subjectId });
+    }
+  };
 
   return (
     <>
@@ -67,15 +115,15 @@ const PlanScreen = ({ navigation }: Props) => {
           maxZoom={1.5}
           minZoom={0.5}
           zoomStep={0.5}
-          initialZoom={width > height ? 0.7 : 1}
+          initialZoom={1}
           bindToBorders={true}
           visualTouchFeedbackEnabled={false}
         >
           <ImageMapper
             imgSource={require("@Assets/images/plan.webp")}
-            imgWidth={width > height ? height : width}
-            imgHeight={width > height ? height * 1.089 : width * 1.089}
-            imgMap={mapping}
+            imgWidth={screenWidth}
+            imgHeight={screenWidth * 1.089}
+            imgMap={mappingData}
             containerStyle={{
               flexGrow: 1,
               justifyContent: "center",
@@ -85,15 +133,18 @@ const PlanScreen = ({ navigation }: Props) => {
             }}
           />
         </ReactNativeZoomableView>
-        {height > 650 && width < height && (
+        {screenHeight > 650 && (
           <Image
             source={require("@Assets/images/planLowerbar.webp")}
             contentFit="contain"
             transition={400}
             style={{
-              width: width,
-              height: height <= 1200 ? height * 0.08 : height * 0.12,
-              bottom: width <= 500 ? verticalScale(32) : 12,
+              width: screenWidth,
+              height:
+                screenHeight <= 1200
+                  ? screenHeight * 0.08
+                  : screenHeight * 0.12,
+              bottom: screenWidth <= 500 ? verticalScale(32) : 12,
             }}
           />
         )}
@@ -102,4 +153,4 @@ const PlanScreen = ({ navigation }: Props) => {
   );
 };
 
-export default memo(PlanScreen);
+export default PlanScreen;

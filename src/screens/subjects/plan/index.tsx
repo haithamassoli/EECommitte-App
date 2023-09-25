@@ -94,7 +94,7 @@ const PlanScreen = ({ navigation }: Props) => {
         storeDataToStorage("mappingData", newData);
         return newData;
       });
-    } else {
+    } else if (subjectId > 1000) {
       navigation.navigate("Subject", { subjectId });
     }
   };

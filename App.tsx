@@ -1,4 +1,3 @@
-// @ts-nocheck
 import "react-native-gesture-handler";
 import { useCallback, useContext, useEffect, useState } from "react";
 import * as Notifications from "expo-notifications";
@@ -19,12 +18,22 @@ import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import {
+  deleteAllStorage,
+  getDataFromStorage,
+  storeDataToStorage,
+} from "@Utils/Helper";
 import { FavoriteProvider } from "@Src/store/favoriteContext";
 import { setNotificationsTokens } from "@Src/api/setNotificationsTokens";
 import FirstLoading from "@Components/FirstLoading";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FlashList } from "@shopify/flash-list";
+import {
+  PaperProvider,
+  configureFonts,
+  MD3LightTheme,
+} from "react-native-paper";
+import { fontConfig, MaterialDark, MaterialLight } from "@GlobalStyle/material";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -53,23 +62,22 @@ const queryClient = new QueryClient({
   },
 });
 
+TextInput.defaultProps = TextInput.defaultProps || {};
+TextInput.defaultProps.allowFontScaling = false;
+
+Text.defaultProps = Text.defaultProps || {};
+Text.defaultProps.allowFontScaling = false;
+
+ScrollView.defaultProps = ScrollView.defaultProps || {};
+ScrollView.defaultProps.showsVerticalScrollIndicator = false;
+ScrollView.defaultProps.showsHorizontalScrollIndicator = false;
+
+FlashList.defaultProps = FlashList.defaultProps || {};
+FlashList.defaultProps.showsVerticalScrollIndicator = false;
+FlashList.defaultProps.showsHorizontalScrollIndicator = false;
+Text.defaultProps = Text.defaultProps || {};
+Text.defaultProps.allowFontScaling = false;
 export default function App() {
-  TextInput.defaultProps = TextInput.defaultProps || {};
-  TextInput.defaultProps.allowFontScaling = false;
-
-  Text.defaultProps = Text.defaultProps || {};
-  Text.defaultProps.allowFontScaling = false;
-
-  ScrollView.defaultProps = ScrollView.defaultProps || {};
-  ScrollView.defaultProps.showsVerticalScrollIndicator = false;
-  ScrollView.defaultProps.showsHorizontalScrollIndicator = false;
-
-  FlashList.defaultProps = FlashList.defaultProps || {};
-  FlashList.defaultProps.showsVerticalScrollIndicator = false;
-  FlashList.defaultProps.showsHorizontalScrollIndicator = false;
-  Text.defaultProps = Text.defaultProps || {};
-  Text.defaultProps.allowFontScaling = false;
-
   const { theme } = useContext(ThemeContext);
   const [isFirstTime, setIsFirstTime] = useState(false);
   useEffect(() => {
@@ -92,6 +100,7 @@ export default function App() {
       }
     };
     firstTime();
+    // deleteAllStorage();
   }, []);
 
   const [fontsLoaded] = useFonts({
@@ -123,9 +132,10 @@ export default function App() {
         );
         return;
       }
-      const pushNotificationsToken =
-        await Notifications.getExpoPushTokenAsync();
-      setNotificationsTokens(pushNotificationsToken.data);
+      const pushNotificationsToken = await Notifications.getExpoPushTokenAsync({
+        projectId: "17a53ebd-120e-477f-9b48-e87d75fd1a78",
+      });
+      // setNotificationsTokens(pushNotificationsToken.data);
       // console.log(pushNotificationsToken.data);
 
       if (Platform.OS === "android") {
@@ -150,29 +160,42 @@ export default function App() {
     }
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  if (!fontsLoaded) null;
 
-  if (isFirstTime) {
-    return <FirstLoading onLayout={onLayoutRootView} onFinished={onFinished} />;
-  }
+  const materialTheme: any = {
+    ...MD3LightTheme,
+    dark: theme === "dark",
+    isV3: true,
+    version: 3,
+    colors:
+      theme === "dark"
+        ? { ...MD3LightTheme.colors, ...MaterialDark }
+        : { ...MD3LightTheme.colors, ...MaterialLight },
+    fonts: configureFonts({ config: fontConfig }),
+  };
+
+  if (isFirstTime)
+    <FirstLoading onLayout={onLayoutRootView} onFinished={onFinished} />;
 
   return (
-    <ThemeProvider>
-      <FavoriteProvider>
-        <StatusBar
-          style={theme === "light" ? "dark" : "light"}
-          backgroundColor={
-            theme === "light" ? Colors.lightBackground : Colors.darkBackground
-          }
-        />
-        <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
-          <QueryClientProvider client={queryClient}>
-            <Route />
-          </QueryClientProvider>
-        </SafeAreaView>
-      </FavoriteProvider>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
+        <ThemeProvider>
+          <FavoriteProvider>
+            <StatusBar
+              style={theme === "light" ? "dark" : "light"}
+              backgroundColor={
+                theme === "light"
+                  ? Colors.lightBackground
+                  : Colors.darkBackground
+              }
+            />
+            <PaperProvider theme={materialTheme}>
+              <Route />
+            </PaperProvider>
+          </FavoriteProvider>
+        </ThemeProvider>
+      </SafeAreaView>
+    </QueryClientProvider>
   );
 }

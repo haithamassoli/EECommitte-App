@@ -21,6 +21,7 @@ export type InfoStackParamList = {
   SupportUs: undefined;
   Search: undefined;
   Dashboard: undefined;
+  DashboardList: undefined;
 };
 
 export type HomeStackParamList = {

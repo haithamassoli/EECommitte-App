@@ -10,6 +10,7 @@ import { isIOS, moderateScale, vs } from "@Utils/Platform";
 import { Shadow } from "react-native-shadow-2";
 import { useContext } from "react";
 import DashboardScreen from "@Screens/info/dashboard";
+import DashboardListScreen from "@Screens/info/dashboard/list";
 const Stack = createStackNavigator<InfoStackParamList>();
 
 export default function InfoNavigation() {
@@ -65,6 +66,13 @@ export default function InfoNavigation() {
       <Stack.Screen
         name="Dashboard"
         component={DashboardScreen}
+        options={{
+          title: "لوحة التحكم",
+        }}
+      />
+      <Stack.Screen
+        name="DashboardList"
+        component={DashboardListScreen}
         options={{
           title: "لوحة التحكم",
         }}

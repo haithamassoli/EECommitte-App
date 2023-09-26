@@ -14,8 +14,12 @@ import { checkPasswordMutation } from "@Src/api/dashboard";
 import Loading from "@Components/ui/loading";
 import { useState } from "react";
 import CustomButton from "@Components/ui/customButton";
+import { StackScreenProps } from "@react-navigation/stack";
+import { InfoStackParamList } from "@Types/navigation";
 
-const DashboardScreen = () => {
+type Props = StackScreenProps<InfoStackParamList, "Dashboard">;
+
+const DashboardScreen = ({ navigation }: Props) => {
   const { mutate, isLoading } = checkPasswordMutation();
   const [showPassword, setShowPassword] = useState(false);
   const { control, handleSubmit, reset } =
@@ -28,21 +32,22 @@ const DashboardScreen = () => {
   };
 
   const onSubmit = (FormData: VerificationPasswordSchemaType) => {
-    mutate(FormData.password, {
-      onSuccess: (data) => {
-        if (FormData.password === data?.password) {
-          console.log("Password is correct");
-          reset();
-        } else {
-          console.log("Password is incorrect");
-          reset();
-        }
-      },
-      onError: (error) => {
-        console.log("Password is incorrect");
-        reset();
-      },
-    });
+    navigation.push("DashboardList");
+    // mutate(FormData.password, {
+    //   onSuccess: (data) => {
+    //     if (FormData.password === data?.password) {
+    //       console.log("Password is correct");
+    //       reset();
+    //     } else {
+    //       console.log("Password is incorrect");
+    //       reset();
+    //     }
+    //   },
+    //   onError: (error) => {
+    //     console.log("Password is incorrect");
+    //     reset();
+    //   },
+    // });
   };
 
   if (isLoading) return <Loading />;
@@ -66,6 +71,7 @@ const DashboardScreen = () => {
             fontSize: ms(20),
             fontFamily: "TajawalBold",
             textAlign: "center",
+            marginBottom: vs(12),
           }}
         >
           أدخل كلمو المرور

@@ -6,9 +6,10 @@ import AboutEECommitteScreen from "@Screens/info/aboutEECommitte";
 import SupportUsScreen from "@Screens/info/supportUs";
 import { ThemeContext } from "@Src/store/themeContext";
 import { InfoStackParamList } from "@Types/navigation";
-import { moderateScale, vs } from "@Utils/Platform";
+import { isIOS, moderateScale, vs } from "@Utils/Platform";
 import { Shadow } from "react-native-shadow-2";
 import { useContext } from "react";
+import DashboardScreen from "@Screens/info/dashboard";
 const Stack = createStackNavigator<InfoStackParamList>();
 
 export default function InfoNavigation() {
@@ -23,7 +24,12 @@ export default function InfoNavigation() {
           fontFamily: "Bukra",
         },
         headerStyle: {
-          height: vs(68),
+          height: isIOS ? vs(96) : vs(64),
+        },
+        headerBackTitle: "رجوع",
+        headerBackTitleStyle: {
+          fontSize: moderateScale(16),
+          fontFamily: "Bukra",
         },
         headerMode: "screen",
         headerBackground() {
@@ -56,7 +62,13 @@ export default function InfoNavigation() {
         component={AboutEECommitteScreen}
       />
       <Stack.Screen name="SupportUs" component={SupportUsScreen} />
-      {/* <Stack.Screen name="DashboardNavigation" component={SupportUsScreen} /> */}
+      <Stack.Screen
+        name="Dashboard"
+        component={DashboardScreen}
+        options={{
+          title: "لوحة التحكم",
+        }}
+      />
     </Stack.Navigator>
   );
 }

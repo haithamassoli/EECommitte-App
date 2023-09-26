@@ -3,7 +3,7 @@
 import { hs, ms, vs } from "@Utils/Platform";
 
 export const MaterialLight = {
-  primary: "rgb(135, 82, 0)",
+  primary: "#F79606",
   onPrimary: "rgb(255, 255, 255)",
   primaryContainer: "rgb(255, 221, 186)",
   onPrimaryContainer: "rgb(43, 23, 0)",
@@ -90,84 +90,84 @@ export const MaterialDark = {
 
 export const fontConfig = {
   DisplayLarge: {
-    fontFamily: "CairoBold",
+    fontFamily: "TajawalBold",
     lineHeight: vs(70),
     fontSize: ms(57),
   },
   DisplayMedium: {
-    fontFamily: "CairoReg",
+    fontFamily: "TajawalMedium",
     lineHeight: vs(58),
     fontSize: ms(45),
   },
   DisplaySmall: {
-    fontFamily: "CairoReg",
+    fontFamily: "TajawalMedium",
     lineHeight: vs(50),
     fontSize: ms(36),
   },
   headlineLarge: {
-    fontFamily: "CairoReg",
+    fontFamily: "TajawalMedium",
     lineHeight: vs(46),
     fontSize: ms(32),
   },
   headlineMedium: {
-    fontFamily: "CairoReg",
+    fontFamily: "TajawalMedium",
     lineHeight: vs(42),
     fontSize: ms(28),
   },
   headlineSmall: {
-    fontFamily: "CairoBold",
+    fontFamily: "TajawalBold",
     lineHeight: vs(38),
     fontSize: ms(24),
   },
   titleLarge: {
-    fontFamily: "CairoReg",
+    fontFamily: "TajawalMedium",
     lineHeight: vs(34),
     fontSize: ms(22),
   },
   titleMedium: {
-    fontFamily: "CairoReg",
+    fontFamily: "TajawalMedium",
     lineHeight: vs(30),
     fontSize: ms(16),
     letterSpacing: hs(0.15),
   },
   titleSmall: {
-    fontFamily: "CairoBold",
+    fontFamily: "TajawalBold",
     lineHeight: vs(26),
     fontSize: ms(14),
     letterSpacing: hs(0.1),
   },
   labelLarge: {
-    fontFamily: "CairoBold",
+    fontFamily: "TajawalBold",
     lineHeight: vs(26),
     fontSize: ms(14),
     letterSpacing: hs(0.1),
   },
   labelMedium: {
-    fontFamily: "CairoReg",
+    fontFamily: "TajawalMedium",
     lineHeight: vs(22),
     fontSize: ms(12),
     letterSpacing: hs(0.5),
   },
   labelSmall: {
-    fontFamily: "CairoReg",
+    fontFamily: "TajawalMedium",
     lineHeight: vs(22),
     fontSize: ms(11),
     letterSpacing: hs(0.5),
   },
   bodyLarge: {
-    fontFamily: "CairoBold",
+    fontFamily: "TajawalBold",
     lineHeight: vs(30),
     fontSize: ms(16),
     letterSpacing: hs(0.15),
   },
   bodyMedium: {
-    fontFamily: "CairoReg",
+    fontFamily: "TajawalMedium",
     lineHeight: vs(26),
     fontSize: ms(14),
     letterSpacing: hs(0.25),
   },
   bodySmall: {
-    fontFamily: "CairoReg",
+    fontFamily: "TajawalMedium",
     lineHeight: vs(22),
     fontSize: ms(12),
     letterSpacing: hs(0.4),

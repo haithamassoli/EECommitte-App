@@ -1,4 +1,3 @@
-import Colors from "@GlobalStyle/Colors";
 import { Subject } from "@Types/index";
 
 const Subjects: Subject[] = [

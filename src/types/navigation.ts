@@ -12,6 +12,7 @@ export type SubjectsStackParamList = {
   Subject: { subjectId: number };
   SubjectFullPost: { post?: string; postTitle: string };
   Search: undefined;
+  EditSubject: { subjectId: number };
 };
 
 export type InfoStackParamList = {
@@ -19,13 +20,7 @@ export type InfoStackParamList = {
   AboutEECommitte: undefined;
   SupportUs: undefined;
   Search: undefined;
-  DashboardNavigation: NavigatorScreenParams<DashboardStackParamList>;
-};
-
-export type DashboardStackParamList = {
   Dashboard: undefined;
-  DashboardFullPost: { post?: string; postTitle: string };
-  Search: undefined;
 };
 
 export type HomeStackParamList = {

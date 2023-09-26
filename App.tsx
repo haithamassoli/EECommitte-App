@@ -168,7 +168,7 @@ export default function App() {
     isV3: true,
     version: 3,
     colors:
-      theme === "dark"
+      theme === "light"
         ? { ...MD3LightTheme.colors, ...MaterialDark }
         : { ...MD3LightTheme.colors, ...MaterialLight },
     fonts: configureFonts({ config: fontConfig }),

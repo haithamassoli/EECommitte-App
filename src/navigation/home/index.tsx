@@ -11,7 +11,7 @@ import RegistrationScreen from "@Screens/home/Registration";
 import NotificationScreen from "@Screens/home/Notification";
 import SubjectNameScreen from "@Screens/home/SubjectName";
 import { Feather } from "@expo/vector-icons";
-import { horizontalScale, moderateScale, vs } from "@Utils/Platform";
+import { horizontalScale, isIOS, moderateScale, vs } from "@Utils/Platform";
 import { View, TouchableOpacity } from "react-native";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
@@ -71,7 +71,7 @@ export default function HomeNavigation({ navigation }: Props) {
           fontFamily: "Bukra",
         },
         headerStyle: {
-          height: vs(68),
+          height: isIOS ? vs(96) : vs(64),
         },
         headerBackground() {
           return (

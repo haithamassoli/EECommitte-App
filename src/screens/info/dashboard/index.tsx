@@ -22,7 +22,7 @@ type Props = StackScreenProps<InfoStackParamList, "Dashboard">;
 const DashboardScreen = ({ navigation }: Props) => {
   const { mutate, isLoading } = checkPasswordMutation();
   const [showPassword, setShowPassword] = useState(false);
-  const { control, handleSubmit, reset } =
+  const { control, handleSubmit, reset, setError } =
     useForm<VerificationPasswordSchemaType>({
       resolver: zodResolver(verificationPasswordSchema),
     });
@@ -32,22 +32,23 @@ const DashboardScreen = ({ navigation }: Props) => {
   };
 
   const onSubmit = (FormData: VerificationPasswordSchemaType) => {
-    navigation.push("DashboardList");
-    // mutate(FormData.password, {
-    //   onSuccess: (data) => {
-    //     if (FormData.password === data?.password) {
-    //       console.log("Password is correct");
-    //       reset();
-    //     } else {
-    //       console.log("Password is incorrect");
-    //       reset();
-    //     }
-    //   },
-    //   onError: (error) => {
-    //     console.log("Password is incorrect");
-    //     reset();
-    //   },
-    // });
+    mutate(FormData.password, {
+      onSuccess: (data) => {
+        if (FormData.password === data?.password) {
+          reset();
+          navigation.push("DashboardList");
+        } else {
+          setError("password", {
+            message: "كلمة المرور غير صحيحة",
+          });
+        }
+      },
+      onError: (error) => {
+        setError("password", {
+          message: "كلمة المرور غير صحيحة",
+        });
+      },
+    });
   };
 
   if (isLoading) return <Loading />;
@@ -74,7 +75,7 @@ const DashboardScreen = ({ navigation }: Props) => {
             marginBottom: vs(12),
           }}
         >
-          أدخل كلمو المرور
+          أدخل كلمة المرور
         </Text>
       </Animated.View>
       <Animated.View
@@ -90,7 +91,7 @@ const DashboardScreen = ({ navigation }: Props) => {
           mode="outlined"
           textContentType="password"
           placeholder="ادخل كلمة المرور"
-          inputMode="numeric"
+          autoCapitalize="none"
           outlineStyle={{
             borderRadius: ms(18),
           }}

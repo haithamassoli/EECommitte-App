@@ -77,9 +77,11 @@ FlashList.defaultProps.showsVerticalScrollIndicator = false;
 FlashList.defaultProps.showsHorizontalScrollIndicator = false;
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
+
 export default function App() {
   const { theme } = useContext(ThemeContext);
   const [isFirstTime, setIsFirstTime] = useState(false);
+
   useEffect(() => {
     const forceRTL = async () => {
       if (!I18nManager.isRTL) {
@@ -160,7 +162,9 @@ export default function App() {
     }
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) null;
+  if (!fontsLoaded) {
+    return null;
+  }
 
   const materialTheme: any = {
     ...MD3LightTheme,

@@ -12,7 +12,7 @@ export type SubjectsStackParamList = {
   Subject: { subjectId: number };
   SubjectFullPost: { post?: string; postTitle: string };
   Search: undefined;
-  EditSubject: { subjectId: number };
+  EditSubject: { subjectId: string };
 };
 
 export type InfoStackParamList = {

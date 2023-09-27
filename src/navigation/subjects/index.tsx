@@ -5,10 +5,11 @@ import SubjectScreen from "@Screens/subjects/subject";
 import SubjectFullPostScreen from "@Screens/subjects/subjectFullPost";
 import { ThemeContext } from "@Src/store/themeContext";
 import { SubjectsStackParamList } from "@Types/navigation";
-import { moderateScale, vs } from "@Utils/Platform";
+import { isIOS, moderateScale, vs } from "@Utils/Platform";
 import { Shadow } from "react-native-shadow-2";
 import { useContext } from "react";
 import Colors from "@GlobalStyle/Colors";
+import EditSubjectScreen from "@Screens/subjects/EditSubject";
 const Stack = createStackNavigator<SubjectsStackParamList>();
 
 export default function SubjectsNavigation() {
@@ -26,7 +27,7 @@ export default function SubjectsNavigation() {
           fontFamily: "Bukra",
         },
         headerStyle: {
-          height: vs(68),
+          height: isIOS ? vs(96) : vs(64),
         },
         headerBackground() {
           return (
@@ -53,6 +54,13 @@ export default function SubjectsNavigation() {
       <Stack.Screen name="Plan" component={PlanScreen} />
       <Stack.Screen name="Subject" component={SubjectScreen} />
       <Stack.Screen name="SubjectFullPost" component={SubjectFullPostScreen} />
+      <Stack.Screen
+        name="EditSubject"
+        component={EditSubjectScreen}
+        options={{
+          headerTitle: `تعديل المادة`,
+        }}
+      />
     </Stack.Navigator>
   );
 }

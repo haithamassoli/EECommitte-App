@@ -5,12 +5,14 @@ type ControlledInputProps = {
   control: Control<any>;
   name: string;
   width?: string | number;
+  withError?: boolean;
 } & React.ComponentProps<typeof TextInput>;
 
 const ControlledInput = ({
   control,
   name,
   width,
+  withError = true,
   ...textInputProps
 }: ControlledInputProps) => {
   return (
@@ -29,16 +31,18 @@ const ControlledInput = ({
             onBlur={onBlur}
             error={invalid}
           />
-          <HelperText
-            type="error"
-            visible={invalid}
-            style={{
-              textAlign: "left",
-              width: "100%",
-            }}
-          >
-            {error?.message}
-          </HelperText>
+          {withError && (
+            <HelperText
+              type="error"
+              visible={invalid}
+              style={{
+                textAlign: "left",
+                width: "100%",
+              }}
+            >
+              {error?.message}
+            </HelperText>
+          )}
         </>
       )}
     />

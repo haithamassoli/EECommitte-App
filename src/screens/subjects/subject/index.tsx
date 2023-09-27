@@ -17,13 +17,32 @@ import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Feather, AntDesign } from "@expo/vector-icons";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  hs,
+  moderateScale,
+  ms,
+  verticalScale,
+  vs,
+} from "@Utils/Platform";
 import { blurhash, screenHeight, screenWidth } from "@Utils/Helper";
 import { FavoriteContext } from "@Src/store/favoriteContext";
 import HeaderRight from "../HeaderRight";
 import { fetchSubjectById } from "@Src/api/fetchSubjectById";
 import NoConnection from "@Components/NoConnection";
 import { ImageBackground } from "expo-image";
+import { Modal, Portal, TextInput } from "react-native-paper";
+import {
+  VerificationPasswordSchemaType,
+  verificationPasswordSchema,
+} from "@Types/schema";
+import { checkPasswordMutation } from "@Src/api/dashboard";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Animated, { FadeInUp } from "react-native-reanimated";
+import CustomButton from "@Components/ui/customButton";
+import ControlledInput from "@Components/controlledInput";
+import Loading from "@Components/ui/loading";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 export type SubjectNavigationProp = StackNavigationProp<
@@ -46,8 +65,16 @@ const powerDarkFrame = require("@Assets/images/subjectColors/powerDark.png");
 
 const SubjectScreen = ({ navigation, route }: Props) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isPasswordTrue, setIsPasswordTrue] = useState(false);
   const [refetchCounter, setRefetchCounter] = useState(0);
   const { theme } = useContext(ThemeContext);
+  const { mutate, isLoading: isChecking } = checkPasswordMutation();
+  const [showPassword, setShowPassword] = useState(false);
+  const { control, handleSubmit, reset, setError } =
+    useForm<VerificationPasswordSchemaType>({
+      resolver: zodResolver(verificationPasswordSchema),
+    });
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
   const { data, isLoading, isFetching }: any = fetchSubjectById(
     route.params.subjectId,
@@ -88,22 +115,37 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     navigation.setOptions({
       headerTitle: data?.name2 || "المادة",
       headerLeft: () => (
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
+        <View
           style={{
             flex: 1,
             flexDirection: "row",
             alignItems: "center",
-            paddingStart: horizontalScale(12),
           }}
         >
-          <Feather
-            name="arrow-right"
-            size={moderateScale(24)}
-            color={textColor}
-          />
-          <Feather name="book" size={moderateScale(24)} color={textColor} />
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              paddingStart: horizontalScale(12),
+            }}
+          >
+            <Feather
+              name="arrow-right"
+              size={moderateScale(24)}
+              color={textColor}
+            />
+            <Feather name="book" size={moderateScale(24)} color={textColor} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setIsVisible(true)}
+            style={{
+              paddingStart: horizontalScale(8),
+            }}
+          >
+            <Feather name="edit" size={moderateScale(24)} color={textColor} />
+          </TouchableOpacity>
+        </View>
       ),
       headerRight: () => {
         return (
@@ -126,6 +168,40 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     setRefetchCounter(0);
     setRefetchCounter((prev) => prev + 1);
   };
+
+  const onEyePress = () => {
+    setShowPassword((e) => !e);
+  };
+
+  const onSubmit = (FormData: VerificationPasswordSchemaType) => {
+    mutate(FormData.password, {
+      onSuccess: (data) => {
+        if (FormData.password === data?.password) {
+          reset();
+          setIsVisible(false);
+          setIsPasswordTrue(true);
+        } else {
+          setError("password", {
+            message: "كلمة المرور غير صحيحة",
+          });
+        }
+      },
+      onError: (error) => {
+        setError("password", {
+          message: "كلمة المرور غير صحيحة",
+        });
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (isPasswordTrue) {
+      navigation.push("EditSubject", {
+        subjectId: data?.uid,
+      });
+    }
+  }, [isPasswordTrue]);
+
   if (isLoading) {
     return (
       <ActivityIndicator
@@ -159,6 +235,89 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         />
       }
     >
+      <Portal>
+        <Modal visible={isVisible} onDismiss={() => setIsVisible(false)}>
+          <View
+            style={{
+              backgroundColor: "#eee",
+              width: screenWidth - hs(32),
+              borderRadius: ms(16),
+              alignSelf: "center",
+              paddingVertical: vs(32),
+              paddingHorizontal: hs(16),
+            }}
+          >
+            {isChecking ? (
+              <Loading size="small" />
+            ) : (
+              <>
+                <Animated.View
+                  entering={FadeInUp.withInitialValues({
+                    transform: [{ translateY: vs(-25) }],
+                  }).duration(600)}
+                >
+                  <Text
+                    style={{
+                      color: Colors.lightText,
+                      fontSize: ms(20),
+                      fontFamily: "TajawalBold",
+                      textAlign: "center",
+                      marginBottom: vs(12),
+                    }}
+                  >
+                    أدخل كلمة المرور
+                  </Text>
+                </Animated.View>
+                <Animated.View
+                  entering={FadeInUp.withInitialValues({
+                    transform: [{ translateY: vs(-25) }],
+                  })
+                    .duration(600)
+                    .delay(200)}
+                >
+                  <ControlledInput
+                    control={control}
+                    name="password"
+                    mode="outlined"
+                    textContentType="password"
+                    placeholder="ادخل كلمة المرور"
+                    autoCapitalize="none"
+                    outlineStyle={{
+                      borderRadius: ms(18),
+                    }}
+                    style={{
+                      width: "100%",
+                    }}
+                    secureTextEntry={!showPassword}
+                    right={
+                      <TextInput.Icon
+                        icon={showPassword ? "eye-off" : "eye"}
+                        onPress={onEyePress}
+                      />
+                    }
+                  />
+                </Animated.View>
+                <Animated.View
+                  entering={FadeInUp.withInitialValues({
+                    transform: [{ translateY: vs(-25) }],
+                  })
+                    .duration(600)
+                    .delay(400)}
+                >
+                  <CustomButton
+                    mode="contained"
+                    onPress={handleSubmit(onSubmit)}
+                    title="تسجيل الدخول"
+                    style={{
+                      width: "100%",
+                    }}
+                  />
+                </Animated.View>
+              </>
+            )}
+          </View>
+        </Modal>
+      </Portal>
       <ImageBackground
         contentFit="contain"
         source={subjectFrame}
@@ -226,7 +385,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             onPress={() => data.book && Linking.openURL(data.book)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText]}>الكتاب</Text>
+            <Text style={style.buttonText}>الكتاب</Text>
           </TouchableOpacity>
         )}
         {data?.manual && (
@@ -234,7 +393,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             onPress={() => data.manual && Linking.openURL(data.manual)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText]}>المانيول</Text>
+            <Text style={style.buttonText}>المانيول</Text>
           </TouchableOpacity>
         )}
         {data?.prevYears && (
@@ -242,7 +401,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             onPress={() => data.prevYears && Linking.openURL(data.prevYears)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText]}>السنوات السابقة</Text>
+            <Text style={style.buttonText}>السنوات السابقة</Text>
           </TouchableOpacity>
         )}
         {data?.exams && (
@@ -250,7 +409,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             onPress={() => data.exams && Linking.openURL(data.exams)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText]}>الامتحانات</Text>
+            <Text style={style.buttonText}>الامتحانات</Text>
           </TouchableOpacity>
         )}
         {data?.slides && (
@@ -258,7 +417,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             onPress={() => data.slides && Linking.openURL(data.slides)}
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText]}>السلايدات</Text>
+            <Text style={style.buttonText}>السلايدات</Text>
           </TouchableOpacity>
         )}
         {data?.explanations?.map((explanation: any, index: number) => (
@@ -269,7 +428,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             }
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={[style.buttonText]}>{explanation.name}</Text>
+            <Text style={style.buttonText}>{explanation.name}</Text>
           </TouchableOpacity>
         ))}
         <TouchableOpacity
@@ -278,7 +437,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           }
           style={[style.button, { backgroundColor: backgroundSubjectColor }]}
         >
-          <Text style={[style.buttonText]}>درايف المادة</Text>
+          <Text style={style.buttonText}>درايف المادة</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity
@@ -321,8 +480,8 @@ const style = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: Colors.gray,
     borderRadius: moderateScale(10),
-    paddingHorizontal: moderateScale(10),
-    paddingVertical: moderateScale(10),
+    paddingHorizontal: hs(10),
+    paddingVertical: vs(10),
     marginHorizontal: horizontalScale(10),
     marginVertical: verticalScale(10),
     width: screenWidth / 2 - horizontalScale(32),

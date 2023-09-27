@@ -5,7 +5,7 @@ import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { Feather } from "@expo/vector-icons";
 
-const NoConnection = ({ refetch }: any) => {
+const NoConnection = ({ refetch }: { refetch?: () => void }) => {
   const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (

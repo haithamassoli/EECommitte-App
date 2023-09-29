@@ -114,6 +114,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: data?.name2 || "المادة",
+      headerTitleAlign: "center",
       headerLeft: () => (
         <View
           style={{
@@ -200,6 +201,9 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         subjectId: data?.uid,
       });
     }
+    return () => {
+      setIsPasswordTrue(false);
+    };
   }, [isPasswordTrue]);
 
   if (isLoading) {
@@ -239,7 +243,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
         <Modal visible={isVisible} onDismiss={() => setIsVisible(false)}>
           <View
             style={{
-              backgroundColor: "#eee",
+              backgroundColor: backgroundColor,
               width: screenWidth - hs(32),
               borderRadius: ms(16),
               alignSelf: "center",
@@ -258,7 +262,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
                 >
                   <Text
                     style={{
-                      color: Colors.lightText,
+                      color: textColor,
                       fontSize: ms(20),
                       fontFamily: "TajawalBold",
                       textAlign: "center",

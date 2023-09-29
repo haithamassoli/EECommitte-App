@@ -22,6 +22,11 @@ export default function SubjectsNavigation() {
       screenOptions={{
         headerTitle: "ما يخص المواد",
         headerMode: "screen",
+        headerBackTitle: "رجوع",
+        headerBackTitleStyle: {
+          fontSize: moderateScale(14),
+          fontFamily: "Bukra",
+        },
         headerTitleStyle: {
           fontSize: moderateScale(16),
           fontFamily: "Bukra",

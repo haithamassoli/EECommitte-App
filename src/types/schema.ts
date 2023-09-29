@@ -19,7 +19,9 @@ export const validationSubjectSchema = z.object({
   }),
   book: z.optional(z.string()),
   prevYears: z.optional(z.string()),
-  drive: z.optional(z.string()),
+  subjectLink: z.string({
+    required_error: "رابط المادة على درايف مطلوب",
+  }),
   fullPost: z.optional(z.string()),
   aboutSubject: z.optional(z.string()),
   explanations: z.optional(

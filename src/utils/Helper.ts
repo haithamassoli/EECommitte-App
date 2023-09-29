@@ -33,7 +33,7 @@ export const deleteStorage = async (key: string) => {
 
 export const deleteAllStorage = async () => {
   try {
-    await AsyncStorage.getAllKeys();
+    await AsyncStorage.clear();
   } catch (e) {
     console.log(e);
   }

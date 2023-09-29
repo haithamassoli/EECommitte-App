@@ -12,20 +12,24 @@ import { hs, ms, vs } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { checkPasswordMutation } from "@Src/api/dashboard";
 import Loading from "@Components/ui/loading";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CustomButton from "@Components/ui/customButton";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
+import { ThemeContext } from "@Src/store/themeContext";
 
 type Props = StackScreenProps<InfoStackParamList, "Dashboard">;
 
 const DashboardScreen = ({ navigation }: Props) => {
   const { mutate, isLoading } = checkPasswordMutation();
   const [showPassword, setShowPassword] = useState(false);
+  const { theme } = useContext(ThemeContext);
   const { control, handleSubmit, reset, setError } =
     useForm<VerificationPasswordSchemaType>({
       resolver: zodResolver(verificationPasswordSchema),
     });
+
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   const onEyePress = () => {
     setShowPassword((e) => !e);
@@ -68,7 +72,7 @@ const DashboardScreen = ({ navigation }: Props) => {
       >
         <Text
           style={{
-            color: Colors.lightText,
+            color: textColor,
             fontSize: ms(20),
             fontFamily: "TajawalBold",
             textAlign: "center",

@@ -1,8 +1,10 @@
 import Colors from "@GlobalStyle/Colors";
+import { ThemeContext } from "@Src/store/themeContext";
 import { hs, ms, vs } from "@Utils/Platform";
 import React, {
   FC,
   RefObject,
+  useContext,
   useImperativeHandle,
   useRef,
   useState,
@@ -32,6 +34,7 @@ export const InsertLinkModal: FC<IProps> = ({
   forwardRef,
 }) => {
   const [isModalVisible, setModalVisible] = useState(false);
+  const { theme } = useContext(ThemeContext);
   const dataRef = useRef<{ title?: string; url?: string }>({});
 
   const setTitle = (title: string) => {
@@ -69,13 +72,13 @@ export const InsertLinkModal: FC<IProps> = ({
     >
       <View style={[styles.dialog, { backgroundColor }]}>
         <View style={styles.linkTitle}>
-          <Text style={{ color }}>{"insertLink"}</Text>
+          <Text style={{ color }}>إضافة رابط جديد</Text>
         </View>
         <View style={styles.item}>
           <TextInput
             style={[styles.input, { color }]}
             placeholderTextColor={placeholderColor}
-            placeholder={"linkTitle"}
+            placeholder={"عنوان الرابط"}
             onChangeText={(text) => setTitle(text)}
           />
         </View>
@@ -92,10 +95,24 @@ export const InsertLinkModal: FC<IProps> = ({
             style={styles.btn}
             onPress={() => setModalVisible(false)}
           >
-            <Text style={styles.text}>{"cancel"}</Text>
+            <Text
+              style={{
+                color:
+                  theme === "light" ? Colors.primary700 : Colors.primary500,
+              }}
+            >
+              إلغاء
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn} onPress={handleDone}>
-            <Text style={styles.text}>{"done"}</Text>
+            <Text
+              style={{
+                color:
+                  theme === "light" ? Colors.primary700 : Colors.primary500,
+              }}
+            >
+              إضافة
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -141,6 +158,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    color: Colors.primary500,
+    color: Colors.primary700,
   },
 });

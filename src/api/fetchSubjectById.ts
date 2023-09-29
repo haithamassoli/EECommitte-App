@@ -56,10 +56,10 @@ export function fetchSubjectById(id: number, refetchCounter: number) {
 
 type Subject = {
   aboutSubject?: string;
-  id: number;
+  id?: number;
   subjectId: string;
   book?: string;
-  color: "#0200CF" | "#F79606" | "#F31313" | "#29abef" | "#AF02AB" | "#272727";
+  color?: "#0200CF" | "#F79606" | "#F31313" | "#29abef" | "#AF02AB" | "#272727";
   fullPost?: string;
   name: string;
   name2: string;
@@ -78,7 +78,9 @@ export const updateSubjectMutation = () =>
 
 const updateSubject = async (data: Subject) => {
   try {
-    await updateDoc(doc(db, "subjects", data.subjectId), data);
+    let dataWithoutSubjectId = { ...data };
+    delete dataWithoutSubjectId.subjectId;
+    await updateDoc(doc(db, "subjects", data.subjectId), dataWithoutSubjectId);
     const dataWithId = { ...data, id: data.id };
     return dataWithId;
   } catch (e: any) {

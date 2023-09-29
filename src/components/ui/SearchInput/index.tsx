@@ -47,6 +47,28 @@ const SearchInput = ({
         return result.item;
       });
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+
+      //       let isLayoutAnimationConfigured = false;
+
+      // const configureKeyboardLayoutAnimation = ({
+      //   duration,
+      //   easing,
+      // }: KeyboardEvent) => {
+      //   if (!isLayoutAnimationConfigured) {
+      //     isLayoutAnimationConfigured = true;
+
+      //     LayoutAnimation.configureNext(LayoutAnimation.create(
+      //       duration,
+      //       (LayoutAnimation.Types[easing] as any),
+      //       (LayoutAnimation.Properties.opacity as any),
+      //     ), () => {
+      //       isLayoutAnimationConfigured = false;
+      //     }, () => {
+      //       isLayoutAnimationConfigured = false;
+      //     });
+      //   }
+      // };
+      // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       setResults(newArr.slice(0, 5));
     }, 400);
     return () => {

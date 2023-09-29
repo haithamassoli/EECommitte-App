@@ -179,7 +179,7 @@ export default function App() {
   };
 
   if (isFirstTime)
-    <FirstLoading onLayout={onLayoutRootView} onFinished={onFinished} />;
+    return <FirstLoading onLayout={onLayoutRootView} onFinished={onFinished} />;
 
   return (
     <QueryClientProvider client={queryClient}>

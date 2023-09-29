@@ -4,6 +4,7 @@ import { TextInput, HelperText } from "react-native-paper";
 type ControlledInputProps = {
   control: Control<any>;
   name: string;
+  defaultValue?: string;
   width?: string | number;
   withError?: boolean;
 } & React.ComponentProps<typeof TextInput>;
@@ -12,6 +13,7 @@ const ControlledInput = ({
   control,
   name,
   width,
+  defaultValue,
   withError = true,
   ...textInputProps
 }: ControlledInputProps) => {
@@ -19,6 +21,7 @@ const ControlledInput = ({
     <Controller
       control={control}
       name={name}
+      defaultValue={defaultValue}
       render={({
         field: { value, onChange, onBlur },
         fieldState: { error, invalid },

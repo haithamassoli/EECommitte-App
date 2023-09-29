@@ -8,6 +8,8 @@ import {
   fetchSubjectByIdQuery,
   updateSubjectMutation,
 } from "@Src/api/fetchSubjectById";
+import { useImagePicker } from "@Src/hooks/useImagePicker";
+import { ThemeContext } from "@Src/store/themeContext";
 import { SubjectsStackParamList } from "@Types/navigation";
 import {
   ValidationSubjectSchemaType,
@@ -19,7 +21,7 @@ import { Feather } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNetInfo } from "@react-native-community/netinfo";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useContext, useEffect, useRef } from "react";
 import { Controller, useForm, useFieldArray } from "react-hook-form";
 import {
   View,
@@ -54,6 +56,7 @@ type Props = StackScreenProps<SubjectsStackParamList, "EditSubject">;
 
 const EditSubjectScreen = ({ navigation, route }: Props) => {
   const { isConnected } = useNetInfo();
+  const { theme } = useContext(ThemeContext);
   const richText = useRef<any>();
   const richText2 = useRef<any>();
   const linkModal = useRef<RefLinkModal>();
@@ -62,22 +65,24 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
   const { data, isLoading: isFetching } = fetchSubjectByIdQuery(
     route?.params?.subjectId
   );
+  const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
+  const backgroundColor =
+    theme === "light" ? Colors.lightBackgroundSec : Colors.darkBackgroundSec;
 
-  const { control, handleSubmit, reset } = useForm<ValidationSubjectSchemaType>(
-    {
-      resolver: zodResolver(validationSubjectSchema),
-      defaultValues: {
-        explanations: data?.explanations?.map((e) => ({
-          name: e.name,
-          link: e.link,
-        })),
-      },
-    }
-  );
+  const [editorImageList, editorPickImage, isLoadingImageEditor] =
+    useImagePicker();
+
+  const { control, handleSubmit } = useForm<ValidationSubjectSchemaType>({
+    resolver: zodResolver(validationSubjectSchema),
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "explanations",
+    rules: {
+      minLength: 3,
+      required: true,
+    },
   });
 
   const onInsertLink = () => {
@@ -102,7 +107,15 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
   }, []);
 
   const onSubmit = (FormData: ValidationSubjectSchemaType) => {
-    reset();
+    const dataWithSubjectId = {
+      ...FormData,
+      subjectId: route.params?.subjectId,
+    };
+    mutate(dataWithSubjectId, {
+      onSuccess: () => {
+        navigation.goBack();
+      },
+    });
   };
 
   useEffect(() => {
@@ -110,6 +123,20 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
       headerTitle: `تعديل مادة ${data?.name2 || ""}`,
     });
   }, [data?.name2]);
+
+  useEffect(() => {
+    if (data?.explanations?.length! > 0 && fields.length === 0) {
+      data?.explanations?.map((e) => {
+        append(e);
+      });
+    }
+  }, [data?.explanations]);
+
+  useEffect(() => {
+    if (editorImageList[0]) {
+      richText.current?.insertImage(editorImageList[0]);
+    }
+  }, [editorImageList]);
 
   if (isLoading || isFetching) return <Loading />;
   if (isConnected === false) return <NoConnection />;
@@ -150,7 +177,7 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
         placeholder={"ادخل رابط السنوات السابقة"}
       />
       <ControlledInput
-        name="drive"
+        name="subjectLink"
         control={control}
         defaultValue={data?.subjectLink || ""}
         label={"درايف"}
@@ -161,6 +188,7 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
           textAlign: "left",
           fontFamily: "TajawalBold",
           fontSize: ms(16),
+          color: textColor,
         }}
       >
         الشروحات
@@ -169,10 +197,10 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
         <View
           key={item.id}
           style={{
-            backgroundColor: "#eee",
             marginBottom: vs(12),
             paddingHorizontal: hs(16),
             paddingVertical: vs(16),
+            backgroundColor: backgroundColor,
           }}
         >
           <View
@@ -188,12 +216,13 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
                 fontFamily: "TajawalBold",
                 fontSize: ms(16),
                 textAlign: "left",
+                color: textColor,
               }}
             >
               الشرح رقم {index + 1}
             </Text>
             <TouchableOpacity onPress={() => remove(index)}>
-              <Feather name="x" size={ms(24)} color={Colors.lightText} />
+              <Feather name="x" size={ms(24)} color={textColor} />
             </TouchableOpacity>
           </View>
           <ControlledInput
@@ -235,15 +264,16 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
           textAlign: "left",
           fontFamily: "TajawalBold",
           fontSize: ms(16),
+          color: textColor,
         }}
       >
         البوست الشامل
       </Text>
       <KeyboardAwareScrollView keyboardShouldPersistTaps="always">
         <InsertLinkModal
-          placeholderColor={Colors.lightText}
-          color={Colors.primary400}
-          backgroundColor={Colors.darkBackground}
+          placeholderColor={textColor}
+          color={textColor}
+          backgroundColor={backgroundColor}
           onDone={onLinkDone}
           forwardRef={linkModal}
         />
@@ -256,6 +286,16 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
             fieldState: { error, invalid },
           }) => (
             <>
+              {isLoadingImageEditor && (
+                <View
+                  style={{
+                    flex: 1,
+                    marginVertical: vs(12),
+                  }}
+                >
+                  <Loading size="small" />
+                </View>
+              )}
               <RichEditor
                 ref={richText}
                 onBlur={onBlur}
@@ -305,11 +345,13 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
               actions.heading3,
               actions.insertBulletsList,
               actions.insertOrderedList,
-              actions.alignRight,
-              actions.alignLeft,
+              actions.undo,
+              actions.redo,
+              actions.insertImage,
             ]}
             selectedIconTint={Colors.primary400}
             disabledIconTint={Colors.overlay}
+            onPressAddImage={editorPickImage}
             onInsertLink={onInsertLink}
             iconMap={{
               [actions.heading1]: handleHead,
@@ -329,6 +371,7 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
             textAlign: "left",
             fontFamily: "TajawalBold",
             fontSize: ms(16),
+            color: textColor,
           }}
         >
           عن المادة
@@ -374,41 +417,6 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
             </>
           )}
         />
-        <View
-          style={{
-            paddingBottom: vs(12),
-          }}
-        >
-          <RichToolbar
-            editor={richText2}
-            actions={[
-              actions.setBold,
-              actions.setUnderline,
-              actions.insertLink,
-              actions.heading1,
-              actions.heading2,
-              actions.heading3,
-              actions.insertBulletsList,
-              actions.insertOrderedList,
-              actions.alignRight,
-              actions.alignLeft,
-            ]}
-            selectedIconTint={Colors.primary400}
-            disabledIconTint={Colors.overlay}
-            onInsertLink={onInsertLink}
-            iconMap={{
-              [actions.heading1]: handleHead,
-              [actions.heading2]: handleHead2,
-              [actions.heading3]: handleHead3,
-            }}
-            style={{
-              backgroundColor: Colors.lightBackgroundSec,
-              borderColor: Colors.primary400,
-              borderWidth: 1,
-              borderRadius: ms(12),
-            }}
-          />
-        </View>
       </KeyboardAwareScrollView>
       <CustomButton
         mode="contained"

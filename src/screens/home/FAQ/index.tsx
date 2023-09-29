@@ -6,9 +6,10 @@ import {
   ScrollView,
   RefreshControl,
 } from "react-native";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Colors from "@GlobalStyle/Colors";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
+
 import Accordion from "react-native-collapsible/Accordion";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
@@ -20,7 +21,7 @@ type SECTIONSTYPE = { title: string; content: string };
 const systemFonts = [...defaultSystemFonts, "Dubai"];
 
 const FAQScreen = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const [activeSections, setActiveSections] = useState([]);
   const [refetchCounter, setRefetchCounter] = useState(0);

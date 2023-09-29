@@ -12,7 +12,7 @@ import { Feather } from "@expo/vector-icons";
 import SubjectsData from "@Src/data/Subjects";
 import Colors from "@GlobalStyle/Colors";
 import SearchInput from "@Components/ui/SearchInput";
-import { useContext, useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import {
   deleteStorage,
   getDataFromStorage,
@@ -20,7 +20,7 @@ import {
   storeDataToStorage,
 } from "@Utils/Helper";
 import { HomeStackParamList } from "@Types/navigation";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
 import SearchResults from "@Components/ui/SearchInput/SearchResults";
 import { StackScreenProps } from "@react-navigation/stack";
 import {
@@ -30,6 +30,7 @@ import {
   verticalScale,
 } from "@Utils/Platform";
 import DoctorsData from "@Src/data/Doctors";
+import { ColorSchemeButton } from "@Components/ColorSchemeButton";
 
 const options = {
   keys: ["name", "name2"],
@@ -41,7 +42,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [historyResults, setHistoryResults] = useState([] as any[]);
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
 
@@ -74,23 +75,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
               paddingHorizontal: horizontalScale(16),
             }}
           >
-            {theme === "light" ? (
-              <TouchableOpacity onPress={() => toggleTheme()}>
-                <Feather
-                  name="moon"
-                  size={moderateScale(24)}
-                  color={textColor}
-                />
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity onPress={() => toggleTheme()}>
-                <Feather
-                  name="sun"
-                  size={moderateScale(24)}
-                  color={textColor}
-                />
-              </TouchableOpacity>
-            )}
+            <ColorSchemeButton />
           </View>
         );
       },

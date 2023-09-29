@@ -1,6 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { useContext } from "react";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
@@ -10,7 +9,7 @@ type Props = {
 };
 
 const SearchResults = ({ results, handlePress }: Props) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   return (

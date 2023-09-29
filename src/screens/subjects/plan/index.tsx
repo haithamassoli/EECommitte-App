@@ -4,10 +4,10 @@ import ImageMapper from "@Components/imageMapper";
 import type { MapperItem } from "@Types/index";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import MAPPING from "./Mapping";
-import { useLayoutEffect, useContext, useState, useEffect } from "react";
+import { useLayoutEffect, useState, useEffect } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { ms, verticalScale } from "@Utils/Platform";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
 import HeaderRight from "../HeaderRight";
 import { Image, ImageBackground } from "expo-image";
 import {
@@ -25,7 +25,7 @@ type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 const PlanScreen = ({ navigation }: Props) => {
   const [editMode, setEditMode] = useState(false);
   const [mappingData, setMappingData] = useState<MapperItem[]>([]);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
 
   const onPressEdit = () => {
     setEditMode((prev) => !prev);

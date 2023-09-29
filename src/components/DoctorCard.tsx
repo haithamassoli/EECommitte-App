@@ -1,9 +1,8 @@
 import Colors from "@GlobalStyle/Colors";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { useContext } from "react";
 import {
   View,
   Text,
@@ -15,7 +14,7 @@ import {
 const defaultImage = require("@Assets/images/person-placeholder.jpg");
 
 const DoctorCard = ({ name, image, office, phone, email, website }: any) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const backgroundColor =
     theme === "light" ? Colors.lightBackgroundSec : Colors.darkBackgroundSec;

@@ -1,9 +1,8 @@
 import Colors from "@GlobalStyle/Colors";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
 import { InfoStackParamList } from "@Types/navigation";
 import { ms, vs } from "@Utils/Platform";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useContext } from "react";
 import {
   View,
   Text,
@@ -42,7 +41,7 @@ const list = [
 type Props = StackScreenProps<InfoStackParamList, "DashboardList">;
 
 const DashboardListScreen = ({ navigation }: Props) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
     <ScrollView

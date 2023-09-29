@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -14,7 +14,7 @@ import { fetchNotifications } from "@Src/api/fetchNotifications";
 import { rtlWebview, screenWidth, storeDataToStorage } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
 import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
 import { Feather } from "@expo/vector-icons";
 import Accordion from "react-native-collapsible/Accordion";
@@ -35,7 +35,7 @@ const NotificationScreen = () => {
   const [activeSections, setActiveSections] = useState([]);
   const [refetchCounter, setRefetchCounter] = useState(0);
   const [isConnected, setIsConnected] = useState<boolean | null>();
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading, isFetching }: any =
     fetchNotifications(refetchCounter);

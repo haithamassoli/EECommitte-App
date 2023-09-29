@@ -1,9 +1,10 @@
 import CustomModal from "@Components/ui/Modal";
 import Colors from "@GlobalStyle/Colors";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
+
 import { screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { useContext, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import {
   View,
   ScrollView,
@@ -17,7 +18,7 @@ import CardRate from "./CardRate";
 import SubjectRate from "./SubjectRate";
 
 const CalculatorScreen = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const scrollViewRef = useRef();
   const [cumulative, setCumulative] = useState(true);

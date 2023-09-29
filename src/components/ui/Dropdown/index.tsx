@@ -1,4 +1,4 @@
-import { FC, ReactElement, useRef, useState, useContext } from "react";
+import { FC, ReactElement, useRef, useState } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
 import { screenHeight } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
@@ -30,7 +30,7 @@ const Dropdown: FC<Props> = ({ label, data, onSelect, itemNumber, style }) => {
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(undefined);
   const [dropdownBottom, setDropdownBottom] = useState(0);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   const toggleDropdown = (): void => {

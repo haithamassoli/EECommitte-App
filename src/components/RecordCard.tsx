@@ -1,10 +1,10 @@
 import Colors from "@GlobalStyle/Colors";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
+
 import { Record } from "@Types/index";
 import { screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { Image } from "expo-image";
-import { useContext } from "react";
 import {
   View,
   Text,
@@ -16,7 +16,7 @@ import {
 type Props = Omit<Record, "id" | "searchName">;
 
 const RecordCard = ({ link, image, subject, doctor }: Props) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const backgroundColor =
     theme === "light" ? Colors.lightBackgroundSec : Colors.darkBackgroundSec;
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;

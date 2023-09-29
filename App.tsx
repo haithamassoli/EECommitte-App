@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import * as Notifications from "expo-notifications";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,7 +14,7 @@ import {
   ScrollView,
 } from "react-native";
 import { reloadAsync } from "expo-updates";
-import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
+import { ColorSchemeProvider, useColorScheme } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
@@ -34,6 +34,7 @@ import {
   MD3LightTheme,
 } from "react-native-paper";
 import { fontConfig, MaterialDark, MaterialLight } from "@GlobalStyle/material";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -79,7 +80,6 @@ Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
 
 export default function App() {
-  const { theme } = useContext(ThemeContext);
   const [isFirstTime, setIsFirstTime] = useState(false);
 
   useEffect(() => {
@@ -166,6 +166,25 @@ export default function App() {
     return null;
   }
 
+  if (isFirstTime)
+    return <FirstLoading onLayout={onLayoutRootView} onFinished={onFinished} />;
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <ColorSchemeProvider>
+          <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
+            <MyApp />
+          </SafeAreaView>
+        </ColorSchemeProvider>
+      </GestureHandlerRootView>
+    </QueryClientProvider>
+  );
+}
+
+const MyApp = () => {
+  const { theme } = useColorScheme();
+
   const materialTheme: any = {
     ...MD3LightTheme,
     dark: theme === "dark",
@@ -173,33 +192,21 @@ export default function App() {
     version: 3,
     colors:
       theme === "light"
-        ? { ...MD3LightTheme.colors, ...MaterialDark }
-        : { ...MD3LightTheme.colors, ...MaterialLight },
+        ? { ...MD3LightTheme.colors, ...MaterialLight }
+        : { ...MD3LightTheme.colors, ...MaterialDark },
     fonts: configureFonts({ config: fontConfig }),
   };
-
-  if (isFirstTime)
-    return <FirstLoading onLayout={onLayoutRootView} onFinished={onFinished} />;
-
   return (
-    <QueryClientProvider client={queryClient}>
-      <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
-        <ThemeProvider>
-          <FavoriteProvider>
-            <StatusBar
-              style={theme === "light" ? "dark" : "light"}
-              backgroundColor={
-                theme === "light"
-                  ? Colors.lightBackground
-                  : Colors.darkBackground
-              }
-            />
-            <PaperProvider theme={materialTheme}>
-              <Route />
-            </PaperProvider>
-          </FavoriteProvider>
-        </ThemeProvider>
-      </SafeAreaView>
-    </QueryClientProvider>
+    <FavoriteProvider>
+      <StatusBar
+        style={theme === "light" ? "dark" : "light"}
+        backgroundColor={
+          theme === "light" ? Colors.lightBackground : Colors.darkBackground
+        }
+      />
+      <PaperProvider theme={materialTheme}>
+        <Route />
+      </PaperProvider>
+    </FavoriteProvider>
   );
-}
+};

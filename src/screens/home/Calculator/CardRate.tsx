@@ -1,8 +1,9 @@
 import Colors from "@GlobalStyle/Colors";
 import { screenWidth } from "@Utils/Helper";
 import { View, Text } from "react-native";
-import { ThemeContext } from "@Src/store/themeContext";
-import { useContext, useState, useEffect } from "react";
+import { useColorScheme } from "@Src/store/themeContext";
+
+import { useState, useEffect } from "react";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
 type Props = {
@@ -12,7 +13,7 @@ type Props = {
 
 const CardRate = ({ title, rate }: Props) => {
   const [grade, setGrade] = useState("");
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   useEffect(() => {

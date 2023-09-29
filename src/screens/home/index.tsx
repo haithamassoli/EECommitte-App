@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, memo, useRef } from "react";
+import { useState, useEffect, memo, useRef } from "react";
 import {
   View,
   ScrollView,
@@ -13,7 +13,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./styles";
 import Colors from "@GlobalStyle/Colors";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
+
 import SearchInput from "@Components/ui/SearchInput";
 import { HomeStackParamList } from "@Types/navigation";
 import SubjectsData from "@Src/data/Subjects";
@@ -34,6 +35,7 @@ import * as Notifications from "expo-notifications";
 import { useIsFocused } from "@react-navigation/native";
 import DoctorsData from "@Src/data/Doctors";
 import { Image } from "expo-image";
+import { ColorSchemeButton } from "@Components/ColorSchemeButton";
 
 const options = {
   keys: ["name", "name2"],
@@ -53,7 +55,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const [notificationCount, setNotificationCount] = useState(0);
   const [refetchCounter, setRefetchCounter] = useState(0);
   const isFocused = useIsFocused();
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading, isFetching } = fetchSliderImages(refetchCounter);
   useEffect(() => {
@@ -349,17 +351,7 @@ const HomeScreen = ({ navigation }: Props) => {
               color={theme === "light" ? Colors.lightText : Colors.darkText}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={toggleTheme}>
-            <Feather
-              name={theme === "light" ? "moon" : "sun"}
-              size={ms(24)}
-              color={
-                theme === "light"
-                  ? Colors.darkBackgroundSec
-                  : Colors.lightBackgroundSec
-              }
-            />
-          </TouchableOpacity>
+          <ColorSchemeButton />
         </View>
       </View>
       {isLoading ? (

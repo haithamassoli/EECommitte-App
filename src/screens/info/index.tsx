@@ -15,11 +15,12 @@ import {
   moderateScale,
   verticalScale,
 } from "@Utils/Platform";
-import { ThemeContext } from "@Src/store/themeContext";
-import { useContext, useLayoutEffect } from "react";
+import { useColorScheme } from "@Src/store/themeContext";
+import { useLayoutEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { Feather } from "@expo/vector-icons";
 import Animated, { FadeInUp } from "react-native-reanimated";
+import { ColorSchemeButton } from "@Components/ColorSchemeButton";
 
 type Props = StackScreenProps<InfoStackParamList, "Info">;
 
@@ -28,7 +29,7 @@ const appUrl = isIOS
   : "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte";
 
 const InfoScreen = ({ navigation }: Props) => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
 
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   useLayoutEffect(() => {
@@ -56,23 +57,7 @@ const InfoScreen = ({ navigation }: Props) => {
                 style={{ paddingHorizontal: horizontalScale(12) }}
               />
             </TouchableOpacity>
-            {theme === "light" ? (
-              <TouchableOpacity onPress={() => toggleTheme()}>
-                <Feather
-                  name="moon"
-                  size={moderateScale(24)}
-                  color={textColor}
-                />
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity onPress={() => toggleTheme()}>
-                <Feather
-                  name="sun"
-                  size={moderateScale(24)}
-                  color={textColor}
-                />
-              </TouchableOpacity>
-            )}
+            <ColorSchemeButton />
           </View>
         );
       },

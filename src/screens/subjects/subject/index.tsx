@@ -15,7 +15,8 @@ import type {
 } from "@react-navigation/stack";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
+
 import { Feather, AntDesign } from "@expo/vector-icons";
 import {
   horizontalScale,
@@ -68,7 +69,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isPasswordTrue, setIsPasswordTrue] = useState(false);
   const [refetchCounter, setRefetchCounter] = useState(0);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const { mutate, isLoading: isChecking } = checkPasswordMutation();
   const [showPassword, setShowPassword] = useState(false);
   const { control, handleSubmit, reset, setError } =

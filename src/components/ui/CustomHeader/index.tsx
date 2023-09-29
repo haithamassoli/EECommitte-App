@@ -3,9 +3,9 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { useContext } from "react";
 import { Feather } from "@expo/vector-icons";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
+
 import Colors from "@GlobalStyle/Colors";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { Image } from "expo-image";
@@ -16,7 +16,7 @@ type Props = {
 };
 
 const CustomHeader = ({ onPress, iconColor }: Props) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   return (

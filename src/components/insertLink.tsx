@@ -1,10 +1,10 @@
 import Colors from "@GlobalStyle/Colors";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
+
 import { hs, ms, vs } from "@Utils/Platform";
 import React, {
   FC,
   RefObject,
-  useContext,
   useImperativeHandle,
   useRef,
   useState,
@@ -34,7 +34,7 @@ export const InsertLinkModal: FC<IProps> = ({
   forwardRef,
 }) => {
   const [isModalVisible, setModalVisible] = useState(false);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const dataRef = useRef<{ title?: string; url?: string }>({});
 
   const setTitle = (title: string) => {

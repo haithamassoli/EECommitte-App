@@ -9,16 +9,16 @@ import {
 import { useContext } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
-import { ThemeContext } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { FavoriteContext } from "@Src/store/favoriteContext";
 import { moderateScale, verticalScale } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
+import { useColorScheme } from "@Src/store/themeContext";
 
 type Props = StackScreenProps<HomeStackParamList, "Favorite">;
 
 const FavoriteScreen = ({ navigation }: Props) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (

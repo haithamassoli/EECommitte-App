@@ -9,7 +9,7 @@ import {
   updateSubjectMutation,
 } from "@Src/api/fetchSubjectById";
 import { useImagePicker } from "@Src/hooks/useImagePicker";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
 import { SubjectsStackParamList } from "@Types/navigation";
 import {
   ValidationSubjectSchemaType,
@@ -21,7 +21,7 @@ import { Feather } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNetInfo } from "@react-native-community/netinfo";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useCallback, useContext, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { Controller, useForm, useFieldArray } from "react-hook-form";
 import {
   View,
@@ -56,7 +56,7 @@ type Props = StackScreenProps<SubjectsStackParamList, "EditSubject">;
 
 const EditSubjectScreen = ({ navigation, route }: Props) => {
   const { isConnected } = useNetInfo();
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const richText = useRef<any>();
   const richText2 = useRef<any>();
   const linkModal = useRef<RefLinkModal>();

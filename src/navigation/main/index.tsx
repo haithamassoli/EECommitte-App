@@ -4,8 +4,8 @@ import SubjectsNavigation from "../subjects";
 import { Feather } from "@expo/vector-icons";
 import type { BottomTabParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
-import { ThemeContext } from "@Src/store/themeContext";
-import { useContext, useEffect, useState } from "react";
+import { useColorScheme } from "@Src/store/themeContext";
+import { useEffect, useState } from "react";
 import {
   DarkNavigationColors,
   LightNavigationColors,
@@ -24,7 +24,7 @@ import { screenWidth } from "@Utils/Helper";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
 export default function Route() {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
 
   const [labelYPositionTab1] = useState(new Animated.Value(40));
   const [labelYPositionTab2] = useState(new Animated.Value(40));

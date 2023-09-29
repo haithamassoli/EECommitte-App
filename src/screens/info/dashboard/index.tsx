@@ -12,18 +12,18 @@ import { hs, ms, vs } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { checkPasswordMutation } from "@Src/api/dashboard";
 import Loading from "@Components/ui/loading";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import CustomButton from "@Components/ui/customButton";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
 
 type Props = StackScreenProps<InfoStackParamList, "Dashboard">;
 
 const DashboardScreen = ({ navigation }: Props) => {
   const { mutate, isLoading } = checkPasswordMutation();
   const [showPassword, setShowPassword] = useState(false);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const { control, handleSubmit, reset, setError } =
     useForm<VerificationPasswordSchemaType>({
       resolver: zodResolver(verificationPasswordSchema),

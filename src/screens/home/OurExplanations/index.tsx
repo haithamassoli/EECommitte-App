@@ -5,10 +5,10 @@ import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FlashList } from "@shopify/flash-list";
 import { fetchExplanations } from "@Src/api/fetchExplanations";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
 import { HomeStackParamList } from "@Types/navigation";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { useContext, useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { View, Text, ActivityIndicator, RefreshControl } from "react-native";
 import { Shadow } from "react-native-shadow-2";
 
@@ -22,7 +22,7 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [refetchCounter, setRefetchCounter] = useState(0);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const shadowColor =
     theme === "light" ? Colors.lightShadow : Colors.darkShadow;

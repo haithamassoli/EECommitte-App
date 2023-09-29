@@ -1,8 +1,8 @@
-import { useContext, useLayoutEffect, useEffect } from "react";
+import { useLayoutEffect, useEffect } from "react";
 import { Text, ScrollView, TouchableOpacity, View } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { SubjectsStackParamList } from "@Types/navigation";
-import { ThemeContext } from "@Src/store/themeContext";
+import { useColorScheme } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { WebDisplay } from "@Components/webDisplay";
 import { moderateScale, horizontalScale } from "@Utils/Platform";
@@ -12,7 +12,7 @@ import { Feather } from "@expo/vector-icons";
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 
 const SubjectFullPostScreen = ({ navigation, route }: Props) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useColorScheme();
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   useLayoutEffect(() => {
     navigation.setOptions({

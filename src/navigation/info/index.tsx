@@ -10,6 +10,12 @@ import { isIOS, moderateScale, vs } from "@Utils/Platform";
 import { Shadow } from "react-native-shadow-2";
 import DashboardScreen from "@Screens/info/dashboard";
 import DashboardListScreen from "@Screens/info/dashboard/list";
+import ManageFAQScreen from "@Screens/info/dashboard/manageFAQ";
+import ManageCarouselScreen from "@Screens/info/dashboard/manageCarousel";
+import ManageDoctorsScreen from "@Screens/info/dashboard/manageDoctors";
+import ManageNotificationsScreen from "@Screens/info/dashboard/manageNotifications";
+import ManageOurExplanationsScreen from "@Screens/info/dashboard/manageOurExplanations";
+import ManageRecordsScreen from "@Screens/info/dashboard/manageRecords";
 const Stack = createStackNavigator<InfoStackParamList>();
 
 export default function InfoNavigation() {
@@ -74,6 +80,48 @@ export default function InfoNavigation() {
         component={DashboardListScreen}
         options={{
           title: "لوحة التحكم",
+        }}
+      />
+      <Stack.Screen
+        name="ManageFAQ"
+        component={ManageFAQScreen}
+        options={{
+          title: "إدارة الأسئلة الشائعة",
+        }}
+      />
+      <Stack.Screen
+        name="ManageCarousel"
+        component={ManageCarouselScreen}
+        options={{
+          title: "إدارة صور الرئيسية",
+        }}
+      />
+      <Stack.Screen
+        name="ManageDoctors"
+        component={ManageDoctorsScreen}
+        options={{
+          title: "إدارة الهيئة التدريسية",
+        }}
+      />
+      <Stack.Screen
+        name="ManageNotifications"
+        component={ManageNotificationsScreen}
+        options={{
+          title: "إرسال الإشعارات",
+        }}
+      />
+      <Stack.Screen
+        name="ManageOurExplanations"
+        component={ManageOurExplanationsScreen}
+        options={{
+          title: "إدارة أبرز الشروحات",
+        }}
+      />
+      <Stack.Screen
+        name="ManageRecords"
+        component={ManageRecordsScreen}
+        options={{
+          title: "إدارة التسجيلات",
         }}
       />
     </Stack.Navigator>

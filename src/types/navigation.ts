@@ -22,6 +22,12 @@ export type InfoStackParamList = {
   Search: undefined;
   Dashboard: undefined;
   DashboardList: undefined;
+  ManageFAQ: undefined;
+  ManageCarousel: undefined;
+  ManageDoctors: undefined;
+  ManageNotifications: undefined;
+  ManageOurExplanations: undefined;
+  ManageRecords: undefined;
 };
 
 export type HomeStackParamList = {

@@ -15,27 +15,32 @@ const list = [
   {
     id: 1,
     name: "صور الصفحة الرئيسية",
-    navigation: "",
+    navigation: "ManageCarousel",
+  },
+  {
+    id: 6,
+    name: "إرسال الإشعارات",
+    navigation: "ManageNotifications",
   },
   {
     id: 2,
     name: "أبرز الشروحات",
-    navigation: "",
+    navigation: "ManageOurExplanations",
   },
   {
     id: 3,
     name: "الهيئة التدريسية",
-    navigation: "",
+    navigation: "ManageDoctors",
   },
   {
     id: 4,
     name: "تسجيلات اللجنة",
-    navigation: "",
+    navigation: "ManageRecords",
   },
   {
     id: 5,
     name: "الأسئلة الشائعة",
-    navigation: "",
+    navigation: "ManageFAQ",
   },
 ];
 type Props = StackScreenProps<InfoStackParamList, "DashboardList">;
@@ -70,7 +75,7 @@ const DashboardListScreen = ({ navigation }: Props) => {
             ]}
             onPress={() =>
               // @ts-ignore
-              navigation.navigate(item.navigation)
+              navigation.push(item.navigation)
             }
           >
             <Text

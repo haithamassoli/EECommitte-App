@@ -1,7 +1,15 @@
 import { db } from "@Src/firebase-config";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  doc,
+  deleteDoc,
+  addDoc,
+} from "firebase/firestore";
 import NetInfo from "@react-native-community/netinfo";
 
 const cacheIntervalInHours = 24;
@@ -11,6 +19,7 @@ cacheExpiryTime.setHours(cacheExpiryTime.getHours() + cacheIntervalInHours);
 type SliderImage = {
   url: string;
   image: string;
+  time: Date;
 };
 
 export function fetchSliderImages(refetchCounter: number) {
@@ -43,3 +52,41 @@ export function fetchSliderImages(refetchCounter: number) {
   );
   return { data, isLoading, isFetching };
 }
+
+export const fetchSliderImagesQuery = () =>
+  useQuery(["slider"], async () => {
+    const q = query(collection(db, "slider"), orderBy("time", "desc"));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id } as {
+        url: string;
+        image: string;
+        id: string;
+        time: Date;
+      };
+    });
+  });
+
+export const addSliderMutation = () =>
+  useMutation((slider: SliderImage) => addSlider(slider));
+
+const addSlider = async (slider: SliderImage) => {
+  try {
+    await addDoc(collection(db, "slider"), slider);
+    return true;
+  } catch (e: any) {
+    console.error("Error updating document: ", e);
+  }
+};
+
+export const deleteSliderMutation = () =>
+  useMutation((id: string) => deleteSlider(id));
+
+const deleteSlider = async (id: string) => {
+  try {
+    await deleteDoc(doc(db, "slider", id));
+    return true;
+  } catch (e: any) {
+    console.error("Error updating document: ", e);
+  }
+};

@@ -32,3 +32,11 @@ export const validationSubjectSchema = z.object({
 export type ValidationSubjectSchemaType = z.infer<
   typeof validationSubjectSchema
 >;
+
+export const verificationSliderSchema = z.object({
+  link: z.optional(z.string()),
+});
+
+export type VerificationSliderSchemaType = z.infer<
+  typeof verificationSliderSchema
+>;

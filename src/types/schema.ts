@@ -40,3 +40,16 @@ export const verificationSliderSchema = z.object({
 export type VerificationSliderSchemaType = z.infer<
   typeof verificationSliderSchema
 >;
+
+export const validationNotificationsSchema = z.object({
+  title: z.string({
+    required_error: "العنوان مطلوب",
+  }),
+  body: z.string({
+    required_error: "المحتوى مطلوب",
+  }),
+});
+
+export type ValidationNotificationsSchemaType = z.infer<
+  typeof validationNotificationsSchema
+>;

@@ -25,3 +25,14 @@ export function fetchNotifications(refetchCounter: number) {
   );
   return { data, isLoading, isFetching };
 }
+
+export const fetchNotificationsTokensQuery = () =>
+  useQuery(["notificationsTokens"], async () => {
+    try {
+      const q = query(collection(db, "notificationsTokens"));
+      const querySnapshot = await getDocs(q);
+      return querySnapshot.docs.map((doc) => doc.data().token) as string[];
+    } catch (e: any) {
+      console.error("Error updating document: ", e);
+    }
+  });

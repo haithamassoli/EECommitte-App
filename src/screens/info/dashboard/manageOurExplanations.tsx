@@ -154,23 +154,7 @@ const ManageOurExplanationsScreen = () => {
               <ControlledInput
                 control={addControl}
                 withError={false}
-                name={`image`}
-                style={{
-                  display: "none",
-                }}
-              />
-              <ControlledInput
-                control={addControl}
-                withError={false}
-                name={`id.`}
-                style={{
-                  display: "none",
-                }}
-              />
-              <ControlledInput
-                control={addControl}
-                withError={false}
-                name={`doctor.`}
+                name={`doctor`}
                 mode="outlined"
                 placeholder="ادخل اسم صاحب الشرح"
                 label={"صاحب الشرح"}

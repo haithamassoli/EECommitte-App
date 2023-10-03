@@ -7,10 +7,8 @@ import {
   query,
   orderBy,
   doc,
-  getDoc,
   addDoc,
   updateDoc,
-  where,
   deleteDoc,
 } from "firebase/firestore";
 import NetInfo from "@react-native-community/netinfo";

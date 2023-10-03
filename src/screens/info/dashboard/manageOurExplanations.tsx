@@ -112,7 +112,9 @@ const ManageOurExplanationsScreen = () => {
         <View style={[styles.container, { backgroundColor }]}>
           <View style={[styles.innerContainer, { backgroundColor }]}>
             <View>
-              {(isLoadingMainImage || isAdding) && <Loading size="small" />}
+              {(isLoadingMainImage || isAdding || isDeleting) && (
+                <Loading size="small" />
+              )}
               <Image
                 style={styles.image}
                 contentFit="contain"

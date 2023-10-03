@@ -1,7 +1,16 @@
 import { db } from "@Src/firebase-config";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  updateDoc,
+  doc,
+  addDoc,
+  deleteDoc,
+} from "firebase/firestore";
 import NetInfo from "@react-native-community/netinfo";
 
 const cacheIntervalInHours = 500;
@@ -82,3 +91,54 @@ export function fetchSearchRecords() {
   });
   return { data, isLoading };
 }
+
+export const fetchRecordsQuery = () =>
+  useQuery(["records"], async () => {
+    try {
+      const q = query(collection(db, "records"), orderBy("time", "desc"));
+      const querySnapshot = await getDocs(q);
+      return querySnapshot.docs.map((doc) => {
+        return { ...doc.data(), id: doc.id } as {
+          id: string;
+          doctor: string;
+          image: string;
+          time: Date;
+          link: string;
+          searchName: string;
+          subject: string;
+        };
+      });
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
+  });
+
+export const updateRecordMutation = () =>
+  useMutation(
+    (data: {
+      id: string;
+      doctor: string;
+      image: string;
+      time: Date;
+      link: string;
+      searchName: string;
+      subject: string;
+    }) => updateDoc(doc(db, "records", data.id), data)
+  );
+
+export const addRecordMutation = () =>
+  useMutation(
+    (data: {
+      doctor: string;
+      image: string;
+      time: Date;
+      link: string;
+      searchName: string;
+      subject: string;
+    }) => {
+      return addDoc(collection(db, "records"), data);
+    }
+  );
+
+export const deleteRecordMutation = () =>
+  useMutation((id: string) => deleteDoc(doc(db, "records", id)));

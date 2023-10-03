@@ -1,4 +1,4 @@
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import { isIOS } from "@Utils/Platform";
 import {
   makeImageFromView,
@@ -81,7 +81,7 @@ export const useColorScheme = () => {
           overlay2: null,
           statusBarStyle: newColorScheme,
         });
-        await storeDataToStorage("theme", newColorScheme);
+        storeDataMMKV("theme", newColorScheme);
         return;
       }
 
@@ -137,7 +137,7 @@ export const useColorScheme = () => {
         overlay2: null,
         statusBarStyle: newColorScheme === "light" ? "dark" : "light",
       });
-      await storeDataToStorage("theme", newColorScheme);
+      storeDataMMKV("theme", newColorScheme);
     },
     [circle, theme, dispatch, ref, transition]
   );
@@ -162,8 +162,8 @@ export const ColorSchemeProvider = ({ children }: ColorSchemeProviderProps) => {
   });
 
   useEffect(() => {
-    (async () => {
-      const theme = await getDataFromStorage("theme");
+    (() => {
+      const theme = getDataMMKV("theme");
       dispatch({
         active: false,
         theme,

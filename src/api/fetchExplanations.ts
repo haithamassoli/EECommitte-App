@@ -1,6 +1,6 @@
 import { db } from "@Src/firebase-config";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import {
   collection,
   getDocs,
@@ -21,7 +21,7 @@ export function fetchExplanations(refetchCounter: number) {
   const { data, isLoading, isFetching } = useQuery(
     ["explanations", refetchCounter],
     async () => {
-      const lastRequest = await getDataFromStorage("lastRequestExplanations");
+      const lastRequest = getDataMMKV("lastRequestExplanations");
       const connectionStatus = await NetInfo.fetch();
       const isCacheExpired =
         new Date().getTime() > new Date(lastRequest).getTime();
@@ -35,12 +35,12 @@ export function fetchExplanations(refetchCounter: number) {
           orderBy("time", "desc")
         );
         const querySnapshot = await getDocs(q);
-        await storeDataToStorage("lastRequestExplanations", cacheExpiryTime);
+        storeDataMMKV("lastRequestExplanations", cacheExpiryTime);
         const snapshot = querySnapshot.docs.map((doc) => doc.data());
-        await storeDataToStorage("explanations", snapshot);
+        storeDataMMKV("explanations", snapshot);
         return snapshot;
       } else {
-        const explanations = await getDataFromStorage("explanations");
+        const explanations = getDataMMKV("explanations");
         if (explanations == null) {
           return [];
         }

@@ -14,10 +14,10 @@ import Colors from "@GlobalStyle/Colors";
 import SearchInput from "@Components/ui/SearchInput";
 import { useEffect, useState, useLayoutEffect } from "react";
 import {
-  deleteStorage,
-  getDataFromStorage,
+  deleteDataMMKV,
+  getDataMMKV,
   screenHeight,
-  storeDataToStorage,
+  storeDataMMKV,
 } from "@Utils/Helper";
 import { HomeStackParamList } from "@Types/navigation";
 import { useColorScheme } from "@Src/store/themeContext";
@@ -83,8 +83,8 @@ const SearchScreen = ({ navigation, route }: Props) => {
   }, [theme, route]);
 
   useEffect(() => {
-    const getHistory = async () => {
-      const historySearchResults = await getDataFromStorage("searchHistory");
+    const getHistory = () => {
+      const historySearchResults = getDataMMKV("searchHistory");
       if (Array.isArray(historySearchResults)) {
         historySearchResults.map((ids: number) => {
           const subjectsResult = SubjectsData.find(
@@ -110,15 +110,15 @@ const SearchScreen = ({ navigation, route }: Props) => {
     getHistory();
   }, []);
 
-  const handlePress = async (id: number) => {
-    const prevData = await getDataFromStorage("searchHistory");
+  const handlePress = (id: number) => {
+    const prevData = getDataMMKV("searchHistory");
     const SubjectsResult = SubjectsData.find((subject) => subject.id === id);
     const DoctorsResult = DoctorsData.find((doctor: any) => doctor.id === id);
     if (Array.isArray(prevData) && !prevData.includes(id)) {
       if (prevData.length >= 10) {
         prevData.pop();
       }
-      await storeDataToStorage("searchHistory", [id, ...prevData]);
+      storeDataMMKV("searchHistory", [id, ...prevData]);
       if (SubjectsResult && DoctorsResult) {
         setHistoryResults((prev) => [
           SubjectsResult,
@@ -131,7 +131,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
         setHistoryResults((prev) => [DoctorsResult, ...prev.slice(0, 9)]);
       }
     } else if (!prevData) {
-      await storeDataToStorage("searchHistory", [id]);
+      storeDataMMKV("searchHistory", [id]);
       if (SubjectsResult) {
         setHistoryResults([SubjectsResult]);
       }
@@ -150,10 +150,10 @@ const SearchScreen = ({ navigation, route }: Props) => {
     }
   };
 
-  const handleDelete = async (id: number) => {
-    const prevData = await getDataFromStorage("searchHistory");
+  const handleDelete = (id: number) => {
+    const prevData = getDataMMKV("searchHistory");
     const newData = historyResults.filter((item) => item.id !== id);
-    await storeDataToStorage(
+    storeDataMMKV(
       "searchHistory",
       prevData.filter((item: number) => item !== id)
     );
@@ -161,8 +161,8 @@ const SearchScreen = ({ navigation, route }: Props) => {
     setHistoryResults(newData);
   };
 
-  const deleteAll = async () => {
-    deleteStorage("searchHistory");
+  const deleteAll = () => {
+    deleteDataMMKV("searchHistory");
     setHistoryResults([]);
   };
 

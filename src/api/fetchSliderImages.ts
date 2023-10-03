@@ -1,6 +1,6 @@
 import { db } from "@Src/firebase-config";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import {
   collection,
   getDocs,
@@ -26,7 +26,7 @@ export function fetchSliderImages(refetchCounter: number) {
   const { data, isLoading, isFetching } = useQuery(
     ["slider", refetchCounter],
     async () => {
-      const lastRequest = await getDataFromStorage("lastRequestSlider");
+      const lastRequest = getDataMMKV("lastRequestSlider");
       const connectionStatus = await NetInfo.fetch();
       const isCacheExpired =
         new Date().getTime() > new Date(lastRequest).getTime();
@@ -37,12 +37,12 @@ export function fetchSliderImages(refetchCounter: number) {
       ) {
         const q = query(collection(db, "slider"), orderBy("time", "desc"));
         const querySnapshot = await getDocs(q);
-        await storeDataToStorage("lastRequestSlider", cacheExpiryTime);
+        storeDataMMKV("lastRequestSlider", cacheExpiryTime);
         const snapshot = querySnapshot.docs.map((doc) => doc.data());
-        await storeDataToStorage("slider", snapshot);
+        storeDataMMKV("slider", snapshot);
         return snapshot as SliderImage[];
       } else {
-        const slider = await getDataFromStorage("slider");
+        const slider = getDataMMKV("slider");
         if (slider == null) {
           return [];
         }

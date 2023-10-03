@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import {
   horizontalScale,
   moderateScale,
@@ -33,9 +33,9 @@ const NotificationScreen = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const deleteNotificationsCount = async () => {
-      await storeDataToStorage("notificationsCount", 0);
-      const notifications = await getDataFromStorage("notifications");
+    const deleteNotificationsCount = () => {
+      storeDataMMKV("notificationsCount", 0);
+      const notifications = getDataMMKV("notifications");
       if (notifications) {
         setIsData(notifications);
         console.log(notifications);

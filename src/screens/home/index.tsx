@@ -22,7 +22,7 @@ import Overlay from "@Components/Overlay";
 import ImagesCarousel from "@Components/ImagesCarousel";
 import { Feather } from "@expo/vector-icons";
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { getDataMMKV } from "@Utils/Helper";
 import {
   horizontalScale,
   moderateScale,
@@ -31,7 +31,6 @@ import {
 } from "@Utils/Platform";
 import { StatusBar } from "expo-status-bar";
 import { fetchSliderImages } from "@Src/api/fetchSliderImages";
-import * as Notifications from "expo-notifications";
 import { useIsFocused } from "@react-navigation/native";
 import DoctorsData from "@Src/data/Doctors";
 import { Image } from "expo-image";
@@ -59,8 +58,8 @@ const HomeScreen = ({ navigation }: Props) => {
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading, isFetching } = fetchSliderImages(refetchCounter);
   useEffect(() => {
-    const CheckNotificationCount = async () => {
-      const count = await getDataFromStorage("notificationsCount");
+    const CheckNotificationCount = () => {
+      const count = getDataMMKV("notificationsCount");
       if (count != null) {
         setNotificationCount(count);
       }

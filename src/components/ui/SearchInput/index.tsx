@@ -12,7 +12,7 @@ import { useColorScheme } from "@Src/store/themeContext";
 import { useEffect, useRef } from "react";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import SearchResults from "./SearchResults";
 import { SearchInputProps } from "@Types/Search";
 import { HomeNavigationProp } from "@Screens/home";
@@ -85,16 +85,16 @@ const SearchInput = ({
     if (setSearchBarFocused) setSearchBarFocused(true);
   };
 
-  const handlePress = async (id: number) => {
+  const handlePress = (id: number) => {
     const doctor = DoctorsData.find((doctor: any) => doctor.id == id);
-    const prevData = await getDataFromStorage("searchHistory");
+    const prevData = getDataMMKV("searchHistory");
     if (Array.isArray(prevData) && !prevData.includes(id)) {
       if (prevData.length >= 10) {
         prevData.pop();
       }
-      await storeDataToStorage("searchHistory", [id, ...prevData]);
+      storeDataMMKV("searchHistory", [id, ...prevData]);
     } else if (!prevData) {
-      await storeDataToStorage("searchHistory", [id]);
+      storeDataMMKV("searchHistory", [id]);
     }
     Keyboard.dismiss();
     setSearchInput("");

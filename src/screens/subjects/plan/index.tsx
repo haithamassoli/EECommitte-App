@@ -12,10 +12,10 @@ import HeaderRight from "../HeaderRight";
 import { Image, ImageBackground } from "expo-image";
 import {
   blurhash,
-  getDataFromStorage,
+  getDataMMKV,
   screenHeight,
   screenWidth,
-  storeDataToStorage,
+  storeDataMMKV,
 } from "@Utils/Helper";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
@@ -64,8 +64,8 @@ const PlanScreen = ({ navigation }: Props) => {
     });
   }, [theme, editMode]);
 
-  const getMappingData = async () => {
-    const data = await getDataFromStorage("mappingData");
+  const getMappingData = () => {
+    const data = getDataMMKV("mappingData");
     if (data) {
       setMappingData(data);
     } else {
@@ -77,7 +77,7 @@ const PlanScreen = ({ navigation }: Props) => {
     getMappingData();
   }, []);
 
-  const handleSelectArea = async (subjectId: number) => {
+  const handleSelectArea = (subjectId: number) => {
     if (editMode) {
       // change subject prefill from mappingData state and save to storage again
       setMappingData((prev) => {
@@ -91,7 +91,7 @@ const PlanScreen = ({ navigation }: Props) => {
           }
           return item;
         });
-        storeDataToStorage("mappingData", newData);
+        storeDataMMKV("mappingData", newData);
         return newData;
       });
     } else if (subjectId < 1000) {

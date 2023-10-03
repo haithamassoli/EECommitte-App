@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import { LayoutAnimation } from "react-native";
 
 type FavoriteType = {
@@ -23,34 +23,34 @@ export const FavoriteProvider = ({
   const [favorite, setFavorite] = useState<FavoriteType[] | []>([]);
 
   useEffect(() => {
-    const getFavorite = async () => {
-      const favorite = await getDataFromStorage("favorite");
+    const getFavorite = () => {
+      const favorite = getDataMMKV("favorite");
       if (favorite) {
         setFavorite(favorite);
       }
     };
     getFavorite();
   }, []);
-  const toggleFavorite = async (subject: FavoriteType) => {
-    const prevFavorite = await getDataFromStorage("favorite");
+  const toggleFavorite = (subject: FavoriteType) => {
+    const prevFavorite = getDataMMKV("favorite");
     if (prevFavorite) {
       const isExist = prevFavorite.find(
         (item: FavoriteType) => item.id === subject.id
       );
       if (!isExist) {
         const newFavorite = [...prevFavorite, subject];
-        await storeDataToStorage("favorite", [...prevFavorite, subject]);
+        storeDataMMKV("favorite", [...prevFavorite, subject]);
         setFavorite(newFavorite);
       } else {
         const newFavorite = prevFavorite.filter(
           (item: FavoriteType) => item.id !== subject.id
         );
-        await storeDataToStorage("favorite", newFavorite);
+        storeDataMMKV("favorite", newFavorite);
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         setFavorite(newFavorite);
       }
     } else {
-      await storeDataToStorage("favorite", [subject]);
+      storeDataMMKV("favorite", [subject]);
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       setFavorite([subject]);
     }

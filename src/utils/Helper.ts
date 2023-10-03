@@ -1,39 +1,42 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import NetInfo from "@react-native-community/netinfo";
 import { Dimensions } from "react-native";
+import { MMKV } from "react-native-mmkv";
 
 export const screenWidth = Dimensions.get("window").width;
 export const screenHeight = Dimensions.get("window").height;
 
-export const getDataFromStorage = async (key: string) => {
+export const storage = new MMKV();
+
+export const getDataMMKV = (key: string) => {
   try {
-    const jsonValue = await AsyncStorage.getItem(key);
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-  } catch (e) {
-    console.log(e);
+    const json = storage.getString(key);
+    if (!json) return null;
+    return JSON.parse(json);
+  } catch (error) {
+    console.log("Error reading data from MMKV", error);
   }
 };
 
-export const storeDataToStorage = async (key: string, value: any) => {
+export const storeDataMMKV = (key: string, value: any) => {
   try {
-    const jsonValue = JSON.stringify(value);
-    await AsyncStorage.setItem(key, jsonValue);
-  } catch (e) {
-    console.log(e);
+    storage.set(key, JSON.stringify(value));
+  } catch (error) {
+    console.log("Error storing data in MMKV", error);
   }
 };
 
-export const deleteStorage = async (key: string) => {
+export const deleteDataMMKV = (key: string) => {
   try {
-    await AsyncStorage.removeItem(key);
-  } catch (e) {
-    console.log(e);
+    storage.delete(key);
+  } catch (error) {
+    console.log("Error deleting data from MMKV", error);
   }
 };
 
-export const deleteAllStorage = async () => {
+export const deleteAllStorage = () => {
   try {
-    await AsyncStorage.clear();
+    storage.clearAll();
   } catch (e) {
     console.log(e);
   }

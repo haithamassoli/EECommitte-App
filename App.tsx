@@ -18,11 +18,7 @@ import { ColorSchemeProvider, useColorScheme } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import {
-  deleteAllStorage,
-  getDataFromStorage,
-  storeDataToStorage,
-} from "@Utils/Helper";
+import { deleteAllStorage, getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import { FavoriteProvider } from "@Src/store/favoriteContext";
 import { setNotificationsTokens } from "@Src/api/setNotificationsTokens";
 import FirstLoading from "@Components/FirstLoading";
@@ -96,8 +92,8 @@ export default function App() {
       }
     };
     forceRTL();
-    const firstTime = async () => {
-      const firstTime = await getDataFromStorage("firstTime");
+    const firstTime = () => {
+      const firstTime = getDataMMKV("firstTime");
       if (firstTime === null) {
         setIsFirstTime(true);
       }
@@ -138,7 +134,7 @@ export default function App() {
       const pushNotificationsToken = await Notifications.getExpoPushTokenAsync({
         projectId: "17a53ebd-120e-477f-9b48-e87d75fd1a78",
       });
-      setNotificationsTokens(pushNotificationsToken.data);
+      // setNotificationsTokens(pushNotificationsToken.data);
       // console.log(pushNotificationsToken.data);
 
       if (Platform.OS === "android") {
@@ -152,9 +148,9 @@ export default function App() {
     configurePushNotifications();
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
-        const addNotificationCount = async () => {
-          const count = await getDataFromStorage("notificationsCount");
-          const notifications: any = await getDataFromStorage("notifications");
+        const addNotificationCount = () => {
+          const count = getDataMMKV("notificationsCount");
+          const notifications: any = getDataMMKV("notifications");
           if (notifications) {
             const newNotifications = [
               {
@@ -163,9 +159,9 @@ export default function App() {
               },
               ...notifications,
             ];
-            await storeDataToStorage("notifications", newNotifications);
+            storeDataMMKV("notifications", newNotifications);
           } else {
-            await storeDataToStorage("notifications", [
+            storeDataMMKV("notifications", [
               {
                 title: notification.request.content.title,
                 body: notification.request.content.body,
@@ -173,9 +169,9 @@ export default function App() {
             ]);
           }
           if (count != null) {
-            await storeDataToStorage("notificationsCount", count + 1);
+            storeDataMMKV("notificationsCount", count + 1);
           } else {
-            await storeDataToStorage("notificationsCount", 1);
+            storeDataMMKV("notificationsCount", 1);
           }
         };
         addNotificationCount();
@@ -188,9 +184,9 @@ export default function App() {
     };
   }, []);
 
-  const onFinished = useCallback(async () => {
+  const onFinished = useCallback(() => {
     setIsFirstTime(false);
-    await storeDataToStorage("firstTime", true);
+    storeDataMMKV("firstTime", true);
   }, []);
 
   const onLayoutRootView = useCallback(async () => {

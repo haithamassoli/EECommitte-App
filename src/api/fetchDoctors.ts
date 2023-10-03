@@ -1,6 +1,6 @@
 import { db } from "@Src/firebase-config";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import {
   addDoc,
   collection,
@@ -20,7 +20,7 @@ export function fetchDoctors(refetchCounter: number) {
   const { data, isLoading, isFetching } = useQuery(
     ["doctors", refetchCounter],
     async () => {
-      const lastRequest = await getDataFromStorage("lastRequestDoctors");
+      const lastRequest = getDataMMKV("lastRequestDoctors");
       const connectionStatus = await NetInfo.fetch();
       const isCacheExpired =
         new Date().getTime() > new Date(lastRequest).getTime();
@@ -31,12 +31,12 @@ export function fetchDoctors(refetchCounter: number) {
       ) {
         const q = query(collection(db, "doctors"));
         const querySnapshot = await getDocs(q);
-        await storeDataToStorage("lastRequestDoctors", cacheExpiryTime);
+        storeDataMMKV("lastRequestDoctors", cacheExpiryTime);
         const snapshot = querySnapshot.docs.map((doc) => doc.data());
-        await storeDataToStorage("doctors", snapshot);
+        storeDataMMKV("doctors", snapshot);
         return snapshot;
       } else {
-        const doctors = await getDataFromStorage("doctors");
+        const doctors = getDataMMKV("doctors");
         if (doctors == null) {
           return [];
         }

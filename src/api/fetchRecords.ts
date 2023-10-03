@@ -1,6 +1,6 @@
 import { db } from "@Src/firebase-config";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
+import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import {
   collection,
   getDocs,
@@ -22,7 +22,7 @@ export function fetchRecords(refetchCounter: number) {
     ["records", refetchCounter],
     async () => {
       const recordsSec: any = [];
-      const lastRequest = await getDataFromStorage("lastRequestRecords");
+      const lastRequest = getDataMMKV("lastRequestRecords");
       const connectionStatus = await NetInfo.fetch();
       const isCacheExpired =
         new Date().getTime() > new Date(lastRequest).getTime();
@@ -33,7 +33,7 @@ export function fetchRecords(refetchCounter: number) {
       ) {
         const q = query(collection(db, "records"), orderBy("time", "desc"));
         const querySnapshot = await getDocs(q);
-        await storeDataToStorage("lastRequestRecords", cacheExpiryTime);
+        storeDataMMKV("lastRequestRecords", cacheExpiryTime);
         const snapshot = querySnapshot.docs.map((doc) => doc.data());
         snapshot.forEach((doc: any, index: number) => {
           if (index == 0) {
@@ -51,10 +51,10 @@ export function fetchRecords(refetchCounter: number) {
             recordsSec.push(doc);
           }
         });
-        await storeDataToStorage("records", recordsSec);
+        storeDataMMKV("records", recordsSec);
         return recordsSec;
       } else {
-        const records = await getDataFromStorage("records");
+        const records = getDataMMKV("records");
         if (records == null) {
           return [];
         }
@@ -67,7 +67,7 @@ export function fetchRecords(refetchCounter: number) {
 
 export function fetchSearchRecords() {
   const { data, isLoading } = useQuery(["searchRecords"], async () => {
-    const lastRequest = await getDataFromStorage("lastRequestSearchRecords");
+    const lastRequest = getDataMMKV("lastRequestSearchRecords");
     const connectionStatus = await NetInfo.fetch();
     const isCacheExpired =
       new Date().getTime() > new Date(lastRequest).getTime();
@@ -77,12 +77,12 @@ export function fetchSearchRecords() {
     ) {
       const q = query(collection(db, "records"), orderBy("id", "asc"));
       const querySnapshot = await getDocs(q);
-      await storeDataToStorage("lastRequestSearchRecords", cacheExpiryTime);
+      storeDataMMKV("lastRequestSearchRecords", cacheExpiryTime);
       const snapshot = querySnapshot.docs.map((doc) => doc.data());
-      await storeDataToStorage("searchRecords", snapshot);
+      storeDataMMKV("searchRecords", snapshot);
       return snapshot;
     } else {
-      const records = await getDataFromStorage("searchRecords");
+      const records = getDataMMKV("searchRecords");
       if (records == null) {
         return [];
       }

@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import CardRate from "./CardRate";
 import SubjectRate from "./SubjectRate";
+import Animated, { FadeInUp } from "react-native-reanimated";
 
 const CalculatorScreen = () => {
   const { theme } = useColorScheme();
@@ -113,7 +114,10 @@ const CalculatorScreen = () => {
           scrollViewRef.current?.scrollToEnd({ animated: true })
         }
       >
-        <View style={styles.container}>
+        <Animated.View
+          entering={FadeInUp.duration(600)}
+          style={styles.container}
+        >
           <Text style={[styles.gpa, { color: textColor }]}>
             حساب المعدل التراكمي
           </Text>
@@ -148,8 +152,9 @@ const CalculatorScreen = () => {
               ]}
             ></View>
           </TouchableOpacity>
-        </View>
-        <View
+        </Animated.View>
+        <Animated.View
+          entering={FadeInUp.duration(600).delay(200)}
           style={{
             flexDirection: "row",
             justifyContent: cumulative ? "space-between" : "center",
@@ -158,10 +163,11 @@ const CalculatorScreen = () => {
         >
           <CardRate title="المعدل الفصلي" rate={semester} />
           {cumulative && <CardRate title="المعدل التراكمي" rate={GPA} />}
-        </View>
+        </Animated.View>
         {cumulative && (
           <>
-            <View
+            <Animated.View
+              entering={FadeInUp.duration(600).delay(400)}
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
@@ -200,8 +206,9 @@ const CalculatorScreen = () => {
                 value={prevGPA}
                 onChangeText={(e) => setPrevGPA(e)}
               />
-            </View>
-            <View
+            </Animated.View>
+            <Animated.View
+              entering={FadeInUp.duration(600).delay(600)}
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
@@ -255,10 +262,11 @@ const CalculatorScreen = () => {
                 value={prevSemesterHour}
                 onChangeText={(e) => setPrevSemesterHour(e)}
               />
-            </View>
+            </Animated.View>
           </>
         )}
-        <Text
+        <Animated.Text
+          entering={FadeInUp.duration(600).delay(800)}
           style={{
             fontFamily: "TajawalBold",
             color: textColor,
@@ -268,8 +276,9 @@ const CalculatorScreen = () => {
           }}
         >
           مواد الفصل الحالي
-        </Text>
-        <View
+        </Animated.Text>
+        <Animated.View
+          entering={FadeInUp.duration(600).delay(1000)}
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
@@ -322,16 +331,23 @@ const CalculatorScreen = () => {
               العلامة
             </Text>
           </View>
-        </View>
+        </Animated.View>
         {numberToArray(subjectCount).map((_, index) => (
-          <SubjectRate
+          <Animated.View
             key={index}
-            setSelectedHour={setSelectedHour}
-            setSelectedGrade={setSelectedGrade}
-            itemNumber={index}
-          />
+            entering={FadeInUp.duration(600).delay(index === 0 ? 1200 : 0)}
+          >
+            <SubjectRate
+              setSelectedHour={setSelectedHour}
+              setSelectedGrade={setSelectedGrade}
+              itemNumber={index}
+            />
+          </Animated.View>
         ))}
-        <View style={styles.buttonContainer}>
+        <Animated.View
+          entering={FadeInUp.duration(600).delay(1400)}
+          style={styles.buttonContainer}
+        >
           <TouchableOpacity
             onPress={addSubject}
             style={styles.addSubjectButton}
@@ -341,10 +357,15 @@ const CalculatorScreen = () => {
           <TouchableOpacity onPress={deleteSubject} style={styles.deleteButton}>
             <Text style={styles.calculateButtonText}>حذف مادة</Text>
           </TouchableOpacity>
-        </View>
+        </Animated.View>
       </ScrollView>
       <TouchableOpacity onPress={calculateRate} style={styles.calculateButton}>
-        <Text style={styles.calculateButtonText}>حساب المعدل</Text>
+        <Animated.Text
+          entering={FadeInUp.duration(600).delay(1600)}
+          style={styles.calculateButtonText}
+        >
+          حساب المعدل
+        </Animated.Text>
       </TouchableOpacity>
     </View>
   );

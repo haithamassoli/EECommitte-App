@@ -1,5 +1,4 @@
 import {
-  View,
   Text,
   TouchableOpacity,
   ActivityIndicator,
@@ -11,12 +10,18 @@ import Colors from "@GlobalStyle/Colors";
 import { useColorScheme } from "@Src/store/themeContext";
 
 import Accordion from "react-native-collapsible/Accordion";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+  vs,
+} from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
 import { fetchFAQ } from "@Src/api/fetchFAQ";
 import { rtlWebview, screenWidth } from "@Utils/Helper";
 import RenderHTML, { defaultSystemFonts } from "react-native-render-html";
 import NoConnection from "@Components/NoConnection";
+import Animated, { FadeInUp } from "react-native-reanimated";
 type SECTIONSTYPE = { title: string; content: string };
 const systemFonts = [...defaultSystemFonts, "Dubai"];
 
@@ -40,9 +45,22 @@ const FAQScreen = () => {
       color: theme === "light" ? Colors.primary700 : Colors.primary400,
     },
   };
-  const renderHeader = (section: SECTIONSTYPE) => {
+  const renderHeader = (
+    section: SECTIONSTYPE,
+    index: number,
+    isActive: boolean
+  ) => {
     return (
-      <View
+      <Animated.View
+        entering={FadeInUp.withInitialValues({
+          transform: [
+            {
+              translateY: vs(125),
+            },
+          ],
+        })
+          .duration(600)
+          .delay(index * 200 + 200)}
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
@@ -72,29 +90,38 @@ const FAQScreen = () => {
           name="chevron-down"
           size={verticalScale(20)}
           color={textColor}
+          style={{
+            transform: [
+              {
+                rotate: isActive ? "180deg" : "0deg",
+              },
+            ],
+          }}
         />
-      </View>
+      </Animated.View>
     );
   };
   const renderContent = (section: SECTIONSTYPE) => {
     return (
-      <RenderHTML
-        defaultTextProps={{
-          selectable: true,
-          allowFontScaling: false,
-          selectionColor:
-            theme === "light" ? Colors.primary400 : Colors.primary700,
-        }}
-        contentWidth={screenWidth}
-        baseStyle={{
-          overflow: "hidden",
-        }}
-        source={{
-          html: rtlWebview(section.content),
-        }}
-        tagsStyles={tagsStyles}
-        systemFonts={systemFonts}
-      />
+      <Animated.View entering={FadeInUp.duration(600)}>
+        <RenderHTML
+          defaultTextProps={{
+            selectable: true,
+            allowFontScaling: false,
+            selectionColor:
+              theme === "light" ? Colors.primary400 : Colors.primary700,
+          }}
+          contentWidth={screenWidth}
+          baseStyle={{
+            overflow: "hidden",
+          }}
+          source={{
+            html: rtlWebview(section.content),
+          }}
+          tagsStyles={tagsStyles}
+          systemFonts={systemFonts}
+        />
+      </Animated.View>
     );
   };
 
@@ -138,28 +165,38 @@ const FAQScreen = () => {
         />
       }
     >
-      <Accordion
-        sections={data}
-        containerStyle={{
-          paddingHorizontal: horizontalScale(16),
-          paddingBottom: verticalScale(10),
-        }}
-        sectionContainerStyle={{
-          backgroundColor:
-            theme === "light"
-              ? Colors.lightBackgroundSec
-              : Colors.darkBackgroundSec,
-          borderRadius: moderateScale(10),
-          marginBottom: verticalScale(10),
-          paddingHorizontal: horizontalScale(16),
-          paddingVertical: verticalScale(10),
-        }}
-        activeSections={activeSections}
-        renderHeader={renderHeader}
-        renderContent={renderContent}
-        onChange={updateSections}
-        touchableComponent={TouchableOpacity}
-      />
+      <Animated.View
+        entering={FadeInUp.withInitialValues({
+          transform: [
+            {
+              translateY: vs(325),
+            },
+          ],
+        }).duration(600)}
+      >
+        <Accordion
+          sections={data}
+          containerStyle={{
+            paddingHorizontal: horizontalScale(16),
+            paddingBottom: verticalScale(10),
+          }}
+          sectionContainerStyle={{
+            backgroundColor:
+              theme === "light"
+                ? Colors.lightBackgroundSec
+                : Colors.darkBackgroundSec,
+            borderRadius: moderateScale(10),
+            marginBottom: verticalScale(10),
+            paddingHorizontal: horizontalScale(16),
+            paddingVertical: verticalScale(10),
+          }}
+          activeSections={activeSections}
+          renderHeader={renderHeader}
+          renderContent={renderContent}
+          onChange={updateSections}
+          touchableComponent={TouchableOpacity}
+        />
+      </Animated.View>
     </ScrollView>
   );
 };

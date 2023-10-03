@@ -10,6 +10,7 @@ import { HomeStackParamList } from "@Types/navigation";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useState, useLayoutEffect } from "react";
 import { View, Text, ActivityIndicator, RefreshControl } from "react-native";
+import Animated, { FadeInUp } from "react-native-reanimated";
 import { Shadow } from "react-native-shadow-2";
 
 const options = {
@@ -40,13 +41,15 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
       },
     });
   }, []);
-  const renderItem = ({ item }: any) => (
-    <RecordCard
-      link={item.link}
-      image={item.image}
-      subject={item.subject}
-      doctor={item.doctor}
-    />
+  const renderItem = ({ item, index }: any) => (
+    <Animated.View entering={FadeInUp.duration(600).delay(200 * index)}>
+      <RecordCard
+        link={item.link}
+        image={item.image}
+        subject={item.subject}
+        doctor={item.doctor}
+      />
+    </Animated.View>
   );
 
   if (isLoading) {

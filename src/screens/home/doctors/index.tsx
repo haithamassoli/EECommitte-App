@@ -11,6 +11,7 @@ import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { fetchDoctors } from "@Src/api/fetchDoctors";
 import NoConnection from "@Components/NoConnection";
 import { Shadow } from "react-native-shadow-2";
+import Animated, { FadeInUp } from "react-native-reanimated";
 
 type Props = StackScreenProps<HomeStackParamList, "Doctors">;
 
@@ -51,16 +52,18 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
     setRefetchCounter((prev) => prev + 1);
   };
 
-  const renderItem = ({ item }: any) => (
-    <DoctorCard
-      // @ts-ignore
-      email={item.email}
-      image={item.image}
-      name={item.name}
-      office={item.office}
-      phone={item.phone}
-      website={item.website}
-    />
+  const renderItem = ({ item, index }: any) => (
+    <Animated.View entering={FadeInUp.duration(600).delay(200 * index)}>
+      <DoctorCard
+        // @ts-ignore
+        email={item.email}
+        image={item.image}
+        name={item.name}
+        office={item.office}
+        phone={item.phone}
+        website={item.website}
+      />
+    </Animated.View>
   );
   if (isLoading) {
     return (

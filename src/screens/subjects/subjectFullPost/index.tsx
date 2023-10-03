@@ -8,6 +8,7 @@ import { WebDisplay } from "@Components/webDisplay";
 import { moderateScale, horizontalScale } from "@Utils/Platform";
 import HeaderRight from "../HeaderRight";
 import { Feather } from "@expo/vector-icons";
+import Animated, { FadeInUp } from "react-native-reanimated";
 
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 
@@ -55,7 +56,9 @@ const SubjectFullPostScreen = ({ navigation, route }: Props) => {
       }}
     >
       {route?.params?.post ? (
-        <WebDisplay html={route?.params?.post} />
+        <Animated.View entering={FadeInUp.duration(600)}>
+          <WebDisplay html={route?.params?.post} />
+        </Animated.View>
       ) : (
         <View
           style={{

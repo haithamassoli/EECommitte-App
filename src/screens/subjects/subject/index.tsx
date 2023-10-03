@@ -323,30 +323,33 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           </View>
         </Modal>
       </Portal>
-      <ImageBackground
-        contentFit="contain"
-        source={subjectFrame}
-        placeholder={blurhash}
-        placeholderContentFit="cover"
-        transition={400}
-        style={{
-          height: screenHeight < 650 ? verticalScale(268) : verticalScale(200),
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text
+      <Animated.View entering={FadeInUp.duration(600)}>
+        <ImageBackground
+          contentFit="contain"
+          source={subjectFrame}
+          placeholder={blurhash}
+          placeholderContentFit="cover"
+          transition={400}
           style={{
-            textAlign: "center",
-            fontSize: moderateScale(24),
-            color: Colors.darkText,
-            fontFamily: "Bukra",
+            height:
+              screenHeight < 650 ? verticalScale(268) : verticalScale(200),
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          {data?.name2}
-        </Text>
-      </ImageBackground>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: moderateScale(24),
+              color: Colors.darkText,
+              fontFamily: "Bukra",
+            }}
+          >
+            {data?.name2}
+          </Text>
+        </ImageBackground>
+      </Animated.View>
       <View
         style={{
           flex: 1,
@@ -357,121 +360,161 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           alignItems: "center",
         }}
       >
-        <TouchableOpacity
-          onPress={() =>
-            // @ts-ignore
-            navigation.navigate("SubjectFullPost", {
-              post: data?.aboutSubject,
-              postTitle: "عن المادة",
-            })
-          }
-          style={[style.button, { backgroundColor }]}
-        >
-          <Text style={[style.buttonText, { color: textColor }]}>
-            التعريف بالمادة
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            // @ts-ignore
-            navigation.navigate("SubjectFullPost", {
-              post: data?.fullPost,
-              postTitle: "البوست الشامل",
-            })
-          }
-          style={[style.button, { backgroundColor }]}
-        >
-          <Text style={[style.buttonText, { color: textColor }]}>
-            البوست الشامل
-          </Text>
-        </TouchableOpacity>
-        {data?.book && (
+        <Animated.View entering={FadeInUp.duration(600).delay(200)}>
           <TouchableOpacity
-            onPress={() => data.book && Linking.openURL(data.book)}
-            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
+            onPress={() =>
+              // @ts-ignore
+              navigation.navigate("SubjectFullPost", {
+                post: data?.aboutSubject,
+                postTitle: "عن المادة",
+              })
+            }
+            style={[style.button, { backgroundColor }]}
           >
-            <Text style={style.buttonText}>الكتاب</Text>
+            <Text style={[style.buttonText, { color: textColor }]}>
+              التعريف بالمادة
+            </Text>
           </TouchableOpacity>
+        </Animated.View>
+        <Animated.View entering={FadeInUp.duration(600).delay(400)}>
+          <TouchableOpacity
+            onPress={() =>
+              // @ts-ignore
+              navigation.navigate("SubjectFullPost", {
+                post: data?.fullPost,
+                postTitle: "البوست الشامل",
+              })
+            }
+            style={[style.button, { backgroundColor }]}
+          >
+            <Text style={[style.buttonText, { color: textColor }]}>
+              البوست الشامل
+            </Text>
+          </TouchableOpacity>
+        </Animated.View>
+        {data?.book && (
+          <Animated.View entering={FadeInUp.duration(600).delay(600)}>
+            <TouchableOpacity
+              onPress={() => data.book && Linking.openURL(data.book)}
+              style={[
+                style.button,
+                { backgroundColor: backgroundSubjectColor },
+              ]}
+            >
+              <Text style={style.buttonText}>الكتاب</Text>
+            </TouchableOpacity>
+          </Animated.View>
         )}
         {data?.manual && (
-          <TouchableOpacity
-            onPress={() => data.manual && Linking.openURL(data.manual)}
-            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
-          >
-            <Text style={style.buttonText}>المانيول</Text>
-          </TouchableOpacity>
+          <Animated.View entering={FadeInUp.duration(600).delay(600)}>
+            <TouchableOpacity
+              onPress={() => data.manual && Linking.openURL(data.manual)}
+              style={[
+                style.button,
+                { backgroundColor: backgroundSubjectColor },
+              ]}
+            >
+              <Text style={style.buttonText}>المانيول</Text>
+            </TouchableOpacity>
+          </Animated.View>
         )}
         {data?.prevYears && (
-          <TouchableOpacity
-            onPress={() => data.prevYears && Linking.openURL(data.prevYears)}
-            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
-          >
-            <Text style={style.buttonText}>السنوات السابقة</Text>
-          </TouchableOpacity>
+          <Animated.View entering={FadeInUp.duration(600).delay(600)}>
+            <TouchableOpacity
+              onPress={() => data.prevYears && Linking.openURL(data.prevYears)}
+              style={[
+                style.button,
+                { backgroundColor: backgroundSubjectColor },
+              ]}
+            >
+              <Text style={style.buttonText}>السنوات السابقة</Text>
+            </TouchableOpacity>
+          </Animated.View>
         )}
         {data?.exams && (
-          <TouchableOpacity
-            onPress={() => data.exams && Linking.openURL(data.exams)}
-            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
-          >
-            <Text style={style.buttonText}>الامتحانات</Text>
-          </TouchableOpacity>
+          <Animated.View entering={FadeInUp.duration(600).delay(600)}>
+            <TouchableOpacity
+              onPress={() => data.exams && Linking.openURL(data.exams)}
+              style={[
+                style.button,
+                { backgroundColor: backgroundSubjectColor },
+              ]}
+            >
+              <Text style={style.buttonText}>الامتحانات</Text>
+            </TouchableOpacity>
+          </Animated.View>
         )}
         {data?.slides && (
-          <TouchableOpacity
-            onPress={() => data.slides && Linking.openURL(data.slides)}
-            style={[style.button, { backgroundColor: backgroundSubjectColor }]}
-          >
-            <Text style={style.buttonText}>السلايدات</Text>
-          </TouchableOpacity>
+          <Animated.View entering={FadeInUp.duration(600).delay(600)}>
+            <TouchableOpacity
+              onPress={() => data.slides && Linking.openURL(data.slides)}
+              style={[
+                style.button,
+                { backgroundColor: backgroundSubjectColor },
+              ]}
+            >
+              <Text style={style.buttonText}>السلايدات</Text>
+            </TouchableOpacity>
+          </Animated.View>
         )}
         {data?.explanations?.map((explanation: any, index: number) => (
-          <TouchableOpacity
+          <Animated.View
             key={index}
+            entering={FadeInUp.duration(600).delay(800 + 200 * index)}
+          >
+            <TouchableOpacity
+              onPress={() =>
+                explanation.link && Linking.openURL(explanation.link)
+              }
+              style={[
+                style.button,
+                { backgroundColor: backgroundSubjectColor },
+              ]}
+            >
+              <Text style={style.buttonText}>{explanation.name}</Text>
+            </TouchableOpacity>
+          </Animated.View>
+        ))}
+        <Animated.View entering={FadeInUp.duration(600).delay(1000)}>
+          <TouchableOpacity
             onPress={() =>
-              explanation.link && Linking.openURL(explanation.link)
+              data?.subjectLink && Linking.openURL(data?.subjectLink)
             }
             style={[style.button, { backgroundColor: backgroundSubjectColor }]}
           >
-            <Text style={style.buttonText}>{explanation.name}</Text>
+            <Text style={style.buttonText}>درايف المادة</Text>
           </TouchableOpacity>
-        ))}
-        <TouchableOpacity
-          onPress={() =>
-            data?.subjectLink && Linking.openURL(data?.subjectLink)
-          }
-          style={[style.button, { backgroundColor: backgroundSubjectColor }]}
-        >
-          <Text style={style.buttonText}>درايف المادة</Text>
-        </TouchableOpacity>
+        </Animated.View>
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          toggleFavorite({
-            id: data?.id,
-            name: data?.name2,
-          });
-        }}
-        style={[
-          style.button,
-          {
-            width: screenWidth - horizontalScale(32),
-            backgroundColor,
-            alignSelf: "center",
-            marginVertical: verticalScale(10),
-          },
-        ]}
-      >
-        <Text style={[style.buttonText, { color: textColor }]}>
-          {isFavorite ? "إزالة من المفضلة" : "إضافة الى المفضلة"}
-        </Text>
-        <AntDesign
-          name={isFavorite ? "heart" : "hearto"}
-          size={moderateScale(24)}
-          color={textColor}
-          style={{ marginHorizontal: horizontalScale(10) }}
-        />
-      </TouchableOpacity>
+      <Animated.View entering={FadeInUp.duration(600).delay(1200)}>
+        <TouchableOpacity
+          onPress={() => {
+            toggleFavorite({
+              id: data?.id,
+              name: data?.name2,
+            });
+          }}
+          style={[
+            style.button,
+            {
+              width: screenWidth - horizontalScale(32),
+              backgroundColor,
+              alignSelf: "center",
+              marginVertical: verticalScale(10),
+            },
+          ]}
+        >
+          <Text style={[style.buttonText, { color: textColor }]}>
+            {isFavorite ? "إزالة من المفضلة" : "إضافة الى المفضلة"}
+          </Text>
+          <AntDesign
+            name={isFavorite ? "heart" : "hearto"}
+            size={moderateScale(24)}
+            color={textColor}
+            style={{ marginHorizontal: horizontalScale(10) }}
+          />
+        </TouchableOpacity>
+      </Animated.View>
     </ScrollView>
   );
 };

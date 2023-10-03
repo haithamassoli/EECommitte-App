@@ -121,7 +121,7 @@ class ImageMapper extends Component<Props> {
                   color="black"
                   style={{
                     alignSelf: "center",
-                    top: moderateScale(moderateScale(item?.radius!) / 3.5),
+                    top: moderateScale(moderateScale(item?.radius!) / 3.65),
                   }}
                 />
               )}

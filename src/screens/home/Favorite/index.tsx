@@ -14,6 +14,7 @@ import { FavoriteContext } from "@Src/store/favoriteContext";
 import { moderateScale, verticalScale } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
 import { useColorScheme } from "@Src/store/themeContext";
+import Animated, { FadeInUp } from "react-native-reanimated";
 
 type Props = StackScreenProps<HomeStackParamList, "Favorite">;
 
@@ -29,8 +30,9 @@ const FavoriteScreen = ({ navigation }: Props) => {
         paddingBottom: verticalScale(16),
       }}
     >
-      {favorite.map((item) => (
-        <View
+      {favorite.map((item, index) => (
+        <Animated.View
+          entering={FadeInUp.duration(600).delay(200 * index)}
           key={item.id}
           style={{
             paddingHorizontal: moderateScale(16),
@@ -77,7 +79,7 @@ const FavoriteScreen = ({ navigation }: Props) => {
               </Text>
             </TouchableOpacity>
           </Swipeable>
-        </View>
+        </Animated.View>
       ))}
       {favorite.length === 0 ? (
         <View
@@ -98,7 +100,12 @@ const FavoriteScreen = ({ navigation }: Props) => {
           </Text>
         </View>
       ) : (
-        <Text
+        <Animated.Text
+          entering={FadeInUp.withInitialValues({
+            transform: [{ translateY: verticalScale(126) }],
+          })
+            .duration(600)
+            .delay(200)}
           style={{
             fontFamily: "TajawalMedium",
             color: textColor,
@@ -110,7 +117,7 @@ const FavoriteScreen = ({ navigation }: Props) => {
           }}
         >
           اسحب يسارًا للحذف من المفضلة
-        </Text>
+        </Animated.Text>
       )}
     </ScrollView>
   );

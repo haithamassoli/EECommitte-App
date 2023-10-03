@@ -35,7 +35,6 @@ import {
 } from "react-native-paper";
 import { fontConfig, MaterialDark, MaterialLight } from "@GlobalStyle/material";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -139,7 +138,7 @@ export default function App() {
       const pushNotificationsToken = await Notifications.getExpoPushTokenAsync({
         projectId: "17a53ebd-120e-477f-9b48-e87d75fd1a78",
       });
-      // setNotificationsTokens(pushNotificationsToken.data);
+      setNotificationsTokens(pushNotificationsToken.data);
       // console.log(pushNotificationsToken.data);
 
       if (Platform.OS === "android") {

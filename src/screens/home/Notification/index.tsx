@@ -3,17 +3,21 @@ import {
   View,
   Text,
   ScrollView,
-  Falsy,
-  RecursiveArray,
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
-import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
+import {
+  horizontalScale,
+  moderateScale,
+  verticalScale,
+  vs,
+} from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { useColorScheme } from "@Src/store/themeContext";
 import { Feather } from "@expo/vector-icons";
 import Accordion from "react-native-collapsible/Accordion";
+import Animated, { FadeInUp } from "react-native-reanimated";
 
 type NotificationType = {
   title: string;
@@ -41,9 +45,22 @@ const NotificationScreen = () => {
     setIsLoading(false);
   }, []);
 
-  const renderHeader = (section: NotificationType) => {
+  const renderHeader = (
+    section: NotificationType,
+    index: number,
+    isActive: boolean
+  ) => {
     return (
-      <View
+      <Animated.View
+        entering={FadeInUp.withInitialValues({
+          transform: [
+            {
+              translateY: vs(125),
+            },
+          ],
+        })
+          .duration(600)
+          .delay(index * 200 + 200)}
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
@@ -74,12 +91,13 @@ const NotificationScreen = () => {
           size={verticalScale(20)}
           color={textColor}
         />
-      </View>
+      </Animated.View>
     );
   };
   const renderContent = (section: NotificationType) => {
     return (
-      <Text
+      <Animated.Text
+        entering={FadeInUp.duration(600)}
         style={{
           textAlign: "left",
           fontFamily: "Dubai",
@@ -88,7 +106,7 @@ const NotificationScreen = () => {
         }}
       >
         {section.body}
-      </Text>
+      </Animated.Text>
     );
   };
 
@@ -128,28 +146,38 @@ const NotificationScreen = () => {
   }
   return (
     <ScrollView style={{ flex: 1, paddingTop: verticalScale(10) }}>
-      <Accordion
-        sections={data}
-        containerStyle={{
-          paddingHorizontal: horizontalScale(16),
-          paddingBottom: verticalScale(10),
-        }}
-        sectionContainerStyle={{
-          backgroundColor:
-            theme === "light"
-              ? Colors.lightBackgroundSec
-              : Colors.darkBackgroundSec,
-          borderRadius: moderateScale(10),
-          marginBottom: verticalScale(10),
-          paddingHorizontal: horizontalScale(16),
-          paddingVertical: verticalScale(10),
-        }}
-        activeSections={activeSections}
-        renderHeader={renderHeader}
-        renderContent={renderContent}
-        onChange={updateSections}
-        touchableComponent={TouchableOpacity}
-      />
+      <Animated.View
+        entering={FadeInUp.withInitialValues({
+          transform: [
+            {
+              translateY: vs(325),
+            },
+          ],
+        }).duration(600)}
+      >
+        <Accordion
+          sections={data}
+          containerStyle={{
+            paddingHorizontal: horizontalScale(16),
+            paddingBottom: verticalScale(10),
+          }}
+          sectionContainerStyle={{
+            backgroundColor:
+              theme === "light"
+                ? Colors.lightBackgroundSec
+                : Colors.darkBackgroundSec,
+            borderRadius: moderateScale(10),
+            marginBottom: verticalScale(10),
+            paddingHorizontal: horizontalScale(16),
+            paddingVertical: verticalScale(10),
+          }}
+          activeSections={activeSections}
+          renderHeader={renderHeader}
+          renderContent={renderContent}
+          onChange={updateSections}
+          touchableComponent={TouchableOpacity}
+        />
+      </Animated.View>
     </ScrollView>
   );
 };

@@ -8,27 +8,26 @@
       "distribution": "internal",
       "ios": {
         "simulator": true
-      }
+      },
+      "channel": "development-simulator"
     },
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "channel": "development"
     },
     "preview": {
       "android": {
         "buildType": "apk"
       },
-      "distribution": "internal"
+      "distribution": "internal",
+      "channel": "preview"
     },
-    "production": {}
+    "production": {
+      "channel": "production"
+    }
   },
   "submit": {
-    "production": {
-      "ios": {
-        "appleId": "ehabamawi98@outlook.com",
-        "ascAppId": "6443760623",
-        "appleTeamId": "D4FF3393XV"
-      }
-    }
+    "production": {}
   }
 }

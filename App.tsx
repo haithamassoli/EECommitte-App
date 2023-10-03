@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import * as Notifications from "expo-notifications";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -35,6 +35,7 @@ import {
 } from "react-native-paper";
 import { fontConfig, MaterialDark, MaterialLight } from "@GlobalStyle/material";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -81,6 +82,7 @@ Text.defaultProps.allowFontScaling = false;
 
 export default function App() {
   const [isFirstTime, setIsFirstTime] = useState(false);
+  const notificationListener = useRef();
 
   useEffect(() => {
     const forceRTL = async () => {
@@ -149,6 +151,42 @@ export default function App() {
       }
     };
     configurePushNotifications();
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        const addNotificationCount = async () => {
+          const count = await getDataFromStorage("notificationsCount");
+          const notifications: any = await getDataFromStorage("notifications");
+          if (notifications) {
+            const newNotifications = [
+              {
+                title: notification.request.content.title,
+                body: notification.request.content.body,
+              },
+              ...notifications,
+            ];
+            await storeDataToStorage("notifications", newNotifications);
+          } else {
+            await storeDataToStorage("notifications", [
+              {
+                title: notification.request.content.title,
+                body: notification.request.content.body,
+              },
+            ]);
+          }
+          if (count != null) {
+            await storeDataToStorage("notificationsCount", count + 1);
+          } else {
+            await storeDataToStorage("notificationsCount", 1);
+          }
+        };
+        addNotificationCount();
+      });
+
+    return () => {
+      Notifications.removeNotificationSubscription(
+        notificationListener.current
+      );
+    };
   }, []);
 
   const onFinished = useCallback(async () => {

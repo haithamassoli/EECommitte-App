@@ -67,34 +67,7 @@ const HomeScreen = ({ navigation }: Props) => {
     };
     CheckNotificationCount();
   }, [isFocused]);
-  useEffect(() => {
-    const subscription1 = Notifications.addNotificationReceivedListener(
-      (notification) => {
-        addNotificationCount();
-        // const userName = notification.request.content.data;
-      }
-    );
-    const addNotificationCount = async () => {
-      const count = await getDataFromStorage("notificationsCount");
-      if (count != null) {
-        await storeDataToStorage("notificationsCount", count + 1);
-        setNotificationCount(count + 1);
-      } else {
-        await storeDataToStorage("notificationsCount", 1);
-        setNotificationCount(1);
-      }
-    };
-    const subscription2 = Notifications.addNotificationResponseReceivedListener(
-      (response) => {
-        navigation.navigate("Notification");
-        // const userName = response.notification.request.content.data;
-      }
-    );
-    return () => {
-      subscription1.remove();
-      subscription2.remove();
-    };
-  }, []);
+
   useEffect(() => {
     navigation.setOptions({
       header: () => (

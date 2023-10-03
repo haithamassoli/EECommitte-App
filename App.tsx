@@ -18,7 +18,7 @@ import { ColorSchemeProvider, useColorScheme } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { deleteAllStorage, getDataMMKV, storeDataMMKV } from "@Utils/Helper";
+import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import { FavoriteProvider } from "@Src/store/favoriteContext";
 import { setNotificationsTokens } from "@Src/api/setNotificationsTokens";
 import FirstLoading from "@Components/FirstLoading";
@@ -134,7 +134,7 @@ export default function App() {
       const pushNotificationsToken = await Notifications.getExpoPushTokenAsync({
         projectId: "17a53ebd-120e-477f-9b48-e87d75fd1a78",
       });
-      // setNotificationsTokens(pushNotificationsToken.data);
+      setNotificationsTokens(pushNotificationsToken.data);
       // console.log(pushNotificationsToken.data);
 
       if (Platform.OS === "android") {

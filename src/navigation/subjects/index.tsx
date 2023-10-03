@@ -29,6 +29,7 @@ export default function SubjectsNavigation() {
         headerTitleStyle: {
           fontSize: moderateScale(16),
           fontFamily: "Bukra",
+          lineHeight: vs(28),
         },
         headerStyle: {
           height: isIOS ? vs(96) : vs(64),

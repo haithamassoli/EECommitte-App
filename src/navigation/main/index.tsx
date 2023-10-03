@@ -17,9 +17,10 @@ import {
   isIOS,
   moderateScale,
   verticalScale,
+  vs,
 } from "@Utils/Platform";
 import { Shadow } from "react-native-shadow-2";
-import { Animated, View } from "react-native";
+import { Animated } from "react-native";
 import { screenWidth } from "@Utils/Helper";
 
 const BottomTabs = createBottomTabNavigator<BottomTabParamList>();
@@ -90,6 +91,7 @@ export default function Route() {
           headerTitleStyle: {
             fontSize: moderateScale(16),
             fontFamily: "Bukra",
+            lineHeight: vs(28),
           },
           tabBarBackground() {
             return (

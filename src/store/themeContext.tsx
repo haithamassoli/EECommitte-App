@@ -166,10 +166,10 @@ export const ColorSchemeProvider = ({ children }: ColorSchemeProviderProps) => {
       const theme = getDataMMKV("theme");
       dispatch({
         active: false,
-        theme,
+        theme: theme || "light",
         overlay1: null,
         overlay2: null,
-        statusBarStyle: theme,
+        statusBarStyle: theme || "light",
       });
     })();
   }, []);

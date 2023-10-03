@@ -242,10 +242,19 @@ const ManageRecordsScreen = () => {
               outlineStyle={{
                 borderRadius: ms(18),
                 height: vs(28),
+                width: "100%",
+                overflow: "hidden",
               }}
               contentStyle={{
                 height: vs(28),
+                width: "100%",
+                overflow: "hidden",
               }}
+              style={{
+                width: "100%",
+                overflow: "hidden",
+              }}
+              textBreakStrategy="balanced"
             />
             <ControlledInput
               control={control}
@@ -276,10 +285,19 @@ const ManageRecordsScreen = () => {
               outlineStyle={{
                 borderRadius: ms(18),
                 height: vs(28),
+                width: "100%",
+                overflow: "hidden",
               }}
               contentStyle={{
                 height: vs(28),
+                width: "100%",
+                overflow: "hidden",
               }}
+              style={{
+                width: "100%",
+                overflow: "hidden",
+              }}
+              textBreakStrategy="balanced"
             />
             <ControlledInput
               control={control}
@@ -292,10 +310,19 @@ const ManageRecordsScreen = () => {
               outlineStyle={{
                 borderRadius: ms(18),
                 height: vs(28),
+                width: "100%",
+                overflow: "hidden",
               }}
               contentStyle={{
                 height: vs(28),
+                width: "100%",
+                overflow: "hidden",
               }}
+              style={{
+                width: "100%",
+                overflow: "hidden",
+              }}
+              textBreakStrategy="balanced"
             />
             <ControlledInput
               control={control}

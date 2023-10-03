@@ -25,7 +25,7 @@ import { ColorSchemeButton } from "@Components/ColorSchemeButton";
 type Props = StackScreenProps<InfoStackParamList, "Info">;
 
 const appUrl = isIOS
-  ? "https://apps.apple.com/us/app/eecommittee/id6443760623"
+  ? "https://apps.apple.com/jo/app/لجنة-الهندسة-الكهربائية/id6468588718"
   : "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte";
 
 const InfoScreen = ({ navigation }: Props) => {
@@ -122,7 +122,7 @@ const InfoScreen = ({ navigation }: Props) => {
 https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte
             
 تطبيق لجنة الهندسة الكهربائية على الايفون
-https://apps.apple.com/us/app/eecommittee/id6443760623`,
+https://apps.apple.com/jo/app/لجنة-الهندسة-الكهربائية/id6468588718`,
               })
             }
           />

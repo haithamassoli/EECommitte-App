@@ -13,7 +13,7 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import { reloadAsync } from "expo-updates";
+import * as Updates from "expo-updates";
 import { ColorSchemeProvider, useColorScheme } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { useFonts } from "expo-font";
@@ -37,6 +37,19 @@ if (Platform.OS === "android") {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
 }
+
+const onFetchUpdateAsync = async () => {
+  try {
+    const update = await Updates.checkForUpdateAsync();
+
+    if (update.isAvailable) {
+      await Updates.fetchUpdateAsync();
+    }
+  } catch (error) {
+    // You can also add an alert() to see the error message in case of an error when fetching updates.
+    console.log(`Error fetching latest Expo update: ${error}`);
+  }
+};
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -85,7 +98,7 @@ export default function App() {
         try {
           I18nManager.allowRTL(true);
           I18nManager.forceRTL(true);
-          await reloadAsync();
+          await Updates.reloadAsync();
         } catch (error) {
           console.log(error);
         }
@@ -99,6 +112,7 @@ export default function App() {
       }
     };
     firstTime();
+    onFetchUpdateAsync();
     // deleteAllStorage();
   }, []);
 

@@ -1,7 +1,18 @@
 import { db } from "@Src/firebase-config";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { getDataFromStorage, storeDataToStorage } from "@Utils/Helper";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  doc,
+  getDoc,
+  addDoc,
+  updateDoc,
+  where,
+  deleteDoc,
+} from "firebase/firestore";
 import NetInfo from "@react-native-community/netinfo";
 
 const cacheIntervalInHours = 500;
@@ -41,3 +52,54 @@ export function fetchExplanations(refetchCounter: number) {
   );
   return { data, isLoading, isFetching };
 }
+
+export const fetchExplanationsQuery = () =>
+  useQuery(["explanations"], async () => {
+    try {
+      const q = query(collection(db, "explanations"), orderBy("time", "desc"));
+      const querySnapshot = await getDocs(q);
+      return querySnapshot.docs.map((doc) => {
+        return { ...doc.data(), id: doc.id } as {
+          id: string;
+          doctor: string;
+          image: string;
+          time: Date;
+          link: string;
+          searchName: string;
+          subject: string;
+        };
+      });
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
+  });
+
+export const updateExplanationsMutation = () =>
+  useMutation(
+    (data: {
+      id: string;
+      doctor: string;
+      image: string;
+      time: Date;
+      link: string;
+      searchName: string;
+      subject: string;
+    }) => updateDoc(doc(db, "explanations", data.id), data)
+  );
+
+export const addExplanationsMutation = () =>
+  useMutation(
+    (data: {
+      doctor: string;
+      image: string;
+      time: Date;
+      link: string;
+      searchName: string;
+      subject: string;
+    }) => {
+      return addDoc(collection(db, "explanations"), data);
+    }
+  );
+
+export const deleteExplanationsMutation = () =>
+  useMutation((id: string) => deleteDoc(doc(db, "explanations", id)));

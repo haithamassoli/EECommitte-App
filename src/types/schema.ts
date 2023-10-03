@@ -53,3 +53,43 @@ export const validationNotificationsSchema = z.object({
 export type ValidationNotificationsSchemaType = z.infer<
   typeof validationNotificationsSchema
 >;
+
+export const validationOurExplanationsSchema = z.object({
+  id: z.string(),
+  doctor: z.string({
+    required_error: "اسم صاحب الشرح مطلوب",
+  }),
+  image: z.string(),
+  link: z.string({
+    required_error: "رابط الشرح مطلوب",
+  }),
+  subject: z.string({
+    required_error: "اسم المادة مطلوب",
+  }),
+  searchName: z.string({
+    required_error: "الاسم مطلوب",
+  }),
+});
+
+export type ValidationOurExplanationsSchemaType = z.infer<
+  typeof validationOurExplanationsSchema
+>;
+
+export const validationAddOurExplanationsSchema = z.object({
+  doctor: z.string({
+    required_error: "اسم صاحب الشرح مطلوب",
+  }),
+  link: z.string({
+    required_error: "رابط الشرح مطلوب",
+  }),
+  subject: z.string({
+    required_error: "اسم المادة مطلوب",
+  }),
+  searchName: z.string({
+    required_error: "الاسم مطلوب",
+  }),
+});
+
+export type ValidationAddOurExplanationsSchemaType = z.infer<
+  typeof validationAddOurExplanationsSchema
+>;

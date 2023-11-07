@@ -44,6 +44,7 @@ import Animated, { FadeInUp } from "react-native-reanimated";
 import CustomButton from "@Components/ui/customButton";
 import ControlledInput from "@Components/controlledInput";
 import Loading from "@Components/ui/loading";
+import { PasswordContext } from "@Src/store/passwordContext";
 
 type Props = StackScreenProps<SubjectsStackParamList, "Subject">;
 export type SubjectNavigationProp = StackNavigationProp<
@@ -76,6 +77,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     useForm<VerificationPasswordSchemaType>({
       resolver: zodResolver(verificationPasswordSchema),
     });
+  const { isTrue, setIsTrue } = useContext(PasswordContext);
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
   const { data, isLoading, isFetching }: any = fetchSubjectById(
     route.params.subjectId,
@@ -140,7 +142,15 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             <Feather name="book" size={moderateScale(24)} color={textColor} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => setIsVisible(true)}
+            onPress={() => {
+              if (isTrue) {
+                navigation.push("EditSubject", {
+                  subjectId: data?.uid,
+                });
+              } else {
+                setIsVisible(true);
+              }
+            }}
             style={{
               paddingStart: horizontalScale(8),
             }}
@@ -179,6 +189,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     mutate(FormData.password, {
       onSuccess: (data) => {
         if (FormData.password === data?.password) {
+          setIsTrue(true);
           reset();
           setIsVisible(false);
           setIsPasswordTrue(true);

@@ -12,17 +12,19 @@ import { hs, ms, vs } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { checkPasswordMutation } from "@Src/api/dashboard";
 import Loading from "@Components/ui/loading";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CustomButton from "@Components/ui/customButton";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
 import { useColorScheme } from "@Src/store/themeContext";
+import { PasswordContext } from "@Src/store/passwordContext";
 
 type Props = StackScreenProps<InfoStackParamList, "Dashboard">;
 
 const DashboardScreen = ({ navigation }: Props) => {
   const { mutate, isLoading } = checkPasswordMutation();
   const [showPassword, setShowPassword] = useState(false);
+  const { isTrue, setIsTrue } = useContext(PasswordContext);
   const { theme } = useColorScheme();
   const { control, handleSubmit, reset, setError } =
     useForm<VerificationPasswordSchemaType>({
@@ -35,12 +37,19 @@ const DashboardScreen = ({ navigation }: Props) => {
     setShowPassword((e) => !e);
   };
 
+  useEffect(() => {
+    if (isTrue) {
+      navigation.replace("DashboardList");
+    }
+  }, []);
+
   const onSubmit = (FormData: VerificationPasswordSchemaType) => {
     mutate(FormData.password, {
       onSuccess: (data) => {
         if (FormData.password === data?.password) {
           reset();
-          navigation.push("DashboardList");
+          setIsTrue(true);
+          navigation.replace("DashboardList");
         } else {
           setError("password", {
             message: "كلمة المرور غير صحيحة",

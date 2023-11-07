@@ -81,25 +81,13 @@ const InfoScreen = ({ navigation }: Props) => {
         </Animated.View>
         <Animated.View entering={FadeInUp.duration(600).delay(200)}>
           <InfoItem
-            icon="smartphone"
-            title="تطبيق Engineers"
-            subTitle="كل ما يهم طالب الهندسة في السنة الأولى"
-            onPress={() =>
-              Linking.openURL(
-                "https://play.google.com/store/apps/details?id=com.taimaah.edu"
-              )
-            }
-          />
-        </Animated.View>
-        <Animated.View entering={FadeInUp.duration(600).delay(400)}>
-          <InfoItem
             title="لوحة التحكم"
             subTitle="لوحة التحكم للجنة الهندسة الكهربائية"
             icon="grid"
             onPress={() => onPress("Dashboard")}
           />
         </Animated.View>
-        <Animated.View entering={FadeInUp.duration(600).delay(600)}>
+        <Animated.View entering={FadeInUp.duration(600).delay(400)}>
           <InfoItem
             icon="mail"
             title="تواصل مع المطور"
@@ -111,7 +99,7 @@ const InfoScreen = ({ navigation }: Props) => {
             }
           />
         </Animated.View>
-        <Animated.View entering={FadeInUp.duration(600).delay(800)}>
+        <Animated.View entering={FadeInUp.duration(600).delay(600)}>
           <InfoItem
             icon="share"
             title="شارك التطبيق"
@@ -127,7 +115,7 @@ https://apps.apple.com/jo/app/لجنة-الهندسة-الكهربائية/id646
             }
           />
         </Animated.View>
-        <Animated.View entering={FadeInUp.duration(600).delay(1000)}>
+        <Animated.View entering={FadeInUp.duration(600).delay(800)}>
           <InfoItem
             icon="star"
             title="قيم التطبيق"
@@ -137,7 +125,7 @@ https://apps.apple.com/jo/app/لجنة-الهندسة-الكهربائية/id646
             onPress={() => Linking.openURL(appUrl)}
           />
         </Animated.View>
-        <Animated.View entering={FadeInUp.duration(600).delay(1200)}>
+        <Animated.View entering={FadeInUp.duration(600).delay(1000)}>
           <InfoItem
             icon="heart"
             title="ادعمنا"

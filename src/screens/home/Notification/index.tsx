@@ -119,8 +119,7 @@ const NotificationScreen = () => {
   const renderContent = (section: NotificationType) => {
     return (
       <>
-        <Animated.Text
-          entering={FadeInUp.duration(600)}
+        <Text
           style={{
             textAlign: "left",
             fontFamily: "Dubai",
@@ -129,11 +128,10 @@ const NotificationScreen = () => {
           }}
         >
           {section.body}
-        </Animated.Text>
+        </Text>
         {section.link && (
           <TouchableOpacity onPress={() => Linking.openURL(section.link!)}>
-            <Animated.Text
-              entering={FadeInUp.duration(600)}
+            <Text
               style={{
                 textAlign: "left",
                 fontFamily: "Dubai",
@@ -143,7 +141,7 @@ const NotificationScreen = () => {
               }}
             >
               {section.link}
-            </Animated.Text>
+            </Text>
           </TouchableOpacity>
         )}
       </>

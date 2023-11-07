@@ -128,7 +128,6 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
           <ImageBackground
             source={data[0].image}
             contentFit="cover"
-            transition={400}
             style={styles.image}
           >
             <View style={styles.contentContainer}>
@@ -211,7 +210,6 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
               <ImageBackground
                 source={data[1].image}
                 contentFit="cover"
-                transition={400}
                 style={styles.image}
               >
                 <View style={styles.contentContainer}>
@@ -295,7 +293,6 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
               <ImageBackground
                 source={data[2].image}
                 contentFit="cover"
-                transition={400}
                 style={styles.image}
               >
                 <View style={styles.contentContainer}>
@@ -380,7 +377,6 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
               <ImageBackground
                 source={data[3].image}
                 contentFit="cover"
-                transition={400}
                 style={styles.image}
               >
                 <View style={styles.contentContainer}>
@@ -465,7 +461,6 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
               <ImageBackground
                 source={data[4].image}
                 contentFit="cover"
-                transition={400}
                 style={styles.image}
               >
                 <View style={styles.contentContainer}>
@@ -555,7 +550,6 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
               <ImageBackground
                 source={data[5].image}
                 contentFit="cover"
-                transition={400}
                 style={styles.image}
               >
                 <View style={styles.contentContainer}>

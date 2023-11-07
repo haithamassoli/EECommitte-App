@@ -44,7 +44,12 @@ const ManageNotificationsScreen = () => {
 
     for (const chunk of tokenChunks) {
       await wait(400);
-      await sendNotification(chunk!, formData.title, formData.body);
+      await sendNotification(
+        chunk!,
+        formData.title,
+        formData.body,
+        formData.link
+      );
     }
     setIsSending(false);
     reset();
@@ -123,6 +128,26 @@ const ManageNotificationsScreen = () => {
           }}
         />
       </Animated.View>
+      <Animated.View
+        entering={FadeInUp.withInitialValues({
+          transform: [{ translateY: vs(-25) }],
+        })
+          .duration(600)
+          .delay(600)}
+      >
+        <ControlledInput
+          control={control}
+          name="link"
+          mode="outlined"
+          placeholder="الرابط"
+          outlineStyle={{
+            borderRadius: ms(18),
+          }}
+          style={{
+            width: hs(300),
+          }}
+        />
+      </Animated.View>
       <View
         style={{
           height: vs(32),
@@ -133,7 +158,7 @@ const ManageNotificationsScreen = () => {
           transform: [{ translateY: vs(-25) }],
         })
           .duration(600)
-          .delay(600)}
+          .delay(800)}
       >
         <CustomButton
           mode="contained"

@@ -48,6 +48,7 @@ export const validationNotificationsSchema = z.object({
   body: z.string({
     required_error: "المحتوى مطلوب",
   }),
+  link: z.optional(z.string()),
 });
 
 export type ValidationNotificationsSchemaType = z.infer<

@@ -31,6 +31,7 @@ import {
 } from "react-native-paper";
 import { fontConfig, MaterialDark, MaterialLight } from "@GlobalStyle/material";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { PasswordProvider } from "@Src/store/passwordContext";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -90,7 +91,7 @@ Text.defaultProps.allowFontScaling = false;
 
 export default function App() {
   const [isFirstTime, setIsFirstTime] = useState(false);
-  const notificationListener = useRef();
+  const responseListener = useRef();
 
   useEffect(() => {
     const forceRTL = async () => {
@@ -160,16 +161,19 @@ export default function App() {
       }
     };
     configurePushNotifications();
-    notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) => {
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((notification) => {
+        console.log(notification.notification);
         const addNotificationCount = () => {
           const count = getDataMMKV("notificationsCount");
           const notifications: any = getDataMMKV("notifications");
           if (notifications) {
             const newNotifications = [
               {
-                title: notification.request.content.title,
-                body: notification.request.content.body,
+                title: notification.notification.request.content.title,
+                body: notification.notification.request.content.body,
+                link: notification.notification.request.content.data.link,
+                date: new Date(),
               },
               ...notifications,
             ];
@@ -177,8 +181,10 @@ export default function App() {
           } else {
             storeDataMMKV("notifications", [
               {
-                title: notification.request.content.title,
-                body: notification.request.content.body,
+                title: notification.notification.request.content.title,
+                body: notification.notification.request.content.body,
+                link: notification.notification.request.content.data.link,
+                date: new Date(),
               },
             ]);
           }
@@ -190,11 +196,8 @@ export default function App() {
         };
         addNotificationCount();
       });
-
     return () => {
-      Notifications.removeNotificationSubscription(
-        notificationListener.current
-      );
+      Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
 
@@ -244,16 +247,18 @@ const MyApp = () => {
     fonts: configureFonts({ config: fontConfig }),
   };
   return (
-    <FavoriteProvider>
-      <StatusBar
-        style={theme === "light" ? "dark" : "light"}
-        backgroundColor={
-          theme === "light" ? Colors.lightBackground : Colors.darkBackground
-        }
-      />
-      <PaperProvider theme={materialTheme}>
-        <Route />
-      </PaperProvider>
-    </FavoriteProvider>
+    <PasswordProvider>
+      <FavoriteProvider>
+        <StatusBar
+          style={theme === "light" ? "dark" : "light"}
+          backgroundColor={
+            theme === "light" ? Colors.lightBackground : Colors.darkBackground
+          }
+        />
+        <PaperProvider theme={materialTheme}>
+          <Route />
+        </PaperProvider>
+      </FavoriteProvider>
+    </PasswordProvider>
   );
 };

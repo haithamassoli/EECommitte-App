@@ -1,7 +1,8 @@
 const sendNotification = async (
   token: string[],
   title: string,
-  body?: string
+  body?: string,
+  data?: string
 ) => {
   const response = await fetch("https://exp.host/--/api/v2/push/send", {
     method: "POST",
@@ -12,6 +13,7 @@ const sendNotification = async (
       to: token,
       title: title,
       body: body,
+      data: data || {},
     }),
   });
   const { status } = response;

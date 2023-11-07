@@ -5,8 +5,9 @@ import {
   ScrollView,
   ActivityIndicator,
   TouchableOpacity,
+  Linking,
 } from "react-native";
-import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
+import { dateFromNow, getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import {
   horizontalScale,
   moderateScale,
@@ -22,6 +23,8 @@ import Animated, { FadeInUp } from "react-native-reanimated";
 type NotificationType = {
   title: string;
   body: string;
+  link?: string;
+  date: Date;
 };
 
 const NotificationScreen = () => {
@@ -38,7 +41,6 @@ const NotificationScreen = () => {
       const notifications = getDataMMKV("notifications");
       if (notifications) {
         setIsData(notifications);
-        console.log(notifications);
       }
     };
     deleteNotificationsCount();
@@ -73,40 +75,78 @@ const NotificationScreen = () => {
           marginBottom: verticalScale(10),
         }}
       >
-        <Text
-          style={{
-            color: textColor,
-            fontSize: verticalScale(16),
-            fontFamily: "TajawalBold",
-            lineHeight: verticalScale(26),
-            paddingLeft: horizontalScale(10),
-            paddingVertical: verticalScale(6),
-            textAlign: "left",
-          }}
-        >
-          {section.title}
-        </Text>
+        <View>
+          <Text
+            style={{
+              color: textColor,
+              fontSize: verticalScale(16),
+              fontFamily: "TajawalBold",
+              paddingLeft: horizontalScale(10),
+              paddingTop: verticalScale(6),
+              textAlign: "left",
+            }}
+          >
+            {section.title}
+          </Text>
+          <Text
+            style={{
+              color: textColor,
+              fontSize: verticalScale(12),
+              fontFamily: "TajawalMedium",
+              paddingVertical: verticalScale(6),
+              paddingLeft: horizontalScale(10),
+              textAlign: "left",
+            }}
+          >
+            {dateFromNow(section.date)}
+          </Text>
+        </View>
         <Feather
           name="chevron-down"
           size={verticalScale(20)}
           color={textColor}
+          style={{
+            transform: [
+              {
+                rotate: isActive ? "180deg" : "0deg",
+              },
+            ],
+          }}
         />
       </Animated.View>
     );
   };
   const renderContent = (section: NotificationType) => {
     return (
-      <Animated.Text
-        entering={FadeInUp.duration(600)}
-        style={{
-          textAlign: "left",
-          fontFamily: "Dubai",
-          color: textColor,
-          fontSize: moderateScale(16),
-        }}
-      >
-        {section.body}
-      </Animated.Text>
+      <>
+        <Animated.Text
+          entering={FadeInUp.duration(600)}
+          style={{
+            textAlign: "left",
+            fontFamily: "Dubai",
+            color: textColor,
+            fontSize: moderateScale(16),
+          }}
+        >
+          {section.body}
+        </Animated.Text>
+        {section.link && (
+          <TouchableOpacity onPress={() => Linking.openURL(section.link!)}>
+            <Animated.Text
+              entering={FadeInUp.duration(600)}
+              style={{
+                textAlign: "left",
+                fontFamily: "Dubai",
+                color:
+                  theme === "light" ? Colors.primary700 : Colors.primary400,
+                fontSize: moderateScale(16),
+              }}
+            >
+              {section.link}
+            </Animated.Text>
+          </TouchableOpacity>
+        )}
+      </>
     );
   };
 

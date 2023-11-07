@@ -1,6 +1,12 @@
 import NetInfo from "@react-native-community/netinfo";
 import { Dimensions } from "react-native";
 import { MMKV } from "react-native-mmkv";
+import relativeTime from "dayjs/plugin/relativeTime";
+import dayjs from "dayjs";
+import "dayjs/locale/ar";
+
+dayjs.extend(relativeTime);
+dayjs.locale("ar");
 
 export const screenWidth = Dimensions.get("window").width;
 export const screenHeight = Dimensions.get("window").height;
@@ -51,3 +57,7 @@ export const isConnected = async () => {
 };
 
 export const blurhash = "L7Oy^s[V}K=M~B00*|U_L%#W00]Q";
+
+export const dateFromNow = (date: Date) => {
+  return dayjs(date).fromNow();
+};

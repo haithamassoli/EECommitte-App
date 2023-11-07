@@ -163,7 +163,6 @@ export default function App() {
     configurePushNotifications();
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((notification) => {
-        console.log(notification.notification);
         const addNotificationCount = () => {
           const count = getDataMMKV("notificationsCount");
           const notifications: any = getDataMMKV("notifications");

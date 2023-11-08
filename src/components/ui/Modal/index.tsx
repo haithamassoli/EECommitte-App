@@ -1,5 +1,6 @@
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 
@@ -10,7 +11,7 @@ type Props = {
 };
 
 const CustomModal = ({ visible, setVisible, title }: Props) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   return (

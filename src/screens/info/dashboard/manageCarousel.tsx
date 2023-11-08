@@ -8,7 +8,8 @@ import {
   fetchSliderImagesQuery,
 } from "@Src/api/fetchSliderImages";
 import { useImagePicker } from "@Src/hooks/useImagePicker";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import {
   VerificationSliderSchemaType,
   verificationSliderSchema,
@@ -32,7 +33,7 @@ import { Modal, Portal } from "react-native-paper";
 const ManageCarouselScreen = () => {
   const { data, isLoading, refetch } = fetchSliderImagesQuery();
   const [isVisible, setIsVisible] = useState(false);
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const { mutate: addSlider, isLoading: isAdding } = addSliderMutation();
   const { mutate: deleteSlider, isLoading: isDeleting } =
     deleteSliderMutation();

@@ -8,7 +8,8 @@ import {
 import Fuse from "fuse.js";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { useEffect, useRef } from "react";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
@@ -33,7 +34,7 @@ const SearchInput = ({
   setResults,
   placeholder,
 }: SearchInputProps) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<HomeNavigationProp>();
   const searchAnim = useRef(new Animated.Value(0)).current;
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;

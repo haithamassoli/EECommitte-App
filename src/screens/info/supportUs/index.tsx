@@ -1,7 +1,8 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { useLayoutEffect } from "react";
 import { Feather } from "@expo/vector-icons";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import {
   horizontalScale,
   moderateScale,
@@ -17,7 +18,7 @@ import { ColorSchemeButton } from "@Components/ColorSchemeButton";
 type Props = StackScreenProps<InfoStackParamList, "SupportUs">;
 
 const SupportUsScreen = ({ navigation }: Props) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const heartsIcons =
     theme === "light"

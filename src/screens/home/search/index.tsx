@@ -20,7 +20,8 @@ import {
   storeDataMMKV,
 } from "@Utils/Helper";
 import { HomeStackParamList } from "@Types/navigation";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import SearchResults from "@Components/ui/SearchInput/SearchResults";
 import { StackScreenProps } from "@react-navigation/stack";
 import {
@@ -42,7 +43,7 @@ const SearchScreen = ({ navigation, route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [historyResults, setHistoryResults] = useState([] as any[]);
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const iconColor = theme === "light" ? Colors.primary700 : Colors.primary400;
 

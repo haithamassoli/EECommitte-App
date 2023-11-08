@@ -9,7 +9,8 @@ import {
   updateRecordMutation,
 } from "@Src/api/fetchRecords";
 import { useImagePicker } from "@Src/hooks/useImagePicker";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import {
   ValidationAddOurExplanationsSchemaType,
   ValidationOurExplanationsSchemaType,
@@ -31,7 +32,7 @@ const ManageRecordsScreen = () => {
   const { mutate, isLoading: isUpdating } = updateRecordMutation();
   const { mutate: deleteRecord, isLoading: isDeleting } =
     deleteRecordMutation();
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const { control, handleSubmit } =
     useForm<ValidationOurExplanationsSchemaType>();
   const { control: addControl, handleSubmit: addHandleSubmit } =

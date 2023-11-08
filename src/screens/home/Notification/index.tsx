@@ -15,7 +15,8 @@ import {
   vs,
 } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { Feather } from "@expo/vector-icons";
 import Accordion from "react-native-collapsible/Accordion";
 import Animated, { FadeInUp } from "react-native-reanimated";
@@ -31,7 +32,7 @@ const NotificationScreen = () => {
   const [activeSections, setActiveSections] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setIsData] = useState<NotificationType[]>([]);
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
 
   useEffect(() => {

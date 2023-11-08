@@ -1,6 +1,7 @@
 import Dropdown from "@Components/ui/Dropdown";
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { screenWidth } from "@Utils/Helper";
@@ -51,7 +52,7 @@ const SubjectRate = ({
   setSelectedGrade,
   itemNumber,
 }: Props) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
     <View style={styles.container}>

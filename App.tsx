@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import * as Notifications from "expo-notifications";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,7 +14,7 @@ import {
   ScrollView,
 } from "react-native";
 import * as Updates from "expo-updates";
-import { ColorSchemeProvider, useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
@@ -221,18 +221,18 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <ColorSchemeProvider>
+        <ThemeProvider>
           <SafeAreaView onLayout={onLayoutRootView} style={{ flex: 1 }}>
             <MyApp />
           </SafeAreaView>
-        </ColorSchemeProvider>
+        </ThemeProvider>
       </GestureHandlerRootView>
     </QueryClientProvider>
   );
 }
 
 const MyApp = () => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
 
   const materialTheme: any = {
     ...MD3LightTheme,

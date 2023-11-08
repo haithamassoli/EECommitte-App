@@ -7,7 +7,8 @@ import MAPPING from "./Mapping";
 import { useLayoutEffect, useState, useEffect } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { ms, verticalScale } from "@Utils/Platform";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import HeaderRight from "../HeaderRight";
 import { Image, ImageBackground } from "expo-image";
 import {
@@ -25,7 +26,7 @@ type Props = StackScreenProps<SubjectsStackParamList, "Plan">;
 const PlanScreen = ({ navigation }: Props) => {
   const [editMode, setEditMode] = useState(false);
   const [mappingData, setMappingData] = useState<MapperItem[]>([]);
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
 
   const onPressEdit = () => {
     setEditMode((prev) => !prev);

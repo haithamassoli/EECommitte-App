@@ -13,13 +13,13 @@ import Colors from "@GlobalStyle/Colors";
 import { FavoriteContext } from "@Src/store/favoriteContext";
 import { moderateScale, verticalScale } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
 import Animated, { FadeInUp } from "react-native-reanimated";
 
 type Props = StackScreenProps<HomeStackParamList, "Favorite">;
 
 const FavoriteScreen = ({ navigation }: Props) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const { favorite, toggleFavorite } = useContext(FavoriteContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (

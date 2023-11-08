@@ -2,7 +2,8 @@ import { useLayoutEffect, useEffect } from "react";
 import { Text, ScrollView, TouchableOpacity, View } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
 import type { SubjectsStackParamList } from "@Types/navigation";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { WebDisplay } from "@Components/webDisplay";
 import { moderateScale, horizontalScale } from "@Utils/Platform";
@@ -13,7 +14,7 @@ import Animated, { FadeInUp } from "react-native-reanimated";
 type Props = StackScreenProps<SubjectsStackParamList, "SubjectFullPost">;
 
 const SubjectFullPostScreen = ({ navigation, route }: Props) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   useLayoutEffect(() => {
     navigation.setOptions({

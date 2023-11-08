@@ -1,12 +1,12 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
-import { useColorScheme } from "@Src/store/themeContext";
-
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { Feather } from "@expo/vector-icons";
 
 const NoConnection = ({ refetch }: { refetch?: () => void }) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
     <View style={styles.container}>

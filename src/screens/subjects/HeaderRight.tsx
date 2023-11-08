@@ -3,7 +3,8 @@ import { memo } from "react";
 import { horizontalScale, moderateScale } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { ColorSchemeButton } from "@Components/ColorSchemeButton";
 
 type Props = {
@@ -11,7 +12,7 @@ type Props = {
 };
 
 const HeaderRight = ({ onPress }: Props) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
     <View

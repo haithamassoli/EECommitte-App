@@ -1,4 +1,4 @@
-import { useState, useEffect, memo, useRef } from "react";
+import { useState, useEffect, memo, useRef, useContext } from "react";
 import {
   View,
   ScrollView,
@@ -13,8 +13,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./styles";
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
-
+import { ThemeContext } from "@Src/store/themeContext";
 import SearchInput from "@Components/ui/SearchInput";
 import { HomeStackParamList } from "@Types/navigation";
 import SubjectsData from "@Src/data/Subjects";
@@ -54,7 +53,7 @@ const HomeScreen = ({ navigation }: Props) => {
   const [notificationCount, setNotificationCount] = useState(0);
   const [refetchCounter, setRefetchCounter] = useState(0);
   const isFocused = useIsFocused();
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const { data, isLoading, isFetching } = fetchSliderImages(refetchCounter);
   useEffect(() => {

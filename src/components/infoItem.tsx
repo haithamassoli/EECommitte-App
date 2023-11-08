@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
 import {
   horizontalScale,
   isIOS,
   moderateScale,
   verticalScale,
 } from "@Utils/Platform";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 
 interface InfoItemProps {
   icon: keyof typeof Feather.glyphMap;
@@ -17,7 +18,7 @@ interface InfoItemProps {
 }
 
 const InfoItem = ({ icon, title, subTitle, onPress }: InfoItemProps) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   return (
     <TouchableOpacity onPress={onPress} style={styles.outerContainer}>

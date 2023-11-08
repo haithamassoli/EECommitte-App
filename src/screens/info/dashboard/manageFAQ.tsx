@@ -9,7 +9,8 @@ import {
   fetchFAQQuery,
   updateFAQMutation,
 } from "@Src/api/fetchFAQ";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { screenWidth } from "@Utils/Helper";
 import { hs, ms, vs } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
@@ -24,7 +25,7 @@ import { RichEditor } from "react-native-pell-rich-editor";
 
 const ManageFAQScreen = () => {
   const { isConnected } = useNetInfo();
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const richText = useRef<any>();
 
   const { data, isLoading, refetch } = fetchFAQQuery();

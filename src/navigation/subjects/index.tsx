@@ -3,7 +3,8 @@ import SearchScreen from "@Screens/home/search";
 import PlanScreen from "@Screens/subjects/plan";
 import SubjectScreen from "@Screens/subjects/subject";
 import SubjectFullPostScreen from "@Screens/subjects/subjectFullPost";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { SubjectsStackParamList } from "@Types/navigation";
 import { isIOS, moderateScale, vs } from "@Utils/Platform";
 import { Shadow } from "react-native-shadow-2";
@@ -12,7 +13,7 @@ import EditSubjectScreen from "@Screens/subjects/EditSubject";
 const Stack = createStackNavigator<SubjectsStackParamList>();
 
 export default function SubjectsNavigation() {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const shadowColor =
     theme === "light" ? Colors.lightShadow : Colors.darkShadow;
   return (

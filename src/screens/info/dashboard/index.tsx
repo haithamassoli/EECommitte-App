@@ -16,7 +16,7 @@ import { useContext, useEffect, useState } from "react";
 import CustomButton from "@Components/ui/customButton";
 import { StackScreenProps } from "@react-navigation/stack";
 import { InfoStackParamList } from "@Types/navigation";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
 import { PasswordContext } from "@Src/store/passwordContext";
 
 type Props = StackScreenProps<InfoStackParamList, "Dashboard">;
@@ -25,7 +25,7 @@ const DashboardScreen = ({ navigation }: Props) => {
   const { mutate, isLoading } = checkPasswordMutation();
   const [showPassword, setShowPassword] = useState(false);
   const { isTrue, setIsTrue } = useContext(PasswordContext);
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const { control, handleSubmit, reset, setError } =
     useForm<VerificationPasswordSchemaType>({
       resolver: zodResolver(verificationPasswordSchema),

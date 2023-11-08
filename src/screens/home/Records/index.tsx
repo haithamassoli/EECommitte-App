@@ -5,7 +5,8 @@ import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FlashList } from "@shopify/flash-list";
 import { fetchRecords, fetchSearchRecords } from "@Src/api/fetchRecords";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { HomeStackParamList } from "@Types/navigation";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useState, useLayoutEffect } from "react";
@@ -32,7 +33,7 @@ const RecordsScreen = ({ navigation }: Props) => {
   const { data, isLoading, isFetching }: any = fetchRecords(refetchCounter);
   const { data: searchRecord, isLoading: isLoadingSearchRecord }: any =
     fetchSearchRecords();
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const shadowColor =
     theme === "light" ? Colors.lightShadow : Colors.darkShadow;

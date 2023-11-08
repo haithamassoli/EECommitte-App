@@ -1,7 +1,7 @@
 import CustomModal from "@Components/ui/Modal";
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
-
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useState, useRef } from "react";
@@ -19,7 +19,7 @@ import SubjectRate from "./SubjectRate";
 import Animated, { FadeInUp } from "react-native-reanimated";
 
 const CalculatorScreen = () => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const scrollViewRef = useRef();
   const [cumulative, setCumulative] = useState(true);

@@ -1,5 +1,6 @@
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { rtlWebview, screenWidth } from "@Utils/Helper";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { Falsy, RecursiveArray, StyleSheet, View } from "react-native";
@@ -11,7 +12,7 @@ type StylesDictionary = {
   [tag: string]: NonRegisteredStylesProp<any>;
 };
 export const WebDisplay = function WebDisplay({ html }: { html: string }) {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const tagsStyles: StylesDictionary = {
     body: {

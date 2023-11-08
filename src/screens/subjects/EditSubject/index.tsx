@@ -9,7 +9,8 @@ import {
   updateSubjectMutation,
 } from "@Src/api/fetchSubjectById";
 import { useImagePicker } from "@Src/hooks/useImagePicker";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { SubjectsStackParamList } from "@Types/navigation";
 import {
   ValidationSubjectSchemaType,
@@ -56,7 +57,7 @@ type Props = StackScreenProps<SubjectsStackParamList, "EditSubject">;
 
 const EditSubjectScreen = ({ navigation, route }: Props) => {
   const { isConnected } = useNetInfo();
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const richText = useRef<any>();
   const richText2 = useRef<any>();
   const linkModal = useRef<RefLinkModal>();

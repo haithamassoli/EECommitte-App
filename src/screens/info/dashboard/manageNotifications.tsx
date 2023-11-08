@@ -3,7 +3,8 @@ import CustomButton from "@Components/ui/customButton";
 import Loading from "@Components/ui/loading";
 import Colors from "@GlobalStyle/Colors";
 import { fetchNotificationsTokensQuery } from "@Src/api/fetchNotifications";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import {
   ValidationNotificationsSchemaType,
   validationNotificationsSchema,
@@ -20,7 +21,7 @@ const wait = async (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
 const ManageNotificationsScreen = () => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const { data, isLoading } = fetchNotificationsTokensQuery();
   const [isSending, setIsSending] = useState(false);
 

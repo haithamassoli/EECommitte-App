@@ -1,7 +1,8 @@
 import FirstLoading from "@Components/FirstLoading";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { InfoStackParamList } from "@Types/navigation";
 import { isIOS } from "@Utils/Platform";
 import { useLayoutEffect } from "react";
@@ -9,7 +10,7 @@ import { useLayoutEffect } from "react";
 type Props = StackScreenProps<InfoStackParamList, "AboutEECommitte">;
 
 const AboutEECommitteScreen = ({ navigation }: Props) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const tabBarBackground =
     theme === "light" ? Colors.lightBackground : Colors.darkBackground;
   useLayoutEffect(() => {

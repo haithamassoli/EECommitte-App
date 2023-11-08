@@ -7,7 +7,8 @@ import {
 } from "react-native";
 import { useState } from "react";
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 
 import Accordion from "react-native-collapsible/Accordion";
 import {
@@ -26,7 +27,7 @@ type SECTIONSTYPE = { title: string; content: string };
 const systemFonts = [...defaultSystemFonts, "Dubai"];
 
 const FAQScreen = () => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const [activeSections, setActiveSections] = useState([]);
   const [refetchCounter, setRefetchCounter] = useState(0);

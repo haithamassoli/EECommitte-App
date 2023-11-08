@@ -1,14 +1,15 @@
 import { ActivityIndicator } from "react-native";
 import React from "react";
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 
 interface LoadingProps {
   size?: "small" | "large";
 }
 
 const Loading = ({ size }: LoadingProps) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   return (
     <ActivityIndicator
       style={{ flex: 1 }}

@@ -15,7 +15,8 @@ import {
   moderateScale,
   verticalScale,
 } from "@Utils/Platform";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { useLayoutEffect } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { Feather } from "@expo/vector-icons";
@@ -29,7 +30,7 @@ const appUrl = isIOS
   : "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte";
 
 const InfoScreen = ({ navigation }: Props) => {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
 
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   useLayoutEffect(() => {

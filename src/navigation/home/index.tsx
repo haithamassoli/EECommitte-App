@@ -13,7 +13,8 @@ import SubjectNameScreen from "@Screens/home/SubjectName";
 import { Feather } from "@expo/vector-icons";
 import { horizontalScale, isIOS, moderateScale, vs } from "@Utils/Platform";
 import { View, TouchableOpacity } from "react-native";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { BottomTabParamList, HomeStackParamList } from "@Types/navigation";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
@@ -27,7 +28,7 @@ const Stack = createStackNavigator<HomeStackParamList>();
 type Props = BottomTabScreenProps<BottomTabParamList, "HomeNavigation">;
 
 export default function HomeNavigation({ navigation }: Props) {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const iconColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const shadowColor =
     theme === "light" ? Colors.lightShadow : Colors.darkShadow;

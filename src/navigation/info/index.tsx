@@ -4,7 +4,8 @@ import SearchScreen from "@Screens/home/search";
 import InfoScreen from "@Screens/info";
 import AboutEECommitteScreen from "@Screens/info/aboutEECommitte";
 import SupportUsScreen from "@Screens/info/supportUs";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import { InfoStackParamList } from "@Types/navigation";
 import { isIOS, moderateScale, vs } from "@Utils/Platform";
 import { Shadow } from "react-native-shadow-2";
@@ -19,7 +20,7 @@ import ManageRecordsScreen from "@Screens/info/dashboard/manageRecords";
 const Stack = createStackNavigator<InfoStackParamList>();
 
 export default function InfoNavigation() {
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const shadowColor =
     theme === "light" ? Colors.lightShadow : Colors.darkShadow;
   return (

@@ -9,7 +9,8 @@ import {
   updateDoctorMutation,
 } from "@Src/api/fetchDoctors";
 import { useImagePicker } from "@Src/hooks/useImagePicker";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import {
   ValidationAddOurExplanationsSchemaType,
   ValidationOurExplanationsSchemaType,
@@ -32,7 +33,7 @@ const ManageDoctorsScreen = () => {
   const { mutate, isLoading: isUpdating } = updateDoctorMutation();
   const { mutate: deleteDoctor, isLoading: isDeleting } =
     deleteDoctorMutation();
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
 
   const { control, handleSubmit } =
     useForm<ValidationOurExplanationsSchemaType>();

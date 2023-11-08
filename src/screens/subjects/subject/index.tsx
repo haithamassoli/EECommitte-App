@@ -15,8 +15,7 @@ import type {
 } from "@react-navigation/stack";
 import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
-import { useColorScheme } from "@Src/store/themeContext";
-
+import { ThemeContext } from "@Src/store/themeContext";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import {
   horizontalScale,
@@ -70,7 +69,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isPasswordTrue, setIsPasswordTrue] = useState(false);
   const [refetchCounter, setRefetchCounter] = useState(0);
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const { mutate, isLoading: isChecking } = checkPasswordMutation();
   const [showPassword, setShowPassword] = useState(false);
   const { control, handleSubmit, reset, setError } =
@@ -189,7 +188,6 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     mutate(FormData.password, {
       onSuccess: (data) => {
         if (FormData.password === data?.password) {
-          setIsTrue(true);
           reset();
           setIsVisible(false);
           setIsPasswordTrue(true);
@@ -209,13 +207,11 @@ const SubjectScreen = ({ navigation, route }: Props) => {
 
   useEffect(() => {
     if (isPasswordTrue) {
+      setIsTrue(true);
       navigation.push("EditSubject", {
         subjectId: data?.uid,
       });
     }
-    return () => {
-      setIsPasswordTrue(false);
-    };
   }, [isPasswordTrue]);
 
   if (isLoading) {

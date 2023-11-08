@@ -1,7 +1,8 @@
 import { Text, View, ActivityIndicator, RefreshControl } from "react-native";
 import SearchInput from "@Components/ui/SearchInput";
 import { useLayoutEffect, useState } from "react";
-import { useColorScheme } from "@Src/store/themeContext";
+import { ThemeContext } from "@Src/store/themeContext";
+import { useContext } from "react";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
@@ -23,7 +24,7 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [refetchCounter, setRefetchCounter] = useState(0);
-  const { theme } = useColorScheme();
+  const { theme } = useContext(ThemeContext);
   const textColor = theme === "light" ? Colors.lightText : Colors.darkText;
   const shadowColor =
     theme === "light" ? Colors.lightShadow : Colors.darkShadow;

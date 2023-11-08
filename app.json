@@ -2,15 +2,15 @@
   "expo": {
     "name": "لجنة الهندسة الكهربائية",
     "slug": "EECommitte",
-    "version": "3.1.0",
+    "version": "3.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "backgroundColor": "#121212",
+    "backgroundColor": "#fff",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#fff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
@@ -18,15 +18,15 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "3.1.0",
+      "buildNumber": "3.2.0",
       "supportsTablet": true,
       "bundleIdentifier": "com.haithamassoli.EECommittee"
     },
     "android": {
-      "versionCode": 58,
+      "versionCode": 59,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#fff"
       },
       "package": "com.haithamassoli.EECommitte",
       "googleServicesFile": "./google-services.json"
@@ -36,7 +36,7 @@
         "expo-notifications",
         {
           "icon": "./assets/icon.png",
-          "color": "#ffffff"
+          "color": "#fff"
         }
       ]
     ],

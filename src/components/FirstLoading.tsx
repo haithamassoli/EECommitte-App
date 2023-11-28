@@ -49,14 +49,6 @@ const data = [
   },
   {
     textAr1:
-      "أما فيما يخص إرشاد الطلبة فإن اللجنة ترافق كل دفعة منذ دخولها الجامعة وحتى تخرجها بفريق طلابي من أبناء الدفعة نفسها!",
-    textEn1:
-      "AS FOR THE GUIDANCE OF STUDENTS, THE COMMITTEE ACCOMPANIES EVERY BATCH SINCE ENTERING THE UNIVERSITY UNTIL GRADUATION WITH A TEAM FROM THE SAME BATCH!",
-    image: require("@Assets/images/3rdSlide.webp"),
-    arrPos: "left",
-  },
-  {
-    textAr1:
       "وفرت لجنتكم منذ نشأتها محتوى أكاديمي متميز ساهم في تسهيل العملية التعليمية!",
     textAr2: "وما تزال مكتبة اللجنة اليوم شاهدة على ذلك",
     textEn1:
@@ -64,19 +56,6 @@ const data = [
     textEn2: "TODAY, THE COMMITTEE'S LIBRARY STILL BEARS WITNESS TO THAT",
     image: require("@Assets/images/4thSlide.webp"),
     arrPos: "right",
-  },
-  {
-    textAr2: `قامت اللجنة بتمثيل قسم الهندسة
-الكهربائية في معظم السنوات
-وقد سهلت عملية التسجيل على الطلبة
-من خلال فريق التسجيل الذي كان دائما
-متواجد في الجامعة لمساعدة الطلبة وحل
-مشاكلهم!`,
-    textEn2: `THE COMMITTEE HAS REPRESENTED THE DEPARTMENT OF ELECTRICAL ENGINEERING IN MOST YEARS.
-
-THE REGISTRATION PROCESS WAS MADE EASIER FOR STUDENTS THROUGH THE REGISTRATION TEAM, WHICH WAS ALWAYS PRESENT IN THE UNIVERSITY TO HELP STUDENTS AND SOLVE THEIR PROBLEMS!`,
-    image: require("@Assets/images/5thSlide.webp"),
-    arrPos: "left",
   },
   {
     textAr1:
@@ -382,22 +361,18 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
                 <View style={styles.contentContainer}>
                   <Animated.View entering={FadeInUp.duration(600)}>
                     <TouchableOpacity
-                      style={[
-                        styles.button,
-                        {
-                          left:
-                            data[3].arrPos === "right"
-                              ? horizontalScale(40)
-                              : screenWidth - horizontalScale(100),
-                        },
-                      ]}
-                      onPress={onNext}
+                      style={styles.palyButton}
+                      onPress={onFinished}
                     >
-                      <Feather
-                        name="arrow-left"
-                        size={moderateScale(32)}
-                        color="#fff"
-                      />
+                      <Text
+                        style={{
+                          color: Colors.darkText,
+                          fontSize: moderateScale(16),
+                          fontFamily: "Bukra",
+                        }}
+                      >
+                        بدء الاستخدام
+                      </Text>
                     </TouchableOpacity>
                   </Animated.View>
 
@@ -447,175 +422,6 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
                       style={styles.title2En}
                     >
                       {data[3].textEn2}
-                    </Animated.Text>
-                  )}
-                </View>
-              </ImageBackground>
-            </View>
-          )}
-        </View>
-        <View style={styles.container}>
-          {((selectedIndex === 4 && isIOS) ||
-            (selectedIndex === data.length - 5 && !isIOS)) && (
-            <View style={styles.container}>
-              <ImageBackground
-                source={data[4].image}
-                contentFit="cover"
-                style={styles.image}
-              >
-                <View style={styles.contentContainer}>
-                  <Animated.View
-                    entering={FadeInUp.duration(600)}
-                    style={{
-                      zIndex: 100,
-                    }}
-                  >
-                    <TouchableOpacity
-                      style={[
-                        styles.buttonSlide5,
-                        {
-                          left:
-                            data[4].arrPos === "right"
-                              ? horizontalScale(40)
-                              : screenWidth - horizontalScale(100),
-                        },
-                      ]}
-                      onPress={onNext}
-                    >
-                      <Feather
-                        name="arrow-left"
-                        size={moderateScale(32)}
-                        color="#fff"
-                      />
-                    </TouchableOpacity>
-                  </Animated.View>
-
-                  {data[4].textAr1 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(200)}
-                      style={styles.title1}
-                    >
-                      {data[4].textAr1}
-                    </Animated.Text>
-                  )}
-                  {data[4].textAr2 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(400)}
-                      style={styles.slide5}
-                    >
-                      {data[4].textAr2}
-                    </Animated.Text>
-                  )}
-                  {data[4].textEn1 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(600)}
-                      style={styles.title1En}
-                    >
-                      {data[4].textEn1}
-                    </Animated.Text>
-                  )}
-                  {data[4].textEn2 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(800)}
-                      style={styles.slideEn5}
-                    >
-                      {data[4].textEn2}
-                    </Animated.Text>
-                  )}
-                </View>
-              </ImageBackground>
-            </View>
-          )}
-        </View>
-        <View style={styles.container}>
-          {((selectedIndex === 5 && isIOS) ||
-            (selectedIndex === data.length - 6 && !isIOS)) && (
-            <View style={styles.container}>
-              <ImageBackground
-                source={data[5].image}
-                contentFit="cover"
-                style={styles.image}
-              >
-                <View style={styles.contentContainer}>
-                  <Animated.View entering={FadeInUp.duration(600)}>
-                    <TouchableOpacity
-                      style={styles.palyButton}
-                      onPress={onFinished}
-                    >
-                      <Text
-                        style={{
-                          color: Colors.darkText,
-                          fontSize: moderateScale(16),
-                          fontFamily: "Bukra",
-                        }}
-                      >
-                        بدء الاستخدام
-                      </Text>
-                    </TouchableOpacity>
-                  </Animated.View>
-
-                  {data[5].textAr1 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(200)}
-                      style={styles.title1}
-                    >
-                      {data[5].textAr1}
-                    </Animated.Text>
-                  )}
-                  {data[5].textAr2 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(400)}
-                      style={styles.title2}
-                    >
-                      {data[5].textAr2}
-                    </Animated.Text>
-                  )}
-                  {data[5].textEn1 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(600)}
-                      style={styles.title1En}
-                    >
-                      {data[5].textEn1}
-                    </Animated.Text>
-                  )}
-                  {data[5].textEn2 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(800)}
-                      style={styles.title2En}
-                    >
-                      {data[5].textEn2}
                     </Animated.Text>
                   )}
                 </View>

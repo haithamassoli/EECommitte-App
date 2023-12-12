@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": ">= 5.6.0"
+    "version": ">= 5.9.1"
   },
   "build": {
     "development-simulator": {
@@ -32,6 +32,12 @@
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId": "ehabamawi98@outlook.com",
+        "ascAppId": "6443760623",
+        "appleTeamId": "D4FF3393XV"
+      }
+    }
   }
 }

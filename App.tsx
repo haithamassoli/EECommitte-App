@@ -72,21 +72,31 @@ const queryClient = new QueryClient({
     },
   },
 });
-
+// @ts-ignore
 TextInput.defaultProps = TextInput.defaultProps || {};
+// @ts-ignore
 TextInput.defaultProps.allowFontScaling = false;
 
+// @ts-ignore
 Text.defaultProps = Text.defaultProps || {};
+// @ts-ignore
 Text.defaultProps.allowFontScaling = false;
 
+// @ts-ignore
 ScrollView.defaultProps = ScrollView.defaultProps || {};
+// @ts-ignore
 ScrollView.defaultProps.showsVerticalScrollIndicator = false;
+// @ts-ignore
 ScrollView.defaultProps.showsHorizontalScrollIndicator = false;
 
 FlashList.defaultProps = FlashList.defaultProps || {};
+// @ts-ignore
 FlashList.defaultProps.showsVerticalScrollIndicator = false;
+// @ts-ignore
 FlashList.defaultProps.showsHorizontalScrollIndicator = false;
+// @ts-ignore
 Text.defaultProps = Text.defaultProps || {};
+// @ts-ignore
 Text.defaultProps.allowFontScaling = false;
 
 export default function App() {
@@ -161,6 +171,7 @@ export default function App() {
       }
     };
     configurePushNotifications();
+    // @ts-ignore
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((notification) => {
         const addNotificationCount = () => {
@@ -196,6 +207,7 @@ export default function App() {
         addNotificationCount();
       });
     return () => {
+      // @ts-ignore
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);

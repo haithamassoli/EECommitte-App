@@ -62,13 +62,13 @@
   },
   "overrides": {
     "react-refresh": "~0.14.0",
-    "metro": "0.76.7",
-    "metro-resolver": "0.76.7"
+    "metro": "0.76.8",
+    "metro-resolver": "0.76.8"
   },
   "resolutions": {
     "react-refresh": "~0.14.0",
-    "metro": "0.76.7",
-    "metro-resolver": "0.76.7"
+    "metro": "0.76.8",
+    "metro-resolver": "0.76.8"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -1,24 +1,17 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  StyleSheet,
-} from "react-native";
-import { useRef, useState, memo } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useRef, memo } from "react";
 import {
   horizontalScale,
-  isIOS,
   moderateScale,
   ms,
   verticalScale,
 } from "@Utils/Platform";
 import Colors from "@GlobalStyle/Colors";
 import { StatusBar } from "expo-status-bar";
-import { screenWidth } from "@Utils/Helper";
+import { screenHeight, screenWidth } from "@Utils/Helper";
 import { Feather } from "@expo/vector-icons";
 import { ImageBackground } from "expo-image";
-import Animated, { FadeInUp } from "react-native-reanimated";
+import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
 
 type Props = {
   onFinished: () => void;
@@ -72,364 +65,104 @@ const data = [
 ];
 
 const FirstLoading = ({ onFinished, onLayout }: Props) => {
-  const [selectedIndex, setSelectedIndex] = useState(
-    isIOS ? 0 : data.length - 1
-  );
-  const scrollRef = useRef<ScrollView>(null);
-  const onNext = () => {
-    setSelectedIndex((prev) => {
-      scrollRef.current?.scrollTo({
-        animated: true,
-        x: screenWidth * (isIOS ? prev + 1 : prev - 1),
-        y: 0,
-      });
-      return isIOS ? prev + 1 : prev - 1;
-    });
-  };
-
-  const setImageIndex = (event: any) => {
-    const { contentOffset } = event.nativeEvent;
-    const index = Math.round(contentOffset.x / screenWidth);
-    setSelectedIndex(index);
-  };
+  const ref = useRef<ICarouselInstance>(null);
+  const onNext = () => ref.current?.next();
   return (
     <View onLayout={onLayout} style={{ flex: 1 }}>
       <StatusBar hidden />
-      <ScrollView
-        ref={scrollRef}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        onMomentumScrollEnd={setImageIndex}
-        pagingEnabled
-        style={{ backgroundColor: Colors.lightBackgroundSec }}
-      >
-        <View style={styles.container}>
-          <ImageBackground
-            source={data[0].image}
-            contentFit="cover"
-            style={styles.image}
-          >
-            <View style={styles.contentContainer}>
-              <Animated.View entering={FadeInUp.duration(600)}>
-                <TouchableOpacity
-                  style={[
-                    styles.buttonSlide1,
-                    {
-                      left:
-                        data[0].arrPos === "right"
-                          ? horizontalScale(40)
-                          : screenWidth - horizontalScale(100),
-                    },
-                  ]}
-                  onPress={onNext}
-                >
-                  <Feather
-                    name="arrow-left"
-                    size={moderateScale(32)}
-                    color="#fff"
-                  />
-                </TouchableOpacity>
-              </Animated.View>
-
-              {data[0].textAr1 && (
-                <Animated.Text
-                  entering={FadeInUp.withInitialValues({
-                    transform: [{ translateY: 420 }],
-                  })
-                    .duration(600)
-                    .delay(200)}
-                  style={styles.slide1}
-                >
-                  {data[0].textAr1}
-                </Animated.Text>
-              )}
-              {data[0].textAr2 && (
-                <Animated.Text
-                  entering={FadeInUp.withInitialValues({
-                    transform: [{ translateY: 420 }],
-                  })
-                    .duration(600)
-                    .delay(400)}
-                  style={styles.slide2}
-                >
-                  {data[0].textAr2}
-                </Animated.Text>
-              )}
-              {data[0].textEn1 && (
-                <Animated.Text
-                  entering={FadeInUp.withInitialValues({
-                    transform: [{ translateY: 420 }],
-                  })
-                    .duration(600)
-                    .delay(600)}
-                  style={styles.slide1En}
-                >
-                  {data[0].textEn1}
-                </Animated.Text>
-              )}
-              {data[0].textEn2 && (
-                <Animated.Text
-                  entering={FadeInUp.withInitialValues({
-                    transform: [{ translateY: 420 }],
-                  })
-                    .duration(600)
-                    .delay(800)}
-                  style={styles.slide2En}
-                >
-                  {data[0].textEn2}
-                </Animated.Text>
-              )}
-            </View>
-          </ImageBackground>
-        </View>
-        <View style={styles.container}>
-          {((selectedIndex === 1 && isIOS) ||
-            (selectedIndex === data.length - 2 && !isIOS)) && (
-            <View style={styles.container}>
-              <ImageBackground
-                source={data[1].image}
-                contentFit="cover"
-                style={styles.image}
-              >
-                <View style={styles.contentContainer}>
-                  <Animated.View entering={FadeInUp.duration(600)}>
-                    <TouchableOpacity
-                      style={[
-                        styles.button,
-                        {
-                          left:
-                            data[1].arrPos === "right"
-                              ? horizontalScale(40)
-                              : screenWidth - horizontalScale(100),
-                        },
-                      ]}
-                      onPress={onNext}
+      <Carousel
+        ref={ref}
+        loop={false}
+        enabled={false}
+        width={screenWidth}
+        height={screenHeight}
+        data={data}
+        scrollAnimationDuration={1000}
+        style={styles.carousel}
+        renderItem={({ item, index }) => (
+          <View key={index} style={styles.container}>
+            <ImageBackground source={item.image} style={styles.image}>
+              <View style={styles.contentContainer}>
+                {index != data.length - 1 ? (
+                  <TouchableOpacity
+                    style={[
+                      index === 0
+                        ? styles.buttonSlide1
+                        : index === 4
+                        ? styles.buttonSlide5
+                        : styles.button,
+                      {
+                        left:
+                          item.arrPos === "right"
+                            ? horizontalScale(40)
+                            : screenWidth - 100,
+                      },
+                    ]}
+                    onPress={onNext}
+                  >
+                    <Feather
+                      name="arrow-left"
+                      size={moderateScale(32)}
+                      color="#fff"
+                    />
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity
+                    style={styles.palyButton}
+                    onPress={onFinished}
+                  >
+                    <Text
+                      style={{
+                        color: Colors.darkText,
+                        fontSize: moderateScale(16),
+                        fontFamily: "Bukra",
+                      }}
                     >
-                      <Feather
-                        name="arrow-left"
-                        size={moderateScale(32)}
-                        color="#fff"
-                      />
-                    </TouchableOpacity>
-                  </Animated.View>
-                  {data[1].textAr1 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(200)}
-                      style={styles.title1}
-                    >
-                      {data[1].textAr1}
-                    </Animated.Text>
-                  )}
-                  {data[1].textAr2 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(400)}
-                      style={styles.title2}
-                    >
-                      {data[1].textAr2}
-                    </Animated.Text>
-                  )}
-                  {data[1].textEn1 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(600)}
-                      style={styles.title1En}
-                    >
-                      {data[1].textEn1}
-                    </Animated.Text>
-                  )}
-                  {data[1].textEn2 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(800)}
-                      style={styles.title2En}
-                    >
-                      {data[1].textEn2}
-                    </Animated.Text>
-                  )}
-                </View>
-              </ImageBackground>
-            </View>
-          )}
-        </View>
-        <View style={styles.container}>
-          {((selectedIndex === 2 && isIOS) ||
-            (selectedIndex === data.length - 3 && !isIOS)) && (
-            <View style={styles.container}>
-              <ImageBackground
-                source={data[2].image}
-                contentFit="cover"
-                style={styles.image}
-              >
-                <View style={styles.contentContainer}>
-                  <Animated.View entering={FadeInUp.duration(600)}>
-                    <TouchableOpacity
-                      style={[
-                        styles.button,
-                        {
-                          left:
-                            data[2].arrPos === "right"
-                              ? horizontalScale(40)
-                              : screenWidth - horizontalScale(100),
-                        },
-                      ]}
-                      onPress={onNext}
-                    >
-                      <Feather
-                        name="arrow-left"
-                        size={moderateScale(32)}
-                        color="#fff"
-                      />
-                    </TouchableOpacity>
-                  </Animated.View>
-
-                  {data[2].textAr1 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(200)}
-                      style={styles.title1}
-                    >
-                      {data[2].textAr1}
-                    </Animated.Text>
-                  )}
-                  {data[2].textAr2 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(400)}
-                      style={styles.title2}
-                    >
-                      {data[2].textAr2}
-                    </Animated.Text>
-                  )}
-                  {data[2].textEn1 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(600)}
-                      style={styles.title1En}
-                    >
-                      {data[2].textEn1}
-                    </Animated.Text>
-                  )}
-                  {data[2].textEn2 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(800)}
-                      style={styles.title2En}
-                    >
-                      {data[2].textEn2}
-                    </Animated.Text>
-                  )}
-                </View>
-              </ImageBackground>
-            </View>
-          )}
-        </View>
-        <View style={styles.container}>
-          {((selectedIndex === 3 && isIOS) ||
-            (selectedIndex === data.length - 4 && !isIOS)) && (
-            <View style={styles.container}>
-              <ImageBackground
-                source={data[3].image}
-                contentFit="cover"
-                style={styles.image}
-              >
-                <View style={styles.contentContainer}>
-                  <Animated.View entering={FadeInUp.duration(600)}>
-                    <TouchableOpacity
-                      style={styles.palyButton}
-                      onPress={onFinished}
-                    >
-                      <Text
-                        style={{
-                          color: Colors.darkText,
-                          fontSize: moderateScale(16),
-                          fontFamily: "Bukra",
-                        }}
-                      >
-                        بدء الاستخدام
-                      </Text>
-                    </TouchableOpacity>
-                  </Animated.View>
-
-                  {data[3].textAr1 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(200)}
-                      style={styles.title1}
-                    >
-                      {data[3].textAr1}
-                    </Animated.Text>
-                  )}
-                  {data[3].textAr2 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(400)}
-                      style={styles.title2}
-                    >
-                      {data[3].textAr2}
-                    </Animated.Text>
-                  )}
-                  {data[3].textEn1 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(600)}
-                      style={styles.title1En}
-                    >
-                      {data[3].textEn1}
-                    </Animated.Text>
-                  )}
-                  {data[3].textEn2 && (
-                    <Animated.Text
-                      entering={FadeInUp.withInitialValues({
-                        transform: [{ translateY: 420 }],
-                      })
-                        .duration(600)
-                        .delay(800)}
-                      style={styles.title2En}
-                    >
-                      {data[3].textEn2}
-                    </Animated.Text>
-                  )}
-                </View>
-              </ImageBackground>
-            </View>
-          )}
-        </View>
-      </ScrollView>
+                      بدء الاستخدام
+                    </Text>
+                  </TouchableOpacity>
+                )}
+                {item.textAr1 && (
+                  <Text style={index === 0 ? styles.slide1 : styles.title1}>
+                    {item.textAr1}
+                  </Text>
+                )}
+                {item.textAr2 && (
+                  <Text
+                    style={
+                      index === 0
+                        ? styles.slide2
+                        : index === 4
+                        ? styles.slide5
+                        : styles.title2
+                    }
+                  >
+                    {item.textAr2}
+                  </Text>
+                )}
+                {item.textEn1 && (
+                  <Text style={index === 0 ? styles.slide1En : styles.title1En}>
+                    {item.textEn1}
+                  </Text>
+                )}
+                {item.textEn2 && (
+                  <Text
+                    style={
+                      index === 0
+                        ? styles.slide2En
+                        : index === 4
+                        ? styles.slideEn5
+                        : styles.title2En
+                    }
+                  >
+                    {item.textEn2}
+                  </Text>
+                )}
+              </View>
+            </ImageBackground>
+          </View>
+        )}
+      />
     </View>
   );
 };
@@ -437,6 +170,9 @@ const FirstLoading = ({ onFinished, onLayout }: Props) => {
 export default memo(FirstLoading);
 
 const styles = StyleSheet.create({
+  carousel: {
+    transform: [{ rotate: "180deg" }],
+  },
   container: {
     flex: 1,
     width: screenWidth,
@@ -446,6 +182,7 @@ const styles = StyleSheet.create({
     width: screenWidth,
     height: "100%",
     alignSelf: "center",
+    transform: [{ rotate: "180deg" }],
   },
   contentContainer: {
     flex: 1,

@@ -20,7 +20,8 @@
     "ios": {
       "buildNumber": "3.4.0",
       "supportsTablet": true,
-      "bundleIdentifier": "com.haithamassoli.EECommitte"
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.haithamassoli.EECommittee"
     },
     "android": {
       "versionCode": 62,

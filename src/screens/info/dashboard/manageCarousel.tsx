@@ -78,10 +78,7 @@ const ManageCarouselScreen = () => {
   if (isLoading || isAdding || isDeleting) return <Loading />;
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      keyboardShouldPersistTaps="handled"
-    >
+    <ScrollView contentContainerStyle={styles.container}>
       <Portal>
         <Modal
           visible={isVisible}

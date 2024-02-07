@@ -372,7 +372,6 @@ const ManageRecordsScreen = () => {
         <FlashList
           data={data}
           contentContainerStyle={{ paddingBottom: vs(12) }}
-          keyboardShouldPersistTaps="handled"
           keyExtractor={(item) => item.id}
           estimatedItemSize={100}
           renderItem={renderItem}

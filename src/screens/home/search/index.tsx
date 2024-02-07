@@ -182,7 +182,6 @@ const SearchScreen = ({ navigation, route }: Props) => {
   return (
     <ScrollView
       contentContainerStyle={{ paddingBottom: verticalScale(12) }}
-      keyboardShouldPersistTaps="handled"
       overScrollMode="never"
       showsVerticalScrollIndicator={false}
       style={styles.container}

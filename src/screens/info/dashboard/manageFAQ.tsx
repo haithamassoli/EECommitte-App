@@ -261,7 +261,6 @@ const ManageFAQScreen = () => {
       <FlashList
         data={data}
         contentContainerStyle={{ paddingVertical: vs(12) }}
-        keyboardShouldPersistTaps="handled"
         keyExtractor={(item) => item.id}
         estimatedItemSize={100}
         renderItem={renderItem}

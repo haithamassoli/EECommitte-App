@@ -85,6 +85,8 @@ Text.defaultProps.allowFontScaling = false;
 // @ts-ignore
 ScrollView.defaultProps = ScrollView.defaultProps || {};
 // @ts-ignore
+ScrollView.defaultProps.keyboardShouldPersistTaps = "handled";
+// @ts-ignore
 ScrollView.defaultProps.showsVerticalScrollIndicator = false;
 // @ts-ignore
 ScrollView.defaultProps.showsHorizontalScrollIndicator = false;
@@ -94,6 +96,8 @@ FlashList.defaultProps = FlashList.defaultProps || {};
 FlashList.defaultProps.showsVerticalScrollIndicator = false;
 // @ts-ignore
 FlashList.defaultProps.showsHorizontalScrollIndicator = false;
+// @ts-ignore
+FlashList.defaultProps.keyboardShouldPersistTaps = "handled";
 // @ts-ignore
 Text.defaultProps = Text.defaultProps || {};
 // @ts-ignore

@@ -1,10 +1,9 @@
 {
   "cli": {
-    "version": ">= 5.9.1"
+    "version": ">= 7.1.2"
   },
   "build": {
     "development-simulator": {
-      "node": "18.18.2",
       "developmentClient": true,
       "distribution": "internal",
       "ios": {
@@ -13,13 +12,11 @@
       "channel": "development-simulator"
     },
     "development": {
-      "node": "18.18.2",
       "developmentClient": true,
       "distribution": "internal",
       "channel": "development"
     },
     "preview": {
-      "node": "18.18.2",
       "android": {
         "buildType": "apk"
       },
@@ -27,17 +24,10 @@
       "channel": "preview"
     },
     "production": {
-      "node": "18.18.2",
       "channel": "production"
     }
   },
   "submit": {
-    "production": {
-      "ios": {
-        "appleId": "ehabamawi98@outlook.com",
-        "ascAppId": "6443760623",
-        "appleTeamId": "D4FF3393XV"
-      }
-    }
+    "production": {}
   }
 }

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useLayoutEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -17,14 +17,7 @@ import type { SubjectsStackParamList } from "@Types/navigation";
 import Colors from "@GlobalStyle/Colors";
 import { ThemeContext } from "@Src/store/themeContext";
 import { Feather, AntDesign } from "@expo/vector-icons";
-import {
-  horizontalScale,
-  hs,
-  moderateScale,
-  ms,
-  verticalScale,
-  vs,
-} from "@Utils/Platform";
+import { hs, ms, vs } from "@Utils/Platform";
 import { blurhash, screenHeight, screenWidth } from "@Utils/Helper";
 import { FavoriteContext } from "@Src/store/favoriteContext";
 import HeaderRight from "../HeaderRight";
@@ -67,12 +60,11 @@ const powerDarkFrame = require("@Assets/images/subjectColors/powerDark.png");
 const SubjectScreen = ({ navigation, route }: Props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isPasswordTrue, setIsPasswordTrue] = useState(false);
   const [refetchCounter, setRefetchCounter] = useState(0);
   const { theme } = useContext(ThemeContext);
   const { mutate, isLoading: isChecking } = checkPasswordMutation();
   const [showPassword, setShowPassword] = useState(false);
-  const { control, handleSubmit, reset, setError } =
+  const { control, handleSubmit, setError } =
     useForm<VerificationPasswordSchemaType>({
       resolver: zodResolver(verificationPasswordSchema),
     });
@@ -113,7 +105,39 @@ const SubjectScreen = ({ navigation, route }: Props) => {
 
   const backgroundSubjectColor = data?.color;
 
-  useLayoutEffect(() => {
+  const handleRefetch = () => {
+    setRefetchCounter(0);
+    setRefetchCounter((prev) => prev + 1);
+  };
+
+  const onEyePress = () => {
+    setShowPassword((e) => !e);
+  };
+
+  const onSubmit = (FormData: VerificationPasswordSchemaType) => {
+    mutate(FormData.password, {
+      onSuccess: (data) => {
+        if (FormData.password === data?.password) {
+          setIsVisible(false);
+          setIsTrue(true);
+          navigation.push("EditSubject", {
+            subjectId: data?.uid,
+          });
+        } else {
+          setError("password", {
+            message: "كلمة المرور غير صحيحة",
+          });
+        }
+      },
+      onError: () => {
+        setError("password", {
+          message: "كلمة المرور غير صحيحة",
+        });
+      },
+    });
+  };
+
+  useEffect(() => {
     navigation.setOptions({
       headerTitle: data?.name2 || "المادة",
       headerTitleAlign: "center",
@@ -130,15 +154,11 @@ const SubjectScreen = ({ navigation, route }: Props) => {
             style={{
               flexDirection: "row",
               alignItems: "center",
-              paddingStart: horizontalScale(12),
+              paddingStart: hs(12),
             }}
           >
-            <Feather
-              name="arrow-right"
-              size={moderateScale(24)}
-              color={textColor}
-            />
-            <Feather name="book" size={moderateScale(24)} color={textColor} />
+            <Feather name="arrow-right" size={ms(24)} color={textColor} />
+            <Feather name="book" size={ms(24)} color={textColor} />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
@@ -151,10 +171,10 @@ const SubjectScreen = ({ navigation, route }: Props) => {
               }
             }}
             style={{
-              paddingStart: horizontalScale(8),
+              paddingStart: hs(8),
             }}
           >
-            <Feather name="edit" size={moderateScale(24)} color={textColor} />
+            <Feather name="edit" size={ms(24)} color={textColor} />
           </TouchableOpacity>
         </View>
       ),
@@ -174,45 +194,6 @@ const SubjectScreen = ({ navigation, route }: Props) => {
     const isFavorite = favorite.some((item) => item.id === data?.id);
     setIsFavorite(isFavorite);
   }, [favorite]);
-
-  const handleRefetch = () => {
-    setRefetchCounter(0);
-    setRefetchCounter((prev) => prev + 1);
-  };
-
-  const onEyePress = () => {
-    setShowPassword((e) => !e);
-  };
-
-  const onSubmit = (FormData: VerificationPasswordSchemaType) => {
-    mutate(FormData.password, {
-      onSuccess: (data) => {
-        if (FormData.password === data?.password) {
-          reset();
-          setIsVisible(false);
-          setIsPasswordTrue(true);
-        } else {
-          setError("password", {
-            message: "كلمة المرور غير صحيحة",
-          });
-        }
-      },
-      onError: (error) => {
-        setError("password", {
-          message: "كلمة المرور غير صحيحة",
-        });
-      },
-    });
-  };
-
-  useEffect(() => {
-    if (isPasswordTrue) {
-      setIsTrue(true);
-      navigation.push("EditSubject", {
-        subjectId: data?.uid,
-      });
-    }
-  }, [isPasswordTrue]);
 
   if (isLoading) {
     return (
@@ -338,8 +319,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           placeholderContentFit="cover"
           transition={400}
           style={{
-            height:
-              screenHeight < 650 ? verticalScale(268) : verticalScale(200),
+            height: screenHeight < 650 ? vs(268) : vs(200),
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
@@ -348,7 +328,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           <Text
             style={{
               textAlign: "center",
-              fontSize: moderateScale(24),
+              fontSize: ms(24),
               color: Colors.darkText,
               fontFamily: "Bukra",
             }}
@@ -360,7 +340,7 @@ const SubjectScreen = ({ navigation, route }: Props) => {
       <View
         style={{
           flex: 1,
-          padding: moderateScale(10),
+          padding: ms(10),
           flexWrap: "wrap",
           flexDirection: "row",
           justifyContent: "space-between",
@@ -504,10 +484,10 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           style={[
             style.button,
             {
-              width: screenWidth - horizontalScale(32),
+              width: screenWidth - hs(32),
               backgroundColor,
               alignSelf: "center",
-              marginVertical: verticalScale(10),
+              marginVertical: vs(10),
             },
           ]}
         >
@@ -516,9 +496,9 @@ const SubjectScreen = ({ navigation, route }: Props) => {
           </Text>
           <AntDesign
             name={isFavorite ? "heart" : "hearto"}
-            size={moderateScale(24)}
+            size={ms(24)}
             color={textColor}
-            style={{ marginHorizontal: horizontalScale(10) }}
+            style={{ marginHorizontal: hs(10) }}
           />
         </TouchableOpacity>
       </Animated.View>
@@ -534,15 +514,15 @@ const style = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: Colors.gray,
-    borderRadius: moderateScale(10),
+    borderRadius: ms(10),
     paddingHorizontal: hs(10),
     paddingVertical: vs(10),
-    marginHorizontal: horizontalScale(10),
-    marginVertical: verticalScale(10),
-    width: screenWidth / 2 - horizontalScale(32),
+    marginHorizontal: hs(10),
+    marginVertical: vs(10),
+    width: screenWidth / 2 - hs(32),
   },
   buttonText: {
-    fontSize: moderateScale(18),
+    fontSize: ms(18),
     textAlign: "center",
     fontFamily: "TajawalMedium",
     color: Colors.darkText,

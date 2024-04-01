@@ -87,7 +87,6 @@ const EditSubjectScreen = ({ navigation, route }: Props) => {
   });
 
   const onInsertLink = () => {
-    console.log("onInsertLink");
     linkModal.current?.setModalVisible(true);
   };
 

@@ -116,8 +116,8 @@ const SubjectScreen = ({ navigation, route }: Props) => {
 
   const onSubmit = (FormData: VerificationPasswordSchemaType) => {
     mutate(FormData.password, {
-      onSuccess: (data) => {
-        if (FormData.password === data?.password) {
+      onSuccess: (pas) => {
+        if (FormData.password === pas?.password) {
           setIsVisible(false);
           setIsTrue(true);
           navigation.push("EditSubject", {

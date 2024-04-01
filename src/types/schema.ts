@@ -94,3 +94,36 @@ export const validationAddOurExplanationsSchema = z.object({
 export type ValidationAddOurExplanationsSchemaType = z.infer<
   typeof validationAddOurExplanationsSchema
 >;
+
+export const validationDoctorsSchema = z.object({
+  id: z.string(),
+  name: z.string({
+    required_error: "اسم الدكتور مطلوب",
+  }),
+  image: z.optional(z.string()),
+  email: z.optional(z.string()),
+  name2: z.optional(z.string()),
+  office: z.optional(z.string()),
+  phone: z.optional(z.string()),
+  website: z.optional(z.string()),
+});
+
+export type ValidationDoctorsSchemaType = z.infer<
+  typeof validationDoctorsSchema
+>;
+
+export const validationAddDoctorSchema = z.object({
+  name: z.string({
+    required_error: "اسم الدكتور مطلوب",
+  }),
+  email: z.optional(z.string()),
+  image: z.optional(z.string()),
+  name2: z.optional(z.string()),
+  office: z.optional(z.string()),
+  phone: z.optional(z.string()),
+  website: z.optional(z.string()),
+});
+
+export type ValidationAddDoctorSchemaType = z.infer<
+  typeof validationAddDoctorSchema
+>;

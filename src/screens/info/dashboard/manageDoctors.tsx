@@ -12,9 +12,9 @@ import { useImagePicker } from "@Src/hooks/useImagePicker";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
 import {
-  ValidationAddOurExplanationsSchemaType,
-  ValidationOurExplanationsSchemaType,
-  validationAddOurExplanationsSchema,
+  ValidationAddDoctorSchemaType,
+  ValidationDoctorsSchemaType,
+  validationAddDoctorSchema,
 } from "@Types/schema";
 import { hs, ms, vs } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
@@ -35,11 +35,10 @@ const ManageDoctorsScreen = () => {
     deleteDoctorMutation();
   const { theme } = useContext(ThemeContext);
 
-  const { control, handleSubmit } =
-    useForm<ValidationOurExplanationsSchemaType>();
+  const { control, handleSubmit } = useForm<ValidationDoctorsSchemaType>();
   const { control: addControl, handleSubmit: addHandleSubmit } =
-    useForm<ValidationAddOurExplanationsSchemaType>({
-      resolver: zodResolver(validationAddOurExplanationsSchema),
+    useForm<ValidationAddDoctorSchemaType>({
+      resolver: zodResolver(validationAddDoctorSchema),
     });
 
   const backgroundColor =
@@ -83,7 +82,7 @@ const ManageDoctorsScreen = () => {
       },
       {
         onSuccess: () => {
-          Alert.alert("تم إضافة الشرخ بنجاح", "", [
+          Alert.alert("تم إضافة الدكتور بنجاح", "", [
             {
               text: "تم",
             },

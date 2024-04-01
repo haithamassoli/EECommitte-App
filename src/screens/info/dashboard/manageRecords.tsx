@@ -82,7 +82,7 @@ const ManageRecordsScreen = () => {
       },
       {
         onSuccess: () => {
-          Alert.alert("تم إضافة الشرخ بنجاح", "", [
+          Alert.alert("تم إضافة التسجيل بنجاح", "", [
             {
               text: "تم",
             },

@@ -87,14 +87,22 @@ export const addDoctorMutation = () =>
   useMutation(
     (data: {
       email: string;
-      image: string;
+      image?: string;
       name: string;
       name2: string;
       office: string;
       phone: string;
       website: string;
     }) => {
-      return addDoc(collection(db, "doctors"), data);
+      return addDoc(collection(db, "doctors"), {
+        email: data.email || "",
+        image: data.image || "",
+        name: data.name,
+        name2: data.name2 || "",
+        office: data.office || "",
+        phone: data.phone || "",
+        website: data.website || "",
+      });
     }
   );
 

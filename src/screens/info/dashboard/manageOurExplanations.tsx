@@ -83,7 +83,7 @@ const ManageOurExplanationsScreen = () => {
       },
       {
         onSuccess: () => {
-          Alert.alert("تم إضافة الشرخ بنجاح", "", [
+          Alert.alert("تم إضافة الشرح بنجاح", "", [
             {
               text: "تم",
             },

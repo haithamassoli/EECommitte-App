@@ -16,6 +16,7 @@ import {
   ActivityIndicator,
   RefreshControl,
   StyleSheet,
+  FlatList,
 } from "react-native";
 import Animated, { FadeInUp } from "react-native-reanimated";
 import { Shadow } from "react-native-shadow-2";
@@ -115,10 +116,9 @@ const RecordsScreen = ({ navigation }: Props) => {
       </Shadow>
       {results.length > 0 && searchInput.length > 0 ? (
         <View style={{ flex: 1, marginHorizontal: horizontalScale(12) }}>
-          <FlashList
+          <FlatList
             data={results}
             contentContainerStyle={styles.contentContainerStyle}
-            estimatedItemSize={25}
             keyExtractor={(_, index) => index.toString()}
             keyboardShouldPersistTaps="always"
             renderItem={renderItem}

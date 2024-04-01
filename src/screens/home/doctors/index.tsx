@@ -1,4 +1,10 @@
-import { Text, View, ActivityIndicator, RefreshControl } from "react-native";
+import {
+  Text,
+  View,
+  ActivityIndicator,
+  RefreshControl,
+  FlatList,
+} from "react-native";
 import SearchInput from "@Components/ui/SearchInput";
 import { useLayoutEffect, useState } from "react";
 import { ThemeContext } from "@Src/store/themeContext";
@@ -7,7 +13,6 @@ import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HomeStackParamList } from "@Types/navigation";
 import DoctorCard from "@Components/DoctorCard";
-import { FlashList } from "@shopify/flash-list";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { fetchDoctors } from "@Src/api/fetchDoctors";
 import NoConnection from "@Components/NoConnection";
@@ -114,13 +119,12 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
       </Shadow>
       {results.length > 0 && searchInput.length > 0 ? (
         <View style={{ flex: 1, marginHorizontal: horizontalScale(12) }}>
-          <FlashList
+          <FlatList
             contentContainerStyle={{
               paddingBottom: verticalScale(12),
             }}
             keyboardShouldPersistTaps="always"
             data={results}
-            estimatedItemSize={33}
             keyExtractor={(item, index) => index.toString()}
             renderItem={renderItem}
           />
@@ -141,7 +145,7 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
         </>
       ) : (
         <View style={{ flex: 1, marginHorizontal: horizontalScale(12) }}>
-          <FlashList
+          <FlatList
             data={data}
             contentContainerStyle={{ paddingBottom: verticalScale(12) }}
             refreshControl={
@@ -166,7 +170,6 @@ const DoctorsScreen = ({ navigation, route }: Props) => {
               />
             }
             keyboardShouldPersistTaps="always"
-            estimatedItemSize={33}
             keyExtractor={(item, index) => index.toString()}
             renderItem={renderItem}
           />

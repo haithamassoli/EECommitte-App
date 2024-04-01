@@ -15,10 +15,16 @@ import { screenWidth } from "@Utils/Helper";
 import { hs, ms, vs } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
 import { useNetInfo } from "@react-native-community/netinfo";
-import { FlashList } from "@shopify/flash-list";
 import { useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { View, Text, StyleSheet, Alert, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { HelperText } from "react-native-paper";
 import { RichEditor } from "react-native-pell-rich-editor";
@@ -258,11 +264,10 @@ const ManageFAQScreen = () => {
 
   return (
     <View style={{ flex: 1, marginHorizontal: hs(12) }}>
-      <FlashList
+      <FlatList
         data={data}
         contentContainerStyle={{ paddingVertical: vs(12) }}
         keyExtractor={(item) => item.id}
-        estimatedItemSize={100}
         renderItem={renderItem}
       />
     </View>

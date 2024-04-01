@@ -20,10 +20,15 @@ import { screenWidth } from "@Utils/Helper";
 import { hs, ms, vs } from "@Utils/Platform";
 import { Feather } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FlashList } from "@shopify/flash-list";
 import { Image } from "expo-image";
 import { useForm } from "react-hook-form";
-import { View, StyleSheet, Alert, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Alert,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 
 const ManageRecordsScreen = () => {
   const { data, isLoading, refetch } = fetchRecordsQuery();
@@ -369,11 +374,10 @@ const ManageRecordsScreen = () => {
       }}
     >
       <View style={{ flex: 1, marginHorizontal: hs(12) }}>
-        <FlashList
+        <FlatList
           data={data}
           contentContainerStyle={{ paddingBottom: vs(12) }}
           keyExtractor={(item) => item.id}
-          estimatedItemSize={100}
           renderItem={renderItem}
         />
       </View>

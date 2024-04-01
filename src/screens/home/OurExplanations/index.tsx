@@ -3,14 +3,19 @@ import RecordCard from "@Components/RecordCard";
 import SearchInput from "@Components/ui/SearchInput";
 import Colors from "@GlobalStyle/Colors";
 import { StackScreenProps } from "@react-navigation/stack";
-import { FlashList } from "@shopify/flash-list";
 import { fetchExplanations } from "@Src/api/fetchExplanations";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
 import { HomeStackParamList } from "@Types/navigation";
 import { horizontalScale, moderateScale, verticalScale } from "@Utils/Platform";
 import { useState, useLayoutEffect } from "react";
-import { View, Text, ActivityIndicator, RefreshControl } from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  RefreshControl,
+  FlatList,
+} from "react-native";
 import Animated, { FadeInUp } from "react-native-reanimated";
 import { Shadow } from "react-native-shadow-2";
 
@@ -101,10 +106,9 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
       </Shadow>
       {results.length > 0 && searchInput.length > 0 ? (
         <View style={{ flex: 1, marginHorizontal: horizontalScale(12) }}>
-          <FlashList
+          <FlatList
             data={results}
             contentContainerStyle={{ paddingBottom: verticalScale(12) }}
-            estimatedItemSize={19}
             keyExtractor={(_, index) => index.toString()}
             keyboardShouldPersistTaps="always"
             renderItem={renderItem}
@@ -126,7 +130,7 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
         </>
       ) : (
         <View style={{ flex: 1, marginHorizontal: horizontalScale(12) }}>
-          <FlashList
+          <FlatList
             data={data}
             contentContainerStyle={{ paddingBottom: verticalScale(12) }}
             keyboardShouldPersistTaps="always"
@@ -151,7 +155,6 @@ const OurExplanationsScreen = ({ navigation }: Props) => {
                 }
               />
             }
-            estimatedItemSize={19}
             keyExtractor={(_, index) => index.toString()}
             renderItem={renderItem}
           />

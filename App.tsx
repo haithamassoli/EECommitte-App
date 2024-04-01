@@ -12,6 +12,7 @@ import {
   Alert,
   TextInput,
   ScrollView,
+  FlatList,
 } from "react-native";
 import * as Updates from "expo-updates";
 import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
@@ -98,6 +99,14 @@ FlashList.defaultProps.showsVerticalScrollIndicator = false;
 FlashList.defaultProps.showsHorizontalScrollIndicator = false;
 // @ts-ignore
 FlashList.defaultProps.keyboardShouldPersistTaps = "handled";
+// @ts-ignore
+FlatList.defaultProps = FlatList.defaultProps || {};
+// @ts-ignore
+FlatList.defaultProps.showsVerticalScrollIndicator = false;
+// @ts-ignore
+FlatList.defaultProps.showsHorizontalScrollIndicator = false;
+// @ts-ignore
+FlatList.defaultProps.keyboardShouldPersistTaps = "handled";
 // @ts-ignore
 Text.defaultProps = Text.defaultProps || {};
 // @ts-ignore

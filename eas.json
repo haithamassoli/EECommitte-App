@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": ">= 7.1.3"
+    "version": ">= 9.2.0"
   },
   "build": {
     "development-simulator": {

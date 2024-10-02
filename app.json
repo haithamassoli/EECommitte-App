@@ -21,7 +21,7 @@
       "buildNumber": "3.6.2",
       "supportsTablet": true,
       "googleServicesFile": "./GoogleService-Info.plist",
-      "bundleIdentifier": "com.haithamassoli.EECommittee"
+      "bundleIdentifier": "com.haithamassoli.EEC"
     },
     "android": {
       "versionCode": 64,

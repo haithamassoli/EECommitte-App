@@ -1,13 +1,6 @@
 import { db } from "@Src/firebase-config";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import {
-  collection,
-  getDocs,
-  query,
-  where,
-  updateDoc,
-  doc,
-} from "firebase/firestore";
+import { useMutation } from "@tanstack/react-query";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 export const checkPasswordMutation = () =>
   useMutation(async (password: string) => {

@@ -5,7 +5,6 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Route from "./src/navigation/main";
 import {
-  I18nManager,
   Platform,
   Text,
   UIManager,
@@ -117,18 +116,6 @@ export default function App() {
   const responseListener = useRef();
 
   useEffect(() => {
-    const forceRTL = async () => {
-      if (!I18nManager.isRTL) {
-        try {
-          I18nManager.allowRTL(true);
-          I18nManager.forceRTL(true);
-          await Updates.reloadAsync();
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    };
-    forceRTL();
     const firstTime = () => {
       const firstTime = getDataMMKV("firstTime");
       if (firstTime === null) {

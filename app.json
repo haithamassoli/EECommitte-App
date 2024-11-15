@@ -5,6 +5,7 @@
     "version": "3.6.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "newArchEnabled": true,
     "userInterfaceStyle": "light",
     "backgroundColor": "#fff",
     "splash": {
@@ -40,12 +41,15 @@
           "color": "#fff"
         }
       ],
-      "expo-font"
+      "expo-font",
+      "expo-localization"
     ],
     "extra": {
       "eas": {
         "projectId": "17a53ebd-120e-477f-9b48-e87d75fd1a78"
-      }
+      },
+      "supportsRTL": true,
+      "forcesRTL": true
     },
     "runtimeVersion": {
       "policy": "appVersion"

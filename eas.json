@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": ">= 13.1.1",
+    "version": ">= 14.2.0",
     "appVersionSource": "remote"
   },
   "build": {
@@ -29,6 +29,16 @@
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        // "appleId": "ehabamawi98@outlook.com",
+        // "ascAppId": "6443760623",
+        // "appleTeamId": "D4FF3393XV"
+
+        "appleId": "yatishagrawal.555@gmail.com",
+        "ascAppId": "1088778940",
+        "appleTeamId": "44GHVA97YG"
+      }
+    }
   }
 }

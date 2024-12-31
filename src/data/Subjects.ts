@@ -331,6 +331,11 @@ const Subjects: Subject[] = [
     name2: "تصميم الدوائر الإلكترونية الكتف",
     name: "Electives",
   },
+  {
+    id: 68,
+    name2: "مقدمة في الهندسة",
+    name: "Engineering Introduction",
+  },
 ];
 
 export default Subjects;

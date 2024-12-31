@@ -87,9 +87,10 @@ const PlanScreen = ({ navigation }: Props) => {
             return {
               ...item,
               prefill:
-                item?.prefill === "rgba(255, 255, 255, 0.66)"
+                item?.prefill === "rgba(255, 255, 255, 0.72)" ||
+                item?.prefill === "#fff"
                   ? "transparent"
-                  : "rgba(255, 255, 255, 0.66)",
+                  : "rgba(255, 255, 255, 0.72)",
               isFinished: item?.isFinished === true ? false : true,
             };
           }

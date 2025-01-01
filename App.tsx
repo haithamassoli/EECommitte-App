@@ -21,7 +21,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import { FavoriteProvider } from "@Src/store/favoriteContext";
 import { setNotificationsTokens } from "@Src/api/setNotificationsTokens";
-import FirstLoading from "@Components/FirstLoading";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FlashList } from "@shopify/flash-list";
 import {
@@ -112,17 +111,9 @@ Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
 
 export default function App() {
-  const [isFirstTime, setIsFirstTime] = useState(false);
   const responseListener = useRef();
 
   useEffect(() => {
-    const firstTime = () => {
-      const firstTime = getDataMMKV("firstTime");
-      if (firstTime === null) {
-        setIsFirstTime(true);
-      }
-    };
-    firstTime();
     onFetchUpdateAsync();
     // deleteAllStorage();
   }, []);
@@ -212,11 +203,6 @@ export default function App() {
     };
   }, []);
 
-  const onFinished = useCallback(() => {
-    setIsFirstTime(false);
-    storeDataMMKV("firstTime", true);
-  }, []);
-
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync();
@@ -226,9 +212,6 @@ export default function App() {
   if (!fontsLoaded) {
     return null;
   }
-
-  if (isFirstTime)
-    return <FirstLoading onLayout={onLayoutRootView} onFinished={onFinished} />;
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -74,21 +74,13 @@ const InfoScreen = ({ navigation }: Props) => {
       <View style={styles.content}>
         <Animated.View entering={FadeInUp.duration(600)}>
           <InfoItem
-            icon="info"
-            title="عن اللجنة"
-            subTitle="لجنة الهندسة الكهربائية"
-            onPress={() => onPress("AboutEECommitte")}
-          />
-        </Animated.View>
-        <Animated.View entering={FadeInUp.duration(600).delay(200)}>
-          <InfoItem
             title="لوحة التحكم"
             subTitle="لوحة التحكم للجنة الهندسة الكهربائية"
             icon="grid"
             onPress={() => onPress("Dashboard")}
           />
         </Animated.View>
-        <Animated.View entering={FadeInUp.duration(600).delay(400)}>
+        <Animated.View entering={FadeInUp.duration(600).delay(200)}>
           <InfoItem
             icon="mail"
             title="تواصل مع المطور"
@@ -100,7 +92,7 @@ const InfoScreen = ({ navigation }: Props) => {
             }
           />
         </Animated.View>
-        <Animated.View entering={FadeInUp.duration(600).delay(600)}>
+        <Animated.View entering={FadeInUp.duration(600).delay(400)}>
           <InfoItem
             icon="share"
             title="شارك التطبيق"
@@ -116,7 +108,7 @@ https://apps.apple.com/jo/app/لجنة-الهندسة-الكهربائية/id646
             }
           />
         </Animated.View>
-        <Animated.View entering={FadeInUp.duration(600).delay(800)}>
+        <Animated.View entering={FadeInUp.duration(600).delay(600)}>
           <InfoItem
             icon="star"
             title="قيم التطبيق"
@@ -126,7 +118,7 @@ https://apps.apple.com/jo/app/لجنة-الهندسة-الكهربائية/id646
             onPress={() => Linking.openURL(appUrl)}
           />
         </Animated.View>
-        <Animated.View entering={FadeInUp.duration(600).delay(1000)}>
+        <Animated.View entering={FadeInUp.duration(600).delay(800)}>
           <InfoItem
             icon="heart"
             title="ادعمنا"

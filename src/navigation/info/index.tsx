@@ -2,7 +2,6 @@ import Colors from "@GlobalStyle/Colors";
 import { createStackNavigator } from "@react-navigation/stack";
 import SearchScreen from "@Screens/home/search";
 import InfoScreen from "@Screens/info";
-import AboutEECommitteScreen from "@Screens/info/aboutEECommitte";
 import SupportUsScreen from "@Screens/info/supportUs";
 import { ThemeContext } from "@Src/store/themeContext";
 import { useContext } from "react";
@@ -64,11 +63,6 @@ export default function InfoNavigation() {
     >
       <Stack.Screen name="Info" component={InfoScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />
-      <Stack.Screen
-        options={{ headerTitle: "عن اللجنة" }}
-        name="AboutEECommitte"
-        component={AboutEECommitteScreen}
-      />
       <Stack.Screen name="SupportUs" component={SupportUsScreen} />
       <Stack.Screen
         name="Dashboard"

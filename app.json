@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "backgroundColor": "#fff",
     "splash": {
       "image": "./assets/splash.png",
@@ -49,6 +50,9 @@
       },
       "supportsRTL": true,
       "forcesRTL": true
+    },
+    "experiments": {
+      "reactCompiler": true
     },
     "runtimeVersion": {
       "policy": "appVersion"

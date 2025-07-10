@@ -2,9 +2,10 @@
   "expo": {
     "name": "لجنة الهندسة الكهربائية",
     "slug": "EECommitte",
-    "version": "3.8.5",
+    "version": "4.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "newArchEnabled": true,
     "userInterfaceStyle": "light",
     "backgroundColor": "#ffffff",
     "splash": {
@@ -12,13 +13,16 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "experiments": {
+      "reactCompiler": true
+    },
     "updates": {
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/17a53ebd-120e-477f-9b48-e87d75fd1a78"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "3.8.5",
+      "buildNumber": "4.0.0",
       "supportsTablet": true,
       "requireFullScreen": true,
       "googleServicesFile": "./GoogleService-Info.plist",
@@ -26,7 +30,11 @@
       "infoPlist": {
         "ExpoLocalization_supportsRTL": true,
         "ExpoLocalization_forcesRTL": true,
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "UISupportedInterfaceOrientations~ipad": [
+          "UIInterfaceOrientationPortrait",
+          "UIInterfaceOrientationPortraitUpsideDown"
+        ]
       }
     },
     "android": {

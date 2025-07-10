@@ -46,19 +46,6 @@ if (Platform.OS === "android") {
   }
 }
 
-const onFetchUpdateAsync = async () => {
-  try {
-    const update = await Updates.checkForUpdateAsync();
-
-    if (update.isAvailable) {
-      await Updates.fetchUpdateAsync();
-    }
-  } catch (error) {
-    // You can also add an alert() to see the error message in case of an error when fetching updates.
-    console.log(`Error fetching latest Expo update: ${error}`);
-  }
-};
-
 setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -122,11 +109,6 @@ Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
 
 export default function App() {
-  useEffect(() => {
-    onFetchUpdateAsync();
-    // deleteAllStorage();
-  }, []);
-
   const [fontsLoaded] = useFonts({
     TajawalMedium: require("./assets/fonts/Tajawal-Medium.ttf"),
     TajawalBold: require("./assets/fonts/Tajawal-Bold.ttf"),

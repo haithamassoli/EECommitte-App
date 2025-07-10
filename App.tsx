@@ -7,17 +7,14 @@ import {
   Platform,
   Text,
   UIManager,
-  Alert,
   TextInput,
   ScrollView,
   FlatList,
 } from "react-native";
-import * as Updates from "expo-updates";
 import { ThemeContext, ThemeProvider } from "@Src/store/themeContext";
 import Colors from "@GlobalStyle/Colors";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { getDataMMKV, storeDataMMKV } from "@Utils/Helper";
 import { FavoriteProvider } from "@Src/store/favoriteContext";
 import { setNotificationsTokens } from "@Src/api/setNotificationsTokens";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

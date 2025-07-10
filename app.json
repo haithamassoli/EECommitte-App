@@ -2,16 +2,15 @@
   "expo": {
     "name": "لجنة الهندسة الكهربائية",
     "slug": "EECommitte",
-    "version": "3.7.2",
+    "version": "3.8.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "backgroundColor": "#fff",
+    "backgroundColor": "#ffffff",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#fff"
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
@@ -19,16 +18,22 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "3.7.2",
+      "buildNumber": "3.8.5",
       "supportsTablet": true,
+      "requireFullScreen": true,
       "googleServicesFile": "./GoogleService-Info.plist",
-      "bundleIdentifier": "com.haithamassoli.EEC"
+      "bundleIdentifier": "com.haithamassoli.EEC",
+      "infoPlist": {
+        "ExpoLocalization_supportsRTL": true,
+        "ExpoLocalization_forcesRTL": true,
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
-      "versionCode": 72,
+      "versionCode": 75,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#fff"
+        "backgroundColor": "#ffffff"
       },
       "package": "com.haithamassoli.EECommitte",
       "googleServicesFile": "./google-services.json"
@@ -38,7 +43,7 @@
         "expo-notifications",
         {
           "icon": "./assets/icon.png",
-          "color": "#fff"
+          "color": "#ffffff"
         }
       ],
       "expo-font",
@@ -50,9 +55,6 @@
       },
       "supportsRTL": true,
       "forcesRTL": true
-    },
-    "experiments": {
-      "reactCompiler": true
     },
     "runtimeVersion": {
       "policy": "appVersion"
